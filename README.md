@@ -4,9 +4,9 @@ cp .env.example .env
 ### Cài đặt thư viện
 composer install
 ### Chạy database và seed
-php artisan migrate --seed
-php artisan module:migrate --seed Staff
-php artisan module:migrate --seed Employee
+php artisan migrate --seed</br>
+php artisan module:migrate --seed Staff</br>
+php artisan module:migrate --seed Employee</br>
 ### Tạo key cho dự án
 php artisan key:generate
 ### Tạo thư mục
