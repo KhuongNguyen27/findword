@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class UserEmployee extends AdminModel
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     protected $table = 'user_employee';
     public $custom_fields = [
         'name',

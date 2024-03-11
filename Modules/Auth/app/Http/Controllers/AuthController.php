@@ -3,18 +3,25 @@
 namespace Modules\Auth\app\Http\Controllers;
 use Modules\Staff\app\Models\StaffUser;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Log;
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Broadcasting\Channel;
+
 use Modules\Auth\app\Http\Requests\StoreLoginRequest;
 use Modules\Auth\app\Http\Requests\StoreRegisterRequest;
 use Modules\Auth\app\Http\Requests\ForgotPasswordRequest;
 use Modules\Auth\app\Http\Requests\ResetPasswordRequest;
 use Modules\Auth\app\Models\PasswordResetToken;
+
 use Mail;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -25,7 +32,6 @@ class AuthController extends Controller
         }
         return view('auth::login');
     }
-
     public function postLogin(StoreLoginRequest $request)
     {
         Auth::logout();
@@ -41,7 +47,8 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('home');
     }
-    public function register($type = ''){
+    public function register($type = '')
+    {
         if (Auth::check()) {
             return redirect()->route('home'); 
         } else {
@@ -49,70 +56,63 @@ class AuthController extends Controller
         }
     }
     public function postRegister(StoreRegisterRequest $request)
-{
-    try {
-        
-        // Create a new user in the users table
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-        $message = "Successfully registered";
-        return redirect()->route('auth.login')->with('success', $message);
-    } catch (\Exception $e) {
-        Log::error('Bug occurred: ' . $e->getMessage());
-        return view('auth::register')->with('error', 'Registration failed');
+    {
+        try {
+            
+            // Create a new user in the users table
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+            $message = "Successfully registered";
+            return redirect()->route('auth.login')->with('success', $message);
+        } catch (\Exception $e) {
+            Log::error('Bug occurred: ' . $e->getMessage());
+            return view('auth::register')->with('error', 'Registration failed');
+        }
     }
-}
-
     function forgot(Request $request)
     {
+        if (url()->previous() !== route('auth.forgot')) {
+            Session::put('previous_url', url()->previous());
+        }
         return view('auth::forgot');
     }
     public function postForgot(ForgotPasswordRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            return redirect()->back()->with('error', 'Email not found');
-        }
-
-        // Generate a random token
-        $token = strtoupper(Str::random(10));
-
-        // Save the token in the password_reset_tokens table
-        // Check if the email already has a token in the password_reset_tokens table
-        $existingToken = PasswordResetToken::where('email', $user->email)->first();
-
-        if ($existingToken) {
-            // If a token exists, update the existing record
-            $existingToken->update(['token' => $token]);
-        } else {
-            // If no token exists, create a new record
-            PasswordResetToken::create([
+        try {
+            $user = User::where('email', $request->email)->first();
+            if (!$user) {
+                return redirect()->back()->with('error', 'Email not found');
+            }
+            $token = strtoupper(Str::random(10));
+            $existingToken = PasswordResetToken::where('email', $user->email)->first();
+            if ($existingToken) {
+                $existingToken->update(['token' => $token]);
+            } else {
+                PasswordResetToken::create([
+                    'email' => $user->email,
+                    'token' => $token,
+                ]);
+            }
+            $data = [
+                'id' => $user->id,
+                'name' => $user->name,
                 'email' => $user->email,
-                'token' => $token,
-            ]);
+                'token' => $token
+            ];
+            Notification::route('mail', [
+                $user->email => $user->name,
+            ])->notify(new Notifications("forgotpassword",$data));
+            $previousUrl = Session::get('previous_url');
+            return redirect($previousUrl)->with('success', 'Vui lòng kiểm tra email để lấy lại mật khẩu');
+        } catch (\Exception $e) {
+            $previousUrl = Session::get('previous_url');
+            Log::error('Bug occurred: ' . $e->getMessage());
+            return redirect($previousUrl)->with('error', 'Lấy lại mật khẩu thất bại !!');
         }
-
-        // Data to be passed to the email view
-        $data = [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'token' => $token
-        ];
-
-        // Send the reset password email
-        Mail::send('auth::mail', compact('data'), function ($email) use ($user) {
-            $email->subject('Forgot Password');
-            $email->to($user->email, $user->name);
-        });
-
-        return redirect()->route('auth.login')->with('success', 'Please check your email to reset the password');
     }
-
     public function getReset($token)
     {
         $tokenRecord = PasswordResetToken::where('token', $token)->first();
@@ -127,7 +127,6 @@ class AuthController extends Controller
             return redirect()->route('auth.login')->with('error', 'There was a problem. Please try again.');
         }
     }
-
     public function postReset(ResetPasswordRequest $request)
     {
         $tokenRecord = PasswordResetToken::where('token', $request->token)->first();

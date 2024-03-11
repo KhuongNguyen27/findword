@@ -18,14 +18,15 @@
             @endif
             @csrf
             <div class="form-group">
-                <label>email</label>
-                <input type="email" name="email" placeholder="email">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="username@gmail.com">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
             </div>
             <div class="form-group">
-                <button class="theme-btn btn-style-one" type="submit"  onclick="showLoading()">Submit <i class="ti-arrow-right"></i></button>
+                <button class="theme-btn btn-style-one" type="submit" onclick="showLoading()">Submit <i
+                        class="ti-arrow-right"></i></button>
                 <div id="loadingSpinner" class="loading-spinner"></div>
             </div>
         </form>
