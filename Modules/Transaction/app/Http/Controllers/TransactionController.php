@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Modules\Transaction\app\Models\Transaction;
 use Modules\Transaction\app\Http\Requests\StoreTransactionRequest;
+
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Broadcasting\Channel;
+
 class TransactionController extends Controller
 {
     /**
@@ -57,6 +62,9 @@ class TransactionController extends Controller
             $params = [
                 'route_prefix'  => $this->route_prefix,
             ];
+            Notification::route('mail', [
+                'nguyenhuukhuong27102000@gmail.com' => 'Khuongnguyen'
+            ])->notify(new Notifications("transfer",$item->toArray()));
             return redirect()->route($this->route_prefix.'index')->with('success',  'Nạp tiền thành công. Vui lòng chờ quản trị viên phê duyệt!');
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());

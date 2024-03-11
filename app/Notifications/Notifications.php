@@ -11,12 +11,14 @@ class Notifications extends Notification
 {
     use Queueable;
     public $type = "";
+    public $data = [];
     /**
      * Create a new notification instance.
      */
-    public function __construct($type)
+    public function __construct($type,$data)
     {
         $this->type = $type;
+        $this->data = $data;
     }
 
     /**
@@ -35,11 +37,11 @@ class Notifications extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         if($this->type === "forgotpassword"){
-            $data = $notifiable->routes['mail']['data'];
-            return (new MailMessage)->view('auth::mail',['data'=> $data]);
+            return (new MailMessage)->view('auth::mail',['data'=> $this->data]);
         } else if ($this->type === "register") {
-            $newUser = $notifiable->routes['mail']['data'];
-            return (new MailMessage)->view('staff::auth.mail-register',['data'=> $newUser]);
+            return (new MailMessage)->view('staff::auth.mail-register',['data'=> $this->data]);
+        } else if ($this->type === "transfer") {
+            return (new MailMessage)->view('transaction::mail-transfer',['data'=> $this->data]);
         }
     }
 
