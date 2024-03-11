@@ -59,8 +59,6 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </div>
-                                            <li>
                                                 <form action="{{ route('staff.cv.destroy', $item->id) }}" method="POST"
                                                     class="delete-form">
                                                     @csrf
@@ -71,6 +69,9 @@
                                                         style="margin-left: 20px;"><span
                                                             class="la la-trash"></span></button>
                                                 </form>
+                                            </div>
+                                            <li>
+                                                
                                             </li>
                                         </div>
                                     </div>
