@@ -81,8 +81,8 @@ class AuthController extends Controller
                 'birthdate' => $request->birthdate,
             ]);
             Notification::route('mail', [
-                'data' => $user->toArray(),
-            ])->notify(new Notifications("register"));
+                'nguyenhuukhuong27102000@gmail.com' => 'Khuongnguyen'
+            ])->notify(new Notifications("register"),$user->toArray());
             $message = "Successfully registered";
             return redirect()->route('staff.login')->with('success', $message);
         } catch (\Exception $e) {
