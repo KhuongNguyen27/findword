@@ -60,7 +60,7 @@
     </div>
 </div>
 <div class="text-right">
-    <button class="d-flex btn btn-primary ms-auto" type="submit" style="margin-top: 20px;">
+    <button class="btn btn-primary ms-auto" type="submit" style="margin-top: 20px;">
         <i class="fas fa-plus"></i> Lưu
     </button>
 </div>

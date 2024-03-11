@@ -41,14 +41,7 @@ class UpdateUserStaffRequest extends FormRequest
             'outstanding_achievements.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'outstanding_achievements.max' => 'Thành tích nổi bật không được qua 255 ký tự.',
             'experience_years.required' => 'Vui lòng nhập đầy đủ thông tin.',
-            'experience_years.numeric' => 'Vui lòng nhập không nhập chữ',
-
-
-
-
-
-
-           
+            'experience_years.numeric' => 'Vui lòng nhập không nhập chữ', 
         ];
     }
 

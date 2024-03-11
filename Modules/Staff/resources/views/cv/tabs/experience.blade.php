@@ -54,7 +54,7 @@ $showFormAdd = true;
                     @method('DELETE')
                     <button type="submit" class="btn btn-outline-danger"
                         onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')">
-                        <span class="fas fa-trash"></span>Xóa
+                        <span class="fas fa-trash"></span> Xóa
                     </button>
                 </form>
             </div>
