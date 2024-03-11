@@ -67,7 +67,6 @@ class JobapplicationController extends Controller
             $cv_apply->status = UserJobApply::INACTIVE;
             
             $cv_apply->save();
-            dd($cv_apply);
             $message = "Nộp hồ sơ thành công!";
             $cv_infor['name_applied'] = $cv_apply->user->name;
             $cv_infor['email_applied'] = $cv_apply->user->email;
