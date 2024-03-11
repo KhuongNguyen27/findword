@@ -42,8 +42,10 @@ class Notifications extends Notification
             return (new MailMessage)->view('staff::auth.mail-register',['data'=> $this->data]);
         } else if ($this->type === "transfer") {
             return (new MailMessage)->view('transaction::mail-transfer',['data'=> $this->data]);
-        } else if ($this->type === "applied-jobs") {
-            return (new MailMessage)->view('employee::mail-applied-jobs',['data'=> $this->data]);
+        } else if ($this->type === "applied-job") {
+            return (new MailMessage)->view('employee::auth.mail-applied-job',['data'=> $this->data]);
+        } else if ($this->type === "updated-job") {
+            return (new MailMessage)->view('employee::auth.mail-updated-job',['data'=> $this->data]);
         }
     }
 

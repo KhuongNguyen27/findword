@@ -37,7 +37,7 @@ class JobapplicationController extends Controller
             $query->where('status', $request->status);
         }
         
-        $cv_apllys = $query->paginate(5);
+        $cv_aplly = $query->paginate(5);
 
         $cv_apllys_count = $query->count();
         $count_cv_appled = $query->where('status', 1)->count();
@@ -67,13 +67,16 @@ class JobapplicationController extends Controller
             $cv_apply->status = UserJobApply::INACTIVE;
             
             $cv_apply->save();
+            dd($cv_apply);
             $message = "Nộp hồ sơ thành công!";
-            $cv_infor['name'] = $cv_apply->user->name;
-            $cv_infor['email'] = $cv_apply->user->email;
+            $cv_infor['name_applied'] = $cv_apply->user->name;
+            $cv_infor['email_applied'] = $cv_apply->user->email;
             $cv_infor['job'] = $cv_apply->job->name;
+            $cv_infor['name'] = $cv_apply->job->user->name;
+            $cv_infor['email'] = $cv_apply->job->user->email;
             Notification::route('mail', [
                 $cv_infor['email'] => $cv_infor['name']
-            ])->notify(new Notifications("applied-jobs",$cv_infor));
+            ])->notify(new Notifications("applied-job",$cv_infor));
             return redirect()->route('website.jobs.show',$job->slug)->with('success', $message);
         } catch (\Exception $e) {
             // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
@@ -134,6 +137,14 @@ class JobapplicationController extends Controller
             $cv_apply->save();
 
             $message = "Cập Nhật thành công!";
+            if ($cv_apply->status == "1") {
+                $cv_infor['name'] = $cv_apply->user->name;
+                $cv_infor['email'] = $cv_apply->user->email;
+                $cv_infor['job'] = $cv_apply->job->name;
+                Notification::route('mail', [
+                    $cv_infor['email'] => $cv_infor['name']
+                ])->notify(new Notifications("updated-job",$cv_infor));
+            }
             return redirect()->route('employee.cv.index')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
