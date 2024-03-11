@@ -17,7 +17,10 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
-use App\Jobs\SendEmail;
+
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Broadcasting\Channel;
 
 class AuthController extends Controller
 {
@@ -72,13 +75,10 @@ class AuthController extends Controller
             $user->status = 1;
             $user->password = bcrypt($request->password);
             $user->save();
-
-            
             // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
             $imagePath = $request->file('image')->store('public/images');
             // Lấy tên tệp tin hình ảnh
             $imageName = basename($imagePath);
-
             $request->cp_slug = $request->cp_slug ? $request->cp_slug : $request->cp_name;
             $slug = $maybe_slug = Str::slug($request->cp_slug);
             $next = 2;
@@ -86,7 +86,6 @@ class AuthController extends Controller
                 $slug = "{$maybe_slug}-{$next}";
                 $next++;
             }
-            // dd($slug);
             $user->userEmployee()->create([
                 'name' => $request->cp_name,
                 'website' => $request->website,
@@ -97,6 +96,9 @@ class AuthController extends Controller
             ]);
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch
+            Notification::route('mail', [
+                'data' => $user->toArray(),
+            ])->notify(new Notifications("register"));
             return redirect()->route('employee.login')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
