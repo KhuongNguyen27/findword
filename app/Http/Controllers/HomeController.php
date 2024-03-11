@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Career;
 use App\Models\Job;
 use App\Models\UserEmployee;

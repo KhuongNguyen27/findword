@@ -37,7 +37,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>Năm sinh </label>
-                            <input type="text" name="year_of_birth" placeholder="Năm sinh"  value="{{ old('year_of_birth') }}">
+                            <input type="number" name="year_of_birth" placeholder="Năm sinh"  value="{{ old('year_of_birth') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
                             @endif
