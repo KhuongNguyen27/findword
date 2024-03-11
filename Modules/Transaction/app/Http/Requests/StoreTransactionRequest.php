@@ -12,7 +12,7 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'required|numeric|gt:0',
+            'amount' => 'required|numeric|gt:0|max:100',
         ];
     }
     function messages():array
@@ -22,6 +22,7 @@ class StoreTransactionRequest extends FormRequest
             'amount.required' => 'Vui lòng nhập số tiền',
             'amount.gt' => 'Số tiền phải lớn hơn 0',
             'amount.numeric' => 'Vui lòng nhập số tiền',
+            'amount.max' => 'Số tiền vượt quá giới hạn',
         ];
     }
 
