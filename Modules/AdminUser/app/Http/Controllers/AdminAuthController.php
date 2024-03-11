@@ -25,12 +25,21 @@ class AdminAuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('admin.home');
+        try
+        {
+            if (Auth::attempt($credentials)) {
+                
+                $request->session()->regenerate();
+                return redirect()->route('admin.home');
+            }
+            return redirect()->route('login')->with('error', 'Vui lòng kiểm tra lại toàn khoản mật khẩu');
+        }
+        catch(\Exception $e)
+        {
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
+
     function logout(){
         Auth::logout();
         return redirect()->route('admin.home');

@@ -15,7 +15,7 @@ class StoreAdminUserRequest extends FormRequest
         $rules = [
             'name' => 'required|max:255',
             'password' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email|max:255',
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['email'] = 'required';
@@ -31,6 +31,7 @@ class StoreAdminUserRequest extends FormRequest
             'password.required' => 'Vui lòng nhập mật khẩu',
             'email.required' => 'Vui lòng nhập email',
             'email.unique' => 'Tên email đã sử dụng',
+            'email.max'=>'Tên email phải có độ dài dưới 255 kí tự',
         ];
     }
 

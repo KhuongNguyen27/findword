@@ -126,6 +126,7 @@ class AdminTaxonomyController extends Controller
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
+            
         } catch (QueryException $e) {
             Log::error('Error in destroy method: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.destroy_item_error'));
