@@ -15,6 +15,10 @@ use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
 
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Broadcasting\Channel;
+
 class JobapplicationController extends Controller
 {
     /**
@@ -54,7 +58,6 @@ class JobapplicationController extends Controller
     public function store(CvapplyRequest $request)
     {
         try {
-
             $job = Job::find($request->job_id);
             $cv_apply = new UserJobApply();
             
@@ -64,13 +67,19 @@ class JobapplicationController extends Controller
             $cv_apply->status = UserJobApply::INACTIVE;
             
             $cv_apply->save();
-
             $message = "Nộp hồ sơ thành công!";
+            $cv_infor['name'] = $cv_apply->user->name;
+            $cv_infor['email'] = $cv_apply->user->email;
+            $cv_infor['job'] = $cv_apply->job->name;
+            Notification::route('mail', [
+                $cv_infor['email'] => $cv_infor['name']
+            ])->notify(new Notifications("applied-jobs",$cv_infor));
             return redirect()->route('website.jobs.show',$job->slug)->with('success', $message);
         } catch (\Exception $e) {
             // DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
+            $job = Job::find($request->job_id);
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('website.jobs.show',$request->$job->slug)->with('error', 'Nộp hồ sơ thất bại!');
+            return redirect()->route('website.jobs.show',$job->slug)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
 
