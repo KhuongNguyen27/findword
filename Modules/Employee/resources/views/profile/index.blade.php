@@ -164,7 +164,7 @@
 
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mật Khẩu</label>
-                                            <input type="text" name="password" value="" placeholder="">
+                                            <input type="password" name="password" value="" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('password') }}</p>
                                             @endif
