@@ -11,11 +11,15 @@ use Modules\Auth\app\Http\Requests\StoreRegisterRequest;
 use Modules\Auth\app\Http\Requests\ForgotPasswordRequest;
 use Modules\Auth\app\Http\Requests\ResetPasswordRequest;
 use Modules\Auth\app\Models\PasswordResetToken;
+
 use Mail;
 use Illuminate\Support\Str;
 use Modules\Staff\app\Models\StaffUser;
 use Modules\Staff\app\Models\User;
 
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Broadcasting\Channel;
 
 class AuthController extends Controller
 {
@@ -76,6 +80,9 @@ class AuthController extends Controller
                 'phone' => $request->phone,
                 'birthdate' => $request->birthdate,
             ]);
+            Notification::route('mail', [
+                'data' => $user->toArray(),
+            ])->notify(new Notifications("register"));
             $message = "Successfully registered";
             return redirect()->route('staff.login')->with('success', $message);
         } catch (\Exception $e) {

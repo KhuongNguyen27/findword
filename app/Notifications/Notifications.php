@@ -10,13 +10,13 @@ use Illuminate\Notifications\Notification;
 class Notifications extends Notification
 {
     use Queueable;
-
+    public $type = "";
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($type)
     {
-        //
+        $this->type = $type;
     }
 
     /**
@@ -34,8 +34,13 @@ class Notifications extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $data = $notifiable->routes['mail']['data'];
-        return (new MailMessage)->view('auth::mail',['data'=> $data]);
+        if($this->type === "forgotpassword"){
+            $data = $notifiable->routes['mail']['data'];
+            return (new MailMessage)->view('auth::mail',['data'=> $data]);
+        } else if ($this->type === "register") {
+            $newUser = $notifiable->routes['mail']['data'];
+            return (new MailMessage)->view('staff::auth.mail-register',['data'=> $newUser]);
+        }
     }
 
     /**

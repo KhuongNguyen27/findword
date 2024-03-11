@@ -104,7 +104,7 @@ class AuthController extends Controller
             ];
             Notification::route('mail', [
                 'data' => $data,
-            ])->notify(new Notifications($user));
+            ])->notify(new Notifications("forgotpassword"));
             $previousUrl = Session::get('previous_url');
             return redirect($previousUrl)->with('success', 'Vui lòng kiểm tra email để lấy lại mật khẩu');
         } catch (\Exception $e) {
