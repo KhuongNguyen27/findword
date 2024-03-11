@@ -12,19 +12,21 @@ class StoreUserCvRequest extends FormRequest
     public function rules(): array
     {
         $rules = [];
-        if($this->tab == 'personal-information'){
+        if ($this->tab == 'personal-information') {
             $rules = [
-                'name' => 'required',
+                'name' => 'required|string|max:255',
                 'email' => 'required|email',
-                'phone' => 'required',
+                'phone' => 'required|numeric',
                 'birthdate' => 'required',
                 'gender' => 'required',
-                'city' => 'required',
-                'address' => 'required',
-                'experience_years' => 'required',
+                'city' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'experience_years' => 'required|numeric',
+                'outstanding_achievements' => 'required|string|max:255',
+
             ];
-        } 
-        if($this->tab == 'job-information'){
+        }
+        if ($this->tab == 'job-information') {
             $rules = [
                 'cv_file' => 'required',
                 'desired_position' => 'required',
@@ -36,7 +38,7 @@ class StoreUserCvRequest extends FormRequest
                 'career_objective' => 'required',
             ];
         }
-        
+
         return $rules;
     }
 
@@ -59,6 +61,15 @@ class StoreUserCvRequest extends FormRequest
             'birthdate.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'gender.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'experience_years.required' => 'Vui lòng nhập đầy đủ thông tin.',
+
+            'name.max' => 'Tên không được qua 255 ký tự',
+            'email.email' => 'Địa chỉ email không đúng',
+            'phone.numeric' => 'Vui lòng không nhập chữ',
+            'city.max' => 'Tên tỉnh thành phố không được qua 255 ký tự.',
+            'address.max' => 'Địa chỉ không được qua 255 ký tự.',
+            'outstanding_achievements.max' => 'Thành tích nổi bật không được qua 255 ký tự.',
+            'experience_years.numeric' => 'Vui lòng nhập không nhập chữ',
+
         ];
     }
     /**

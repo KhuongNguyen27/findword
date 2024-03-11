@@ -3,11 +3,14 @@
 namespace Modules\AdminUser\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\AdminUser\app\Models\AdminUser;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
 
 class AdminUserController extends Controller
@@ -72,6 +75,7 @@ class AdminUserController extends Controller
         $type = $request->type;
         try {
             $items = $this->model::showUserCVs($request,null,$type);
+
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,

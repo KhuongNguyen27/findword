@@ -80,6 +80,7 @@ class AdminUser extends Model
         $id = $request->id;
         $modelClass = '\App\Models\\' .$type;
         $query = $modelClass::query(true);
+        // dd($query);
         $items = $query->where('user_id',$id)->paginate($limit);
         return $items;
     }

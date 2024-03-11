@@ -54,7 +54,7 @@
     </div>
 </div>
 <div class="text-right" style="display: flex; align-items: center;">
-    <button class="d-flex btn btn-primary ms-auto" type="submit" style="margin-top: 20px;">
+    <button class="btn btn-primary ms-auto" type="submit" style="margin-top: 20px;">
         <i class="far fa-save"></i>Cập nhật
     </button>
 </div>

@@ -10,7 +10,7 @@ use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Http\Requests\StoreUserEducationRequest;
 
 use Illuminate\Support\Facades\Auth;
-
+use Modules\Staff\app\Http\Requests\UpdateUserEducationRequest;
 
 class UserEducationController extends Controller
 {
@@ -37,7 +37,7 @@ class UserEducationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(UpdateUserEducationRequest $request, $id): RedirectResponse
     {
         $education = UserEducation::findOrFail($id);
         $education->update([

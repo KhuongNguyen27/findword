@@ -12,14 +12,36 @@ class UpdateUserStaffRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|numeric',
             'birthdate' => 'required',
             'gender' => 'required',
-            'city' => 'required',
-            'address' => 'required',
-            'outstanding_achievements' => 'required',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'outstanding_achievements' => 'required|string|max:255',
+            'experience_years' => 'required|numeric',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'name.max' => 'Tên không được qua 255 ký tự',
+            'email.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'email.email' => 'Địa chỉ email không đúng',
+            'phone.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'phone.numeric' => 'Vui lòng không nhập chữ',
+            'birthdate.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'gender.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'city.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'city.max' => 'Tên tỉnh thành phố không được qua 255 ký tự.',
+            'address.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'address.max' => 'Địa chỉ không được qua 255 ký tự.',
+            'outstanding_achievements.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'outstanding_achievements.max' => 'Thành tích nổi bật không được qua 255 ký tự.',
+            'experience_years.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'experience_years.numeric' => 'Vui lòng nhập không nhập chữ', 
         ];
     }
 

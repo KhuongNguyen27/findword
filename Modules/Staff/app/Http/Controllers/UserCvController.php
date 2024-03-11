@@ -152,6 +152,7 @@ class UserCvController extends Controller
 public function destroy($id)
 {
     $userCv = UserCv::findOrFail($id);
+    // dd($userCv);
     $userCv->delete();
 
     return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');

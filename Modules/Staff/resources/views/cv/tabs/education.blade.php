@@ -45,17 +45,17 @@ $showFormAdd = true;
                     @method('PUT')
                     @include('staff::cv.tabs.includes.form-education-edit',['education' => $userEducation])
                 </form>
-            </div>
-            <div class="card-footer">
-                <form action="{{route('staff.education.destroy', $userEducation->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="d-flex btn btn-outline-danger"
-                        style="margin-top: 20px; margin-left: 10px;"
-                        onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')">
-                        <span class="fas fa-trash"></span>Xóa
-                    </button>
-                </form>
+                <div>
+                    <form action="{{route('staff.education.destroy', $userEducation->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger"
+                            style="margin-top: 20px; margin-left: 10px;"
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')">
+                            <span class="fas fa-trash"></span> Xóa
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         @endforeach
