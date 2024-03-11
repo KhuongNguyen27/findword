@@ -19,12 +19,22 @@ class StoreAdminTaxonomyRequest extends FormRequest
             $tableName = with(new $modelClass)->getTable();
         }
         $rules = [
-            'name' => 'required|unique:'.$tableName.',name',
+            'name' => 'required|unique:'.$tableName.',name|max:255',
+            'description'=>'required|max:255',
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['name'] = 'required';
         }
         return $rules;
+    }
+    function messages():array
+    {
+        return $messages = [
+            'name.required'=>'Vui lòng nhập tên',
+            'name.max'=>'Tên không được quá 255 ký tự',
+            'description'=>'Vui lòng nhập mô tả',
+            'description.max'=>'Mô tả phải dưới 255 ký tự'
+        ];
     }
 
     /**
