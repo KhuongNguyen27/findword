@@ -10,13 +10,29 @@ class Job extends AdminModel
     use HasFactory;
     protected $fillable = [
         'name',
+        'user_id',
         'slug',
         'description',
         'sort_description',
         'image',
         'gallery',
         'status',
-        'position'
+        'position',
+        'career_id',
+        'formwork_id',
+        'deadline',
+        'experience',
+        'wage_id',
+        'gender',
+        'work_address',
+        'rank_id',
+        'requirements',
+        'jobpackage_id',
+        'start_day',
+        'end_day',
+        'price',
+        'start_hour',
+        'end_hour'
     ];
     public function getImage($user_id)
     {

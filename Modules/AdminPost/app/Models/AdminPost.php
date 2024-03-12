@@ -24,9 +24,9 @@ class AdminPost extends Model
         'gallery',
         'status',
         'position',
-        'user_id'
+        'user_id',
     ];
-    // Ovrride methods
+    // Overide methods
     public static function saveItem($request,$table = ''){
         if($table){
             $model = '\App\Models\\' . $table;
@@ -45,7 +45,7 @@ class AdminPost extends Model
         if ($request->hasFile('image')) {
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
         } 
-        $model::create($data);
+        $item = $model::create($data);
     }
 
     // Relationships
