@@ -37,7 +37,7 @@ class JobapplicationController extends Controller
             $query->where('status', $request->status);
         }
         
-        $cv_aplly = $query->paginate(5);
+        $cv_apllys = $query->paginate(5);
 
         $cv_apllys_count = $query->count();
         $count_cv_appled = $query->where('status', 1)->count();
