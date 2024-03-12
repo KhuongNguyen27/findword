@@ -48,6 +48,8 @@ Route::group([
 	Route::get('/applied-jobs/{id}', [JobapplicationController::class,'show'])->name('cv.show');
 	Route::put('/cv/update/{id}', [JobapplicationController::class,'update'])->name('cv.update');
 	Route::delete('/cv/delete/{id}', [JobapplicationController::class,'destroy'])->name('cvs.delete');
+	Route::get('/applied-jobs/{id}/send-email', [JobapplicationController::class,'sendEmail'])->name('cv.sendemail');
+
 });
 
 Route::post('/applied-jobs/store', [JobapplicationController::class,'store'])->name('cv.store');
