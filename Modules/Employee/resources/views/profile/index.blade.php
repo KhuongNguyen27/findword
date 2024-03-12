@@ -68,7 +68,6 @@
                                                 Logo</label>
                                             <span class="uploadButton-file-name"></span>
                                         </div>
-                                        <div class="image-preview"></div>
                                         <div class="new-image-preview">
                                             <?php if (isset($user_employee->image)):?>
                                                 <img src="<?php echo asset('/storage/images/'.$user_employee->image); ?>" alt="Preview Image">
@@ -103,7 +102,7 @@
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Tên Nhà Tuyển Dụng</label>
-                                            <input type="text" name="name" value="{{ $user->name }}"
+                                            <input type="text" name="user_name" value="{{ $user->name }}"
                                                 placeholder="Tên Nhà Tuyển Dụng">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('name') }}</p>
@@ -129,7 +128,8 @@
                                                 <p style="color:red">{{ $errors->first('name') }}</p>
                                             @endif
                                         </div>
-
+                                        
+                    
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Địa Chỉ Công Ty</label>
@@ -195,3 +195,18 @@
 
     <!-- End Dashboard -->
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#upload').on('change', function() {
+            $('.new-image-preview').hide();
+            var fileInput = $(this)[0];
+            var file = fileInput.files[0];
+            if (file && file.type.startsWith('image/')) {
+                var imageUrl = URL.createObjectURL(file);
+                $('.uploadButton-file-name').html('<img src="' + imageUrl +
+                    '" alt="Preview Image" style="max-width: 150px; max-height: 120px;">');
+            }
+        });
+    });
+</script>
