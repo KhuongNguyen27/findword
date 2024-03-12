@@ -115,6 +115,9 @@
     vertical-align: middle;
     margin-right: 5px;
 }
+.media-body.ml-auto {
+    margin-left: auto !important;
+}
 </style>
 <!-- Dashboard -->
 <section class="user-dashboard">
@@ -141,6 +144,9 @@
                                 <div class="media-body ml-3">
                                     <h2 style="margin-left: 20px !important;">{{ auth()->user()->name }}</h2>
                                     <p style="margin-left: 20px !important;"> {{ $item->desired_position ?? '' }}</p>
+                                </div>
+                                <div class="media-body ml-auto" style="margin-right: 100px;">
+                                    <a href="{{ route('employee.cv.sendemail',$item->id) }}" class="btn btn-primary">Gửi Email</a>
                                 </div>
                             </div>
                         </div>

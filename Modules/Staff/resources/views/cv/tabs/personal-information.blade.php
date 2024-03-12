@@ -44,7 +44,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Phone</label>
-                        <input type="text" class="form-control" name="phone"
+                        <input type="number" class="form-control" name="phone"
                             value="{{ $item->phone ?? $staff->phone ?? ''}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -62,7 +62,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Số năm kinh nghiệm</label>
-                        <input type="text" class="form-control" name="experience_years"
+                        <input type="number" class="form-control" name="experience_years"
                             value="{{ $item->experience_years ?? $staff->experience_years ?? ''}}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('experience_years') }}</p>
