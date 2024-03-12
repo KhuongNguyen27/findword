@@ -1,81 +1,129 @@
 @extends('website.layouts.master')
 @section('content')
-<style>
-.page-title {
-    margin-top: 100px;
-}
+    <style>
+        .page-title {
+            margin-top: 100px;
+        }
 
-.main-header {
-    background-color: white !important;
-}
+        .main-header {
+            background-color: white !important;
+        }
 
-.content {
-    padding-top: 10px;
-}
-</style>
-<!--Page Title-->
+        .job-block-seven {
+            padding-top: 10px;
+        }
 
-<section class="job-detail-section">
-    <!-- Upper Box -->
-    <div class="upper-box">
-        <div class="auto-container">
-            <!-- Job Block -->
-            <div class="job-block-seven">
-                <div class="inner-box">
-                    <div class="content">
+        .btn-box {
+            text-align: center;
+        }
 
-                        <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
-                        <h4><a href="#">{{$job->name}}</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-briefcase"></span> {{ $job->career->name ?? ''}}</li>
-                            <li><span class="icon flaticon-map-locator"></span>{{$job->work_address}}</li>
-                            <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
-                            <li><span class="icon flaticon-money"></span>{{$job->wage->name ?? ''}} đ</li>
-                        </ul>
-                        <ul class="job-other-info">
-                            <li class="time">Hình thức làm việc ({{ $job->formWork->name ?? ''}})</li>
-                            {{-- <li class="privacy">Private</li>
-                                <li class="required">Urgent</li> --}}
-                        </ul>
+        .wide-button {
+            width: 20%;
+        }
+
+        .multiline {
+            padding-bottom: 10%;
+        }
+    </style>
+    <!--Page Title-->
+
+    <section class="job-detail-section">
+        <!-- Upper Box -->
+        <div class="upper-box">
+            <div class="auto-container">
+                <!-- Job Block -->
+                <div class="job-block-seven">
+                    <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
+                    <div class="justify-content-start">
+
+                        <h4 class="d-flex justify-content-start mt-2"><a href="#">{{ $job->name }}</a></h4>
+                        {{-- <ul class="job-info">
+                                    <li><span class="icon flaticon-briefcase"></span> {{ $job->career->name ?? '' }}</li>
+                                    <li><span class="icon flaticon-map-locator"></span>{{ $job->work_address }}</li>
+                                    <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
+                                    <li><span class="icon flaticon-money"></span>{{ $job->wage->name ?? '' }} đ</li>
+                                </ul> --}}
+                        {{-- <ul class="job-other-info">
+                            <li class="time">Hình thức làm việc ({{ $job->formWork->name ?? '' }})</li>
+                            <li class="privacy">Private</li>
+                                    <li class="required">Urgent</li>
+                        </ul> --}}
                     </div>
+                    <div class="post-job-steps">
+                        <div class="step">
+                            <span class="icon flaticon-money"></span>
+                            <div class="mt-2">
+                                <h6>Mức lương</h6>
+                                {{-- <h5>{{ $job->wage->name ?? '' }} đ</h5> --}}
+                                <?php if (auth()->check()): ?>
+                                <h5>{{ $job->wage->name ?? '' }} đ</h5>
+                                <?php else: ?>
+                                <a href="{{ route('staff.login') }}">Đăng nhập</a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="icon flaticon-map-locator"></span>
+                            <div class="mt-2">
+                                <h6>Địa điểm</h6>
+                                <h5>{{ $job->work_address }}</h5>
+                            </div>
+                        </div>
 
-                    <div class="btn-box">
-                        <a href="{{route('website.jobs.aplication',['id' => $job->slug])}}"
-                            class="theme-btn btn-style-one">Nộp Hồ Sơ Ứng Tuyển</a>
-                        {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
+                        <div class="step">
+                            <span class="icon flaticon-briefcase "></span>
+                            <div class="mt-2">
+                                <h6>Kinh nghiệm</h6>
+                                <h5>{{ $job->experience }} năm</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="btn-box">
+                {{-- <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
+                    class="theme-btn btn-style-one wide-button"><i class="fas fa-paper-plane"></i> &nbsp;<span> Nộp
+                        hồ sơ ứng tuyển</span></a> --}}
+                {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
             </div>
         </div>
-    </div>
 
-    <div class="job-detail-outer">
-        <div class="auto-container">
-            <div class="row">
-                <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                    <div class="job-detail">
-                        @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('error') }}
-                        </div>
-                        @endif
-                        @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                        @endif
-                        <h4>Mô Tả Công Việc</h4>
-                        <p>
-                            {{$job->description}}
-                        </p>
-                        <h4>Yêu Cầu Công việc</h4>
-                        <p>
-                            {{$job->requirements}}
-                        </p>
-                    </div>
 
-                    <!-- Other Options -->
-                    {{-- <div class="other-options">
+        <div class="job-detail-outer">
+            <div class="auto-container">
+                <div class="row">
+                    <h2>Chi tiết tin tuyển dụng</h2>
+                    <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
+
+                        <div class="job-detail">
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            <h4>Mô Tả Công Việc</h4>
+                            <p>
+                                {{ $job->description }}
+                            </p>
+                            <h4>Yêu Cầu Công việc</h4>
+                            <p>
+                                {{ $job->requirements }}
+                            </p>
+                        </div>
+                        <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
+                            class="theme-btn btn-style-one wide-button w-100 mt-5"><i class="fas fa-paper-plane"></i>
+                            &nbsp;<span> Nộp
+                                hồ sơ ứng tuyển</span></a>
+
+                        <!-- Other Options -->
+                        {{-- <div class="other-options">
                         <div class="social-share">
                             <h5>Share this job</h5>
                             <a href="#" class="facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
@@ -84,65 +132,70 @@
                         </div>
                     </div> --}}
 
-                    <!-- Related Jobs -->
-                    {{-- <div class="related-jobs">
+                        <!-- Related Jobs -->
+                        {{-- <div class="related-jobs">
                         <div class="title-box">
                             <h3>Công việc liên quan</h3>
                             <div class="text">2020 jobs live - 293 added today.</div>
                         </div>
                     </div> --}}
-                </div>
+                    </div>
 
-                <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
-                    <aside class="sidebar">
-                        <div class="sidebar-widget">
-                            <!-- Job Overview -->
-                            <h4 class="widget-title">Xem Chi Tiết Công Việc</h4>
-                            <div class="widget-content">
-                                <ul class="job-overview">
-                                    <li>
-                                        <i class="icon icon-calendar"></i>
-                                        <h5>Thời gian đăng tải:</h5>
-                                        <span>{{ $job->time_create }}</span>
-                                    </li>
-                                    <li>
-                                        <i class="icon icon-expiry"></i>
-                                        <h5>Hạn nộp hồ sơ:</h5>
-                                        <span>{{$job->deadline}}</span>
-                                    </li>
-                                    <li>
-                                        <i class="icon icon-location"></i>
-                                        <h5>Địa chỉ làm việc:</h5>
-                                        <span>{{$job->work_address}}</span>
-                                    </li>
-                                    {{-- <li>
+                    <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
+                        <aside class="sidebar">
+                            <div class="sidebar-widget">
+                                <!-- Job Overview -->
+                                <h4 class="widget-title">Xem Chi Tiết Công Việc</h4>
+                                <div class="widget-content">
+                                    <ul class="job-overview">
+                                        <li>
+                                            <i class="icon icon-calendar"></i>
+                                            <h5>Hình thức làm việc:</h5>
+                                            <span>{{ $job->formWork->name ?? '' }}</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon icon-calendar"></i>
+                                            <h5>Thời gian đăng tải:</h5>
+                                            <span>{{ $job->time_create }}</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon icon-expiry"></i>
+                                            <h5>Hạn nộp hồ sơ:</h5>
+                                            <span>{{ $job->deadline }}</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon icon-location"></i>
+                                            <h5>Địa chỉ làm việc:</h5>
+                                            <span>{{ $job->work_address }}</span>
+                                        </li>
+                                        {{-- <li>
                                             <i class="icon icon-user-2"></i>
                                             <h5>:</h5>
                                             <span>Designer</span>
                                         </li> --}}
-                                    {{-- <li>
+                                        {{-- <li>
                                             <i class="icon icon-clock"></i>
                                             <h5>Hours:</h5>
                                             <span>50h / week</span>
                                         </li> --}}
-                                    {{-- <li>
+                                        {{-- <li>
                                             <i class="icon icon-rate"></i>
                                             <h5>Rate:</h5>
                                             <span>$15 - $25 / hour</span>
                                         </li> --}}
-                                    <li>
-                                        <i class="icon icon-salary"></i>
-                                        <h5>Lương:</h5>
-                                        <span>{{$job->wage->name ?? ''}} VNĐ</span>
-                                    </li>
-                                </ul>
-                            </div>
+                                        <li>
+                                            <i class="icon icon-salary"></i>
+                                            <h5>Lương:</h5>
+                                            <span>{{ $job->wage->name ?? '' }} VNĐ</span>
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <!-- Map Widget -->
+                                <!-- Map Widget -->
 
 
-                            <!-- Job Skills -->
-                            {{-- <h4 class="widget-title">Job Skills</h4>
+                                <!-- Job Skills -->
+                                {{-- <h4 class="widget-title">Job Skills</h4>
                                 <div class="widget-content">
                                     <ul class="job-skills">
                                         <li><a href="#">app</a></li>
@@ -153,31 +206,86 @@
                                         <li><a href="#">react</a></li>
                                     </ul>
                                 </div> --}}
-                        </div>
-
-                        <div class="sidebar-widget company-widget">
-                            <div class="widget-content">
-                                <div class="company-title">
-                                    <div class="company-logo"><img src="images/resource/company-7.png" alt=""></div>
-                                    <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
-                                    <a href="{{route('employee.show',$job->user->userEmployee->slug)}}"
-                                        class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
-                                </div>
-
-                                <ul class="company-info">
-                                    <li>Tên Công ty: <span>{{$job->user->userEmployee->name}}</span></li>
-                                    <li>Số Điện Thoại: <span>{{$job->user->userEmployee->phone}}</span></li>
-                                    <li>Địa Chỉ: <span>{{$job->user->userEmployee->address}}</span></li>
-                                    <li>Email: <span>{{$job->user->email}}</span></li>
-                                    <li>Website: <span>{{$job->user->userEmployee->website}}</span></li>
-                                </ul>
                             </div>
-                        </div>
-                    </aside>
+
+                            <div class="sidebar-widget company-widget">
+                                <div class="widget-content">
+                                    <div class="company-title">
+                                        <div class="company-logo"><img src="images/resource/company-7.png" alt="">
+                                        </div>
+                                        <h5 class="company-name">Thông tin nhà tuyển dụng</h5>
+                                        <a href="{{ route('employee.show', $job->user->userEmployee->slug) }}"
+                                            class="profile-link">Xem hồ sơ nhà tuyển dụng</a>
+                                    </div>
+
+                                    <ul class="company-info">
+                                        <li>Tên Công ty: <span>{{ $job->user->userEmployee->name }}</span></li>
+                                        <li>Số Điện Thoại: <span>{{ $job->user->userEmployee->phone }}</span></li>
+                                        <li>Địa Chỉ: <span>{{ $job->user->userEmployee->address }}</span></li>
+                                        <li>Email: <span>{{ $job->user->email }}</span></li>
+                                        <li>Website: <span>{{ $job->user->userEmployee->website }}</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!--End Listing Page Section -->
+    </section>
+    <!--End Listing Page Section -->
+
+
+    {{-- <div class="col-lg-12">
+        <!-- Ls widget -->
+        <div class="ls-widget">
+            <div class="tabs-box">
+                <div class="widget-title">
+                    <h4>Post Job</h4>
+                </div>
+
+                <div class="widget-content">
+
+                    <div class="post-job-steps">
+                        <div class="step">
+                            <span class="icon flaticon-briefcase"></span>
+                            <h5>Job Detail</h5>
+                        </div>
+
+                        <div class="step">
+                            <span class="icon flaticon-money"></span>
+                            <h5>Package &amp; Payments</h5>
+                        </div>
+
+                        <div class="step">
+                            <span class="icon flaticon-checked"></span>
+                            <h5>Confirmation</h5>
+                        </div>
+                    </div>
+
+                    <form class="default-form">
+                        <div class="row">
+                            <!-- Input -->
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>Job Title</label>
+                                <input type="text" name="name" placeholder="Title">
+                            </div>
+
+                            <!-- About Company -->
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label>Job Description</label>
+                                <textarea
+                                    placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 @endsection

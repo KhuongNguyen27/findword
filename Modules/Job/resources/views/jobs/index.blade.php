@@ -1,50 +1,51 @@
 @extends('job::layouts.master')
 @section('title')
-Tất cả các công việc
+    Tất cả các công việc
 @endsection
 @section('content')
-<style>
-.page-title {
-    margin-top: 100px;
-}
-span.flaticon-bookmark.active {
-    color: red;
-}
-</style>
-<!--Page Title-->
-<section class="page-title">
-    <div class="auto-container">
-        <div class="title-outer">
-            <h1>Tất cả các công việc</h1>
-            <ul class="page-breadcrumb">
-                <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('employee.index') }}">Nhà tuyển dụng</a></li>
-            </ul>
+    <style>
+        .page-title {
+            margin-top: 100px;
+        }
+
+        span.flaticon-bookmark.active {
+            color: red;
+        }
+    </style>
+    <!--Page Title-->
+    <section class="page-title">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1>Tất cả các công việc</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li><a href="{{ route('employee.index') }}">Nhà tuyển dụng</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
-<!--End Page Title-->
-<!-- Listing Section -->
-<section class="ls-section">
-    <div class="auto-container">
-        <div class="filters-backdrop"></div>
+    </section>
+    <!--End Page Title-->
+    <!-- Listing Section -->
+    <section class="ls-section">
+        <div class="auto-container">
+            <div class="filters-backdrop"></div>
 
-        <div class="row">
+            <div class="row">
 
-            <!-- Filter Search -->
-            @include('job::includes.components.filters')
+                <!-- Filter Search -->
+                @include('job::includes.components.filters')
 
-            <!-- Content Column -->
-            <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                <div class="ls-outer">
-                    <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
+                <!-- Content Column -->
+                <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                    <div class="ls-outer">
+                        <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
 
-                    <!-- ls Switcher -->
-                    <div class="ls-switcher">
-                        <div class="showing-result">
-                            <!-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div> -->
-                        </div>
-                        {{-- <form action="" method="get">
+                        <!-- ls Switcher -->
+                        <div class="ls-switcher">
+                            <div class="showing-result">
+                                <!-- <div class="text">Showing <strong>41-60</strong> of <strong>944</strong> jobs</div> -->
+                            </div>
+                            {{-- <form action="" method="get">
                             <div class="sort-by">
                                 <select class="chosen-select" name="searchTypeWork" onchange="this.form.submit()">
                                     <option selected disabled>----Search Type Work----</option>
@@ -64,24 +65,23 @@ span.flaticon-bookmark.active {
                                 </select>
                             </div>
                         </form> --}}
-                    </div>
-                    <!-- Job Block -->
-                    @foreach($items as $item)
-                        @include('job::includes.components.job-item',[
-                            'job' => $item,
-                            'job_info' => true, 
-                            'job_other_info' => true, 
-                            'bookmark' => true,
-                        ])
-                    @endforeach
+                        </div>
+                        <!-- Job Block -->
+                        @foreach ($items as $item)
+                            @include('job::includes.components.job-item', [
+                                'job' => $item,
+                                'job_info' => true,
+                                'job_other_info' => true,
+                                'bookmark' => true,
+                            ])
+                        @endforeach
 
-                    <!-- Listing Show More -->
-                    @include('job::includes.components.pagination')
+                        <!-- Listing Show More -->
+                        @include('job::includes.components.pagination')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!--End Listing Page Section -->
-
+    </section>
+    <!--End Listing Page Section -->
 @endsection
