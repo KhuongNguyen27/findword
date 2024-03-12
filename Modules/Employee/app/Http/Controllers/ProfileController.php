@@ -53,7 +53,7 @@ class ProfileController extends Controller
         try {
             // Lấy đối tượng người dùng hiện tại
             $user = User::findOrFail($id);
-            $user->name = $request->name;
+            $user->name = $request->user_name;
             $user->email = $request->email;
             
             // Kiểm tra và cập nhật mật khẩu nếu được cung cấp
