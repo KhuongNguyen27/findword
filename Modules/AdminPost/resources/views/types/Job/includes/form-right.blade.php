@@ -7,7 +7,8 @@
             <label class="mb-3">{{ __('adminpost::form.jobpackage_id') }}</label>
             <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" class="form-control">
                 @foreach (\App\Models\JobPackage::all() as $job_package)
-                <option data-price="{{ $job_package->price }}" @selected($item->jobpackage_id == $job_package->id)
+                <option data-price="{{ $job_package->price }}"
+                    {{ isset($item) && $item->jobpackage_id == $job_package->id ?? 'selected' }}
                     value="{{ $job_package->id }}">
                     {{ $job_package->name }}</option>
                 @endforeach
@@ -17,39 +18,39 @@
         <div class="mb-4 d-flex">
             <div class="col-6">
                 <label class="mb-3">{{ __('adminpost::form.start_day') }}</label>
-                <input type="date" value="{{ $item->start_day }}" name="start_day" placeholder="" class="form-control"
+                <input type="date" value="{{ isset($item) ?? $item->start_day }}" name="start_day" placeholder="" class="form-control"
                     onchange="calculateDays()">
                 <x-admintheme::form-input-error field="start_day" />
             </div>
             <div class="col-6">
                 <label class="mb-3">{{ __('adminpost::form.end_day') }}</label>
-                <input type="date" value="{{ $item->end_day }}" name="end_day" placeholder="" class="form-control"
+                <input type="date" value="{{ isset($item) ?? $item->end_day }}" name="end_day" placeholder="" class="form-control"
                     onchange="calculateDays()">
                 <x-admintheme::form-input-error field="end_day" />
             </div>
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('adminpost::form.number_day') }}</label>
-            <input type="number" value="{{ $item->number_day }}" name="number_day" class="form-control" id="nameInput"
+            <input type="number" value="{{ isset($item) ?? $item->number_day }}" name="number_day" class="form-control" id="nameInput"
                 placeholder="Số ngày..." readonly disabled>
             <x-admintheme::form-input-error field="number_day" />
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('adminpost::form.price') }}</label>
-            <input type="number" value="{{ $item->price }}" name="price" class="form-control" id="nameInput"
+            <input type="number" value="{{ isset($item) ?? $item->price }}" name="price" class="form-control" id="nameInput"
                 placeholder="Số ngày...">
             <x-admintheme::form-input-error field="price" />
         </div>
         <div class="mb-4 d-flex">
             <div class="col-6">
                 <label class="mb-3">{{ __('adminpost::form.start_hour') }}</label>
-                <input type="nunmber" value="{{ $item->start_hour }}" name="start_hour" placeholder=""
+                <input type="nunmber" value="{{ isset($item) ?? $item->start_hour }}" name="start_hour" placeholder=""
                     class="form-control">
                 <x-admintheme::form-input-error field="start_hour" />
             </div>
             <div class="col-6">
                 <label class="mb-3">{{ __('adminpost::form.end_hour') }}</label>
-                <input type="nunmber" value="{{ $item->end_hour }}" name="end_hour" placeholder="" class="form-control">
+                <input type="nunmber" value="{{ isset($item) ?? $item->end_hour }}" name="end_hour" placeholder="" class="form-control">
                 <x-admintheme::form-input-error field="end_hour" />
             </div>
         </div>
