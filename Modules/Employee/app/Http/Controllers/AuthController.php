@@ -21,11 +21,15 @@ use Modules\Employee\app\Models\UserEmployee;
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     public function login()
     {
+        if (url()->previous() !== route('auth.register')) {
+            Session::put('previous_url', url()->previous());
+        }
         if (Auth::check()) {
             return redirect()->route('employee.profile.index');
         } else {
