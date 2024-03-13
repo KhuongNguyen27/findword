@@ -35,19 +35,7 @@
                 <div class="job-block-seven">
                     <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
                     <div class="justify-content-start">
-
                         <h4 class="d-flex justify-content-start mt-2"><a href="#">{{ $job->name }}</a></h4>
-                        {{-- <ul class="job-info">
-                                    <li><span class="icon flaticon-briefcase"></span> {{ $job->career->name ?? '' }}</li>
-                                    <li><span class="icon flaticon-map-locator"></span>{{ $job->work_address }}</li>
-                                    <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
-                                    <li><span class="icon flaticon-money"></span>{{ $job->wage->name ?? '' }} đ</li>
-                                </ul> --}}
-                        {{-- <ul class="job-other-info">
-                            <li class="time">Hình thức làm việc ({{ $job->formWork->name ?? '' }})</li>
-                            <li class="privacy">Private</li>
-                                    <li class="required">Urgent</li>
-                        </ul> --}}
                     </div>
                     <div class="post-job-steps">
                         <div class="step">
@@ -58,7 +46,7 @@
                                 <?php if (auth()->check()): ?>
                                 <h5>{{ $job->wage->name ?? '' }} đ</h5>
                                 <?php else: ?>
-                                <a href="{{ route('staff.login') }}">Đăng nhập</a>
+                                <a href="{{ route('staff.login') }}">Vui lòng đăng nhập để xêm mức lương</a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -69,7 +57,6 @@
                                 <h5>{{ $job->work_address }}</h5>
                             </div>
                         </div>
-
                         <div class="step">
                             <span class="icon flaticon-briefcase "></span>
                             <div class="mt-2">
@@ -79,24 +66,13 @@
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-            <div class="btn-box">
-                {{-- <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
-                    class="theme-btn btn-style-one wide-button"><i class="fas fa-paper-plane"></i> &nbsp;<span> Nộp
-                        hồ sơ ứng tuyển</span></a> --}}
-                {{-- <button class="bookmark-btn"><i class="flaticon-bookmark"></i></button> --}}
             </div>
         </div>
-
-
         <div class="job-detail-outer">
             <div class="auto-container">
                 <div class="row">
                     <h2>Chi tiết tin tuyển dụng</h2>
                     <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
-
                         <div class="job-detail">
                             @if (session('error'))
                                 <div class="alert alert-danger" role="alert">
@@ -234,58 +210,4 @@
         </div>
     </section>
     <!--End Listing Page Section -->
-
-
-    {{-- <div class="col-lg-12">
-        <!-- Ls widget -->
-        <div class="ls-widget">
-            <div class="tabs-box">
-                <div class="widget-title">
-                    <h4>Post Job</h4>
-                </div>
-
-                <div class="widget-content">
-
-                    <div class="post-job-steps">
-                        <div class="step">
-                            <span class="icon flaticon-briefcase"></span>
-                            <h5>Job Detail</h5>
-                        </div>
-
-                        <div class="step">
-                            <span class="icon flaticon-money"></span>
-                            <h5>Package &amp; Payments</h5>
-                        </div>
-
-                        <div class="step">
-                            <span class="icon flaticon-checked"></span>
-                            <h5>Confirmation</h5>
-                        </div>
-                    </div>
-
-                    <form class="default-form">
-                        <div class="row">
-                            <!-- Input -->
-                            <div class="form-group col-lg-12 col-md-12">
-                                <label>Job Title</label>
-                                <input type="text" name="name" placeholder="Title">
-                            </div>
-
-                            <!-- About Company -->
-                            <div class="form-group col-lg-12 col-md-12">
-                                <label>Job Description</label>
-                                <textarea
-                                    placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
-                            </div>
-
-
-
-
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 @endsection
