@@ -38,6 +38,8 @@ class AuthController extends Controller
         Auth::logout();
         $dataUser = $request->only('email', 'password');
         $previousUrl = Session::get('previous_url');
+        unset($_SESSION['previousUrl']);
+        // xóa session cũ đi 
         if (Auth::attempt($dataUser, $request->remember)) {
             return redirect()->route('home');
         } else {
@@ -71,6 +73,7 @@ class AuthController extends Controller
                 'password' => bcrypt($request->password),
             ]);
             $previousUrl = Session::get('previous_url');
+            unset($_SESSION['previousUrl']);
             $message = "Successfully registered";
             return redirect($previousUrl)->with('success', $message);
         } catch (\Exception $e) {
@@ -112,9 +115,11 @@ class AuthController extends Controller
                 $user->email => $user->name,
             ])->notify(new Notifications("forgotpassword", $data));
             $previousUrl = Session::get('previous_url');
+            unset($_SESSION['previousUrl']);
             return redirect($previousUrl)->with('success', 'Vui lòng kiểm tra email để lấy lại mật khẩu');
         } catch (\Exception $e) {
             $previousUrl = Session::get('previous_url');
+            unset($_SESSION['previousUrl']);
             Log::error('Bug occurred: ' . $e->getMessage());
             return redirect($previousUrl)->with('error', 'Lấy lại mật khẩu thất bại !!');
         }
@@ -143,6 +148,7 @@ class AuthController extends Controller
 
             $tokenRecord->delete(); // Remove the used token
             $previousUrl = Session::get('previous_url');
+            unset($_SESSION['previousUrl']);
             return redirect($previousUrl)->with('success', 'Password reset successful.');
         } else {
             return redirect()->route('auth.getReset')->with('error', 'There was a problem. Please try again.');

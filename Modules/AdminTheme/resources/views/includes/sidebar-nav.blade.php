@@ -81,6 +81,21 @@
             </li>
         </ul>
     </li>
+    <li class="menu-label">Giao dịch</li>
+    <li>
+        <a class="has-arrow" aria-expanded="false" href="javascript:;">
+            <div class="parent-icon">
+                <span class="material-symbols-outlined">account_circle</span>
+            </div>
+            <div class="menu-title">Giao dịch</div>
+        </a>
+        <ul class="mm-collapse">
+            <li>
+                <a href="{{ route('admin.transactions') }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Danh sách</a>
+            </li>
+        </ul>
+    </li>
     <li class="menu-label">Hệ Thống</li>
     <li>
         <a class="has-arrow" aria-expanded="false" href="javascript:;">
@@ -100,6 +115,5 @@
             </li>
         </ul>
     </li>
-
 </ul>
 <!--end navigation-->

@@ -27,9 +27,6 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (url()->previous() !== route('auth.register')) {
-            Session::put('previous_url', url()->previous());
-        }
         if (Auth::check()) {
             return redirect()->route('employee.profile.index');
         } else {

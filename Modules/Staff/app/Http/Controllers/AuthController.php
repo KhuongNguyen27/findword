@@ -26,9 +26,6 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (url()->previous() !== route('auth.register')) {
-            Session::put('previous_url', url()->previous());
-        }
         if (Auth::check()) {
             return redirect()->route('staff.home'); 
         } else {
@@ -39,21 +36,9 @@ class AuthController extends Controller
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
-        
-        // Kiểm tra nếu người dùng đã đăng nhập thành công
         if (Auth::attempt($dataUser, $request->remember)) {
-            // Lấy URL trang hiện tại và lưu vào session
-            $previousUrl = session('previous_url');
-            
-            if ($previousUrl) {
-                // Nếu có URL trước đó, chuyển hướng người dùng trở lại trang đó
-                return redirect()->to($previousUrl);
-            } else {
-                // Nếu không có URL trước đó, chuyển hướng người dùng đến trang staff.home
-                return redirect()->route('staff.home');
-            }
+            return redirect()->route('staff.home');
         } else {
-            // Nếu đăng nhập không thành công, chuyển hướng người dùng đến trang đăng nhập và hiển thị thông báo lỗi
             return redirect()->route('staff.login')->with('error', 'Account or password is incorrect');
         }
     }

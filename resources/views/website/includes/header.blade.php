@@ -5,8 +5,9 @@ $currentRouteName = \Request::route()->getName();
     <div class="main-box">
         <div class="nav-outer">
             <div class="logo-box">
-                <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img width="80" height="50" src="{{ asset('website-assets/images/logo.png')}}"
-                            alt="" title="">Tuyển dụng Huế</a></div>
+                <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img width="80"
+                            height="50" src="{{ asset('website-assets/images/logo.png')}}" alt="" title="">Tuyển dụng
+                        Huế</a></div>
             </div>
             @include('website.includes.header.main-menu')
         </div>
@@ -48,12 +49,15 @@ $currentRouteName = \Request::route()->getName();
                     @endif
                     @if(Auth::user()->type == 'employee')
                     <li class="@if($currentRouteName == 'employee.home') active @endif"><a
-                            href="{{ route('employee.home')}}"><i class="la la-box"></i>Bảng điều khiển</a><li>
+                            href="{{ route('employee.home')}}"><i class="la la-box"></i>Bảng điều khiển</a>
+                    <li>
                     <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>Hồ sơ</a></li>
                     <li><a href="{{ route('employee.job.create')}}"><i class="la la-paper-plane"></i>Đăng Tin</a></li>
-                    <li><a href="{{ route('employee.job.index')}}"><i class="la la-briefcase"></i> Quản lý công việc </a></li>
+                    <li><a href="{{ route('employee.job.index')}}"><i class="la la-briefcase"></i> Quản lý công việc
+                        </a></li>
                     <li><a href="{{ route('employee.cv.index')}}"><i class="la la-box"></i>Quản lý CV</a></li>
-                    <li><a href="{{ route('employee.transaction.index')}}"><i class="la la-box"></i>Quản lý giao dịch</a></li>
+                    <li><a href="{{ route('employee.transaction.index')}}"><i class="la la-box"></i>Quản lý giao
+                            dịch</a></li>
                     @endif
                     <li class="@if($currentRouteName == 'auth.logout') active @endif"><a
                             href="{{ route('auth.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
