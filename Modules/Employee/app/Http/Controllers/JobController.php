@@ -62,7 +62,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->status == User::ACTIVE){
+        if(Auth::user()->verify == User::ACTIVE){
             $careers = Career::where('status',Career::ACTIVE)->get();
             $degrees = Level::where('status',Level::ACTIVE)->get();
             $ranks = Rank::where('status',Rank::ACTIVE)->get();
@@ -79,7 +79,7 @@ class JobController extends Controller
             ];
             return view('employee::job.create',compact('param'));
         }else{
-            return back()->with('error','Tài khoản bạn chưa được xác minh');
+            return back()->with('error','Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
         }
     }
 

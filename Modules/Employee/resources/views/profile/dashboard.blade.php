@@ -7,6 +7,16 @@
             <h3>Hi, {{auth()->user()->name}}</h3>
             <div class="text">Chúc bạn một ngày tốt lành!</div>
         </div>
+        @if (session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+        @endif
+        @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+        @endif
         <div class="row">
             <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="ui-item">

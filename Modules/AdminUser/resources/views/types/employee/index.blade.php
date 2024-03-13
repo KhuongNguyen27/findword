@@ -30,6 +30,16 @@
 </form>
 
 <div class="card mt-4">
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">
@@ -50,7 +60,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}
-                            <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
+                                <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
                             </td>
                             <td>{{ $item->email }}</td>
                             <td>{!! $item->status_fm !!}</td>
@@ -63,7 +73,8 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route($route_prefix.'edit',['adminuser' => $item->id, 'type'=>request()->type]) }}">
+                                            <a class="dropdown-item"
+                                                href="{{ route($route_prefix.'edit',['adminuser' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('sys.edit') }}
                                             </a>
                                         </li>

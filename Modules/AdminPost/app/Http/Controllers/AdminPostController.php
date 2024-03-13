@@ -38,6 +38,7 @@ class AdminPostController extends Controller
     public function create(Request $request)
     {
         $type = $request->type;
+        if($type="")
         $params = [
             'route_prefix'  => $this->route_prefix,
             'model'         => $this->model,

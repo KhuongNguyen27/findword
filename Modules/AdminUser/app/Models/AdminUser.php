@@ -19,6 +19,7 @@ class AdminUser extends Model
         'password',
         'type',
         'status',
+        'verify',
     ];
     
     protected static function newFactory(): AdminUserFactory
@@ -60,7 +61,7 @@ class AdminUser extends Model
     }
     public static function updateItem($id,$request,$type = ''){
         $item = self::findOrFail($id);
-        $userData   = $request->only(['name', 'email','password','type','status']);
+        $userData   = $request->only(['name', 'email','password','type','status','verify']);
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
             $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
@@ -76,6 +77,7 @@ class AdminUser extends Model
         }
         $item->update($userData);
     }
+
     public static function showUserCVs($request,$limit = 20,$type = ''){
         $id = $request->id;
         $modelClass = '\App\Models\\' .$type;
