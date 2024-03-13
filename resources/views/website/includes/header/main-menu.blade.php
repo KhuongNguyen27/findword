@@ -22,13 +22,8 @@
         <li><a href="{{ route('employee.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href=""> Hồ sơ & CV </a>
-            <ul>
-                <li><a href="#">Hồ sơ cá nhân</a></li>
-                <li><a href="#">Mẫu CV</a></li>
-                <li><a href="#">Hướng dẫn viết CV</a></li>
-
-            </ul>
+            <a href="{{ route('cvs.index') }}"> Hồ sơ & CV </a>
+          
         </li>
 
 
