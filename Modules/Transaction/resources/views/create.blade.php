@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <div class="mb-4">
                                 <label for="amount">Số tiền</label>
-                                <input type="number" class="form-control" name="amount" id="amount"
+                                <input type="number" class="form-control" name="amount" id="amount" min="1000" max="100000000"
                                     placeholder="100000">
                                 @error('amount')
                                 <p style="color:red">{{ $message }}</p>

@@ -19,8 +19,17 @@
         </div>
     </div>
 </form>
-
 <div class="card mt-4">
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">
@@ -44,9 +53,10 @@
                                 {{ $item->user->name ?? '' }}
                             </td>
                             <td>{{ $item->type  ?? '' }}</td>
-                            <td>{{ number_format($item->amount, 2, ',', '.') }}</td>
+                            <td>{{ number_format($item->amount, 0, '', '.') }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>
+                                @if($item->status == $item::INACTIVE)
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
                                         type="button" data-bs-toggle="dropdown">
@@ -56,16 +66,13 @@
                                         <li>
                                             <a class="dropdown-item show-form-edit" href="javascript:;"
                                                 data-id="{{ $item->id }}"
-                                                data-action="{{ route($route_prefix.'show',$item->id) }}">
+                                                data-action="{{ route($route_prefix.'update',$item->id) }}">
                                                 {{ __('sys.edit') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <form
-                                                action="{{ route($route_prefix.'destroy',['id'=>$item->id,'type'=>request()->type]) }}"
-                                                method="post">
+                                            <form action="{{ route($route_prefix.'destroy',$item->id) }}" method="get">
                                                 @csrf
-                                                @method('DELETE')
                                                 <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
                                                     class="dropdown-item">
                                                     {{ __('sys.delete') }}
@@ -74,6 +81,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -108,10 +116,10 @@ jQuery(document).ready(function() {
             type: "GET",
             success: function(res) {
                 if (res.success) {
-                    console.log(res.data);
                     let formData = res.data;
                     // Bắt giá trị của input radio "status"
                     let status = formData.status;
+                    formUpdate.prop('action', action);
                     formUpdate.find('input[name="status"][value="' + status + '"]').prop(
                         'checked', true);
                 }
@@ -121,6 +129,38 @@ jQuery(document).ready(function() {
     jQuery('body').on('click', "button.close", function(e) {
         jQuery('#modalUpdate').modal('hide');
     });
+    // jQuery('body').on('click', ".edit-item", function(e) {
+    //     let formUpdate = jQuery(this).closest('#formUpdate');
+    //     formUpdate.find('.input-error').empty();
+    //     var url = formUpdate.prop('action');
+    //     let formData = new FormData($('#formUpdate')[0]);
+    //     jQuery.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         url: url,
+    //         type: "POST",
+    //         processData: false,
+    //         contentType: false,
+    //         data: formData,
+    //         success: function(res) {
+    //             if (res.has_errors) {
+    //                 for (const key in res.errors) {
+    //                     jQuery('.input-' + key).find('.input-error').html(res.errors[key][
+    //                         0
+    //                     ]);
+    //                 }
+    //             }
+    //             if (res.success) {
+    //                 // Disable modal
+    //                 jQuery('#modalUpdate').modal('hide');
+    //                 // Recall items
+    //                 getAjaxTable(indexUrl, wrapperResults, positionUrl, params);
+    //             }
+
+    //         }
+    //     });
+    // });
 });
 </script>
 @endsection

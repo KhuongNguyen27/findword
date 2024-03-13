@@ -23,8 +23,8 @@ Route::group([
 	Route::get('/transaction/create', [TransactionController::class,'create'])->name('transaction.create');
 	Route::post('/transaction/store', [TransactionController::class,'store'])->name('transaction.store');
 	Route::get('/transaction/edit/{id}', [TransactionController::class,'edit'])->name('transaction.edit');
-	Route::get('/transaction/show/{id}', [TransactionController::class,'show'])->name('transaction.show');
-	Route::post('/transaction/update/{id}', [TransactionController::class,'update'])->name('transaction.update');
+	Route::get('/transaction/{id}', [TransactionController::class,'show'])->name('transaction.show');
+	Route::post('/transaction/{id}', [TransactionController::class,'update'])->name('transaction.update');
 	Route::get('/transaction/delete/{id}', [TransactionController::class,'destroy'])->name('transaction.destroy');
 });
 Route::group([

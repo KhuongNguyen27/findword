@@ -244,7 +244,7 @@
                                 <div class="inner-box">
                                     <div class="content">
                                         <div class="content-inner">
-                                            <span class="company-logo"><img src="{{ asset('/storage/images/' . $image) }}"
+                                            <span class="company-logo"><img src="{{ asset($image) }}"
                                                     alt=""></span>
                                             <h4><a
                                                     href="{{ route('employee.show', ['id' => $userEmployee->slug]) }}">{{ $userEmployee->name }}</a>
