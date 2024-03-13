@@ -62,7 +62,7 @@ $currentRouteName = \Request::route()->getName();
             @else
             <div class="btn-box">
                 <a href="{{ route('staff.login') }}" class="theme-btn btn-style-three">Đăng nhập / Đăng ký</a>
-                <a href="{{ route('employee.login') }}" class="theme-btn btn-style-one">Tin tuyển dụng</a>
+                <a href="{{ route('employee.login') }}" class="theme-btn btn-style-one">Nhà tuyển dụng</a>
             </div>
             @endif
         </div>

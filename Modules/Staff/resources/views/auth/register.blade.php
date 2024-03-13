@@ -38,6 +38,9 @@
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
+                <div class="mt-2">
+                    <p>Nhập email để nhận thông báo từ nhà tuyển dụng</p>
+                </div>
             </div>
 
             <div class="form-group">
@@ -55,6 +58,9 @@
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('phone') }}</p>
                 @endif
+                <div class="mt-2">
+                    <p>Nhập số điện thoại để nhận thông báo từ nhà tuyển dụng</p>
+                </div>
             </div>
 
             <div class="form-group">

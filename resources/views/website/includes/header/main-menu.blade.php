@@ -1,17 +1,45 @@
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
         <li class="dropdown">
-            <span>Việc làm</span>
+            <a href="{{ route('website.home') }}">Việc làm trong nước</a>
             <ul>
-                <li><a href="#">Việc làm mới nhất</a></li>
+                <li><a href="#">Việc làm hôm nay</a></li>
                 <li><a href="#">Việc làm hot nhất</a></li>
+                <li><a href="#">Tuyển gấp</a></li>
+
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="{{ route('website.home') }}">Việc làm ngoài nước</a>
+            <ul>
+                <li><a href="#">Việc làm hôm nay</a></li>
+                <li><a href="#">Việc làm hot nhất</a></li>
+                <li><a href="#">Tuyển gấp</a></li>
+
             </ul>
         </li>
 
-        <li><a href="{{ route('website.home') }}">Công việc</a></li>
-        <li><a href="{{ route('employee.index') }}">Nhà tuyển dụng</a></li>
+        <li><a href="{{ route('employee.index') }}">Công ty</a></li>
+
+        <li class="dropdown">
+            <a href=""> Hồ sơ & CV </a>
+            <ul>
+                <li><a href="#">Hồ sơ cá nhân</a></li>
+                <li><a href="#">Mẫu CV</a></li>
+                <li><a href="#">Hướng dẫn viết CV</a></li>
+
+            </ul>
+        </li>
+
+
+
+        @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
-        <li><a href="{{ route('contacts.index') }}">Liên hệ</a></li>
+    @endif
+    
+
+
+
 
 
         <!-- Only for Mobile View -->
