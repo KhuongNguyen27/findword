@@ -47,6 +47,7 @@
                             <td>{{ number_format($item->amount, 2, ',', '.') }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>
+                                @if($item->status == $item::INACTIVE)
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
                                         type="button" data-bs-toggle="dropdown">
@@ -74,6 +75,7 @@
                                         </li>
                                     </ul>
                                 </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

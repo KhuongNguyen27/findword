@@ -14,6 +14,12 @@ $currentRouteName = \Request::route()->getName();
         </div>
         <div class="outer-box">
             @if(Auth::check())
+                @if(Auth::user()->type == "employee")
+                <button class="menu-btn">
+                    <span class="fs-4" style="color:#202124">${{ Auth::user()->point ?? 0 }}</span>
+                    <span class="icon flaticon-money-1"></span>
+                </button>
+                @endif
             <button class="menu-btn">
                 <span class="count">1</span>
                 <span class="icon la la-heart-o"></span>

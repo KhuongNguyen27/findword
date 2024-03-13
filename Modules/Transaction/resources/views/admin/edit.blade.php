@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     <select class="form-control" name="status">
-                        <option value="0">INACTIVE</option>
+                        <option value="0" checked>INACTIVE</option>
                         <option value="1">ACTIVE</option>
                     </select>
                 </div>
