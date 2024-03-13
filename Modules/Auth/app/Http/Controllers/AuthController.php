@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Auth\app\Http\Controllers;
+
 use Modules\Staff\app\Models\StaffUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -28,7 +29,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::user()) {
-            return redirect()->route('home'); 
+            return redirect()->route('home');
         }
         return view('auth::login');
     }
@@ -36,10 +37,11 @@ class AuthController extends Controller
     {
         Auth::logout();
         $dataUser = $request->only('email', 'password');
+        $previousUrl = Session::get('previous_url');
         if (Auth::attempt($dataUser, $request->remember)) {
-            return redirect()->route('home'); 
+            return redirect()->route('home');
         } else {
-            return redirect()->route('auth.login')->with('error', 'Account or password is incorrect');
+            return redirect($previousUrl)->with('error', 'Account or password is incorrect');
         }
     }
     public function logout(Request $request)
@@ -49,8 +51,11 @@ class AuthController extends Controller
     }
     public function register($type = '')
     {
+        if (url()->previous() !== route('auth.register')) {
+            Session::put('previous_url', url()->previous());
+        }
         if (Auth::check()) {
-            return redirect()->route('home'); 
+            return redirect()->route('home');
         } else {
             return view('auth::register');
         }
@@ -58,15 +63,16 @@ class AuthController extends Controller
     public function postRegister(StoreRegisterRequest $request)
     {
         try {
-            
+
             // Create a new user in the users table
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
+            $previousUrl = Session::get('previous_url');
             $message = "Successfully registered";
-            return redirect()->route('auth.login')->with('success', $message);
+            return redirect($previousUrl)->with('success', $message);
         } catch (\Exception $e) {
             Log::error('Bug occurred: ' . $e->getMessage());
             return view('auth::register')->with('error', 'Registration failed');
@@ -104,7 +110,7 @@ class AuthController extends Controller
             ];
             Notification::route('mail', [
                 $user->email => $user->name,
-            ])->notify(new Notifications("forgotpassword",$data));
+            ])->notify(new Notifications("forgotpassword", $data));
             $previousUrl = Session::get('previous_url');
             return redirect($previousUrl)->with('success', 'Vui lòng kiểm tra email để lấy lại mật khẩu');
         } catch (\Exception $e) {
@@ -124,7 +130,7 @@ class AuthController extends Controller
 
             return view('auth::resetpassword', compact('data'));
         } else {
-            return redirect()->route('auth.login')->with('error', 'There was a problem. Please try again.');
+            return redirect()->route('auth.getReset')->with('error', 'There was a problem. Please try again.');
         }
     }
     public function postReset(ResetPasswordRequest $request)
@@ -136,10 +142,10 @@ class AuthController extends Controller
             $user->save();
 
             $tokenRecord->delete(); // Remove the used token
-            return redirect()->route('auth.login')->with('success', 'Password reset successful.');
+            $previousUrl = Session::get('previous_url');
+            return redirect($previousUrl)->with('success', 'Password reset successful.');
         } else {
-            return redirect()->route('auth.login')->with('error', 'There was a problem. Please try again.');
+            return redirect()->route('auth.getReset')->with('error', 'There was a problem. Please try again.');
         }
     }
-
 }
