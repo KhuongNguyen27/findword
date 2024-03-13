@@ -16,8 +16,8 @@ $currentRouteName = \Request::route()->getName();
             @if(Auth::check())
                 @if(Auth::user()->type == "employee")
                 <button class="menu-btn">
-                    <span class="fs-4" style="color:#202124">${{ Auth::user()->point ?? 0 }}</span>
                     <span class="icon flaticon-money-1"></span>
+                    <span class="fs-4" style="color:#202124">{{ number_format(Auth::user()->points, 0, '', '.') ?? 0 }}P</span>
                 </button>
                 @endif
             <button class="menu-btn">

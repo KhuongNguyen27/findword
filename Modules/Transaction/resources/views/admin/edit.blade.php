@@ -1,5 +1,5 @@
 <div class="modal fade" id="modalUpdate" style="display: none;" aria-hidden="true">
-    <form id="formUpdate" action="{{ route($route_prefix.'update',$item->id) }}" method="post"
+    <form id="formUpdate" action="" method="post"
         enctype="multipart/form-data">
         <div class="modal-dialog modal-dialog-centered" role="document">
             @csrf
@@ -16,7 +16,7 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Cập nhập</button>
+                    <button class="btn btn-primary" type="submit">Cập nhập</button>
                 </div>
             </div>
         </div>

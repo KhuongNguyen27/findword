@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use Modules\Transaction\app\Models\Transaction;
 use Modules\Transaction\app\Http\Requests\StoreTransactionRequest;
 use Modules\Transaction\app\Resources\TransactionResource;
-
+use App\Models\User;
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
@@ -105,11 +105,17 @@ class TransactionController extends Controller
             $data = $request->except('_method','_token');
             $item = $this->model::findOrFail($id);
             $item->update($data);
+            if($item->status == $item::ACTIVE){
+                $userId = $item->user_id;
+                $user = User::findOrfail($userId);
+                $user->points += $item->amount;
+                $user->save();
+            }
             return back()->with('success','Cập nhập trạng thái giao dịch thành công');
         } catch (\Exception $e) {
-            return back()->with('error','Cập nhập trạng thái giao dịch thất bại');
+            Log::error('Error in index method: ' . $e->getMessage());
+            return back()->with('error',__('sys.get_items_error'));
         }
-        
     }
 
     /**
@@ -117,7 +123,15 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $item = $this->model::findOrFail($id);
+            $item->delete();
+            return back()->with('success','Xóa giao dịch thành công');
+        } catch (\Exception $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return back()->with('error',__('sys.get_items_error'));
+        }
+
     }
     public function transactions(){
         try {
