@@ -121,10 +121,12 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = Job::ACTIVE;
+            if ($request->jobpackage_id) {
+                $job->status = Job::ACTIVE;
+            } else {
+                $job->status = Job::INACTIVE;
+            }
             $job->save();
-
-
             // lưu vào bảng career_job
             if($request->career_ids){
                 $job->careers()->attach($request->career_ids);
