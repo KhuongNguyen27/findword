@@ -39,9 +39,7 @@ class JobapplicationController extends Controller
         if ($request->status != '') {
             $query->where('status', $request->status);
         }
-
         $cv_apllys = $query->paginate(5);
-
         $cv_apllys_count = $query->count();
         $count_cv_appled = $query->where('status', 1)->count();
         $count_not_apply = UserJobApply::where('user_id', auth()->user()->id)->where('status', 0)->count();

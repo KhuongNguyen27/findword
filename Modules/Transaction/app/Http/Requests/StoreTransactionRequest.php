@@ -12,7 +12,7 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'required|numeric|gt:0|max:100',
+            'amount' => 'required|numeric|gt:0|max:100000000',
         ];
     }
     function messages():array

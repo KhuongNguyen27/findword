@@ -68,7 +68,7 @@
                                         <div class="tab active-tab" id="totals">
                                             <div class="row">
                                                 @foreach ($cv_apllys as $cv_aplly)
-                                                    <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
+                                                    <div class="candidate-block-three col-lg-12 col-md-12 col-sm-12">
                                                         <div class="inner-box">
                                                             <div class="content">
 
