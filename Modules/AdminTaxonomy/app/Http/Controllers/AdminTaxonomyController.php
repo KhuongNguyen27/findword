@@ -118,18 +118,21 @@ class AdminTaxonomyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         try {
-            $this->model::deleteItem($id);
-            return redirect()->route($this->route_prefix.'index')->with('success', __('sys.destroy_item_success'));
+            $id = request()->admintaxonomy;
+            $type = $request->type;
+            $this->model::deleteItem($id,$type);
+            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
+            $type = $request->type;
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
-            
+            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.item_not_found'));
         } catch (QueryException $e) {
+            $type = $request->type;
             Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.destroy_item_error'));
+            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.destroy_item_error'));
         }
     }
 }

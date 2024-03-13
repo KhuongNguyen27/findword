@@ -109,7 +109,7 @@ class AdminModel extends Model
         }else{
             $model = self::class;
         }
-        $item = $model::findItem($id);
+        $item = $model::findItem($id,$table);
         self::deleteFile($item->image);
         return $item->delete();
     }

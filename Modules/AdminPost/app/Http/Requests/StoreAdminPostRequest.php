@@ -13,10 +13,10 @@ class StoreAdminPostRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|unique:posts,name',
+            'name' => 'required|unique:posts,name|max:255',
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'] = 'required';
+            $rules['name'] = 'required|max:255';
         }
         return $rules;
     }
@@ -27,5 +27,11 @@ class StoreAdminPostRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+    public function messages(){
+        return [
+            'required' => 'Trường yêu cầu',
+            'max' => 'Tối đa 255 kí tự'
+        ];
     }
 }

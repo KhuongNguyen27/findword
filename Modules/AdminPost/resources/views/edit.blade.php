@@ -10,7 +10,7 @@
             @include('adminpost::includes.form-left')
         </div>
         <div class="col-12 col-lg-4">
-        @include('adminpost::includes.form-right')
+            @include('adminpost::includes.form-right')
         </div>
     </div>
 </form>

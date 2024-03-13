@@ -12,7 +12,7 @@ class StoreUserCvRequest extends FormRequest
     public function rules(): array
     {
         $rules = [];
-        if ($this->tab == 'personal-information') {
+        if ($this->tab == 'personal-information' || empty($this->tab)) {
             $rules = [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email',
@@ -25,8 +25,7 @@ class StoreUserCvRequest extends FormRequest
                 'outstanding_achievements' => 'required|string|max:255',
 
             ];
-        }
-        if ($this->tab == 'job-information') {
+        }else if ($this->tab == 'job-information') {
             $rules = [
                 'cv_file' => 'required',
                 'desired_position' => 'required',
