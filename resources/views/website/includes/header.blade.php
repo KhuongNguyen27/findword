@@ -5,8 +5,8 @@ $currentRouteName = \Request::route()->getName();
     <div class="main-box">
         <div class="nav-outer">
             <div class="logo-box">
-                <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo.svg')}}"
-                            alt="" title=""></a></div>
+                <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img width="80" height="50" src="{{ asset('website-assets/images/logo.png')}}"
+                            alt="" title="">Tuyển dụng Huế</a></div>
             </div>
             @include('website.includes.header.main-menu')
         </div>
