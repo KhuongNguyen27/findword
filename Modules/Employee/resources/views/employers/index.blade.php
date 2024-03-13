@@ -81,19 +81,24 @@
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
 
                     <style>
-                        .btn-group a:focus,
-                        .btn-group a:active {
-                            text-decoration: underline;
-                            font-size: 1.5em;
-                        }
-
                         .com {
                             text-align: center;
                             margin-bottom: 5%;
                             font-size: 10%;
                         }
-                        .cover-wraper{
+
+                        .cover-wraper {
                             height: 150%;
+                        }
+
+                        .widget-title .btn-group .btn {
+                            border-bottom: 5px solid transparent;
+                            /* Thiết lập viền dưới là độ rộng 2px và trong suốt */
+                        }
+
+                        .widget-title .btn-group .btn:hover {
+                            border-bottom: 2px solid blue;
+                            /* Thiết lập màu viền dưới khi di chuột qua nút */
                         }
                     </style>
 
@@ -104,158 +109,125 @@
                             <div class="ls-widget">
                                 <div class="tabs-box">
                                     <div class="widget-title">
-
                                         <div class="btn-group" role="group" aria-label="">
-                                            <button type="button" class="btn btn">
+                                            <button type="button" class="btn btn-light">
                                                 <a href="{{ route('employee.index') }}?type=danhsachcongty">Danh sách công
                                                     ty</a>
                                             </button>
-                                            <button type="button" class="btn btn">
+                                            <button type="button" class="btn btn-light">
                                                 <a href="{{ route('employee.index') }}?type=topcongty">Top công ty</a>
                                             </button>
                                         </div>
-
                                     </div>
 
-                                    <div class="widget-content">
+                                    {{-- <div class="widget-content">
 
                                         <div class="tabs-box">
-                                            <div class="com">
-                                                <h4>Danh sách các công ty nổi bật</h4>
-                                            </div>
 
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="box-company item-hover">
-                                                    <div class="company-banner">
-                                                        <a
-                                                            href="#">
-                                                            <div class="cover-wraper">
-                                                                <img src="https://static.topcv.vn/company_covers/fpt-information-system-c4ab77dac324c88c3c31e9e8445eb9af-6548a811985a0.jpg"
-                                                                    alt="FPT Information System" class="img-fluid">
+                                            <div class="featured-companies">
+                                            <div class="container">
+                                                <div class="row">
+
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="box-company item-hover">
+                                                                <div class="company-banner">
+                                                                    <a
+                                                                        href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-ha-tang-vien-thong-cmc-telecom/9827.html">
+                                                                        <div class="cover-wraper">
+                                                                            <img src="https://static.topcv.vn/company_covers/Zn7MZvydb3VlJrpboggi.jpg"
+                                                                                alt="Công ty cổ phần Hạ tầng Viễn thông CMC Telecom"
+                                                                                class="img-fluid">
+                                                                        </div>
+                                                                    </a>
+                                                                  
+                                                                </div>
+                                                                <div class="company-info">
+                                                                    <h3>
+                                                                        <a href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-ha-tang-vien-thong-cmc-telecom/9827.html"
+                                                                            class="company-name" target="_blank">Công ty cổ
+                                                                            phần Hạ tầng
+                                                                            Viễn thông CMC Telecom</a>
+                                                                    </h3>
+                                                                    <div class="company-description">
+                                                                        <p>" * GIỚI THIỆU CÔNG TY
+                                                                            CMC Telecom là một trong 8 công ty thành
+                                                       
+                                                                            hữu hạ tầng truyền..."</p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </a>
-                                                        <div class="company-logo">
-                                                            <a href="#">
-                                                                <img class="img-fluid"
-                                                                    src="https://static.topcv.vn/company_logos/fpt-information-system-0568949376dcab14abfb13e3e271447f-6548a75395c0b.jpg"
-                                                                    alt="FPT Information System">
-                                                            </a>
                                                         </div>
-                                                    </div>
-                                                    <div class="company-info">
-                                                        <h3>
-                                                            <a href="https://www.topcv.vn/cong-ty/fpt-information-system/157622.html"
-                                                                class="company-name" target="_blank">FPT Information
-                                                                System</a>
-                                                        </h3>
-                                                        <div class="company-description">
-                                                            <p>" Trong suốt 29 năm phát triển, Công ty Hệ thống Thông tin
-                                                                FPT (FPT Information System - FPT IS) là nhà tích hợp hệ
-                                                                thống, cung cấp giải pháp hàng đầu Việt Nam và khu vực. Sở
-                                                                hữu năng lực công nghệ được thừa nhận bởi các khách hàng và
-                                                                đối tác toàn cầu, FPT IS mang đến những dịch vụ và giải pháp
-                                                                phục vụ các lĩnh vực trọng..."</p>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="box-company item-hover">
+                                                                <div class="company-banner">
+                                                                    <a
+                                                                        href="https://www.topcv.vn/cong-ty/cong-ty-tai-chinh-tnhh-mot-thanh-vien-home-credit-viet-nam/12541.html">
+                                                                        <div class="cover-wraper">
+                                                                            <img src="https://static.topcv.vn/company_covers/cong-ty-tai-chinh-tnhh-mot-thanh-vien-home-credit-viet-nam-f0d2d151be00214d0ae4b4f6ecf326ab-5ef59ddae3e69.jpg"
+                                                                                alt="Công Ty Tài Chính TNHH Một Thành Viên Home Credit Việt Nam"
+                                                                                class="img-fluid">
+                                                                        </div>
+                                                                    </a>
+                                                                
+                                                                </div>
+                                                                <div class="company-info">
+                                                                    <h3>
+                                                                        <a href="https://www.topcv.vn/cong-ty/cong-ty-tai-chinh-tnhh-mot-thanh-vien-home-credit-viet-nam/12541.html"
+                                                                            class="company-name" target="_blank">Công Ty
+                                                                            Tài Chính TNHH
+                                                                            Một Thành Viên Home Credit Việt Nam</a>
+                                                                    </h3>
+                                                                    <div class="company-description">
+                                                                        <p>" Home Credit Việt Nam là công ty thuộc
+                                                                            tập đoàn tài chính hàng đầu Châu Âu –
+          
+                                                                            trả góp, mua hàng điện máy, xe máy, cho
+                                                                            vay tiền..."</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <div class="box-company item-hover">
+                                                                <div class="company-banner">
+                                                                    <a
+                                                                        href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-giao-duc-dao-tao-imap-viet-nam/20324.html">
+                                                                        <div class="cover-wraper">
+                                                                            <img src="https://static.topcv.vn/company_covers/cong-ty-co-phan-giao-duc-amp-dao-tao-imap-viet-nam-00e5c5f8d6dcba97c61d6f9f309d1896-5f6abe680ae0d.jpg"
+                                                                                alt="Công ty Cổ phần Giáo dục &amp; Đào tạo IMAP Việt Nam"
+                                                                                class="img-fluid">
+                                                                        </div>
+                                                                    </a>
+                                                                  
+                                                                </div>
+                                                                <div class="company-info">
+                                                                    <h3>
+                                                                        <a href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-giao-duc-dao-tao-imap-viet-nam/20324.html"
+                                                                            class="company-name" target="_blank">Công ty
+                                                                            Cổ phần Giáo
+                                                                            dục &amp; Đào tạo IMAP Việt Nam</a>
+                                                                    </h3>
+                                                                    <div class="company-description">
+                                                                        <p>" Công ty CP Giáo dục và Đào tạo IMAP
+                                                                            Việt Nam với hệ thống các thương hiệu
+                                                                            Anh ngữ Ms Hoa (Tiền thân Ms Hoa TOEIC)
+                                                                            Ms Hoa Giao tiếp, IELTS Fighter, Aland
+                                                                          
+                                                                            Bình Dương, Đồng Nai và..."</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
+
                                                 </div>
                                             </div>
 
 
-                                            <div class="tabs-content">
-                                                <!--Tab-->
-                                                <div class="tab active-tab" id="totals">
-                                                    <div class="row">
-                                                        <!-- Candidate block three -->
-                                                        <div class="candidate-block-three col-lg-6 col-md-6  col-sm-16">
-                                                            <div class="inner-box">
-                                                                <div class="content">
-                                                                    <figure class="image"><img
-                                                                            src="images/resource/candidate-1.png"
-                                                                            alt=""></figure>
-                                                                    <h4 class="name"><a href="#">Darlene
-                                                                            Robertson</a></h4>
-                                                                    <ul class="candidate-info">
-                                                                        <li class="designation">UI Designer</li>
-                                                                        <li><span class="icon flaticon-map-locator"></span>
-                                                                            London, UK</li>
-                                                                        <li><span class="icon flaticon-money"></span> $99 /
-                                                                            hour</li>
-                                                                    </ul>
-                                                                    <ul class="post-tags">
-                                                                        <li><a href="#">App</a></li>
-                                                                        <li><a href="#">Design</a></li>
-                                                                        <li><a href="#">Digital</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="option-box">
-                                                                    <ul class="option-list">
-                                                                        <li><button data-text="View Aplication"><span
-                                                                                    class="la la-eye"></span></button></li>
-                                                                        <li><button data-text="Approve Aplication"><span
-                                                                                    class="la la-check"></span></button>
-                                                                        </li>
-                                                                        <li><button data-text="Reject Aplication"><span
-                                                                                    class="la la-times-circle"></span></button>
-                                                                        </li>
-                                                                        <li><button data-text="Delete Aplication"><span
-                                                                                    class="la la-trash"></span></button>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- Candidate block three -->
-                                                        <div class="candidate-block-three col-lg-6 col-md-12 col-sm-12">
-                                                            <div class="inner-box">
-                                                                <div class="content">
-                                                                    <figure class="image"><img
-                                                                            src="images/resource/candidate-2.png"
-                                                                            alt=""></figure>
-                                                                    <h4 class="name"><a href="#">Wade Warren</a>
-                                                                    </h4>
-                                                                    <ul class="candidate-info">
-                                                                        <li class="designation">UI Designer</li>
-                                                                        <li><span class="icon flaticon-map-locator"></span>
-                                                                            London, UK</li>
-                                                                        <li><span class="icon flaticon-money"></span> $99 /
-                                                                            hour</li>
-                                                                    </ul>
-                                                                    <ul class="post-tags">
-                                                                        <li><a href="#">App</a></li>
-                                                                        <li><a href="#">Design</a></li>
-                                                                        <li><a href="#">Digital</a></li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="option-box">
-                                                                    <ul class="option-list">
-                                                                        <li><button data-text="View Aplication"><span
-                                                                                    class="la la-eye"></span></button></li>
-                                                                        <li><button data-text="Approve Aplication"><span
-                                                                                    class="la la-check"></span></button>
-                                                                        </li>
-                                                                        <li><button data-text="Reject Aplication"><span
-                                                                                    class="la la-times-circle"></span></button>
-                                                                        </li>
-                                                                        <li><button data-text="Delete Aplication"><span
-                                                                                    class="la la-trash"></span></button>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -289,8 +261,8 @@
                                         </ul>
                                     </div>
                                     <!-- <div class="text">Netflix is the world's leading streaming entertainment service with over
-                                                                195 million paid memberships in over 190 countries enjoying TV series, documentaries and
-                                                                feature films across a wide variety...</div> -->
+                                                                                195 million paid memberships in over 190 countries enjoying TV series, documentaries and
+                                                                                feature films across a wide variety...</div> -->
                                     <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                                 </div>
                             </div>
