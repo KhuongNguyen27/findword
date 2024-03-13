@@ -105,7 +105,8 @@ class JobController extends Controller
         // $job = Job::find($id);
         $job = Job::where('slug', $slug)->with('userEmployee')->firstOrFail();
         // $related_jobs = Job::where('')
-        // dd($job);
+        // $related_jobs = $job->careers()->where('career_id')->get();
+        // dd($related_jobs);
         $params = [
             'job' => $job,
             'user_id' => $user_id,
