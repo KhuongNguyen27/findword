@@ -101,9 +101,15 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $data = $request->except('_method','_token');
-        $item = $this->model::findOrFail($id);
-        $item->update($data);
+        try {
+            $data = $request->except('_method','_token');
+            $item = $this->model::findOrFail($id);
+            $item->update($data);
+            return back()->with('success','Cập nhập trạng thái giao dịch thành công');
+        } catch (\Exception $e) {
+            return back()->with('error','Cập nhập trạng thái giao dịch thất bại');
+        }
+        
     }
 
     /**

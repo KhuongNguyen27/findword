@@ -7,7 +7,7 @@
              <div class="nav-outer">
                  <div class="logo-box">
                      <div class="logo"><a href="{{ route('home') }}"><img
-                                 src="{{ asset('website-assets/images/logo.svg')}}" alt="" title=""></a></div>
+                                 src="{{ asset('website-assets/images/logo.png')}}" alt="" title=""></a></div>
                  </div>
 
                  @include('website.includes.header.main-menu')
