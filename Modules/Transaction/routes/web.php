@@ -25,5 +25,12 @@ Route::group([
 	Route::get('/transaction/edit/{id}', [TransactionController::class,'edit'])->name('transaction.edit');
 	Route::get('/transaction/show/{id}', [TransactionController::class,'show'])->name('transaction.show');
 	Route::post('/transaction/update/{id}', [TransactionController::class,'update'])->name('transaction.update');
-	Route::get('/transaction/delete/{id}', [TransactionController::class,'destroy'])->name('transaction.delete');
+	Route::get('/transaction/delete/{id}', [TransactionController::class,'destroy'])->name('transaction.destroy');
+});
+Route::group([
+	'middleware' => ['auth.employee'],
+	'as' => 'admin.',
+	'prefix' => 'admin'
+], function () {
+	Route::get('transactions',[TransactionController::class,'transactions'])->name('transactions');
 });

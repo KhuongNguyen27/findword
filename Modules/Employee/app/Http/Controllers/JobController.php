@@ -14,6 +14,7 @@ use App\Models\Career;
 use App\Models\Level;
 use App\Models\Rank;
 use App\Models\Wage;
+use App\Models\User;
 use App\Models\FormWork;
 use App\Models\JobPackage;
 use Modules\Employee\app\Models\UserJobApply;
@@ -61,21 +62,25 @@ class JobController extends Controller
      */
     public function create()
     {
-        $careers = Career::where('status',Career::ACTIVE)->get();
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $ranks = Rank::where('status',Rank::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $wages = Wage::where('status',Wage::ACTIVE)->get();
-        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
-        $param = [
-            'careers' => $careers,
-            'degrees' => $degrees,
-            'ranks' => $ranks,
-            'formworks' => $formworks,
-            'wages' => $wages,
-            'job_packages' => $job_packages
-        ];
-        return view('employee::job.create',compact('param'));
+        if(Auth::user()->status == User::ACTIVE){
+            $careers = Career::where('status',Career::ACTIVE)->get();
+            $degrees = Level::where('status',Level::ACTIVE)->get();
+            $ranks = Rank::where('status',Rank::ACTIVE)->get();
+            $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
+            $wages = Wage::where('status',Wage::ACTIVE)->get();
+            $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+            $param = [
+                'careers' => $careers,
+                'degrees' => $degrees,
+                'ranks' => $ranks,
+                'formworks' => $formworks,
+                'wages' => $wages,
+                'job_packages' => $job_packages
+            ];
+            return view('employee::job.create',compact('param'));
+        }else{
+            return back()->with('error','Tài khoản bạn chưa được xác minh');
+        }
     }
 
     /**
@@ -121,10 +126,12 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = Job::ACTIVE;
+            if ($request->jobpackage_id) {
+                $job->status = Job::ACTIVE;
+            } else {
+                $job->status = Job::INACTIVE;
+            }
             $job->save();
-
-
             // lưu vào bảng career_job
             if($request->career_ids){
                 $job->careers()->attach($request->career_ids);

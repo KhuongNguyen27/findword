@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Modules\Transaction\app\Models\Transaction;
 use Modules\Transaction\app\Http\Requests\StoreTransactionRequest;
+use Modules\Transaction\app\Resources\TransactionResource;
 
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
@@ -77,7 +78,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        return view('transaction::show');
+        $item = $this->model::findOrFail($id);
+        return new TransactionResource($item);
     }
 
     /**
@@ -85,7 +87,13 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
-        return view('transaction::edit');
+        $item = $this->model::findOrFail($id);
+        $params = [
+            'item' => $item,
+            'route_prefix'  => $this->route_prefix,
+            'model'         => $this->model
+        ];
+        return view('transaction::admin.edit',$params);
     }
 
     /**
@@ -93,7 +101,9 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        $data = $request->except('_method','_token');
+        $item = $this->model::findOrFail($id);
+        $item->update($data);
     }
 
     /**
@@ -102,5 +112,19 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function transactions(){
+        try {
+            $items = $this->model::orderBy('created_at','DESC')->paginate(5);
+            $params = [
+                'route_prefix'  => $this->route_prefix,
+                'items'         => $items,
+                'model'         => $this->model
+            ];
+            return view($this->view_path.'admin.index', $params);
+        } catch (QueryException $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->back()->with('error',  __('sys.get_items_error'));
+        }
     }
 }
