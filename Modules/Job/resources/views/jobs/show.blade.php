@@ -24,9 +24,8 @@
         .multiline {
             padding-bottom: 10%;
         }
-    </style>
+    </style>      
     <!--Page Title-->
-
     <section class="job-detail-section">
         <!-- Upper Box -->
         <div class="upper-box">
@@ -92,11 +91,67 @@
                             <p>
                                 {{ $job->requirements }}
                             </p>
+                            <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
+                                class="theme-btn btn-style-one wide-button w-100 mt-3"><i class="fas fa-paper-plane"></i>
+                                &nbsp;<span> Nộp
+                                    hồ sơ ứng tuyển</span></a>
                         </div>
-                        <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
-                            class="theme-btn btn-style-one wide-button w-100 mt-5"><i class="fas fa-paper-plane"></i>
-                            &nbsp;<span> Nộp
-                                hồ sơ ứng tuyển</span></a>
+                        <div class="mt-4">
+                            <h2>Việc làm Cùng công ty</h2>
+                            <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
+                                <div class="job-detail">                                       
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                          <div class="card">
+                                            <div class="card-body">
+                                              <h5 class="card-title">Special title treatment</h5>
+                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="card">
+                                            <div class="card-body">
+                                              <h5 class="card-title">Special title treatment</h5>
+                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h2>Việc làm liên quan</h2>
+                            <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
+                                <div class="job-detail">                                       
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                          <div class="card">
+                                            <div class="card-body">
+                                              <h5 class="card-title">Special title treatment</h5>
+                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                          <div class="card">
+                                            <div class="card-body">
+                                              <h5 class="card-title">Special title treatment</h5>
+                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Other Options -->
                         {{-- <div class="other-options">
@@ -148,13 +203,13 @@
                                             <i class="icon icon-user-2"></i>
                                             <h5>:</h5>
                                             <span>Designer</span>
-                                        </li> --}}
-                                        {{-- <li>
+                                        </li>
+                                        <li>
                                             <i class="icon icon-clock"></i>
                                             <h5>Hours:</h5>
                                             <span>50h / week</span>
-                                        </li> --}}
-                                        {{-- <li>
+                                        </li>
+                                        <li>
                                             <i class="icon icon-rate"></i>
                                             <h5>Rate:</h5>
                                             <span>$15 - $25 / hour</span>
