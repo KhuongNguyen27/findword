@@ -1,0 +1,23 @@
+{
+    "package":"Gói tin",
+    "start":"Bắt đầu",
+    "end":"Kết thúc",
+    "status":"Trạng thái",
+    "purpose":"Mục đích",
+    "recharge_level":"Mức nạp",
+    "code":"Mã",
+    "name":"Tên",
+    "edit":"Sửa",
+    "delete":"Xóa",
+    "show":"Xem",
+    "created_at":"Ngày tạo",
+    "action":"Hành động",
+    "search":"Tìm",
+    "profile":"Hồ sơ",
+    "logout":"Đăng xuất",
+    "email":"Email",
+    "password":"Mật khẩu",
+    "remember_me":"Ghi nhớ đăng nhập",
+    "forgot_password":"Quên mật khẩu"
+
+}

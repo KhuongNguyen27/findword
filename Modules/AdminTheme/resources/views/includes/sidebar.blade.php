@@ -5,7 +5,7 @@
             <img src="https://codervent.com/roksyn/demo/ltr/assets/images/logo-icon.png" class="logo-img" alt="">
         </div>
         <div class="logo-name flex-grow-1">
-            <h5 class="mb-0">Roksyn</h5>
+            <h5 class="mb-0">Tuyển dụng Huế</h5>
         </div>
         <div class="sidebar-close ">
             <span class="material-symbols-outlined">close</span>
@@ -27,13 +27,13 @@
         <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="javascript:;">
                     <span class="material-symbols-outlined me-2"></span>
-                    <span>Profile</span>
+                    <span>{{ __('profile') }}</span>
                 </a>
             </li>
             <li>
                 <a class="dropdown-item" href="{{ route('adminuser.logout') }}">
                     <span class="material-symbols-outlined me-2"></span>
-                    <span>Logout</span>
+                    <span>{{ __('logout') }}</span>
                 </a>
             </li>
         </ul>

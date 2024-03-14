@@ -46,12 +46,12 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>Mã</th>
-                            <th>Tên</th>
+                            <th>{{ __('code') }}</th>
+                            <th>{{ __('name') }}</th>
                             <th>Email</th>
-                            <th>{{ __('adminpost::table.status') }}</th>
-                            <th>{{ __('adminpost::table.created_at') }}</th>
-                            <th>{{ __('adminpost::table.action') }}</th>
+                            <th>{{ __('status') }}</th>
+                            <th>{{ __('created_at') }}</th>
+                            <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,7 +75,7 @@
                                         <li>
                                             <a class="dropdown-item"
                                                 href="{{ route($route_prefix.'edit',['adminuser' => $item->id, 'type'=>request()->type]) }}">
-                                                {{ __('sys.edit') }}
+                                                {{ __('edit') }}
                                             </a>
                                         </li>
                                         <li>
@@ -84,14 +84,14 @@
                                                 @method('DELETE')
                                                 <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
                                                     class="dropdown-item">
-                                                    {{ __('sys.delete') }}
+                                                    {{ __('delete') }}
                                                 </button>
                                             </form>
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
                                                 href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
-                                                Show CV
+                                                {{ __('show') }}
                                             </a>
                                         </li>
                                     </ul>

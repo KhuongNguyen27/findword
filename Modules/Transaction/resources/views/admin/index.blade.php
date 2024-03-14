@@ -14,7 +14,7 @@
         </div>
         <div class="col col-xs-6">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-                <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Search</button>
+                <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>{{ __('search') }}</button>
             </div>
         </div>
     </div>
@@ -36,12 +36,12 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>Mã</th>
-                            <th>Tên</th>
-                            <th>Mục đích</th>
-                            <th>Mức nạp</th>
-                            <th>Trạng thái</th>
-                            <th>{{ __('adminpost::table.action') }}</th>
+                            <th>{{ __('code') }}</th>
+                            <th>{{ __('name') }}</th>
+                            <th>{{__('purpose')}}</th>
+                            <th>{{ __('recharge_level') }}</th>
+                            <th>{{ __('status') }}</th>
+                            <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,7 +67,7 @@
                                             <a class="dropdown-item show-form-edit" href="javascript:;"
                                                 data-id="{{ $item->id }}"
                                                 data-action="{{ route($route_prefix.'update',$item->id) }}">
-                                                {{ __('sys.edit') }}
+                                                {{ __('edit') }}
                                             </a>
                                         </li>
                                         <li>
@@ -75,7 +75,7 @@
                                                 @csrf
                                                 <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
                                                     class="dropdown-item">
-                                                    {{ __('sys.delete') }}
+                                                    {{ __('delete') }}
                                                 </button>
                                             </form>
                                         </li>

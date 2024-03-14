@@ -35,26 +35,32 @@
                 </div>
             @endif
             <div class="col-12">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">{{ __('email') }}</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="abc@gmail.com">
-
+                @if ($errors->any())
+                <span style="color:red">{{ $errors->first('email') }}</span>
+                @endif   
             </div>
             <div class="col-12">
-                <label for="password" class="form-label">Mật khẩu</label>
+                <label for="password" class="form-label">{{ __('password') }}</label>
                 <div class="input-group" id="show_hide_password">
                     <input type="password" class="form-control border-end-0" id="password" name="password" value="123456"
                         placeholder="Enter Password">
                     <a href="javascript:;" class="input-group-text bg-transparent"><i class="bi bi-eye-slash-fill"></i></a>
                 </div>
+                @if ($errors->any())
+                <span style="color:red">{{ $errors->first('password') }}</span>
+                @endif
             </div>
             <div class="col-md-6">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                    <label class="form-check-label" for="remember">Ghi nhớ</label>
+                    <label class="form-check-label" for="remember">{{ __('remember_me') }}</label>
                 </div>
             </div>
             <div class="col-md-6 text-end">
-                <a href="{{ route('adminuser.forgotPass') }}">Quên mật khẩu?
+                <a href="{{ route('adminuser.forgotPass') }}">
+                    {{ __('forgot_password') }}
                 </a>
             </div>
             <div class="col-12">
