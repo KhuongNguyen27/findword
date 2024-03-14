@@ -98,11 +98,7 @@ class JobController extends Controller
                 $slug = "{$maybe_slug}-{$next}";
                 $next++;
             }
-
-
-
             // lưu jobs
-
             $job = new Job();
             $job->name = $request->name;
             $job->slug = $slug;
@@ -119,6 +115,7 @@ class JobController extends Controller
             $job->price = $request->price;
             $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
+            $job->country = $request->country;
             $job->degree_id = $request->degree_id;
             $job->description = $request->description;
             $job->requirements = $request->requirements;
