@@ -36,11 +36,11 @@
             @endif
             <div class="col-12">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="jhon@example.com">
+                <input type="email" class="form-control" id="email" name="email" placeholder="abc@gmail.com">
 
             </div>
             <div class="col-12">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Mật khẩu</label>
                 <div class="input-group" id="show_hide_password">
                     <input type="password" class="form-control border-end-0" id="password" name="password" value="123456"
                         placeholder="Enter Password">
@@ -50,17 +50,16 @@
             <div class="col-md-6">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                    <label class="form-check-label" for="remember">Remember Me</label>
+                    <label class="form-check-label" for="remember">Ghi nhớ</label>
                 </div>
             </div>
             <div class="col-md-6 text-end">
-                <a href="{{ route('adminuser.forgotPass') }}">Forgot
-                    Password ?
+                <a href="{{ route('adminuser.forgotPass') }}">Quên mật khẩu?
                 </a>
             </div>
             <div class="col-12">
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                 </div>
             </div>
             <!-- <div class="col-12">
