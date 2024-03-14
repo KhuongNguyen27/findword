@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
 
 class AdminAuthController extends Controller
 {
@@ -18,16 +19,13 @@ class AdminAuthController extends Controller
         return view('adminuser::auth.login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(StoreAdminUserRequest $request)
     {
         Auth::logout();
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
         try
         {
-            if (Auth::attempt($credentials)) {
+            $data = $request->except('_method','_token');
+            if (Auth::attempt($data)) {
                 
                 $request->session()->regenerate();
                 return redirect()->route('admin.home');

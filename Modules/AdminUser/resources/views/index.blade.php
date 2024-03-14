@@ -36,11 +36,11 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>Tên</th>
+                            <th>{{ __('name') }}</th>
                             <th>Email</th>
-                            <th>{{ __('adminpost::table.status') }}</th>
-                            <th>{{ __('adminpost::table.created_at') }}</th>
-                            <th>{{ __('adminpost::table.action') }}</th>
+                            <th>{{ __('status') }}</th>
+                            <th>{{ __('created_at') }}</th>
+                            <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
