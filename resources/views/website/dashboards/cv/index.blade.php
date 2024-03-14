@@ -91,34 +91,8 @@ span {
                                 <input type="text" name="listing-search" placeholder="Thành phố hoặc mã bưu điện">
                                 <span class="icon flaticon-map-locator"></span>
                             </div>
-                            <p>Bán kính xung quanh điểm đến đã chọn</p>
-                            <div class="range-slider-one">
-                                <div
-                                    class="area-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                    <div class="ui-slider-range ui-corner-all ui-widget-header"
-                                        style="left: 0%; width: 50%;"></div><span tabindex="0"
-                                        class="ui-slider-handle ui-corner-all ui-state-default"
-                                        style="left: 0%;"></span><span tabindex="0"
-                                        class="ui-slider-handle ui-corner-all ui-state-default"
-                                        style="left: 50%;"></span>
-                                </div>
-                                <div class="input-outer">
-                                    <div class="amount-outer"><span class="area-amount">50</span>km</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <!-- Call To Action -->
-                    <div class="call-to-action-four">
-                        <h5>Recruiting?</h5>
-                        <p>Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.
-                        </p>
-                        <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Start
-                                Recruiting
-                                Now</span></a>
-                        <div class="image" style="background-image: url(images/resource/ads-bg-4.png);"></div>
-                    </div>
-                    <!-- End Call To Action -->
                 </div>
             </div>
             <!-- Content Column -->
@@ -229,21 +203,24 @@ span {
                                                 @foreach ($items as $item)
                                                 <div class="candidate-block-three">
                                                     <div class="inner-box">
-                                                        <div class="content">
+                                                        <div class="content d-flex align-items-center">
                                                             <figure class="image"><img
                                                                     src="{{ asset($item->image_fm) }}" alt="">
                                                             </figure>
-                                                            <h4 class="name"><a href="#">{{ $item->cv_file }}</a>
-                                                            </h4>
-                                                            <ul class="candidate-info">
-                                                                <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
-                                                                <li><span
-                                                                        class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
-                                                                </li>
-                                                                <li class="designation">{{ $item->desired_position }}
-                                                                </li>
+                                                            <div class="justify-content-start mt-2">
+                                                                <h4 class="name"><a href="#">{{ $item->cv_file }}</a>
+                                                                </h4>
+                                                                <ul class="candidate-info">
+                                                                    <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
+                                                                    <li><span
+                                                                            class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
+                                                                    </li>
+                                                                    <li class="designation">
+                                                                        {{ $item->desired_position }}
+                                                                    </li>
 
-                                                            </ul>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                         <div class="option-box">
                                                             <div class="option-box">
@@ -270,21 +247,8 @@ span {
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                                <form
-                                                                    action="{{ route('staff.cv.destroy', $item->id) }}"
-                                                                    method="POST" class="delete-form">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')"
-                                                                        data-text="Delete Application"
-                                                                        class="btn btn-outline-danger btn-lg"
-                                                                        style="margin-left: 20px;"><span
-                                                                            class="la la-trash"></span></button>
-                                                                </form>
                                                             </div>
                                                             <li>
-
                                                             </li>
                                                         </div>
                                                     </div>
@@ -296,19 +260,10 @@ span {
                                 </div>
                             </div>
                         </div>
-
-
-
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
 @endsection

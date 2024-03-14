@@ -29,7 +29,6 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
-        
         $query = $this->model::query();
         if ($request->pagination) {
             $paginate = $request->pagination;

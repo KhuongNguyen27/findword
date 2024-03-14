@@ -6,6 +6,9 @@
                 <button type="button" class="theme-btn close-filters">X</button>
 
                 <!-- Filter Block -->
+                @if(request('country'))
+                <input value="{{ request('country') }}" type="hidden" name="country">
+                @endif
                 <div class="filter-block">
                     <h4>Tìm theo tên</h4>
                     <div class="form-group">
@@ -31,8 +34,8 @@
                     <div class="form-group">
                         <select name="career_search[]" class="chosen-select career_search" multiple="multiple">
                             @foreach ($careers as $career)
-                                <option {{ in_array($career->id, (array) request('career_search')) ? 'selected' : '' }}
-                                    value="{{ $career->id }}">{{ $career->name }}</option>
+                            <option {{ in_array($career->id, (array) request('career_search')) ? 'selected' : '' }}
+                                value="{{ $career->id }}">{{ $career->name }}</option>
                             @endforeach
                         </select>
                         {{-- <span class="icon flaticon-briefcase"></span> --}}
@@ -51,9 +54,9 @@
 
 </div>
 <script>
-    $(document).ready(function() {
-        $('.career_search').select2({
-            placeholder: 'Chọn nghành nghề', // Đặt chuỗi tùy ý hoặc chuỗi rỗng
-        });
+$(document).ready(function() {
+    $('.career_search').select2({
+        placeholder: 'Chọn nghành nghề', // Đặt chuỗi tùy ý hoặc chuỗi rỗng
     });
+});
 </script>

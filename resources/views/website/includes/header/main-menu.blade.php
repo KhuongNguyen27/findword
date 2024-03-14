@@ -22,16 +22,16 @@
         <li><a href="{{ route('employee.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href="{{ route('cvs.index') }}"> Hồ sơ & CV </a>
-          
+            <a href="{{ route('cvs.index') }}?type=maucv"> Hồ sơ & CV </a>
+
         </li>
 
 
 
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
-    @endif
-    
+        @endif
+
 
 
 

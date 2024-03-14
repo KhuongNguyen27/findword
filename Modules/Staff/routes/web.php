@@ -55,5 +55,3 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
-Route::get('/cvs_example',[UserCvController::class,'cvs_example'])->name('cvs.index');
-// return view('website/dashboards/cv/index');
