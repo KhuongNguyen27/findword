@@ -1,7 +1,7 @@
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
         <li class="dropdown">
-            <a href="{{ route('website.home') }}">Việc làm trong nước</a>
+            <a href="{{ route('website.home') }}?country=VietNam">Việc làm trong nước</a>
             <ul>
                 <li><a href="#">Việc làm hôm nay</a></li>
                 <li><a href="#">Việc làm hot nhất</a></li>
@@ -22,16 +22,16 @@
         <li><a href="{{ route('employee.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href="{{ route('cvs.index') }}"> Hồ sơ & CV </a>
-          
+            <a href="{{ route('cvs.index') }}?type=maucv"> Hồ sơ & CV </a>
+
         </li>
 
 
 
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
-    @endif
-    
+        @endif
+
 
 
 

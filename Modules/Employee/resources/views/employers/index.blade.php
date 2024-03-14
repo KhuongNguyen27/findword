@@ -47,7 +47,7 @@
                                     <input type="text" name="listing-search" placeholder="Thành phố hoặc mã bưu điện">
                                     <span class="icon flaticon-map-locator"></span>
                                 </div>
-                                <p>Bán kính xung quanh điểm đến đã chọn</p>
+                                <!-- <p>Bán kính xung quanh điểm đến đã chọn</p>
                                 <div class="range-slider-one">
                                     <div
                                         class="area-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
@@ -61,11 +61,11 @@
                                     <div class="input-outer">
                                         <div class="amount-outer"><span class="area-amount">50</span>km</div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- Call To Action -->
-                        <div class="call-to-action-four">
+                        <!-- <div class="call-to-action-four">
                             <h5>Recruiting?</h5>
                             <p>Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.
                             </p>
@@ -73,7 +73,7 @@
                                     Recruiting
                                     Now</span></a>
                             <div class="image" style="background-image: url(images/resource/ads-bg-4.png);"></div>
-                        </div>
+                        </div> -->
                         <!-- End Call To Action -->
                     </div>
                 </div>

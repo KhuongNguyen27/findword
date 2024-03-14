@@ -141,7 +141,17 @@
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-3 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label>Quốc gia </label>
+                                        <input type="text" value="{{ old('country') }}" name="country" id="nameInput"
+                                            placeholder="Quốc gia làm việc...">
+                                        @if ($errors->any())
+                                        <p style="color:red">
+                                            {{ $errors->first('country') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-12">
                                         <label>Vị Trí</label>
                                         <select name="degree_id" class="chosen-select">
                                             @foreach ($param['degrees'] as $degree)
@@ -154,7 +164,7 @@
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-3 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12">
                                         <label>Bằng cấp</label>
                                         <select name="rank_id" class="chosen-select">
                                             @foreach ($param['ranks'] as $rank)

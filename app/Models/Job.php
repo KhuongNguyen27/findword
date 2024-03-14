@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Job extends AdminModel
 {
+    protected $table = "jobs";
     use HasFactory;
     protected $fillable = [
         'name',

@@ -29,7 +29,6 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
-        
         $query = $this->model::query();
         if ($request->pagination) {
             $paginate = $request->pagination;
@@ -44,7 +43,11 @@ class JobController extends Controller
         if($request->address_work){
             $query->where('work_address', 'LIKE', '%' . $request->address_work . '%');
         }
-        
+        if ($request->country) {
+            $query->where('country', 'LIKE', '%' . $request->country . '%');
+        } else {
+            $query->where('country', 'NOT LIKE', '%VietNam%');
+        }
         if ($request->career_search) {
             $query->whereHas('careers', function ($query) use ($request) {
                 foreach ($request->career_search as $index => $career) {

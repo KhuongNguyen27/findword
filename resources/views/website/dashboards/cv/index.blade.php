@@ -1,153 +1,126 @@
 @extends('website.layouts.master')
 @section('content')
-  
-       <style>
-         .page-title {
-            margin-top: 100px;
-        }
-        .com {
-            text-align: center;
-            margin-bottom: 5%;
-            font-size: 10%;
-        }
 
-        .cover-wraper {
-            height: 150%;
-        }
+<style>
+.page-title {
+    margin-top: 100px;
+}
 
-        .widget-title .btn-group .btn {
-            border-bottom: 5px solid transparent;
-            /* Thiết lập viền dưới là độ rộng 2px và trong suốt */
-        }
+.com {
+    text-align: center;
+    margin-bottom: 5%;
+    font-size: 10%;
+}
 
-        .widget-title .btn-group .btn:hover {
-            border-bottom: 2px solid blue;
-            /* Thiết lập màu viền dưới khi di chuột qua nút */
-        }
+.cover-wraper {
+    height: 150%;
+}
 
-        .mau-cv {
-            margin-bottom: 1%;
-            margin-top: 5%;
-            text-align: center;
-        }
+.widget-title .btn-group .btn {
+    border-bottom: 5px solid transparent;
+    /* Thiết lập viền dưới là độ rộng 2px và trong suốt */
+}
 
-        .row-1 {
-            margin-bottom: 20%;
-        }
-        .row-2 {
-            margin-bottom: 20%;
-        }
-        .mau-1{
-            background-attachment: fixed;
-        }
-      
-        span{
-            display: block;
-        }
-        .widget-title{
-            padding-bottom: 2%;
-        }
-    </style>
-    <section class="page-title">
-        <div class="auto-container">
-            <div class="title-outer">
-                <h1>Hồ sơ xin việc</h1>
-                <ul class="page-breadcrumb">
-                    <li><a href="">Trang chủ</a></li>
-                    <li>Hồ sơ xin việc</li>
-                </ul>
-            </div>
+.widget-title .btn-group .btn:hover {
+    border-bottom: 2px solid blue;
+    /* Thiết lập màu viền dưới khi di chuột qua nút */
+}
+
+.mau-cv {
+    margin-bottom: 1%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.row-1 {
+    margin-bottom: 20%;
+}
+
+.row-2 {
+    margin-bottom: 20%;
+}
+
+.mau-1 {
+    background-attachment: fixed;
+}
+
+span {
+    display: block;
+}
+
+.widget-title {
+    padding-bottom: 2%;
+}
+</style>
+<section class="page-title">
+    <div class="auto-container">
+        <div class="title-outer">
+            <h1>Hồ sơ xin việc</h1>
+            <ul class="page-breadcrumb">
+                <li><a href="">Trang chủ</a></li>
+                <li>Hồ sơ xin việc</li>
+            </ul>
         </div>
-    </section>
-    <section class="ls-section">
-        <div class="auto-container">
-            <div class="filters-backdrop"></div>
+    </div>
+</section>
+<section class="ls-section">
+    <div class="auto-container">
+        <div class="filters-backdrop"></div>
 
-            <div class="row">
+        <div class="row">
 
-                <!-- Filters Column -->
-                <div class="filters-column col-lg-4 col-md-12 col-sm-12">
-                    <div class="inner-column pd-right">
-                        <div class="filters-outer">
-                            <button type="button" class="theme-btn close-filters">X</button>
+            <!-- Filters Column -->
+            <div class="filters-column col-lg-4 col-md-12 col-sm-12">
+                <div class="inner-column pd-right">
+                    <div class="filters-outer">
+                        <button type="button" class="theme-btn close-filters">X</button>
 
-                            <!-- Filter Block -->
-                            <div class="filter-block">
-                                <h4>Tìm kiếm theo từ khóa</h4>
-                                <div class="form-group">
-                                    <input type="text" name="listing-search"
-                                        placeholder="Chức danh, từ khóa hoặc công ty">
-                                    <span class="icon flaticon-search-3"></span>
-                                </div>
-                            </div>
-
-                            <!-- Filter Block -->
-                            <div class="filter-block">
-                                <h4>Vị trí</h4>
-                                <div class="form-group">
-                                    <input type="text" name="listing-search" placeholder="Thành phố hoặc mã bưu điện">
-                                    <span class="icon flaticon-map-locator"></span>
-                                </div>
-                                <p>Bán kính xung quanh điểm đến đã chọn</p>
-                                <div class="range-slider-one">
-                                    <div
-                                        class="area-range-slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
-                                        <div class="ui-slider-range ui-corner-all ui-widget-header"
-                                            style="left: 0%; width: 50%;"></div><span tabindex="0"
-                                            class="ui-slider-handle ui-corner-all ui-state-default"
-                                            style="left: 0%;"></span><span tabindex="0"
-                                            class="ui-slider-handle ui-corner-all ui-state-default"
-                                            style="left: 50%;"></span>
-                                    </div>
-                                    <div class="input-outer">
-                                        <div class="amount-outer"><span class="area-amount">50</span>km</div>
-                                    </div>
-                                </div>
+                        <!-- Filter Block -->
+                        <div class="filter-block">
+                            <h4>Tìm kiếm theo từ khóa</h4>
+                            <div class="form-group">
+                                <input type="text" name="listing-search" placeholder="Chức danh, từ khóa hoặc công ty">
+                                <span class="icon flaticon-search-3"></span>
                             </div>
                         </div>
-                        <!-- Call To Action -->
-                        <div class="call-to-action-four">
-                            <h5>Recruiting?</h5>
-                            <p>Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.
-                            </p>
-                            <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Start
-                                    Recruiting
-                                    Now</span></a>
-                            <div class="image" style="background-image: url(images/resource/ads-bg-4.png);"></div>
+
+                        <!-- Filter Block -->
+                        <div class="filter-block">
+                            <h4>Vị trí</h4>
+                            <div class="form-group">
+                                <input type="text" name="listing-search" placeholder="Thành phố hoặc mã bưu điện">
+                                <span class="icon flaticon-map-locator"></span>
+                            </div>
                         </div>
-                        <!-- End Call To Action -->
                     </div>
                 </div>
-                <!-- Content Column -->
-                <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                    <div class="ls-outer">
-                        <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
-                        <!-- Block Block -->
-                        <div class="company-block-three">
-                            <div class="widget-title">
-                                <div class="btn-group" role="group" aria-label="">
-                                    <button type="button" class="btn btn-light">
-                                        <a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a>
-                                    </button>
-                                    <button type="button" class="btn btn-light">
-                                        <a href="{{ route('cvs.index') }}?type=maucv">Mẫu CV</a>
-                                    </button>
-                                    <button type="button" class="btn btn-light">
-                                        <a href="{{ route('cvs.index') }}?type=huongdanvietcv">Hướng dẫn viết
-                                            CV</a>
-                                    </button>
+            </div>
+            <!-- Content Column -->
+            <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                <div class="ls-outer">
+                    <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
+                    <!-- Block Block -->
+                    <div class="company-block-three">
+                        <div class="widget-title">
+                            <div class="btn-group" role="group" aria-label="">
+                                <button type="button" class="btn btn-light">
+                                    <a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a>
+                                </button>
+                                <button type="button" class="btn btn-light">
+                                    <a href="{{ route('cvs.index') }}?type=maucv">Mẫu CV</a>
+                                </button>
+                                <button type="button" class="btn btn-light">
+                                    <a href="{{ route('cvs.index') }}?type=huongdanvietcv">Hướng dẫn viết
+                                        CV</a>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="inner-box">
+                            <div class="content">
+                                <div class="content-inner">
                                 </div>
                             </div>
-                            <div class="inner-box">
-                                <div class="content">
-                                    <div class="content-inner">
-                                     
-                                       
-                                    </div>
-
-
-                                </div>
-                                {{-- <div class="cv">
+                            {{-- <div class="cv">
                                     <div class="row row-1">
                                         <div class="mau-cv">
                                             <h4>mau cv</h4>
@@ -220,159 +193,77 @@
                                         </div>
                                     </div>
                                 </div> --}}
+                            <div class="dashboard-outer">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- applicants Widget -->
+                                        <div class="applicants-widget ls-widget">
+                                            <div class="widget-content">
+                                                <!-- Candidate block three -->
+                                                @foreach ($items as $item)
+                                                <div class="candidate-block-three">
+                                                    <div class="inner-box">
+                                                        <div class="content d-flex align-items-center">
+                                                            <figure class="image"><img
+                                                                    src="{{ asset($item->image_fm) }}" alt="">
+                                                            </figure>
+                                                            <div class="justify-content-start mt-2">
+                                                                <h4 class="name"><a href="#">{{ $item->cv_file }}</a>
+                                                                </h4>
+                                                                <ul class="candidate-info">
+                                                                    <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
+                                                                    <li><span
+                                                                            class="icon flaticon-clock-3"></span>{{ $item->created_at->format('d/m/Y') }}
+                                                                    </li>
+                                                                    <li class="designation">
+                                                                        {{ $item->desired_position }}
+                                                                    </li>
 
-                                <div class="dashboard-outer">
-                                   
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <!-- applicants Widget -->
-                                            <div class="applicants-widget ls-widget">
-                                             
-                                                
-                                                <div class="widget-content">
-                                                    <!-- Candidate block three -->
-                                                                                    <div class="candidate-block-three">
-                                                            <div class="inner-box">
-                                                                <div class="content">
-                                                                    <figure class="image"><img src="http://127.0.0.1:8000/website-assets/images/favicon.png" alt="">
-                                                                    </figure>
-                                                                    <h4 class="name"><a href="#">Fresher</a></h4>
-                                                                    <ul class="candidate-info">
-                                                                        <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
-                                                                        <li><span class="icon flaticon-clock-3"></span>12/03/2024
-                                                                        </li>
-                                                                        <li class="designation">Chuyên viên Phát triển Web</li>
-                        
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="option-box">
-                                                                    <div class="option-box">
-                                                                        <div class="dropdown resume-action">
-                                                                            <button class="dropdown-toggle theme-btn btn-style-three" role="button" data-toggle="dropdown" aria-expanded="false">Action <i class="fa fa-angle-down"></i></button>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/1">
-                                                                                        <span class="la la-eye"></span> Xem chi tiết
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/1/edit">
-                                                                                        <span class="la la-pencil"></span> Cập nhật
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <form action="http://127.0.0.1:8000/staff/cv/1" method="POST" class="delete-form">
-                                                                            <input type="hidden" name="_token" value="QtlrIkmRSpRH5rJrjMHOPEJxO0lnLZH9cc8d1FxB" autocomplete="off">                                                    <input type="hidden" name="_method" value="DELETE">                                                    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')" data-text="Delete Application" class="btn btn-outline-danger btn-lg" style="margin-left: 20px;"><span class="la la-trash"></span></button>
-                                                                        </form>
-                                                                    </div>
-                                                                    <li>
-                                                                        
-                                                                    </li>
-                                                                </div>
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                                                    <div class="candidate-block-three">
-                                                            <div class="inner-box">
-                                                                <div class="content">
-                                                                    <figure class="image"><img src="http://127.0.0.1:8000/website-assets/images/favicon.png" alt="">
-                                                                    </figure>
-                                                                    <h4 class="name"><a href="#">Iunior</a></h4>
-                                                                    <ul class="candidate-info">
-                                                                        <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
-                                                                        <li><span class="icon flaticon-clock-3"></span>12/03/2024
+                                                        <div class="option-box">
+                                                            <div class="option-box">
+                                                                <div class="dropdown resume-action">
+                                                                    <button
+                                                                        class="dropdown-toggle theme-btn btn-style-three"
+                                                                        role="button" data-toggle="dropdown"
+                                                                        aria-expanded="false">Action <i
+                                                                            class="fa fa-angle-down"></i></button>
+                                                                    <ul class="dropdown-menu">
+                                                                        <li>
+                                                                            <a
+                                                                                href="{{ route('staff.cv.show', $item->id) }}">
+                                                                                <span class="la la-eye"></span> Xem chi
+                                                                                tiết
+                                                                            </a>
                                                                         </li>
-                                                                        <li class="designation">Chuyên viên Phát triển Phần mềm</li>
-                        
+                                                                        <li>
+                                                                            <a
+                                                                                href="{{ route('staff.cv.edit', $item->id) }}">
+                                                                                <span class="la la-pencil"></span> Cập
+                                                                                nhật
+                                                                            </a>
+                                                                        </li>
                                                                     </ul>
                                                                 </div>
-                                                                <div class="option-box">
-                                                                    <div class="option-box">
-                                                                        <div class="dropdown resume-action">
-                                                                            <button class="dropdown-toggle theme-btn btn-style-three" role="button" data-toggle="dropdown" aria-expanded="false">Action <i class="fa fa-angle-down"></i></button>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/2">
-                                                                                        <span class="la la-eye"></span> Xem chi tiết
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/2/edit">
-                                                                                        <span class="la la-pencil"></span> Cập nhật
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <form action="http://127.0.0.1:8000/staff/cv/2" method="POST" class="delete-form">
-                                                                            <input type="hidden" name="_token" value="QtlrIkmRSpRH5rJrjMHOPEJxO0lnLZH9cc8d1FxB" autocomplete="off">                                                    <input type="hidden" name="_method" value="DELETE">                                                    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')" data-text="Delete Application" class="btn btn-outline-danger btn-lg" style="margin-left: 20px;"><span class="la la-trash"></span></button>
-                                                                        </form>
-                                                                    </div>
-                                                                    <li>
-                                                                        
-                                                                    </li>
-                                                                </div>
                                                             </div>
+                                                            <li>
+                                                            </li>
                                                         </div>
-                                                                                    <div class="candidate-block-three">
-                                                            <div class="inner-box">
-                                                                <div class="content">
-                                                                    <figure class="image"><img src="http://127.0.0.1:8000/website-assets/images/favicon.png" alt="">
-                                                                    </figure>
-                                                                    <h4 class="name"><a href="#">Intern</a></h4>
-                                                                    <ul class="candidate-info">
-                                                                        <!-- <li><span class="icon flaticon-map-locator"></span> London, UK</li> -->
-                                                                        <li><span class="icon flaticon-clock-3"></span>12/03/2024
-                                                                        </li>
-                                                                        <li class="designation">Chuyên viên Phân tích Dữ liệu</li>
-                        
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="option-box">
-                                                                    <div class="option-box">
-                                                                        <div class="dropdown resume-action">
-                                                                            <button class="dropdown-toggle theme-btn btn-style-three" role="button" data-toggle="dropdown" aria-expanded="false">Action <i class="fa fa-angle-down"></i></button>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/3">
-                                                                                        <span class="la la-eye"></span> Xem chi tiết
-                                                                                    </a>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <a href="http://127.0.0.1:8000/staff/cv/3/edit">
-                                                                                        <span class="la la-pencil"></span> Cập nhật
-                                                                                    </a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <form action="http://127.0.0.1:8000/staff/cv/3" method="POST" class="delete-form">
-                                                                            <input type="hidden" name="_token" value="QtlrIkmRSpRH5rJrjMHOPEJxO0lnLZH9cc8d1FxB" autocomplete="off">                                                    <input type="hidden" name="_method" value="DELETE">                                                    <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')" data-text="Delete Application" class="btn btn-outline-danger btn-lg" style="margin-left: 20px;"><span class="la la-trash"></span></button>
-                                                                        </form>
-                                                                    </div>
-                                                                    <li>
-                                                                        
-                                                                    </li>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                                            </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
-    </section>
+    </div>
+</section>
 @endsection

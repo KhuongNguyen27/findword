@@ -81,7 +81,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Số năm kinh nghiệm</label>
-                                            <input type="text" name="experience_years"
+                                            <input type="number" name="experience_years"
                                                 value="{{ $item->experience_years }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('experience_years') }}</p>
