@@ -34,7 +34,7 @@
                 <div class="job-block-seven">
                     <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
                     <div class="justify-content-start">
-                        <h4 class="d-flex justify-content-start mt-2"><a href="#">{{ $job->name }}</a></h4>
+                        <h4 class="d-flex justify-content-start mt-5"><a href="#">{{ $job->name }}</a></h4>
                     </div>
                     <div class="post-job-steps">
                         <div class="step">
@@ -104,7 +104,7 @@
                                         <div class="col-sm-6">
                                           <div class="card">
                                             <div class="card-body">
-                                              <h5 class="card-title">Special title treatment</h5>
+                                              <h5 class="card-title">{{ $job->name }}</h5>
                                               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                               <a href="#" class="btn btn-primary">Go somewhere</a>
                                             </div>
