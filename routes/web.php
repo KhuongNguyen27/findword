@@ -88,9 +88,5 @@ Route::prefix('themes')->group(function () {
     Route::get('/profile', function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
-
-    Route::get('/cvs', function () {
-        return view('website/dashboards/cv/index');
-    })->name('cvs.index');
 });
 

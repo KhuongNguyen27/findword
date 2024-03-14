@@ -146,16 +146,23 @@ class UserCvController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-  /**
- * Remove the specified resource from storage.
- */
-public function destroy($id)
-{
-    $userCv = UserCv::findOrFail($id);
-    // dd($userCv);
-    $userCv->delete();
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $userCv = UserCv::findOrFail($id);
+        // dd($userCv);
+        $userCv->delete();
+        return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');
+    }
 
-    return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');
-}
-
+    public function cvs_example()
+    {
+        $userCvs = UserCv::paginate(5);
+        $params = [
+            'items' => $userCvs
+        ];
+        return view('website.dashboards.cv.index', $params);
+    }
 }

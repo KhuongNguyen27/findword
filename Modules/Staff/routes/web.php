@@ -34,7 +34,7 @@ Route::group([
     Route::get('job-favorite',[UserJobFavoriteController::class,'index'])->name('favorite');
     Route::get('job-favorite/{id}',[UserJobFavoriteController::class,'job_favorite'])->name('job-favorite');
     Route::delete('job-favorite/{id}',[UserJobFavoriteController::class,'destroy'])->name('job-favorite.destroy');
-
+        
     Route::get('job-applied',[UserJobAppliedController::class,'index'])->name('job-applied');
     Route::delete('job-applied/{id}',[UserJobAppliedController::class,'destroy'])->name('job-applied.destroy');
 
@@ -55,3 +55,5 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
+Route::get('/cvs_example',[UserCvController::class,'cvs_example'])->name('cvs.index');
+// return view('website/dashboards/cv/index');
