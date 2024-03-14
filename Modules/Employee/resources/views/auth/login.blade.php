@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Đăng Nhập Nhà Tuyển Dụng</h3>
+        <h3 class="text-center" >Đăng Nhập Nhà Tuyển Dụng</h3>
         <!--Login Form-->
         <form action="{{ route('employee.postLogin')}}" method="POST">
             @if (session('error'))
@@ -19,14 +19,14 @@
             @csrf
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" placeholder="email" value="{{ old('email') }}">
+                <input type="email" name="email" placeholder="abc@gmail.com" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
             </div>
             <div class="form-group">
                 <label>Mật Khẩu</label>
-                <input id="password-field" type="password" name="password" value="" placeholder="Password" value="{{ old('Password') }}">
+                <input id="password-field" type="password" name="password" value="" placeholder="Nhập mật khẩu vào đây" value="{{ old('Password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
