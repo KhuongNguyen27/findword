@@ -16,6 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $items = Career::where('status', 1)->get();
+        // dd($items);
         $jobs = Job::where('status', 1)->limit(6)->get();
         // dd($jobs);
         $employees = UserEmployee::get();
