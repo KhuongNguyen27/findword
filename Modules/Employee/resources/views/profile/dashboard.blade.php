@@ -4,8 +4,8 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Hi, {{auth()->user()->name}}</h3>
-            <div class="text">Chúc bạn một ngày tốt lành!</div>
+            <h3>{{ __('hello') }}, {{auth()->user()->name}}</h3>
+            <div class="text">{{ __('have_a_good_day') }}!</div>
         </div>
         @if (session('error'))
         <div class="alert alert-danger" role="alert">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="right">
                         <h4>{{$count_jobs}}</h4>
-                        <p>Công việc</p>
+                        <p>{{ __('job') }}</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="right">
                         <h4>{{$count_CVapply}}</h4>
-                        <p>Hồ sơ</p>
+                        <p>{{ __('profile') }}</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="right">
                         <h4>0</h4>
-                        <p>Tin nhắn</p>
+                        <p>{{ __('message') }}</p>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="right">
                         <h4>0</h4>
-                        <p>Yêu thích</p>
+                        <p>{{ __('favourite') }}</p>
                     </div>
                 </div>
             </div>

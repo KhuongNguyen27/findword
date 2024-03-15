@@ -4,7 +4,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Quản Lý Giao Dịch</h3>
+            <h3>{{ __('transaction_management') }}</h3>
             {{-- <div class="text">Ready to jump back in?</div> --}}
         </div>
 
@@ -14,8 +14,8 @@
                 <div class="ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title d-flex justify-content-between">
-                            <h4>Danh sách giao dịch của tôi</h4>
-                            <a class="btn btn-primary" href=" {{ route($route_prefix.'create') }} ">Nạp tiền</a>
+                            <h4>{{ __('my_transaction_list') }}</h4>
+                            <a class="btn btn-primary" href=" {{ route($route_prefix.'create') }} ">{{ __('deposit') }}</a>
                         </div>
                         <div class="widget-content">
                             <div class="table-outer">
@@ -32,10 +32,10 @@
                                         </div>
                                         @endif
                                         <tr>
-                                            <th>Ngày giao dịch</th>
-                                            <th>Thể loại</th>
-                                            <th>Số tiền</th>
-                                            <th>Trạng thái</th>
+                                            <th>{{ __('transaction_date') }}</th>
+                                            <th>{{ __('genre') }}</th>
+                                            <th>{{ __('amount') }}</th>
+                                            <th>{{ __('status') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -14,7 +14,7 @@
     <div class="row g-3">
         <div class="col-auto flex-grow-1">
             <div class="position-relative">
-                <input class="form-control" name="name" type="text" placeholder="{{ __('sys.search_name') }}"
+                <input class="form-control" name="name" type="text" placeholder="{{ __('name') }}"
                     value="{{ request()->name }}">
             </div>
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-auto">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
-                <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Search</button>
+                <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>{{ __('search') }}</button>
             </div>
         </div>
     </div>
@@ -42,10 +42,10 @@
                             <th>
                                 <input class="form-check-input" type="checkbox">
                             </th>
-                            <th>{{ __('adminpost::table.name') }}</th>
-                            <th>{{ __('adminpost::table.status') }}</th>
-                            <th>{{ __('adminpost::table.created_at') }}</th>
-                            <th>{{ __('adminpost::table.action') }}</th>
+                            <th>{{ __('name') }}</th>
+                            <th>{{ __('status') }}</th>
+                            <th>{{ __('created_at') }}</th>
+                            <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
