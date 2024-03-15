@@ -17,8 +17,6 @@ span.flaticon-bookmark.active {
                         <h3> Tìm kiếm liền tay - Nhận ngay công việc </h3>
                         <div class="text">Hơn 10,000+ cơ hội nghề nghiệp đang chờ đợi bạn</div>
                     </div>
-
-
                         <!-- Job Search Form -->
                         <div class="job-search-form">
                             <form method="post" action="job-list-v10.html">
@@ -137,7 +135,6 @@ span.flaticon-bookmark.active {
                 <h2>Việc làm mới nhất</h2>
                 <div class="text">Biết giá trị của bạn và tìm công việc phù hợp với cuộc sống của bạn</div>
             </div>
-
             <div class="row wow fadeInUp">
                 @foreach ($jobs as $job)
                     <!-- Job Block -->
@@ -151,7 +148,6 @@ span.flaticon-bookmark.active {
                     </div>
                 @endforeach
             </div>
-
             <div class="btn-box">
                 <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Tải thêm danh
                         sách</span></a>
@@ -199,14 +195,13 @@ span.flaticon-bookmark.active {
             <div class="sec-title text-center">
                 <h2>Nhà tuyển dụng nổi bật</h2>
             </div>
-
             <div class="row wow fadeInUp">
                 @foreach ($employees->take(4) as $employer)
                     <!-- Job Block -->
                     <div class="job-block col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-box">
                             <div class="content">
-                                <span class="company-logo"><img src="{{ asset($employer->logo) }}" alt=""></span>
+                                <span class="company-logo"><img src="{!! $employer->image_fm !!}" alt=""></span>
                                 <h4><a href="#">{{ $employer->name }}</a></h4>
                                 <ul class="job-info">
                                     <li><span class="icon flaticon-map-locator"></span> {{ $employer->address }}</li>
