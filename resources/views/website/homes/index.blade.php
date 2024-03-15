@@ -23,17 +23,17 @@ span.flaticon-bookmark.active {
                             <div class="row">
                                 <div class="form-group col-lg-5 col-md-12 col-sm-12">
                                     <span class="icon flaticon-search-1"></span>
-                                    <input type="text" name="field_name" placeholder="Job title, keywords, or company">
+                                    <input type="text" name="field_name" placeholder="Nhập từ khóa tìm kiếm">
                                 </div>
                                 <!-- Form Group -->
                                 <div class="form-group col-lg-4 col-md-12 col-sm-12 location">
                                     <span class="icon flaticon-map-locator"></span>
-                                    <input type="text" name="field_name" placeholder="City or postcode">
+                                    <input type="text" name="field_name" placeholder="Mã bưu điện">
                                 </div>
                                 <!-- Form Group -->
                                 <div class="form-group col-lg-3 col-md-12 col-sm-12 btn-box">
-                                    <button type="submit" class="theme-btn btn-style-one"><span class="btn-title">Find
-                                            Jobs</span></button>
+                                    <button type="submit" class="theme-btn btn-style-one"><span
+                                            class="btn-title">{{ __('search') }}</span></button>
                                 </div>
                             </div>
                         </form>
@@ -140,10 +140,10 @@ span.flaticon-bookmark.active {
             <!-- Job Block -->
             <div class="col-lg-6 col-md-12 col-sm-12">
                 @include('job::includes.components.job-item',[
-                    'job' => $job,
-                    'job_info' => true, 
-                    'job_other_info' => true, 
-                    'bookmark' => true,
+                'job' => $job,
+                'job_info' => true,
+                'job_other_info' => true,
+                'bookmark' => true,
                 ])
             </div>
             @endforeach
@@ -232,19 +232,19 @@ span.flaticon-bookmark.active {
 
         <div class="row wow fadeInUp">
             @foreach($employees->take(4) as $employer)
-                <!-- Job Block -->
-                <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                    <div class="inner-box">
-                        <div class="content">
-                            <span class="company-logo"><img src="{{ asset($employer->logo) }}" alt=""></span>
-                            <h4><a href="#">{{ $employer->name }}</a></h4>
-                            <ul class="job-info">
-                                <li><span class="icon flaticon-map-locator"></span> {{ $employer->address }}</li>
-                            </ul>
-                            <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                        </div>
+            <!-- Job Block -->
+            <div class="job-block col-lg-6 col-md-12 col-sm-12">
+                <div class="inner-box">
+                    <div class="content">
+                        <span class="company-logo"><img src="{!! $employer->image_fm !!}" alt=""></span>
+                        <h4><a href="#">{{ $employer->name }}</a></h4>
+                        <ul class="job-info">
+                            <li><span class="icon flaticon-map-locator"></span> {{ $employer->address }}</li>
+                        </ul>
+                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>
