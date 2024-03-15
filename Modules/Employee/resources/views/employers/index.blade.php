@@ -1,32 +1,33 @@
 @extends('website.layouts.master')
 @section('content')
-    <style>
-        .page-title {
-            margin-top: 100px;
-        }
-    </style>
+<style>
+.page-title {
+    margin-top: 100px;
+}
+</style>
 
-    <section class="page-title">
-        <div class="auto-container">
-            <div class="title-outer">
-                <h1>Công Ty</h1>
-                <ul class="page-breadcrumb">
-                    <li><a href="{{ route('employee.index') }}">Trang chủ</a></li>
-                    <li>Công Ty</li>
-                </ul>
-            </div>
+<section class="page-title">
+    <div class="auto-container">
+        <div class="title-outer">
+            <h1>Công Ty</h1>
+            <ul class="page-breadcrumb">
+                <li><a href="{{ route('employee.index') }}">Trang chủ</a></li>
+                <li>Công Ty</li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="ls-section">
-        <div class="auto-container">
-            <div class="filters-backdrop"></div>
+<section class="ls-section">
+    <div class="auto-container">
+        <div class="filters-backdrop"></div>
 
-            <div class="row">
+        <div class="row">
 
-                <!-- Filters Column -->
-                <div class="filters-column col-lg-4 col-md-12 col-sm-12">
-                    <div class="inner-column pd-right">
+            <!-- Filters Column -->
+            <div class="filters-column col-lg-4 col-md-12 col-sm-12">
+                <div class="inner-column pd-right">
+                    <form action="{{ route('employee.index') }}">
                         <div class="filters-outer">
                             <button type="button" class="theme-btn close-filters">X</button>
 
@@ -63,9 +64,12 @@
                                     </div>
                                 </div> -->
                             </div>
+                            <button type="submit" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Tìm
+                                    kiếm</span></button>
                         </div>
-                        <!-- Call To Action -->
-                        <!-- <div class="call-to-action-four">
+                    </form>
+                    <!-- Call To Action -->
+                    <!-- <div class="call-to-action-four">
                             <h5>Recruiting?</h5>
                             <p>Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.
                             </p>
@@ -74,53 +78,53 @@
                                     Now</span></a>
                             <div class="image" style="background-image: url(images/resource/ads-bg-4.png);"></div>
                         </div> -->
-                        <!-- End Call To Action -->
-                    </div>
+                    <!-- End Call To Action -->
                 </div>
-                <!-- Content Column -->
-                <div class="content-column col-lg-8 col-md-12 col-sm-12">
+            </div>
+            <!-- Content Column -->
+            <div class="content-column col-lg-8 col-md-12 col-sm-12">
 
-                    <style>
-                        .com {
-                            text-align: center;
-                            margin-bottom: 5%;
-                            font-size: 10%;
-                        }
+                <style>
+                .com {
+                    text-align: center;
+                    margin-bottom: 5%;
+                    font-size: 10%;
+                }
 
-                        .cover-wraper {
-                            height: 150%;
-                        }
+                .cover-wraper {
+                    height: 150%;
+                }
 
-                        .widget-title .btn-group .btn {
-                            border-bottom: 5px solid transparent;
-                            /* Thiết lập viền dưới là độ rộng 2px và trong suốt */
-                        }
+                .widget-title .btn-group .btn {
+                    border-bottom: 5px solid transparent;
+                    /* Thiết lập viền dưới là độ rộng 2px và trong suốt */
+                }
 
-                        .widget-title .btn-group .btn:hover {
-                            border-bottom: 2px solid blue;
-                            /* Thiết lập màu viền dưới khi di chuột qua nút */
-                        }
-                    </style>
+                .widget-title .btn-group .btn:hover {
+                    border-bottom: 2px solid blue;
+                    /* Thiết lập màu viền dưới khi di chuột qua nút */
+                }
+                </style>
 
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- Ls widget -->
-                            <div class="ls-widget">
-                                <div class="tabs-box">
-                                    <div class="widget-title">
-                                        <div class="btn-group" role="group" aria-label="">
-                                            <button type="button" class="btn btn-light">
-                                                <a href="{{ route('employee.index') }}?type=danhsachcongty">Danh sách công
-                                                    ty</a>
-                                            </button>
-                                            <button type="button" class="btn btn-light">
-                                                <a href="{{ route('employee.index') }}?type=topcongty">Top công ty</a>
-                                            </button>
-                                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Ls widget -->
+                        <div class="ls-widget">
+                            <div class="tabs-box">
+                                <div class="widget-title">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <button type="button" class="btn btn-light">
+                                            <a href="{{ route('employee.index') }}?type=danhsachcongty">Danh sách công
+                                                ty</a>
+                                        </button>
+                                        <button type="button" class="btn btn-light">
+                                            <a href="{{ route('employee.index') }}?type=topcongty">Top công ty</a>
+                                        </button>
                                     </div>
+                                </div>
 
-                                    {{-- <div class="widget-content">
+                                {{-- <div class="widget-content">
 
                                         <div class="tabs-box">
 
@@ -228,55 +232,54 @@
 
                                         </div>
                                     </div> --}}
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
 
 
 
-                    <div class="ls-outer">
-                        <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
-                        @foreach ($userEmployees as $userEmployee)
-                            <!-- Block Block -->
-                            <div class="company-block-three">
-                                <div class="inner-box">
-                                    <div class="content">
-                                        <div class="content-inner">
-                                            <span class="company-logo"><img src="{{ asset($image) }}"
-                                                    alt=""></span>
-                                            <h4><a
-                                                    href="{{ route('employee.show', ['id' => $userEmployee->slug]) }}">{{ $userEmployee->name }}</a>
-                                            </h4>
-                                            <ul class="job-info">
-                                                <li><span class="icon flaticon-map-locator"></span>
-                                                    {{ $userEmployee->address }}</li>
-                                                <!-- <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->address }}</li> -->
-                                            </ul>
-                                        </div>
-                                        <ul class="job-other-info">
-                                            <li class="privacy">Đặc sắc</li>
-                                            <li class="time">Việc làm mở – 2</li>
-                                        </ul>
-                                    </div>
-                                    <!-- <div class="text">Netflix is the world's leading streaming entertainment service with over
+                <div class="ls-outer">
+                    <button type="button" class="theme-btn btn-style-two toggle-filters">Show Filters</button>
+                    @foreach ($userEmployees as $userEmployee)
+                    <!-- Block Block -->
+                    <div class="company-block-three">
+                        <div class="inner-box">
+                            <div class="content">
+                                <div class="content-inner">
+                                    <span class="company-logo"><img src="{{ asset($image) }}" alt=""></span>
+                                    <h4><a
+                                            href="{{ route('employee.show', ['id' => $userEmployee->slug]) }}">{{ $userEmployee->name }}</a>
+                                    </h4>
+                                    <ul class="job-info">
+                                        <li><span class="icon flaticon-map-locator"></span>
+                                            {{ $userEmployee->address }}</li>
+                                        <!-- <li><span class="icon flaticon-briefcase"></span> {{ $userEmployee->address }}</li> -->
+                                    </ul>
+                                </div>
+                                <ul class="job-other-info">
+                                    <li class="privacy">Đặc sắc</li>
+                                    <li class="time">Việc làm mở – 2</li>
+                                </ul>
+                            </div>
+                            <!-- <div class="text">Netflix is the world's leading streaming entertainment service with over
                                                                                 195 million paid memberships in over 190 countries enjoying TV series, documentaries and
                                                                                 feature films across a wide variety...</div> -->
-                                    <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                                </div>
-                            </div>
-                        @endforeach
-                        <!-- Listing Show More -->
-                        <div class="ls-show-more">
-                            <div class="card-footer">
-                                {{ $userEmployees->appends(request()->query())->links() }}
-                            </div>
+                            <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                         </div>
-
                     </div>
+                    @endforeach
+                    <!-- Listing Show More -->
+                    <div class="ls-show-more">
+                        <div class="card-footer">
+                            {{ $userEmployees->appends(request()->query())->links() }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 @endsection
