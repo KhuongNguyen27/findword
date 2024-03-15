@@ -6,10 +6,12 @@
             <div class="row">
                 <div class="big-column col-xl-4 col-lg-3 col-md-12">
                     <div class="footer-column about-widget">
-                        <div class="logo"><a href="#"><img src="{{ asset('website-assets/images/logo.svg')}}"
-                                    alt=""></a></div>
-                        <p class="phone-num"><span>Call us </span><a href="thebeehost@support.com">123 456 7890</a></p>
-                        <p class="address">329 Queensberry Street, North Melbourne VIC<br> 3051, Australia. <br><a
+                        <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
+                            style="width:80px!important" height="50" src="{{ asset('website-assets/images/logo.png')}}"
+                            alt="" title="">Tuyển dụng Huế</a></div>
+                        <p class="phone-num"><span>
+                            Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
+                        <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
                                 href="mailto:support@superio.com" class="email">support@superio.com</a></p>
                     </div>
                 </div>
@@ -18,14 +20,15 @@
                     <div class="row">
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">For Candidates</h4>
+                                <h4 class="widget-title">
+                                    Dành cho ứng viên</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Browse Jobs</a></li>
-                                        <li><a href="#">Browse Categories</a></li>
-                                        <li><a href="#">Candidate Dashboard</a></li>
-                                        <li><a href="#">Job Alerts</a></li>
-                                        <li><a href="#">My Bookmarks</a></li>
+                                        <li><a href="#">Duyệt công việc</a></li>
+                                        <li><a href="#">Duyệt danh mục</a></li>
+                                        <li><a href="#">Trang tổng quan về ứng viên</a></li>
+                                        <li><a href="#">Thông báo công việc</a></li>
+                                        <li><a href="#">Đánh dấu của tôi</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -34,13 +37,14 @@
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">For Employers</h4>
+                                <h4 class="widget-title">
+                                    Nhà tuyển dụng</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Browse Candidates</a></li>
-                                        <li><a href="#">Employer Dashboard</a></li>
-                                        <li><a href="#">Add Job</a></li>
-                                        <li><a href="#">Job Packages</a></li>
+                                        <li><a href="#">Duyệt ứng viên</a></li>
+                                        <li><a href="#">Trang cho nhà tuyển dụng</a></li>
+                                        <li><a href="#">Thêm công việc</a></li>
+                                        <li><a href="#">Gói công việc</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -48,14 +52,14 @@
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">About Us</h4>
+                                <h4 class="widget-title">Về chúng tôi</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Job Page</a></li>
-                                        <li><a href="#">Job Page Alternative</a></li>
-                                        <li><a href="#">Resume Page</a></li>
+                                        <li><a href="#">Trang việc làme</a></li>
+                                        <li><a href="#">Trang việc làm thay thế</a></li>
+                                        <li><a href="#">Trang tiếp tục</a></li>
                                         <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="#">Liên hệ</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -64,14 +68,14 @@
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">Helpful Resources</h4>
+                                <h4 class="widget-title">Tài nguyên hữu ích</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Site Map</a></li>
-                                        <li><a href="#">Terms of Use</a></li>
-                                        <li><a href="#">Privacy Center</a></li>
-                                        <li><a href="#">Security Center</a></li>
-                                        <li><a href="#">Accessibility Center</a></li>
+                                        <li><a href="#">Sơ đồ trang web</a></li>
+                                        <li><a href="#">Điều khoản sử dụng</a></li>
+                                        <li><a href="#">Trung tâm bảo mật</a></li>
+                                        <li><a href="#">Trung tâm bảo vệ</a></li>
+                                        <li><a href="#">Trung tâm trợ năng</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -87,7 +91,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2021 <a href="#">Superio</a>. All Right Reserved.</div>
+                <div class="copyright-text">© 2024 <a href="#">Superio</a>. All Right Reserved.</div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
