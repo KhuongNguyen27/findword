@@ -114,11 +114,7 @@ class ProfileController extends Controller
         return view('employee::change-password.edit',compact(['user']));
     }
     public function changePassword( ChangepasswordRequest $request, $userId){
-        $request->validate([
-            'password' => 'required',
-            'newpassword' => 'required|min:5',
-            'confirmpassword' => 'required|same:newpassword',
-        ]);
+       
         $user = User::findOrFail($userId);
         // dd($user);
         if (!Hash::check($request->password, $user->password)) {

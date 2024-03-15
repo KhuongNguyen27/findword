@@ -13,7 +13,7 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-title">
-                                <h4>Thông Tin nghĩa</h4>
+                                <h4>Thông Tin</h4>
                             </div>
 
                             <div class="widget-content">
