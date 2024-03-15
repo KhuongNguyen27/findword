@@ -53,7 +53,10 @@
     "deposit":"Nạp tiền",
     "transaction_date":"Ngày giao dịch",
     "genre":"Thể loại",
-    "amount":"Số tiền"
+    "amount":"Số tiền",
+    "description":"Mô tả",
+    "back":"Quay lại",
+    "image":"Hình ảnh"
 
 
 

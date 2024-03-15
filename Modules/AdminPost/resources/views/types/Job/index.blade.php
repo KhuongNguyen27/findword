@@ -77,7 +77,7 @@
                                         <li>
                                             <a class="dropdown-item"
                                                 href="{{ route($route_prefix.'edit',['adminpost'=>$item->id,'type'=>request()->type]) }}">
-                                                {{ __('sys.edit') }}
+                                                {{ __('edit') }}
                                             </a>
                                         </li>
                                         <li>
@@ -88,7 +88,7 @@
                                                 @method('DELETE')
                                                 <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
                                                     class="dropdown-item">
-                                                    {{ __('sys.delete') }}
+                                                    {{ __('delete') }}
                                                 </button>
                                             </form>
                                         </li>
