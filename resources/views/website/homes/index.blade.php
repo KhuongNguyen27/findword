@@ -12,7 +12,7 @@ span.flaticon-bookmark.active {
             <div class="content-column col-lg-7 col-md-12 col-sm-12">
                 <div class="inner-column wow fadeInUp" data-wow-delay="1000ms">
                     <div class="title-box">
-                        <h3>Việc làm OBN</h3>
+                        <h3>Việc làm Tuyển dụng Huế</h3>
                         <h3> Tìm kiếm liền tay - Nhận ngay công việc </h3>
                         <div class="text">Hơn 10,000+ cơ hội nghề nghiệp đang chờ đợi bạn</div>
                     </div>
