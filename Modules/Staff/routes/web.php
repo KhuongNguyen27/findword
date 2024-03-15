@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\Staff\app\Http\Controllers\ProfileController;
 use Modules\Staff\app\Http\Controllers\AuthController;
 use Modules\Staff\app\Http\Controllers\UserCvController;
+use Modules\Staff\app\Http\Controllers\CvsExampleController;
 use Modules\Staff\app\Http\Controllers\UserExperienceController;
 use Modules\Staff\app\Http\Controllers\UserEducationController;
 use Modules\Staff\app\Http\Controllers\UserSkillController;
@@ -55,4 +56,9 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
-Route::get('/cvs_example',[UserCvController::class,'cvs_example'])->name('cvs.index');
+Route::group([
+    'prefix' => 'cvs_example',
+    'as' => 'cvs.'
+], function () {
+    Route::get('/',[CvsExampleController::class,'index'])->name('index');
+});

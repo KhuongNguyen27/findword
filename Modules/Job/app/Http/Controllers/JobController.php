@@ -43,10 +43,11 @@ class JobController extends Controller
         if($request->address_work){
             $query->where('work_address', 'LIKE', '%' . $request->address_work . '%');
         }
-        if ($request->country) {
-            $query->where('country', 'LIKE', '%' . $request->country . '%');
+        if ($request->has('country')) {
+            $query->where('country', 'LIKE', '%VietNam%');
         } else {
-            $query->where('country', 'NOT LIKE', '%VietNam%');
+            $query->where('country', 'NOT LIKE', '%VietNam%')
+                    ->orWhereNull('country');
         }
         if ($request->career_search) {
             $query->whereHas('careers', function ($query) use ($request) {
