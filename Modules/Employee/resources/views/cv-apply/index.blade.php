@@ -4,7 +4,7 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Quản Lý Hồ Sơ Ứng Tuyển</h3>
+                <h3>{{ __('applicant tracking') }}</h3>
                 <div class="text"></div>
             </div>
 
@@ -28,22 +28,20 @@
 
                                 <form class="form-search" action="{{ route('employee.cv.index') }}">
                                     <div class="chosen-outer1">
-                                        <input type="text" value="{{ request('name') }}" placeholder="Tên hồ sơ..."
+                                        <input type="text" value="{{ request('name') }}" placeholder="{{ __('profile_name') }}..."
                                             name="name">
                                     </div>
 
 
                                     <div class="chosen-outer1">
                                         <select name="status" class="chosen-select1">
-                                            <option value="">Trạng thái</option>
-                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">Đã
-                                                duyệt</option>
-                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">Chưa
-                                                duyệt</option>
+                                            <option value="">{{ __('status') }}</option>
+                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">{{ __('accepted') }}</option>
+                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">{{ __('not_accepted') }}</option>
                                         </select>
                                     </div>
                                     <div style="background: #4906c7;" class="chosen-outer1">
-                                        <button type="submit" style=" color: white;">Tìm kiếm</button>
+                                        <button type="submit" style=" color: white;">{{ __('search') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -54,11 +52,11 @@
                                     <div class="aplicants-upper-bar">
                                         <h6></h6>
                                         <ul class="aplicantion-status tab-buttons clearfix">
-                                            <li class="tab-btn active-btn totals" data-tab="#totals">Tổng số hồ sơ:
+                                            <li class="tab-btn active-btn totals" data-tab="#totals">{{ __('profile_total') }}:
                                                 {{ $param_count['cv_apllys_count'] }}</li>
-                                            <li class="tab-btn approved" data-tab="#approved">Đã duyệt:
+                                            <li class="tab-btn approved" data-tab="#approved">{{ __('accepted') }}:
                                                 {{ $param_count['count_cv_appled'] }}</li>
-                                            <li class="tab-btn rejected" data-tab="#rejected">Chưa duyệt:
+                                            <li class="tab-btn rejected" data-tab="#rejected">{{ __('not_accepted') }}:
                                                 {{ $param_count['count_not_applly'] }}</li>
                                         </ul>
                                     </div>

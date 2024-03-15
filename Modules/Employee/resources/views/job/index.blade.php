@@ -4,7 +4,7 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Quản Lý Công Việc</h3>
+                <h3>{{ __('workflow_management') }}</h3>
                 {{-- <div class="text">Ready to jump back in?</div> --}}
             </div>
 
@@ -14,18 +14,18 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-title">
-                                <h4>Danh sách công việc</h4>
+                                <h4>{{ __('work_list') }}</h4>
                                 <form class="form-search" action="{{ route('employee.job.index') }}">
                                     <div class="chosen-outer1">
                                         <input
-                                            type="text" value="{{ request('name') }}" placeholder="Tên công việc..." name="name">
+                                            type="text" value="{{ request('name') }}" placeholder="{{ __('work_name') }}..." name="name">
                                     </div>
 
                                     <div class="chosen-outer1">
-                                        <label for="">Thời hạn từ :</label>
+                                        <label for="">{{ __('from') }} :</label>
                                         <input
                                             type="date" value="{{ request('start_day') }}" placeholder="Tên công việc..." name="start_day" onchange="calculateDays()">
-                                        <label for="">đến :</label>
+                                        <label for="">{{ __('to') }} :</label>
                                         <input
                                             type="date" value="{{ request('end_day') }}" placeholder="Tên công việc..." name="end_day" onchange="calculateDays()">
                                     </div>
@@ -33,13 +33,13 @@
 
                                     <div class="chosen-outer1">
                                         <select name="status" class="chosen-select1">
-                                            <option value="">Trạng thái</option>
-                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">Đang tuyển</option>
-                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">Dừng tuyển</option>
+                                            <option value="">{{ __('status') }}</option>
+                                            <option {{ request('status') == '1' ? 'selected' : '' }} value="1">{{ __('recruitment') }}</option>
+                                            <option {{ request('status') == '0' ? 'selected' : '' }} value="0">{{ __('stop_recruiting') }}</option>
                                         </select>
                                     </div>
                                     <div style="background: #4906c7;" class="chosen-outer1">
-                                        <button type="submit" style=" color: white;">Tìm kiếm</button>
+                                        <button type="submit" style=" color: white;">{{ __('search') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -58,11 +58,11 @@
                                                 </div>
                                             @endif
                                             <tr>
-                                                <th>Tên công việc</th>
-                                                <th>Số hồ sơ ứng tuyển</th>
-                                                <th>Thời hạn</th>
-                                                <th>Trạng thái</th>
-                                                <th>Thao tác</th>
+                                                <th>{{ __('work_name') }}</th>
+                                                <th>{{ __('job_application') }}</th>
+                                                <th>{{ __('deadline') }}</th>
+                                                <th>{{ __('status') }}</th>
+                                                <th>{{ __('action') }}</th>
                                             </tr>
                                         </thead>
 
@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td>
                                                         <ul class="option-list">
-                                                            <li>{{ $countID[$job->id] }} hồ sơ </li>
+                                                            <li>{{ $countID[$job->id] }} {{ __('profile') }}</li>
                                                             <li><a href="{{ route('employee.job.showjobcv', $job->id) }}"
                                                                     data-text="View Aplication"><span
                                                                         class="la la-eye"></span></a></li>
@@ -83,18 +83,18 @@
                                                     <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
                                                         {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
                                                     @if ($job->status == 1)
-                                                        <td><span class="green-button">Đang tuyển</span></td>
+                                                        <td><span class="green-button">{{ __('recruitment') }}</span></td>
                                                     @elseif ($job->status == 0)
-                                                        <td><span class="danger-button">Dừng tuyển</span></td>
+                                                        <td><span class="danger-button">{{ __('stop_recruiting') }}</span></td>
                                                     @endif
                                                     <td>
                                                         <div class="option-box">
                                                             <ul class="option-list">
                                                                 <li><a href="{{ route('employee.job.show', $job->id) }}"
-                                                                        data-text="View Aplication"><span
+                                                                        data-text="{{ __('show') }}"><span
                                                                             class="la la-eye"></span></a></li>
                                                                 <li><a href="{{ route('employee.job.edit', $job->id) }}"
-                                                                        data-text="Reject Aplication"><span
+                                                                        data-text="{{ __('edit') }}"><span
                                                                             class="la la-pencil"></span></a></li>
                                                                 <form action="{{ route('employee.job.delete', $job->id) }}"
                                                                     method="POST" id="deleteForm_{{ $job->id }}"
@@ -103,7 +103,7 @@
                                                                     @method('DELETE')
                                                                     <li>
                                                                         <button type="submit" class="delete-button"
-                                                                            data-text="Delete Application">
+                                                                            data-text="{{ __('delete') }}">
                                                                             <span class="la la-trash"></span>
                                                                         </button>
                                                                     </li>
