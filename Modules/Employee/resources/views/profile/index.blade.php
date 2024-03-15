@@ -4,7 +4,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Hồ Sơ Nhà Tuyển Dụng</h3>
+            <h3>{{ __('employer_profile') }}</h3>
         </div>
 
         <div class="row">
@@ -13,7 +13,7 @@
                 <div class="ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title">
-                            <h4>Thông Tin</h4>
+                            <h4>{{ __('information') }}</h4>
                         </div>
 
                         <div class="widget-content">
@@ -59,13 +59,12 @@
                             </div> --}}
                             <form class="default-form" action="{{ route('employee.profile.update', $user->id) }}"
                                 method="post" enctype="multipart/form-data">
-                                <span><strong>Tải lên logo</strong></span>
+                                <span><strong>{{ __('logo_upload') }}</strong></span>
                                 <div class="uploading-outer">
                                     <div class="uploadButton">
                                         <input class="uploadButton-input" type="file" name="image"
                                             accept="image/*, application/pdf" id="upload" multiple>
-                                        <label class="uploadButton-button ripple-effect" for="upload">Browse
-                                            Logo</label>
+                                        <label class="uploadButton-button ripple-effect" for="upload">{{ __('logo_browse') }}</label>
                                         <span class="uploadButton-file-name"></span>
                                     </div>
                                     <div class="new-image-preview" style="margin-left:0px">
@@ -103,16 +102,16 @@
                                 @csrf
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Tên Nhà Tuyển Dụng</label>
+                                        <label>{{ __('employer_name') }}</label>
                                         <input type="text" name="user_name" value="{{ $user->name }}"
-                                            placeholder="Tên Nhà Tuyển Dụng">
+                                            placeholder="Tên nhà tuyển dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Địa Chỉ Email Nhà Tuyển Dụng</label>
+                                        <label>{{ __('email_address') }}</label>
                                         <input type="text" name="email" value="{{ $user->email }}"
                                             placeholder="Email Nhà Tuyển Dụng">
                                         @if ($errors->any())
@@ -122,7 +121,7 @@
 
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Tên Công Ty</label>
+                                        <label>{{ __('company_name') }}</label>
                                         <input id="name" type="text" name="name"
                                             value="{{ isset($user_employee->name) ? $user_employee->name : '' }}"
                                             placeholder="">
@@ -134,7 +133,7 @@
 
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Địa Chỉ Công Ty</label>
+                                        <label>{{ __('company_address') }}</label>
                                         <input type="text" name="address"
                                             value="{{ isset($user_employee->address) ? $user_employee->address : '' }}"
                                             placeholder="">
@@ -145,7 +144,7 @@
 
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Số Điện Thoại Công Ty</label>
+                                        <label>{{ __('phone') }}</label>
                                         <input type="text" name="phone"
                                             value="{{ isset($user_employee->phone) ? $user_employee->phone : '' }}"
                                             placeholder="">
@@ -155,7 +154,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Website Công ty</label>
+                                        <label>{{ __('company_website') }}</label>
                                         <input type="text" name="website"
                                             value="{{ isset($user_employee->website) ? $user_employee->website : '' }}"
                                             placeholder="">
@@ -163,7 +162,6 @@
                                         <p style="color:red">{{ $errors->first('website') }}</p>
                                         @endif
                                     </div>
-
                                     {{-- <div class="form-group col-lg-12 col-md-12">
                                         <label>Mật Khẩu</label>
                                         <input type="password" name="password" value="" placeholder="">
@@ -181,7 +179,7 @@
 
                                     <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <button type="submit" class="theme-btn btn-style-one">Lưu</button>
+                                        <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
                                     </div>
                                 </div>
                             </form>

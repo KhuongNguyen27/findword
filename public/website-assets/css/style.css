@@ -23117,8 +23117,8 @@ Work Section
 .green-button {
   background-color: green;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 10% 5% 15% 10%;
+  border-radius: 10%;
 }
 
 .danger-button {
