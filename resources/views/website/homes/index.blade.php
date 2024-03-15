@@ -44,7 +44,7 @@ span.flaticon-bookmark.active {
 
                         <!-- Popular Search -->
                         <div class="popular-searches">
-                            <span class="title">Popular Searches : </span>
+                            <span class="title">Tìm kiếm phổ biến : </span>
                             <a href="#">Designer</a>,
                             <a href="#">Developer</a>,
                             <a href="#">Web</a>,
