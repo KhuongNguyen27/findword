@@ -38,6 +38,8 @@ Route::group([
     Route::get('job-applied',[UserJobAppliedController::class,'index'])->name('job-applied');
     Route::delete('job-applied/{id}',[UserJobAppliedController::class,'destroy'])->name('job-applied.destroy');
 
+    Route::get('/profile/editpassword', [ProfileController::class,'editpassword'])->name('profile.editpassword');
+	Route::post('/change-password/{id}', [ProfileController::class,'changePassword'])->name('profile.changePassword');
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');
     Route::resource('cv', UserCvController::class)->names('cv');

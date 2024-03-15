@@ -31,6 +31,9 @@ Route::group([
 	Route::get('/', [ProfileController::class,'dashboard'])->name('home');
 	Route::get('/profile', [ProfileController::class,'index'])->name('profile.index');
 	Route::post('/update/{id}', [ProfileController::class,'update'])->name('profile.update');
+	Route::get('/profile/changepassword', [ProfileController::class,'editpassword'])->name('profile.editpassword');
+	Route::post('/change-password/{id}', [ProfileController::class,'changePassword'])->name('profile.changePassword');
+
 
 	//Job
 	Route::get('/jobs', [JobController::class,'index'])->name('job.index');

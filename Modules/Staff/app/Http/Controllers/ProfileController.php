@@ -3,14 +3,17 @@
 namespace Modules\Staff\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Modules\Staff\app\Http\Requests\UpdateUserStaffRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Modules\Staff\app\Http\Requests\ChangepasswordRequest;
 use Modules\Staff\app\Models\UserJobAplied;
 
 class ProfileController extends Controller
@@ -25,10 +28,10 @@ class ProfileController extends Controller
         $params = [
             'item' => $item,
         ];
-    
+
         return view('staff::index', $params);
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -76,7 +79,7 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        
+
         $data = [
             'phone' => $request->input('phone'),
             'birthdate' => $request->input('birthdate'),
@@ -87,10 +90,10 @@ class ProfileController extends Controller
             'outstanding_achievements' => $request->input('outstanding_achievements'),
         ];
         if ($request->hasFile('image')) {
-            $imagePath = UserStaff::uploadFile($request->file('image'),'images');
+            $imagePath = UserStaff::uploadFile($request->file('image'), 'images');
             $data['image'] = $imagePath;
         }
-        $staff->update($data);    
+        $staff->update($data);
         return back()->with('success', 'Thông tin đã được cập nhật thành công.');
     }
     public function dashboard()
@@ -101,5 +104,23 @@ class ProfileController extends Controller
             'userJobApplies' => $userJobApplies,
         ];
         return view('staff::profile.dashboard', $params);
+    }
+
+    public function editpassword()
+    {
+        $user = Auth::user();
+        return view('staff::change-password.edit', compact(['user']));
+    }
+    public function changePassword(ChangepasswordRequest $request, $userId)
+    {
+       
+        $user = User::findOrFail($userId);
+        // dd($user);
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->back()->with(['error' => 'Mật khẩu hiện tại không chính xác.']);
+        }
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
+        return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi thành công.');
     }
 }

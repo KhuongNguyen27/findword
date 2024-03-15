@@ -162,14 +162,13 @@
                                         <p style="color:red">{{ $errors->first('website') }}</p>
                                         @endif
                                     </div>
-
-                                    <div class="form-group col-lg-12 col-md-12">
-                                        <label>{{ __('password') }}</label>
+                                    {{-- <div class="form-group col-lg-12 col-md-12">
+                                        <label>Mật Khẩu</label>
                                         <input type="password" name="password" value="" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('password') }}</p>
                                         @endif
-                                    </div>
+                                    </div> --}}
 
                                     <!-- About Company -->
                                     {{-- <div class="form-group col-lg-12 col-md-12">
