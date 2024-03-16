@@ -12,7 +12,7 @@
             </div>
             <!-- Form Group -->
             <div class="form-group col location">
-                <span class="icon flaticon-map-locator"></span>
+                <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
                 <select name="rank_id" class="form-select select2">
                     <option value="">Tất cả cấp bậc</option>
                     @foreach($ranks as $rank)
@@ -30,7 +30,7 @@
                 </select>
             </div>
             <div class="form-group col location">
-                <span class="icon flaticon-map-locator"></span>
+                <span class="icon flaticon-target"></span>
                 <select name="career_id" class="form-select select2">
                     <option value="">Tất cả ngành nghề</option>
                     @foreach($careers as $career)

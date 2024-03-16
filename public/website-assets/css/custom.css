@@ -48,3 +48,49 @@
 .logo span {
     font-size: 16px !important;
 }
+.job-block .inner-box {
+    padding: 12px;
+}
+.text_ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.job-title {
+    top: unset !important;
+    margin-bottom: 0px !important;
+}
+.job-title a, .job-title h4{
+    color: #212f3f;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 20px !important;
+    margin-bottom: 0px !important;
+}
+.job-block .bookmark-btn {
+    bottom: -7px;
+    top: unset;
+}
+.company_name {
+    color: #6f7882 !important;
+    display: inline !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 16px !important;
+}
+.col-job-info .address, .col-job-info .salary {
+    background: #f4f5f5;
+    border-radius: 4px;
+    color: #212f3f;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    padding: 4px 8px;
+}
+.bookmark-btn {
+    color: #52bf51;
+}
+.job-categories {
+    border: none !important;
+}

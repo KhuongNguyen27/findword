@@ -39,7 +39,6 @@
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
-   
     <script>
     $(document).ready(function() {
         $('.bookmark-btn').on('click', function(e) {
