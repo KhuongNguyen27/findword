@@ -18,6 +18,7 @@ use Modules\Staff\app\Models\Wage;
 use Modules\Staff\app\Models\Career;
 use Modules\Staff\app\Models\FormWork;
 use Illuminate\Support\Facades\Log;
+
 class UserCvController extends Controller
 {
     /**
@@ -155,13 +156,5 @@ class UserCvController extends Controller
         // dd($userCv);
         $userCv->delete();
         return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');
-    }
-    public function cvs_example(Request $request)
-    {
-        $userCvs = UserCv::all();
-        $params = [
-            'items' => $userCvs
-        ];
-        return view('website.dashboards.cv.index', $params);
     }
 }

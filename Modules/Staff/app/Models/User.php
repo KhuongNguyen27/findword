@@ -49,6 +49,10 @@ class User extends Model
     {
         return $this->hasOne(UserCv::class);
     }
+    public function cvsExample()
+    {
+        return $this->hasOne(CvsExample::class);
+    }
    // Trong User.php
    public function jobs()
    {

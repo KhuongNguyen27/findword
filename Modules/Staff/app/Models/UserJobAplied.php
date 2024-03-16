@@ -24,6 +24,10 @@ class UserJobAplied extends Model
     {
         return $this->belongsTo(UserCv::class, 'cv_id');
     }
+    public function cvsExample()
+    {
+        return $this->belongsTo(CvsExample::class, 'cv_id');
+    }
     public function job()
     {
         return $this->belongsTo(Job::class, 'job_id');

@@ -14,6 +14,7 @@ class StaffDatabaseSeeder extends Seeder
     {
         $this->call([
             UserCvSeeder::class,
+            CvsExampleSeeder::class,
             UserStaffSeeder::class,
             UserExperiencesSeeder::class,
             UserEducationSeeder::class,

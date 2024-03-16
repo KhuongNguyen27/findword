@@ -23,4 +23,8 @@ class FormWork extends Model
     {
         return $this->hasMany(UserCv::class,'form_work_id');
     }
+    public function cvsExamples()
+    {
+        return $this->hasMany(CvsExample::class,'form_work_id');
+    }
 }

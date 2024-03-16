@@ -139,7 +139,7 @@
                                         style="width: 150px; height: 150px;" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="media-body ml-3">
-                                    <h2 style="margin-left: 20px !important;">{{ auth()->user()->name }}</h2>
+                                    <h2 style="margin-left: 20px !important;">User Name</h2>
                                     <p style="margin-left: 20px !important;"> {{ $item->desired_position ?? '' }}</p>
                                 </div>
                             </div>

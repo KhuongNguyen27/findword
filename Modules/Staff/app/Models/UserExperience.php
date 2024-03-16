@@ -33,6 +33,10 @@ class UserExperience extends Model
     {
         return $this->belongsTo(UserCv::class, 'cv_id');
     }
+    public function cvsExample()
+    {
+        return $this->belongsTo(CvsExample::class, 'cv_id');
+    }
     protected $casts = [
         // 'start_date' => 'date',
         // 'end_date' => 'date',
