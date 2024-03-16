@@ -1,16 +1,20 @@
 @extends('admintheme::layouts.master')
 @section('content')
+@include('admintheme::includes.globals.breadcrumb',[
+'page_title' => __('adminpost::general.title_index'),
+'actions' => [
+'add_new' => route($route_prefix.'create'   ),
+//'export' => route($route_prefix.'export'),
+]
+])
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
         <div class="col col-xs-6">
-            <input class="form-control" name="id" type="text" placeholder="Mã giao dịch" value="{{ request()->id }}">
+            <input class="form-control" name="name" type="text" placeholder="Tên CV mẫu" value="{{ request()->name }}">
         </div>
         <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
-        </div>
-        <div class="col col-xs-6">
-            <x-admintheme::form-user type="employee" user_id="{{ request()->user_id }}" />
         </div>
         <div class="col col-xs-6">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
@@ -36,11 +40,9 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>{{ __('code') }}</th>
-                            <th>{{ __('name') }}</th>
-                            <th>{{__('purpose')}}</th>
-                            <th>{{ __('recharge_level') }}</th>
-                            <th>{{ __('status') }}</th>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Ngôn ngữ</th>
                             <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
@@ -50,13 +52,10 @@
                         <tr>
                             <td>#{{ $item->id }}</td>
                             <td>
-                                {{ $item->user->name ?? '' }}
+                                {{ $item->name ?? '' }}
                             </td>
-                            <td>{{ $item->type  ?? '' }}</td>
-                            <td>{{ number_format($item->amount, 0, '', '.') }}</td>
-                            <td>{!! $item->status_fm !!}</td>
+                            <td>{{ $item->language  ?? '' }}</td>
                             <td>
-                                @if($item->status == $item::INACTIVE)
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
                                         type="button" data-bs-toggle="dropdown">
@@ -81,7 +80,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -95,72 +93,10 @@
             </div>
         </div>
     </div>
-    @include('transaction::admin.edit')
     @if( count( $items ) )
     <div class="card-footer pb-0">
         @include('admintheme::includes.globals.pagination')
     </div>
     @endif
 </div>
-@endsection
-@section('footer')
-<script>
-jQuery(document).ready(function() {
-    jQuery('body').on('click', ".show-form-edit", function(e) {
-        // Hien thi modal
-        jQuery('#modalUpdate').modal('show');
-        let formUpdate = jQuery('#formUpdate');
-        let action = jQuery(this).data('action');
-        jQuery.ajax({
-            url: action,
-            type: "GET",
-            success: function(res) {
-                if (res.success) {
-                    let formData = res.data;
-                    // Bắt giá trị của input radio "status"
-                    let status = formData.status;
-                    formUpdate.prop('action', action);
-                    formUpdate.find('input[name="status"][value="' + status + '"]').prop(
-                        'checked', true);
-                }
-            }
-        });
-    });
-    jQuery('body').on('click', "button.close", function(e) {
-        jQuery('#modalUpdate').modal('hide');
-    });
-    // jQuery('body').on('click', ".edit-item", function(e) {
-    //     let formUpdate = jQuery(this).closest('#formUpdate');
-    //     formUpdate.find('.input-error').empty();
-    //     var url = formUpdate.prop('action');
-    //     let formData = new FormData($('#formUpdate')[0]);
-    //     jQuery.ajax({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         },
-    //         url: url,
-    //         type: "POST",
-    //         processData: false,
-    //         contentType: false,
-    //         data: formData,
-    //         success: function(res) {
-    //             if (res.has_errors) {
-    //                 for (const key in res.errors) {
-    //                     jQuery('.input-' + key).find('.input-error').html(res.errors[key][
-    //                         0
-    //                     ]);
-    //                 }
-    //             }
-    //             if (res.success) {
-    //                 // Disable modal
-    //                 jQuery('#modalUpdate').modal('hide');
-    //                 // Recall items
-    //                 getAjaxTable(indexUrl, wrapperResults, positionUrl, params);
-    //             }
-
-    //         }
-    //     });
-    // });
-});
-</script>
 @endsection

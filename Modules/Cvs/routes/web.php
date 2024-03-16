@@ -14,6 +14,10 @@ use Modules\Cvs\app\Http\Controllers\CvsController;
 |
 */
 
-Route::group([], function () {
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'middleware' => ['auth.employee']
+], function () {
     Route::resource('cvs', CvsController::class)->names('cvs');
 });
