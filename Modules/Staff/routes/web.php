@@ -58,7 +58,6 @@ Route::group([
 });
 Route::group([
     'prefix' => 'cvs_example',
-    'as' => 'cvs.'
 ], function () {
-    Route::get('/',[CvsExampleController::class,'index'])->name('index');
+    Route::resource('cvs', CvsExampleController::class)->names('cvs');
 });

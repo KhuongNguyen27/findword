@@ -57,6 +57,18 @@
                                                         <span class="la la-pencil"></span> Cập nhật
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <form action="{{ route('staff.cv.destroy', $item->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa hồ sơ này không?')"
+                                                            data-text="Delete CV"><span class="la la-trash"></span>
+                                                            <a class="ml-5 fs-6">Xóa hồ sơ</a>
+                                                        </button>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

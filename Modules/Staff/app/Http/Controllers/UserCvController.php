@@ -18,6 +18,7 @@ use Modules\Staff\app\Models\Wage;
 use Modules\Staff\app\Models\Career;
 use Modules\Staff\app\Models\FormWork;
 use Illuminate\Support\Facades\Log;
+
 class UserCvController extends Controller
 {
     /**

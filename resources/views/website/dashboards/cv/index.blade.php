@@ -122,7 +122,7 @@ span {
                         <div class="col-lg-12">
                             <!-- applicants Widget -->
                             <div class="applicants-widget ls-widget">
-                                <div class="widget-content">
+                                <div class="widget-content" style="padding:0px!important">
                                     <!-- Candidate block three -->
                                     @foreach ($items as $item)
                                     <div class="candidate-block-three">
@@ -150,19 +150,18 @@ span {
                                                     <div class="dropdown resume-action">
                                                         <button class="dropdown-toggle theme-btn btn-style-three"
                                                             role="button" data-toggle="dropdown"
-                                                            aria-expanded="false">Action <i
+                                                            aria-expanded="false">Thao tác <i
                                                                 class="fa fa-angle-down"></i></button>
                                                         <ul class="dropdown-menu">
                                                             <li>
-                                                                <a href="{{ route('staff.cv.show', $item->id) }}">
+                                                                <a href="{{ route('cvs.show', $item->id) }}">
                                                                     <span class="la la-eye"></span> Xem chi
                                                                     tiết
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="{{ route('staff.cv.edit', $item->id) }}">
-                                                                    <span class="la la-pencil"></span> Cập
-                                                                    nhật
+                                                                <a href="{{ route('cvs.edit', $item->id) }}">
+                                                                    <span class="la la-pencil"></span> Tạo bản sao
                                                                 </a>
                                                             </li>
                                                         </ul>
