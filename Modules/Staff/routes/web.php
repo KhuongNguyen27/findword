@@ -58,8 +58,9 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
-Route::group([
-    'prefix' => 'cvs_example',
-], function () {
-    Route::resource('cvs', CvsExampleController::class)->names('cvs');
-});
+// Bỏ qua chờ làm phần nâng cao
+// Route::group([
+//     'prefix' => 'cvs_example',
+// ], function () {
+//     Route::resource('cvs', CvsExampleController::class)->names('cvs');
+// });
