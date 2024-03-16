@@ -4,15 +4,12 @@ namespace Modules\Cvs\database\seeders;
 
 use Illuminate\Database\Seeder;
 
-class CvsDatabaseSeeder extends Seeder
+class CvCareerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $this->call([
-            StyleSeeder::class,
-        ]);
     }
 }

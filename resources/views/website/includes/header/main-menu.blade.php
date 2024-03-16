@@ -27,12 +27,8 @@
                 <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
                 <li><a href="#">Mẫu CV Hot</a></li>
                 <li><a href="#">Mẫu CV theo ngành nghề</a></li>
-
             </ul>
         </li>
-
-
-
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
         @endif
