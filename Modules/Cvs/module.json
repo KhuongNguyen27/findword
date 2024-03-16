@@ -1,0 +1,11 @@
+{
+    "name": "Cvs",
+    "alias": "cvs",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Cvs\\app\\Providers\\CvsServiceProvider"
+    ],
+    "files": []
+}
