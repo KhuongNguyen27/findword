@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="mb-4">
             <label class="mb-3">Tên CV</label>
-            <input type="text" value="{{ old('name') ?? '' }}" name="name" placeholder="Tên CV mẫu"
+            <input type="text" value="{{ old('name') ?? ($item->name ?? '') }}" name="name" placeholder="Tên CV mẫu"
                 class="form-control">
             @if ($errors->any())
             <p style="color:red">

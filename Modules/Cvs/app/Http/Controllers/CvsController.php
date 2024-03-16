@@ -106,7 +106,23 @@ class CvsController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //
+        try {
+            $item = $this->model::findOrfail($id);
+            $data = $request->except('_token','_method');
+            if ($request->hasFile('image')) {
+                $this->deleteFile([$item->image]);
+                $data['image'] = $this->uploadFile($request->file('image'), 'uploads/cv_image');
+            }
+            if ($request->hasFile('file_cv')) {
+                $this->deleteFile([$item->file_cv]);
+                $data['file_cv'] = $this->uploadFile($request->file('file_cv'), 'uploads/cv_file');
+            }
+            $item->update($data);
+            return redirect()->route($this->route_prefix.'index')->with('success','Cập nhập Cv mẫu thành công');
+        } catch (\Exception $e) {
+            Log::error('Bug in : '.$e->getMessage());
+            return redirect()->back()->with('error','Cập nhập Cv mẫu thất bại');
+        }
     }
 
     /**
