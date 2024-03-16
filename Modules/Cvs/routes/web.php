@@ -19,5 +19,11 @@ Route::group([
     'as' => 'admin.',
     'middleware' => ['auth.employee']
 ], function () {
-    Route::resource('cvs', CvsController::class)->names('cvs');
+    Route::get('/cvs', [CvsController::class,'index'])->name('cvs.index');
+	Route::get('/cvs/create', [CvsController::class,'create'])->name('cvs.create');
+	Route::post('/cvs/store', [CvsController::class,'store'])->name('cvs.store');
+	Route::get('/cvs/edit/{id}', [CvsController::class,'edit'])->name('cvs.edit');
+	Route::get('/cvs/{id}', [CvsController::class,'show'])->name('cvs.show');
+	Route::post('/cvs/{id}', [CvsController::class,'update'])->name('cvs.update');
+	Route::get('/cvs/delete/{id}', [CvsController::class,'destroy'])->name('cvs.destroy');
 });

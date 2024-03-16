@@ -3,7 +3,7 @@
 @include('admintheme::includes.globals.breadcrumb',[
 'page_title' => __('adminpost::general.title_index'),
 'actions' => [
-'add_new' => route($route_prefix.'create'   ),
+'add_new' => route($route_prefix.'create' ),
 //'export' => route($route_prefix.'export'),
 ]
 ])
@@ -63,9 +63,12 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a class="dropdown-item show-form-edit" href="javascript:;"
-                                                data-id="{{ $item->id }}"
-                                                data-action="{{ route($route_prefix.'update',$item->id) }}">
+                                            <a class="dropdown-item" href="{{ route($route_prefix.'show',$item->id) }}">
+                                                {{ __('show') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route($route_prefix.'edit',$item->id) }}">
                                                 {{ __('edit') }}
                                             </a>
                                         </li>

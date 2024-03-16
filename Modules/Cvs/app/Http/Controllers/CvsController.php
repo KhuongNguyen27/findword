@@ -88,7 +88,17 @@ class CvsController extends Controller
      */
     public function edit($id)
     {
-        return view('cvs::edit');
+        $item = $this->model::findOrfail($id);
+        $styles = Style::whereStatus(Style::ACTIVE)->get();
+        $careers = Career::whereStatus(Career::ACTIVE)->get();
+        $param = [
+            'item' => $item,
+            'styles' => $styles,
+            'careers' => $careers,
+            'model' => $this->model,
+            'route_prefix' => $this->route_prefix
+        ];
+        return view($this->view_path.'admin.edit',$param);
     }
 
     /**
@@ -104,6 +114,15 @@ class CvsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $item = $this->model::findOrfail($id);
+            $item->delete();
+            $this->deleteFile([$item->image]);
+            $this->deleteFile([$item->file_cv]);
+            return redirect()->back()->with('success','Xóa hồ sơ mẫu thành công');
+        } catch (\Exception $e) {
+            Log::error('Bug in : '.$e->getMessag());
+            return redirect()->back()->with('error','Xóa hồ sơ mẫu thất bại');
+        }
     }
 }
