@@ -45,3 +45,6 @@
 /* span.flaticon-bookmark.active {
     color: red;
 } */
+.logo span {
+    font-size: 16px !important;
+}
