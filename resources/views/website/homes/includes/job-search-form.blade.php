@@ -1,5 +1,5 @@
 <div class="job-search-form">
-    <form method="post" action="job-list-v10.html">
+    <form method="get" action="{{ route('website.home') }}">
         <div class="row">
             <div class="form-group col">
                 <span class="icon flaticon-map-locator"></span>

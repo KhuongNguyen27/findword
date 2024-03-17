@@ -2,24 +2,21 @@
 <section class="top-companies">
     <div class="auto-container">
         <div class="sec-title">
-            <h2>Top Công ty hàng đầu</h2>
-            <!-- <div class="text">Some of the companies we've helped recruit excellent applicants over the years.</div> -->
+            <h2 class="">Top Công ty hàng đầu</h2>
         </div>
-
         <div class="carousel-outer wow fadeInUp">
             <div class="companies-carousel owl-carousel owl-theme default-dots">
                 @foreach ($employees as $employee)
                 <!-- Company Block -->
                 <div class="company-block">
                     <div class="inner-box">
-                        <figure class="image"><img src="https://static.topcv.vn/company_logos/cong-ty-co-phan-dong-tam-5a124d52ca87c_rs.jpg" alt=""></figure>
-                        <h4 class="name">Công ty Cổ phần Đồng Tâm</h4>
-                        <!-- <div class="location"><i class="flaticon-map-locator"></i> London, UK</div> -->
-                        <!-- <a href="#" class="theme-btn btn-style-three">15 Open Position</a> -->
+                        <a href="{{ route('employee.show', ['id' => $employee->slug]) }}">
+                            <figure class="image"><img src="{{ $employee->image_fm }}" alt=""></figure>
+                            <h4 class="name">{{ $employee->name }}</h4>
+                        </a>
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </div>

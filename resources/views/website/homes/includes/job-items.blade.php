@@ -10,18 +10,18 @@
             <!-- Job Block -->
             <div class="col-lg-4 col-md-12 col-sm-12">
                 @include('job::includes.components.job-item', [
-                'job' => $job,
-                'job_info' => true,
-                'job_other_info' => true,
-                'bookmark' => true,
+                    'job' => $job,
+                    'job_info' => true,
+                    'job_other_info' => true,
+                    'bookmark' => true,
+                    'simple' => true,
                 ])
             </div>
             @endforeach
         </div>
 
         <div class="btn-box">
-            <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Tải thêm danh
-                    sách</span></a>
+            <a href="{{ route('website.home') }}" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Tải thêm danhsách</span></a>
         </div>
     </div>
 </section>

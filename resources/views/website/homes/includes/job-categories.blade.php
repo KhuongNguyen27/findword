@@ -1,7 +1,7 @@
 <section class="job-categories">
     <div class="auto-container">
         <div class="sec-title text-center">
-            <h2>Top ngành nghề nổi bật</h2>
+            <h2 class="">Top ngành nghề nổi bật</h2>
             <div class="text">Bạn muốn tìm việc mới? Xem danh sách việc làm tại đây</div>
         </div>
 
