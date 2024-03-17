@@ -10,251 +10,220 @@ span.flaticon-bookmark.active {
 <section class="banner-section">
     <div class="auto-container">
         <div class="row">
-            <div class="content-column col-lg-7 col-md-12 col-sm-12">
+            <div class="content-column col-lg-12 col-md-12 col-sm-12">
                 <div class="inner-column wow fadeInUp" data-wow-delay="1000ms">
                     <div class="title-box">
-                        <h3>Việc làm Tuyển dụng Huế</h3>
-                        <h3> Tìm kiếm liền tay - Nhận ngay công việc </h3>
-                        <div class="text">Hơn 10,000+ cơ hội nghề nghiệp đang chờ đợi bạn</div>
-                    </div>
-
-
-                    <!-- Job Search Form -->
-                    <div class="job-search-form">
-                        <form method="post" action="job-list-v10.html">
-                            <div class="row">
-                                <div class="form-group col-lg-5 col-md-12 col-sm-12">
-                                    <span class="icon flaticon-search-1"></span>
-                                    <input type="text" name="field_name" placeholder="Nhập từ khóa tìm kiếm">
-                                </div>
-                                <!-- Form Group -->
-                                <div class="form-group col-lg-4 col-md-12 col-sm-12 location">
-                                    <span class="icon flaticon-map-locator"></span>
-                                    <input type="text" name="field_name" placeholder="Mã bưu điện">
-                                </div>
-                                <!-- Form Group -->
-                                <div class="form-group col-lg-3 col-md-12 col-sm-12 btn-box">
-                                    <button type="submit" class="theme-btn btn-style-one"><span
-                                            class="btn-title">{{ __('search') }}</span></button>
-                                </div>
-                            </div>
-                        </form>
+                        <h3>Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc.</h3>
+                        <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp uy tín tại Việt Nam</div>
                     </div>
                     <!-- Job Search Form -->
-
-                    <!-- Popular Search -->
-                    <div class="popular-searches">
-                        <span class="title">Tìm kiếm phổ biến : </span>
-                        <a href="#">Designer</a>,
-                        <a href="#">Developer</a>,
-                        <a href="#">Web</a>,
-                        <a href="#">IOS</a>,
-                        <a href="#">PHP</a>,
-                        <a href="#">Senior</a>,
-                        <a href="#">Engineer</a>,
-                    </div>
-                    <!-- End Popular Search -->
+                    @include('website.homes.includes.job-search-form')
+                    <!-- Job Search Form -->
                 </div>
             </div>
 
-            <div class="image-column col-lg-5 col-md-12">
-                <div class="image-box">
-                    <figure class="main-image wow fadeIn" data-wow-delay="500ms"><img
-                            src="{{ asset('website-assets/images/resource/banner-img-1.png') }}" alt="">
-                    </figure>
-
-                    <!-- Info BLock One -->
-                    <div class="info_block anm wow fadeIn" data-wow-delay="1000ms" data-speed-x="2" data-speed-y="2">
-                        <span class="icon flaticon-email-3"></span>
-                        <p>Work Inquiry From <br>Ali Tufan</p>
-                    </div>
-
-                    <!-- Info BLock Two -->
-                    <div class="info_block_two anm wow fadeIn" data-wow-delay="2000ms" data-speed-x="1"
-                        data-speed-y="1">
-                        <p>10k+ Candidates</p>
-                        <div class="image"><img src="{{ asset('website-assets/images/resource/multi-peoples.png') }}"
-                                alt=""></div>
-                    </div>
-
-                    <!-- Info BLock Three -->
-                    <div class="info_block_three anm wow fadeIn" data-wow-delay="1500ms" data-speed-x="4"
-                        data-speed-y="4">
-                        <span class="icon flaticon-briefcase"></span>
-                        <p>Creative Agency</p>
-                        <span class="sub-text">Startup</span>
-                        <span class="right_icon fa fa-check"></span>
-                    </div>
-
-                    <!-- Info BLock Four -->
-                    <div class="info_block_four anm wow fadeIn" data-wow-delay="2500ms" data-speed-x="3"
-                        data-speed-y="3">
-                        <span class="icon flaticon-file"></span>
-                        <div class="inner">
-                            <p>Upload Your CV</p>
-                            <span class="sub-text">It only takes a few seconds</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 <!-- End Banner Section-->
 
-<!-- Job Categories -->
-<section class="job-categories">
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <h2>Ngành nghề nổi bật</h2>
-            <div class="text">2024 jobs live - 293 added today.</div>
-        </div>
-
-        <div class="row wow fadeInUp">
-            @foreach ($items as $item)
-            <!-- Category Block -->
-            <div class="category-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="icon flaticon-money-1"></span>
-                        <h4><a href="#">{{ $item->name }}</a></h4>
-                        <p>{{ $item->description }}</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-
-        </div>
-    </div>
-</section>
-<!-- End Job Categories -->
 
 <!-- Job Section -->
-<section class="job-section">
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <h2>Việc làm mới nhất</h2>
-            <div class="text">Biết giá trị của bạn và tìm công việc phù hợp với cuộc sống của bạn</div>
-        </div>
-
-        <div class="row wow fadeInUp">
-            @foreach ($jobs as $job)
-            <!-- Job Block -->
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                @include('job::includes.components.job-item', [
-                'job' => $job,
-                'job_info' => true,
-                'job_other_info' => true,
-                'bookmark' => true,
-                ])
-            </div>
-            @endforeach
-        </div>
-
-        <div class="btn-box">
-            <a href="#" class="theme-btn btn-style-one bg-blue"><span class="btn-title">Tải thêm danh
-                    sách</span></a>
-        </div>
-    </div>
-</section>
+@include('website.homes.includes.job-items')
 <!-- End Job Section -->
 
-<!-- Testimonial Section -->
-<section class="testimonial-section">
-    <div class="container-fluid">
-        <!-- Sec Title -->
-        <div class="sec-title text-center">
-            <h2>Công ty tuyển dụng hàng đầu QT</h2>
-            {{-- <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor</div> --}}
-        </div>
-
-        <div class="carousel-outer wow fadeInUp">
-
-            <!-- Testimonial Carousel -->
-            <div class="testimonial-carousel owl-carousel owl-theme">
-
-                <!--Testimonial Block -->
-                <div class="testimonial-block">
-                    <div class="inner-box">
-                        @foreach ($employees as $employee)
-                        <div>
-                            <h4 class="title">{{ $employee->name }}</h4>
-                            <div class="text"><span class="icon flaticon-map-locator"></span> {{ $employee->address }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-</section>
+<!-- top-companies -->
+@include('website.homes.includes.top-companies')
 <!-- End Testimonial Section -->
 
+@include('website.homes.includes.thi-truong-viec-lam')
 
-<section class="job-section">
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <h2>Nhà tuyển dụng nổi bật</h2>
-        </div>
-
-        <div class="row wow fadeInUp">
-            @foreach ($employees->take(4) as $employer)
-            <!-- Job Block -->
-            <div class="job-block col-lg-6 col-md-12 col-sm-12">
-                <div class="inner-box">
-                    <div class="content">
-                        <span class="company-logo"><img src="{!! $employer->image_fm  !!}" alt=""></span>
-                        <h4><a href="#">{{ $employer->name }}</a></h4>
-                        <ul class="job-info">
-                            <li><span class="icon flaticon-map-locator"></span> {{ $employer->address }}</li>
-                        </ul>
-                        <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-<!-- End Job Section -->
-
-<!-- End Job Section -->
+<!-- Job Categories -->
+@include('website.homes.includes.job-categories')
+<!-- End Job Categories -->
 
 
 
-<!-- News Section -->
-<section class="news-section">
-    <div class="auto-container">
-        <div class="sec-title text-center">
-            <h2>Việc làm theo ngành nghề</h2>
-            {{-- <div class="text">Fresh job related news content posted each day.</div> --}}
-        </div>
-
-        <div class="row wow fadeInUp">
-            <!-- News Block -->
-            @foreach ( $items as $item)
-
-            <div class="news-block col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box">
-                    <div class="image-box">
-                        {{-- <figure class="image"><img src="{{ asset('website-assets/images/resource/news-1.jpg') }}"
-                        alt="" /></figure> --}}
-                    </div>
-                    <div class="lower-content">
-                        <h3><a href="#">{{ $item->name }}</a></h3>
-                        <p class="text">{{ $item->description }}</p>
-                        {{-- <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a> --}}
-                    </div>
-                </div>
-            </div>
-            @endforeach
 
 
-        </div>
-    </div>
-</section>
+
 <!-- End News Section -->
+@endsection
+
+@section('footer')
+<script src="{{ asset('website-assets/chart/chart.js')}}"></script>
+<!-- <script src="{{ asset('website-assets/js/chart-demand-job-home-page.js')}}"></script> -->
+<script src="{{ asset('website-assets/chart/chart-demand-job-dashboard.js')}}"></script>
+<script src="{{ asset('website-assets/chart/chart-job-opportunity-growth-dashboard.js')}}"></script>
+<script>
+        $(document).ready(function() {
+            let indexSectionTitle = 1;
+            const arraySectionTitle = [
+                "Định hướng nghề nghiệp",
+                "Việc làm mới",
+                "Công ty phù hợp",
+                "Phúc lợi tốt",
+                "Mức lương cao",
+                "Thông tin thị trường",
+                "CV mới",
+            ];
+
+            setInterval(() => {
+                $("#section-header .section-title").fadeOut(200, function() {
+                    $(this).html(arraySectionTitle[indexSectionTitle]).fadeIn();
+                });
+
+                indexSectionTitle++;
+                if (indexSectionTitle >= arraySectionTitle.length) {
+                    indexSectionTitle = 0;
+                }
+            }, 2000);
+
+            setTimeout(() => {
+                $('#section-header #frm-search-job select.select2').each((i, el) => {
+                    let option = {
+                        dropdownParent: $(el).parent(),
+                    }
+                    const arrNotSeacrh = ['salary-advanced', 'exp-advanced'];
+
+                    if (arrNotSeacrh.includes($(el).attr('id'))) {
+                        option['minimumResultsForSearch'] = -1
+                    }
+                    $(el).select2(option).data('select2').$dropdown.addClass("dropdown-box-search-home-page");
+                });
+
+                $('#section-header #demand-job-select').each((i, el) => {
+                    $(el).select2({
+                        dropdownParent: $(el).parent(),
+                    }).data('select2').$dropdown.addClass("dropdown-demand-job-home-page");
+                });
+            }, 0);
+
+            requestAnimationFrame(() => {
+                window.ChartDemandJobHomePage.init([], 'myChartDemandJobHomePage');
+            });
+
+
+            loadChart()
+            loadWorkMarket()
+
+            $('#section-header #demand-job-select').change(function() {
+                loadChart()
+                if ($('#demand-job-select-dashboard')) {
+                    $('#demand-job-select-dashboard').val($('#section-header #demand-job-select').val())
+                        .trigger('change')
+                }
+
+            })
+
+            function loadChart() {
+                $.ajax({
+                    url: "https://www.topcv.vn/get-recruitment-demand",
+                    data: {
+                        type: $('#section-header #demand-job-select').val()
+                    },
+                    type: 'get',
+                    success: function(response) {
+                        if (response.status == 'success') {
+                            $('#section-header .loading-chart').css("display", "none")
+                            $('#section-header .box-chart').css("display", "block")
+                            setTimeout(() => {
+                                requestAnimationFrame(() => {
+                                    window.ChartDemandJobHomePage.update(response.data)
+                                })
+                            }, 100);
+                        } else {
+                            console.log('failed!');
+                        }
+                    },
+                    error: function(error) {
+                        console.log('failed!');
+                    }
+                });
+            }
+
+            function loadWorkMarket() {
+                var dataWorkMarket = getDataWorkMarketLocalStorage();
+
+                if (dataWorkMarket != null) {
+                    fillDataWorkMarket(dataWorkMarket);
+                }
+
+                $.ajax({
+                    url: "https://www.topcv.vn/get-work-market",
+                    type: 'get',
+                    success: function(response) {
+                        if (response.status == 'success') {
+                            const data = response.data;
+                            data.timestamp = new Date().getTime()
+                            localStorage.setItem("data_work_market_home_page", JSON.stringify(data))
+                            if (dataWorkMarket == null) {
+                                fillDataWorkMarket(data);
+                            }
+                        } else {
+                            console.log('failed!');
+                        }
+                    },
+                    error: function(error) {
+                        console.log('failed!');
+                    }
+                });
+            }
+
+            function fillDataWorkMarket(data) {
+                for (let index in data) {
+                    $("#section-header .box-demand-job_work-market [name=" + index + "]").html(data[
+                        index])
+                }
+
+                $('#section-header .box-demand-job_work-market .quantity').each(function() {
+                    $(this).prop('Counter', 0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 1500,
+                        easing: 'swing',
+                        step: function(now) {
+                            $(this).text(Math.ceil(now).toLocaleString(
+                                'vi-VN'));
+                        }
+                    });
+                });
+
+                if (data.quantity_job_recruitment >= data
+                    .quantity_job_recruitment_yesterday) {
+                    $("#section-header .box-demand-job_work-market .job-hiring .status")
+                        .addClass("up")
+                } else {
+                    $("#section-header .box-demand-job_work-market .job-hiring .status")
+                        .addClass("down")
+                }
+            }
+
+            function getDataWorkMarketLocalStorage() {
+                var dataWorkMarket = localStorage.getItem("data_work_market_home_page");
+
+                if (dataWorkMarket) {
+                    dataWorkMarket = JSON.parse(dataWorkMarket)
+                    var checkTime = checkTimeDistance(dataWorkMarket.timestamp, new Date().getTime(), 5)
+                    if (!checkTime) {
+                        return dataWorkMarket;
+                    }
+                    return null;
+                }
+                return null;
+            }
+
+            function checkTimeDistance(time1, time2, distance) {
+                const diff = Math.abs(time1 - time2);
+                const distanceInMillis = distance * 60000;
+                return diff >= distanceInMillis;
+            }
+
+            $("#section-header .box-load-more").click(function() {
+                $('html, body').animate({
+                    scrollTop: $("#dashboard").offset().top - 100
+                }, 1000);
+            });
+        })
+    </script>
 @endsection

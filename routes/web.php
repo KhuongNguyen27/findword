@@ -25,6 +25,7 @@ use App\Http\Controllers\EmployeeController;
 // })->name('home');
 
 Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 
 
 Route::prefix('themes')->group(function () {

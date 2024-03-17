@@ -26,4 +26,11 @@ class UserEmployee extends AdminModel
         'image',
         'user_id',
     ];
+    public function getImageFmAttribute()
+    {
+        if ( $this->image != null) {
+            return asset('storage/images/'.$this->image);
+        }
+        return "/website-assets/images/favicon.png";
+    }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Career;
 use App\Models\Job;
+use App\Models\Wage;
+use App\Models\Rank;
+use App\Models\Province;
 use App\Models\UserEmployee;
 
 use Illuminate\Http\Request;
@@ -15,14 +18,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = Career::where('status', 1)->get();
+        $items = $careers = Career::where('status', 1)->get();
+        $wages = Wage::where('status', 1)->get();
+        $ranks = Rank::where('status', 1)->get();
+        $provinces = Province::all();
         // dd($items);
         $jobs = Job::where('status', 1)->limit(6)->get();
         // dd($jobs);
         $employees = UserEmployee::get();
         $params = [
             'items' => $items,
+            'careers' => $careers,
+            'ranks' => $ranks,
             'jobs' => $jobs,
+            'wages' => $wages,
+            'provinces' => $provinces,
             'employees' => $employees,
         ];
         return view('website.homes.index',$params);
