@@ -12,25 +12,32 @@ use Modules\Cvs\app\Models\Career;
 use Modules\Cvs\app\Http\Requests\StoreCvRequest;
 use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Log;
-
+use DB;
 class CvsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     use UploadFileTrait;
-    protected $view_path    = 'cvs::';
+    protected $view_path    = 'cvs::admin.';
     protected $route_prefix = 'admin.cvs.';
     protected $model        = Cv::class;
-    public function index()
+    public function index(Request $request)
     {
-        $items = $this->model::paginate(5);
+        $query = $this->model::query();
+        if($request->name){
+            $query->whereName($request->name);
+        }
+        if($request->status){
+            $query->whereName($request->status);
+        }
+        $items = $query->paginate(5);
         $param = [
             'items' => $items,
             'model' => $this->model,
             'route_prefix' => $this->route_prefix
         ];
-        return view($this->view_path.'admin.index',$param);
+        return view($this->view_path.'index',$param);
     }
 
     /**
@@ -46,7 +53,7 @@ class CvsController extends Controller
             'model' => $this->model,
             'route_prefix' => $this->route_prefix
         ];
-        return view($this->view_path.'admin.create',$param);
+        return view($this->view_path.'create',$param);
     }
 
     /**
@@ -54,9 +61,11 @@ class CvsController extends Controller
      */
     public function store(StoreCvRequest $request): RedirectResponse
     {
-        
+        DB::beginTransaction();
         try {
             $data = $request->except('_token','_method');
+            $career_ids = $data['career_ids'];
+            $style_ids = $data['style_ids'];
             if ($request->hasFile('image')) {
                 $data['image'] = $this->uploadFile($request->file('image'), 'uploads/cv_image');
             }else {
@@ -67,9 +76,13 @@ class CvsController extends Controller
             }else {
                 $data['file_cv'] = 'assets/images/favicon.png';
             }
-            $this->model::create($data);
+            $item = $this->model::create($data);
+            $item->styles()->attach($style_ids);
+            $item->careers()->attach($career_ids);
+            DB::commit();
             return redirect()->route($this->route_prefix.'index')->with('success','Tạo Cv mẫu thành công');
         } catch (\Exception $e) {
+            DB::rollback();
             Log::error('Bug in : '.$e->getMessage());
             return redirect()->back()->with('error','Tạo Cv mẫu thất bại');
         }
@@ -98,7 +111,7 @@ class CvsController extends Controller
             'model' => $this->model,
             'route_prefix' => $this->route_prefix
         ];
-        return view($this->view_path.'admin.edit',$param);
+        return view($this->view_path.'edit',$param);
     }
 
     /**
@@ -106,9 +119,12 @@ class CvsController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
+        DB::beginTransaction();
         try {
             $item = $this->model::findOrfail($id);
             $data = $request->except('_token','_method');
+            $career_ids = $data['career_ids'];
+            $style_ids = $data['style_ids'];
             if ($request->hasFile('image')) {
                 $this->deleteFile([$item->image]);
                 $data['image'] = $this->uploadFile($request->file('image'), 'uploads/cv_image');
@@ -117,9 +133,15 @@ class CvsController extends Controller
                 $this->deleteFile([$item->file_cv]);
                 $data['file_cv'] = $this->uploadFile($request->file('file_cv'), 'uploads/cv_file');
             }
+            $item->styles()->detach();
+            $item->careers()->detach();
+            $item->styles()->attach($style_ids);
+            $item->careers()->attach($career_ids);
             $item->update($data);
+            DB::commit();
             return redirect()->route($this->route_prefix.'index')->with('success','Cập nhập Cv mẫu thành công');
         } catch (\Exception $e) {
+            DB::rollback();
             Log::error('Bug in : '.$e->getMessage());
             return redirect()->back()->with('error','Cập nhập Cv mẫu thất bại');
         }

@@ -14,9 +14,6 @@
             <input class="form-control" name="name" type="text" placeholder="Tên CV mẫu" value="{{ request()->name }}">
         </div>
         <div class="col col-xs-6">
-            <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
-        </div>
-        <div class="col col-xs-6">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>{{ __('search') }}</button>
             </div>
@@ -62,11 +59,11 @@
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li>
+                                        <!-- <li>
                                             <a class="dropdown-item" href="{{ route($route_prefix.'show',$item->id) }}">
                                                 {{ __('show') }}
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a class="dropdown-item" href="{{ route($route_prefix.'edit',$item->id) }}">
                                                 {{ __('edit') }}
