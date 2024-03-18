@@ -4,7 +4,7 @@
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
         <div class="col col-xs-6">
-            <input class="form-control" name="" type="text" placeholder="Mã giao dịch" value="{{ request()->name }}">
+            <input class="form-control" name="id" type="text" placeholder="Mã giao dịch" value="{{ request()->id }}">
         </div>
         <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />

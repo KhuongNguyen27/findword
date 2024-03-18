@@ -22,21 +22,15 @@
         <li><a href="{{ route('employee.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href="{{ route('cvs.index') }}?type=maucv"> Hồ sơ & CV </a>
-
+            <a href="javascript:;">Hồ sơ & CV</a>
+            <ul>
+                <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
+                <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
+            </ul>
         </li>
-
-
-
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
         @endif
-
-
-
-
-
-
         <!-- Only for Mobile View -->
         <li class="mm-add-listing">
             <a href="add-listing.html" class="theme-btn btn-style-one">Job Post</a>
