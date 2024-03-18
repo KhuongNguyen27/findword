@@ -13,6 +13,9 @@ class CvsDatabaseSeeder extends Seeder
     {
         $this->call([
             StyleSeeder::class,
+            CvSeeder::class,
+            CvStyleSeeder::class,
+            CvCareerSeeder::class,
         ]);
     }
 }

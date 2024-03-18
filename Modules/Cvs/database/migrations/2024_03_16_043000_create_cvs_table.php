@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('language')->nullable();
             $table->string('file_cv')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
