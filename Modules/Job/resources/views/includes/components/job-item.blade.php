@@ -10,7 +10,7 @@
             <h4 class="job-title quickview-job text_ellipsis">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
-            <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}" class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
+            <a href="{{-- route('employee.show', ['id' => $job->userEmployee->slug]) --}}" class="text-silver company text_ellipsis company_name">{{-- $job->userEmployee->name --}}</a>
             @if ($job_info)
                 <ul class="job-info">
                     <li><span class="salary">{{ $job->wage->name ?? '' }}</span></li>
