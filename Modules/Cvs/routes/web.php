@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Cvs\app\Http\Controllers\CvsController;
+use Modules\Cvs\app\Http\Controllers\Admin\CvsController as AdminCvs;
+use Modules\Cvs\app\Http\Controllers\Website\CvsController as WebsiteCvs;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,18 @@ Route::group([
     'as' => 'admin.',
     'middleware' => ['auth.employee']
 ], function () {
-    Route::get('/cvs', [CvsController::class,'index'])->name('cvs.index');
-	Route::get('/cvs/create', [CvsController::class,'create'])->name('cvs.create');
-	Route::post('/cvs/store', [CvsController::class,'store'])->name('cvs.store');
-	Route::get('/cvs/edit/{id}', [CvsController::class,'edit'])->name('cvs.edit');
-	Route::get('/cvs/{id}', [CvsController::class,'show'])->name('cvs.show');
-	Route::post('/cvs/{id}', [CvsController::class,'update'])->name('cvs.update');
-	Route::get('/cvs/delete/{id}', [CvsController::class,'destroy'])->name('cvs.destroy');
+    Route::get('/cvs', [AdminCvs::class,'index'])->name('cvs.index');
+	Route::get('/cvs/create', [AdminCvs::class,'create'])->name('cvs.create');
+	Route::post('/cvs/store', [AdminCvs::class,'store'])->name('cvs.store');
+	Route::get('/cvs/edit/{id}', [AdminCvs::class,'edit'])->name('cvs.edit');
+	Route::get('/cvs/{id}', [AdminCvs::class,'show'])->name('cvs.show');
+	Route::post('/cvs/{id}', [AdminCvs::class,'update'])->name('cvs.update');
+	Route::get('/cvs/delete/{id}', [AdminCvs::class,'destroy'])->name('cvs.destroy');
 });
+Route::get('/cvs', [WebsiteCvs::class,'index'])->name('cvs.index');
+Route::get('/cvs/create', [WebsiteCvs::class,'create'])->name('cvs.create');
+Route::post('/cvs/store', [WebsiteCvs::class,'store'])->name('cvs.store');
+Route::get('/cvs/edit/{id}', [WebsiteCvs::class,'edit'])->name('cvs.edit');
+Route::get('/cvs/{id}', [WebsiteCvs::class,'show'])->name('cvs.show');
+Route::post('/cvs/{id}', [WebsiteCvs::class,'update'])->name('cvs.update');
+Route::get('/cvs/delete/{id}', [WebsiteCvs::class,'destroy'])->name('cvs.destroy');
