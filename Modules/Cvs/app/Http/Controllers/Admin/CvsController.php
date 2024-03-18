@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Cvs\app\Http\Controllers;
+namespace Modules\Cvs\app\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -24,7 +24,7 @@ class CvsController extends Controller
     protected $model        = Cv::class;
     public function index(Request $request)
     {
-        $query = $this->model::query();
+        $query = $this->model::query()->whereStatus($this->model::ACTIVE);
         if($request->name){
             $query->whereName($request->name);
         }
@@ -154,9 +154,11 @@ class CvsController extends Controller
     {
         try {
             $item = $this->model::findOrfail($id);
-            $item->delete();
+            $item->styles()->detach();
+            $item->careers()->detach();
             $this->deleteFile([$item->image]);
             $this->deleteFile([$item->file_cv]);
+            $item->delete();
             return redirect()->back()->with('success','Xóa hồ sơ mẫu thành công');
         } catch (\Exception $e) {
             Log::error('Bug in : '.$e->getMessag());

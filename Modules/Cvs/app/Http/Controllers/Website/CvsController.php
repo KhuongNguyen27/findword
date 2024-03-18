@@ -24,7 +24,7 @@ class CvsController extends Controller
     protected $model        = Cv::class;
     public function index(Request $request)
     {
-        $cvs_query = $this->model::query();
+        $cvs_query = $this->model::query()->whereStatus($this->model::ACTIVE);
         $careers_query = Career::query()->whereStatus(Career::ACTIVE);
         $styles_query = Style::query()->whereStatus(Career::ACTIVE);
         // Kiểm tra điều kiện
