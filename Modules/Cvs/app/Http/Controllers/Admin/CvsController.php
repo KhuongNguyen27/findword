@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Cvs\app\Http\Controllers;
+namespace Modules\Cvs\app\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;

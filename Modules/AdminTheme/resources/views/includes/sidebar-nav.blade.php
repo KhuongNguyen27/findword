@@ -102,7 +102,7 @@
             <div class="parent-icon">
                 <span class="material-symbols-outlined">account_circle</span>
             </div>
-            <div class="menu-title">Cv Mẫu(chưa có lang)</div>
+            <div class="menu-title">Cv Mẫu</div>
         </a>
         <ul class="mm-collapse">
             <li>
