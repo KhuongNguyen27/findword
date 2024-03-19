@@ -59,7 +59,16 @@
     "image":"Hình ảnh",
     "account_or_password_is_incorrect":"Tài khoản hoặc mật khẩu không đúng",
     "add_new_education":"Thêm mới học vấn",
-    "add_new_profile":"Thêm mới hồ sơ"
+    "add_new_profile":"Thêm mới hồ sơ",
+    "home":"Trang chủ",
+    "add_new":"Thêm mới",
+    "id":"Số thứ tự",
+    "language":"Ngôn ngữ",
+    "no_item_found":"Không có mục nào",
+    "profile_list":"Danh sách hồ sơ",
+    "hue_find_work":"Tuyển dụng Huế",
+    "close":"Đóng",
+    "post":"Tin đăng"
 
 
 
