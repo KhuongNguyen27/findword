@@ -1,4 +1,4 @@
-<section class="job-categories">
+<section class="job-categories pt-5 pb-5">
     <div class="auto-container">
         <div class="sec-title text-center">
             <h2 class="">Top ngành nghề nổi bật</h2>

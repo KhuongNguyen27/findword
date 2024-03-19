@@ -25,7 +25,7 @@ class HomeController extends Controller
         // dd($items);
         $jobs = Job::where('status', 1)->limit(6)->get();
         // dd($jobs);
-        $employees = UserEmployee::get();
+        $employees = UserEmployee::limit(12)->get();
         $params = [
             'items' => $items,
             'careers' => $careers,
@@ -37,6 +37,7 @@ class HomeController extends Controller
         ];
         return view('website.homes.index',$params);
     }
+
     
 
     /**
