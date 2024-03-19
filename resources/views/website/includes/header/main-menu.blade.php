@@ -1,21 +1,19 @@
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
         <li class="dropdown">
-            <a href="{{ route('website.home') }}?country=VietNam">Việc làm trong nước</a>
+            <a href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
             <ul>
-                <li><a href="#">Việc làm hôm nay</a></li>
-                <li><a href="#">Việc làm hot nhất</a></li>
-                <li><a href="#">Tuyển gấp</a></li>
-
+                <li><a href="{{ route('jobs.vnjobs.today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.vnjobs.hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.vnjobs.urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="{{ route('website.home') }}">Việc làm ngoài nước</a>
+            <a href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
             <ul>
-                <li><a href="#">Việc làm hôm nay</a></li>
-                <li><a href="#">Việc làm hot nhất</a></li>
-                <li><a href="#">Tuyển gấp</a></li>
-
+                <li><a href="{{ route('jobs.nnjobs.today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.nnjobs.hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.nnjobs.urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
 

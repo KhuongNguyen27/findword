@@ -94,3 +94,10 @@
 .job-categories {
     border: none !important;
 }
+.company-block-item {
+    padding: 0 8px;
+}
+.company-block-item img {
+    border-radius: 20px;
+    height: 207px;
+}
