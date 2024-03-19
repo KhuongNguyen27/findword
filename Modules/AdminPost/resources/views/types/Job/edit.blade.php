@@ -1,5 +1,4 @@
 @extends('adminpost::edit')
-
 @section('custom-fields-left')
 @include('adminpost::types.Job.includes.form-left')
 @endsection

@@ -1,6 +1,6 @@
 <!--breadcrumb-->
 <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-    <div class="breadcrumb-title pe-3">Home</div>
+    <div class="breadcrumb-title pe-3">{{ __('home') }}</div>
     <div class="ps-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 p-0">
@@ -15,7 +15,7 @@
             @foreach( $actions as $action_name => $route_link )
                 @switch( $action_name )
                     @case('add_new')
-                        <a href="{{ $route_link }}" class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>{{ __('sys.add_new') }}</a>
+                        <a href="{{ $route_link }}" class="btn btn-primary px-4"><i class="bi bi-plus-lg me-2"></i>{{ __('add_new') }}</a>
                         @break
                     @case('export')
                     <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Export</button>

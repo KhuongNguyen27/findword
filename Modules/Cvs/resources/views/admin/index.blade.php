@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => __('adminpost::general.title_index'),
+'page_title' => __('profile_list'),
 'actions' => [
 'add_new' => route($route_prefix.'create' ),
 //'export' => route($route_prefix.'export'),
@@ -37,9 +37,9 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
-                            <th>Tên</th>
-                            <th>Ngôn ngữ</th>
+                            <th>{{ __('id') }}</th>
+                            <th>{{ __('name') }}</th>
+                            <th>{{ __('language') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
@@ -85,7 +85,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="5" class="text-center">{{ __('sys.no_item_found') }}</td>
+                            <td colspan="5" class="text-center">{{ __('no_item_found') }}</td>
                         </tr>
                         @endif
                     </tbody>

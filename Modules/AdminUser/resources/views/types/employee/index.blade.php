@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách người dùng',
+'page_title' => __('user_list'),
 'actions' => [
 'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
@@ -48,7 +48,7 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
-                            <th>Email</th>
+                            <th>{{ __('email') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
                             <th>{{ __('action') }}</th>
