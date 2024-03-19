@@ -29,13 +29,14 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
+        $path = request()->getPathInfo();
+        $segment = Str::after($path, '/jobs');
         $query = $this->model::query();
         if ($request->pagination) {
             $paginate = $request->pagination;
         } else {
             $paginate = 3;
         }
-
         if($request->name){
             $query->where('name', 'LIKE', '%' . $request->name . '%');
         }
@@ -43,10 +44,10 @@ class JobController extends Controller
         if($request->address_work){
             $query->where('work_address', 'LIKE', '%' . $request->address_work . '%');
         }
-        if ($request->has('country')) {
-            $query->where('country', 'LIKE', '%VietNam%');
+        if ($segment) {
+            $query->where('country', 'LIKE', '%vietnam%');
         } else {
-            $query->where('country', 'NOT LIKE', '%VietNam%')
+            $query->where('country', 'NOT LIKE', '%vietnam%')
                     ->orWhereNull('country');
         }
         if ($request->career_search) {

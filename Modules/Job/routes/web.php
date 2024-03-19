@@ -24,6 +24,7 @@ Route::group([
     'as'=>'website.',
 ],function () {
     Route::get('/', [JobController::class,'index'])->name('home');
+    Route::get('/vietnam', [JobController::class,'index'])->name('homewcountry');
     Route::get('/{slug}', [JobController::class, 'show'])->name('jobs.show');
     Route::get('/aplication/{id}', [JobController::class,'aplication'])->name('jobs.aplication');
     // Route::get('/showjob/{id}', [JobController::class,'show'])->name('jobs.show');

@@ -1,7 +1,7 @@
 <style>
-    span.flaticon-bookmark.active {
-        color: red;
-    }
+span.flaticon-bookmark.active {
+    color: red;
+}
 </style>
 <div class="job-block col-job-info">
     <div class="inner-box">
@@ -10,22 +10,23 @@
             <h4 class="job-title quickview-job text_ellipsis">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
-            <a href="{{-- route('employee.show', ['id' => $job->userEmployee->slug]) --}}" class="text-silver company text_ellipsis company_name">{{-- $job->userEmployee->name --}}</a>
+            <a href="{{-- route('employee.show', ['id' => $job->userEmployee->slug]) --}}"
+                class="text-silver company text_ellipsis company_name">{{-- $job->userEmployee->name --}}</a>
             @if ($job_info)
-                <ul class="job-info">
-                    <li><span class="salary">{{ $job->wage->name ?? '' }}</span></li>
-                    <li><span class="address">{{ $job->work_address }}</span></li>
-                </ul>
+            <ul class="job-info">
+                <li><span class="salary">{{ $job->wage->name ?? '' }}</span></li>
+                <li><span class="address">{{ $job->work_address }}</span></li>
+            </ul>
             @endif
             @if ($bookmark)
-                <a href="javascript:;" class="bookmark-btn"
-                    data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                    @if (in_array($job->id, $cr_user_favorites))
-                        <span class="flaticon-bookmark active"></span>
-                    @else
-                        <span class="flaticon-bookmark"></span>
-                    @endif
-                </a>
+            <a href="javascript:;" class="bookmark-btn"
+                data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
+                @if (in_array($job->id, $cr_user_favorites))
+                <span class="flaticon-bookmark active"></span>
+                @else
+                <span class="flaticon-bookmark"></span>
+                @endif
+            </a>
             @endif
 
         </div>
