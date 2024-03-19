@@ -46,7 +46,7 @@ class AuthController extends Controller
                 ];
                 return redirect()->route('employee.home'); 
             } else {
-                return redirect()->route('employee.login')->with('error', 'Account or password is incorrect');
+                return redirect()->route('employee.login')->with('error',  __('account_or_password_is_incorrect'));
             }
         } catch (\Exception $e) {
             Log::error('Bug send email : '.$e->getMessage());

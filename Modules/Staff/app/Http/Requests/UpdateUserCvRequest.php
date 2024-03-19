@@ -29,7 +29,7 @@ class updateUserCvRequest extends FormRequest
             'career_objective' => 'required',
         ];
     }
-
+   
     /**
      * Determine if the user is authorized to make this request.
      */

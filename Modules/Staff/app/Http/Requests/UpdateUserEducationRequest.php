@@ -23,8 +23,8 @@ class UpdateUserEducationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'numerical.required' => 'Vui lòng nhập đầy đủ thông tin.',
-            'school_course.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'numerical.required' => 'Vui lòng nhập đầy đủ thông tincdasd',
+            'school_course.required' => 'Vui lòng nhập đầy đủ thông tin.đâsd',
             'start_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'graduation_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'major.required' => 'Vui lòng nhập đầy đủ thông tin.',
