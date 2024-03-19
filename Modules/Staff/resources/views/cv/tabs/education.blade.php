@@ -18,7 +18,7 @@ $showFormAdd = true;
                         data-target="#collapseExperience-" aria-expanded="{{ $showFormAdd ? 'true' : 'false' }}"
                         aria-controls="collapseExperience-">
                         <i class="fas fa-plus"></i>
-                        Thêm mới học vấn
+                        {{ __('add_new_education') }}
                     </button>
                 </div>
             </div>
