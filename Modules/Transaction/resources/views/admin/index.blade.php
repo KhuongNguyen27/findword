@@ -4,7 +4,7 @@
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
         <div class="col col-xs-6">
-            <input class="form-control" name="id" type="text" placeholder="Mã giao dịch" value="{{ request()->id }}">
+            <input class="form-control" name="id" type="text" placeholder="{{ __('transaction_code') }}" value="{{ request()->id }}">
         </div>
         <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
@@ -73,7 +73,7 @@
                                         <li>
                                             <form action="{{ route($route_prefix.'destroy',$item->id) }}" method="get">
                                                 @csrf
-                                                <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
+                                                <button onclick=" return confirm('{{ __('confirm_delete') }}') "
                                                     class="dropdown-item">
                                                     {{ __('delete') }}
                                                 </button>
@@ -87,7 +87,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="5" class="text-center">{{ __('sys.no_item_found') }}</td>
+                            <td colspan="5" class="text-center">{{ __('no_item_found') }}</td>
                         </tr>
                         @endif
                     </tbody>
