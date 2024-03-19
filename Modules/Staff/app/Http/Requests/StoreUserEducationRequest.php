@@ -12,12 +12,12 @@ class StoreUserEducationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numerical' => 'required',
+            'numerical' => 'required|max:255',
             'rank_id' => 'required',
-            'school_course' => 'required',
+            'school_course' => 'required|max:255',
             'graduation_date' => 'required',
             'language' => 'required',
-            'major' => 'required',
+            'major' => 'required|max:255',
         ];
     }
     public function messages(): array
@@ -27,8 +27,9 @@ class StoreUserEducationRequest extends FormRequest
             'school_course.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'start_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'graduation_date.required' => 'Vui lòng nhập đầy đủ thông tin.',
-            'major.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'major.required' => 'Vui lòng nhập đầy đủ thông tin',
             'language.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'max'=>'Vui lòng không nhập quá 255 kí tự'
         ];
     }
     /**

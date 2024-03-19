@@ -56,7 +56,10 @@
     "amount":"Số tiền",
     "description":"Mô tả",
     "back":"Quay lại",
-    "image":"Hình ảnh"
+    "image":"Hình ảnh",
+    "account_or_password_is_incorrect":"Tài khoản hoặc mật khẩu không đúng",
+    "add_new_education":"Thêm mới học vấn",
+    "add_new_profile":"Thêm mới hồ sơ"
 
 
 

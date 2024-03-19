@@ -39,7 +39,7 @@ class AuthController extends Controller
         if (Auth::attempt($dataUser, $request->remember)) {
             return redirect()->route('staff.home');
         } else {
-            return redirect()->route('staff.login')->with('error', 'Account or password is incorrect');
+            return redirect()->route('staff.login')->with('error', __('account_or_password_is_incorrect'));
         }
     }
     
