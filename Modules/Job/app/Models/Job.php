@@ -84,4 +84,7 @@ class Job extends Model
         });
         return $jobs;
     }
+    public static function checkInfo(){
+        // $user = Auth::
+    }
 }

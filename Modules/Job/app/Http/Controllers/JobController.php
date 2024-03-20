@@ -138,6 +138,7 @@ class JobController extends Controller
     }
     public function aplication($slug)
     {
+        // dd($this->model::checkInfo());
         if (auth()->check()) {
             $job = Job::where('slug', $slug)->first();
             $userCvs = UserCv::where('user_id', auth()->user()->id)->get();
