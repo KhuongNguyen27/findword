@@ -12,7 +12,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $tables = ['User','Group','Job','Transaction','UserCV'];
+        $tables = ['AdminHome','AdminPost','AdminTaxonomy','AdminTheme','AdminUser','Auth','Cvs','Employee','Job','Staff','Transaction'];
         $actions = ['viewAny','view','create','update','delete'];
         foreach ($tables as $table) {
             foreach ($actions as $action) {

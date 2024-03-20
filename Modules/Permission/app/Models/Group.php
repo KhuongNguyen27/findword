@@ -16,6 +16,15 @@ class Group extends Model
     protected $table = "groups";
     protected $fillable = ['name'];
     
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+    public function role()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    
     protected static function newFactory(): GroupFactory
     {
         //return GroupFactory::new();

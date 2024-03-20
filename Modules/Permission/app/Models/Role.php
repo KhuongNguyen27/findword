@@ -16,6 +16,11 @@ class Role extends Model
     protected $table = "roles";
     protected $fillable = ['name'];
     
+    public function group()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+    
     protected static function newFactory(): RoleFactory
     {
         //return RoleFactory::new();

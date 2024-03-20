@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\HasPermissions;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasPermissions;
     const ACTIVE    = 1;
     const INACTIVE  = 0;
     const DRAFT     = -1;
@@ -51,5 +52,10 @@ class User extends Authenticatable
     ];
     function getImageFmAttribute(){
         return $this->image?$this->image:"/website-assets/images/favicon.png";
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(\Modules\Permission\app\Models\Group::class);
     }
 }
