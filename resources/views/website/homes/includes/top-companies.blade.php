@@ -1,5 +1,5 @@
 <!-- Top Companies -->
-<section class="top-companies">
+<section class="top-companies pt-5 pb-5">
     <div class="auto-container">
         <div class="sec-title">
             <h2 class="">Top Công ty hàng đầu</h2>

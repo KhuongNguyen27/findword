@@ -15,11 +15,11 @@
             <table class="table align-middle">
                 <thead class="table-light">
                     <tr>
-                        <th>Tên</th>
-                        <th>Email</th>
-                        <th>{{ __('adminpost::table.status') }}</th>
-                        <th>{{ __('adminpost::table.created_at') }}</th>
-                        <th>{{ __('adminpost::table.action') }}</th>
+                        <th>{{ __('name') }}</th>
+                        <th>{{ __('email') }}</th>
+                        <th>{{ __('status') }}</th>
+                        <th>{{ __('created_at') }}</th>
+                        <th>{{ __('action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +50,7 @@
                     @endforeach
                     @else
                     <tr>
-                        <td colspan="5" class="text-center">{{ __('sys.no_item_found') }}</td>
+                        <td colspan="5" class="text-center">{{ __('no_item_found') }}</td>
                     </tr>
                     @endif
                 </tbody>

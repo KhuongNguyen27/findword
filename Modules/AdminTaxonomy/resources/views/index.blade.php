@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
     @include('admintheme::includes.globals.breadcrumb',[
-        'page_title' => __('admintaxonomy::general.title_index'),
+        'page_title' => __('title_index'),
         'actions' => [
             'add_new' => route($route_prefix.'create',['type'=>request()->type]),
             //'export' => route($route_prefix.'export'),
@@ -14,7 +14,7 @@
         <div class="row g-3">
             <div class="col-auto flex-grow-1">
                 <div class="position-relative">
-                    <input class="form-control" name="name" type="text" placeholder="Search name" value="{{ request()->name }}">
+                    <input class="form-control" name="name" type="text" placeholder="{{ __('search') }}" value="{{ request()->name }}">
                 </div>
             </div>
             <div class="col-auto">
@@ -70,7 +70,7 @@
                                                 <form action="{{ route($route_prefix.'destroy',['type'=>request()->type,'admintaxonomy'=>$item->id]) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') " class="dropdown-item">
+                                                    <button onclick=" return confirm('{{ __('confirm_delete') }}') " class="dropdown-item">
                                                         {{ __('delete') }}   
                                                     </button>
                                                 </form>
@@ -82,7 +82,7 @@
                             @endforeach
                         @else
                             <tr>
-                               <td colspan="5" class="text-center">{{ __('sys.no_item_found') }}</td> 
+                               <td colspan="5" class="text-center">{{ __('no_item_found') }}</td> 
                             </tr>
                         @endif
                         </tbody>

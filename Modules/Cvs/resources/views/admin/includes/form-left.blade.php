@@ -1,10 +1,10 @@
 <div class="card">
     <div class="card-header">
-        <div class="text-uppercase fw-bold">Thông tin CV mẫu</div>
+        <div class="text-uppercase fw-bold">{{ __('form_profile_information') }}</div>
     </div>
     <div class="card-body">
         <div class="mb-4">
-            <label class="mb-3">Tên CV</label>
+            <label class="mb-3">{{ __('profile_name') }}</label>
             <input type="text" value="{{ old('name') ?? ($item->name ?? '') }}" name="name" placeholder="Tên CV mẫu"
                 class="form-control">
             @if ($errors->any())
@@ -13,10 +13,11 @@
             @endif
         </div>
         <div class="mb-4">
-            <label class="mb-3">Ngành nghề</label>
+            <label class="mb-3">{{ __('career') }}</label>
             <select name="career_ids[]" class="form-control" multiple="multiple">
-                <option value="" {{ (old('career_ids')) === 'null'? 'selected' : '' }}>Giữ Ctrl
-                    để chọn nhiều ngành nghề</option>
+                <option value="" {{ (old('career_ids')) === 'null'? 'selected' : '' }}>
+                    {{ __('Left click and hold Ctrl to select multiple designs') }}
+                </option>
                 @if(isset($item))
                 @foreach ($careers as $career)
                 <option
@@ -42,8 +43,9 @@
         <div class="mb-4">
             <label class="mb-3">Thiết kế</label>
             <select name="style_ids[]" class="form-control" multiple="multiple">
-                <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>Giữ Ctrl
-                    để chọn nhiều thiết kế</option>
+                <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>
+                    {{ __('Left click and hold Ctrl to select multiple designs') }}
+                </option>
                 @if(isset($item))
                 @foreach ($styles as $style)
                 <option
@@ -67,18 +69,21 @@
             @endif
         </div>
         <div class="mb-4">
-            <label class="mb-3">Ngôn ngữ</label>
+            <label class="mb-3">{{ __('language') }}</label>
             <select name="language" class="form-control">
-                <option value="" {{ old('language') === 'null' ? 'selected' : ''}}>Chọn ngôn ngữ sử dụng</option>
+                <option value="" {{ old('language') === 'null' ? 'selected' : ''}}>{{ __('select_language') }}</option>
                 <option value="TiengViet"
                     {{ isset($item) && $item->language == "TiengViet" ? 'selected' : (old('language') == "TiengViet" ? 'selected' : ''  ) }}>
-                    Tiếng Việt</option>
+                    {{ __('vietnamese') }}
+                </option>
                 <option value="TiengAnh"
                     {{ isset($item) && $item->language == "TiengAnh" ? 'selected' : (old('language') == "TiengAnh" ? 'selected' : "") }}>
-                    Tiếng Anh</option>
+                    {{ __('english') }}
+                </option>
                 <option value="TiengNhat"
                     {{ isset($item) && $item->language == "TiengNhat"? 'selected' : (old('language') == "TiengNhat" ? 'selected' : "") }}>
-                    Tiếng Nhật</option>
+                    {{ __('japanese') }}
+                </option>
             </select>
             @if ($errors->any())
             <p style="color:red">

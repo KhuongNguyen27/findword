@@ -1,4 +1,4 @@
-<section class="job-section">
+<section class="job-section pt-5 pb-5">
     <div class="auto-container">
         <div class="sec-title text-center">
             <h2>Việc làm mới nhất</h2>

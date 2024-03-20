@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\JobController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\JobController;
 
 
 /*
@@ -27,6 +27,15 @@ use App\Http\Controllers\EmployeeController;
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 
+Route::get('/viec-lam-trong-nuoc', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
+Route::get('/viec-lam-trong-nuoc/hom-nay', [JobController::class,'vnjobs_today'])->name('jobs.vnjobs.today');
+Route::get('/viec-lam-trong-nuoc/hot', [JobController::class,'vnjobs_hot'])->name('jobs.vnjobs.hot');
+Route::get('/viec-lam-trong-nuoc/tuyen-gap', [JobController::class,'vnjobs_urgent'])->name('jobs.vnjobs.urgent');
+
+Route::get('/viec-lam-ngoai-nuoc', [JobController::class,'nnjobs'])->name('jobs.nnjobs');
+Route::get('/viec-lam-ngoai-nuoc/hom-nay', [JobController::class,'nnjobs_today'])->name('jobs.nnjobs.today');
+Route::get('/viec-lam-ngoai-nuoc/hot', [JobController::class,'nnjobs_hot'])->name('jobs.nnjobs.hot');
+Route::get('/viec-lam-ngoai-nuoc/tuyen-gap', [JobController::class,'nnjobs_urgent'])->name('jobs.nnjobs.urgent');
 
 Route::prefix('themes')->group(function () {
     

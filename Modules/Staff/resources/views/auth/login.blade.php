@@ -19,7 +19,7 @@
             @csrf
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" placeholder="email" value="{{ old('email') }}">
+                <input type="email" name="email" placeholder="abc@gmail.com" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
