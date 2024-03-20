@@ -141,9 +141,24 @@
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-3 col-md-12">
+                                        <label>Tỉnh - Thành phố</label>
+                                        <select name="province_id" class="chosen-select form-select">
+                                            <option value="">Tất cả địa điểm</option>
+                                            @foreach($param['provinces'] as $province)
+                                            <option value="{{ $province->id }}"
+                                                {{ old('province_id') == $province->id? 'selected' : '' }}>
+                                                {{ $province->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->any())
+                                        <p style="color:red">
+                                            {{ $errors->first('province_id') }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Quốc gia </label>
-                                        <input type="text" value="{{ old('country') }}" name="country" id="nameInput"
+                                        <input type="text" value="{{ old('country') }}" name="country"
                                             placeholder="Quốc gia làm việc...">
                                         @if ($errors->any())
                                         <p style="color:red">

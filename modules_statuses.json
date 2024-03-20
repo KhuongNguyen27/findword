@@ -11,5 +11,6 @@
     "Job": true,
     "AdminHome": true,
     "Transaction": true,
-    "Cvs": true
+    "Cvs": true,
+    "Province": true
 }

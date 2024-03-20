@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class JobController extends Controller
 {
     // Trong nước
-    public function vnjobs(){
+    public function vnjobs(Request $request){
         if( isset( $_REQUEST['getData'] ) ){
             $url = 'http://185.230.64.141/jobs.json';
             $json = file_get_contents($url);
@@ -63,8 +63,20 @@ class JobController extends Controller
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
         // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $query = Job::query()->whereStatus(1);
+        if($request->province_id){
+            $query->whereProvince_id($request->province_id);
+        }
+        if($request->rank_id){
+            $query->whereRank_id($request->rank_id);
+        }
+        if($request->wage_id){
+            $query->whereWage_id($request->wage_id);
+        }
+        if($request->career_id){
+            $query->whereCareer_id($request->career_id);
+        }
+        $jobs = $query->paginate(12);
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,

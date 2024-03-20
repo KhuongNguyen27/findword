@@ -15,3 +15,9 @@ php artisan key:generate
 php artisan storage:link
 ### Chạy ứng dụng
 php artisan ser
+
+
+# Sử dụng VietNamZone
+$provinces = \Kjmtrue\VietnamZone\Models\Province::get();
+$districts = \Kjmtrue\VietnamZone\Models\District::whereProvinceId(50)->get();
+$wards = \Kjmtrue\VietnamZone\Models\Ward::whereDistrictId(552)->get();
