@@ -24,7 +24,7 @@
         .multiline {
             padding-bottom: 10%;
         }
-    </style>      
+    </style>
     <!--Page Title-->
     <section class="job-detail-section">
         <!-- Upper Box -->
@@ -98,57 +98,43 @@
                         </div>
                         <div class="mt-4">
                             <h2>Việc làm Cùng công ty</h2>
-                            <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
-                                <div class="job-detail">                                       
+                            <div class="mt-2">
+                                <div class="job-detail">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                          <div class="card">
-                                            <div class="card-body">
-                                              <h5 class="card-title">{{ $job->name }}</h5>
-                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        @foreach ($job_employ as $job)
+                                            <!-- Job Block -->
+                                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                                @include('job::includes.components.job-item', [
+                                                    'job' => $job,
+                                                    'job_info' => true,
+                                                    'job_other_info' => true,
+                                                    'bookmark' => true,
+                                                    'simple' => true,
+                                                ])
                                             </div>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                          <div class="card">
-                                            <div class="card-body">
-                                              <h5 class="card-title">Special title treatment</h5>
-                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4">
                             <h2>Việc làm liên quan</h2>
-                            <div class="content-column col-lg-8 col-md-12 col-sm-12 mt-2">
-                                <div class="job-detail">                                       
+                            <div class="content-column col-lg-12 col-md-12 col-sm-12 mt-2">
+                                <div class="job-detail">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                          <div class="card">
-                                            <div class="card-body">
-                                              <h5 class="card-title">Special title treatment</h5>
-                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        @foreach ($job_relate_to as $job)
+                                            <!-- Job Block -->
+                                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                                @include('job::includes.components.job-item', [
+                                                    'job' => $job,
+                                                    'job_info' => true,
+                                                    'job_other_info' => true,
+                                                    'bookmark' => true,
+                                                    'simple' => true,
+                                                ])
                                             </div>
-                                          </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                          <div class="card">
-                                            <div class="card-body">
-                                              <h5 class="card-title">Special title treatment</h5>
-                                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

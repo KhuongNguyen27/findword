@@ -106,17 +106,18 @@ class JobController extends Controller
      */
     public function show(string $slug)
     {
+        $model = new Job;
         $user_id = Auth::id();
-        // $job = Job::find($id);
         $job = Job::where('slug', $slug)->with('userEmployee')->firstOrFail();
-        // $related_jobs = Job::where('')
-        // $related_jobs = $job->careers()->where('career_id')->get();
-        // dd($related_jobs);
+        $career_id = CareerJob::where('job_id',$job->id)->first();
+        $job_relate_to = $model->getJobfor_career_id($career_id->career_id);
+        $job_employ = Job::where('user_id',$job->user_id)->get();
         $params = [
             'job' => $job,
             'user_id' => $user_id,
+            'job_relate_to' => $job_relate_to,
+            'job_employ' => $job_employ,
         ];
-        // dd($params);
         return view('job::jobs.show',$params);
     }
 
