@@ -78,7 +78,10 @@ class Job extends Model
     }
 
     public function getJobfor_career_id ($career_id) {
-        $jobs = CareerJob::where('career_id',$career_id)->jobs->get();
+        $careerJobs = CareerJob::where('career_id', $career_id)->get();
+        $jobs = $careerJobs->map(function ($careerJob) {
+            return $this::find($careerJob->job_id);
+        });
         return $jobs;
     }
 }
