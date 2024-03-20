@@ -17,7 +17,7 @@
             </ul>
         </li>
 
-        <li><a href="{{ route('employee.index') }}">Công ty</a></li>
+        <li><a href="{{ route('employees.index') }}">Công ty</a></li>
 
         <li class="dropdown">
             <a href="javascript:;">Hồ sơ & CV</a>
