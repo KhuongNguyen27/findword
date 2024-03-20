@@ -101,3 +101,21 @@
     border-radius: 20px;
     height: 207px;
 }
+.news-block .image-box img {
+    display: block;
+    width: 100%;
+    transition: all 300ms ease;
+    object-fit: cover;
+}
+.ls-pagination li .page-link {
+    position: relative;
+    display: block;
+    color: #696969;
+    border-radius: 50%;
+    transition: all 300ms ease;
+}
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #52bc51;
+    border-color: #52bc51;
+}

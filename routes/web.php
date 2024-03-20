@@ -25,7 +25,6 @@ use App\Http\Controllers\JobController;
 // })->name('home');
 
 Route::get('/', [HomeController::class,'index'])->name('home');
-Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 
 Route::get('/viec-lam-trong-nuoc', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
 Route::get('/viec-lam-trong-nuoc/hom-nay', [JobController::class,'vnjobs_today'])->name('jobs.vnjobs.today');
@@ -36,6 +35,11 @@ Route::get('/viec-lam-ngoai-nuoc', [JobController::class,'nnjobs'])->name('jobs.
 Route::get('/viec-lam-ngoai-nuoc/hom-nay', [JobController::class,'nnjobs_today'])->name('jobs.nnjobs.today');
 Route::get('/viec-lam-ngoai-nuoc/hot', [JobController::class,'nnjobs_hot'])->name('jobs.nnjobs.hot');
 Route::get('/viec-lam-ngoai-nuoc/tuyen-gap', [JobController::class,'nnjobs_urgent'])->name('jobs.nnjobs.urgent');
+
+Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.index');
+
+Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
+
 
 Route::prefix('themes')->group(function () {
     
