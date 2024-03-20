@@ -99,4 +99,3 @@ Route::prefix('themes')->group(function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
 });
-

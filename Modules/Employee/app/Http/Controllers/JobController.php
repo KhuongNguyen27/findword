@@ -17,6 +17,7 @@ use App\Models\Wage;
 use App\Models\User;
 use App\Models\FormWork;
 use App\Models\JobPackage;
+use App\Models\Province;
 use Modules\Employee\app\Models\UserJobApply;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -69,13 +70,15 @@ class JobController extends Controller
             $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
             $wages = Wage::where('status',Wage::ACTIVE)->get();
             $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+            $provinces = Province::get();
             $param = [
                 'careers' => $careers,
                 'degrees' => $degrees,
                 'ranks' => $ranks,
                 'formworks' => $formworks,
                 'wages' => $wages,
-                'job_packages' => $job_packages
+                'job_packages' => $job_packages,
+                'provinces' => $provinces
             ];
             return view('employee::job.create',compact('param'));
         }else{
@@ -115,6 +118,7 @@ class JobController extends Controller
             $job->price = $request->price;
             $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
+            $job->province_id = $request->province_id;
             $job->country = $request->country;
             $job->degree_id = $request->degree_id;
             $job->description = $request->description;

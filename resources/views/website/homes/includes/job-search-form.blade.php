@@ -1,12 +1,12 @@
 <div class="job-search-form">
-    <form method="get" action="{{ route('website.home') }}">
+    <form method="get" action="{{ route('jobs.vnjobs') }}">
         <div class="row">
             <div class="form-group col">
                 <span class="icon flaticon-map-locator"></span>
-                <select name="province_id" class="form-select select2">
+                <select name="province_id" class="form-select chosen-select">
                     <option value="">Tất cả địa điểm</option>
                     @foreach($provinces as $province)
-                    <option value="{{ $province->id }}">{{ $province->name }}</option>    
+                    <option value="{{ $province->id }}">{{ $province->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -16,7 +16,7 @@
                 <select name="rank_id" class="form-select select2">
                     <option value="">Tất cả cấp bậc</option>
                     @foreach($ranks as $rank)
-                    <option value="{{ $rank->id }}">{{ $rank->name }}</option>    
+                    <option value="{{ $rank->id }}">{{ $rank->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -25,7 +25,7 @@
                 <select name="wage_id" class="form-select select2">
                     <option value="">Tất cả mức lương</option>
                     @foreach($wages as $wage)
-                    <option value="{{ $wage->id }}">{{ $wage->name }}</option>    
+                    <option value="{{ $wage->id }}">{{ $wage->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -34,7 +34,7 @@
                 <select name="career_id" class="form-select select2">
                     <option value="">Tất cả ngành nghề</option>
                     @foreach($careers as $career)
-                    <option value="{{ $career->id }}">{{ $career->name }}</option>    
+                    <option value="{{ $career->id }}">{{ $career->name }}</option>
                     @endforeach
                 </select>
             </div>

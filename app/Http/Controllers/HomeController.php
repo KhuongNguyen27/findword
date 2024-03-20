@@ -22,9 +22,7 @@ class HomeController extends Controller
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
         $jobs = Job::where('status', 1)->limit(6)->get();
-        // dd($jobs);
         $employees = UserEmployee::limit(12)->get();
         $params = [
             'items' => $items,
