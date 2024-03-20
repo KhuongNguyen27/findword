@@ -77,11 +77,13 @@ class Job extends Model
         return "/website-assets/images/favicon.png";
     }
 
-    public function getJobfor_career_id ($career_id) {
+    public function getJobforCareerId ($career_id) {
         $careerJobs = CareerJob::where('career_id', $career_id)->get();
         $jobs = $careerJobs->map(function ($careerJob) {
             return $this::find($careerJob->job_id);
         });
         return $jobs;
     }
+
+
 }
