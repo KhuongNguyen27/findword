@@ -21,6 +21,12 @@ class JobPackage extends AdminModel
         'price'
     ];
 
+    const VIP = 1;
+    const GAP = 2;
+    const UUTIEN = 3;
+    const HOT = 4;
+    const THUONG = 5;
+
     public function jobs()
     {
         return $this->belongsToMany(Job::class);
