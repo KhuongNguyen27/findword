@@ -10,6 +10,7 @@ use Modules\Employee\Database\factories\JobFactory;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
 use Modules\Staff\app\Models\UserJobFavorite;
+use Modules\Employee\app\Models\CareerJob;
 
 use Carbon\Carbon;
 
@@ -38,7 +39,7 @@ class Job extends Model
     }
     public function careers()
     {
-        return $this->belongsToMany(Career::class, 'career_job', 'job_id', 'career_id');
+        return $this->belongsToMany(CareerJob::class, 'career_job', 'job_id', 'career_id');
     }
     public function wage()
     {
@@ -74,5 +75,10 @@ class Job extends Model
             return $userEmployee->image;
         }
         return "/website-assets/images/favicon.png";
+    }
+
+    public function getJobfor_career_id ($career_id) {
+        $jobs = CareerJob::where('career_id',$career_id)->jobs->get();
+        return $jobs;
     }
 }
