@@ -110,7 +110,10 @@ class JobController extends Controller
         $user_id = Auth::id();
         $job = Job::where('slug', $slug)->with('userEmployee')->firstOrFail();
         $career_id = CareerJob::where('job_id',$job->id)->first();
-        $job_relate_to = $model->getJobfor_career_id($career_id->career_id);
+        $job_relate_to = [];
+        if ($career_id) {
+            $job_relate_to = $model->getJobforCareerId($career_id->career_id);
+        }
         $job_employ = Job::where('user_id',$job->user_id)->get();
         $params = [
             'job' => $job,

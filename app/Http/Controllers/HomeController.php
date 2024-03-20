@@ -18,6 +18,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $model = new Job;
+        // $model->getJobforJobPackageAndTime();
         $items = $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();

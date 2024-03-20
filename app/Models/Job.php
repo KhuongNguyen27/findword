@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\JobPackage;
+use DateTime;
 
 class Job extends AdminModel
 {
@@ -85,5 +87,20 @@ class Job extends AdminModel
             $query->where('jobpackage_id',$request->jobpackage_id);
         }
         return $query;
+    }
+
+    const ACTIVE = 1;
+    const UNACTIVE = 0;
+
+    public function getJobforJobPackageAndTime () 
+    {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = $currentTime->format('H');
+        $job_vip = $this->where('status',$this::ACTIVE)
+            ->where('start_hour','>=',$currentHour)
+            ->where('end_hour','<=',$currentHour)
+            ->where('jobpackage_id', JobPackage::VIP)->get();
+        dd($currentHour);
     }
 }
