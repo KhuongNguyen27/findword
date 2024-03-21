@@ -13,7 +13,7 @@
             <!-- Form Group -->
             <div class="form-group col location">
                 <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
-                <select name="rank_id" class="form-select select2">
+                <select name="rank_id" class="form-select chosen-select">
                     <option value="">Tất cả cấp bậc</option>
                     @foreach($ranks as $rank)
                     <option value="{{ $rank->id }}">{{ $rank->name }}</option>
@@ -22,7 +22,7 @@
             </div>
             <div class="form-group col location">
                 <span class="icon flaticon-money"></span>
-                <select name="wage_id" class="form-select select2">
+                <select name="wage_id" class="form-select chosen-select">
                     <option value="">Tất cả mức lương</option>
                     @foreach($wages as $wage)
                     <option value="{{ $wage->id }}">{{ $wage->name }}</option>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group col location">
                 <span class="icon flaticon-target"></span>
-                <select name="career_id" class="form-select select2">
+                <select name="career_id" class="form-select chosen-select">
                     <option value="">Tất cả ngành nghề</option>
                     @foreach($careers as $career)
                     <option value="{{ $career->id }}">{{ $career->name }}</option>
