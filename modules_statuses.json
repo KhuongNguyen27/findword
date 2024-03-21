@@ -12,5 +12,6 @@
     "AdminHome": true,
     "Transaction": true,
     "Cvs": true,
-    "Province": true
+    "Province": true,
+    "Account": true
 }

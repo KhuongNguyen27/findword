@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedBigInteger('province_id');
+        Schema::create('account_job_package', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('job_package_id');
+            $table->unsignedBigInteger('account_id');
+            $table->integer('amount');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->dropColumn('province_id');
-        });
+        Schema::dropIfExists('account_job_package');
     }
 };

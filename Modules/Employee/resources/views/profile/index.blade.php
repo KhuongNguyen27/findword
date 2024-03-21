@@ -5,6 +5,9 @@
     <div class="dashboard-outer">
         <div class="upper-title-box">
             <h3>{{ __('employer_profile') }}</h3>
+            @if(Auth::user()->getAccountName())
+            <h4>Loại tài khoản : {{ Auth::user()->getAccountName() }}</h4>
+            @endif
         </div>
 
         <div class="row">
@@ -64,7 +67,8 @@
                                     <div class="uploadButton">
                                         <input class="uploadButton-input" type="file" name="image"
                                             accept="image/*, application/pdf" id="upload" multiple>
-                                        <label class="uploadButton-button ripple-effect" for="upload">{{ __('logo_browse') }}</label>
+                                        <label class="uploadButton-button ripple-effect"
+                                            for="upload">{{ __('logo_browse') }}</label>
                                         <span class="uploadButton-file-name"></span>
                                     </div>
                                     <div class="new-image-preview" style="margin-left:0px">
@@ -95,7 +99,7 @@
                                         fileReader.readAsDataURL(files[0]);
                                     } else {
                                         imagePreviewDiv.innerHTML =
-                                        ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
+                                            ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
                                     }
                                 });
                                 </script>
@@ -167,29 +171,29 @@
                                         <input type="password" name="password" value="" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('password') }}</p>
-                                        @endif
-                                    </div> --}}
+                                    @endif
+                                </div> --}}
 
-                                    <!-- About Company -->
-                                    {{-- <div class="form-group col-lg-12 col-md-12">
+                                <!-- About Company -->
+                                {{-- <div class="form-group col-lg-12 col-md-12">
                                         <label>About Company</label>
                                         <textarea
                                             placeholder="Spent several years working on sheep on Wall Street. Had moderate success investing in Yugo's on Wall Street. Managed a small team buying and selling Pogo sticks for farmers. Spent several years licensing licorice in West Palm Beach, FL. Developed several new methods for working it banjos in the aftermarket. Spent a weekend importing banjos in West Palm Beach, FL.In this position, the Software Engineer collaborates with Evention's Development team to continuously enhance our current software solutions as well as create new solutions to eliminate the back-office operations and management challenges present"></textarea>
                                     </div> --}}
 
-                                    <!-- Input -->
-                                    <div class="form-group col-lg-6 col-md-12">
-                                        <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
-                                    </div>
+                                <!-- Input -->
+                                <div class="form-group col-lg-6 col-md-12">
+                                    <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
                                 </div>
-                            </form>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
+    </div>
     </div>
 </section>
 

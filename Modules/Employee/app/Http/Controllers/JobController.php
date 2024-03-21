@@ -93,7 +93,14 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
-
+            if ($request->price) {
+                $user = Auth::user();
+                if ($user->points < $request->price) {
+                    return back()->with("error","Điểm tuyển dụng không đủ vui lòng nạp thêm");
+                }
+                $user->points -= $request->price;
+                $user->save();
+            }
             // xử lý slug
             $slug = $maybe_slug = Str::slug($request->name);
             $next = 2;

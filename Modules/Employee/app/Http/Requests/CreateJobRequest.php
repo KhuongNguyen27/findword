@@ -29,6 +29,7 @@ class CreateJobRequest extends FormRequest
             'experience' => 'required',
             'wage_id' => 'required',
             'work_address' => 'required|max:100',
+            'province_id' => 'required',
             'country' => 'required|max:100',
             'degree_id' => 'required',
             'description' => 'required|max:255',
@@ -41,7 +42,6 @@ class CreateJobRequest extends FormRequest
             'end_day' => 'required',
             'start_hour' => 'required',
             'end_hour' => 'required',
-            
         ];
     }
 
@@ -57,6 +57,8 @@ class CreateJobRequest extends FormRequest
             'wage_id.required' => 'Trường yêu cầu!',
             'work_address.required' => 'Trường yêu cầu!',
             'degree_id.required' => 'Trường yêu cầu!',
+            'country.required' => 'Trường yêu cầu!',
+            'province_id.required' => 'Trường yêu cầu!',
             'description.required' => 'Trường yêu cầu!',
             'requirements.required' => 'Trường yêu cầu!',
             'rank_id.required' => 'Trường yêu cầu!',

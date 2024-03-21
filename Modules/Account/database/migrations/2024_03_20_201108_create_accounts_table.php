@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedBigInteger('province_id');
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id();
+            $table->string('accountname')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('price')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->dropColumn('province_id');
-        });
+        Schema::dropIfExists('accounts');
     }
 };
