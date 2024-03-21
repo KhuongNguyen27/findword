@@ -8,7 +8,9 @@ php artisan migrate:fresh --seed</br>
 php artisan module:migrate --seed Staff</br>
 php artisan module:migrate --seed Employee</br>
 php artisan module:migrate --seed Cvs</br>
-php artisan module:migrate --seed Permission</br>
+php artisan module:migrate --seed Account</br>
+php artisan vietnamzone:import
+<!-- php artisan module:migrate --seed Permission</br> -->
 ### Tạo key cho dự án
 php artisan key:generate
 ### Tạo thư mục

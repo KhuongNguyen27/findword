@@ -3,18 +3,18 @@
 <!-- Pricing Sectioin -->
 <section class="pricing-section">
     <div class="auto-container">
-        <div class="sec-title text-center">
+        <div class="sec-title text-center mt-5">
             <h2>Bảng Giá</h2>
-            <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor.</div>
+            <!-- <div class="text">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor.</div> -->
         </div>
         <!--Pricing Tabs-->
         <div class="pricing-tabs tabs-box">
             <!--Tab Btns-->
             <div class="tab-buttons">
-                <h4>Save up to 10%</h4>
+                <h4>Tiết kiệm đến 10%</h4>
                 <ul class="tab-btns">
-                    <li data-tab="#monthly" class="tab-btn active-btn">Monthly</li>
-                    <li data-tab="#annual" class="tab-btn">AnnualSave</li>
+                    <li data-tab="#monthly" class="tab-btn active-btn">Gói tháng</li>
+                    <li data-tab="#annual" class="tab-btn">Gói năm</li>
                 </ul>
             </div>
 

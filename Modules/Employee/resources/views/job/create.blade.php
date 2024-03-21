@@ -17,17 +17,13 @@
                             <div class="widget-title">
                                 <h4></h4>
                             </div>
-
                             <div class="widget-content">
-
                                 <div class="post-job-steps">
                                     <div class="step">
                                         <span class="icon flaticon-briefcase"></span>
                                         <h5>Chi tiết công việc</h5>
                                     </div>
                                 </div>
-
-
                                 @if (session('error'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ session('error') }}
@@ -245,8 +241,11 @@
                                             class="chosen-select">
                                             @foreach ($param['job_packages'] as $job_package)
                                             <option data-price="{{ $job_package->price }}" id="{{ $job_package->id }}"
-                                                value="{{ $job_package->id }}">
-                                                {{ $job_package->name }}</option>
+                                                value="{{ $job_package->id }}"
+                                                data-count_job="{{ Auth::user()->checkJob($job_package->id) }}">
+                                                {{ $job_package->name }}
+                                                {{ Auth::user()->checkJob($job_package->id) > 0 ? '--Bạn có '.Auth::user()->checkJob($job_package->id).' '.$job_package->name.' miễn phí--' : '' }}
+                                            </option>
                                             @endforeach
                                         </select>
                                         @if ($errors->any())
@@ -288,7 +287,7 @@
 
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>Tổng thanh toán cho tin đăng (VNĐ) :</label>
+                                        <label>Tổng thanh toán cho tin đăng (ĐTD) :</label>
                                         <input id="price" type="number" value="{{ old('price') }}" name="price"
                                             id="nameInput2" placeholder="Giá..." readonly>
                                         @if ($errors->any())
@@ -368,12 +367,15 @@ function calculateDays() {
 // hàm xử lý tính giá tiền
 function handle_price_package() {
     var price = $("#package_tye").find("option:selected").data("price");
-    var number_day = $(".number_day").val();
-    // Kiểm tra nếu cả hai giá trị đều có thì mới tính toán tổng giá trị
-    if (price !== undefined && number_day !== "") {
-        var total_price = price * number_day;
-        // Hiển thị tổng giá trị trong ô input
-        $("#price").val(total_price);
+    var jobCount = $("#package_tye").find("option:selected").data("count_job");
+    if (jobCount < 0) {
+        var number_day = $(".number_day").val();
+        if (price !== undefined && number_day !== "") {
+            var total_price = price * number_day;
+            $("#price").val(total_price);
+        }
+    } else {
+        $("#price").val(0);
     }
 }
 
