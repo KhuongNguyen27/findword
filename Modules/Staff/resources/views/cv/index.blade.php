@@ -3,7 +3,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Danh sách hồ sơ</h3>
+            <h3>{{ __('profile_list') }}</h3>
             <!-- <div class="text">Ready to jump back in?</div> -->
         </div>
         <div class="row">
@@ -11,9 +11,9 @@
                 <!-- applicants Widget -->
                 <div class="applicants-widget ls-widget">
                     <div class="widget-title">
-                        <h4>Danh sách hồ sơ</h4>
+                        <h4>{{ __('profile_list') }}</h4>
                         <a href="{{ route('staff.cv.create') }}" class="btn btn-primary name" style="cursor: pointer;">
-                            Thêm mới
+                            {{ __('add_new') }}
                         </a>
                     </div>
                     @if (session('success'))
@@ -44,17 +44,17 @@
                                     <div class="option-box">
                                         <div class="dropdown resume-action">
                                             <button class="dropdown-toggle theme-btn btn-style-three" role="button"
-                                                data-toggle="dropdown" aria-expanded="false">Action <i
+                                                data-toggle="dropdown" aria-expanded="false">{{ __('action') }} <i
                                                     class="fa fa-angle-down"></i></button>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <a href="{{ route('staff.cv.show', $item->id) }}">
-                                                        <span class="la la-eye"></span> Xem chi tiết
+                                                        <span class="la la-eye"></span>{{ __('show') }}
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="{{ route('staff.cv.edit', $item->id) }}">
-                                                        <span class="la la-pencil"></span> Cập nhật
+                                                        <span class="la la-pencil"></span> {{ __('update') }}
                                                     </a>
                                                 </li>
                                                 <li>
@@ -63,9 +63,9 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
-                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa hồ sơ này không?')"
+                                                            onclick="return confirm('{{ __('confirm_delete') }}?')"
                                                             data-text="Delete CV"><span class="la la-trash"></span>
-                                                            <a class="ml-5 fs-6">Xóa hồ sơ</a>
+                                                            <a class="ml-5 fs-6">{{ __('delete') }}</a>
                                                         </button>
                                                     </form>
                                                 </li>
