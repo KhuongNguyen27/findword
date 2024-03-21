@@ -96,11 +96,23 @@ class Job extends AdminModel
     {
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $currentTime = new DateTime();
-        $currentHour = $currentTime->format('H');
-        $job_vip = $this->where('status',$this::ACTIVE)
-            ->where('start_hour','>=',$currentHour)
-            ->where('end_hour','<=',$currentHour)
-            ->where('jobpackage_id', JobPackage::VIP)->get();
-        dd($currentHour);
+        $currentHour = intval($currentTime->format('H'));
+        $jobPackages = [
+            JobPackage::VIP => 'job_vip',
+            JobPackage::GAP => 'job_gap',
+            JobPackage::UUTIEN => 'job_uu_tien',
+            JobPackage::HOT => 'job_hot',
+            JobPackage::THUONG => 'job_thuong'
+        ];
+        $jobs = [];
+
+        foreach ($jobPackages as $jobPackage => $jobVariable) {
+            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+                ->where('jobpackage_id', $jobPackage)
+                ->where('start_hour', '<=', $currentHour)
+                ->where('end_hour', '>=', $currentHour)
+                ->get();
+            }
+        return $jobs;
     }
 }

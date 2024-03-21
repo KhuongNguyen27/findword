@@ -18,13 +18,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $model = new Job;
-        // $model->getJobforJobPackageAndTime();
+        $model = new Job;
         $items = $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        $jobs = Job::where('status', 1)->limit(6)->get();
+        $jobs = $model->getJobforJobPackageAndTime();
         $employees = UserEmployee::limit(12)->get();
         $params = [
             'items' => $items,
