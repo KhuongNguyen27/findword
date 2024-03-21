@@ -5,7 +5,7 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Thông tin cá nhân!</h3>
+                <h3>{{ __('personal_information') }}!</h3>
                 <!-- <div class="text">Ready to jump back in?</div> -->
             </div>
             <div class="row">
@@ -14,7 +14,7 @@
                     <div class="ls-widget">
                         <div class="tabs-box">
                             <div class="widget-title">
-                                <h4>Thông tin của tôi</h4>
+                                <h4>{{ __('my_information') }}</h4>
                             </div>
 
                             <div class="widget-content">
@@ -28,13 +28,14 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <span><strong>Tải lên logo</strong></span>
+                                    <span><strong>{{ __('logo_upload') }}</strong></span>
                                     <div class="uploading-outer">
                                         <div class="uploadButton">
                                             <input class="uploadButton-input" type="file" name="image"
                                                 accept="image/*, application/pdf" id="upload" multiple>
-                                            <label class="uploadButton-button ripple-effect" for="upload">Browse
-                                                Logo</label>
+                                            <label class="uploadButton-button ripple-effect" for="upload">
+                                                {{ __('browse_logo') }}
+                                            </label>
                                             <span class="uploadButton-file-name"></span>
                                         </div>
                                         <div class="image-preview"></div>
@@ -47,7 +48,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Họ và tên</label>
+                                            <label>{{ __('fullname') }}</label>
                                             <input type="text" name="name" value="{{ $item->user->name }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('name') }}</p>
@@ -55,7 +56,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Email</label>
+                                            <label>{{ __('email') }}</label>
                                             <input type="text" name="email" value="{{ $item->user->email }}"
                                                 placeholder="creativelayers">
                                             @if ($errors->any())
@@ -64,7 +65,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Số điện thoại</label>
+                                            <label>{{ __('phone') }}</label>
                                             <input type="text" name="phone" value="{{ $item->phone }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -72,7 +73,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Năm Sinh</label>
+                                            <label>{{ __('year_of_birth') }}</label>
                                             <input type="date" name="birthdate" value="{{ $item->birthdate }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('birthdate') }}</p>
@@ -80,7 +81,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Số năm kinh nghiệm</label>
+                                            <label>{{ __('year_of_experience') }}</label>
                                             <input type="number" name="experience_years"
                                                 value="{{ $item->experience_years }}">
                                             @if ($errors->any())
@@ -89,7 +90,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Giới tính</label>
+                                            <label>{{ __('gender') }}</label>
                                             <select name="gender" class="form-control">
                                                 <option value="nam" {{ $item->gender == 'nam' ? 'selected' : '' }}>Nam
                                                 </option>
@@ -102,7 +103,7 @@
 
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Tỉnh\Thành phố</label>
+                                            <label>{{ __('province_city') }}</label>
                                             <input type="text" name="city" value="{{ $item->city }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('city') }}</p>
@@ -110,7 +111,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>Địa chỉ</label>
+                                            <label>{{ __('address') }}</label>
                                             <input type="text" name="address" value="{{ $item->address }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('address') }}</p>
@@ -118,7 +119,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-12 col-md-12">
-                                            <label>Thành tích nổi bật</label>
+                                            <label>{{ __('outstanding_achievements') }}</label>
                                             <input type="text" name="outstanding_achievements"
                                                 value="{{ $item->outstanding_achievements }}">
                                             @if ($errors->any())
@@ -127,7 +128,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <button class="theme-btn btn-style-one">Save</button>
+                                            <button class="theme-btn btn-style-one">{{ __('save') }}</button>
                                         </div>
                                     </div>
                                 </form>

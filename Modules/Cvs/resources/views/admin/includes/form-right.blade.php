@@ -1,8 +1,8 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ route('admin.cvs.index') }}" class="btn btn-danger px-4">Back</a>
-            <button type="submit" class="btn btn-primary px-4">Save</button>
+            <a href="{{ route('admin.cvs.index') }}" class="btn btn-danger px-4">{{ __('back') }}</a>
+            <button type="submit" class="btn btn-primary px-4">{{ __('save') }}</button>
         </div>
     </div>
 </div>

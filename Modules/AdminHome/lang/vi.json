@@ -112,7 +112,29 @@
     "company_phone":"Số điện thoại công ty",
     "company_logo":"Logo công ty",
     "register":"Đăng ký",
-    "create_a_free_recruiting_account":"Tạo tài khoản tuyển dụng miễn phí"
+    "create_a_free_recruiting_account":"Tạo tài khoản tuyển dụng miễn phí",
+    "personal_information":"Thông tin cá nhân",
+    "my_information":"Thông tin của tôi",
+    "browse_logo":"Duyệt qua logo",
+    "fullname":"Họ và tên",
+    "year_of_experience":"Số năm kinh nghiệm",
+    "province_city":"Tỉnh/Thành phố",
+    "outstanding_achievements":"Thành tích nổi bật",
+    "update":"Cập nhật",
+    "ready_to_jump_back_in":"Bạn đã sẵn sàng quay trở lại",
+    "my_favorite_job":"Công việc yêu thích của tôi",
+    "date":"Ngày tháng",
+    "applied_job":"Việc làm đã ứng tuyển",
+    "my_applied_job":"Công việc ứng tuyển của tôi",
+    "change_password":"Thay đổi mật khẩu",
+    "current_password":"Mật khẩu hiện tại",
+    "new_password":"Mật khẩu mới",
+    "dashboard":"Bảng điều khiển",
+    "save_job":"Việc làm đã lưu",
+    "submit_job":"Việc làm đã nộp",
+    "work_manager":"Quản lý công việc",
+    "cv_manager":"Quản lý CV",
+    "transaction_manager":"Quản lý giao dịch"
 
 
 

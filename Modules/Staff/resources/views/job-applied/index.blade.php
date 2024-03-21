@@ -3,8 +3,8 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Việc làm đã ứng tuyển</h3>
-            <div class="text">Ready to jump back in?</div>
+            <h3>{{ __('applied_job') }}</h3>
+            <div class="text">{{ __('ready_to_jump_back_in') }}?</div>
         </div>
 
         <div class="row">
@@ -18,17 +18,17 @@
                 <div class="ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title">
-                            <h4>Công việc ứng tuyển của tôi</h4>
+                            <h4></h4>
                         </div>
                         <div class="widget-content">
                             <div class="table-outer">
                                 <table class="default-table manage-job-table">
                                     <thead>
                                         <tr>
-                                            <th>Công Việc</th>
-                                            <th>Ngày Ứng Tuyển</th>
-                                            <th>Trạng thái</th>
-                                            <th>Action</th>
+                                            <th>{{ __('job') }}</th>
+                                            <th>{{ __('date') }}</th>
+                                            <th>{{ __('status') }}</th>
+                                            <th>{{ __('action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,7 +59,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                onclick="return confirm('Bạn có chắc chắn muốn xóa ứng tuyển này không?')"
+                                                                onclick="return confirm('{{ __('confirm_delete') }}?')"
                                                                 data-text="Delete Application" class="btn btn-outline-danger btn-lg"><span
                                                                     class="la la-trash"></span></button>
                                                         </form>
