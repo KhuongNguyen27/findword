@@ -102,7 +102,17 @@
     "vietnamese":"Tiếng Việt",
     "japanese":"Tiếng Nhật",
     "profile_attachment_file":"Tệp đính kèm CV",
-    "sample_profile":"Hồ sơ mẫu"
+    "sample_profile":"Hồ sơ mẫu",
+    "year_of_birth":"Năm sinh",
+    "repeat_password":"Xác nhận lại mật khẩu",
+    "agree_to_the_terms_and_privacy_policy":"Chấp nhận các điều khoản chính sách và bảo mật",
+    "company_already_registered":"Công ty đã có tài khoản",
+    "login":"Đăng nhập",
+    "here":"tại đây",
+    "company_phone":"Số điện thoại công ty",
+    "company_logo":"Logo công ty",
+    "register":"Đăng ký",
+    "create_a_free_recruiting_account":"Tạo tài khoản tuyển dụng miễn phí"
 
 
 
