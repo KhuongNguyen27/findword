@@ -5,7 +5,63 @@
             <!-- <div class="text">Biết giá trị của bạn và tìm công việc phù hợp với cuộc sống của bạn</div> -->
         </div>
         <div class="row wow fadeInUp">
-            @foreach ($jobs as $job)
+            @foreach ($jobs['job_vip'] as $job)
+            <!-- Job Block -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @include('job::includes.components.job-item', [
+                'job' => $job,
+                'job_info' => true,
+                'job_other_info' => true,
+                'bookmark' => true,
+                'simple' => true,
+                ])
+            </div>
+            @endforeach
+        </div>
+        <div class="row wow fadeInUp">
+            @foreach ($jobs['job_gap'] as $job)
+            <!-- Job Block -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @include('job::includes.components.job-item', [
+                'job' => $job,
+                'job_info' => true,
+                'job_other_info' => true,
+                'bookmark' => true,
+                'simple' => true,
+                ])
+            </div>
+            @endforeach
+        </div>
+        <div class="row wow fadeInUp">
+            @foreach ($jobs['job_uu_tien'] as $job)
+            <!-- Job Block -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @include('job::includes.components.job-item', [
+                'job' => $job,
+                'job_info' => true,
+                'job_other_info' => true,
+                'bookmark' => true,
+                'simple' => true,
+                ])
+            </div>
+            @endforeach
+        </div>
+        <div class="row wow fadeInUp">
+            @foreach ($jobs['job_hot'] as $job)
+            <!-- Job Block -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                @include('job::includes.components.job-item', [
+                'job' => $job,
+                'job_info' => true,
+                'job_other_info' => true,
+                'bookmark' => true,
+                'simple' => true,
+                ])
+            </div>
+            @endforeach
+        </div>
+        <div class="row wow fadeInUp">
+            @foreach ($jobs['job_thuong'] as $job)
             <!-- Job Block -->
             <div class="col-lg-4 col-md-12 col-sm-12">
                 @include('job::includes.components.job-item', [
