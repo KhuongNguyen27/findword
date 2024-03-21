@@ -580,11 +580,11 @@ input:checked + .slider:before {
 
 .default-form .form-group {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10%;
 }
 
 .default-form .form-group:last-child {
-  margin-bottom: 0;
+  margin-bottom: 10%;
 }
 
 .default-form .form-group > label {
@@ -8009,6 +8009,11 @@ Login Section
   line-height: 33px;
   color: #202124;
   margin-bottom: 32px;
+  text-align: center;
+
+}
+.login-form span {
+  color: red;
 }
 
 .login-form .field-outer {
@@ -8036,7 +8041,7 @@ Login Section
 .login-form .form-group .theme-btn {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 10%;
 }
 
 .login-form .bottom-box {
