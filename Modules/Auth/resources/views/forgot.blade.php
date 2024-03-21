@@ -25,7 +25,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <button class="theme-btn btn-style-one" type="submit" onclick="showLoading()">Submit <i
+                <button class="theme-btn btn-style-one" type="submit" onclick="showLoading()">{{ __('submit') }} <i
                         class="ti-arrow-right"></i></button>
                 <div id="loadingSpinner" class="loading-spinner"></div>
             </div>

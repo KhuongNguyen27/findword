@@ -43,7 +43,7 @@ class AuthController extends Controller
         if (Auth::attempt($dataUser, $request->remember)) {
             return redirect()->route('home');
         } else {
-            return redirect($previousUrl)->with('error', 'Account or password is incorrect');
+            return redirect($previousUrl)->with('error', __('account_or_password_is_incorrect'));
         }
     }
     public function logout(Request $request)
@@ -74,11 +74,11 @@ class AuthController extends Controller
             ]);
             $previousUrl = Session::get('previous_url');
             unset($_SESSION['previousUrl']);
-            $message = "Successfully registered";
+            $message =  __('successfully_registered');
             return redirect($previousUrl)->with('success', $message);
         } catch (\Exception $e) {
             Log::error('Bug occurred: ' . $e->getMessage());
-            return view('auth::register')->with('error', 'Registration failed');
+            return view('auth::register')->with('error', __('registration_failed'));
         }
     }
     function forgot(Request $request)
@@ -93,7 +93,7 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if (!$user) {
-                return redirect()->back()->with('error', 'Email not found');
+                return redirect()->back()->with('error', __('email_not_found'));
             }
             $token = strtoupper(Str::random(10));
             $existingToken = PasswordResetToken::where('email', $user->email)->first();

@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
-                        <button class="theme-btn btn-style-one">Save</button>
+                        <button class="theme-btn btn-style-one">{{ __('save') }}</button>
                     </div>
                 </div>
             </form>

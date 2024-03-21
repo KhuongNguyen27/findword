@@ -134,7 +134,18 @@
     "submit_job":"Việc làm đã nộp",
     "work_manager":"Quản lý công việc",
     "cv_manager":"Quản lý CV",
-    "transaction_manager":"Quản lý giao dịch"
+    "transaction_manager":"Quản lý giao dịch",
+    "you_dont_have_an_account":"Bạn chưa có tài khoản",
+    "or":"hoặc",
+    "facebook_login":"Đăng nhập qua Facebook",
+    "gmail_login":"Đăng nhập qua Gmail",
+    "work_experience":"Kinh nghiệm làm việc",
+    "education":"Học vấn",
+    "professional_skills":"Kỹ năng chuyên môn",
+    "email_not_found": "Email này không có",
+    "successfully_registered":"Đăng ký thành công",
+    "registration_failed":"Đăng ký không thành công",
+    "submit":"Gửi"
 
 
 
