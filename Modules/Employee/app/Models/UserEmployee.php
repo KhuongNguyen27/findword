@@ -39,7 +39,17 @@ class UserEmployee extends Model
     {
         return $this->hasMany(Job::class, 'user_id', 'user_id');
     }
-    function getImageFmAttribute(){
-        return $this->userEmployee && $this->userEmployee->image != null ? $this->userEmployee->image :"/website-assets/images/favicon.png";
+    // function getImageFmAttribute(){
+    //     return $this->userEmployee && $this->userEmployee->image != null ? $this->userEmployee->image :"/website-assets/images/favicon.png";
+    // }
+    public function getImageFmAttribute()
+    {
+        if ( $this->image != null) {
+            if( strpos($this->image,'http') !== false ){
+                return $this->image;
+            }
+            return asset('storage/images/'.$this->image);
+        }
+        return "/website-assets/images/favicon.png";
     }
 }

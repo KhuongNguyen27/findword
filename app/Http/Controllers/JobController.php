@@ -51,6 +51,7 @@ class JobController extends Controller
                    $newjob->wage_id    = rand(1,5);
                    $newjob->work_address    = $job->short_cities;
                    $newjob->status    = 1;
+                   $newjob->province_id    = 1;
                    $newjob->deadline    = date('Y-m-d',strtotime($job->deadline));
                    $newjob->save();
                 }
