@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách CV',
+'page_title' => __('cv_list'),
 'actions' => [
 //'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
@@ -40,7 +40,7 @@
                                     <li>
                                         <a class="dropdown-item"
                                             href="{{ route($route_prefix.'showCV',['id' => $item->id, 'type'=>'UserCV']) }}">
-                                            Detail
+                                            {{ __('detail') }}
                                         </a>
                                     </li>
                                 </ul>

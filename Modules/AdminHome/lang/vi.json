@@ -145,7 +145,9 @@
     "email_not_found": "Email này không có",
     "successfully_registered":"Đăng ký thành công",
     "registration_failed":"Đăng ký không thành công",
-    "submit":"Gửi"
+    "submit":"Gửi",
+    "detail":"Xem chi tiết",
+    "cv_list":"Danh sách CV"
 
 
 
