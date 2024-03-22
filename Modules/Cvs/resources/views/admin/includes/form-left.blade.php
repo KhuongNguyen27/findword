@@ -41,7 +41,7 @@
             @endif
         </div>
         <div class="mb-4">
-            <label class="mb-3">Thiết kế</label>
+            <label class="mb-3">{{ __('design') }}</label>
             <select name="style_ids[]" class="form-control" multiple="multiple">
                 <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>
                     {{ __('Left click and hold Ctrl to select multiple designs') }}
