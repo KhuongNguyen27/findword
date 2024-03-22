@@ -36,4 +36,15 @@ class UserEmployee extends AdminModel
         }
         return "/website-assets/images/favicon.png";
     }
+
+    public function getBackgroundFmAttribute()
+    {
+        if ( $this->background != null) {
+            if( strpos($this->background,'http') !== false ){
+                return $this->background;
+            }
+            return asset('storage/images/'.$this->background);
+        }
+        return "/website-assets/images/backgroudemploy.jpg";
+    }
 }
