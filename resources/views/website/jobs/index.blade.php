@@ -10,7 +10,7 @@
         <div class="auto-container">
             <div class="row">
                 <div class="content-column col-lg-12 col-md-12 col-sm-12">
-                    <div class="inner-column wow fadeInUp" data-wow-delay="1000ms">
+                    <div class="inner-column">
                         <div class="title-box">
                             <h3>{{ $title }}</h3>
                             <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
@@ -46,7 +46,6 @@
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -59,7 +58,6 @@
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -72,7 +70,6 @@
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -85,7 +82,6 @@
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -98,7 +94,6 @@
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -159,11 +154,11 @@
                         <div class="row">
                             @foreach ($jobs['job_vip'] as $job)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
+                                        
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -172,11 +167,11 @@
                             @endforeach
                             @foreach ($jobs['job_gap'] as $job)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
+                                        
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -185,11 +180,11 @@
                             @endforeach
                             @foreach ($jobs['job_uu_tien'] as $job)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
+                                        
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -198,11 +193,11 @@
                             @endforeach
                             @foreach ($jobs['job_hot'] as $job)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
+                                        
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])
@@ -211,11 +206,11 @@
                             @endforeach
                             @foreach ($jobs['job_thuong'] as $job)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="col-lg-6 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
                                         'job' => $job,
                                         'job_info' => true,
-                                        'job_other_info' => true,
+                                        
                                         'bookmark' => true,
                                         'simple' => true,
                                     ])

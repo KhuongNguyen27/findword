@@ -11,7 +11,6 @@
                 @include('job::includes.components.job-item', [
                 'job' => $job,
                 'job_info' => true,
-                'job_other_info' => true,
                 'bookmark' => true,
                 'simple' => true,
                 ])
@@ -25,7 +24,6 @@
                 @include('job::includes.components.job-item', [
                 'job' => $job,
                 'job_info' => true,
-                'job_other_info' => true,
                 'bookmark' => true,
                 'simple' => true,
                 ])
@@ -39,7 +37,6 @@
                 @include('job::includes.components.job-item', [
                 'job' => $job,
                 'job_info' => true,
-                'job_other_info' => true,
                 'bookmark' => true,
                 'simple' => true,
                 ])
@@ -53,7 +50,6 @@
                 @include('job::includes.components.job-item', [
                 'job' => $job,
                 'job_info' => true,
-                'job_other_info' => true,
                 'bookmark' => true,
                 'simple' => true,
                 ])
@@ -67,7 +63,6 @@
                 @include('job::includes.components.job-item', [
                 'job' => $job,
                 'job_info' => true,
-                'job_other_info' => true,
                 'bookmark' => true,
                 'simple' => true,
                 ])
