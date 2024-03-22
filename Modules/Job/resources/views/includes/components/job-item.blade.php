@@ -6,7 +6,8 @@ span.flaticon-bookmark.active {
 <div class="job-block col-job-info">
     <div class="inner-box">
         <div class="content">
-            <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
+            <span class="company-logo"><img src="{{ asset('storage/images/' . $job->userEmployee->image) }}"
+                    alt=""></span>
             <h4 class="job-title quickview-job text_ellipsis">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>

@@ -39,7 +39,7 @@ class Job extends Model
     }
     public function careers()
     {
-        return $this->belongsToMany(CareerJob::class, 'career_job', 'job_id', 'career_id');
+        return $this->belongsToMany(Career::class);
     }
     public function wage()
     {
@@ -56,6 +56,14 @@ class Job extends Model
     public function userEmployee()
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
+    }
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+    public function level()
+    {
+        return $this->belongsTo(Level::class,'degree_id','id');
     }
     //Feature
     function getImageFmAttribute(){
