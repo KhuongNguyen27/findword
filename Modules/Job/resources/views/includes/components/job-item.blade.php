@@ -18,7 +18,7 @@ span.flaticon-bookmark.active {
             <ul class="job-info">
                 <li><span class="salary">{{ $job->wage->name ?? '' }}</span></li>
                 <li><span class="address">{{ $job->work_address }}</span></li>
-                @if ($job_info)
+                @if (@$job_other_info)
                 <li><span class="address">Cập nhật 1 giờ trước</span></li>
                 <li><span class="address">Còn 40 ngày để ứng tuyển</span></li>
                 @endif
