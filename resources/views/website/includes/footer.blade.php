@@ -59,7 +59,7 @@
                                 </h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">{{ _('job_page') }}</a></li>
+                                        <li><a href="#">{{ __('job_page') }}</a></li>
                                         <li><a href="#">{{ __('alternative_job_page') }}</a></li>
                                         <li><a href="#">{{ __('continue_page') }}</a></li>
                                         <li><a href="#">Blog</a></li>
