@@ -8,10 +8,10 @@
                     <div class="footer-column about-widget">
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
                             style="width:80px!important" height="50" src="{{ asset('website-assets/images/logo.png')}}"
-                            alt="" title="">Tuyển dụng Huế</a></div>
+                            alt="" title="">{{ __('hue_find_work') }}</a></div>
                         <p class="phone-num"><span>
-                            Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
-                        <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
+                            {{ __('contact_us') }}</span><a href="thebeehost@support.com">123 456 7890</a></p>
+                        <p class="address">329  Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
                                 href="mailto:support@superio.com" class="email">support@superio.com</a></p>
                     </div>
                 </div>
@@ -21,14 +21,15 @@
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <h4 class="widget-title">
-                                    Dành cho ứng viên</h4>
+                                    {{ __('candidate_section') }}
+                                </h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Duyệt công việc</a></li>
-                                        <li><a href="#">Duyệt danh mục</a></li>
-                                        <li><a href="#">Trang tổng quan về ứng viên</a></li>
-                                        <li><a href="#">Thông báo công việc</a></li>
-                                        <li><a href="#">Đánh dấu của tôi</a></li>
+                                        <li><a href="#">{{ __('work_browse') }}</a></li>
+                                        <li><a href="#">{{ __('category_browse') }}</a></li>
+                                        <li><a href="#">{{ __('candidate_overview_page') }}</a></li>
+                                        <li><a href="#">{{ __('work_notification') }}</a></li>
+                                        <li><a href="#">{{ __('my_favorite') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -38,13 +39,14 @@
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <h4 class="widget-title">
-                                    Nhà tuyển dụng</h4>
+                                    {{ __('employee') }}
+                                </h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Duyệt ứng viên</a></li>
-                                        <li><a href="#">Trang cho nhà tuyển dụng</a></li>
-                                        <li><a href="#">Thêm công việc</a></li>
-                                        <li><a href="#">Gói công việc</a></li>
+                                        <li><a href="#">{{ __('candidate_browse') }}</a></li>
+                                        <li><a href="#">{{ __('employee_page') }}</a></li>
+                                        <li><a href="#">{{ __('add_work') }}</a></li>
+                                        <li><a href="#">{{ __('work_packge') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -52,14 +54,16 @@
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">Về chúng tôi</h4>
+                                <h4 class="widget-title">
+                                    {{ __('about_us') }}
+                                </h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Trang việc làme</a></li>
-                                        <li><a href="#">Trang việc làm thay thế</a></li>
-                                        <li><a href="#">Trang tiếp tục</a></li>
+                                        <li><a href="#">{{ _('job_page') }}</a></li>
+                                        <li><a href="#">{{ __('alternative_job_page') }}</a></li>
+                                        <li><a href="#">{{ __('continue_page') }}</a></li>
                                         <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Liên hệ</a></li>
+                                        <li><a href="#">{{ __('contact') }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -68,14 +72,16 @@
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">Tài nguyên hữu ích</h4>
+                                <h4 class="widget-title">
+                                    {{ __('helpful_resource') }}
+                                </h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Sơ đồ trang web</a></li>
-                                        <li><a href="#">Điều khoản sử dụng</a></li>
-                                        <li><a href="#">Trung tâm bảo mật</a></li>
-                                        <li><a href="#">Trung tâm bảo vệ</a></li>
-                                        <li><a href="#">Trung tâm trợ năng</a></li>
+                                        <li><a href="#">{{ __('website_map') }}</a></li>
+                                        <li><a href="#">{{ __('terms_of_use') }}</a></li>
+                                        <li><a href="#">{{ __('security_hub') }}</a></li>
+                                        <li><a href="#">{{ __('protect_hub') }}</a></li>
+                                        <li><a href="#">{{ __('assistance_hub') }}</a></li>
                                     </ul>
                                 </div>
                             </div>

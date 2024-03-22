@@ -147,9 +147,29 @@
     "registration_failed":"Đăng ký không thành công",
     "submit":"Gửi",
     "detail":"Xem chi tiết",
-    "cv_list":"Danh sách CV"
-
-
+    "cv_list":"Danh sách CV",
+    "contact_us":"Liên hệ với chúng tôi",
+    "candidate_section":"Dành cho ứng viên",
+    "work_browse":"Duyệt công việc",
+    "category_browse":"Duyệt danh mục",
+    "candidate_overview_page":"Trang tổng quan về ứng viên",
+    "work_notification":"Thông báo về công việc",
+    "my_favorite":"Đánh của tôi",
+    "candidate_browse":"Duyệt ứng viên",
+    "employee_page":"Trang cho nhà tuyển dụng",
+    "add_work":"Thêm công việc",
+    "work_packge":"Gói công việc",
+    "about_us":"Về chúng tôi",
+    "job_page":"Trang việc làm",
+    "alternative_job_page":"Trang việc làm thay thế",
+    "continue_page":"Trang tiếp tục",
+    "contact":"Liên hệ",
+    "helpful_resource":"Tài nguyên hữu ích",
+    "website_map":"Sơ đồ trang web",
+    "terms_of_use":"Điều khoản sử dụng",
+    "security_hub":"Trung tâm bảo mật",
+    "protect_hub":"Trung tâm bảo vệ",
+    "assistance_hub":"Trung tâm trợ năng"
 
 
 
