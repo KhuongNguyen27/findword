@@ -167,24 +167,23 @@
                             <div class="job-detail__company--information">
                                 <div class="job-detail__company--information-item company-name">
                                     <a rel="nofollow" class="company-logo"
-                                        href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-dau-tu-bat-dong-san-hop-nhat/164068.html"
-                                        target="_blank" data-toggle="tooltip" title="" data-placement="top"
-                                        data-original-title="Công ty Cổ phần Đầu tư Bất động sản Hợp Nhất">
-                                        <img src="https://cdn-new.topcv.vn/unsafe/80x/https://static.topcv.vn/company_logos/2xjWdXk42EMwzUjHPOGMpRjP8fykGaSB_1709090540____c6c8459dc72cda8681c9468ef357cf8c.png"
-                                            alt="Công ty Cổ phần Đầu tư Bất động sản Hợp Nhất" class="img-responsive">
+                                        href="{{ route('employee.show',$job->userEmployee->slug) }}" target="_blank"
+                                        data-toggle="tooltip" title="" data-placement="top"
+                                        data-original-title="{{ $job->userEmployee->name }}">
+                                        <img src="{{ asset('storage/images/' . $job->userEmployee->image) }}"
+                                            alt="{{ $job->userEmployee->name }}" class="img-responsive">
                                     </a>
                                     <h2 class="company-name-label">
                                         <a rel="nofollow" class="name"
-                                            href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-dau-tu-bat-dong-san-hop-nhat/164068.html"
-                                            target="_blank" data-toggle="tooltip" title="" data-placement="top"
-                                            data-original-title="Công ty Cổ phần Đầu tư Bất động sản Hợp Nhất">Công ty
-                                            Cổ phần Đầu tư Bất động sản Hợp Nhất</a>
+                                            href="{{ route('employee.show',$job->userEmployee->slug) }}" target="_blank"
+                                            data-toggle="tooltip" title="" data-placement="top"
+                                            data-original-title="{{ $job->userEmployee->name }}">{{ $job->userEmployee->name }}</a>
                                         <div class="company-subdetail-label">
                                         </div>
                                     </h2>
                                 </div>
                                 <div class="job-detail__company--information-item company-scale">
-                                    <div class="company-title">
+                                    <div class="company-title mr-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             viewBox="0 0 16 16" fill="none">
                                             <path
@@ -200,12 +199,12 @@
                                                 d="M14.66 11.06C14.6067 11.7067 14.1933 12.2667 13.5 12.6467C12.8333 13.0133 11.9933 13.1867 11.16 13.1667C11.64 12.7333 11.92 12.1933 11.9733 11.62C12.04 10.7933 11.6467 10 10.86 9.36667C10.4133 9.01333 9.89333 8.73333 9.32666 8.52667C10.8 8.1 12.6533 8.38667 13.7933 9.30667C14.4067 9.8 14.72 10.42 14.66 11.06Z"
                                                 fill="#7F878F"></path>
                                         </svg>
-                                        Quy mô:
+                                        Số điện thoại:
                                     </div>
-                                    <div class="company-value">25-99 nhân viên</div>
+                                    <div class="company-value">{{ $job->userEmployee->phone }}</div>
                                 </div>
                                 <div class="job-detail__company--information-item company-address">
-                                    <div class="company-title">
+                                    <div class="company-title mr-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             viewBox="0 0 16 16" fill="none">
                                             <path
@@ -215,14 +214,13 @@
                                         Địa điểm:
                                     </div>
                                     <div class="company-value" data-toggle="tooltip" title="" data-placement="top"
-                                        data-original-title="Tầng 2 HH2 Bắc Hà, 15 Tố Hữu, quận Nam Từ Liêm, Hà Nội">
-                                        Tầng 2 HH2 Bắc Hà, 15 Tố Hữu, quận Nam Từ Liêm, Hà Nội
+                                        data-original-title="{{$job->userEmployee->address}}">
+                                        {{$job->userEmployee->address}}
                                     </div>
                                 </div>
                             </div>
                             <div class="job-detail__company--link">
-                                <a rel="nofollow"
-                                    href="https://www.topcv.vn/cong-ty/cong-ty-co-phan-dau-tu-bat-dong-san-hop-nhat/164068.html"
+                                <a rel="nofollow" href="{{ route('employee.show',$job->userEmployee->slug) }}"
                                     target="_blank">Xem trang công ty</a>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
@@ -258,6 +256,7 @@
                                         Xem ngay
                                     </div>
                                 </div>
+                                @if($job->level)
                                 <div class="box-general-group">
                                     <div class="box-general-group-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -272,26 +271,11 @@
                                     </div>
                                     <div class="box-general-group-info">
                                         <div class="box-general-group-info-title">Cấp bậc</div>
-                                        <div class="box-general-group-info-value">Nhân viên</div>
+                                        <div class="box-general-group-info-value">{{ $job->level->name}}</div>
                                     </div>
                                 </div>
-                                <div class="box-general-group">
-                                    <div class="box-general-group-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M17.39 15.67L13.35 12H10.64L6.59998 15.67C5.46998 16.69 5.09998 18.26 5.64998 19.68C6.19998 21.09 7.53998 22 9.04998 22H14.94C16.46 22 17.79 21.09 18.34 19.68C18.89 18.26 18.52 16.69 17.39 15.67ZM13.82 18.14H10.18C9.79998 18.14 9.49998 17.83 9.49998 17.46C9.49998 17.09 9.80998 16.78 10.18 16.78H13.82C14.2 16.78 14.5 17.09 14.5 17.46C14.5 17.83 14.19 18.14 13.82 18.14Z"
-                                                fill="white"></path>
-                                            <path
-                                                d="M18.35 4.32C17.8 2.91 16.46 2 14.95 2H9.04998C7.53998 2 6.19998 2.91 5.64998 4.32C5.10998 5.74 5.47998 7.31 6.60998 8.33L10.65 12H13.36L17.4 8.33C18.52 7.31 18.89 5.74 18.35 4.32ZM13.82 7.23H10.18C9.79998 7.23 9.49998 6.92 9.49998 6.55C9.49998 6.18 9.80998 5.87 10.18 5.87H13.82C14.2 5.87 14.5 6.18 14.5 6.55C14.5 6.92 14.19 7.23 13.82 7.23Z"
-                                                fill="white"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="box-general-group-info">
-                                        <div class="box-general-group-info-title">Kinh nghiệm</div>
-                                        <div class="box-general-group-info-value">Không yêu cầu kinh nghiệm</div>
-                                    </div>
-                                </div>
+                                @endif
+                                @if($job->wage)
                                 <div class="box-general-group">
                                     <div class="box-general-group-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -311,10 +295,12 @@
                                         </svg>
                                     </div>
                                     <div class="box-general-group-info">
-                                        <div class="box-general-group-info-title">Số lượng tuyển</div>
-                                        <div class="box-general-group-info-value">40 người</div>
+                                        <div class="box-general-group-info-title">Mức lương khởi điểm</div>
+                                        <div class="box-general-group-info-value">{{ $job->wage->name}}</div>
                                     </div>
                                 </div>
+                                @endif
+                                @if($job->formWork)
                                 <div class="box-general-group">
                                     <div class="box-general-group-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -329,9 +315,10 @@
                                     </div>
                                     <div class="box-general-group-info">
                                         <div class="box-general-group-info-title">Hình thức làm việc</div>
-                                        <div class="box-general-group-info-value">Toàn thời gian</div>
+                                        <div class="box-general-group-info-value">{{ $job->formWork->name  }}</div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="box-general-group">
                                     <div class="box-general-group-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -349,23 +336,41 @@
                                         <div class="box-general-group-info-value">Không yêu cầu</div>
                                     </div>
                                 </div>
+                                @if($job->province)
+                                <div class="box-general-group">
+                                    <div class="box-general-group-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M17.39 15.67L13.35 12H10.64L6.59998 15.67C5.46998 16.69 5.09998 18.26 5.64998 19.68C6.19998 21.09 7.53998 22 9.04998 22H14.94C16.46 22 17.79 21.09 18.34 19.68C18.89 18.26 18.52 16.69 17.39 15.67ZM13.82 18.14H10.18C9.79998 18.14 9.49998 17.83 9.49998 17.46C9.49998 17.09 9.80998 16.78 10.18 16.78H13.82C14.2 16.78 14.5 17.09 14.5 17.46C14.5 17.83 14.19 18.14 13.82 18.14Z"
+                                                fill="white"></path>
+                                            <path
+                                                d="M18.35 4.32C17.8 2.91 16.46 2 14.95 2H9.04998C7.53998 2 6.19998 2.91 5.64998 4.32C5.10998 5.74 5.47998 7.31 6.60998 8.33L10.65 12H13.36L17.4 8.33C18.52 7.31 18.89 5.74 18.35 4.32ZM13.82 7.23H10.18C9.79998 7.23 9.49998 6.92 9.49998 6.55C9.49998 6.18 9.80998 5.87 10.18 5.87H13.82C14.2 5.87 14.5 6.18 14.5 6.55C14.5 6.92 14.19 7.23 13.82 7.23Z"
+                                                fill="white"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="box-general-group-info">
+                                        <div class="box-general-group-info-title">Tỉnh - Thành phố</div>
+                                        <div class="box-general-group-info-value">{{ $job->province->name }}</div>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </div>
 
                         <!-- Ngành nghề -->
-                        <div class="mt-3 job-detail__box--right job-detail__body-right--item job-detail__body-right--box-category">
+                        <div
+                            class="mt-3 job-detail__box--right job-detail__body-right--item job-detail__body-right--box-category">
                             <div class="box-category">
                                 <div class="box-title">Ngành nghề</div>
                                 <div class="box-category-tags">
-                                    <a href="https://www.topcv.vn/tim-viec-lam-kinh-doanh-ban-hang-c10001"
-                                        class="box-category-tag" target="_blank">Kinh doanh / Bán hàng</a>
-                                    <a href="https://www.topcv.vn/tim-viec-lam-bat-dong-san-c10007"
-                                        class="box-category-tag" target="_blank">Bất động sản</a>
-                                    <a href="https://www.topcv.vn/tim-viec-lam-hang-cao-cap-c10113"
-                                        class="box-category-tag" target="_blank">Hàng cao cấp</a>
+                                    @foreach($job->careers as $career)
+                                    <a href="javascrit:;" class="box-category-tag"
+                                        target="_blank">{{ $career->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
-                            <div class="box-category">
+                            <!-- <div class="box-category">
                                 <div class="box-title">Khu vực</div>
                                 <div class="box-category-tags">
                                     <span><a class="box-category-tag"
@@ -377,7 +382,7 @@
                                             target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Hà Nội">Hà
                                             Nội</a></span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </aside>
                 </div>
