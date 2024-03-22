@@ -170,7 +170,10 @@
     "security_hub":"Trung tâm bảo mật",
     "protect_hub":"Trung tâm bảo vệ",
     "assistance_hub":"Trung tâm trợ năng",
-    "company_is_tracking":"Công ty đang theo dõi"
+    "company_is_tracking":"Công ty đang theo dõi",
+    "enter_your_email_to_receive_notifications_from_the_employer":"Nhập email để nhận thông báo từ nhà tuyển dụng",
+    "enter_your_phone_number_to_receive_notifications_from_the_employer":"Nhập số điện thoại để nhận thông báo từ nhà tuyển dụng",
+    "already_have_an_account":"Nếu đã có tài khoản"
 
 
 

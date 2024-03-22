@@ -15,36 +15,36 @@
             <div class="form-group">
                 <div class="btn-box row">
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('staff.register')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
+                        <a href="{{route('staff.register')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i>{{ __('candidate') }}</a>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('employee.register')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
+                        <a href="{{route('employee.register')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> {{ __('employee') }} </a>
                     </div>
                 </div>
             </div>
 
 
             <div class="form-group">
-                <label>Tên</label>
-                <input type="text" name="name" placeholder="name" value="{{ old('name') }}">
+                <label>{{ __('name') }}<span> *</span></label>
+                <input type="text" name="name" placeholder="{{ __('name') }}" value="{{ old('name') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('name') }}</p>
                 @endif
             </div>
 
             <div class="form-group">
-                <label>Email </label>
-                <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                <label>{{ __('email') }} <span> *</span></label>
+                <input type="email" name="email" placeholder="{{ __('email') }}" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
                 <div class="mt-2">
-                    <p>Nhập email để nhận thông báo từ nhà tuyển dụng</p>
+                    <p>{{ __('enter_your_email_to_receive_notifications_from_the_employer') }}</p>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Ngày sinh </label>
+                <label>{{ __('year_of_birth') }}</label>
                 <input type="date" name="birthdate" value="{{ old('birthdate') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('birthdate') }}</p>
@@ -53,27 +53,27 @@
 
 
             <div class="form-group">
-                <label>SĐT </label>
-                <input type="number" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                <label>{{ __('phone') }}<span> *</span></label>
+                <input type="number" name="phone" placeholder="{{ __('phone') }}" value="{{ old('phone') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('phone') }}</p>
                 @endif
                 <div class="mt-2">
-                    <p>Nhập số điện thoại để nhận thông báo từ nhà tuyển dụng</p>
+                    <p>{{ __('enter_your_phone_number_to_receive_notifications_from_the_employer') }}</p>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Mật khẩu</label>
-                <input type="password" name="password" placeholder="Mật khẩu" value="{{ old('password') }}">
+                <label>{{ __('password') }}<span> *</span></label>
+                <input type="password" name="password" placeholder="{{ __('password') }}" value="{{ old('password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
             </div>
 
             <div class="form-group">
-                <label>Xác nhận mật khẩu</label>
-                <input type="password" name="repeatpassword" placeholder="Xác nhận mật khẩu">
+                <label>{{ __('repeat_password') }}<span> *</span></label>
+                <input type="password" name="repeatpassword" placeholder="{{ __('repeat_password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
                 @endif
@@ -81,27 +81,29 @@
 
             <div class="form__check" style="margin-bottom: 50px;">
                 <input id="accept_pp" type="checkbox" name="accept_pp">
-                <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
+                <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }} <span> *</span></label>
                 @if ($errors->has('accept_pp'))
                 <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                 @endif
             </div>
 
             <div class="form-group">
-                <button class="theme-btn btn-style-one " type="submit" name="Register">Đăng ký</button>
+                <button class="theme-btn btn-style-one " type="submit" name="Register">{{ __('register') }}</button>
             </div>
         </form>
         <div class="bottom-box">
-            <div class="text">Đã có tài khoản? <a href="{{ route('staff.login')}}">Đăng nhập</a></div>
-            <div class="divider"><span>Hoặc</span></div>
+            <div class="text">{{ __('already_have_an_account') }}? <a href="{{ route('staff.login')}}">{{ __('login') }}</a></div>
+            <div class="divider"><span>{{ __('or') }}</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i> Đăng
-                        nhập qua Facebook</a>
+                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>
+                        {{ __('facebook_login') }}
+                    </a>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i> Đăng nhập qua
-                        Gmail</a>
+                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>
+                        {{ __('gmail_login') }}
+                    </a>
                 </div>
             </div>
         </div>
