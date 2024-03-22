@@ -15,6 +15,7 @@ class JobController extends Controller
 {
     // Trong nước
     public function vnjobs(Request $request){
+        $model = new Job;
         if( isset( $_REQUEST['getData'] ) ){
             $url = 'http://185.230.64.141/jobs.json';
             $json = file_get_contents($url);
@@ -77,7 +78,7 @@ class JobController extends Controller
         if($request->career_id){
             $query->whereCareer_id($request->career_id);
         }
-        $jobs = $query->paginate(12);
+        $jobs = $model->getJobVn();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -92,13 +93,12 @@ class JobController extends Controller
     }
     
     public function vnjobs_hot(){
+        $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $jobs = $model->getJobVnHot();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -112,13 +112,32 @@ class JobController extends Controller
         return view('website.jobs.index',$params);
     }
     public function vnjobs_urgent (){
+        $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $jobs = $model->getJobVnUrgent();
+        $employees = UserEmployee::get();
+        $params = [
+            'careers' => $careers,
+            'ranks' => $ranks,
+            'jobs' => $jobs,
+            'wages' => $wages,
+            'provinces' => $provinces,
+            'employees' => $employees,
+            'title' => 'Việc làm trong nước tuyển gấp',
+        ];
+        return view('website.jobs.index',$params);
+    }
+
+    public function vnjobs_today (){
+        $model = new Job;
+        $careers = Career::where('status', 1)->get();
+        $wages = Wage::where('status', 1)->get();
+        $ranks = Rank::where('status', 1)->get();
+        $provinces = Province::all();
+        $jobs = $model->getJobVnToday();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -134,13 +153,12 @@ class JobController extends Controller
 
     // Ngoài nước
     public function nnjobs (){
+        $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $jobs = $model->getJobNn();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -155,13 +173,12 @@ class JobController extends Controller
     }
     
     public function nnjobs_hot(){
+        $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $jobs = $model->getJobNnHot();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -175,13 +192,12 @@ class JobController extends Controller
         return view('website.jobs.index',$params);
     }
     public function nnjobs_urgent (){
+        $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $jobs = Job::where('status', 1)->paginate(12);
-        // dd($jobs);
+        $jobs = $model->getJobNnUrgent();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -191,6 +207,26 @@ class JobController extends Controller
             'provinces' => $provinces,
             'employees' => $employees,
             'title' => 'Việc làm ngoài nước tuyển gấp',
+        ];
+        return view('website.jobs.index',$params);
+    }
+
+    public function nnjobs_today (){
+        $model = new Job;
+        $careers = Career::where('status', 1)->get();
+        $wages = Wage::where('status', 1)->get();
+        $ranks = Rank::where('status', 1)->get();
+        $provinces = Province::all();
+        $jobs = $model->getJobNnToday();
+        $employees = UserEmployee::get();
+        $params = [
+            'careers' => $careers,
+            'ranks' => $ranks,
+            'jobs' => $jobs,
+            'wages' => $wages,
+            'provinces' => $provinces,
+            'employees' => $employees,
+            'title' => 'Việc làm trong nước tuyển gấp',
         ];
         return view('website.jobs.index',$params);
     }

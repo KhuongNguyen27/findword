@@ -115,4 +115,181 @@ class Job extends AdminModel
             }
         return $jobs;
     }
+
+    public function getJobVn () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobPackages = [
+            JobPackage::VIP => 'job_vip',
+            JobPackage::GAP => 'job_gap',
+            JobPackage::UUTIEN => 'job_uu_tien',
+            JobPackage::HOT => 'job_hot',
+            JobPackage::THUONG => 'job_thuong'
+        ];
+        $jobs = [];
+
+        foreach ($jobPackages as $jobPackage => $jobVariable) {
+            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+                ->where('jobpackage_id', $jobPackage)
+                ->where('start_hour', '<=', $currentHour)
+                ->where('end_hour', '>=', $currentHour)
+                ->where('country', 'VN')
+                ->get();
+            }
+        return $jobs;
+    }
+
+    public function getJobVnHot () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobs = [];
+        $jobs['job_vip'] = [];
+        $jobs['job_gap'] = [];
+        $jobs['job_uu_tien'] = [];
+        $jobs['job_thuong'] = [];
+        $jobs['job_hot'] = $this->where('status', $this::ACTIVE)
+            ->where('jobpackage_id', JobPackage::HOT)
+            ->where('start_hour', '<=', $currentHour)
+            ->where('end_hour', '>=', $currentHour)
+            ->where('country', 'VN')
+            ->get();
+        return $jobs;
+    }
+
+    public function getJobVnUrgent () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobs = [];
+        $jobs['job_vip'] = [];
+        $jobs['job_hot'] = [];
+        $jobs['job_uu_tien'] = [];
+        $jobs['job_thuong'] = [];
+        $jobs['job_gap'] = $this->where('status', $this::ACTIVE)
+            ->where('jobpackage_id', JobPackage::GAP)
+            ->where('start_hour', '<=', $currentHour)
+            ->where('end_hour', '>=', $currentHour)
+            ->where('country', 'VN')
+            ->get();
+        return $jobs;
+    }
+
+    public function getJobVnToday() {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $currentDay = $currentTime->format('Y-m-d'); // Lấy ngày hiện tại (không bao gồm giờ và phút)
+    
+        $jobPackages = [
+            JobPackage::VIP => 'job_vip',
+            JobPackage::GAP => 'job_gap',
+            JobPackage::UUTIEN => 'job_uu_tien',
+            JobPackage::HOT => 'job_hot',
+            JobPackage::THUONG => 'job_thuong'
+        ];
+        $jobs = [];
+    
+        foreach ($jobPackages as $jobPackage => $jobVariable) {
+            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+                ->where('jobpackage_id', $jobPackage)
+                ->where('start_hour', '<=', $currentHour)
+                ->where('end_hour', '>=', $currentHour)
+                ->whereDate('created_at', $currentDay) // Lọc theo ngày hiện tại
+                ->where('country', 'VN')
+                ->get();
+        }
+        return $jobs;
+    }
+
+    // query nước ngoai
+
+    public function getJobNn () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobPackages = [
+            JobPackage::VIP => 'job_vip',
+            JobPackage::GAP => 'job_gap',
+            JobPackage::UUTIEN => 'job_uu_tien',
+            JobPackage::HOT => 'job_hot',
+            JobPackage::THUONG => 'job_thuong'
+        ];
+        $jobs = [];
+
+        foreach ($jobPackages as $jobPackage => $jobVariable) {
+            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+                ->where('jobpackage_id', $jobPackage)
+                ->where('start_hour', '<=', $currentHour)
+                ->where('end_hour', '>=', $currentHour)
+                ->where('country', 'NN')
+                ->get();
+            }
+        return $jobs;
+    }
+
+    public function getJobNnHot () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobs = [];
+        $jobs['job_vip'] = [];
+        $jobs['job_gap'] = [];
+        $jobs['job_uu_tien'] = [];
+        $jobs['job_thuong'] = [];
+        $jobs['job_hot'] = $this->where('status', $this::ACTIVE)
+            ->where('jobpackage_id', JobPackage::HOT)
+            ->where('start_hour', '<=', $currentHour)
+            ->where('end_hour', '>=', $currentHour)
+            ->where('country', 'NN')
+            ->get();
+        return $jobs;
+    }
+
+    public function getJobNnUrgent () {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $jobs = [];
+        $jobs['job_vip'] = [];
+        $jobs['job_hot'] = [];
+        $jobs['job_uu_tien'] = [];
+        $jobs['job_thuong'] = [];
+        $jobs['job_gap'] = $this->where('status', $this::ACTIVE)
+            ->where('jobpackage_id', JobPackage::GAP)
+            ->where('start_hour', '<=', $currentHour)
+            ->where('end_hour', '>=', $currentHour)
+            ->where('country', 'NN')
+            ->get();
+        return $jobs;
+    }
+
+    public function getJobNnToday() {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $currentTime = new DateTime();
+        $currentHour = intval($currentTime->format('H'));
+        $currentDay = $currentTime->format('Y-m-d'); // Lấy ngày hiện tại (không bao gồm giờ và phút)
+    
+        $jobPackages = [
+            JobPackage::VIP => 'job_vip',
+            JobPackage::GAP => 'job_gap',
+            JobPackage::UUTIEN => 'job_uu_tien',
+            JobPackage::HOT => 'job_hot',
+            JobPackage::THUONG => 'job_thuong'
+        ];
+        $jobs = [];
+    
+        foreach ($jobPackages as $jobPackage => $jobVariable) {
+            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+                ->where('jobpackage_id', $jobPackage)
+                ->where('start_hour', '<=', $currentHour)
+                ->where('end_hour', '>=', $currentHour)
+                ->whereDate('created_at', $currentDay) // Lọc theo ngày hiện tại
+                ->where('country', 'NN')
+                ->get();
+        }
+        return $jobs;
+    }
+
 }
