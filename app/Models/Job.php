@@ -37,12 +37,10 @@ class Job extends AdminModel
         'start_hour',
         'end_hour'
     ];
-    public function getImage($user_id)
+    public function getImage()
     {
-        $userEmployee = $this->userEmployee;
-
-        if ($userEmployee && $userEmployee->image != null) {
-            return $userEmployee->image;
+        if ($this->image != null) {
+            return "/website-assets/images/".$this->image;
         }
         return "/website-assets/images/favicon.png";
     }
