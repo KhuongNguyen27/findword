@@ -11,7 +11,7 @@ span.flaticon-bookmark.active {
     <div class="auto-container">
         <div class="row">
             <div class="content-column col-lg-12 col-md-12 col-sm-12">
-                <div class="inner-column wow fadeInUp" data-wow-delay="1000ms">
+                <div class="inner-column" >
                     <div class="title-box">
                         <h3>{{ $title }}</h3>
                         <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
