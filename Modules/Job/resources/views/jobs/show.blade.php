@@ -113,11 +113,11 @@
                     <div class="job-detail">
                         <h4 class="job-sub-title">Chi tiết tuyển dụng </h4>
                         <div class="text">
-                            {{ $job->description ?? '-' }}
+                            {!! $job->description ?? '-' !!}
                         </div>
                         <h4 class="job-sub-title">Yêu cầu</h4>
                         <div class="text">
-                            {{ $job->requirements ?? '-' }}
+                            {!! $job->requirements ?? '-'!!}
                         </div>
                     </div>
 
