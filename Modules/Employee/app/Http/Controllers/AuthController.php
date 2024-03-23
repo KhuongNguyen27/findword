@@ -39,7 +39,8 @@ class AuthController extends Controller
         try {
             $dataUser = $request->only('email', 'password');
             $user = User::where('email',$dataUser['email'])->first();
-            if (Auth::attempt($dataUser, $request->remember)) {
+            $remember = $request->remember ? true : false;
+            if (Auth::attempt($dataUser, $remember)) {
                 $data = [
                     'name' => $user->name,
                     'email' => $user->email,

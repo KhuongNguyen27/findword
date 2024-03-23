@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3 class="text-center" >Đăng Nhập Nhà Tuyển Dụng</h3>
+        <h3 class="text-center">Đăng Nhập Nhà Tuyển Dụng</h3>
         <!--Login Form-->
         <form action="{{ route('employee.postLogin')}}" method="POST">
             @if (session('error'))
@@ -26,7 +26,8 @@
             </div>
             <div class="form-group">
                 <label>Mật Khẩu</label>
-                <input id="password-field" type="password" name="password" value="" placeholder="Nhập mật khẩu vào đây" value="{{ old('Password') }}">
+                <input id="password-field" type="password" name="password" value="" placeholder="Nhập mật khẩu vào đây"
+                    value="{{ old('Password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
@@ -34,8 +35,9 @@
             <div class="form-group">
                 <div class="field-outer">
                     <div class="input-group checkboxes square">
-                        <input type="checkbox" name="remember-me" value="" id="remember">
-                        <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ mật khẩu</label>
+                        <input type="checkbox" name="remember" value="1" id="remember">
+                        <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ mật
+                            khẩu</label>
                     </div>
                     <a href="{{ route('auth.forgot')}}" class="pwd">Lấy lại mật khẩu?</a>
                 </div>

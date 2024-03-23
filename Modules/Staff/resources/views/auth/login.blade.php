@@ -26,7 +26,8 @@
             </div>
             <div class="form-group">
                 <label>Mật khẩu</label>
-                <input id="password-field" type="password" name="password" value="" placeholder="Mật khẩu" value="{{ old('Password') }}">
+                <input id="password-field" type="password" name="password" value="" placeholder="Mật khẩu"
+                    value="{{ old('Password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
@@ -34,7 +35,7 @@
             <div class="form-group">
                 <div class="field-outer">
                     <div class="input-group checkboxes square">
-                        <input type="checkbox" name="remember-me" value="" id="remember">
+                        <input type="checkbox" name="remember" value="1" id="remember">
                         <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ</label>
                     </div>
                     <a href="{{ route('auth.forgot')}}" class="pwd">Quên mật khẩu?</a>
@@ -51,10 +52,12 @@
             <div class="divider"><span>hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>Đăng nhập qua Facebook</a>
+                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>Đăng nhập
+                        qua Facebook</a>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>Đăng nhập qua Gmail</a>
+                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>Đăng nhập qua
+                        Gmail</a>
                 </div>
             </div>
         </div>
