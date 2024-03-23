@@ -36,7 +36,8 @@ class AuthController extends Controller
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
-        if (Auth::attempt($dataUser, $request->remember)) {
+        $remember = $request->remember ? true : false ;
+        if (Auth::attempt($dataUser, $remember)) {
             return redirect()->route('staff.home');
         } else {
             return redirect()->route('staff.login')->with('error', __('account_or_password_is_incorrect'));
@@ -52,11 +53,7 @@ class AuthController extends Controller
     }
     public function postRegister(StoreRegisterRequest $request)
     {
-        // dd($request->all());
-
         try {
-
-            // Create a new user in the users table
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,

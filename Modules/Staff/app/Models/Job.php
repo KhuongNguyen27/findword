@@ -64,11 +64,11 @@ class Job extends Model
             return '<span>Active</span>';
         }
     }
-    public function getImage($user_id)
+    public function getImage()
     {
-        $userEmployee = UserEmployee::where('user_id', $user_id)->first();
-
-        if ($userEmployee && $userEmployee->image != null) {
+        $user_id = $this->user_id;
+        $userEmployee = UserEmployee::where('user_id',$user_id)->first();
+        if ($userEmployee && $userEmployee->image !== null) {
             return $userEmployee->image;
         }
         return "/website-assets/images/favicon.png";
