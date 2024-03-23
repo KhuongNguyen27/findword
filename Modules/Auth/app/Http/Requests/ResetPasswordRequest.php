@@ -22,8 +22,17 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'required|min:6',
-            'repeatpassword' => 'required|same:password',
+            'password' => 'required|min:6|max:255',
+            'repeatpassword' => 'required|same:password|min:6|max:255',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'required' => 'Trường yêu cầu',
+            'min' => 'Tối thiểu 6 kí tự',
+            'max' => 'Tối đa 255 kí tự',
+            'same' => 'Mật khẩu nhập lại không giống',
         ];
     }
 }
