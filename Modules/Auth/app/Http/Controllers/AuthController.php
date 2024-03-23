@@ -135,7 +135,7 @@ class AuthController extends Controller
 
             return view('auth::resetpassword', compact('data'));
         } else {
-            return redirect()->route('auth.getReset')->with('error', 'There was a problem. Please try again.');
+            return redirect($previousUrl)->with('error', 'Đã có lỗi xảy ra. Vui lòng thử lại');
         }
     }
     public function postReset(ResetPasswordRequest $request)
@@ -149,9 +149,9 @@ class AuthController extends Controller
             $tokenRecord->delete(); // Remove the used token
             $previousUrl = Session::get('previous_url');
             unset($_SESSION['previousUrl']);
-            return redirect($previousUrl)->with('success', 'Password reset successful.');
+            return redirect($previousUrl)->with('success', 'Đặt lại mật khẩu thành công.');
         } else {
-            return redirect()->route('auth.getReset')->with('error', 'There was a problem. Please try again.');
+            return redirect($previousUrl)->with('error', 'Đã có lỗi xảy ra. Vui lòng thử lại');
         }
     }
 }
