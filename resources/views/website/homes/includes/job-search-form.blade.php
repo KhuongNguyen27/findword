@@ -1,22 +1,26 @@
 <div class="job-search-form">
-    <form method="get" action="{{ route('jobs.vnjobs') }}">
+    <form method="get" action="{{ route($route) }}">
         <div class="row">
-            <div class="form-group col">
-                <span class="icon flaticon-map-locator"></span>
-                <select name="province_id" class="form-select chosen-select">
-                    <option value="">Tất cả địa điểm</option>
-                    @foreach($provinces as $province)
-                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            @if (!isset($country))
+                <div class="form-group col">
+                    <span class="icon flaticon-map-locator"></span>
+                    <select name="province_id" class="form-select chosen-select">
+                        <option value="">Tất cả địa điểm</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @else
+                <div></div>
+            @endif
             <!-- Form Group -->
             <div class="form-group col location">
                 <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
                 <select name="rank_id" class="form-select chosen-select">
                     <option value="">Tất cả cấp bậc</option>
-                    @foreach($ranks as $rank)
-                    <option value="{{ $rank->id }}">{{ $rank->name }}</option>
+                    @foreach ($ranks as $rank)
+                        <option value="{{ $rank->id }}">{{ $rank->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -24,8 +28,8 @@
                 <span class="icon flaticon-money"></span>
                 <select name="wage_id" class="form-select chosen-select">
                     <option value="">Tất cả mức lương</option>
-                    @foreach($wages as $wage)
-                    <option value="{{ $wage->id }}">{{ $wage->name }}</option>
+                    @foreach ($wages as $wage)
+                        <option value="{{ $wage->id }}">{{ $wage->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -33,8 +37,8 @@
                 <span class="icon flaticon-target"></span>
                 <select name="career_id" class="form-select chosen-select">
                     <option value="">Tất cả ngành nghề</option>
-                    @foreach($careers as $career)
-                    <option value="{{ $career->id }}">{{ $career->name }}</option>
+                    @foreach ($careers as $career)
+                        <option value="{{ $career->id }}">{{ $career->name }}</option>
                     @endforeach
                 </select>
             </div>

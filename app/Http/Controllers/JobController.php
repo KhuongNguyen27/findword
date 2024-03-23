@@ -64,24 +64,11 @@ class JobController extends Controller
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        // dd($items);
-        $query = Job::query()->whereStatus(1);
-        if($request->province_id){
-            $query->whereProvince_id($request->province_id);
-        }
-        if($request->rank_id){
-            $query->whereRank_id($request->rank_id);
-        }
-        if($request->wage_id){
-            $query->whereWage_id($request->wage_id);
-        }
-        if($request->career_id){
-            $query->whereCareer_id($request->career_id);
-        }
         $jobs = $model->getJobVn();
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
+            'route' => 'jobs.vnjobs',
             'ranks' => $ranks,
             'jobs' => $jobs,
             'wages' => $wages,
@@ -102,6 +89,7 @@ class JobController extends Controller
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
+            'route' => 'jobs.vnjobs.hot',
             'ranks' => $ranks,
             'jobs' => $jobs,
             'wages' => $wages,
@@ -121,6 +109,7 @@ class JobController extends Controller
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
+            'route' => 'jobs.vnjobs.urgent',
             'ranks' => $ranks,
             'jobs' => $jobs,
             'wages' => $wages,
@@ -142,6 +131,7 @@ class JobController extends Controller
         $params = [
             'careers' => $careers,
             'ranks' => $ranks,
+            'route' => 'jobs.vnjobs.today',
             'jobs' => $jobs,
             'wages' => $wages,
             'provinces' => $provinces,
@@ -161,6 +151,8 @@ class JobController extends Controller
         $jobs = $model->getJobNn();
         $employees = UserEmployee::get();
         $params = [
+            'country' => 'NN',
+            'route' => 'jobs.nnjobs',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
@@ -181,6 +173,8 @@ class JobController extends Controller
         $jobs = $model->getJobNnHot();
         $employees = UserEmployee::get();
         $params = [
+            'country' => 'NN',
+            'route' => 'jobs.nnjobs.hot',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
@@ -200,6 +194,8 @@ class JobController extends Controller
         $jobs = $model->getJobNnUrgent();
         $employees = UserEmployee::get();
         $params = [
+            'country' => 'NN',
+            'route' => 'jobs.nnjobs.urgent',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
@@ -220,6 +216,8 @@ class JobController extends Controller
         $jobs = $model->getJobNnToday();
         $employees = UserEmployee::get();
         $params = [
+            'country' => 'NN',
+            'route' => 'jobs.nnjobs.today',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
