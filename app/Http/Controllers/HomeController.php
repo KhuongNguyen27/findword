@@ -27,6 +27,7 @@ class HomeController extends Controller
         $employees = UserEmployee::limit(12)->get();
         $params = [
             'items' => $items,
+            'route' => 'home',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
