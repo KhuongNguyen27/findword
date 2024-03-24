@@ -40,6 +40,8 @@ span.flaticon-bookmark.active {
 @include('website.homes.includes.top-companies')
 <!-- End Testimonial Section -->
 
+@include('website.includes.global.attractive-jobs')
+
 @include('website.homes.includes.thi-truong-viec-lam')
 
 <!-- Job Categories -->
@@ -238,10 +240,17 @@ new Swiper(".mySwiper", {
         prevEl: ".swiper-button-prev",
     },
 });
-new Swiper(".featutreJobsSwiper", {
+new Swiper(".featureJobsSwiper", {
     navigation: {
         nextEl: ".btn-feature-jobs-next",
         prevEl: ".btn-feature-jobs-pre",
+    },
+    effect: "fade",
+});
+new Swiper(".attractiveJobsSwiper", {
+    navigation: {
+        nextEl: ".btn-attractive-jobs-next",
+        prevEl: ".btn-attractive-jobs-pre",
     },
     effect: "fade",
 });
