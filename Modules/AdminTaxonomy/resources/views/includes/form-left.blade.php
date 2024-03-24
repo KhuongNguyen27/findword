@@ -7,8 +7,11 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
-            <textarea class="form-control" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
-            <x-admintheme::form-input-error field="description"/>
+            <textarea class="tinymce" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
+            <div id="tinycomments-container">
+                <x-admintheme::form-input-error field="description"/>
+            </div>
+            {{-- <x-admintaxonomy::forms.tinymce-editor field="description"/> --}}
         </div>
     </div>
 </div>
