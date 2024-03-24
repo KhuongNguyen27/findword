@@ -16,16 +16,16 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('name') }}<span> *</span></label>
+                            <label>{{ __('name') }}<span class="label-required">*</span></label>
                             <input type="text" name="name" placeholder="{{ __('name') }}"  value="{{ old('name') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('name') }}</p>
                             @endif
                         </div>
                     </div>
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('email') }}<span> *</span></label>
+                            <label>{{ __('email') }}<span class="label-required">*</span></label>
                             <input type="email" name="email" placeholder="{{ __('email') }}"  value="{{ old('email') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('email') }}</p>
@@ -33,21 +33,24 @@
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('year_of_birth') }}<span> *</span></label>
-                            <input type="number" name="year_of_birth" placeholder="{{ __('year_of_birth') }}"  value="{{ old('year_of_birth') }}">
+                            <label>{{ __('year_of_birth') }}<span class="label-required">*</span></label>
+                            <select name="year_of_birth">
+                                @for ($year = 2009; $year >= 1939; $year--)
+                                    <option value="{{ $year }}" {{ old('year_of_birth') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                                @endfor
+                            </select>
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
+                                <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                     
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('phone') }}<span> *</span></label>
+                            <label>{{ __('phone') }}<span class="label-required">*</span></label>
                             <input type="number" name="phone" placeholder="{{ __('phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -55,7 +58,6 @@
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -67,9 +69,9 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('repeat_password') }}<span> *</span></label>
+                            <label>{{ __('repeat_password') }}<span class="label-required">*</span></label>
                             <input type="password" name="repeatpassword" placeholder="{{ __('repeat_password') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
@@ -81,7 +83,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_name') }}<span> *</span></label>
+                            <label>{{ __('company_name') }}<span class="label-required">*</span></label>
                             <input type="text" name="cp_name" id="cp_name" placeholder="{{ __('company_name') }}"  value="{{ old('cp_name') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('cp_name') }}</p>
@@ -90,9 +92,9 @@
                     </div>
 
 
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_website') }}<span> *</span></label>
+                            <label>{{ __('company_website') }}<span class="label-required">*</span></label>
                             <input type="text" name="website" placeholder="{{ __('company_website') }}"  value="{{ old('website') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('website') }}</p>
@@ -100,21 +102,20 @@
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_phone') }}<span> *</span></label>
-                            <input type="number" name="phone" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
+                            <label>{{ __('company_phone') }}<span class="label-required">*</span></label>
+                            <input type="text" name="phone" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                     
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_address') }}<span> *</span></label>
+                            <label>{{ __('company_address') }}<span class="label-required">*</span></label>
                             <input type="text" name="address" placeholder="{{ __('company_address') }}" value="{{ old('address') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('address') }}</p>
@@ -123,20 +124,19 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-lg-12">                     
+                    <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('company_logo') }}<span> *</span></label>
+                            <label>{{ __('company_logo') }}<span class="label-required">*</span></label>
                             <input type="file" name="image" class="form-control" id="inputGroupFile02" placeholder="ađấ" >
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('image') }}</p>
                             @endif
                         </div>
                     </div>
-                   
                 </div>
                 <div class="form__check" style="margin-bottom: 50px;">
                             <input id="accept_pp" type="checkbox" name="accept_pp" >
-                            <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}</label>
+                            <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}<span class="label-required">*</span></label>
                             @if ($errors->has('accept_pp'))
                             <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                             @endif
