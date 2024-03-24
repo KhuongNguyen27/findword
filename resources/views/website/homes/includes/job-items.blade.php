@@ -21,7 +21,7 @@
             </div>
             <!-- Jobs here -->
             <div class="theme-card-body">
-                <div class="swiper featutreJobsSwiper">
+                <div class="swiper featureJobsSwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="row">
