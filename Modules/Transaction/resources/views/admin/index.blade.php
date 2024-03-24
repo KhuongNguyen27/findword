@@ -60,7 +60,7 @@
                             </td>
                             <td>{{ $item->type  ?? '' }}</td>
                             <td>{{ number_format($item->amount, 0, '', '.') }}</td>
-                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $item->created_at->format('d/m/Y H:i:s') }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>
                                 @if($item->status == $item::INACTIVE)
