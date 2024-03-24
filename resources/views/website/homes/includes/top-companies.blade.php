@@ -9,7 +9,7 @@
                 @foreach ($employees as $employee)
                 <!-- Company Block -->
                 <div class="company-block">
-                    <div class="inner-box">
+                    <div class="inner-box square-box">
                         <a href="{{ route('employee.show', ['id' => $employee->slug]) }}">
                             <figure class="image"><img src="{{ $employee->image_fm }}" alt=""></figure>
                             <h4 class="name">{{ $employee->name }}</h4>
