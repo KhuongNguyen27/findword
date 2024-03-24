@@ -2,13 +2,13 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="https://www.vietnamworks.com/_next/image?url=https%3A%2F%2Fimages.vietnamworks.com%2Flogo%2Fchailease_hrbn24_125385.jpg&w=1920&q=75" alt="">
+                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="https://www.vietnamworks.com/_next/image?url=https%3A%2F%2Fimages.vietnamworks.com%2Flogo%2Fchailease_hrbn24_125385.jpg&w=1920&q=75" alt="">
+                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="https://www.vietnamworks.com/_next/image?url=https%3A%2F%2Fimages.vietnamworks.com%2Flogo%2Fchailease_hrbn24_125385.jpg&w=1920&q=75" alt="">
+                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
             </div>    
         </div>
         <div class="swiper-button-next"></div>
