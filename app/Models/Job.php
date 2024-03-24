@@ -109,6 +109,7 @@ class Job extends AdminModel
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
+                ->limit(12)
                 ->get();
             }
         return $jobs;
@@ -126,15 +127,37 @@ class Job extends AdminModel
             JobPackage::THUONG => 'job_thuong'
         ];
         $jobs = [];
-
+    
         foreach ($jobPackages as $jobPackage => $jobVariable) {
-            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+            $query = $this->where('status', $this::ACTIVE)
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
-                ->where('country', 'VN')
-                ->get();
+                ->where('country', 'VN');
+    
+            $provinceId = request()->input('province_id');
+            if ($provinceId != '') {
+                $query->where('province_id', $provinceId);
             }
+    
+            $rankId = request()->input('rank_id');
+            if ($rankId != '') {
+                $query->where('rank_id', $rankId);
+            }
+    
+            $wageId = request()->input('wage_id');
+            if ($wageId != '') {
+                $query->where('wage_id', $wageId);
+            }
+    
+            $careerId = request()->input('career_id');
+            if ($careerId != '') {
+                $query->where('career_id', $careerId);
+            }
+    
+            $jobs[$jobVariable] = $query->get();
+        }
+    
         return $jobs;
     }
 
@@ -147,12 +170,33 @@ class Job extends AdminModel
         $jobs['job_gap'] = [];
         $jobs['job_uu_tien'] = [];
         $jobs['job_thuong'] = [];
-        $jobs['job_hot'] = $this->where('status', $this::ACTIVE)
+        $query = $this->where('status', $this::ACTIVE)
             ->where('jobpackage_id', JobPackage::HOT)
             ->where('start_hour', '<=', $currentHour)
             ->where('end_hour', '>=', $currentHour)
-            ->where('country', 'VN')
-            ->get();
+            ->where('country', 'VN');
+        $provinceId = request()->input('province_id');
+        if ($provinceId != '') {
+            $query->where('province_id', $provinceId);
+        }
+
+        $rankId = request()->input('rank_id');
+        if ($rankId != '') {
+            $query->where('rank_id', $rankId);
+        }
+
+        $wageId = request()->input('wage_id');
+        if ($wageId != '') {
+            $query->where('wage_id', $wageId);
+        }
+
+        $careerId = request()->input('career_id');
+        if ($careerId != '') {
+            $query->where('career_id', $careerId);
+        }
+
+        $jobs['job_hot'] = $query->get();
+
         return $jobs;
     }
 
@@ -165,12 +209,31 @@ class Job extends AdminModel
         $jobs['job_hot'] = [];
         $jobs['job_uu_tien'] = [];
         $jobs['job_thuong'] = [];
-        $jobs['job_gap'] = $this->where('status', $this::ACTIVE)
+        $query = $this->where('status', $this::ACTIVE)
             ->where('jobpackage_id', JobPackage::GAP)
             ->where('start_hour', '<=', $currentHour)
             ->where('end_hour', '>=', $currentHour)
-            ->where('country', 'VN')
-            ->get();
+            ->where('country', 'VN');
+        $provinceId = request()->input('province_id');
+        if ($provinceId != '') {
+            $query->where('province_id', $provinceId);
+        }
+
+        $rankId = request()->input('rank_id');
+        if ($rankId != '') {
+            $query->where('rank_id', $rankId);
+        }
+
+        $wageId = request()->input('wage_id');
+        if ($wageId != '') {
+            $query->where('wage_id', $wageId);
+        }
+
+        $careerId = request()->input('career_id');
+        if ($careerId != '') {
+            $query->where('career_id', $careerId);
+        }
+        $jobs['job_gap']= $query->get();
         return $jobs;
     }
 
@@ -190,13 +253,33 @@ class Job extends AdminModel
         $jobs = [];
     
         foreach ($jobPackages as $jobPackage => $jobVariable) {
-            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+            $query = $this->where('status', $this::ACTIVE)
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
                 ->whereDate('created_at', $currentDay) // Lọc theo ngày hiện tại
-                ->where('country', 'VN')
-                ->get();
+                ->where('country', 'VN');
+            $provinceId = request()->input('province_id');
+            if ($provinceId != '') {
+                $query->where('province_id', $provinceId);
+            }
+    
+            $rankId = request()->input('rank_id');
+            if ($rankId != '') {
+                $query->where('rank_id', $rankId);
+            }
+    
+            $wageId = request()->input('wage_id');
+            if ($wageId != '') {
+                $query->where('wage_id', $wageId);
+            }
+    
+            $careerId = request()->input('career_id');
+            if ($careerId != '') {
+                $query->where('career_id', $careerId);
+            }
+    
+            $jobs[$jobVariable] = $query->get();
         }
         return $jobs;
     }
@@ -217,13 +300,28 @@ class Job extends AdminModel
         $jobs = [];
 
         foreach ($jobPackages as $jobPackage => $jobVariable) {
-            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+            $query = $this->where('status', $this::ACTIVE)
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
-                ->where('country', 'NN')
-                ->get();
+                ->where('country', 'NN');
+            $rankId = request()->input('rank_id');
+            if ($rankId != '') {
+                $query->where('rank_id', $rankId);
             }
+    
+            $wageId = request()->input('wage_id');
+            if ($wageId != '') {
+                $query->where('wage_id', $wageId);
+            }
+    
+            $careerId = request()->input('career_id');
+            if ($careerId != '') {
+                $query->where('career_id', $careerId);
+            }
+    
+            $jobs[$jobVariable] = $query->get();
+        }
         return $jobs;
     }
 
@@ -236,12 +334,28 @@ class Job extends AdminModel
         $jobs['job_gap'] = [];
         $jobs['job_uu_tien'] = [];
         $jobs['job_thuong'] = [];
-        $jobs['job_hot'] = $this->where('status', $this::ACTIVE)
+        $query = $this->where('status', $this::ACTIVE)
             ->where('jobpackage_id', JobPackage::HOT)
             ->where('start_hour', '<=', $currentHour)
             ->where('end_hour', '>=', $currentHour)
-            ->where('country', 'NN')
-            ->get();
+            ->where('country', 'NN');
+        $rankId = request()->input('rank_id');
+        if ($rankId != '') {
+            $query->where('rank_id', $rankId);
+        }
+
+        $wageId = request()->input('wage_id');
+        if ($wageId != '') {
+            $query->where('wage_id', $wageId);
+        }
+
+        $careerId = request()->input('career_id');
+        if ($careerId != '') {
+            $query->where('career_id', $careerId);
+        }
+
+        $jobs['job_hot'] = $query->get();
+
         return $jobs;
     }
 
@@ -254,12 +368,27 @@ class Job extends AdminModel
         $jobs['job_hot'] = [];
         $jobs['job_uu_tien'] = [];
         $jobs['job_thuong'] = [];
-        $jobs['job_gap'] = $this->where('status', $this::ACTIVE)
+        $query = $this->where('status', $this::ACTIVE)
             ->where('jobpackage_id', JobPackage::GAP)
             ->where('start_hour', '<=', $currentHour)
             ->where('end_hour', '>=', $currentHour)
-            ->where('country', 'NN')
-            ->get();
+            ->where('country', 'NN');
+        $rankId = request()->input('rank_id');
+        if ($rankId != '') {
+            $query->where('rank_id', $rankId);
+        }
+
+        $wageId = request()->input('wage_id');
+        if ($wageId != '') {
+            $query->where('wage_id', $wageId);
+        }
+
+        $careerId = request()->input('career_id');
+        if ($careerId != '') {
+            $query->where('career_id', $careerId);
+        }
+        $jobs['job_gap']= $query->get();
+
         return $jobs;
     }
 
@@ -279,14 +408,30 @@ class Job extends AdminModel
         $jobs = [];
     
         foreach ($jobPackages as $jobPackage => $jobVariable) {
-            $jobs[$jobVariable] = $this->where('status', $this::ACTIVE)
+            $query = $this->where('status', $this::ACTIVE)
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
                 ->whereDate('created_at', $currentDay) // Lọc theo ngày hiện tại
-                ->where('country', 'NN')
-                ->get();
+                ->where('country', 'NN');
+            $rankId = request()->input('rank_id');
+            if ($rankId != '') {
+                $query->where('rank_id', $rankId);
+            }
+    
+            $wageId = request()->input('wage_id');
+            if ($wageId != '') {
+                $query->where('wage_id', $wageId);
+            }
+    
+            $careerId = request()->input('career_id');
+            if ($careerId != '') {
+                $query->where('career_id', $careerId);
+            }
+    
+            $jobs[$jobVariable] = $query->get();
         }
+        
         return $jobs;
     }
 

@@ -24,9 +24,10 @@ class HomeController extends Controller
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
         $jobs = $model->getJobforJobPackageAndTime();
-        $employees = UserEmployee::limit(12)->get();
+        $employees = UserEmployee::where('is_top',1)->limit(12)->get();
         $params = [
             'items' => $items,
+            'route' => 'home',
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,

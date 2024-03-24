@@ -22,17 +22,8 @@
         <!-- Preloader -->
         <!-- <div class="preloader"></div> -->
         <!-- Main Header-->
-        <!-- <header class="main-header">
-            <div class="container-fluid">
-                <div class="main-box">
-                    <div class="nav-outer">
-                        <div class="logo-box">
-                            <div class="logo"><a href="{{route('home')}}"><img
-                                        src="{{ asset('website-assets/images/logo-2.svg')}}" alt="" title=""></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <header class="main-header">
+            <!-- Mobile Header -->
             <div class="mobile-header">
                 <div class="logo"><a href="index.html"><img src="{{ asset('website-assets/images/logo.svg')}}" alt=""
                             title=""></a></div>

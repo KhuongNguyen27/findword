@@ -311,3 +311,97 @@ span.thumb-cover {
 .job-detail__info--sections {
     margin-top: 16px;
 }
+
+/* Home banner */
+.hero-banner img {
+    /* height: 300px; */
+    border-radius: 12px;
+    object-fit: cover;
+}
+.company-block .name {
+    color: #212f3f;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 8px 0 0;
+    min-height: 40px;
+    overflow: hidden;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 100%;
+}
+.company-block .name {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.company-block .inner-box {
+    padding: 10px;
+    min-height: 185px;
+}
+.company-block .image {
+    height: 200px;
+    object-fit: cover;
+}
+.owl-carousel .nav-btn {
+    height: 30px;
+    position: absolute;
+    width: 30px;
+    cursor: pointer;
+    top: 100px !important;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.owl-carousel .next-slide{
+    right: -10px;
+}
+.owl-carousel .prev-slide{
+    left: 0;
+}
+.list-feature-jobs .btn-slick-arrow {
+    align-items: center;
+    aspect-ratio: 1/1;
+    border: 1px solid #00b14f;
+    border-radius: 50%;
+    color: #00b14f!important;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 32px;
+}
+.list-feature-jobs .btn-slick-arrow:not(.slick-disabled):hover {
+    background: #00b14f;
+    color: #fff!important;
+}
+.list-feature-jobs .see-more a {
+    color: #172530;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 19px;
+    -webkit-text-decoration-line: underline;
+    text-decoration-line: underline;
+}
+.list-feature-jobs .box-header__tool {
+    align-items: center;
+    display: flex;
+    gap: 11px;
+}
+.job-block .company-logo {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 75px;
+    transition: all 300ms ease;
+}
+div.popover {
+    max-width: 500px !important;
+    min-width: 500px !important;
+}
