@@ -1,3 +1,5 @@
+@include('website.includes.global.news')
+
 <!-- Main Footer -->
 <footer class="main-footer pt-5 pb-5">
     <div class="auto-container">

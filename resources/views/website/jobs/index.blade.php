@@ -37,7 +37,7 @@
                 <div class="content-column col-lg-12">
                     <div class="ls-outer">
                         <div class="ls-switcher">
-
+                            
                         </div>
                         <div class="row">
                             @foreach ($jobs['job_vip'] as $job)
@@ -108,124 +108,7 @@
     </section>
     <!-- End Job Section -->
 
-    <!-- Top Companies -->
-    <section class="top-companies pt-5 pb-5">
-        <div class="auto-container">
-            <div class="carousel-outer wow fadeInUp">
-                <div class="companies-carousel owl-carousel owl-theme default-dots">
-                    <div class="company-block-item">
-                        <figure class="image"><img
-                                src="https://static.topcv.vn/img/Sa%CC%89n%20pha%CC%82%CC%89m_%20di%CC%A3ch%20vu%CC%A3%201.png"
-                                alt=""></figure>
-                    </div>
-                    <div class="company-block-item">
-                        <figure class="image"><img src="https://static.topcv.vn/img/Banner_Center%20(1).png"
-                                alt=""></figure>
-                    </div>
-                    <div class="company-block-item">
-                        <figure class="image"><img src="https://static.topcv.vn/img/Apollo%20(2)%20(1).png" alt="">
-                        </figure>
-                    </div>
-                    <div class="company-block-item">
-                        <figure class="image"><img src="https://static.topcv.vn/img/Gia%CC%81%20tri%CC%A3.png"
-                                alt=""></figure>
-                    </div>
-                    <div class="company-block-item">
-                        <figure class="image"><img src="https://static.topcv.vn/img/Banner_Center%20(1).png"
-                                alt=""></figure>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Top Companies -->
-
-    <section class="ls-section pt-5 pb-5" style="background:#f3f5f7!important;">
-        <div class="auto-container">
-            <div class="row">
-                <div class="content-column col-lg-9">
-                    <div class="ls-outer">
-                        <div class="ls-switcher">
-
-                        </div>
-                        <div class="sec-title mb-4">
-                            <h2>Việc làm hấp dẫn</h2>
-                        </div>
-                        <div class="row">
-                            @foreach ($jobs['job_vip'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_gap'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_uu_tien'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_hot'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_thuong'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <img src="https://static.topcv.vn/img/Banner%20R1.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('website.includes.global.attractive-jobs')
 
     <!-- End News Section -->
 @endsection

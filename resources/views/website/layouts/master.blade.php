@@ -13,6 +13,8 @@
     <link rel="icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="{{ asset('website-assets/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
 </head>
 
 <body data-anm=".anm">
@@ -29,6 +31,7 @@
     <script src="{{ asset('website-assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/jquery.fancybox.js')}}"></script>
     <script src="{{ asset('website-assets/js/jquery.modal.min.js')}}"></script>
+    <script src="{{ asset('website-assets/swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/mmenu.polyfills.js')}}"></script>
     <script src="{{ asset('website-assets/js/mmenu.js')}}"></script>
     <script src="{{ asset('website-assets/js/appear.js')}}"></script>
@@ -39,6 +42,7 @@
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     <script src="{{ asset('website-assets/js/repeater.js')}}"></script>
+    <script src="{{ asset('website-assets/js/custom.js')}}"></script>
     <script>
     $(document).ready(function() {
         $('.bookmark-btn').on('click', function(e) {
