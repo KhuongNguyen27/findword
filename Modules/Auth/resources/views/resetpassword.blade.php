@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Reset password</h3>
+        <h3>Đặt lại mật khẩu</h3>
         <!--Login Form-->
         <form action="{{ route('auth.postReset',$data['token']) }}" method="POST">
             @if (session('error'))
@@ -41,7 +41,7 @@
                 </div> 
             </div> -->
             <div class="form-group">
-                <button class="theme-btn btn-style-one" type="submit">Đặt lại mật khẩu</button>
+                <button class="theme-btn btn-style-one" type="submit">Xác nhận</button>
             </div>
         </form>
     </div>
