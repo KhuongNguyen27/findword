@@ -45,6 +45,9 @@
                                 object-fit: contain;
                                 margin-left: 230px;
                             }
+                            .label-required {
+                                color: red;
+                            }
                             </style>
 
 
@@ -60,142 +63,115 @@
                                 </div>
                                 <div class="text">ảnh .jpg & .png</div>
                             </div> --}}
-                            <form class="default-form" action="{{ route('employee.profile.update', $user->id) }}"
-                                method="post" enctype="multipart/form-data">
+                            <form class="default-form" action="{{ route('employee.profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <span><strong>{{ __('logo_upload') }}</strong></span>
                                 <div class="uploading-outer">
                                     <div class="uploadButton">
-                                        <input class="uploadButton-input" type="file" name="image"
-                                            accept="image/*, application/pdf" id="upload" multiple>
-                                        <label class="uploadButton-button ripple-effect"
-                                            for="upload">{{ __('logo_browse') }}</label>
+                                        <input class="uploadButton-input" type="file" name="image" accept="image/*, application/pdf" id="upload" multiple>
+                                        <label class="uploadButton-button ripple-effect" for="upload">{{ __('logo_browse') }}</label>
                                         <span class="uploadButton-file-name"></span>
                                     </div>
                                     <div class="new-image-preview" style="margin-left:0px">
                                         <?php if (isset($user_employee->image)):?>
-                                        <img src="<?php echo asset('/storage/images/'.$user_employee->image); ?>"
-                                            alt="Preview Image">
+                                        <img src="<?php echo asset('/storage/images/'.$user_employee->image); ?>" alt="Preview Image">
                                         <?php endif; ?>
                                     </div>
                                 </div>
                                 <script>
-                                const uploadInput = document.querySelector('.uploadButton-input');
-                                const fileNameSpan = document.querySelector('.uploadButton-file-name');
-                                const imagePreviewDiv = document.querySelector('.image-preview');
+                                    const uploadInput = document.querySelector('.uploadButton-input');
+                                    const fileNameSpan = document.querySelector('.uploadButton-file-name');
+                                    const imagePreviewDiv = document.querySelector('.image-preview');
 
-                                uploadInput.addEventListener('change', function() {
-                                    const files = Array.from(uploadInput.files);
-                                    const fileNames = files.map(file => file.name);
-                                    fileNameSpan.textContent = fileNames.join(', ');
+                                    uploadInput.addEventListener('change', function() {
+                                        const files = Array.from(uploadInput.files);
+                                        const fileNames = files.map(file => file.name);
+                                        fileNameSpan.textContent = fileNames.join(', ');
 
-                                    if (files.length > 0) {
-                                        const fileReader = new FileReader();
-                                        fileReader.onload = function(event) {
-                                            const imagePreview = document.createElement('img');
-                                            imagePreview.src = event.target.result;
-                                            imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh trước nếu có
-                                            imagePreviewDiv.appendChild(imagePreview);
-                                        };
-                                        fileReader.readAsDataURL(files[0]);
-                                    } else {
-                                        imagePreviewDiv.innerHTML =
-                                            ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
-                                    }
-                                });
+                                        if (files.length > 0) {
+                                            const fileReader = new FileReader();
+                                            fileReader.onload = function(event) {
+                                                const imagePreview = document.createElement('img');
+                                                imagePreview.src = event.target.result;
+                                                imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh trước nếu có
+                                                imagePreviewDiv.appendChild(imagePreview);
+                                            };
+                                            fileReader.readAsDataURL(files[0]);
+                                        } else {
+                                            imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
+                                        }
+                                    });
                                 </script>
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('employer_name') }}</label>
-                                        <input type="text" name="user_name" value="{{ $user->name }}"
-                                            placeholder="Tên nhà tuyển dụng">
+                                        <label>{{ __('employer_name') }}<span class="label-required">*</span></label>
+                                        <input type="text" name="user_name" value="{{ $user->name }}" placeholder="Tên nhà tuyển dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('email_address') }}</label>
-                                        <input type="text" name="email" value="{{ $user->email }}"
-                                            placeholder="Email Nhà Tuyển Dụng">
+                                        <label>{{ __('email_address') }}<span class="label-required">*</span></label>
+                                        <input type="text" name="email" value="{{ $user->email }}" placeholder="Email Nhà Tuyển Dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                         @endif
                                     </div>
 
-                                    <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_name') }}</label>
-                                        <input id="name" type="text" name="name"
-                                            value="{{ isset($user_employee->name) ? $user_employee->name : '' }}"
-                                            placeholder="">
+                                        <label>{{ __('company_name') }}<span class="label-required">*</span></label>
+                                        <input id="name" type="text" name="name" value="{{ isset($user_employee->name) ? $user_employee->name : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
 
-
-                                    <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_address') }}</label>
-                                        <input type="text" name="address"
-                                            value="{{ isset($user_employee->address) ? $user_employee->address : '' }}"
-                                            placeholder="">
+                                        <label>{{ __('company_address') }}<span class="label-required">*</span></label>
+                                        <input type="text" name="address" value="{{ isset($user_employee->address) ? $user_employee->address : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
                                         @endif
                                     </div>
 
-                                    <!-- Input -->
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('phone') }}</label>
-                                        <input type="text" name="phone"
-                                            value="{{ isset($user_employee->phone) ? $user_employee->phone : '' }}"
-                                            placeholder="">
+                                        <label>{{ __('phone') }}<span class="label-required">*</span></label>
+                                        <input type="text" name="phone" value="{{ isset($user_employee->phone) ? $user_employee->phone : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_website') }}</label>
-                                        <input type="text" name="website"
-                                            value="{{ isset($user_employee->website) ? $user_employee->website : '' }}"
-                                            placeholder="">
+                                    <div class="form-group col-lg-6 col-md12">
+                                        <label>{{ __('company_website') }}<span class="label-required">*</span></label>
+                                        <input type="url" name="website" value="{{ isset($user_employee->website) ? $user_employee->website : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('website') }}</p>
                                         @endif
                                     </div>
-                                    {{-- <div class="form-group col-lg-12 col-md-12">
-                                        <label>Mật Khẩu</label>
-                                        <input type="password" name="password" value="" placeholder="">
-                                        @if ($errors->any())
-                                        <p style="color:red">{{ $errors->first('password') }}</p>
-                                    @endif
-                                </div> --}}
 
-                                <!-- About Company -->
-                                <div class="form-group col-lg-12 col-md-12">
-                                    <label>Giới thiệu công ty</label>
-                                    <textarea
-                                        name="about">{{ isset($user_employee->about) ? $user_employee->about : 'Mô tả về công ty của bạn' }}</textarea>
-                                    @if ($errors->any())
-                                    <p style="color:red">{{ $errors->first('about') }}</p>
-                                    @endif
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>Giới thiệu công ty<span class="label-required">*</span></label>
+                                        <textarea name="about" id="about">{{ isset($user_employee->about) ? $user_employee->about : 'Mô tả về công ty của bạn' }}</textarea>
+                                        @if ($errors->any())
+                                        <p style="color:red">{{ $errors->first('about') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>Ảnh bìa<span class="label-required">*</span></label>
+                                        <input type="file" name="background" class="form-control">
+                                        @if ($errors->any())
+                                        <p style="color:red">{{ $errors->first('background') }}</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
+                                    </div>
                                 </div>
-                                <div class="form-group col-lg-12 col-md-12">
-                                    <label>Ảnh bìa</label>
-                                    <input type="file" name="background" class="form-control">
-                                    @if ($errors->any())
-                                    <p style="color:red">{{ $errors->first('background') }}</p>
-                                    @endif
-                                </div>
-                                <!-- Input -->
-                                <div class="form-group col-lg-6 col-md-12">
-                                    <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
-                                </div>
-                        </div>
-                        </form>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -205,7 +181,6 @@
     </div>
     </div>
 </section>
-
 <!-- End Dashboard -->
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
