@@ -74,12 +74,12 @@ class AdminUserController extends Controller
     {
         $type = $request->type;
         try {
-            $items = $this->model::showUserCVs($request,null,$type);
+            $item = $this->model::findOrFail($request->id);
 
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
-                'items'         => $items
+                'item'         => $item
             ];
             return view($this->view_path.'showCVs', $params);
         } catch (QueryException $e) {
