@@ -394,3 +394,14 @@ span.thumb-cover {
     display: flex;
     gap: 11px;
 }
+.job-block .company-logo {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    width: 75px;
+    transition: all 300ms ease;
+}
+div.popover {
+    max-width: 500px !important;
+    min-width: 500px !important;
+}

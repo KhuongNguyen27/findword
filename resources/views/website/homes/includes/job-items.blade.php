@@ -33,6 +33,7 @@
                                     'job_info' => true,
                                     'bookmark' => true,
                                     'simple' => true,
+                                    'company_name' => true,
                                     ])
                                 </div>
                                 @endforeach
@@ -48,6 +49,7 @@
                                     'job_info' => true,
                                     'bookmark' => true,
                                     'simple' => true,
+                                    'company_name' => true,
                                     ])
                                 </div>
                                 @endforeach
@@ -63,6 +65,7 @@
                                     'job_info' => true,
                                     'bookmark' => true,
                                     'simple' => true,
+                                    'company_name' => true,
                                     ])
                                 </div>
                                 @endforeach
@@ -78,6 +81,7 @@
                                     'job_info' => true,
                                     'bookmark' => true,
                                     'simple' => true,
+                                    'company_name' => true,
                                     ])
                                 </div>
                                 @endforeach
