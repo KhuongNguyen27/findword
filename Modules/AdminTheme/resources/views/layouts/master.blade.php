@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/dark-theme.css') }}" rel="stylesheet">
-    <x-admintaxonomy::head.tinymce-config/>
+    <x-admintheme::head.tinymce-config/>
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-admintheme', 'resources/assets/sass/app.scss') }} --}}
