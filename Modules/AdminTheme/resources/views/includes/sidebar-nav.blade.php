@@ -91,7 +91,7 @@
         </a>
         <ul class="mm-collapse">
             <li>
-                <a href="{{ route('admin.transactions') }}">
+                <a href="{{ route('admin.transactions.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('list') }}</a>
             </li>
         </ul>

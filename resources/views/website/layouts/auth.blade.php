@@ -28,9 +28,9 @@
                 <div class="logo"><a href="index.html"><img src="{{ asset('website-assets/images/logo.svg')}}" alt=""
                             title=""></a></div>
             </div>
-            <!-- Mobile Nav -->
             <div id="nav-mobile"></div>
-        </header>
+        </header> -->
+        @include('website.includes.header')
         <!--End Main Header -->
         <!-- Info Section -->
         <div class="login-section">
@@ -41,7 +41,6 @@
             </div>
         </div>
         <!-- End Info Section -->
-
 
     </div><!-- End Page Wrapper -->
 

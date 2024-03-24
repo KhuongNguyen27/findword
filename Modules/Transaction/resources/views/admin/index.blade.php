@@ -1,10 +1,15 @@
 @extends('admintheme::layouts.master')
 @section('content')
+@include('admintheme::includes.globals.breadcrumb',[
+'page_title' => "Danh sách giao dịch",
+'actions' => ['add_new' => route($route_prefix.'create')]
+])
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
         <div class="col col-xs-6">
-            <input class="form-control" name="id" type="text" placeholder="{{ __('transaction_code') }}" value="{{ request()->id }}">
+            <input class="form-control" name="id" type="text" placeholder="{{ __('transaction_code') }}"
+                value="{{ request()->id }}">
         </div>
         <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
@@ -40,6 +45,7 @@
                             <th>{{ __('name') }}</th>
                             <th>{{__('purpose')}}</th>
                             <th>{{ __('recharge_level') }}</th>
+                            <th>Thời gian</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
@@ -54,6 +60,7 @@
                             </td>
                             <td>{{ $item->type  ?? '' }}</td>
                             <td>{{ number_format($item->amount, 0, '', '.') }}</td>
+                            <td>{{ $item->created_at->format('d/m/Y') }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>
                                 @if($item->status == $item::INACTIVE)
@@ -118,8 +125,11 @@ jQuery(document).ready(function() {
                 if (res.success) {
                     let formData = res.data;
                     // Bắt giá trị của input radio "status"
+                    console.log(res.data);
                     let status = formData.status;
                     formUpdate.prop('action', action);
+                    formUpdate.find('.input-name-update input').val(formData.user_id);
+                    formUpdate.find('.input-amount-update input').val(formData.amount);
                     formUpdate.find('input[name="status"][value="' + status + '"]').prop(
                         'checked', true);
                 }
