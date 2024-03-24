@@ -109,6 +109,7 @@ class Job extends AdminModel
                 ->where('jobpackage_id', $jobPackage)
                 ->where('start_hour', '<=', $currentHour)
                 ->where('end_hour', '>=', $currentHour)
+                ->limit(12)
                 ->get();
             }
         return $jobs;
