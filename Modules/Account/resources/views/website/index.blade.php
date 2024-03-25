@@ -38,7 +38,8 @@
                             @foreach($items as $item)
                             @if (array_search($item->id, $package_current))
                             <div class="pricing-table col-lg-4 col-md-6 col-sm-12">
-                                @if(isset($item->user) && $item->user->where('user_id',Auth::id())->first()->is_current==1)
+                                @if(isset($item->user) &&
+                                $item->user->where('user_id',Auth::id())->first()->is_current==1)
                                 <span style="color:red" class="form-control">Gói hiện tại</span>
                                 @endif
                                 <div class="inner-box">
