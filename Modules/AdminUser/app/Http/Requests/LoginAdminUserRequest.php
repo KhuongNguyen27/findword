@@ -5,7 +5,7 @@ namespace Modules\AdminUser\app\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreAdminUserRequest extends FormRequest
+class LoginAdminUserRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,14 +15,6 @@ class StoreAdminUserRequest extends FormRequest
         $rules = [
             'email' => 'required|email|max:255',
             'password' => 'required|max:255',
-            'phone' => 'required',
-            'name' => 'required',
-            'birthdate' => 'required',
-            'experience_years' => 'required',
-            'gender' => 'required',
-            'city' => 'required',
-            'address' => 'required',
-            'outstanding_achievements' => 'required',
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['email'] = 'required';

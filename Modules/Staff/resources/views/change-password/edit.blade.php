@@ -42,38 +42,40 @@
                                         object-fit: contain;
                                         margin-left: 230px;
                                     }
+                                    .label-required {
+                                        color: red;
+                                    }
                                 </style>
-                                <form class="default-form"
-                                    action="{{ route('staff.profile.changePassword', $user->id) }}" method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="form-group col-lg-12 col-md-12">
-                                            <label>{{ __('current_password') }}:</label>
-                                            <input type="password" name="password" value="" placeholder="">
-                                            @if ($errors->any())
-                                                <p style="color:red">{{ $errors->first('password') }}</p>
-                                            @endif
-                                        </div>
-                                        <div class="form-group col-lg-12 col-md-12">
-                                            <label>{{ __('new_password') }}:</label>
-                                            <input type="password" name="newpassword" value="" placeholder="">
-                                            @if ($errors->any())
-                                                <p style="color:red">{{ $errors->first('newpassword') }}</p>
-                                            @endif
-                                        </div>
-                                        <div class="form-group col-lg-12 col-md-12">
-                                            <label>{{ __('repeat_password') }}:</label>
-                                            <input type="password" name="confirmpassword" value="" placeholder="">
-                                            @if ($errors->any())
-                                                <p style="color:red">{{ $errors->first('confirmpassword') }}</p>
-                                            @endif
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-12">
-                                            <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
-                                        </div>
+                               <form class="default-form" action="{{ route('staff.profile.changePassword', $user->id) }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>{{ __('current_password') }}: <span class="label-required">*</span></label>
+                                        <input type="password" name="password" value="" placeholder="">
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('password') }}</p>
+                                        @endif
                                     </div>
-                                </form>
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>{{ __('new_password') }}: <span class="label-required">*</span></label>
+                                        <input type="password" name="newpassword" value="" placeholder="">
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('newpassword') }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <label>{{ __('repeat_password') }}: <span class="label-required">*</span></label>
+
+                                        <input type="password" name="confirmpassword" value="" placeholder="">
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('confirmpassword') }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
+                                    </div>
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>

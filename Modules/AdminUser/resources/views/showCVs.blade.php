@@ -1,67 +1,86 @@
 @extends('admintheme::layouts.master')
 @section('content')
-@include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách CV',
-'actions' => [
-//'add_new' => route($route_prefix.'create',['type'=>request()->type]),
-//'export' => route($route_prefix.'export'),
-]
-])
-
-<!-- Item actions -->
-<div class="card mt-4">
-    <div class="card-body">
-        <div class="product-table">
-            <table class="table align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>{{ __('name') }}</th>
-                        <th>{{ __('email') }}</th>
-                        <th>{{ __('status') }}</th>
-                        <th>{{ __('created_at') }}</th>
-                        <th>{{ __('action') }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if( count( $items ) )
-                    @foreach( $items as $item )
-                    <tr>
-                        <td>{{ $item->cv_file }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{!! $item->status_fm !!}</td>
-                        <td>{{ $item->created_at_fm }}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
-                                    type="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item"
-                                            href="{{ route($route_prefix.'showCV',['id' => $item->id, 'type'=>'UserCV']) }}">
-                                            Detail
-                                        </a>
-                                    </li>
-                                </ul>
+    @include('admintheme::includes.globals.breadcrumb',[
+        'page_title' => 'Chi tiết tài khoản'
+    ])
+    <form action="" method="post" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="type" value="{{ request()->type ?? $item->type }}">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('name') }} <span class="label-required text-danger">*</span></label>
+                                <input style="border: none; background-color: white" disabled readonly type="text" class="form-control" name="name" value="{{ $item->name ?? old('name') }}" >
+                                <x-admintheme::form-input-error field="name" />
                             </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                    <tr>
-                        <td colspan="5" class="text-center">{{ __('no_item_found') }}</td>
-                    </tr>
-                    @endif
-                </tbody>
-            </table>
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('email') }} <span class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="email" value="{{ $item->email ?? old('email') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="email" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('phone') }} <span class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="phone" value="{{ $item->staff->phone ?? old('phone') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="phone" />
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('address') }} <span class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="address" value="{{ $item->staff->address ?? old('address') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="address" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('province_city') }} <span class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="city" value="{{ $item->staff->city ?? old('city') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="city" />
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">Ngày sinh <span class="label-required text-danger">*</span></label>
+                                <input type="date" class="form-control" name="birthdate" value="{{ $item->staff->birthdate ?? old('birthdate') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="birthdate" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('gender') }} <span class="label-required text-danger">*</span></label>
+                                <select name="gender" class="form-control" style="border: none; background-color: white" disabled >
+                                    <option value="nam" {{ $item->staff->gender == 'nam' ? 'selected' : '' }} disabled >Nam
+                                    </option>
+                                    <option value="nu" {{ $item->staff->gender == 'nu' ? 'selected' : '' }} disabled >Nữ
+                                    </option>
+                                    <option value="khac" {{ $item->staff->gender == 'khac' ? 'selected' : '' }} disabled >Khác
+                                    </option>
+                                </select>
+                                <x-admintheme::form-input-error field="gender" />
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">Số năm kink nghiệm <span class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="experience_years" value="{{ $item->staff->experience_years ?? old('experience_years') }}" style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="experience_years" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="mb-3">{{ __('outstanding_achievements') }} <span class="label-required text-danger">*</span></label>
+                            <input type="text" class="form-control" name="outstanding_achievements" value="{{ $item->staff->outstanding_achievements ?? old('outstanding_achievements') }}" style="border: none; background-color: white" disabled readonly>
+                            <x-admintheme::form-input-error field="outstanding_achievements" />
+                        </div>
+                    </div>
+                </div>
+                
+                @yield('custom-fields-left')
+            </div>
+            <div class="col-12 col-lg-4">
+                @include('adminuser::includes.form-right-show')
+            </div>
         </div>
     </div>
-    @if( count( $items ) )
-    <div class="card-footer pb-0">
-        @include('admintheme::includes.globals.pagination')
-    </div>
-    @endif
-</div>
-
+</form>
+<!--end row-->
 @endsection

@@ -138,6 +138,9 @@
    <script>
        CKEDITOR.replace('description');
    </script>
+    <script>
+        CKEDITOR.replace('about');
+    </script>
 </body>
 
 </html>

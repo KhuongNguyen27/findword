@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
+use Modules\AdminUser\app\Http\Requests\LoginAdminUserRequest;
 
 class AdminAuthController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminAuthController extends Controller
         return view('adminuser::auth.login');
     }
 
-    public function postLogin(StoreAdminUserRequest $request)
+    public function postLogin(LoginAdminUserRequest $request)
     {
         Auth::logout();
         try
