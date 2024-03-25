@@ -15,6 +15,9 @@ class Account extends Model
      */
     const ACTIVE    = 1;
     const INACTIVE  = 0;
+    const NORMAL    = 1;
+    const PREMIUM  = 2;
+    const VIP  = 3;
     protected $table = "accounts"; 
     protected $fillable = [
         'accountname',

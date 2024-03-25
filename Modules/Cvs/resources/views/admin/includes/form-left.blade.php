@@ -14,7 +14,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('career') }}</label>
-            <select name="career_ids[]" class="form-select js-example-basic-multiple" multiple="multiple">
+            <select name="career_ids[]" class="form-select select2" multiple="multiple">
                 <!-- <option value="" {{ (old('career_ids')) === 'null'? 'selected' : '' }}>
                     {{ __('Left click to select multiple designs') }}
                 </option> -->
@@ -42,7 +42,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">Thiết kế</label>
-            <select name="style_ids[]" class="form-select js-example-basic-multiple" multiple="multiple">
+            <select name="style_ids[]" class="form-select select2" multiple="multiple">
                 <!-- <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>
                     {{ __('Left click to select multiple designs') }}
                 </option> -->

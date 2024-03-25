@@ -22,6 +22,8 @@ class UserAccount extends Model
         'account_id',
         'duration_id',
         'register_date',
+        'expiration_date',
+        'is_current'
     ];
     
     // Relationship
