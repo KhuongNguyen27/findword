@@ -2,7 +2,7 @@
  <section class="news-section pt-5 pb-5">
      <div class="auto-container">
          <div class="sec-title text-center">
-             <h2>Cẩm Nang Nghề Nghiệp</h2>
+             <h2>{{ __('career_guide') }}</h2>
              <!-- <div class="text">Fresh job related news content posted each day.</div> -->
          </div>
 
@@ -15,12 +15,12 @@
                      </div>
                      <div class="lower-content">
                          <ul class="post-meta">
-                             <li><a href="#">August 31, 2021</a></li>
-                             <li><a href="#">12 Comment</a></li>
+                            <li><a href="#">{{ now()->format('d / n / Y') }}</a></li>
+                             <li><a href="#">12 {{ __('comment') }}</a></li>
                          </ul>
-                         <h3><a href="blog-single.html">Attract Sales And Profits</a></h3>
-                         <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                         <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+                         <h3><a href="blog-single.html">{{ __('attract_sales_and_profits') }}</a></h3>
+                         <p class="text">Nâng cao năng lực</p>
+                         <a href="#" class="read-more">{{ __('read_more') }}<i class="fa fa-angle-right"></i></a>
                      </div>
                  </div>
              </div>
@@ -33,12 +33,13 @@
                      </div>
                      <div class="lower-content">
                          <ul class="post-meta">
-                             <li><a href="#">August 31, 2021</a></li>
-                             <li><a href="#">12 Comment</a></li>
+                            <li><a href="#">{{ now()->format('d / n / Y') }}</a></li>
+                             <li><a href="#">12 {{ __('comment') }}</a></li>
                          </ul>
-                         <h3><a href="blog-single.html">5 Tips For Your Job Interviews</a></h3>
-                         <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                         <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+                         <h3><a href="blog-single.html">5 {{ __('tips_for_your_job_interviews') }}</a></h3>
+                         <p class="text">1. {{ __('calm') }}</p>
+                         <p class="text">2. {{ __('neat_uniform') }}</p>
+                         <a href="#" class="read-more">{{ __('read_more') }}<i class="fa fa-angle-right"></i></a>
                      </div>
                  </div>
              </div>
@@ -51,12 +52,12 @@
                      </div>
                      <div class="lower-content">
                          <ul class="post-meta">
-                             <li><a href="#">August 31, 2021</a></li>
-                             <li><a href="#">12 Comment</a></li>
+                            <li><a href="#">{{ now()->format('d / n / Y') }}</a></li>
+                             <li><a href="#">12 {{ __('comment') }}</a></li>
                          </ul>
-                         <h3><a href="blog-single.html">An Overworked Newspaper Editor</a></h3>
-                         <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
-                         <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+                         <h3><a href="blog-single.html"></a></h3>
+                         <p class="text"></p>
+                         <a href="#" class="read-more">{{ __('read_more') }}<i class="fa fa-angle-right"></i></a>
                      </div>
                  </div>
              </div>
