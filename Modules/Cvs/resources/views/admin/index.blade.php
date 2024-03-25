@@ -10,10 +10,24 @@
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
-        <div class="col col-xs-6">
-            <input class="form-control" name="name" type="text" placeholder="Tên CV mẫu" value="{{ request()->name }}">
+        <div class="col col-xs-3">
+            <input class="form-control" name="id" type="number" placeholder="Mã số" value="{{ request()->id ?? '' }}">
         </div>
-        <div class="col col-xs-6">
+        <div class="col col-xs-3">
+            <input class="form-control" name="name" type="text" placeholder="Tên CV mẫu"
+                value="{{ request()->name ?? ''  }}">
+        </div>
+        <div class="col col-xs-3">
+            <select name="language" class="form-control">
+                <option value="">Ngôn ngữ sử dụng</option>
+                <option value="Tiếng Việt" {{ request()->language == 'Tiếng Việt' ? 'selected' : '' }}>Tiếng Việt
+                </option>
+                <option value="Tiếng Anh" {{ request()->language == 'Tiếng Anh' ? 'selected' : '' }}>Tiếng Anh</option>
+                <option value="Tiếng Nhật" {{ request()->language == 'Tiếng Nhật' ? 'selected' : '' }}>Tiếng Nhật
+                </option>
+            </select>
+        </div>
+        <div class="col col-xs-3">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>{{ __('search') }}</button>
             </div>

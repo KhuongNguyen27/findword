@@ -14,10 +14,10 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('career') }}</label>
-            <select name="career_ids[]" class="form-control" multiple="multiple">
-                <option value="" {{ (old('career_ids')) === 'null'? 'selected' : '' }}>
-                    {{ __('Left click and hold Ctrl to select multiple designs') }}
-                </option>
+            <select name="career_ids[]" class="form-select js-example-basic-multiple" multiple="multiple">
+                <!-- <option value="" {{ (old('career_ids')) === 'null'? 'selected' : '' }}>
+                    {{ __('Left click to select multiple designs') }}
+                </option> -->
                 @if(isset($item))
                 @foreach ($careers as $career)
                 <option
@@ -42,10 +42,10 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">Thiết kế</label>
-            <select name="style_ids[]" class="form-control" multiple="multiple">
-                <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>
-                    {{ __('Left click and hold Ctrl to select multiple designs') }}
-                </option>
+            <select name="style_ids[]" class="form-select js-example-basic-multiple" multiple="multiple">
+                <!-- <option value="" {{ (old('style_ids')) === 'null'? 'selected' : '' }}>
+                    {{ __('Left click to select multiple designs') }}
+                </option> -->
                 @if(isset($item))
                 @foreach ($styles as $style)
                 <option
@@ -72,16 +72,16 @@
             <label class="mb-3">{{ __('language') }}</label>
             <select name="language" class="form-control">
                 <option value="" {{ old('language') === 'null' ? 'selected' : ''}}>{{ __('select_language') }}</option>
-                <option value="TiengViet"
-                    {{ isset($item) && $item->language == "TiengViet" ? 'selected' : (old('language') == "TiengViet" ? 'selected' : ''  ) }}>
+                <option value="Tiếng Việt"
+                    {{ isset($item) && $item->language == "Tiếng Việt" ? 'selected' : (old('language') == "Tiếng Việt" ? 'selected' : ''  ) }}>
                     {{ __('vietnamese') }}
                 </option>
-                <option value="TiengAnh"
-                    {{ isset($item) && $item->language == "TiengAnh" ? 'selected' : (old('language') == "TiengAnh" ? 'selected' : "") }}>
+                <option value="Tiếng Anh"
+                    {{ isset($item) && $item->language == "Tiếng Anh" ? 'selected' : (old('language') == "Tiếng Anh" ? 'selected' : "") }}>
                     {{ __('english') }}
                 </option>
-                <option value="TiengNhat"
-                    {{ isset($item) && $item->language == "TiengNhat"? 'selected' : (old('language') == "TiengNhat" ? 'selected' : "") }}>
+                <option value="Tiếng Nhật"
+                    {{ isset($item) && $item->language == "Tiếng Nhật"? 'selected' : (old('language') == "Tiếng Nhật" ? 'selected' : "") }}>
                     {{ __('japanese') }}
                 </option>
             </select>

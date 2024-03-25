@@ -21,6 +21,7 @@ class Cv extends Model
         'image',
         'language',
         'file_cv',
+        'status',
     ];
     public function styles(){
         return $this->belongsToMany(Style::class,'cv_style');

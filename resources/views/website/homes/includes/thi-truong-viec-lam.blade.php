@@ -15,7 +15,8 @@
                         <div class id="sliderNewJobPublish">
                             <div class="job-item active animated zoomIn">
                                 <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo" src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
+                                    <img class="job-item__logo"
+                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
                                 </a>
                                 <div>
                                     <a class="job-item__link" target="_blank">
@@ -29,7 +30,8 @@
                             </div>
                             <div class="job-item active animated zoomIn">
                                 <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo" src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
+                                    <img class="job-item__logo"
+                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
                                 </a>
                                 <div>
                                     <a class="job-item__link" target="_blank">
@@ -43,7 +45,8 @@
                             </div>
                             <div class="job-item active animated zoomIn">
                                 <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo" src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
+                                    <img class="job-item__logo"
+                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
                                 </a>
                                 <div>
                                     <a class="job-item__link" target="_blank">
@@ -112,4 +115,3 @@
     </div>
 </div>
 <link href="{{ asset('website-assets/css/dashboard.css')}}" rel="stylesheet">
-
