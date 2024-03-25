@@ -27,7 +27,7 @@
             </ul>
         </li>
         @if (Auth::check() && (Auth::user()->type == "employee"))
-        <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
+        <li><a href="{{ route('website.account.index') }}">Bảng giá</a></li>
         @endif
         <!-- Only for Mobile View -->
         <li class="mm-add-listing">
