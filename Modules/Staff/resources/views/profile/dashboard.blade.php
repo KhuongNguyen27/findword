@@ -87,8 +87,4 @@
 
 
 
-        git add    Modules/AdminHome/lang/vi.json
-        git add        Modules/Job/resources/views/includes/components/job-item.blade.php
-        git add        Modules/Job/resources/views/includes/components/quickview-job-tooplip.blade.php
-
-        git add     Modules/Staff/resources/views/profile/dashboard.blade.php
+  
