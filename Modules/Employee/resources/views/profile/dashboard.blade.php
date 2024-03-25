@@ -18,7 +18,7 @@
         </div>
         @endif
         <div class="row">
-            <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
                 <div class="ui-item">
                     <div class="left">
                         <i class="icon flaticon-briefcase"></i>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
                 <div class="ui-item ui-red">
                     <div class="left">
                         <i class="icon la la-file-invoice"></i>
@@ -40,18 +40,8 @@
                     </div>
                 </div>
             </div>
-            <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                <div class="ui-item ui-yellow">
-                    <div class="left">
-                        <i class="icon la la-comment-o"></i>
-                    </div>
-                    <div class="right">
-                        <h4>0</h4>
-                        <p>{{ __('message') }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="ui-block col-xl-3 col-lg-6 col-md-6 col-sm-12">
+          
+            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
                 <div class="ui-item ui-green">
                     <div class="left">
                         <i class="icon la la-bookmark-o"></i>
@@ -67,52 +57,10 @@
         <div class="row">
 
 
-            <div class="col-xl-7 col-lg-12">
-                <!-- Graph widget -->
-                <div class="graph-widget ls-widget">
-                    <div class="tabs-box">
-                        <div class="widget-title">
-                            <h4>Số người xem hồ sơ</h4>
-                            <div class="chosen-outer">
-                                <!--Tabs Box-->
-                                <select class="chosen-select">
-                                    <option>6 tháng trước</option>
-                                </select>
-                            </div>
-                        </div>
+          
 
-                        <div class="widget-content">
-                            <canvas id="chart" width="100" height="45"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-5 col-lg-12">
-                <!-- Notification Widget -->
-                <div class="notification-widget ls-widget">
-                    <div class="widget-title">
-                        <h4>Thông Báo</h4>
-                    </div>
-                    <div class="widget-content">
-                        <ul class="notification-list">
-                            <li><span class="icon flaticon-briefcase"></span> <strong>Wade Warren</strong> applied for a
-                                job <span class="colored">Web Developer</span></li>
-                            <li><span class="icon flaticon-briefcase"></span> <strong>Henry Wilson</strong> applied for
-                                a job <span class="colored">Senior Product Designer</span></li>
-                            <li class="success"><span class="icon flaticon-briefcase"></span> <strong>Raul
-                                    Costa</strong> applied for a job <span class="colored">Product Manager, Risk</span>
-                            </li>
-                            <li><span class="icon flaticon-briefcase"></span> <strong>Jack Milk</strong> applied for a
-                                job <span class="colored">Technical Architect</span></li>
-                            <li class="success"><span class="icon flaticon-briefcase"></span> <strong>Michel
-                                    Arian</strong> applied for a job <span class="colored">Software Engineer</span></li>
-                            <li><span class="icon flaticon-briefcase"></span> <strong>Ali Tufan</strong> applied for a
-                                job <span class="colored">UI Designer</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      
+         
 
 
             {{-- <div class="col-lg-12">
