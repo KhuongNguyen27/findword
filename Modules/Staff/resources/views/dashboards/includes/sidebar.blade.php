@@ -20,7 +20,7 @@
             <li class="@if ($currentRouteName == 'staff.job-applied') active @endif"><a href="{{ route('staff.job-applied') }}"><i
                         class="la la-briefcase"></i>{{ __('submit_job') }}</a></li>
             <li class="@if ($currentRouteName == 'staff.profile.editpassword') active @endif"><a href="{{ route('staff.profile.editpassword') }}"><i
-                        class="la la-briefcase"></i>{{ __('change_password') }}</a></li>
+                        class="la la-key"></i>{{ __('change_password') }}</a></li>
             {{-- <li><a href="{{ route('staff.profile.editpassword') }}"><i class="la la-box"></i>Đổi mật khẩu</a></li> --}}
 
             <li class="@if ($currentRouteName == 'auth.logout') active @endif"><a href="{{ route('auth.logout') }}"><i
