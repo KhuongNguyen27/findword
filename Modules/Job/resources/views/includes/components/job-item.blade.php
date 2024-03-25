@@ -10,7 +10,7 @@ span.flaticon-bookmark.active {
             <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
-            @if (@$company_name || true)
+            @if (isset($company_name))
             <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
                 class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
             @endif
