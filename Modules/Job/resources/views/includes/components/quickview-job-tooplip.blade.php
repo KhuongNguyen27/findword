@@ -9,10 +9,12 @@
                 <h2 class="title">
                     {{ $job->name }}
                 </h2>
+                @if (isset($company_name))
                 <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
                     class="company-name">
                     {{ $job->userEmployee->name }}
                 </a>
+                @endif
                 @if( auth()->check() )
                     <label class="salary">{{ $job->wage->name ?? '' }}</label>
                 @else
