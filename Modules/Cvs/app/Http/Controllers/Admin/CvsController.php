@@ -25,13 +25,16 @@ class CvsController extends Controller
     public function index(Request $request)
     {
         $query = $this->model::query()->whereStatus($this->model::ACTIVE);
+        if($request->id){
+            $query->whereId($request->id);
+        }
         if($request->name){
-            $query->whereName($request->name);
+            $query->where('name','LIKE', '%'.$request->name.'%');
         }
-        if($request->status){
-            $query->whereName($request->status);
+        if($request->language){
+            $query->where('language','LIKE','%'.$request->language.'%');
         }
-        $items = $query->paginate(5);
+        $items = $query->orderBy('created_at','desc')->paginate(5);
         $param = [
             'items' => $items,
             'model' => $this->model,
@@ -64,6 +67,7 @@ class CvsController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->except('_token','_method');
+            $data['status'] = 1;
             $career_ids = $data['career_ids'];
             $style_ids = $data['style_ids'];
             if ($request->hasFile('image')) {
