@@ -6,8 +6,7 @@
 
     <div class="sidebar-inner">
         <ul class="navigation">
-            <li class="active"><a href="{{ route('employee.home')}}"> <i class="la la-home"></i>{{ __('dashboard') }}</a>
-            </li>
+            <li><a href="{{ route('employee.home')}}"> <i class="la la-home"></i>{{ __('dashboard') }}</a></li>
             <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>{{ __('profile') }}</a></li>
             <li><a href="{{ route('employee.job.create')}}"><i class="la la-paper-plane"></i>{{ __('post') }}</a></li>
             <li><a href="{{ route('employee.job.index')}}"><i class="la la-briefcase"></i>{{ __('work_manager') }}</a></li>
@@ -27,4 +26,16 @@
         </ul>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var navigationLinks = document.querySelectorAll('.user-sidebar .navigation a');
+    
+        navigationLinks.forEach(function(link) {
+            // Add 'active' class to the link if the current URL matches the link's href
+            if (link.getAttribute('href') === window.location.href) {
+                link.parentElement.classList.add('active');
+            }
+        });
+    });
+    </script>
 <!-- End User Sidebar -->
