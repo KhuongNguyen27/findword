@@ -17,6 +17,7 @@
     <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
     <script src="{{ asset('website-assets/js/jquery-ui.min.js')}}"></script>
     <link rel="stylesheet" href="https://static.topcv.vn/v4/css/components/desktop/welcome.min.f52a5c4bfa977462.css">
+    @yield('header')
 </head>
 
 <body data-anm=".anm">
