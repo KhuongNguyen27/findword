@@ -12,6 +12,7 @@ use Modules\AdminUser\app\Models\AdminUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
+use Modules\AdminUser\app\Http\Requests\UpdateAdminUserRequest;
 
 class AdminUserController extends Controller
 {
@@ -134,7 +135,7 @@ public function edit($id)
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreAdminUserRequest $request, $id)
+    public function update(UpdateAdminUserRequest $request, $id)
     {
         $type = $request->type;
         try {
