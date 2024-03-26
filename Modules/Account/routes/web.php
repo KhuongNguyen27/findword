@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Account\app\Http\Controllers\AccountController;
+use Modules\Account\app\Http\Controllers\Website\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,9 @@ use Modules\Account\app\Http\Controllers\AccountController;
 |
 */
 
-Route::group([], function () {
+Route::group([
+    'prefix' => 'website',
+    'as' => 'website.'
+], function () {
     Route::resource('account', AccountController::class)->names('account');
 });

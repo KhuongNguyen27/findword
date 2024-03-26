@@ -115,6 +115,7 @@
     vertical-align: middle;
     margin-right: 5px;
 }
+
 .media-body.ml-auto {
     margin-left: auto !important;
 }
@@ -146,7 +147,8 @@
                                     <p style="margin-left: 20px !important;"> {{ $item->desired_position ?? '' }}</p>
                                 </div>
                                 <div class="media-body ml-auto" style="margin-right: 100px;">
-                                    <a href="{{ route('employee.cv.sendemail',$item->id) }}" class="btn btn-primary">Gửi Email</a>
+                                    <a href="{{ route('employee.cv.sendemail',$item->id) }}" class="btn btn-primary">Gửi
+                                        Email</a>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +200,8 @@
                                                     </p>
                                                     <p class="profile-item"><span>Tỉnh/Thành phố:</span>
                                                         {{ $item->city }}</p>
-                                                    <p class="profile-item"><span>Mã hồ sơ:</span> {{ $item->id ?? '' }}</p>
+                                                    <p class="profile-item"><span>Mã hồ sơ:</span> {{ $item->id ?? '' }}
+                                                    </p>
                                                     <p class="profile-item"><span>Mức lương mong muốn:</span>
                                                         {{ $item->wage->name ?? ''}}</p>
                                                     <!-- <p class="profile-item"><span>Số năm kinh nghiệm:</span>
@@ -219,7 +222,8 @@
                                                     </div>
                                                     <div class="timeline-panel">
                                                         <div class="timeline-heading">
-                                                            <h4 class="timeline-title">{{ $education->school_course ?? '' }}
+                                                            <h4 class="timeline-title">
+                                                                {{ $education->school_course ?? '' }}
                                                             </h4>
                                                             <p><small class="text-muted"> <i
                                                                         class="la flaticon-star"></i>
@@ -245,7 +249,8 @@
                                                     </div>
                                                     <div class="timeline-panel">
                                                         <div class="timeline-heading">
-                                                            <h4 class="timeline-title">{{ $experience->company ?? '' }}</h4>
+                                                            <h4 class="timeline-title">{{ $experience->company ?? '' }}
+                                                            </h4>
                                                             <p><small class="text-muted"> <i
                                                                         class="flaticon-message"></i>
                                                                     {{ $experience->position ?? ''}} </small></p>
@@ -272,7 +277,8 @@
                                             <h3 class="profile-group-title">Ngoại ngữ</h3>
                                             <div class="profile-group-body">
                                                 <p class="d-flex justify-content-between"><span
-                                                        class="font-weight-bold"> {{ $education->language ?? '' }} </span>
+                                                        class="font-weight-bold"> {{ $education->language ?? '' }}
+                                                    </span>
                                                 </p>
                                             </div>
                                         </div>
@@ -289,16 +295,25 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <form action="{{route('employee.cv.update',$cv_job_apply->id)}}" method="post" >
+                                        <form action="{{route('employee.cv.update',$cv_job_apply->id)}}" method="post">
                                             @csrf
                                             @method('PUT')
-                                            <select class="form-select form-select-lg mb-3" name="status" aria-label=".form-select-lg example">
-                                                <option @selected($cv_job_apply->status == 1) value="1">Duyệt</option>
-                                                <option @selected($cv_job_apply->status == 0) value="0">Không duyệt</option>
-                                              </select>
+                                            <select class="form-select form-select-lg mb-3" name="status"
+                                                aria-label=".form-select-lg example">
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::ACTIVE)
+                                                    value="{{ $cv_job_apply::ACTIVE }}">Duyệt</option>
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::INACTIVE)
+                                                    value="{{ $cv_job_apply::INACTIVE }}">Không duyệt
+                                                </option>
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::DRAFT)
+                                                    value="{{ $cv_job_apply::DRAFT }}">Chờ duyệt
+                                                </option>
+                                            </select>
                                             <div class="form-group col-lg-12 col-md-12 text-right">
                                                 <button class="theme-btn btn-style-one">Cập Nhật</button>
-                                                <a style="background-color: red !important;" href="{{route('employee.cv.index')}}" class="theme-btn btn-style-one danger">Trở về</a>
+                                                <a style="background-color: red !important;"
+                                                    href="{{route('employee.cv.index')}}"
+                                                    class="theme-btn btn-style-one danger">Trở về</a>
                                             </div>
                                         </form>
                                     </div>

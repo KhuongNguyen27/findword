@@ -96,9 +96,9 @@
                         </div>
 
                         <!-- Pagination -->
-                        <nav class="ls-pagination">
+                        <div class="ls-pagination">
                             {{ $items->appends(request()->input())->links() }}
-                        </nav>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,11 +8,14 @@ use Illuminate\Notifications\Notifiable;
 use Kjmtrue\VietnamZone\Models\District;
 use Kjmtrue\VietnamZone\Models\Ward;
 use Modules\Job\app\Models\Province;
+use App\Traits\UploadFileTrait;
+
 
 class UserEmployee extends AdminModel
 {
     use HasFactory, Notifiable;
     protected $table = 'user_employee';
+    use UploadFileTrait;
     public $custom_fields = [
         'name',
         'phone',
@@ -20,6 +23,8 @@ class UserEmployee extends AdminModel
         'address',
         'image',
         'user_id',
+        'about',
+        'background',
     ];
     protected $fillable = [
         'name',
@@ -28,6 +33,8 @@ class UserEmployee extends AdminModel
         'address',
         'image',
         'user_id',
+        'about',
+        'background',
     ];
     public function getImageFmAttribute()
     {

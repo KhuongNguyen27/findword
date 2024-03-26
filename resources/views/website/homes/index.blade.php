@@ -19,7 +19,6 @@ span.flaticon-bookmark.active {
                     </div>
                     <!-- Job Search Form -->
                     @include('website.homes.includes.job-search-form')
-                    @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>
             </div>

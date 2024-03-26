@@ -85,7 +85,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('show') }}
                                             </a>
                                         </li>
