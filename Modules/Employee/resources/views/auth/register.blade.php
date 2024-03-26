@@ -1,6 +1,5 @@
 @extends('website.layouts.auth')
 @section('content')
-@extends('website.includes.header')
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
@@ -14,7 +13,7 @@
             @endif
             @csrf
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label>{{ __('name') }}<span class="label-required">*</span></label>
                             <input type="text" name="name" placeholder="{{ __('name') }}"  value="{{ old('name') }}">
@@ -23,6 +22,9 @@
                             @endif
                         </div>
                     </div>
+                    
+                </div>
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>{{ __('email') }}<span class="label-required">*</span></label>
@@ -32,22 +34,6 @@
                             @endif
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>{{ __('year_of_birth') }}<span class="label-required">*</span></label>
-                            <select name="year_of_birth">
-                                @for ($year = 2009; $year >= 1939; $year--)
-                                    <option value="{{ $year }}" {{ old('year_of_birth') == $year ? 'selected' : '' }}>{{ $year }}</option>
-                                @endfor
-                            </select>
-                            @if ($errors->any())
-                                <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
-                            @endif
-                        </div>
-                    </div>
-
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>{{ __('phone') }}<span class="label-required">*</span></label>
@@ -81,7 +67,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label>{{ __('company_name') }}<span class="label-required">*</span></label>
                             <input type="text" name="cp_name" id="cp_name" placeholder="{{ __('company_name') }}"  value="{{ old('cp_name') }}">
@@ -90,8 +76,8 @@
                             @endif
                         </div>
                     </div>
-
-
+                </div>
+                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>{{ __('company_website') }}<span class="label-required">*</span></label>
@@ -101,19 +87,17 @@
                             @endif
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>{{ __('company_phone') }}<span class="label-required">*</span></label>
-                            <input type="text" name="phone" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
+                            <input type="text" name="text" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label>{{ __('company_address') }}<span class="label-required">*</span></label>
                             <input type="text" name="address" placeholder="{{ __('company_address') }}" value="{{ old('address') }}">
@@ -123,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label>{{ __('company_logo') }}<span class="label-required">*</span></label>
@@ -141,7 +125,7 @@
                             <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                             @endif
                 </div>
-            <div class="form-group">
+            <div class="">
                 <button class="theme-btn btn-style-one " type="submit" name="Register">{{ __('register') }}</button>
             </div>
         </form>

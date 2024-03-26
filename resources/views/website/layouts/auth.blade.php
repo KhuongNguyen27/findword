@@ -22,15 +22,14 @@
         <!-- Preloader -->
         <!-- <div class="preloader"></div> -->
         <!-- Main Header-->
-        <header class="main-header">
+        <header class="main-header d-none">
             <!-- Mobile Header -->
             <div class="mobile-header">
                 <div class="logo"><a href="index.html"><img src="{{ asset('website-assets/images/logo.svg')}}" alt=""
                             title=""></a></div>
             </div>
             <div id="nav-mobile"></div>
-        </header> -->
-        @include('website.includes.header')
+        </header>
         <!--End Main Header -->
         <!-- Info Section -->
         <div class="login-section">
@@ -45,7 +44,7 @@
     </div><!-- End Page Wrapper -->
 
 
-    <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
+    <!-- <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
     <script src="{{ asset('website-assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/chosen.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/bootstrap.min.js')}}"></script>
@@ -60,7 +59,7 @@
     <script src="{{ asset('website-assets/js/owl.js')}}"></script>
     <script src="{{ asset('website-assets/js/wow.js')}}"></script>
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
-    <script src="{{ asset('website-assets/js/custom.js')}}"></script>
+    <script src="{{ asset('website-assets/js/custom.js')}}"></script> -->
 </body>
 
 </html>

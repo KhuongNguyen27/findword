@@ -30,8 +30,8 @@ class StoreRegisterRequest extends FormRequest
             'website' => 'required|max:255',
             'password' => 'required|min:6|max:255',
             'repeatpassword'=> 'required|same:password|max:255',
-            'image'=> 'required|max:255',
-            'year_of_birth'=> 'required|min:4|max:4',
+            'image'=> 'required',
+            // 'year_of_birth'=> 'required|min:4|max:4',
         ];
     }
 
