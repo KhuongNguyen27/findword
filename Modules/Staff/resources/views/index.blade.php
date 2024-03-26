@@ -92,12 +92,9 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('gender') }}</label>
                                             <select name="gender" class="form-control">
-                                                <option value="nam" {{ $item->gender == 'nam' ? 'selected' : '' }}>Nam
-                                                </option>
-                                                <option value="nu" {{ $item->gender == 'nu' ? 'selected' : '' }}>Nữ
-                                                </option>
-                                                <option value="khac" {{ $item->gender == 'khac' ? 'selected' : '' }}>Khác
-                                                </option>
+                                                <option value="nam" {{ old('gender', $item->gender) == 'nam' ? 'selected' : '' }}>Nam</option>
+                                                <option value="nu" {{ old('gender', $item->gender) == 'nu' ? 'selected' : '' }}>Nữ</option>
+                                                <option value="khac" {{ old('gender', $item->gender) == 'khac' ? 'selected' : '' }}>Khác</option>
                                             </select>
                                         </div>
 
@@ -127,18 +124,21 @@
                                                 <option value="">{{ __('please_select') }} </option>
                                                 @foreach ($provinces as $province)
                                                     <option value="{{ $province->id }}"
-                                                        {{ old('province_id') == $province->id ? 'selected' : '' }}>
-                                                        {{ $province->name }}</option>
+                                                        @selected( old('province_id') ? old('province_id') == $province->id : $item->province_id == $province->id)
+                                                        >
+                                                        {{ $province->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                        
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('district') }}</label>
                                             <select name="district_id" id="district" class="form-control">
                                                 @foreach ($districts as $district)
                                                     <option value="{{ $district->id }}"
-                                                        {{ old('district_id') == $district->id ? 'selected' : '' }}
+                                                        @selected( old('distritc_id') ? old('district_id') == $district->id : $item->district_id == $district->id)
                                                         >
                                                         {{ $district->name }}
                                                     </option>
@@ -148,9 +148,9 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('ward') }}</label>
                                             <select name="ward_id" id="ward" class="form-control">
-                                                <option value="">{{ __('please_select') }}</option>
+                                                <option value="">   </option>
                                                 @foreach ($wards as $ward)
-                                                    <option value="{{ $ward->id }}" {{ old('ward_id') == $ward->id ? 'selected' : '' }}>
+                                                    <option value="{{ $ward->id }}" @selected( old('ward_id') ? old('ward_id') == $ward->id : $item->ward_id == $ward->id )>
                                                         {{ $ward->name }}
                                                     </option>
                                                 @endforeach
@@ -230,8 +230,6 @@
                                                 // Do something with wardId
                                             });
                                         </script>
-
-
 
 
 
