@@ -21,6 +21,7 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class JobapplicationController extends Controller
 {
@@ -63,7 +64,7 @@ class JobapplicationController extends Controller
             $cv_apply = new UserJobApply();
 
             $cv_apply->cv_id = $request->cv_id;
-            $cv_apply->user_id = $job->user_id;
+            $cv_apply->user_id = Auth::id();
             $cv_apply->job_id  = $job->id;
             $cv_apply->status = UserJobApply::INACTIVE;
 
@@ -92,7 +93,6 @@ class JobapplicationController extends Controller
     public function show($id)
     {
         try {
-
             $cv_job_apply = UserJobApply::findOrFail($id);
             if (auth()->user()->id == $cv_job_apply->user_id) {
                 $item = UserCv::findOrFail($cv_job_apply->cv->id);
@@ -146,7 +146,7 @@ class JobapplicationController extends Controller
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.cv.show')->with('error', 'Cập Nhật bị lỗi!');
+            return redirect()->route('employee.cv.show',$id)->with('error', 'Cập Nhật bị lỗi!');
         }
     }
 
