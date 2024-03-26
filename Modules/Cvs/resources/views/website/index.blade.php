@@ -52,23 +52,23 @@ span.flaticon-bookmark.active {
                                             <select name="language" class="chosen-select" onchange="this.form.submit()">
                                                 <option value="" {{ old('language') == null ? 'selected' : '' }}>Tất cả
                                                     các ngôn ngữ</option>>
-                                                <option value="TiengAnh"
-                                                    {{ isset($_GET['language']) && $_GET['language'] ==  'TiengAnh' ? 'selected' : '' }}>
-                                                    Tiếng Anh</option>
-                                                <option value="TiengViet"
-                                                    {{ isset($_GET['language']) && $_GET['language'] ==  'TiengViet' ? 'selected' : '' }}>
+                                                <option value="1"
+                                                    {{ isset($_GET['language']) && $_GET['language'] ==  '1' ? 'selected' : '' }}>
                                                     Tiếng Việt</option>
-                                                <option value="TiengNhat"
-                                                    {{ isset($_GET['language']) && $_GET['language'] ==  'TiengNhat' ? 'selected' : '' }}>
+                                                <option value="2"
+                                                    {{ isset($_GET['language']) && $_GET['language'] ==  '2' ? 'selected' : '' }}>
                                                     Tiếng Nhật</option>
+                                                <option value="3"
+                                                    {{ isset($_GET['language']) && $_GET['language'] ==  '3' ? 'selected' : '' }}>
+                                                    Tiếng Anh</option>
                                             </select>
                                         </div>
                                         <div class="mb-3 col-4">
                                             <select name="style" class="chosen-select" onchange="this.form.submit()">
                                                 <option value="">Tất cả các thiết kế</option>
                                                 @foreach($styles as $style)
-                                                <option value="{{ $style->name }}"
-                                                    {{ isset($_GET['style']) && $_GET['style'] ==  $style->name ? 'selected' : '' }}>
+                                                <option value="{{ $style->slug }}"
+                                                    {{ isset($_GET['style']) && $_GET['style'] ==  $style->slug ? 'selected' : '' }}>
                                                     {{ $style->name }}
                                                 </option>
                                                 @endforeach

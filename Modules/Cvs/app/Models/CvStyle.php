@@ -20,6 +20,12 @@ class CvStyle extends Model
         'style_id',
         'cv_id'
     ];
+    public function cv(){
+        return $this->belongsTo(Cv::class);
+    }
+    public function style(){
+        return $this->belongsTo(Style::class);
+    }
     protected static function newFactory(): CvStyleFactory
     {
         //return CvStyleFactory::new();
