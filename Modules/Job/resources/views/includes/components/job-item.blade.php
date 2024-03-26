@@ -6,8 +6,9 @@ span.flaticon-bookmark.active {
 <div class="job-block col-job-info">
     <div class="inner-box">
         <div class="content">
-            <span class="company-logo"><img src="{{ $job->userEmployee->image_fm }}" alt=""></span>
-            <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
+            <span class="company-logo"><img src="{!! asset($job->getImage()) !!}">
+            </span>
+            <h4 class="job-title quick  view-job text_ellipsis" title="{{ $job->name }}">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
             @if (isset($company_name))
@@ -20,7 +21,8 @@ span.flaticon-bookmark.active {
                     @if( auth()->check() )
                     <span class="salary">{{ $job->wage->name ?? '' }}</span>
                     @else
-                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Đăng nhập để xem</a></span>
+                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Đăng nhập để
+                            xem</a></span>
                     @endif
                 </li>
                 <li><span class="address">{{ $job->work_address }}</span></li>

@@ -300,8 +300,13 @@
                                             @method('PUT')
                                             <select class="form-select form-select-lg mb-3" name="status"
                                                 aria-label=".form-select-lg example">
-                                                <option @selected($cv_job_apply->status == 1) value="1">Duyệt</option>
-                                                <option @selected($cv_job_apply->status == 0) value="0">Không duyệt
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::ACTIVE)
+                                                    value="{{ $cv_job_apply::ACTIVE }}">Duyệt</option>
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::INACTIVE)
+                                                    value="{{ $cv_job_apply::INACTIVE }}">Không duyệt
+                                                </option>
+                                                <option @selected($cv_job_apply->status == $cv_job_apply::DRAFT)
+                                                    value="{{ $cv_job_apply::DRAFT }}">Chờ duyệt
                                                 </option>
                                             </select>
                                             <div class="form-group col-lg-12 col-md-12 text-right">

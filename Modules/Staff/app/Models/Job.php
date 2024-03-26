@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Staff\Database\factories\JobFactory;
 use Illuminate\Support\Facades\Auth;
-use Modules\Employee\app\Models\UserEmployee;
 class Job extends Model
 {
     use HasFactory;
@@ -46,6 +45,10 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function userEmployee()
+    {
+        return $this->belongsTo(UserEmployee::class,'user_id','user_id');
+    }
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
@@ -66,10 +69,9 @@ class Job extends Model
     }
     public function getImage()
     {
-        $user_id = $this->user_id;
-        $userEmployee = UserEmployee::where('user_id',$user_id)->first();
+        $userEmployee = $this->userEmployee->first();
         if ($userEmployee && $userEmployee->image !== null) {
-            return $userEmployee->image;
+            return 'storage/images/'.$userEmployee->image;
         }
         return "/website-assets/images/favicon.png";
     }
