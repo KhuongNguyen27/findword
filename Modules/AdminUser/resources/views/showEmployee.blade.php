@@ -45,7 +45,7 @@
                                 <th>Mô tả:</th>
                             </tr>
                             <tr class="col-6">
-                                <td>{{ $item->employee->about }}</td>
+                                <td>{!! $item->employee->about !!}</td>
                             </tr>
                         </div>
                     </tbody>

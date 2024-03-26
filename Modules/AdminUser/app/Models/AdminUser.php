@@ -129,6 +129,7 @@ class AdminUser extends Model
     public static function updateItem($id,$request,$type = ''){
         DB::beginTransaction();
         try {
+            $data = $request->except(['_token', '_method']);
             $item = self::findOrFail($id);
             $userData   = $request->only(['name', 'email','password','type','status','verify']);
             if ($request->hasFile('image')) {
@@ -144,8 +145,8 @@ class AdminUser extends Model
                 $custom_fields = $request->only($item->{$item->type}->custom_fields);
                 $item->{$item->type}()->update($custom_fields);
             }
+            $item->verify = $data['verify'];
             $item->update($userData);
-            $data = $request->except(['_token', '_method']);
             if($type == "staff"){
                 $user_staff = UserStaff::where('user_id',$item->id)->first();
                 $user_staff->phone = $data['phone'];
