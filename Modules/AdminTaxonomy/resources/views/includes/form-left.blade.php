@@ -11,7 +11,6 @@
             <div id="tinycomments-container">
                 <x-admintheme::form-input-error field="description"/>
             </div>
-            {{-- <x-admintaxonomy::forms.tinymce-editor field="description"/> --}}
         </div>
     </div>
 </div>

@@ -30,6 +30,16 @@
 </form>
 
 <div class="card mt-4">
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">
@@ -75,7 +85,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 Show CV
                                             </a>
                                         </li>
@@ -102,3 +112,21 @@
 </div>
 
 @endsection
+
+
+git add Modules/AdminTaxonomy/resources/views/includes/form-left.blade.php
+git add Modules/AdminUser/app/Http/Controllers/AdminUserController.php
+git add Modules/AdminUser/app/Http/Requests/StoreAdminUserRequest.php
+git add Modules/AdminUser/app/Models/AdminUser.php
+git add Modules/AdminUser/resources/views/includes/form-right-show.blade.php
+git add Modules/AdminUser/resources/views/includes/form-right.blade.php
+git add Modules/AdminUser/resources/views/index.blade.php
+git add Modules/AdminUser/resources/views/showCV.blade.php
+git add Modules/AdminUser/resources/views/showCVs.blade.php
+git add Modules/AdminUser/resources/views/types/employee/includes/form-left.blade.php
+git add Modules/AdminUser/resources/views/types/employee/index.blade.php
+git add Modules/AdminUser/resources/views/types/staff/index.blade.php
+git add app/Models/UserEmployee.php
+git add Modules/AdminUser/resources/views/showEmployee.blade.php
+git add Modules/AdminUser/resources/views/showStaff.blade.php
+git add Modules/AdminUser/resources/views/types/employee/show.blade.php     
