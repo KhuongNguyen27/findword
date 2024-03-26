@@ -8,7 +8,7 @@ span.flaticon-bookmark.active {
         <div class="content">
             <span class="company-logo"><img src="{!! asset($job->getImage()) !!}">
             </span>
-            <h4 class="job-title quick  view-job text_ellipsis" title="{{ $job->name }}">
+            <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
             @if (isset($company_name))
