@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Modules\Transaction\app\Http\Controllers\TransactionController;
+use Modules\Transaction\app\Http\Controllers\Admin\TransactionController as TransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,11 @@ Route::group([
 	'as' => 'admin.',
 	'prefix' => 'admin'
 ], function () {
-	Route::get('transactions',[TransactionController::class,'transactions'])->name('transactions');
+	Route::get('transactions',[TransactionsController::class,'index'])->name('transactions.index');
+	Route::get('transactions/create',[TransactionsController::class,'create'])->name('transactions.create');
+	Route::post('transactions/store',[TransactionsController::class,'store'])->name('transactions.store');
+	Route::get('/transactions/edit/{id}', [TransactionsController::class,'edit'])->name('transactions.edit');
+	Route::get('/transactions/{id}', [TransactionsController::class,'show'])->name('transactions.show');
+	Route::post('/transactions/{id}', [TransactionsController::class,'update'])->name('transactions.update');
+	Route::get('/transactions/delete/{id}', [TransactionsController::class,'destroy'])->name('transactions.destroy');
 });

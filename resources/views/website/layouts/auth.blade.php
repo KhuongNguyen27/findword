@@ -23,26 +23,14 @@
         <!-- <div class="preloader"></div> -->
         <!-- Main Header-->
         <header class="main-header">
-            <div class="container-fluid">
-                <!-- Main box -->
-                <div class="main-box">
-                    <!--Nav Outer -->
-                    <div class="nav-outer">
-                        <div class="logo-box">
-                            <div class="logo"><a href="{{route('home')}}"><img
-                                        src="{{ asset('website-assets/images/logo-2.svg')}}" alt="" title=""></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- Mobile Header -->
             <div class="mobile-header">
                 <div class="logo"><a href="index.html"><img src="{{ asset('website-assets/images/logo.svg')}}" alt=""
                             title=""></a></div>
             </div>
-            <!-- Mobile Nav -->
             <div id="nav-mobile"></div>
-        </header>
+        </header> -->
+        @include('website.includes.header')
         <!--End Main Header -->
         <!-- Info Section -->
         <div class="login-section">
@@ -53,7 +41,6 @@
             </div>
         </div>
         <!-- End Info Section -->
-
 
     </div><!-- End Page Wrapper -->
 

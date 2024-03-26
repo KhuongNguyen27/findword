@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\JobController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\JobController;
 
 
 /*
@@ -26,6 +26,20 @@ use App\Http\Controllers\EmployeeController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
+Route::get('/viec-lam-trong-nuoc', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
+Route::get('/viec-lam-trong-nuoc/hom-nay', [JobController::class,'vnjobs_today'])->name('jobs.vnjobs.today');
+Route::get('/viec-lam-trong-nuoc/hot', [JobController::class,'vnjobs_hot'])->name('jobs.vnjobs.hot');
+Route::get('/viec-lam-trong-nuoc/tuyen-gap', [JobController::class,'vnjobs_urgent'])->name('jobs.vnjobs.urgent');
+
+Route::get('/viec-lam-ngoai-nuoc', [JobController::class,'nnjobs'])->name('jobs.nnjobs');
+Route::get('/viec-lam-ngoai-nuoc/hom-nay', [JobController::class,'nnjobs_today'])->name('jobs.nnjobs.today');
+Route::get('/viec-lam-ngoai-nuoc/hot', [JobController::class,'nnjobs_hot'])->name('jobs.nnjobs.hot');
+Route::get('/viec-lam-ngoai-nuoc/tuyen-gap', [JobController::class,'nnjobs_urgent'])->name('jobs.nnjobs.urgent');
+
+Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.index');
+
+Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
+
 
 Route::prefix('themes')->group(function () {
     
@@ -41,9 +55,9 @@ Route::prefix('themes')->group(function () {
         return view('website/aplications/index');
     })->name('aplications.index');
 
-    Route::get('/prices', function () {
-        return view('website/prices/index');
-    })->name('prices.index');
+    // Route::get('/prices', function () {
+    //     return view('website/prices/index');
+    // })->name('prices.index');
 
     Route::get('/', function () {
         return view('website/dashboards/index');
@@ -89,4 +103,3 @@ Route::prefix('themes')->group(function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
 });
-

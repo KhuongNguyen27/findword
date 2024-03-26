@@ -139,7 +139,7 @@
                                         style="width: 150px; height: 150px;" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="media-body ml-3">
-                                    <h2 style="margin-left: 20px !important;">{{ auth()->user()->name }}</h2>
+                                    <h2 style="margin-left: 20px !important;">{{ $item->name }}</h2>
                                     <p style="margin-left: 20px !important;"> {{ $item->desired_position ?? '' }}</p>
                                 </div>
                             </div>
@@ -192,7 +192,8 @@
                                                     </p>
                                                     <p class="profile-item"><span>Tỉnh/Thành phố:</span>
                                                         {{ $item->city }}</p>
-                                                    <p class="profile-item"><span>Mã hồ sơ:</span> {{ $item->id ?? '' }}</p>
+                                                    <p class="profile-item"><span>Mã hồ sơ:</span> {{ $item->id ?? '' }}
+                                                    </p>
                                                     <p class="profile-item"><span>Mức lương mong muốn:</span>
                                                         {{ $item->wage->name ?? ''}}</p>
                                                     <!-- <p class="profile-item"><span>Số năm kinh nghiệm:</span>
@@ -213,7 +214,8 @@
                                                     </div>
                                                     <div class="timeline-panel">
                                                         <div class="timeline-heading">
-                                                            <h4 class="timeline-title">{{ $education->school_course ?? '' }}
+                                                            <h4 class="timeline-title">
+                                                                {{ $education->school_course ?? '' }}
                                                             </h4>
                                                             <p><small class="text-muted"> <i
                                                                         class="la flaticon-star"></i>
@@ -239,7 +241,8 @@
                                                     </div>
                                                     <div class="timeline-panel">
                                                         <div class="timeline-heading">
-                                                            <h4 class="timeline-title">{{ $experience->company ?? '' }}</h4>
+                                                            <h4 class="timeline-title">{{ $experience->company ?? '' }}
+                                                            </h4>
                                                             <p><small class="text-muted"> <i
                                                                         class="flaticon-message"></i>
                                                                     {{ $experience->position ?? ''}} </small></p>
@@ -266,7 +269,8 @@
                                             <h3 class="profile-group-title">Ngoại ngữ</h3>
                                             <div class="profile-group-body">
                                                 <p class="d-flex justify-content-between"><span
-                                                        class="font-weight-bold"> {{ $education->language ?? '' }} </span>
+                                                        class="font-weight-bold"> {{ $education->language ?? '' }}
+                                                    </span>
                                                 </p>
                                             </div>
                                         </div>

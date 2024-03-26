@@ -1,42 +1,34 @@
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
         <li class="dropdown">
-            <a href="{{ route('website.home') }}?country=VietNam">Việc làm trong nước</a>
+            <a href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
             <ul>
-                <li><a href="#">Việc làm hôm nay</a></li>
-                <li><a href="#">Việc làm hot nhất</a></li>
-                <li><a href="#">Tuyển gấp</a></li>
-
+                <li><a href="{{ route('jobs.vnjobs.today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.vnjobs.hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.vnjobs.urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
         <li class="dropdown">
-            <a href="{{ route('website.home') }}">Việc làm ngoài nước</a>
+            <a href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
             <ul>
-                <li><a href="#">Việc làm hôm nay</a></li>
-                <li><a href="#">Việc làm hot nhất</a></li>
-                <li><a href="#">Tuyển gấp</a></li>
-
+                <li><a href="{{ route('jobs.nnjobs.today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.nnjobs.hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.nnjobs.urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
 
-        <li><a href="{{ route('employee.index') }}">Công ty</a></li>
+        <li><a href="{{ route('employees.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href="{{ route('cvs.index') }}?type=maucv"> Hồ sơ & CV </a>
-
+            <a href="javascript:;">Hồ sơ & CV</a>
+            <ul>
+                <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
+                <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
+            </ul>
         </li>
-
-
-
         @if (Auth::check() && (Auth::user()->type == "employee"))
-        <li><a href="{{ route('prices.index') }}">Bảng giá</a></li>
+        <li><a href="{{ route('website.account.index') }}">Bảng giá</a></li>
         @endif
-
-
-
-
-
-
         <!-- Only for Mobile View -->
         <li class="mm-add-listing">
             <a href="add-listing.html" class="theme-btn btn-style-one">Job Post</a>

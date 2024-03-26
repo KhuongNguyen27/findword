@@ -4,7 +4,7 @@
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
-            <h3>Thêm mới Hồ Sơ</h3>
+            <h3>{{ __('add_new_profile') }}</h3>
             <!-- <div class="text">Ready to jump back in?</div> -->
         </div>
         @include('staff::cv.includes.card')

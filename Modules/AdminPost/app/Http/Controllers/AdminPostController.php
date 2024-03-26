@@ -19,6 +19,7 @@ class AdminPostController extends Controller
     protected $model        = AdminPost::class;
     public function index(Request $request)
     {
+        // $this->authorize('viewAny',$this->model);
         $type = $request->type;
         $items = $this->model::getItems($request,null,$type);
         $params = [
@@ -37,6 +38,7 @@ class AdminPostController extends Controller
      */
     public function create(Request $request)
     {
+        // $this->authorize('create',$this->model);
         $type = $request->type;
         $params = [
             'route_prefix'  => $this->route_prefix,
@@ -69,6 +71,7 @@ class AdminPostController extends Controller
      */
     public function show($id, Request $request)
     {
+        // $this->authorize('view',$this->model);
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
@@ -92,6 +95,7 @@ class AdminPostController extends Controller
      */
     public function edit($id, Request $request)
     {
+        // $this->authorize('update',$this->model);
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
@@ -134,6 +138,7 @@ class AdminPostController extends Controller
      */
     public function destroy(Request $request)
     {
+        // $this->authorize('delete',$this->model);
         try {
             $id = request()->adminpost;
             $type = $request->type;

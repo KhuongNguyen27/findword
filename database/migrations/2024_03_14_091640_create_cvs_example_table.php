@@ -11,34 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cvs_example', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name')->nullable();
-            $table->string('slug')->nullable();
-            $table->string('career_id')->nullable();
-            $table->string('formwork_id')->nullable();
-            $table->string('deadline')->nullable();
-            $table->string('start_day')->nullable();
-            $table->string('experience')->nullable();
-            $table->integer('wage_id')->nullable();
-            $table->integer('gender')->nullable();
-            $table->integer('rank_id')->nullable();
-            $table->integer('jobpackage_id')->nullable();
-            $table->integer('price')->nullable();
-            $table->integer('number_day')->nullable();
-            $table->string('work_address')->nullable();
-            $table->string('country')->nullable();
-            $table->string('degree_id')->nullable();
-            $table->string('status')->nullable();
-            $table->string('end_day')->nullable();
-            $table->string('start_hour')->nullable();
-            $table->string('end_hour')->nullable();
-            $table->string('description')->nullable();
-            $table->string('requirements')->nullable();
-            $table->timestamps();
-        });
+        // Schema::create('cvs_example', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('user_id');
+        //     $table->string('cv_file')->nullable();
+        //     $table->string('name')->nullable();
+        //     $table->string('email')->nullable();
+        //     $table->string('phone')->nullable();
+        //     $table->date('birthdate')->nullable();
+        //     $table->string('gender')->nullable();
+        //     $table->string('city')->nullable();
+        //     $table->string('address')->nullable();
+        //     $table->text('outstanding_achievements')->nullable();
+        //     $table->string('desired_position')->nullable(); 
+        //     $table->unsignedBigInteger('rank_id')->nullable(); 
+        //     $table->string('form_work_id')->nullable();
+        //     $table->string('career_id')->nullable(); 
+        //     $table->string('desired_location')->nullable(); 
+        //     $table->string('wage_id')->nullable(); 
+        //     $table->string('experience_years')->nullable(); 
+        //     $table->text('career_objective')->nullable(); 
+        //     $table->integer('status')->default(-1);
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -46,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cvs_example');
+        // Schema::dropIfExists('cvs_example');
     }
 };

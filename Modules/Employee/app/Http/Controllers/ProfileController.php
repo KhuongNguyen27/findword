@@ -75,6 +75,7 @@ class ProfileController extends Controller
             $userEmployee->phone = $request->phone;
             $userEmployee->address = $request->address;
             $userEmployee->website = $request->website;
+            $userEmployee->about = $request->about;
 
             $request->slug = $request->slug ? $request->slug : $request->name;
             $slug = $maybe_slug = Str::slug($request->slug);
@@ -85,16 +86,15 @@ class ProfileController extends Controller
             }
             $userEmployee->slug = $slug;
 
-            // Kiểm tra xem đã có tệp tin hình ảnh được tải lên chưa
             if ($request->hasFile('image')) {
-                // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
                 $imagePath = $request->file('image')->store('public/images');
-
-                // Lấy tên tệp tin hình ảnh
                 $imageName = basename($imagePath);
-
-                // Lưu tên tệp tin hình ảnh vào trường 'image' của bản ghi UserEmployee
                 $userEmployee->image = $imageName;
+            }
+            if ($request->hasFile('background')) {
+                $backgroundPath = $request->file('background')->store('public/backgrounds');
+                $backgroundName = basename($backgroundPath);
+                $userEmployee->background = $backgroundName;
             }
             $userEmployee->save();
 

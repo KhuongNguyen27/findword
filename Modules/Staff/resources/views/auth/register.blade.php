@@ -5,7 +5,7 @@
     <div class="form-inner">
         <h3>Tạo tài khoản Superio miễn phí</h3>
         <!--Login Form-->
-        <form action="{{ route('staff.postRegister') }}" method='post'>
+        <form action="{{ route('staff.postRegister') }}" method="post">
             @if (session('error'))
             <div class="alert alert-danger" role="alert">
                 {{ session('error') }}
@@ -25,15 +25,15 @@
 
 
             <div class="form-group">
-                <label>Tên</label>
-                <input type="text" name="name" placeholder="name" value="{{ old('name') }}">
+                <label>Tên <span class="label-required">*</span></label>
+                <input type="text" name="name" placeholder="Tên" value="{{ old('name') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('name') }}</p>
                 @endif
             </div>
 
             <div class="form-group">
-                <label>Email </label>
+                <label>Email <span class="label-required">*</span></label>
                 <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
@@ -44,17 +44,16 @@
             </div>
 
             <div class="form-group">
-                <label>Ngày sinh </label>
+                <label>Ngày sinh <span class="label-required">*</span></label>
                 <input type="date" name="birthdate" value="{{ old('birthdate') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('birthdate') }}</p>
                 @endif
             </div>
 
-
             <div class="form-group">
-                <label>SĐT </label>
-                <input type="number" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                <label>SĐT <span class="label-required">*</span></label>
+                <input type="text" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('phone') }}</p>
                 @endif
@@ -64,7 +63,7 @@
             </div>
 
             <div class="form-group">
-                <label>Mật khẩu</label>
+                <label>Mật khẩu <span class="label-required">*</span></label>
                 <input type="password" name="password" placeholder="Mật khẩu" value="{{ old('password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
@@ -72,7 +71,7 @@
             </div>
 
             <div class="form-group">
-                <label>Xác nhận mật khẩu</label>
+                <label>Xác nhận mật khẩu <span class="label-required">*</span></label>
                 <input type="password" name="repeatpassword" placeholder="Xác nhận mật khẩu">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
@@ -81,14 +80,14 @@
 
             <div class="form__check" style="margin-bottom: 50px;">
                 <input id="accept_pp" type="checkbox" name="accept_pp">
-                <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
+                <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật <span class="label-required">*</span></label>
                 @if ($errors->has('accept_pp'))
                 <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                 @endif
             </div>
 
             <div class="form-group">
-                <button class="theme-btn btn-style-one " type="submit" name="Register">Đăng ký</button>
+                <button class="theme-btn btnstyle-one " type="submit" name="Register">Đăng ký</button>
             </div>
         </form>
         <div class="bottom-box">

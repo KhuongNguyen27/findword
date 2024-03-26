@@ -19,6 +19,12 @@
             <input class="form-control" name="email" type="text" placeholder="Email" value="{{ request()->email }}">
         </div>
         <div class="col col-xs-6">
+            <input class="form-control" name="phone" type="text" placeholder="Số điện thoại" value="{{ request()->phone }}">
+        </div>
+        <div class="col col-xs-6">
+            <input class="form-control" name="address" type="text" placeholder="Địa chỉ" value="{{ request()->address }}">
+        </div>
+        <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
         </div>
         <div class="col col-xs-6">
@@ -79,7 +85,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('show') }}
                                             </a>
                                         </li>

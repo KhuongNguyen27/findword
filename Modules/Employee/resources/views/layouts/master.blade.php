@@ -8,6 +8,7 @@
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('website-assets/css/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('website-assets/css/custem_search.css')}}">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
@@ -133,7 +134,13 @@
         },
     });
     </script>
-
+   <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+   <script>
+       CKEDITOR.replace('description');
+   </script>
+    <script>
+        CKEDITOR.replace('about');
+    </script>
 </body>
 
 </html>

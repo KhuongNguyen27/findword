@@ -18,4 +18,8 @@ class Rank extends Model
     {
         return $this->hasMany(UserCv::class);
     }
+    public function cvsExamples()
+    {
+        return $this->hasMany(CvsExample::class);
+    }
 }

@@ -1,9 +1,10 @@
 @extends('website.layouts.auth')
 @section('content')
+@extends('website.includes.header')
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Tạo tài khoản tuyển dụng miễn phí</h3>
+        <h3>{{ __('create_a_free_recruiting_account') }}</h3>
         <!--Login Form-->
         <form action="{{ route('employee.postRegister') }}" method='post' enctype="multipart/form-data">
             @if (session('error'))
@@ -15,61 +16,63 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Tên </label>
-                            <input type="text" name="name" placeholder="name"  value="{{ old('name') }}">
+                            <label>{{ __('name') }}<span class="label-required">*</span></label>
+                            <input type="text" name="name" placeholder="{{ __('name') }}"  value="{{ old('name') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('name') }}</p>
                             @endif
                         </div>
                     </div>
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Email </label>
-                            <input type="email" name="email" placeholder="Email"  value="{{ old('email') }}">
+                            <label>{{ __('email') }}<span class="label-required">*</span></label>
+                            <input type="email" name="email" placeholder="{{ __('email') }}"  value="{{ old('email') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('email') }}</p>
                             @endif
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Năm sinh </label>
-                            <input type="number" name="year_of_birth" placeholder="Năm sinh"  value="{{ old('year_of_birth') }}">
+                            <label>{{ __('year_of_birth') }}<span class="label-required">*</span></label>
+                            <select name="year_of_birth">
+                                @for ($year = 2009; $year >= 1939; $year--)
+                                    <option value="{{ $year }}" {{ old('year_of_birth') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                                @endfor
+                            </select>
                             @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
+                                <p style="color:red">{{ $errors->first('year_of_birth') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                     
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>SĐT </label>
-                            <input type="number" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                            <label>{{ __('phone') }}<span class="label-required">*</span></label>
+                            <input type="number" name="phone" placeholder="{{ __('phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Mật khẩu</label>
-                            <input type="password" name="password" placeholder="Mật khẩu" value="{{ old('password') }}">
+                            <label>{{ __('password') }}<span > *</span></label>
+                            <input type="password" name="password" placeholder="{{ __('password') }}" value="{{ old('password') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('password') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Xác nhận mật khẩu</label>
-                            <input type="password" name="repeatpassword" placeholder="Xác nhận mật khẩu">
+                            <label>{{ __('repeat_password') }}<span class="label-required">*</span></label>
+                            <input type="password" name="repeatpassword" placeholder="{{ __('repeat_password') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
                             @endif
@@ -80,8 +83,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Tên công ty </label>
-                            <input type="text" name="cp_name" id="cp_name" placeholder="Tên công ty"  value="{{ old('cp_name') }}">
+                            <label>{{ __('company_name') }}<span class="label-required">*</span></label>
+                            <input type="text" name="cp_name" id="cp_name" placeholder="{{ __('company_name') }}"  value="{{ old('cp_name') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('cp_name') }}</p>
                             @endif
@@ -89,32 +92,31 @@
                     </div>
 
 
-                    <div class="col-lg-6">                      
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Website công ty </label>
-                            <input type="text" name="website" placeholder="website công ty"  value="{{ old('website') }}">
+                            <label>{{ __('company_website') }}<span class="label-required">*</span></label>
+                            <input type="text" name="website" placeholder="{{ __('company_website') }}"  value="{{ old('website') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('website') }}</p>
                             @endif
                         </div>
                     </div>
                 </div>
-    
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>SĐT công ty </label>
-                            <input type="number" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                            <label>{{ __('company_phone') }}<span class="label-required">*</span></label>
+                            <input type="text" name="phone" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
                         </div>
                     </div>
 
-                    <div class="col-lg-6">                     
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label>Địa chỉ công ty </label>
-                            <input type="text" name="address" placeholder="Địa chỉ công ty" value="{{ old('address') }}">
+                            <label>{{ __('company_address') }}<span class="label-required">*</span></label>
+                            <input type="text" name="address" placeholder="{{ __('company_address') }}" value="{{ old('address') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('address') }}</p>
                             @endif
@@ -122,30 +124,29 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-lg-12">                     
+                    <div class="col-lg-12">
                         <div class="form-group">
-                            <label>Logo công ty </label>
-                            <input type="file" name="image" class="form-control" id="inputGroupFile02">
+                            <label>{{ __('company_logo') }}<span class="label-required">*</span></label>
+                            <input type="file" name="image" class="form-control" id="inputGroupFile02" placeholder="ađấ" >
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('image') }}</p>
                             @endif
                         </div>
                     </div>
-                   
                 </div>
                 <div class="form__check" style="margin-bottom: 50px;">
                             <input id="accept_pp" type="checkbox" name="accept_pp" >
-                            <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật</label>
+                            <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}<span class="label-required">*</span></label>
                             @if ($errors->has('accept_pp'))
                             <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                             @endif
                 </div>
             <div class="form-group">
-                <button class="theme-btn btn-style-one " type="submit" name="Register">Đăng ký</button>
+                <button class="theme-btn btn-style-one " type="submit" name="Register">{{ __('register') }}</button>
             </div>
         </form>
         <div class="bottom-box">
-            <div class="text">Đã có tài khoản? <a href="{{ route('employee.login')}}">Đăng nhập</a></div>
+            <div class="text">{{ __('company_already_registered') }}? <a href="{{ route('employee.login')}}">{{ __('login') }} {{__('here')}}</a></div>
             {{-- <div class="divider"><span>Hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">

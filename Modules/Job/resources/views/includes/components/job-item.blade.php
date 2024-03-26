@@ -1,51 +1,51 @@
 <style>
-    span.flaticon-bookmark.active {
-        color: red;
-    }
+span.flaticon-bookmark.active {
+    color: red;
+}
 </style>
-<div class="job-block">
+<div class="job-block col-job-info">
     <div class="inner-box">
         <div class="content">
-            <span class="company-logo"><img src="{{ asset($job->getImage($job->user_id)) }}" alt=""></span>
-            <h4><a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
+            <span class="company-logo"><img src="{{ $job->userEmployee->image_fm }}" alt=""></span>
+            <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
+                <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
-            <div>
-                {{ $job->description }}
-            </div>
-
-            @if ($job_info)
-                <ul class="job-info">
-                    <li>
-                        <span class="icon flaticon-briefcase"></span>
-                        @if ($job->careers)
-                            @foreach ($job->careers as $career)
-                                {{ $career->name }}                             
-                            @endforeach
-                        @endif
-                    </li>
-                    <li><span class="icon flaticon-map-locator"></span>{{ $job->work_address }}</li>
-                    <li><span class="icon flaticon-clock-3"></span>{{ $job->time_create }}</li>
-                    <li><span class="icon flaticon-money"></span>{{ $job->wage->name ?? '' }} đ</li>
-                </ul>
+            @if (isset($company_name))
+            <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
+                class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
             @endif
-            @if ($job_other_info)
-                <ul class="job-other-info">
-                    <li class="time">Hình thức làm việc ({{ $job->formWork->name ?? '' }})</li>
-                    <!-- <li class="privacy">Private</li>
-                <li class="required">Urgent</li> -->
-                </ul>
+            @if ($job_info)
+            <ul class="job-info mb-0">
+                <li>
+                    @if( auth()->check() )
+                    <span class="salary">{{ $job->wage->name ?? '' }}</span>
+                    @else
+                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Đăng nhập để xem</a></span>
+                    @endif
+                </li>
+                <li><span class="address">{{ $job->work_address }}</span></li>
+                @if (@$job_other_info)
+                <li><span class="address">Cập nhật 1 giờ trước</span></li>
+                <li><span class="address">Còn 40 ngày để ứng tuyển</span></li>
+                @endif
+            </ul>
             @endif
             @if ($bookmark)
-                <a href="javascript:;" class="bookmark-btn"
-                    data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                    @if (in_array($job->id, $cr_user_favorites))
-                        <span class="flaticon-bookmark active"></span>
-                    @else
-                        <span class="flaticon-bookmark"></span>
-                    @endif
-                </a>
+            <a href="javascript:;" class="bookmark-btn"
+                data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
+                @if (in_array($job->id, $cr_user_favorites))
+                <span class="flaticon-bookmark active"></span>
+                @else
+                <span class="flaticon-bookmark"></span>
+                @endif
+            </a>
             @endif
-
+            <div class="quickview-job-hide"></div>
+            <div class="quickview-job-content" style="display:none;">
+                <div class="box-job-quick-view-tooltip">
+                    @include('job::includes.components.quickview-job-tooplip')
+                </div>
+            </div>
         </div>
     </div>
 </div>

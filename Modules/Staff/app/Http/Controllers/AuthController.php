@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('staff.home'); 
+            return redirect()->route('staff.home');
         } else {
             return view('staff::auth.login');
         }
@@ -36,27 +36,24 @@ class AuthController extends Controller
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
-        if (Auth::attempt($dataUser, $request->remember)) {
+        $remember = $request->remember ? true : false ;
+        if (Auth::attempt($dataUser, $remember)) {
             return redirect()->route('staff.home');
         } else {
-            return redirect()->route('staff.login')->with('error', 'Account or password is incorrect');
+            return redirect()->route('staff.login')->with('error', __('account_or_password_is_incorrect'));
         }
     }
-    
+
     public function register($type = ''){
         if (Auth::check()) {
-            return redirect()->route('staff.home'); 
+            return redirect()->route('staff.home');
         } else {
             return view('staff::auth.register');
         }
     }
     public function postRegister(StoreRegisterRequest $request)
     {
-        // dd($request->all());
-
         try {
-
-            // Create a new user in the users table
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -72,7 +69,7 @@ class AuthController extends Controller
             Notification::route('mail', [
                 'nguyenhuukhuong27102000@gmail.com' => 'Khuongnguyen'
             ])->notify(new Notifications("register",$user->toArray()));
-            $message = "Successfully registered";
+            $message = "Đăng ký thành công";
             return redirect()->route('staff.login')->with('success', $message);
         } catch (\Exception $e) {
             Log::error('Bug occurred: ' . $e->getMessage());

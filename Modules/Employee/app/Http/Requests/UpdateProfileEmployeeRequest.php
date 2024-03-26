@@ -18,19 +18,15 @@ class UpdateProfileEmployeeRequest extends FormRequest
             'phone' => 'required',
             'address' => 'required',
             'website' => 'required',
+            'about' => 'required',
         ];
     }
 
     public function messages()
     {
         return  [
-            'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'name.max' => 'Tên không được vượt quá 100 ký tự!',
-            'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'address.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'website.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'max' => 'Tên không được vượt quá 100 ký tự!',
             ];
     }
 

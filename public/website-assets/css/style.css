@@ -154,7 +154,7 @@ body {
   background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
-  font-family: 'Jost', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-style: normal;
 }
 
@@ -384,8 +384,8 @@ Checkbox
 
 .checkboxes input[type="checkbox"]:checked + label:before {
   content: "\f00c";
-  background-color: #1967D2;
-  border: 1px solid #1967D2;
+  background-color: #52bc51;
+  border: 1px solid #52bc51;
 }
 
 .checkboxes.square label:before {
@@ -414,7 +414,7 @@ Checkbox
 .checkbox-outer .view-more {
   font-size: 13px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -484,15 +484,15 @@ Radio bOX
 }
 
 .radio-box input[type="radio"]:checked + label {
-  border-color: #1967D2;
+  border-color: #52bc51;
 }
 
 .radio-box input[type="radio"]:checked + label:before {
-  border-color: #1967D2;
+  border-color: #52bc51;
 }
 
 .radio-box input[type="radio"]:checked + label:after {
-  background-color: #1967D2;
+  background-color: #52bc51;
   opacity: 1;
 }
 
@@ -564,8 +564,8 @@ Switches
 }
 
 input:checked + .slider {
-  background-color: #1967D2;
-  border: 2px solid #1967D2;
+  background-color: #52bc51;
+  border: 2px solid #52bc51;
 }
 
 input:checked + .slider:before {
@@ -580,11 +580,11 @@ input:checked + .slider:before {
 
 .default-form .form-group {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10%;
 }
 
 .default-form .form-group:last-child {
-  margin-bottom: 0;
+  margin-bottom: 10%;
 }
 
 .default-form .form-group > label {
@@ -624,7 +624,7 @@ input:checked + .slider:before {
 .default-form .form-group input[type="url"]:focus,
 .default-form .form-group select:focus,
 .default-form .form-group textarea:focus {
-  border-color: #1967D2;
+  border-color: #52bc51;
   background: #ffffff;
 }
 
@@ -739,10 +739,10 @@ input:checked + .slider:before {
 }
 
 .chosen-container-multi .chosen-choices li.search-choice {
-  color: #1967d2;
+  color: #52bc51;
   font-size: 13px;
   line-height: 25px;
-  color: #1967D2;
+  color: #52bc51;
   padding: 0 25px 0 10px;
   border-radius: 10px;
   background: rgba(25, 103, 210, 0.1);
@@ -752,7 +752,7 @@ input:checked + .slider:before {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
   top: 3px;
-  color: #1967d2;
+  color: #52bc51;
 }
 
 .chosen-container-multi .chosen-choices li.search-choice {
@@ -1040,14 +1040,14 @@ Scroll To Top
   display: none;
   cursor: pointer;
   background-color: #23293e;
-  color: #1967D2;
+  color: #52bc51;
   background-color: rgba(25, 103, 210, 0.07);
   transition: all 300ms ease;
 }
 
 .scroll-to-top:hover {
   color: #ffffff;
-  background-color: #1967D2;
+  background-color: #52bc51;
 }
 
 .scroll-to-top.style-two {
@@ -1289,7 +1289,7 @@ About Section
   top: 0;
   height: 60px;
   width: 60px;
-  background: #1967D2;
+  background: #52bc51;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1360,7 +1360,7 @@ About Ssection / Style Two
 }
 
 .about-section.style-two .fun-fact-section .count-box {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .about-section.style-two .fun-fact-section .counter-title {
@@ -1442,7 +1442,7 @@ About Section Two
 .applicants-list .title-box {
   position: relative;
   height: 50px;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 8px 8px 0px 0px;
   display: flex;
   justify-content: center;
@@ -1700,7 +1700,7 @@ Ads Section
 
 .advrtise-block h4 span {
   display: block;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .advrtise-block .theme-btn {
@@ -1966,7 +1966,7 @@ Buttons Styles
   text-align: center;
   white-space: nowrap;
   color: #ffffff;
-  background-color: #1967D2;
+  background-color: #52bc51;
   font-size: 15px;
   line-height: 20px;
   border-radius: 8px;
@@ -2003,7 +2003,7 @@ Buttons Styles
   position: relative;
   text-align: center;
   white-space: nowrap;
-  color: #1967D2;
+  color: #52bc51;
   background-color: #E2EAF8;
   font-size: 15px;
   line-height: 20px;
@@ -2014,7 +2014,7 @@ Buttons Styles
 
 .btn-style-three:hover {
   color: #FFFFFF;
-  background-color: #1967D2;
+  background-color: #52bc51;
 }
 
 /* Btn Style Four */
@@ -2445,7 +2445,7 @@ Top Companies
 ***/
 .top-companies {
   position: relative;
-  padding: 100px 0;
+  padding: 30px 0;
 }
 
 .top-companies .carousel-outer {
@@ -2500,11 +2500,11 @@ Top Companies
 
 .company-block .image {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: auto;
   overflow: hidden;
-  border-radius: 50%;
   margin: 0 auto 14px;
+  max-height: 100px;
 }
 
 .company-block .image img {
@@ -2524,7 +2524,7 @@ Top Companies
 .company-block .designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   margin-bottom: 10px;
 }
@@ -2609,7 +2609,7 @@ Top Companies
 .company-block-two .designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   margin-bottom: 10px;
 }
@@ -2689,7 +2689,7 @@ Top Companies
 }
 
 .company-block-three h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .company-block-three .job-info {
@@ -2816,7 +2816,7 @@ Top Companies
 }
 
 .company-block-four h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .company-block-four .job-info {
@@ -2860,7 +2860,7 @@ Top Companies
   margin-right: 15px;
   padding: 5px 20px;
   border-radius: 50px;
-  color: #1967D2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.15);
 }
 
@@ -2971,7 +2971,7 @@ Contact Section
 
 .contact-block p .phone {
   font-size: 18px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .contact-section .contact-form {
@@ -3085,13 +3085,13 @@ Contact Section
 
 .dashboard-option .dropdown-menu li.active a,
 .dashboard-option .dropdown-menu li:hover a {
-  color: #1967D2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.1);
 }
 
 .dashboard-option .dropdown-menu li.active a i,
 .dashboard-option .dropdown-menu li:hover a i {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .mm-panels {
@@ -3325,7 +3325,7 @@ Dashboard
 
 .ui-item h4 {
   font-size: 30px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 500;
   line-height: 1em;
   margin-bottom: 3px;
@@ -3344,7 +3344,7 @@ Dashboard
   width: 70px;
   line-height: 70px;
   font-size: 40px;
-  color: #1967d2;
+  color: #52bc51;
   text-align: center;
   background-color: rgba(25, 103, 210, 0.1);
   border-radius: 8px;
@@ -3886,13 +3886,13 @@ User Sidebar
 
 .user-sidebar .navigation > li.active > a,
 .user-sidebar .navigation > li:hover > a {
-  color: #1967D2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.1);
 }
 
 .user-sidebar .navigation li.active a i,
 .user-sidebar .navigation li:hover a i {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .place.sky {
@@ -4282,7 +4282,7 @@ Chat Widget
   display: block;
   width: 16.02px;
   height: 16px;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 50%;
   color: #ffffff;
   line-height: 16px;
@@ -4495,7 +4495,7 @@ Chat Widget
 
 .search-box-one .form-group input[type="text"]:focus,
 .search-box-one .form-group input[type="search"]:focus {
-  border-color: #1967D2;
+  border-color: #52bc51;
 }
 
 .search-box-one .form-group .icon {
@@ -4554,7 +4554,7 @@ Chat Widget
   height: 35px;
   width: 35px;
   background: rgba(25, 103, 210, 0.15);
-  color: #1967D2;
+  color: #52bc51;
   text-align: center;
   line-height: 35px;
   border-radius: 50%;
@@ -4562,7 +4562,7 @@ Chat Widget
 }
 
 .notification-list li .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .notification-list li.success .icon {
@@ -4676,8 +4676,6 @@ Main Footer
 /*=== Widgets Section ===*/
 .main-footer .widgets-section {
   position: relative;
-  padding-top: 100px;
-  padding-bottom: 50px;
 }
 
 .main-footer .footer-column {
@@ -4722,7 +4720,7 @@ Main Footer
 }
 
 .main-footer .phone-num a {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-footer .address {
@@ -4769,7 +4767,7 @@ Main Footer
   height: 2px;
   width: 0px;
   content: "";
-  border-bottom: 2px solid #1967D2;
+  border-bottom: 2px solid #52bc51;
   transition: all 300ms ease;
 }
 
@@ -4779,7 +4777,7 @@ Main Footer
 
 .main-footer .list li:hover a {
   transform: translateX(25px);
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*=== Social Widget ===*/
@@ -5136,7 +5134,7 @@ Main Footer / Style Three
   height: 70px;
   font-size: 15px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-footer.style-three .newsletter-form .form-group .theme-btn {
@@ -5253,7 +5251,7 @@ Main Footer / Style Five
   height: 50px;
   padding: 10px 30px;
   width: auto;
-  background: #1967D2;
+  background: #52bc51;
 }
 
 .main-footer.style-five .download-btns {
@@ -5338,7 +5336,7 @@ Main Footer / Style Six
 }
 
 .main-footer.style-six .newsletter-form .form-group .theme-btn {
-  background: #1967D2;
+  background: #52bc51;
 }
 
 .main-footer.style-six.alternate {
@@ -5400,7 +5398,7 @@ Fun Fact Section
 }
 
 .fun-fact-section.style-two .count-box {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .fun-fact-section.style-two .counter-title {
@@ -5422,6 +5420,7 @@ Main Header
   height: auto;
   z-index: 99;
   transition: all 300ms ease;
+  background: white;
 }
 
 .header-span {
@@ -5439,7 +5438,7 @@ Main Header
 }
 
 .main-header.fixed-header .logo {
-  padding: 15px 0;
+  padding: 0 0;
 }
 
 .main-header .main-box {
@@ -5504,15 +5503,14 @@ Main Header
   transition: all 300ms ease;
 }
 
-.main-menu .navigation > li > span,
-.main-menu .navigation > li > a {
+.main-menu .navigation > li > span, .main-menu .navigation > li > a {
   position: relative;
   display: block;
   text-align: center;
   opacity: 1;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 30px;
-  font-weight: 400;
+  font-weight: 600;
   color: #202124;
   cursor: pointer;
   transition: all 300ms ease;
@@ -5520,7 +5518,7 @@ Main Header
 
 .main-menu .navigation > li.current > a,
 .main-menu .navigation > li.current > span {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-menu .navigation > li.dropdown > span {
@@ -5554,7 +5552,7 @@ Main Header
   opacity: 0;
   z-index: 1;
   min-width: 230px;
-  border-top: 2px solid #1967D2;
+  border-top: 2px solid #52bc51;
   border-radius: 0px 0px 8px 8px;
   background-color: #fff;
   -ms-box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
@@ -5570,7 +5568,7 @@ Main Header
   top: -7px;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 5px solid #1967D2;
+  border-bottom: 5px solid #52bc51;
   content: "";
 }
 
@@ -5613,13 +5611,13 @@ Main Header
 
 .main-menu .navigation > li > ul > li > span:hover,
 .main-menu .navigation > li > ul > li > a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-menu .navigation > li.current.dropdown > span:after,
 .main-menu .navigation > li > ul > li > ul > li.current > a,
 .main-menu .navigation > li > ul > li.current > a {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-menu .navigation > li > ul > li > ul {
@@ -5631,7 +5629,7 @@ Main Header
   margin-top: -57px;
   opacity: 0;
   z-index: 1;
-  border-top: 2px solid #1967D2;
+  border-top: 2px solid #52bc51;
   background-color: #fff;
   -ms-box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
   box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
@@ -5660,7 +5658,7 @@ Main Header
 
 .main-menu .navigation > li > ul > li > ul > li > a:hover,
 .main-menu .navigation > li > ul > li > ul > li > span:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .main-menu .navigation > li > ul > li.dropdown > span:before {
@@ -5715,7 +5713,7 @@ Main Header
 .main-header .upload-cv {
   position: relative;
   font-size: 15px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   white-space: nowrap;
 }
@@ -5746,7 +5744,7 @@ Main Header
   top: -4px;
   height: 16px;
   width: 16px;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 50%;
   color: #ffffff;
   line-height: 16px;
@@ -6037,7 +6035,7 @@ Sticky Header
 .sticky-header .main-menu .navigation > li.current > span,
 .sticky-header .main-menu .navigation > li.current.dropdown > a:after,
 .sticky-header .main-menu .navigation > li.current > a {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*** 
@@ -6141,7 +6139,7 @@ Job Categories
 ***/
 .job-categories {
   position: relative;
-  padding: 115px 0 70px;
+  padding: 50px 0 50px;
   border-bottom: 1px solid #ECEDF2;
 }
 
@@ -6180,11 +6178,10 @@ Job Categories
   top: 0;
   height: 70px;
   width: 70px;
-  background: #ECEDF2;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1967D2;
+  color: #52bc51;
   font-size: 36px;
   border-radius: 10px;
   transition: all 300ms ease;
@@ -6192,7 +6189,6 @@ Job Categories
 
 .category-block .inner-box:hover .icon {
   color: #ffffff;
-  background: #1967D2;
 }
 
 .category-block h4 {
@@ -6209,7 +6205,7 @@ Job Categories
 }
 
 .category-block h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block p {
@@ -6255,7 +6251,7 @@ Job Categories
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1967D2;
+  color: #52bc51;
   font-size: 36px;
   border-radius: 50%;
   margin-bottom: 20px;
@@ -6264,7 +6260,7 @@ Job Categories
 
 .category-block-two .inner-box:hover .icon {
   color: #ffffff;
-  background: #1967D2;
+  background: #52bc51;
 }
 
 .category-block-two h4 {
@@ -6280,7 +6276,7 @@ Job Categories
 }
 
 .category-block-two h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block-two p {
@@ -6326,7 +6322,7 @@ Job Categories
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #1967D2;
+  color: #52bc51;
   font-size: 36px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -6346,7 +6342,7 @@ Job Categories
 }
 
 .category-block-three h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block-three p {
@@ -6357,7 +6353,7 @@ Job Categories
 
 .category-block-three:nth-child(1) .icon {
   background: #D4F4F8;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block-three:nth-child(2) .icon {
@@ -6488,7 +6484,7 @@ Job Section
 }
 
 .job-block h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block .job-info {
@@ -6499,14 +6495,14 @@ Job Section
 }
 
 .job-block .job-info li {
-  position: relative;
+  /* position: relative;
   font-size: 14px;
   line-height: 22px;
   color: #696969;
   font-weight: 400;
   padding-left: 25px;
-  margin-bottom: 5px;
-  margin-right: 20px;
+  margin-bottom: 5px; */
+  margin-right: 5px;
 }
 
 .job-block .job-info li .icon {
@@ -6559,7 +6555,7 @@ Job Section
 
 .job-other-info li.time {
   background: rgba(25, 103, 210, 0.15);
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-other-info li.green,
@@ -6656,7 +6652,7 @@ Job Section Two
 }
 
 .job-block-two h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block-two .job-info {
@@ -6790,7 +6786,7 @@ Job Section Three
 }
 
 .job-block-three h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block-three .job-info {
@@ -6940,7 +6936,7 @@ Job Section Four
 }
 
 .job-block-four h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block-four .location {
@@ -7054,7 +7050,7 @@ Job Section Five
 }
 
 .job-block-five .inner-box:hover {
-  border-left: 2px solid #1967D2;
+  border-left: 2px solid #52bc51;
 }
 
 .job-block-five .inner-box .theme-btn {
@@ -7066,7 +7062,7 @@ Job Section Five
 }
 
 .job-block-five .inner-box .theme-btn:hover {
-  background: #1967d2;
+  background: #52bc51;
 }
 
 .job-block-five .content {
@@ -7099,7 +7095,7 @@ Job Section Five
 }
 
 .job-block-five h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block-five .job-info {
@@ -7338,7 +7334,7 @@ Job Detail Section
 }
 
 .job-block-seven h4 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .job-block-seven .job-info {
@@ -7395,7 +7391,7 @@ Job Detail Section
   text-align: center;
   font-size: 16px;
   cursor: pointer;
-  color: #1967D2;
+  color: #52bc51;
   border-radius: 7px;
   background: rgba(25, 103, 210, 0.07);
   transition: all 300ms ease;
@@ -7403,7 +7399,7 @@ Job Detail Section
 }
 
 .job-block-seven .bookmark-btn:hover {
-  background: #1967D2;
+  background: #52bc51;
   color: #fff;
 }
 
@@ -7488,7 +7484,7 @@ Job Detail Section
   top: 50%;
   width: 50px;
   height: 50px;
-  background: #1967D2;
+  background: #52bc51;
   line-height: 45px;
   color: #fff;
   text-align: center;
@@ -8013,6 +8009,11 @@ Login Section
   line-height: 33px;
   color: #202124;
   margin-bottom: 32px;
+  text-align: center;
+
+}
+.login-form span {
+  color: red;
 }
 
 .login-form .field-outer {
@@ -8040,7 +8041,7 @@ Login Section
 .login-form .form-group .theme-btn {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 10%;
 }
 
 .login-form .bottom-box {
@@ -8117,7 +8118,7 @@ Login Section
   border: 1px solid #fff;
   font-weight: 500;
   padding: 10px 30px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 25px;
   margin-bottom: 20px;
 }
@@ -8156,7 +8157,7 @@ Login Section
   width: 40px !important;
   height: 40px !important;
   line-height: 40px !important;
-  background-color: #1967D2;
+  background-color: #52bc51;
   border: 7px solid rgba(25, 103, 210, 0.2);
   box-shadow: 0 7px 30px rgba(33, 33, 33, 0.3);
   box-sizing: content-box;
@@ -8326,7 +8327,7 @@ Map Listing Item
 }
 
 .map-listing-item .infoBox-close:hover {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: #ffffff;
 }
 
@@ -8498,7 +8499,7 @@ Map Section
   margin-top: -15px;
   box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
   border-radius: 0px 0px 8px 8px;
-  border-top: 2px solid #1967D2;
+  border-top: 2px solid #52bc51;
   transition: all 300ms ease;
   transform: scaleY(0);
   transform-origin: top;
@@ -8516,7 +8517,7 @@ Map Section
   top: -7px;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 5px solid #1967D2;
+  border-bottom: 5px solid #52bc51;
   content: "";
 }
 
@@ -8578,7 +8579,7 @@ Map Section
 }
 
 .main-menu .navigation > li .mega-menu-bar .column > ul > li > a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*==========================
@@ -8951,7 +8952,7 @@ Pie Graph
   top: 50%;
   height: 50px;
   width: 50px;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 50%;
   color: #ffffff;
   text-align: center;
@@ -9004,7 +9005,7 @@ Preloader
   text-align: center;
   margin: 0 auto;
   margin-top: 40px;
-  color: #1967D2;
+  color: #52bc51;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 2px;
@@ -9040,7 +9041,7 @@ Progress Bars
   height: 10px;
   width: 0px;
   border-radius: 10px;
-  border-bottom: 10px solid #1967D2;
+  border-bottom: 10px solid #52bc51;
   transition: all 2000ms ease;
 }
 
@@ -9279,7 +9280,7 @@ Registeration Banners
   width: 50px;
   font-size: 30px;
   background: rgba(25, 103, 210, 0.15);
-  color: #1967D2;
+  color: #52bc51;
   border-radius: 50%;
   line-height: 50px;
   text-align: center;
@@ -9320,7 +9321,7 @@ Registeration Banners
 .manage-job-table .applied {
   font-size: 15px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   text-decoration: underline;
 }
@@ -9349,7 +9350,7 @@ Registeration Banners
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .aplicants-upper-bar .aplicantion-status {
@@ -9362,7 +9363,7 @@ Registeration Banners
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #1967D2;
+  color: #52bc51;
   margin-left: 115px;
 }
 
@@ -9411,7 +9412,7 @@ Registeration Banners
   position: relative;
   font-size: 13px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   display: flex;
   align-items: center;
@@ -9536,17 +9537,17 @@ Registeration Banners
   border-radius: 8px;
   margin-right: 10px;
   min-width: auto;
-  color: #1967d2;
+  color: #52bc51;
 }
 
 .resume-outer.theme-blue .resume-block .edit-box .year,
 .resume-outer.theme-blue .resume-block .name {
   background: #eff4fc;
-  color: #1967d2;
+  color: #52bc51;
 }
 
 .resume-outer.theme-blue .resume-block .info-box span {
-  color: #1967d2;
+  color: #52bc51;
 }
 
 .resume-outer.theme-yellow .resume-block .edit-box .year,
@@ -9583,7 +9584,7 @@ Section Title
   display: block;
   font-size: 18px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -9593,8 +9594,8 @@ Section Title
   display: block;
   font-size: 30px;
   line-height: 1.2em;
-  color: #202124;
-  font-weight: 500;
+  color: #00b14f;
+  font-weight: bold;
 }
 
 .sec-title .text {
@@ -9614,7 +9615,7 @@ Section Title
   font-weight: normal;
   font-size: 14px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   margin-bottom: 50px;
 }
 
@@ -9710,7 +9711,7 @@ Section Title
 .select2-container--default
 .select2-results__option--highlighted[aria-selected] {
   background-color: transparent;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .select2-container--default .select2-selection--single {
@@ -9832,7 +9833,7 @@ b:before {
   justify-content: center;
   font-size: 16px;
   cursor: pointer;
-  color: #1967D2;
+  color: #52bc51;
   border-radius: 7px;
   background: rgba(25, 103, 210, 0.07);
   transition: all 300ms ease;
@@ -9841,7 +9842,7 @@ b:before {
 }
 
 .sidebar .btn-box .bookmark-btn:hover {
-  background: #1967D2;
+  background: #52bc51;
   color: #fff;
 }
 
@@ -9873,7 +9874,7 @@ b:before {
 .company-widget .profile-link {
   font-size: 14px;
   line-height: 19px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .company-widget .company-link {
@@ -9885,7 +9886,7 @@ b:before {
   border-radius: 50px;
   margin-bottom: 10px;
   background: rgba(25, 103, 210, 0.15);
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .company-widget .company-info {
@@ -9943,7 +9944,7 @@ b:before {
 }
 
 .company-widget .btn-box .theme-btn:hover {
-  background: #1967d2;
+  background: #52bc51;
 }
 
 .sidebar-widget.contact-widget .theme-btn {
@@ -10033,7 +10034,7 @@ Job Detail Section / Style two
 .range-slider-one .ui-slider .ui-slider-range {
   top: 0px;
   height: 5px;
-  background: #1967D2;
+  background: #52bc51;
 }
 
 .range-slider-one .ui-state-default,
@@ -10043,7 +10044,7 @@ Job Detail Section / Style two
   width: 17px;
   height: 17px;
   background: #FFFFFF;
-  border: 2px solid #1967D2;
+  border: 2px solid #52bc51;
   box-sizing: border-box;
   border-radius: 20px;
   cursor: pointer;
@@ -10067,7 +10068,7 @@ Job Detail Section / Style two
   border-radius: 8px;
   font-size: 14px;
   line-height: 19px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .range-slider-one .amount {
@@ -10272,7 +10273,7 @@ default table
   position: relative;
   padding: 20px 30px;
   font-size: 16px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 500;
   line-height: 30px;
   white-space: nowrap;
@@ -10363,7 +10364,7 @@ Default Tabs
 }
 
 .default-tabs.style-two .tab-buttons li.active-btn {
-  color: #1967D2;
+  color: #52bc51;
   border-bottom: 3px solid #5c6770;
 }
 
@@ -10430,7 +10431,7 @@ Testimonial Section
   position: relative;
   font-size: 18px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -10594,7 +10595,7 @@ Testimonial Section Two
   position: relative;
   font-size: 18px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   margin-bottom: 10px;
 }
@@ -10660,7 +10661,7 @@ Testimonial Section Two
   top: 60px;
   bottom: 0;
   width: 100%;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 30px;
   content: "";
   z-index: -1;
@@ -10972,7 +10973,7 @@ Radio bOX
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   margin-bottom: 12px;
 }
 
@@ -11050,7 +11051,7 @@ Radio bOX
   border-radius: 8px;
   margin-right: 10px;
   min-width: auto;
-  color: #1967d2;
+  color: #52bc51;
 }
 
 /*** 
@@ -11170,7 +11171,7 @@ Browse Jobs
   width: 0px;
   margin-top: -1px;
   content: "";
-  border-bottom: 2px solid #1967D2;
+  border-bottom: 2px solid #52bc51;
   transition: all 300ms ease;
 }
 
@@ -11180,7 +11181,7 @@ Browse Jobs
 
 .links-list li:hover a {
   transform: translateX(25px);
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*** 
@@ -11251,7 +11252,7 @@ Candidates Section
 .candidate-block .designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   margin-bottom: 10px;
 }
@@ -11464,7 +11465,7 @@ Candidates Section Two
 .candidate-block-three .candidate-info li.designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   padding-left: 0;
 }
@@ -11542,7 +11543,7 @@ Candidates Section Two
   height: 30px;
   width: 30px;
   font-size: 16px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 30px;
   text-align: center;
   transition: all 300ms ease;
@@ -11593,7 +11594,7 @@ Candidates Section Two
 
 .option-list li button:hover,
 .option-list li a:hover {
-  background: #1967D2;
+  background: #52bc51;
   color: #ffffff;
 }
 
@@ -11601,7 +11602,7 @@ Candidates Section Two
   position: relative;
   display: block;
   font-size: 20px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   margin-left: 40px;
 }
@@ -11631,7 +11632,7 @@ Candidates Section Two
 }
 
 .resume-action .dropdown-menu button .la {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /* Candidate block Four */
@@ -11691,7 +11692,7 @@ Candidates Section Two
 }
 
 .candidate-block-four .name a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .candidate-block-four .cat {
@@ -11699,7 +11700,7 @@ Candidates Section Two
   display: block;
   font-size: 14px;
   line-height: 19px;
-  color: #1967D2;
+  color: #52bc51;
   margin-bottom: 10px;
 }
 
@@ -11892,7 +11893,7 @@ Candidate Detail Section
 .candidate-block-five .candidate-info li.designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   padding-left: 0;
 }
@@ -11909,14 +11910,14 @@ Candidate Detail Section
   border-radius: 30px;
   font-size: 14px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
   padding: 5px 20px;
   border-radius: 20px;
   margin-right: 10px;
 }
 
 .candidate-block-five .post-tags li a {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .candidate-block-five .post-tags li.colored {
@@ -11931,7 +11932,7 @@ Candidate Detail Section
   text-align: center;
   font-size: 16px;
   cursor: pointer;
-  color: #1967D2;
+  color: #52bc51;
   border-radius: 7px;
   background: rgba(25, 103, 210, 0.07);
   transition: all 300ms ease;
@@ -11987,7 +11988,7 @@ Candidate Detail Section
 .candidate-block-six .designation {
   display: block;
   font-size: 14px;
-  color: #1967D2;
+  color: #52bc51;
   line-height: 19px;
   margin-bottom: 22px;
 }
@@ -12012,7 +12013,7 @@ Candidate Detail Section
   border-radius: 30px;
   font-size: 14px;
   line-height: 20px;
-  color: #1967D2;
+  color: #52bc51;
   padding: 5px 20px;
   border-radius: 20px;
   margin: 5px 0;
@@ -12021,7 +12022,7 @@ Candidate Detail Section
 
 .candidate-block-six .post-tags li a {
   display: block;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .candidate-block-six .post-tags li.colored {
@@ -12073,7 +12074,7 @@ Candidate Detail Section
   text-align: center;
   font-size: 16px;
   cursor: pointer;
-  color: #1967D2;
+  color: #52bc51;
   border-radius: 7px;
   background: rgba(25, 103, 210, 0.07);
   transition: all 300ms ease;
@@ -12207,7 +12208,7 @@ Call To Action Two
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #1967D2;
+  background-color: #52bc51;
   content: "";
   opacity: .85;
 }
@@ -12238,7 +12239,7 @@ Call To Action Three
 }
 
 .call-to-action-three.style-two {
-  background: #1967D2;
+  background: #52bc51;
 }
 
 .call-to-action-three.style-two .sec-title .text a {
@@ -12500,7 +12501,7 @@ Invoice Section
 }
 
 .invoice-wrap .bottom-links li .link {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*** 
@@ -12680,7 +12681,7 @@ Listing Section  (Ls Section)
   line-height: 25px;
   padding: 10px 30px;
   border-radius: 8px;
-  color: #1967D2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.07);
   white-space: nowrap;
   margin-right: 30px;
@@ -12776,7 +12777,7 @@ Listing Section  (Ls Section)
 }
 
 .ls-section .filter-block input:focus {
-  border-color: #1967D2;
+  border-color: #52bc51;
 }
 
 .ls-section .filter-block .icon {
@@ -12818,7 +12819,7 @@ Listing Section  (Ls Section)
 
 .tags-style-one li a:hover {
   background: #D4E1F6;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .ls-section .call-to-action .image-column {
@@ -12901,7 +12902,7 @@ Ls Outer
   line-height: 25px;
   padding: 10px 22px;
   padding-right: 44px;
-  color: #1967D2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.07);
   white-space: nowrap;
   display: flex;
@@ -12910,14 +12911,14 @@ Ls Outer
 }
 
 .top-filters .chosen-container-single .chosen-single div:after {
-  color: #1967D2;
+  color: #52bc51;
   content: "\f17c";
   font-family: 'Flaticon';
   font-size: 10px;
 }
 
 .top-filters .chosen-container .chosen-single span {
-  color: #1967D2;
+  color: #52bc51;
   margin: 0;
   min-width: auto;
 }
@@ -13011,7 +13012,7 @@ Listing Show More
   top: 0;
   height: 100%;
   border-radius: 20px;
-  background-color: #1967D2;
+  background-color: #52bc51;
 }
 
 .ls-show-more .show-more {
@@ -13019,7 +13020,7 @@ Listing Show More
   font-weight: 500;
   font-size: 16px;
   line-height: 22px;
-  color: #1967D2;
+  color: #52bc51;
   padding-bottom: 5px;
 }
 
@@ -13029,7 +13030,7 @@ Listing Show More
   bottom: 0;
   width: 60px;
   height: 2px;
-  background: #1967D2;
+  background: #52bc51;
   content: "";
 }
 
@@ -13073,7 +13074,7 @@ Listing Pagination
 
 .ls-pagination li a:hover,
 .ls-pagination li a.current-page {
-  background: #1967D2;
+  background: #52bc51;
   color: #ffffff;
 }
 
@@ -13103,7 +13104,7 @@ Listing Pagination
 .ls-pagination li.next a:hover,
 .ls-pagination li.prev a:hover {
   background: transparent;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /***
@@ -13346,7 +13347,7 @@ News Section
 }
 
 .news-block .lower-content h3 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .news-block .lower-content .text {
@@ -13360,7 +13361,7 @@ News Section
   position: relative;
   font-size: 16px;
   line-height: 28px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .news-block .read-more i {
@@ -13370,7 +13371,7 @@ News Section
 
 .news-block .read-more:hover {
   color: inherit;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .news-block .read-more:hover i {
@@ -13584,7 +13585,7 @@ News Section Three
   position: relative;
   font-size: 16px;
   line-height: 28px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .news-block-two .read-more i {
@@ -13594,7 +13595,7 @@ News Section Three
 
 .news-block-two .read-more:hover {
   color: inherit;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .news-block-two .read-more:hover i {
@@ -13647,7 +13648,7 @@ Pricing Section
   width: 60px;
   height: 30px;
   transform: translateX(-50%);
-  background: #1967D2;
+  background: #52bc51;
   border: 1px solid #E7E7EC;
   box-sizing: border-box;
   box-shadow: 0px 8px 15px rgba(140, 152, 164, 0.1);
@@ -13706,7 +13707,7 @@ Pricing Section
 
 .pricing-table .inner-box:hover,
 .pricing-table.tagged .inner-box {
-  border: 1px solid #1967D2;
+  border: 1px solid #52bc51;
   box-shadow: 0px 6px 15px rgba(64, 79, 104, 0.05);
 }
 
@@ -13739,7 +13740,7 @@ Pricing Section
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   margin-bottom: 10px;
 }
 
@@ -14023,7 +14024,7 @@ steps Section
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
-  background: #1967D2;
+  background: #52bc51;
   border-radius: 40px;
 }
 
@@ -14317,9 +14318,9 @@ border-bottom: 0 !important;*/
 .job-search-form.style-two .form-group input,
 .job-search-form.style-two .form-group select,
 .job-search-form.style-two .form-group textarea {
-  background: #1967D2;
+  background: #52bc51;
   color: #ffffff;
-  border-color: #1967D2 !important;
+  border-color: #52bc51 !important;
 }
 
 .job-search-form.style-two .chosen-container-single .chosen-single {
@@ -14428,7 +14429,7 @@ Blog Grid
 
 .sidebar .search-box .form-group input[type="text"]:focus,
 .sidebar .search-box .form-group input[type="search"]:focus {
-  border-color: #1967D2;
+  border-color: #52bc51;
 }
 
 .sidebar .search-box .form-group button {
@@ -14487,7 +14488,7 @@ Blog Grid
 
 .catagory-list li a:hover:before,
 .catagory-list li a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*=== Latest News ===*/
@@ -14587,7 +14588,7 @@ Blog Grid
 
 .tag-list a:hover {
   color: #ffffff;
-  background-color: #1967D2;
+  background-color: #52bc51;
 }
 
 /*** 
@@ -14774,7 +14775,7 @@ Blog Single
 }
 
 .other-options .tags a:hover {
-  background: #1967D2;
+  background: #52bc51;
   color: #ffffff;
 }
 
@@ -14805,7 +14806,7 @@ Blog Single
   top: 0;
   font-size: 9px;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 700;
 }
 
@@ -14819,7 +14820,7 @@ Blog Single
   font-size: 16px;
   line-height: 22px;
   text-transform: capitalize;
-  color: #1967D2;
+  color: #52bc51;
   padding-left: 16px;
 }
 
@@ -14844,7 +14845,7 @@ Blog Single
 }
 
 .post-control h5 a:hover {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 /*=========================
@@ -15333,7 +15334,7 @@ Order Slip
   display: inline-block;
   height: 80px;
   width: 80px;
-  color: #1967d2;
+  color: #52bc51;
   background: rgba(25, 103, 210, 0.1);
   border-radius: 50%;
   line-height: 80px;
@@ -15716,8 +15717,8 @@ Product Tabs
 }
 
 .prod-tabs .tab-btns .tab-btn.active-btn {
-  color: #1967D2;
-  border-bottom-color: #1967D2;
+  color: #52bc51;
+  border-bottom-color: #52bc51;
 }
 
 .prod-tabs .tabs-content .tab .content {
@@ -15752,7 +15753,7 @@ Product Tabs
 }
 
 .mega-menu li.current a {
-  color: #1967D2 !important;
+  color: #52bc51 !important;
 }
 
 .scrollmagic-pin-spacer {
@@ -15804,7 +15805,7 @@ Product Tabs
 .category-block-three.-type-2 .icon {
   background: none;
   font-size: 48px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block-three.-type-2:hover .inner-box {
@@ -16295,7 +16296,7 @@ Product Tabs
   width: 100%;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1000px) {
   .main-header.-type-11 .nav-outer {
     width: unset;
   }
@@ -16307,11 +16308,11 @@ Product Tabs
 
 .btn-white {
   background-color: white !important;
-  color: #1967D2 !important;
+  color: #52bc51 !important;
 }
 
 .btn-white:hover {
-  background-color: #1967D2 !important;
+  background-color: #52bc51 !important;
   color: white !important;
 }
 
@@ -16321,7 +16322,7 @@ Product Tabs
 }
 
 .btn-white-10:hover {
-  background-color: #1967D2 !important;
+  background-color: #52bc51 !important;
   color: white !important;
 }
 
@@ -16349,7 +16350,7 @@ Product Tabs
   }
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1000px) {
   .banner-section-three.-type-12 .bg-image {
     margin: 0;
   }
@@ -16363,7 +16364,7 @@ Product Tabs
   border-radius: 32px;
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1000px) {
   .banner-section-three.-type-12 .bg-image > img {
     border-radius: 0;
   }
@@ -16461,7 +16462,7 @@ Product Tabs
 .category-block-three.-type-3 .icon {
   background: none;
   font-size: 48px;
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block-three.-type-3:hover .inner-box {
@@ -16474,7 +16475,7 @@ Product Tabs
 }
 
 .theme-btn.-blue {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: white;
   padding: 15px 50px;
   border-radius: 8px;
@@ -16483,19 +16484,19 @@ Product Tabs
 
 .theme-btn.-blue:hover {
   background-color: rgba(25, 103, 210, 0.1);
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .theme-btn.-blue-light {
   background-color: rgba(25, 103, 210, 0.1);
-  color: #1967D2;
+  color: #52bc51;
   padding: 15px 50px;
   border-radius: 8px;
   transition: all 0.15s ease-in-out;
 }
 
 .theme-btn.-blue-light:hover {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: white;
 }
 
@@ -16507,7 +16508,7 @@ Product Tabs
 }
 
 .theme-btn.-blue-dark:hover {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: white;
 }
 
@@ -16599,7 +16600,7 @@ Product Tabs
   }
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1000px) {
   .section-bg-color__item {
     right: 0;
     left: 0;
@@ -16632,7 +16633,7 @@ Product Tabs
 }
 
 .job-block.-type-2 .inner-header .icon {
-  color: #1967D2;
+  color: #52bc51;
   font-size: 19px;
 }
 
@@ -16942,7 +16943,7 @@ Product Tabs
 }
 
 .banner-section.-type-13 .theme-btn:hover {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: white;
 }
 
@@ -17351,7 +17352,7 @@ Product Tabs
 }
 
 .main-header.alternate.-type-14 .theme-btn.btn-style-three:hover {
-  background-color: #1967D2;
+  background-color: #52bc51;
   color: white;
 }
 
@@ -17380,7 +17381,7 @@ Product Tabs
 }
 
 .banner-section.-type-14 .title-box h3 span {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section.-type-14 .theme-btn {
@@ -17481,7 +17482,7 @@ Product Tabs
 }
 
 .category-block.-type-1 .cat-header .icon-wrap.-blue .icon::before {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .category-block.-type-1 .cat-header .icon-wrap.-red {
@@ -17527,7 +17528,7 @@ Product Tabs
 }
 
 .features__section {
-  background: linear-gradient(90.22deg, #1967D2 0%, #4487E2 100%);
+  background: linear-gradient(90.22deg, #52bc51 0%, #4487E2 100%);
   padding: 20px 0 !important;
 }
 
@@ -17689,17 +17690,17 @@ Product Tabs
 
 .theme-btn.-blue-outline {
   padding: 18px 48px;
-  border: 3px solid #1967D2;
+  border: 3px solid #52bc51;
   border-radius: 8px;
   font-size: 15px;
   font-weight: 400;
   line-height: 1;
-  color: #1967D2;
+  color: #52bc51;
   transition: all 0.2s ease;
 }
 
 .theme-btn.-blue-outline:hover {
-  background-color: #1967D2 !important;
+  background-color: #52bc51 !important;
   color: white !important;
 }
 
@@ -17712,7 +17713,7 @@ Product Tabs
 }
 
 .subscribe-section.-type-2 {
-  background: linear-gradient(90.22deg, #1967D2 0%, #4487E2 100%);
+  background: linear-gradient(90.22deg, #52bc51 0%, #4487E2 100%);
 }
 
 .subscribe-section.-type-2 .sec-title h2 {
@@ -17729,7 +17730,7 @@ Product Tabs
 }
 
 .subscribe-section.-type-2 .btn-style-seven:hover {
-  background-color: #1967D2 !important;
+  background-color: #52bc51 !important;
   color: white !important;
 }
 
@@ -17881,7 +17882,7 @@ Product Tabs
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
-  color: #1967D2;
+  color: #52bc51;
   transform: translateY(12px);
   opacity: 0;
   transition: all 0.15s ease;
@@ -18737,7 +18738,7 @@ Product Tabs
   }
 }
 
-@media only screen and (max-width: 1366px) {
+@media only screen and (max-width: 1000px) {
   .main-header.-type-17 {
     padding-left: 0;
     padding-right: 0;
@@ -19177,7 +19178,7 @@ Banner Section
 }
 
 .banner-section-two .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section-two .content-column .text {
@@ -19296,7 +19297,7 @@ Banner Section Three
 }
 
 .banner-section-three .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section-three .content-column .text {
@@ -19649,7 +19650,7 @@ Banner Section Six
 }
 
 .banner-section-six .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section-six .content-column .text {
@@ -19778,7 +19779,7 @@ Banner Section Seven
 }
 
 .banner-section-seven .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section-seven .content-column .text {
@@ -19886,7 +19887,7 @@ Banner Section Eight
 }
 
 .banner-section-eight .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section-eight .content-column .text {
@@ -19927,7 +19928,7 @@ Banner Section Eight
   position: relative;
   font-size: 15px;
   line-height: 25px;
-  color: #1967D2;
+  color: #52bc51;
   font-weight: 400;
   display: flex;
   margin-left: 20px;
@@ -20394,7 +20395,7 @@ Banner Section
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url(../images/icons/bg-1.png);
+  background: linear-gradient(0deg,#fff,#e4fff0);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -20407,7 +20408,7 @@ Banner Section
 
 .banner-section .content-column .inner-column {
   position: relative;
-  padding: 270px 0 150px;
+  padding: 117px 0 0px;
 }
 
 .banner-section .content-column .title-box {
@@ -20418,19 +20419,20 @@ Banner Section
 .banner-section .content-column h3 {
   font-size: 50px;
   line-height: 60px;
-  color: #202124;
-  font-weight: 500;
-  margin-bottom: 25px;
+  color: #52bd51;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .banner-section .content-column h3 .colored {
-  color: #1967D2;
+  color: #52bc51;
 }
 
 .banner-section .content-column .text {
   font-size: 15px;
-  color: #696969;
+  color: black;
   line-height: 25px;
+  text-align: center;
 }
 
 .banner-section .popular-searches {
@@ -20491,7 +20493,7 @@ Banner Section
   border-left: 1px solid #e6e6e6;
 }
 
-.job-search-form .form-group:first-child {
+.job-search-form .form-group {
   border-right: 1px solid #e6e6e6;
 }
 
@@ -20567,9 +20569,9 @@ border-bottom: 0 !important;*/
 .job-search-form.style-two .form-group input,
 .job-search-form.style-two .form-group select,
 .job-search-form.style-two .form-group textarea {
-  background: #1967D2;
+  background: #52bc51;
   color: #ffffff;
-  border-color: #1967D2 !important;
+  border-color: #52bc51 !important;
 }
 
 .job-search-form.style-two .chosen-container-single .chosen-single {
@@ -20729,7 +20731,7 @@ Work Section
 
 @media only screen and (max-width: 1600px){
 	.main-menu .navigation > li{
-		margin-right: 35px;
+		margin-right: 20px;
 	}
 
 	.header-style-two .main-menu .navigation > li{
@@ -20737,7 +20739,7 @@ Work Section
 	}
 
 	.main-header .logo{
-		padding: 15px 0;
+		padding: 0 0;
 	}
 
 	.banner-section .info_block,
@@ -20752,14 +20754,15 @@ Work Section
 	}
 
 	.job-search-form form{
-		padding: 15px 15px;
+		padding: 10px;
 		border-radius: 10px;
 	}
 
-	.banner-section .content-column h3{
-		font-size: 50px;
-		line-height: 1.2em;
-	}
+	.banner-section .content-column h3 {
+    font-size: 30px;
+    line-height: 1.2em;
+    text-align: center;
+}
 
 	.banner-section .image-column .image-box{
 		margin-right: -40px;
@@ -20898,7 +20901,7 @@ Work Section
 
 
 
-@media only screen and (max-width: 1366px){
+@media only screen and (max-width: 1000px){
 	.main-header .outer-box .upload-cv{
 		margin-right: 0;
 	}
@@ -23128,3 +23131,11 @@ Work Section
   border-radius: 5px;
 }
 
+
+/* @media (min-width: 1400px) {
+  body{
+    zoom: 0.66;
+    transform: scale(0.66);
+    transform-origin: top left;
+  }
+}  */

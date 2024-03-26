@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Danh sách người dùng',
+'page_title' => __('user_list'),
 'actions' => [
 'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
@@ -17,6 +17,9 @@
         </div>
         <div class="col col-xs-6">
             <input class="form-control" name="email" type="text" placeholder="Email" value="{{ request()->email }}">
+        </div>
+        <div class="col col-xs-6">
+            <input class="form-control" name="phone_employee" type="text" placeholder="Số điện thoại" value="{{ request()->phone_employee }}">
         </div>
         <div class="col col-xs-6">
             <x-admintheme::form-status model="{{ $model }}" status="{{ request()->status }}" showAll="1" />
@@ -48,7 +51,7 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
-                            <th>Email</th>
+                            <th>{{ __('email') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
                             <th>{{ __('action') }}</th>
@@ -90,7 +93,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('show') }}
                                             </a>
                                         </li>

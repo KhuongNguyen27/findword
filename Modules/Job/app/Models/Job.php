@@ -10,6 +10,7 @@ use Modules\Employee\Database\factories\JobFactory;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
 use Modules\Staff\app\Models\UserJobFavorite;
+use Modules\Employee\app\Models\CareerJob;
 
 use Carbon\Carbon;
 
@@ -38,7 +39,7 @@ class Job extends Model
     }
     public function careers()
     {
-        return $this->belongsToMany(Career::class, 'career_job', 'job_id', 'career_id');
+        return $this->belongsToMany(Career::class);
     }
     public function wage()
     {
@@ -56,6 +57,14 @@ class Job extends Model
     {
         return $this->belongsTo(UserEmployee::class, 'user_id', 'user_id');
     }
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+    public function level()
+    {
+        return $this->belongsTo(Level::class,'degree_id','id');
+    }
     //Feature
     function getImageFmAttribute(){
         return $this->userEmployee && $this->userEmployee->image != null ? $this->userEmployee->image :"/website-assets/images/favicon.png";
@@ -66,13 +75,21 @@ class Job extends Model
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
-    public function getImage($user_id)
+    public function getImage()
     {
-        $userEmployee = $this->userEmployee;
-
-        if ($userEmployee && $userEmployee->image != null) {
-            return $userEmployee->image;
+        if ($this->image != null) {
+            return "/website-assets/images/".$this->image;
         }
         return "/website-assets/images/favicon.png";
     }
+
+    public function getJobforCareerId ($career_id) {
+        $careerJobs = CareerJob::where('career_id', $career_id)->get();
+        $jobs = $careerJobs->map(function ($careerJob) {
+            return $this::find($careerJob->job_id);
+        });
+        return $jobs;
+    }
+
+
 }

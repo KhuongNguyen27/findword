@@ -1,4 +1,4 @@
-@extends('job::layouts.master')
+@extends('website.layouts.master')
 @section('title')
     Tất cả các công việc
 @endsection
