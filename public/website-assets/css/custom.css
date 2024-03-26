@@ -405,3 +405,29 @@ div.popover {
     max-width: 500px !important;
     min-width: 500px !important;
 }
+/* Company detail */
+.company-cover .company-detail-overview {
+    top: 31px;
+}
+.company-cover .company-logo .company-image-logo {
+    top: 152px !important;
+}
+.company-cover .company-detail-overview .company-subdetail-info-text {
+    line-height: unset !important;
+}
+/* User profile */
+.ls-widget .widget-title h4 {
+    color: #000;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+}
+.applicants-widget .widget-title a {
+    background: #00b14f !important;
+    border-color: #00b14f !important;
+    border-radius: 32px !important;
+    color: #fff !important;
+    line-height: 1;
+    padding: 11px 16px !important;
+}
