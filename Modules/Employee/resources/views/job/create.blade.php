@@ -47,7 +47,7 @@ input {
                                 <div class="row">
                                     <!-- Input -->
                                     <!-- Input -->
-                                    <div class="form-group col-lg-12 col-md-12">
+                                    <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                         <label>Tên công việc <span class="label-required">*</span></label>
                                         <input type="text" value="{{ old('name') }}" name="name" id="nameInput"
                                             placeholder="Tên công việc">
@@ -59,7 +59,7 @@ input {
 
                                     <!-- Input -->
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Ngành Nghề <span class="label-required">*</span></label>
                                         <select name="career_ids[]" class="chosen-select career_ids"
                                             multiple="multiple">
@@ -73,7 +73,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Hạn nộp hồ sơ <span class="label-required">*</span></label>
                                         <input type="date" value="{{ old('deadline') }}" name="deadline"
                                             id="deadlineInput" placeholder="">
@@ -83,7 +83,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Hình thức làm việc <span class="label-required">*</span></label>
                                         <select name="formwork_id" class="chosen-select">
                                             @foreach ($param['formworks'] as $formwork)
@@ -96,7 +96,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Kinh Nghiệm <span class="label-required">*</span></label>
                                         <select name="experience" class="chosen-select">
                                             <option value="2">Có yêu cầu</option>
@@ -109,7 +109,7 @@ input {
                                     </div>
 
                                     <!-- Input -->
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Lương <span class="label-required">*</span></label>
                                         <select name="wage_id" class="chosen-select">
                                             @foreach ($param['wages'] as $wage)
@@ -124,7 +124,7 @@ input {
 
 
                                     <!-- Input -->
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Giới tính <span class="label-required">*</span></label>
                                         <select name="gender" class="chosen-select">
                                             <option value="">Không yêu cầu</option>
@@ -137,7 +137,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Nơi làm việc <span class="label-required">*</span></label>
                                         <input type="text" value="{{ old('work_address') }}" name="work_address"
                                             id="nameInput" placeholder="Nơi làm việc...">
@@ -147,7 +147,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-3 col-md-12">
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                         <select name="province_id" class="chosen-select form-select">
                                             <option value="">Tất cả địa điểm</option>
@@ -162,7 +162,7 @@ input {
                                             {{ $errors->first('province_id') }}</p>
                                         @endif
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12">
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                         <label>Quốc gia </label>
                                         <input type="text" value="{{ old('country') }}" name="country"
                                             placeholder="Quốc gia làm việc...">
@@ -171,7 +171,7 @@ input {
                                             {{ $errors->first('country') }}</p>
                                         @endif
                                     </div>
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Vị Trí <span class="label-required">*</span></label>
                                         <select name="degree_id" class="chosen-select">
                                             @foreach ($param['degrees'] as $degree)
@@ -184,7 +184,7 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Bằng cấp <span class="label-required">*</span></label>
                                         <select name="rank_id" class="chosen-select">
                                             @foreach ($param['ranks'] as $rank)
@@ -198,7 +198,7 @@ input {
                                     </div>
 
                                     <!-- About Company -->
-                                    <div class="form-group col-lg-12 col-md-12">
+                                    <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mô tả công việc <span class="label-required">*</span></label>
                                         <textarea name="description" id="description"
                                             placeholder="Mô tả...">{{ old('description') }}</textarea>
@@ -211,7 +211,7 @@ input {
                                     <!-- About Company -->
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Yêu cầu công việc <span class="label-required">*</span></label>
-                                        <textarea name="requirements"
+                                        <textarea name="requirements" id="requirements"
                                             placeholder="Yêu cầu...">{{ old('requirements') }}</textarea>
                                         @if ($errors->any())
                                         <p style="color:red">
@@ -243,9 +243,9 @@ input {
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-lg-12 col-md-12">
+                                        <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                             <label>Loại tin đăng <span class="label-required">*</span></label>
-                                            <select id="package_tye" onchange="handle_price_package()"
+                                            <select id="package_type" onchange="handle_price_package()"
                                                 name="jobpackage_id" class="chosen-select">
                                                 @foreach ($param['job_packages'] as $job_package)
                                                 <option id="{{ $job_package->id }}"
@@ -262,7 +262,7 @@ input {
                                             @endif
                                             <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a>
                                         </div>
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày bắt đầu <span class="label-required">*</span></label>
                                             <input type="date" value="{{ old('start_day') }}" name="start_day"
                                                 placeholder="" onchange="calculateDays()">
@@ -272,7 +272,7 @@ input {
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày hết hạn <span class="label-required">*</span></label>
                                             <input type="date" value="{{ old('end_day') }}" name="end_day"
                                                 placeholder="" onchange="calculateDays()">
@@ -282,7 +282,7 @@ input {
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Số ngày :</label>
                                             <input type="number" value="{{ old('number_day') }}" class="number_day"
                                                 name="number_day" id="nameInput" placeholder="Số ngày..." readonly>
@@ -293,17 +293,17 @@ input {
 
 
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Tổng thanh toán cho tin đăng (ĐTD) :</label>
-                                            <input id="price" type="number" value="{{ old('price') }}" name="price"
-                                                id="nameInput2" placeholder="Giá..." readonly>
+                                            <input id="price" type="text" value="{{ old('price') }}" name="price"
+                                                placeholder="Giá..." readonly>
                                             @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('price') }}</p>
                                             @endif
                                         </div>
 
 
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Giờ bắt đầu đăng :</label>
                                             <input type="time" value="{{ old('start_hour') }}" name="start_hour"
                                                 id="nameInput" placeholder="Giờ...">
@@ -312,7 +312,7 @@ input {
                                                 {{ $errors->first('start_hour') }}</p>
                                             @endif
                                         </div>
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Giờ Kết thúc :</label>
                                             <input type="time" value="{{ old('end_hour') }}" name="end_hour"
                                                 id="nameInput" placeholder="Giờ...">
@@ -364,23 +364,22 @@ function calculateDays() {
     var endDate = new Date(document.querySelector('input[name="end_day"]').value);
 
     if (endDate < startDate) {
-        // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
         alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
-        // Xóa giá trị ngày hết hạn
         document.querySelector('input[name="end_day"]').value = "";
     }
     handle_price_package();
 }
 
 // hàm xử lý tính giá tiền
-function handle_price_package() {   
-    var price = $("#package_tye").find("option:selected").data("price");
-    var jobCount = $("#package_tye").find("option:selected").data("count_job");
+function handle_price_package() {
+    var price = parseFloat($("#package_type").find("option:selected").data("price"));
+    var jobCount = $("#package_type").find("option:selected").data("count_job");
     if (jobCount == 0) {
         var number_day = $(".number_day").val();
         if (price !== undefined && number_day !== "") {
             var total_price = price * number_day;
-            $("#price").val(total_price);
+            var formatted_total_price = total_price.toLocaleString("vi-VN");
+            $("#price").val(formatted_total_price);
         }
     } else {
         $("#price").val(0);
