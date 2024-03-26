@@ -93,12 +93,13 @@ class JobController extends Controller
     {
         DB::beginTransaction();
         try {
-            if ($request->price) {
+            $price = intval(str_replace(".", "", $request->price));
+            if ($price) {
                 $user = Auth::user();
-                if ($user->points < $request->price) {
+                if ($user->points < $price) {
                     return back()->with("error","Điểm tuyển dụng không đủ vui lòng nạp thêm");
                 }
-                $user->points -= $request->price;
+                $user->points -= $price;
                 $user->save();
             }
             // xử lý slug
@@ -122,7 +123,7 @@ class JobController extends Controller
             }
             $job->rank_id = $request->rank_id;
             $job->jobpackage_id = $request->jobpackage_id;
-            $job->price = $request->price;
+            $job->price = $price;
             $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
             $job->province_id = $request->province_id;
