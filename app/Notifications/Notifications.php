@@ -46,6 +46,8 @@ class Notifications extends Notification
             return (new MailMessage)->view('employee::auth.mail-applied-job',['data'=> $this->data]);
         } else if ($this->type === "updated-job") {
             return (new MailMessage)->view('employee::auth.mail-updated-job',['data'=> $this->data]);
+        } else if ($this->type === "refuse-job") {
+            return (new MailMessage)->view('employee::auth.mail-refuse-job',['data'=> $this->data]);
         }
     }
 

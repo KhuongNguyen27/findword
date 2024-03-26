@@ -10,8 +10,10 @@ use Modules\Employee\app\Models\User;
 class UserJobApply extends Model
 {
     use HasFactory;
+    
     const ACTIVE = 1;
     const INACTIVE = 0;
+    const DRAFT = -1;
 
     /**
      * The attributes that are mass assignable.
