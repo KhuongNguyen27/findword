@@ -21,16 +21,17 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class JobapplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $model = UserJobApply::class;
     public function index(Request $request)
     {
-        $query = UserJobApply::where('user_id', auth()->user()->id);
-
+        $query = UserJobApply::with('job')->whereHas('job', function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        });
+        
         if ($request->name) {
             $query->whereHas('cv', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->name . '%');
@@ -50,12 +51,6 @@ class JobapplicationController extends Controller
         ];
         return view('employee::cv-apply.index', compact('cv_apllys', 'param_count'));
     }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CvapplyRequest $request)
     {
         try {
@@ -63,7 +58,7 @@ class JobapplicationController extends Controller
             $cv_apply = new UserJobApply();
 
             $cv_apply->cv_id = $request->cv_id;
-            $cv_apply->user_id = $job->user_id;
+            $cv_apply->user_id = Auth::id();
             $cv_apply->job_id  = $job->id;
             $cv_apply->status = UserJobApply::INACTIVE;
 
@@ -85,16 +80,11 @@ class JobapplicationController extends Controller
             return redirect()->route('website.jobs.show', $job->slug)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
-
-    /**
-     * Show the specified resource.
-     */
     public function show($id)
     {
         try {
-
             $cv_job_apply = UserJobApply::findOrFail($id);
-            if (auth()->user()->id == $cv_job_apply->user_id) {
+            if (auth()->user()->id == $cv_job_apply->job->user_id) {
                 $item = UserCv::findOrFail($cv_job_apply->cv->id);
                 $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userExperiences = UserExperience::where('cv_id', $cv_job_apply->cv->id)->get();
@@ -118,12 +108,6 @@ class JobapplicationController extends Controller
             return redirect()->route('employee.cv.index')->with('error', __('sys.item_not_found'));
         }
     }
-
-
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, $id): RedirectResponse
     {
         try {
@@ -134,25 +118,26 @@ class JobapplicationController extends Controller
             $cv_apply->save();
 
             $message = "Cập Nhật thành công!";
-            if ($cv_apply->status == "1") {
-                $cv_infor['name'] = $cv_apply->user->name;
-                $cv_infor['email'] = $cv_apply->user->email;
-                $cv_infor['job'] = $cv_apply->job->name;
+            $cv_infor['name'] = $cv_apply->user->name;
+            $cv_infor['email'] = $cv_apply->user->email;
+            $cv_infor['job'] = $cv_apply->job->name;
+            if ($cv_apply->status == $this->model::ACTIVE) {
                 Notification::route('mail', [
                     $cv_infor['email'] => $cv_infor['name']
                 ])->notify(new Notifications("updated-job", $cv_infor));
+            }
+            if ($cv_apply->status == $this->model::INACTIVE) {
+                Notification::route('mail', [
+                    $cv_infor['email'] => $cv_infor['name']
+                ])->notify(new Notifications("refuse-job", $cv_infor));
             }
             return redirect()->route('employee.cv.index')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
-            return redirect()->route('employee.cv.show')->with('error', 'Cập Nhật bị lỗi!');
+            return redirect()->route('employee.cv.show',$id)->with('error', 'Cập Nhật bị lỗi!');
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         try {

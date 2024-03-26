@@ -29,6 +29,9 @@ class Career extends Model
     public function cvs(){
         return $this->belongsToMany(Cv::class,'cv_career');
     }
+    public function cv_career(){
+        return $this->hasMany(CvCareer::class);
+    }
     
     protected static function newFactory(): CareerFactory
     {

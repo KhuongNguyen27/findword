@@ -14,7 +14,7 @@ class CvSeeder extends Seeder
     {
         $data =[
             'image' => 'https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/delicate_2_v2.png?v=1.0.6',
-            'language' => 'Tiếng Việt',
+            'language' => '1',
             'file_cv' => 'https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/delicate_2_v2.png?v=1.0.6',
             'status' => 1,
         ];

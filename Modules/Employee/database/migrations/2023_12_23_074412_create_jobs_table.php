@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->string('career_id')->nullable();
             $table->string('formwork_id')->nullable();
             $table->string('deadline')->nullable();
             $table->string('start_day')->nullable();

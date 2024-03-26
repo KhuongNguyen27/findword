@@ -94,10 +94,11 @@ class User extends Authenticatable
         if ($this->account->where('is_current',1)->first()) {
             $firstDayOfMonth = Carbon::now()->startOfMonth();
             $lastDayOfMonth = Carbon::now()->endOfMonth();
+            // dd($this->account->where('is_current',1)->first()->account->job_package);
             $user_package = $this->account->where('is_current',1)->first()->account->job_package;
-            $count_job_avaible = $user_package->where('job_package_id',$job_package)->first()->amount;
+            $count_job_avaible = $user_package->where('job_package_id',$job_package)->first() !== null ? $user_package->where('job_package_id',$job_package)->first()->amount : 0; 
             $count_job_current = $this->job->where('jobpackage_id',$job_package)->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->count();
-            return $count_job_avaible-$count_job_current;
+            return $count_job_avaible-$count_job_current > 0 ? $count_job_avaible-$count_job_current : 0 ;
         }
         return null;
     }

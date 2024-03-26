@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{ route('adminuser.index',['type'=>'staff']) }}"
+            <a href="{{ route('adminuser.index',['type' => request()->type]) }}"
                 class="btn btn-danger px-4">{{ __('back') }}</a>
         </div>
     </div>

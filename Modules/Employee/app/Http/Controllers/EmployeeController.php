@@ -36,7 +36,6 @@ class EmployeeController extends Controller
      */
     public function show(string $slug)
     {
-
         try {
             $userEmployee = UserEmployee::where('slug',$slug)->firstOrFail();
             $jobs = Job::where('user_id',$userEmployee->user_id)->paginate(5);

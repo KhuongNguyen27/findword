@@ -26,6 +26,10 @@ class Style extends Model
     public function cvs(){
         return $this->belongsToMany(Cv::class,'cv_style');
     }
+    public function cv_style(){
+        return $this->hasMany(CvStyle::class);
+    }
+    
     
     protected static function newFactory(): StyleFactory
     {
