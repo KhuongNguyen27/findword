@@ -55,7 +55,7 @@ class AdminUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAdminUserRequest $request): RedirectResponse
+    public function store(StoreAdminUserRequest $request)
     {
         $type = $request->type;
         try {
@@ -67,6 +67,7 @@ class AdminUserController extends Controller
         }
     }
 
+
     /**
      * Show the specified resource.
      */
@@ -75,13 +76,17 @@ class AdminUserController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findOrFail($request->id);
-
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
                 'item'         => $item
             ];
-            return view($this->view_path.'showCVs', $params);
+            if ($type == 'staff') {
+                return view($this->view_path.'showStaff', $params);
+            }
+            if ($type == 'employee') {
+                return view($this->view_path.'showEmployee', $params);
+            }
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
@@ -129,7 +134,7 @@ public function edit($id)
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreAdminUserRequest $request, $id): RedirectResponse
+    public function update(StoreAdminUserRequest $request, $id)
     {
         $type = $request->type;
         try {

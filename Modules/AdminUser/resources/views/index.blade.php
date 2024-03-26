@@ -30,6 +30,16 @@
 </form>
 
 <div class="card mt-4">
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">
@@ -75,7 +85,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>'UserCV']) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 Show CV
                                             </a>
                                         </li>
@@ -101,4 +111,4 @@
     @endif
 </div>
 
-@endsection
+@endsection     

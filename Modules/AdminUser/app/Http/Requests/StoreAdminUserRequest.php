@@ -12,18 +12,32 @@ class StoreAdminUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [
-            'email' => 'required|email|max:255',
-            'password' => 'required|max:255',
-            'phone' => 'required',
-            'name' => 'required',
-            'birthdate' => 'required',
-            'experience_years' => 'required',
-            'gender' => 'required',
-            'city' => 'required',
-            'address' => 'required',
-            'outstanding_achievements' => 'required',
-        ];
+        if(request()->type == 'staff'){
+            $rules = [
+                'email' => 'required|email|max:255',
+                'password' => 'required|max:255',
+                'phone' => 'required',
+                'name' => 'required',
+                'birthdate' => 'required',
+                'experience_years' => 'required',
+                'gender' => 'required',
+                'city' => 'required',
+                'address' => 'required',
+                'outstanding_achievements' => 'required',
+            ];
+        }
+        if(request()->type == 'employee'){
+            $rules = [
+                'email' => 'required|email|max:255',
+                'password' => 'required|max:255',
+                'phone' => 'required',
+                'name' => 'required',
+                'name_company' => 'required',
+                'address' => 'required',
+                'website' => 'required',
+                'about' => 'required',
+            ];
+        }
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['email'] = 'required';
             unset($rules['password']);
