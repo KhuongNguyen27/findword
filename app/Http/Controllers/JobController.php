@@ -136,7 +136,7 @@ class JobController extends Controller
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
-            'title' => 'Việc làm trong nước tuyển gấp',
+            'title' => 'Việc làm trong nước hôm nay',
         ];
         return view('website.jobs.index',$params);
     }
