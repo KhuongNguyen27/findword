@@ -24,6 +24,9 @@ class UserStaff extends Model
         'address',
         'outstanding_achievements',
         'image',
+        'province_id',
+        'district_id',
+        'ward_id',
     ];
     
     public function user()

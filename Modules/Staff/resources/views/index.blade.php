@@ -80,14 +80,14 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        {{-- <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('year_of_experience') }}</label>
                                             <input type="number" name="experience_years"
                                                 value="{{ $item->experience_years }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('experience_years') }}</p>
                                             @endif
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('gender') }}</label>
@@ -102,15 +102,63 @@
                                         </div>
 
 
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        {{-- <div class="form-group col-lg-6 col-md-12">
                                             <label>{{ __('province_city') }}</label>
                                             <input type="text" name="city" value="{{ $item->city }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('city') }}</p>
                                             @endif
+                                        </div> --}}
+
+
+
+                                        {{-- <div class="form-group col-lg-12 col-md-12">
+                                            <label>{{ __('outstanding_achievements') }}</label>
+                                            <input type="text" name="outstanding_achievements"
+                                                value="{{ $item->outstanding_achievements }}">
+                                            @if ($errors->any())
+                                                <p style="color:red">{{ $errors->first('outstanding_achievements') }}</p>
+                                            @endif
+                                        </div> --}}
+
+                                        <div class="form-group col-lg-6 col-md-12">
+                                            <label>{{ __('province_city') }}</label>
+                                            <select name="province_id" id="province" class="form-control">
+                                                <option value="">{{ __('please_select') }} </option>
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->id }}"
+                                                        {{ old('province_id') == $province->id ? 'selected' : '' }}>
+                                                        {{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
+                                            <label>{{ __('district') }}</label>
+                                            <select name="district_id" id="district" class="form-control">
+                                                @foreach ($districts as $district)
+                                                    <option value="{{ $district->id }}"
+                                                        {{ old('district_id') == $district->id ? 'selected' : '' }}
+                                                        >
+                                                        {{ $district->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-12">
+                                            <label>{{ __('ward') }}</label>
+                                            <select name="ward_id" id="ward" class="form-control">
+                                                <option value="">{{ __('please_select') }}</option>
+                                                @foreach ($wards as $ward)
+                                                    <option value="{{ $ward->id }}" {{ old('ward_id') == $ward->id ? 'selected' : '' }}>
+                                                        {{ $ward->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        
+
+                                        <div class="form-group col-lg-12 col-md-12">
                                             <label>{{ __('address') }}</label>
                                             <input type="text" name="address" value="{{ $item->address }}">
                                             @if ($errors->any())
@@ -118,14 +166,74 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-12 col-md-12">
-                                            <label>{{ __('outstanding_achievements') }}</label>
-                                            <input type="text" name="outstanding_achievements"
-                                                value="{{ $item->outstanding_achievements }}">
-                                            @if ($errors->any())
-                                                <p style="color:red">{{ $errors->first('outstanding_achievements') }}</p>
-                                            @endif
-                                        </div>
+                                        {{-- ajax --}}
+                                        <script>
+                                            function districts(provinceId) {
+                                                $.ajax({
+                                                    url: '{{ route('districts') }}',
+                                                    method: 'GET',
+                                                    data: {
+                                                        province_id: provinceId
+                                                    },
+                                                    success: function(response) {
+                                                        // Xử lý kết quả và cập nhật danh sách quận/huyện
+                                                        var districtDropdown = $('#district');
+                                                        districtDropdown.empty();
+                                                        $.each(response, function(index, district) {
+                                                            districtDropdown.append($('<option>', {
+                                                                value: district.id,
+                                                                text: district.name
+                                                            }));
+                                                        });
+                                                    },
+                                                    error: function(xhr, status, error) {
+                                                        console.error(error);
+                                                    }
+                                                });
+                                            }
+
+                                            function wards(districtId) {
+                                                $.ajax({
+                                                    url: '{{ route('wards') }}',
+                                                    method: 'GET',
+                                                    data: {
+                                                        district_id: districtId
+                                                    },
+                                                    success: function(response) {
+                                                        // Xử lý kết quả và cập nhật danh sách phường/xã
+                                                        var wardDropdown = $('#ward');
+                                                        wardDropdown.empty();
+                                                        $.each(response, function(index, ward) {
+                                                            wardDropdown.append($('<option>', {
+                                                                value: ward.id,
+                                                                text: ward.name
+                                                            }));
+                                                        });
+                                                    },
+                                                    error: function(xhr, status, error) {
+                                                        console.error(error);
+                                                    }
+                                                });
+                                            }
+
+                                            $('#province').change(function() {
+                                                var provinceId = $(this).val();
+                                                districts(provinceId);
+                                            });
+
+                                            $('#district').change(function() {
+                                                var districtId = $(this).val();
+                                                wards(districtId);
+                                            });
+                                            $('#ward').change(function() {
+                                                var wardId = $(this).val();
+                                                // Do something with wardId
+                                            });
+                                        </script>
+
+
+
+
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <button class="theme-btn btn-style-one">{{ __('save') }}</button>
@@ -156,3 +264,4 @@
         });
     });
 </script>
+
