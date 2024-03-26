@@ -2,14 +2,14 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
+                <img src="{{ asset('website-assets/images/banner/1100x220-1.png') }}" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
+                <img src="{{ asset('website-assets/images/banner/1100x220-2.png') }}" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="https://static.topcv.vn/img/Banner%20Top%20CV%20Thang%203%20(1)%20(1).png" alt="">
-            </div>    
+                <img src="{{ asset('website-assets/images/banner/1100x220-3.png') }}" alt="">
+            </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
