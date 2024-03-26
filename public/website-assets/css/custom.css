@@ -109,7 +109,7 @@
 }
 
 .bookmark-btn {
-    color: #52bf51;
+    color: #28c1bc;
 }
 
 .job-categories {
@@ -142,8 +142,8 @@
 
 .page-item.active .page-link {
     color: #fff;
-    background-color: #52bc51;
-    border-color: #52bc51;
+    background-color: #28c1bc;
+    border-color: #28c1bc;
 }
 
 /* Danh sách công ty */
@@ -187,9 +187,6 @@ span.thumb-cover {
 .candidate-block-four .job-info {
     display: block;
 }
-.auto-container {
-    max-width: 1200px;
-}
 
 .candidate-block-four .job-info li {
     color: #696969;
@@ -217,7 +214,7 @@ span.thumb-cover {
     text-align: center;
     padding: 10px 20px 10px 20px;
     color: #ffffff;
-    background-color: #52bc51;
+    background-color: #28c1bc;
 }
 /* Chi tiết công ty */
 .job-detail-section .upper-box {
@@ -227,7 +224,7 @@ span.thumb-cover {
     color: #333;
 }
 .section-introduce .card-title {
-    background: linear-gradient(90deg, #52bc51, #91d290);
+    background: linear-gradient(90deg, #28c1bc, #91d290);
     color: #fff !important;
     font-size: 18px !important;
     font-weight: 600 !important;
@@ -285,7 +282,7 @@ span.thumb-cover {
     color: #263a4d;
 }
 .job-sub-title {
-    border-left: 6px solid #00b14f;
+    border-left: 6px solid #28c1bc;
     color: #212f3f;
     font-size: 20px;
     font-style: normal;
@@ -369,16 +366,16 @@ span.thumb-cover {
 .list-feature-jobs .btn-slick-arrow {
     align-items: center;
     aspect-ratio: 1/1;
-    border: 1px solid #00b14f;
+    border: 1px solid #28c1bc;
     border-radius: 50%;
-    color: #00b14f!important;
+    color: #28c1bc!important;
     cursor: pointer;
     display: flex;
     justify-content: center;
     width: 32px;
 }
 .list-feature-jobs .btn-slick-arrow:not(.slick-disabled):hover {
-    background: #00b14f;
+    background: #28c1bc;
     color: #fff!important;
 }
 .list-feature-jobs .see-more a {
@@ -424,10 +421,17 @@ div.popover {
     margin: 0;
 }
 .applicants-widget .widget-title a {
-    background: #00b14f !important;
-    border-color: #00b14f !important;
+    background: #28c1bc !important;
+    border-color: #28c1bc !important;
     border-radius: 32px !important;
     color: #fff !important;
     line-height: 1;
     padding: 11px 16px !important;
+}
+.candidate-block-four span.thumb-cover img {
+    width: 100% !important;
+    border-radius: 12px 12px 0 0px;
+}
+.default-form .form-group {
+    margin-bottom: 15px !important;
 }
