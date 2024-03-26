@@ -10,24 +10,37 @@
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <div class="row">
-        <div class="col col-xs-3">
-            <input class="form-control" name="id" type="number" placeholder="Mã số" value="{{ request()->id ?? '' }}">
-        </div>
-        <div class="col col-xs-3">
+        <div class="col">
             <input class="form-control" name="name" type="text" placeholder="Tên CV mẫu"
                 value="{{ request()->name ?? ''  }}">
         </div>
-        <div class="col col-xs-3">
-            <select name="language" class="form-control">
-                <option value="">Ngôn ngữ sử dụng</option>
-                <option value="Tiếng Việt" {{ request()->language == 'Tiếng Việt' ? 'selected' : '' }}>Tiếng Việt
-                </option>
-                <option value="Tiếng Anh" {{ request()->language == 'Tiếng Anh' ? 'selected' : '' }}>Tiếng Anh</option>
-                <option value="Tiếng Nhật" {{ request()->language == 'Tiếng Nhật' ? 'selected' : '' }}>Tiếng Nhật
-                </option>
+        <div class="col">
+            <select name="career" class="form-select">
+                <option value="">Lựa chọn ngành nghề</option>
+                @foreach ($careers as $career)
+                <option value="{{ $career->slug }}" {{ request()->career == $career->slug? 'selected' : ''}}>
+                    {{ $career->name }} </option>
+                @endforeach
             </select>
         </div>
-        <div class="col col-xs-3">
+        <div class="col">
+            <select name="style" class="form-select">
+                <option value="">Lựa chọn thiết kế</option>
+                @foreach ($styles as $style)
+                <option value="{{ $style->slug }}" {{ request()->style == $style->slug? 'selected' : ''}}>
+                    {{ $style->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col">
+            <select name="language" class="form-control">
+                <option value="">Ngôn ngữ sử dụng</option>
+                <option value="1" {{ request()->language == '1' ? 'selected' : '' }}>Tiếng Việt </option>
+                <option value="2" {{ request()->language == '2' ? 'selected' : '' }}>Tiếng Nhật </option>
+                <option value="3" {{ request()->language == '3' ? 'selected' : '' }}>Tiếng Anh </option>
+            </select>
+        </div>
+        <div class="col">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>{{ __('search') }}</button>
             </div>
@@ -65,7 +78,8 @@
                             <td>
                                 {{ $item->name ?? '' }}
                             </td>
-                            <td>{{ $item->language  ?? '' }}</td>
+                            <td>{{ $item->language  == $item::VIETNAMESE ? 'Tiếng Việt' : ($item->language  == $item::JAPANESE ? 'Tiếng Nhật' : 'Tiếng Anh') }}
+                            </td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
@@ -74,8 +88,8 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         <!-- <li>
-                                            <a class="dropdown-item" href="{{ route($route_prefix.'show',$item->id) }}">
-                                                {{ __('show') }}
+                                            <a class="dropdown-item" href="{{-- route($route_prefix.'show',$item->id) --}}">
+                                                {{-- __('show') --}}
                                             </a>
                                         </li> -->
                                         <li>

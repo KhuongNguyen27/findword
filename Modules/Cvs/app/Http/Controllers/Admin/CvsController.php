@@ -24,19 +24,30 @@ class CvsController extends Controller
     protected $model        = Cv::class;
     public function index(Request $request)
     {
-        $query = $this->model::query()->whereStatus($this->model::ACTIVE);
-        if($request->id){
-            $query->whereId($request->id);
+        $cvs_query = $this->model::query()->whereStatus($this->model::ACTIVE);
+        $careers = Career::whereStatus(Career::ACTIVE)->get();
+        $styles = Style::whereStatus(Style::ACTIVE)->get();
+        if(request()->name){
+            $cvs_query->where('name','LIKE', '%'.request()->name.'%');
         }
-        if($request->name){
-            $query->where('name','LIKE', '%'.$request->name.'%');
+        if(request()->language){
+            $cvs_query->whereLanguage(request()->language);
         }
-        if($request->language){
-            $query->where('language','LIKE','%'.$request->language.'%');
+        if (request()->career) {
+            $cvs_query->whereHas('careers',function($query){
+                $query->where('slug',request()->career);
+            });
         }
-        $items = $query->orderBy('created_at','desc')->paginate(5);
+        if (request()->style) {
+            $cvs_query->whereHas('styles',function($query){
+                $query->where('slug',request()->style);
+            });
+        }
+        $items = $cvs_query->orderBy('created_at','desc')->paginate(5);
         $param = [
             'items' => $items,
+            'careers' => $careers,
+            'styles' => $styles,
             'model' => $this->model,
             'route_prefix' => $this->route_prefix
         ];

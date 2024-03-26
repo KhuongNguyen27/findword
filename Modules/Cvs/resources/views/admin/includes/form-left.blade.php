@@ -72,16 +72,16 @@
             <label class="mb-3">{{ __('language') }}</label>
             <select name="language" class="form-control">
                 <option value="" {{ old('language') === 'null' ? 'selected' : ''}}>{{ __('select_language') }}</option>
-                <option value="Tiếng Việt"
-                    {{ isset($item) && $item->language == "Tiếng Việt" ? 'selected' : (old('language') == "Tiếng Việt" ? 'selected' : ''  ) }}>
+                <option value="1"
+                    {{ isset($item) && $item->language == "1" ? 'selected' : (old('language') == "1" ? 'selected' : ''  ) }}>
                     {{ __('vietnamese') }}
                 </option>
-                <option value="Tiếng Anh"
-                    {{ isset($item) && $item->language == "Tiếng Anh" ? 'selected' : (old('language') == "Tiếng Anh" ? 'selected' : "") }}>
+                <option value="3"
+                    {{ isset($item) && $item->language == "3" ? 'selected' : (old('language') == "3" ? 'selected' : "") }}>
                     {{ __('english') }}
                 </option>
-                <option value="Tiếng Nhật"
-                    {{ isset($item) && $item->language == "Tiếng Nhật"? 'selected' : (old('language') == "Tiếng Nhật" ? 'selected' : "") }}>
+                <option value="2"
+                    {{ isset($item) && $item->language == "2"? 'selected' : (old('language') == "2" ? 'selected' : "") }}>
                     {{ __('japanese') }}
                 </option>
             </select>

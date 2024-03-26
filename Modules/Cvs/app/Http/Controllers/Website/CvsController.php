@@ -31,6 +31,11 @@ class CvsController extends Controller
         if (request()->language) {
             $cvs_query->whereLanguage(request()->language);
         }
+        if (request()->style) {
+            $cvs_query->whereHas('styles',function($query){
+                $query->where('slug',request()->style);
+            });
+        }
         $items = $cvs_query->paginate(4);
         $careers = $careers_query->get();
         $styles = $styles_query->get();

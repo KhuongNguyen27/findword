@@ -21,6 +21,14 @@ class CvCareer extends Model
         'cv_id'
     ];
     
+    public function career(){
+        return $this->belongsTo(Career::class);
+    }
+
+    public function cv(){
+        return $this->belongsTo(Cv::class);
+    }
+    
     protected static function newFactory(): CvCareerFactory
     {
         //return CvCareerFactory::new();
