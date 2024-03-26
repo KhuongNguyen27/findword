@@ -8,6 +8,7 @@
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('website-assets/css/custom.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
