@@ -17,10 +17,10 @@ class UpdateUserStaffRequest extends FormRequest
             'phone' => 'required|numeric',
             'birthdate' => 'required',
             'gender' => 'required',
-            'city' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-            'outstanding_achievements' => 'required|string|max:255',
-            'experience_years' => 'required|numeric',
+            'province_id'=>'required',
+            'district_id'=>'required',
+            'ward_id'=>'required'
         ];
     }
     public function messages(): array

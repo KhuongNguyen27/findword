@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+       
+    ];
+    public function user_employee(){
+        return $this->hasOne(UserEmployee::class);
+    }
 }

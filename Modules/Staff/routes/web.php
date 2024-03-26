@@ -47,7 +47,13 @@ Route::group([
     Route::resource('experience', UserExperienceController::class)->names('experience');
     Route::resource('education', UserEducationController::class)->names('education');
     Route::resource('skill', UserSkillController::class)->names('skill');
+
+
 });
+
+    Route::get('/districts', [ProfileController::class,'districts'])->name('districts');
+    Route::get('/wards', [ProfileController::class,'wards'])->name('wards');
+
 Route::group([
     'prefix' => 'staff',
     'as' => 'staff.'

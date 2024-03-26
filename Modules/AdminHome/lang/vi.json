@@ -118,7 +118,7 @@
     "browse_logo":"Duyệt qua logo",
     "fullname":"Họ và tên",
     "year_of_experience":"Số năm kinh nghiệm",
-    "province_city":"Tỉnh/Thành phố",
+    "province_city":"Tỉnh / Thành phố",
     "outstanding_achievements":"Thành tích nổi bật",
     "update":"Cập nhật",
     "ready_to_jump_back_in":"Bạn đã sẵn sàng quay trở lại",
@@ -158,7 +158,10 @@
     "calm":"Bình tĩnh",
     "neat_uniform":"Đồng phục gọn gàng",
     "read_more":"Xem thêm",
-    "job_notification":"Thông báo công việc"
+    "job_notification":"Thông báo công việc",
+    "district":"Quận / Huyện",
+    "ward":"Xã / Phường / Thị trấn",
+    "please_select":"__Mời bạn chọn__"
     
 
 
