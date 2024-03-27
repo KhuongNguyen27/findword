@@ -241,7 +241,7 @@
                                                 <div class="row">
                                                     <div class="form-group col-lg-12 col-md-12">
                                                         <label>Loại tin đăng</label>
-                                                        {{-- <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" class="chosen-select" readonly>
+                                                        {{-- <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" class="chosen-select">
                                                         @foreach ($param['job_packages'] as $job_package)
                                                         <option data-price="{{ $job_package->price }}" @selected($job->jobpackage_id == $job_package->id)
                                                             value="{{ $job_package->id }}">
@@ -249,16 +249,18 @@
                                                         @endforeach
                                                     </select> --}}
                                                         @php
-                                                            $selected_job_package_name = ''; // Biến này sẽ lưu trữ tên gói công việc tương ứng với ID đã chọn
+                                                            $selected_job_package_name = '';
                                                             foreach ($param['job_packages'] as $job_package) {
                                                                 if ($job->jobpackage_id == $job_package->id) {
                                                                     $selected_job_package_name = $job_package->name;
-                                                                    break; // Dừng vòng lặp khi tìm thấy ID tương ứng
+                                                                    break;
                                                                 }
                                                             }
                                                         @endphp
-                                                        <input type="text" id="package_tye" name="jobpackage_id"
-                                                            value="{{ $selected_job_package_name  }}" readonly>
+                                                        <input type="text" id="package_tye"
+                                                            value="{{ $selected_job_package_name }}" readonly>
+                                                        <input type="hidden" id="package_tye" name="jobpackage_id"
+                                                            value="{{ $job_package->id }}" readonly>
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('jobpackage_id') }}</p>

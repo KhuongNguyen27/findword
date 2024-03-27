@@ -259,7 +259,8 @@ class JobController extends Controller
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
             $job->status = Job::ACTIVE;
-
+            
+            // dd($job);
             $job->save();
 
             // lưu vào bảng career_job
