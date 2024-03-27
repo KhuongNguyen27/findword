@@ -54,7 +54,7 @@
                         @if( count( $items ) )
                         @foreach( $items as $item )
                         <tr>
-                            <td>#{{ $item->id }}</td>
+                            <td>FW{{ $item->user_id }}</td>
                             <td>
                                 {{ $item->user->name ?? '' }}
                             </td>
