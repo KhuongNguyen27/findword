@@ -3,10 +3,16 @@ span.flaticon-bookmark.active {
     color: red;
 }
 </style>
-<div class="job-block col-job-info">
+<div class="job-block col-job-info job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box">
         <div class="content">
-            <span class="company-logo"><img src="{!! asset($job->getImage()) !!}">
+            <span class="tag-job-flash">
+                @if( $job->jobpackage_id == 1)
+                <img src="https://static.topcv.vn/v4/image/job-list/icon-flash.webp" alt="">
+                @endif
+            </span>
+            <span class="company-logo">
+                <img src="{{ $job->userEmployee->image_fm }}">
             </span>
             <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
                 <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
