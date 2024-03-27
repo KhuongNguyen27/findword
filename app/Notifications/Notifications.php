@@ -45,11 +45,21 @@ class Notifications extends Notification
         } else if ($this->type === "applied-job") {
             return (new MailMessage)->view('employee::auth.mail-applied-job',['data'=> $this->data]);
         } else if ($this->type === "updated-job") {
-            return (new MailMessage)->view('employee::auth.mail-updated-job',['data'=> $this->data]);
+            return (new MailMessage)
+            ->greeting("Xin chào,{$this->data['name']}")
+            ->line("CV của bạn đã được duyệt")
+            ->line("Công việc ứng tuyển : {$this->data['job']}")
+            ->line("Hãy chuẩn bị cho buổi phỏng vấn nhé !");
         } else if ($this->type === "refuse-job") {
-            return (new MailMessage)->view('employee::auth.mail-refuse-job',['data'=> $this->data]);
+            return (new MailMessage)
+            ->greeting("Xin chào,{$this->data['name']}")
+            ->line("Cv ứng tuyển công việc {$this->data['job']} của bạn đã không đáp ứng yêu cầu!")
+            ->line('Hãy thử lại công việc khác nhé');
         } else if ($this->type === "read-cv") {
-            return (new MailMessage)->view('employee::auth.mail-refuse-job',['data'=> $this->data]);
+            return (new MailMessage)
+            ->greeting("Xin chào,{$this->data['name']}")
+            ->line("Nhà tuyển dụng đã đọc CV ứng tuyển công việc {$this->data['job']} của bạn!")
+            ->line('Hãy chuẩn bị nhé');
         }
     }
 
