@@ -58,6 +58,13 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 });
+
+Route::get('redirectToFacebook',[AuthController::class,'redirectToFacebook'])->name('login.facebook');
+Route::get('handleFacebookCallback',[AuthController::class,'handleFacebookCallback']);
+
+Route::get('redirectToGoogle',[AuthController::class,'redirectToGoogle'])->name('login.goole');
+Route::get('handleGoogleCallback',[AuthController::class,'handleGoogleCallback']);
+
 // Bỏ qua chờ làm phần nâng cao
 // Route::group([
 //     'prefix' => 'cvs_example',

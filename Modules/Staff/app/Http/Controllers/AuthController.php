@@ -18,6 +18,7 @@ use Modules\Staff\app\Models\StaffUser;
 use Modules\Staff\app\Models\User;
 
 use App\Notifications\Notifications;
+use Exception;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Support\Facades\Session;
@@ -86,19 +87,36 @@ class AuthController extends Controller
     {
         return Socialite::driver('facebook')->redirect();
     }
-
+           
+   
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->user();
-
-        // Xử lý đăng nhập hoặc đăng ký người dùng
-        $authUser = $this->findOrCreateUser($user, 'facebook');
-
-        // Đăng nhập người dùng
-        Auth::login($authUser, true);
-
-        // Redirect tới trang sau khi đăng nhập thành công
-        return redirect()->intended('staff/auth/login');
+        try {
+        
+            $user = Socialite::driver('facebook')->user();
+         
+            $finduser = UserStaff::where('email', $user->email)->first();
+         
+            if($finduser){
+         
+                Auth::login($finduser);
+       
+                return redirect()->intended('staff');
+         
+            }else{
+                $newUser = UserStaff::updateOrCreate(['email' => $user->email],[
+                        'name' => $user->name,
+                        'facebook_id'=> $user->id,
+                    ]);
+        
+                Auth::login($newUser);
+        
+                return redirect()->intended('staff');
+            }
+       
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function redirectToGoogle()
@@ -108,31 +126,35 @@ class AuthController extends Controller
 
     public function handleGoogleCallback()
     {
-        $user = Socialite::driver('google')->user();
-
-        // Xử lý đăng nhập hoặc đăng ký người dùng
-        $authUser = $this->findOrCreateUser($user, 'google');
-
-        // Đăng nhập người dùng
-        Auth::login($authUser, true);
-
-        // Redirect tới trang sau khi đăng nhập thành công
-        return redirect()->intended('staff/auth/login');
-    }
-
-    protected function findOrCreateUser($user, $provider) 
-    {
-        $authUser = UserStaff::where('facebook_id',$user->id)->orWhere('google_id',$user->id)->first();
-        if(!$authUser){
-            $authUser = UserStaff::create([
-                'name'=>$user->name,
-                'email'=>$user->email,
-                'facebook_id'=> $provider === 'facebook' ? $user->id :null,
-                'google_id'=> $provider === 'google' ? $user->id : null,
-            ]);
+        try {
+        
+            $user = Socialite::driver('google')->user();
+         
+            $finduser = UserStaff::where('email', $user->email)->first();
+         
+            if($finduser){
+         
+                Auth::login($finduser);
+       
+                return redirect()->intended('staff');
+         
+            }else{
+                $newUser = UserStaff::updateOrCreate(['email' => $user->email],[
+                        'name' => $user->name,
+                        'google_id'=> $user->id,
+                    ]);
+        
+                Auth::login($newUser);
+        
+                return redirect()->intended('staff');
+            }
+       
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
-        return $authUser;
     }
+
+ 
 }
 
 

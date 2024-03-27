@@ -32,14 +32,16 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '',
-        'client_secret' => '',
-        'redirect' => 'auth/facebook/callback',
+        'client_id' => '724420766524762',
+        'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
+        'redirect' => 'https://tuyendunghue.vn/login/facebook/callback',
     ],
 
     'google' => [
         'client_id' => '67080160242-6k9okp9ct0ekvp76luokvid4m7ai0r9o.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'auth/google/callback',
+        'redirect' => 'https://tuyendunghue.vn/login/google/callback',
     ],
 ];
+
+
