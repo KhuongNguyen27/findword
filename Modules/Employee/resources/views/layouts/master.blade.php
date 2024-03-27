@@ -134,12 +134,15 @@
         },
     });
     </script>
-   <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-   <script>
-       CKEDITOR.replace('description');
-   </script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace('about');
+    CKEDITOR.replace('description');
+    </script>
+    <script>
+    CKEDITOR.replace('about');
+    </script>
+    <script>
+    CKEDITOR.replace('requirements');
     </script>
 </body>
 

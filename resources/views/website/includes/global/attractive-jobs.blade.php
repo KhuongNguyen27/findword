@@ -106,7 +106,21 @@
             </div>
             <div class="col-lg-4">
                 <div class="attractive-banner mt-1">
-                <img src="https://static.topcv.vn/img/Banner%20R1.png" alt="">
+                    <div class="hero-banner mt-4">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('website-assets/images/banner/346x577-1.png') }}" alt="">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('website-assets/images/banner/346x577-2.png') }}" alt="">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
