@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Modules\Staff\app\Http\Requests\ChangepasswordRequest;
+use Modules\Staff\app\Models\UserCv;
 use Modules\Staff\app\Models\UserJobAplied;
+use Modules\Staff\app\Models\UserJobFavorite;
 
 class ProfileController extends Controller
 {
@@ -100,8 +102,12 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $userJobApplies = UserJobAplied::where('user_id', $user->id)->get();
+        $count_cv_user = UserCv::where('user_id',$user->id)->count();
+        $count_favorite_user = UserJobFavorite::where('user_id',$user->id)->count();
         $params = [
             'userJobApplies' => $userJobApplies,
+            'count_cv_user' => $count_cv_user,
+            'count_favorite_user'=>$count_favorite_user
         ];
         return view('staff::profile.dashboard', $params);
     }

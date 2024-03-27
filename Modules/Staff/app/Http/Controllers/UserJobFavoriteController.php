@@ -18,7 +18,7 @@ class UserJobFavoriteController extends Controller
     {
         $user = auth()->user();
         $userJobFavoriteIds = UserJobFavorite::where('user_id', $user->id)->pluck('job_id')->toArray();
-        $userJobFavorites = Job::whereIn('id', $userJobFavoriteIds)->get();
+        $userJobFavorites = Job::whereIn('id', $userJobFavoriteIds)->paginate(5);
         $params = [
             'userJobFavorites' => $userJobFavorites,
         ];
