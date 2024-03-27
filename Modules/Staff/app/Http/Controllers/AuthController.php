@@ -21,6 +21,8 @@ use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+use Modules\Staff\app\Models\UserStaff;
 
 class AuthController extends Controller
 {
@@ -76,4 +78,61 @@ class AuthController extends Controller
             return redirect()->back()->with('error','Registration failed');
         }
     }
+
+
+
+
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        // Xử lý đăng nhập hoặc đăng ký người dùng
+        $authUser = $this->findOrCreateUser($user, 'facebook');
+
+        // Đăng nhập người dùng
+        Auth::login($authUser, true);
+
+        // Redirect tới trang sau khi đăng nhập thành công
+        return redirect()->intended('staff/auth/login');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+
+        // Xử lý đăng nhập hoặc đăng ký người dùng
+        $authUser = $this->findOrCreateUser($user, 'google');
+
+        // Đăng nhập người dùng
+        Auth::login($authUser, true);
+
+        // Redirect tới trang sau khi đăng nhập thành công
+        return redirect()->intended('staff/auth/login');
+    }
+
+    protected function findOrCreateUser($user, $provider) 
+    {
+        $authUser = UserStaff::where('facebook_id',$user->id)->orWhere('google_id',$user->id)->first();
+        if(!$authUser){
+            $authUser = UserStaff::create([
+                'name'=>$user->name,
+                'email'=>$user->email,
+                'facebook_id'=> $provider === 'facebook' ? $user->id :null,
+                'google_id'=> $provider === 'google' ? $user->id : null,
+            ]);
+        }
+        return $authUser;
+    }
 }
+
+

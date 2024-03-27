@@ -52,11 +52,11 @@
             <div class="divider"><span>hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>Đăng nhập
+                    <a href="{{ route('login.facebook') }}" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>Đăng nhập
                         qua Facebook</a>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>Đăng nhập qua
+                    <a href="{{ route('login.google') }}" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>Đăng nhập qua
                         Gmail</a>
                 </div>
             </div>
