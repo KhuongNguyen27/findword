@@ -122,7 +122,6 @@
 
 .company-block-item img {
     border-radius: 20px;
-    height: 207px;
 }
 
 .news-block .image-box img {
@@ -393,8 +392,8 @@ span.thumb-cover {
 }
 .job-block .company-logo {
     position: absolute;
-    left: -10px;
-    top: 0;
+    left: 0;
+    top: 5px;
     width: 75px;
     transition: all 300ms ease;
 }
@@ -434,4 +433,24 @@ div.popover {
 }
 .default-form .form-group {
     margin-bottom: 15px !important;
+}
+.job-jobpackage-1 .company-logo {
+    border: 2px solid #ffc107 !important;
+    border-radius: 12px;
+}
+.job-block .content {
+    padding-left: 84px !important;
+}
+.job-block .inner-box {
+    min-height: 100px;
+}
+.tag-job-flash {
+    left: -10px;
+    position: absolute;
+    top: -10px;
+    z-index: 9;
+}
+.tag-job-flash img {
+    height: 33.758px;
+    width: 24px;
 }
