@@ -89,7 +89,7 @@
                                             {{ $job->end_day ? date('d/m/Y',strtotime($job->end_day)) : '-' }}
                                         </div>
                                     </div>
-
+                            
                                     <div class="job-detail__info--actions box-apply-current mt-3">
                                         <a href="{{ route('website.jobs.aplication', ['id' => $job->slug]) }}"
                                             class="job-detail__info--actions-button button-primary btn-apply-job">
@@ -119,7 +119,8 @@
                         <div class="text">
                             {!! $job->requirements ?? '-'!!}
                         </div>
-                    </div>
+                    </div>                 
+                  
 
                     <div class="job-detail">
                         <h4 class="job-sub-title">Việc làm cùng công ty</h4>
