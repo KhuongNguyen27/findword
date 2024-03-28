@@ -107,12 +107,16 @@ class AuthController extends Controller
 
                 return redirect()->intended('staff');
             } else {
-                $newUser = User::updateOrCreate(['email' => $socialUser->email], [
+                $newUser = User::firtsOrCreate(
+                    ['email' => $socialUser->email], [
                     'name' => $socialUser->name,
                     'facebook_id' => $socialUser->id,
                 ]);
+                $user_staff = UserStaff::create(
+                    ['user_id'=> $newUser->id],
+                );
                 Auth::login($newUser);
-            DB::commit();
+                DB::commit();
                 return redirect()->intended('staff');
             }
         } catch (Exception $e) {
