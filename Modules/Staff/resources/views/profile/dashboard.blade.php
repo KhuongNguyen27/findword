@@ -24,8 +24,8 @@
                         <i class="icon la la-file-invoice"></i>
                     </div>
                     <div class="right">
-                        <h4>9382</h4>
-                        <p>{{ __('applied_job') }}</p>
+                        <h4>{{ $count_cv_user }}</h4>
+                        <p>{{ __('cv') }}</p>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="right">
                         <!-- <h4>{{ optional(auth()->user()->userJobFavorites)->count() ?? 0 }}</h4> -->
-                        <h4>32</h4>
+                        <h4>{{ $count_favorite_user }}</h4>
                         <p>{{ __('favourite') }}</p>
                     </div>
                 </div>

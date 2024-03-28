@@ -87,7 +87,7 @@
             </div>
 
             <div class="form-group">
-                <button class="theme-btn btnstyle-one " type="submit" name="Register">Đăng ký</button>
+                <button class="theme-btn btn-style-one " type="submit" name="Register">Đăng ký</button>
             </div>
         </form>
         <div class="bottom-box">

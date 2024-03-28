@@ -85,6 +85,16 @@ class JobapplicationController extends Controller
         try {
             $cv_job_apply = UserJobApply::findOrFail($id);
             if (auth()->user()->id == $cv_job_apply->job->user_id) {
+                if ($cv_job_apply->is_read == $this->model::INACTIVE) {
+                    $cv_infor['name'] = $cv_job_apply->user->name;
+                    $cv_infor['email'] = $cv_job_apply->user->email;
+                    $cv_infor['job'] = $cv_job_apply->job->name;
+                    Notification::route('mail', [
+                        $cv_infor['email'] => $cv_infor['name']
+                    ])->notify(new Notifications("read-cv", $cv_infor));
+                    $cv_job_apply->is_read = $this->model::ACTIVE;
+                    $cv_job_apply->save();
+                }
                 $item = UserCv::findOrFail($cv_job_apply->cv->id);
                 $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userExperiences = UserExperience::where('cv_id', $cv_job_apply->cv->id)->get();
