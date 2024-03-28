@@ -101,8 +101,8 @@ span.flaticon-bookmark.active {
                                                 <option value="" {{ old('career') == null ? 'selected' : '' }}>Tất cả
                                                     các ngành nghề </option>
                                                 @foreach($careers as $career)
-                                                <option value="{{ $career->name }}"
-                                                    {{ isset($_GET['career']) && $_GET['career'] ==  $career->name ? 'selected' : '' }}>
+                                                <option value="{{ $career->slug }}"
+                                                    {{ isset($_GET['career']) && $_GET['career'] ==  $career->slug ? 'selected' : '' }}>
                                                     {{ $career->name }}
                                                 </option>
                                                 @endforeach
@@ -113,7 +113,7 @@ span.flaticon-bookmark.active {
                                 <div class="row">
                                     @if (request()->career)
                                     @foreach ($careers as $career)
-                                    @if ($career->name === request()->career)
+                                    @if ($career->slug === request()->career)
                                     @include('cvs::website.includes.cv-career-item', [
                                     'item' => $career,
                                     'item_info' => true,
