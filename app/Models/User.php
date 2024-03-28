@@ -30,6 +30,10 @@ class User extends Authenticatable
         'birthdate',
         'verify',
         'status',
+        'google_id',
+        'facebook_id',
+        'type',
+
     ];
 
     /**

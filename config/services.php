@@ -40,7 +40,7 @@ return [
     'google' => [
         'client_id' => '67080160242-6k9okp9ct0ekvp76luokvid4m7ai0r9o.apps.googleusercontent.com',
         'client_secret' => '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',
-        'redirect' => 'https://tuyendunghue.vn/login/google/callback',
+        'redirect' => 'http://127.0.0.1:8000/login/google/callback',
     ],
 ];
 

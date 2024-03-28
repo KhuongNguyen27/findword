@@ -24,8 +24,6 @@ class UserStaff extends Model
         'address',
         'outstanding_achievements',
         'image',
-        'facebook_id',
-        'google_id'
     ];
     
     public function user()
