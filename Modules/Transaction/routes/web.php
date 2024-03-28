@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use Modules\Staff\app\Http\Controllers\AuthController;
 use Modules\Transaction\app\Http\Controllers\TransactionController;
 use Modules\Transaction\app\Http\Controllers\Admin\TransactionController as TransactionsController;
 
@@ -41,3 +43,13 @@ Route::group([
 	Route::post('/transactions/{id}', [TransactionsController::class,'update'])->name('transactions.update');
 	Route::get('/transactions/delete/{id}', [TransactionsController::class,'destroy'])->name('transactions.destroy');
 });
+
+ 
+// Route login Facebook
+Route::get('/login/facebook', [AuthController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('/login/facebook/callback', [AuthController::class, 'handleFacebookCallback']);
+
+// Route login Google
+Route::get('/login/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [AuthController::class ,'handleGoogleCallback']);
+
