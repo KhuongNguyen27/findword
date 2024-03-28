@@ -22,14 +22,14 @@ $currentRouteName = \Request::route()->getName();
                     <span class="fs-5" style="color:#202124">{{ number_format(Auth::user()->points, 0, '', '.') ?? 0 }}P</span>
                 </button>
                 @endif
-            <button class="menu-btn">
+            <!-- <button class="menu-btn">
                 <span class="count">1</span>
                 <span class="icon la la-heart-o"></span>
-            </button>
+            </button> -->
 
-            <button class="menu-btn">
+            <!-- <button class="menu-btn">
                 <span class="icon la la-bell"></span>
-            </button>
+            </button> -->
             <!-- Dashboard Option -->
             <div class="dropdown dashboard-option">
                 <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">

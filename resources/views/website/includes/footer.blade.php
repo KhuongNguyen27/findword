@@ -93,7 +93,9 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2024 <a href="#">Superio</a>. All Right Reserved.</div>
+                <div class="copyright-text">© 2024 <a href="#">Superio</a>. All Right Reserved.
+                    <br><span style="font-size:12px;">Website đang được phát triển và hoàn thiện</span>
+                </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>

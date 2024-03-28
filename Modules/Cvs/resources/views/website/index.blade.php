@@ -1,32 +1,26 @@
-@extends('job::layouts.master')
+@extends('website.layouts.master')
 @section('title')
 Hồ sơ công việc
 @endsection
 @section('content')
-<style>
-.page-title {
-    margin-top: 100px;
-}
-
-span.flaticon-bookmark.active {
-    color: red;
-}
-</style>
 <!--Page Title-->
-<section class="page-title">
-    <div class="auto-container">
-        <div class="title-outer">
-            <h1>Tất cả hồ sơ mẫu</h1>
-            <ul class="page-breadcrumb">
-                <li><a href="{{ route('home') }}">Trang chủ</a></li>
-                <li><a href="{{ route('cvs.index') }}">Hồ sơ mẫu</a></li>
-            </ul>
+<section class="banner-section pb-0">
+        <div class="auto-container">
+            <div class="row">
+                <div class="content-column col-lg-12 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="title-box">
+                            <h3 class="text-center">Danh sách mẫu CV xin việc tiếng Việt / Anh / Nhật jp chuẩn 2024</h3>
+                            <div class="text">Các mẫu CV được thiết kế chuẩn theo từng ngành nghề.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 <!--End Page Title-->
 <!-- Listing Section -->
-<section class="ls-section">
+<section class="ls-section pt-5 pb-5">
     <div class="auto-container">
         <div class="filters-backdrop"></div>
         <div class="row">
@@ -78,12 +72,12 @@ span.flaticon-bookmark.active {
                                 </form>
                                 <div class="row">
                                     @foreach ($items as $item)
-                                    @include('cvs::website.includes.cv-style-item', [
-                                    'job' => $item,
-                                    'job_info' => true,
-                                    'job_other_info' => true,
-                                    'bookmark' => true,
-                                    ])
+                                        @include('cvs::website.includes.cv-style-item', [
+                                            'job' => $item,
+                                            'job_info' => true,
+                                            'job_other_info' => true,
+                                            'bookmark' => true,
+                                        ])
                                     @endforeach
                                     <!-- Listing Show More -->
                                     @include('cvs::website.includes.pagination')
@@ -112,25 +106,25 @@ span.flaticon-bookmark.active {
                                 </form>
                                 <div class="row">
                                     @if (request()->career)
-                                    @foreach ($careers as $career)
-                                    @if ($career->slug === request()->career)
-                                    @include('cvs::website.includes.cv-career-item', [
-                                    'item' => $career,
-                                    'item_info' => true,
-                                    'item_other_info' => true,
-                                    'bookmark' => true,
-                                    ])
-                                    @endif
-                                    @endforeach
+                                        @foreach ($careers as $career)
+                                            @if ($career->slug === request()->career)
+                                                @include('cvs::website.includes.cv-career-item', [
+                                                'item' => $career,
+                                                'item_info' => true,
+                                                'item_other_info' => true,
+                                                'bookmark' => true,
+                                                ])
+                                            @endif
+                                        @endforeach
                                     @else
-                                    @foreach ($careers as $career)
-                                    @include('cvs::website.includes.cv-career-item', [
-                                    'item' => $career,
-                                    'item_info' => true,
-                                    'item_other_info' => true,
-                                    'bookmark' => true,
-                                    ])
-                                    @endforeach
+                                        @foreach ($careers as $career)
+                                            @include('cvs::website.includes.cv-career-item', [
+                                                'item' => $career,
+                                                'item_info' => true,
+                                                'item_other_info' => true,
+                                                'bookmark' => true,
+                                            ])
+                                        @endforeach
                                     @endif
                                 </div>
                             </div>

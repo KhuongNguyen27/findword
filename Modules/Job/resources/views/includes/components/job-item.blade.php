@@ -3,12 +3,12 @@ span.flaticon-bookmark.active {
     color: red;
 }
 </style>
-<div class="job-block col-job-info job-jobpackage-{{ $job->jobpackage_id }}">
+<div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box">
         <div class="content">
             <span class="tag-job-flash">
-                @if( $job->jobpackage_id == 1)
-                <img src="https://static.topcv.vn/v4/image/job-list/icon-flash.webp" alt="">
+                @if( $job->jobpackage_id == 2 || $job->jobpackage_id == 4)
+                <img src="{{ asset('website-assets/job-bags/'.$job->jobpackage_id.'.png') }}" alt="">
                 @endif
             </span>
             <span class="company-logo">
