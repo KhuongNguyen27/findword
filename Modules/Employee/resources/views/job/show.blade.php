@@ -143,8 +143,31 @@
                                                     {{ $errors->first('work_address') }}</p>
                                             @endif
                                         </div>
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <label>Tỉnh - Thành phố</label>
+                                            <select name="province_id" class="chosen-select form-select" disabled>
+                                                <option value="">Tất cả địa điểm</option>
+                                                @foreach ($param['provinces'] as $province)
+                                                    <option value="{{ $province->id }}"
+                                                        {{ $province->id == $job->province_id ? 'selected' : '' }}>
+                                                        {{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->any())
+                                                <p style="color:red">
+                                                    {{ $errors->first('province_id') }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <label>Quốc gia </label>
+                                            <input type="text" value="{{ $job->country }}" name="country" disabled>
+                                            @if ($errors->any())
+                                                <p style="color:red">
+                                                    {{ $errors->first('country') }}</p>
+                                            @endif
+                                        </div>
 
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-6 col-md-12">
                                             <label>Vị trí</label>
                                             <select name="degree_id" class="chosen-select" disabled>
                                                 @foreach ($param['degrees'] as $degree)
@@ -158,7 +181,7 @@
                                             @endif
                                         </div>
 
-                                        <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-6 col-md-12">
                                             <label>Bằng cấp</label>
                                             <select name="rank_id" class="chosen-select" disabled>
                                                 @foreach ($param['ranks'] as $rank)

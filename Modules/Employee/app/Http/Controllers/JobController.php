@@ -168,13 +168,16 @@ class JobController extends Controller
         $wages = Wage::where('status', Wage::ACTIVE)->get();
         $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
+        $provinces = Province::get();
+
         $param = [
             'careers' => $careers,
             'degrees' => $degrees,
             'ranks' => $ranks,
             'formworks' => $formworks,
             'wages' => $wages,
-            'job_packages' => $job_packages
+            'job_packages' => $job_packages,
+            'provinces' => $provinces
         ];
         if (auth()->user()->id == $job->user_id) {
             $careerjobs = $job->careers()->pluck('career_id');
