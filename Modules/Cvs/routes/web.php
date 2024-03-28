@@ -28,7 +28,7 @@ Route::group([
 	Route::post('/cvs/{id}', [AdminCvs::class,'update'])->name('cvs.update');
 	Route::get('/cvs/delete/{id}', [AdminCvs::class,'destroy'])->name('cvs.destroy');
 });
-Route::get('/cvs', [WebsiteCvs::class,'index'])->name('cvs.index');
+Route::get('/mau-cv', [WebsiteCvs::class,'index'])->name('cvs.index');
 Route::get('/cvs/create', [WebsiteCvs::class,'create'])->name('cvs.create');
 Route::post('/cvs/store', [WebsiteCvs::class,'store'])->name('cvs.store');
 Route::get('/cvs/edit/{id}', [WebsiteCvs::class,'edit'])->name('cvs.edit');
