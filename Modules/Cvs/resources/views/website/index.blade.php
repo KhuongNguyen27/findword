@@ -35,16 +35,16 @@ span.flaticon-bookmark.active {
                 <div class="default-tabs style-two tabs-box">
                     <!--Tabs Box-->
                     <ul class="tab-buttons clearfix">
-                        <li class="tab-btn active-btn" data-tab="#tab4">Mẫu CV theo
+                        <li class="tab-btn {{ isset($_GET['career']) ? '' : 'active-btn' }}" data-tab="#tab4">Mẫu CV theo
                             style
                         </li>
-                        <li class="tab-btn" data-tab="#tab5">Mẫu CV theo
+                        <li class="tab-btn {{ isset($_GET['career']) ? 'active-btn' : '' }}" data-tab="#tab5">Mẫu CV theo
                             ngành nghề</li>
                     </ul>
 
                     <div class="tabs-content">
                         <!--Tab-->
-                        <div class="tab active-tab animated fadeIn" id="tab4" style="display: block;">
+                        <div class="tab {{ isset($_GET['career']) ? '' : 'active-tab animated fadeIn' }}" id="tab4" {{ isset($_GET['career']) ? "style='display: none;" : "style='display: block;'" }}>
                             <div class="ls-outer">
                                 <form action="" method="get">
                                     <div class="row">
@@ -92,7 +92,7 @@ span.flaticon-bookmark.active {
                         </div>
 
                         <!--Tab-->
-                        <div class="tab" id="tab5" style="display: none;">
+                        <div class="tab {{ isset($_GET['career']) ? 'active-tab animated fadeIn' : '' }}" id="tab5" {{ isset($_GET['career']) ? "style='display: block;" : "style='display: none;'" }}>
                             <div class="ls-outer">
                                 <form action="" method="get">
                                     <div class="row">
