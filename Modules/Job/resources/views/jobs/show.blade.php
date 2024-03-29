@@ -170,7 +170,7 @@
                                         href="{{ route('employee.show',$job->userEmployee->slug) }}" target="_blank"
                                         data-toggle="tooltip" title="" data-placement="top"
                                         data-original-title="{{ $job->userEmployee->name }}">
-                                        <img src="{{ asset('storage/images/' . $job->userEmployee->image) }}"
+                                        <img src="{{  $job->userEmployee->image_fm }}"
                                             alt="{{ $job->userEmployee->name }}" class="img-responsive">
                                     </a>
                                     <h2 class="company-name-label">
@@ -199,7 +199,7 @@
                                                 d="M14.66 11.06C14.6067 11.7067 14.1933 12.2667 13.5 12.6467C12.8333 13.0133 11.9933 13.1867 11.16 13.1667C11.64 12.7333 11.92 12.1933 11.9733 11.62C12.04 10.7933 11.6467 10 10.86 9.36667C10.4133 9.01333 9.89333 8.73333 9.32666 8.52667C10.8 8.1 12.6533 8.38667 13.7933 9.30667C14.4067 9.8 14.72 10.42 14.66 11.06Z"
                                                 fill="#7F878F"></path>
                                         </svg>
-                                        Số điện thoại:
+                                        SDT:
                                     </div>
                                     <div class="company-value">{{ $job->userEmployee->phone }}</div>
                                 </div>
