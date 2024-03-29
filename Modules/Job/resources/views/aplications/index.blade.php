@@ -142,7 +142,7 @@
                                         </span>
                                         Ứng tuyển ngay
                                     </a>
-                                    <button type="button" class="job-detail__info--actions-button button-white" href="">
+                                    <button onclick="window.location.href='{{ route('website.jobs.show', $job->slug) }}'" type="button" class="job-detail__info--actions-button button-white" href="">
                                         Quay lại
                                     </button>
                                 </div>

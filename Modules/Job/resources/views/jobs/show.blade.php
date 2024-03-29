@@ -7,6 +7,17 @@
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
                     <div class="job-block-outer">
                         <!-- Job Block -->
+                        @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        @if (session('success') || true)
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
                         <div class="job-block-seven style-two">
                             <div class="inner-box">
                                 <div class="content">
