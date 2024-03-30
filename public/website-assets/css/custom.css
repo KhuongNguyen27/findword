@@ -463,5 +463,5 @@ div.popover {
     width: 50px;
 }
 .modal-backdrop {
-    z-index: 0; !important
+    z-index: 0 !important;
 }
