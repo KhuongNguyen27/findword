@@ -129,6 +129,7 @@
     width: 100%;
     transition: all 300ms ease;
     object-fit: cover;
+    height: 200px;
 }
 
 .ls-pagination li .page-link {
@@ -460,8 +461,31 @@ div.popover {
 }
 .tag-job-flash img {
     height: auto;
-    width: 50px;
+    width: 30px;
 }
 .modal-backdrop {
     z-index: 0 !important;
+}
+span.company-logo img {
+    height: 63px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+.job-detail__info--actions-button.button-primary {
+    background: #28c1bc !important;
+}
+.job-detail__info--section-icon {
+    background: linear-gradient(11deg, #28c1bc, #00907c) !important;
+}
+.job-detail__info--actions-button.button-white {
+    color: #28c1bc !important;
+}
+.job-detail__company--link a {
+    color: #28c1bc !important;
+}
+.job-detail__body-right--box-general .box-general-group-icon {
+    background: #28c1bc !important;
+}
+.ls-pagination li .page-link {
+    padding: unset !important;
 }

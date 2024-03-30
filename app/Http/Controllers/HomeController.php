@@ -8,6 +8,7 @@ use App\Models\Wage;
 use App\Models\Rank;
 use App\Models\Province;
 use App\Models\UserEmployee;
+use App\Models\JobPackage;
 
 use Illuminate\Http\Request;
 
@@ -23,14 +24,19 @@ class HomeController extends Controller
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        $jobs = $model->getJobforJobPackageAndTime();
+        // Việc làm hấp dẫn
+        $hot_jobs = Job::where('jobpackage_id',JobPackage::HOT)->orderBy('id','DESC')->limit(20)->get()->chunk(10);
+        // Việc làm tốt nhất
+        $vip_jobs = Job::where('jobpackage_id',JobPackage::VIP)->orderBy('id','DESC')->limit(12)->get()->chunk(6);
+
         $employees = UserEmployee::where('is_top',1)->limit(12)->get();
         $params = [
             'items' => $items,
-            'route' => 'home',
+            'route' => 'jobs.vnjobs',
             'careers' => $careers,
             'ranks' => $ranks,
-            'jobs' => $jobs,
+            'hot_jobs' => $hot_jobs,
+            'vip_jobs' => $vip_jobs,
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,

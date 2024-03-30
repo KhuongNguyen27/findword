@@ -10,11 +10,13 @@ use App\Models\Rank;
 use App\Models\Province;
 use App\Models\UserEmployee;
 use App\Models\User;
+use App\Models\JobPackage;
+
 use Illuminate\Support\Str;
 class JobController extends Controller
 {
     // Trong nước
-    public function vnjobs(Request $request){
+    public function vnjobs(Request $request, $job_type = ''){
         $model = new Job;
         if( isset( $_REQUEST['getData'] ) ){
             $url = 'http://185.230.64.141/jobs.json';
@@ -64,91 +66,90 @@ class JobController extends Controller
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        $jobs = $model->getJobVn();
+
+        // Việc làm mới nhất trong nước
+        $query = Job::where('status',1)->orderBy('id','DESC');
+        $query->where('country', 'VN');
+        if( $request->career_id ){
+            $query->whereHas('careers', function ($query) use($request) {
+                $query->where('career_id', $request->career_id);
+            });
+        }
+        if( $request->wage_id ){
+            $query->where('wage_id', $request->wage_id);
+        }
+        if( $request->rank_id ){
+            $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->province_id ){
+            $query->where('province_id', $request->province_id);
+        }
+        switch ($job_type) {
+            case 'hot':
+                $query->where('jobpackage_id',JobPackage::HOT);
+                $title = 'Việc làm trong nước hot nhất';
+                break;
+            case 'today':
+                $query->where('jobpackage_id',JobPackage::HOT);
+                $title = 'Việc làm trong nước hôm nay';
+                break;
+            case 'urgent':
+                $query->where('jobpackage_id',JobPackage::GAP);
+                $title = 'Việc làm trong nước tuyển gấp';
+                break;
+            default:
+                $title = 'Việc làm trong nước';
+                break;
+        }
+        $jobs = $query->paginate(12);
+
+        // Việc làm hấp dẫn trong nước
+        $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
+        ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
+
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
             'route' => 'jobs.vnjobs',
             'ranks' => $ranks,
             'jobs' => $jobs,
+            'hot_jobs' => $hot_jobs,
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
-            'title' => 'Việc làm trong nước',
+            'title' => $title,
         ];
         return view('website.jobs.index',$params);
     }
-    
-    public function vnjobs_hot(){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobVnHot();
-        $employees = UserEmployee::get();
-        $params = [
-            'careers' => $careers,
-            'route' => 'jobs.vnjobs.hot',
-            'ranks' => $ranks,
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm trong nước hot nhất',
-        ];
-        return view('website.jobs.index',$params);
-    }
-    public function vnjobs_urgent (){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobVnUrgent();
-        $employees = UserEmployee::get();
-        $params = [
-            'careers' => $careers,
-            'route' => 'jobs.vnjobs.urgent',
-            'ranks' => $ranks,
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm trong nước tuyển gấp',
-        ];
-        return view('website.jobs.index',$params);
-    }
-
-    public function vnjobs_today (){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobVnToday();
-        $employees = UserEmployee::get();
-        $params = [
-            'careers' => $careers,
-            'ranks' => $ranks,
-            'route' => 'jobs.vnjobs.today',
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm trong nước hôm nay',
-        ];
-        return view('website.jobs.index',$params);
-    }
-
     // Ngoài nước
-    public function nnjobs (){
+    public function nnjobs (Request $request){
         $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $provinces = Province::all();
-        $jobs = $model->getJobNn();
+        // Việc làm mới nhất trong nước
+        $query = Job::where('status',1)->orderBy('id','DESC');
+        $query->where('country','!=', 'VN');
+        if( $request->career_id ){
+            $query->whereHas('careers', function ($query) use($request) {
+                $query->where('career_id', $request->career_id);
+            });
+        }
+        if( $request->wage_id ){
+            $query->where('wage_id', $request->wage_id);
+        }
+        if( $request->rank_id ){
+            $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->province_id ){
+            $query->where('province_id', $request->province_id);
+        }
+        $jobs = $query->paginate(12);
+
+        // Việc làm hấp dẫn trong nước
+        $hot_jobs = Job::where('status',1)->where('country','!=', 'VN')->where('jobpackage_id',JobPackage::HOT)
+        ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
         $employees = UserEmployee::get();
         $params = [
             'country' => 'NN',
@@ -156,6 +157,7 @@ class JobController extends Controller
             'careers' => $careers,
             'ranks' => $ranks,
             'jobs' => $jobs,
+            'hot_jobs' => $hot_jobs,
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
@@ -163,69 +165,5 @@ class JobController extends Controller
         ];
         return view('website.jobs.index',$params);
     }
-    
-    public function nnjobs_hot(){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobNnHot();
-        $employees = UserEmployee::get();
-        $params = [
-            'country' => 'NN',
-            'route' => 'jobs.nnjobs.hot',
-            'careers' => $careers,
-            'ranks' => $ranks,
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm ngoài nước hot nhất',
-        ];
-        return view('website.jobs.index',$params);
-    }
-    public function nnjobs_urgent (){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobNnUrgent();
-        $employees = UserEmployee::get();
-        $params = [
-            'country' => 'NN',
-            'route' => 'jobs.nnjobs.urgent',
-            'careers' => $careers,
-            'ranks' => $ranks,
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm ngoài nước tuyển gấp',
-        ];
-        return view('website.jobs.index',$params);
-    }
-
-    public function nnjobs_today (){
-        $model = new Job;
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
-        $jobs = $model->getJobNnToday();
-        $employees = UserEmployee::get();
-        $params = [
-            'country' => 'NN',
-            'route' => 'jobs.nnjobs.today',
-            'careers' => $careers,
-            'ranks' => $ranks,
-            'jobs' => $jobs,
-            'wages' => $wages,
-            'provinces' => $provinces,
-            'employees' => $employees,
-            'title' => 'Việc làm trong nước tuyển gấp',
-        ];
-        return view('website.jobs.index',$params);
-    }
+   
 }

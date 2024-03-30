@@ -5,14 +5,14 @@
     <div class="card-body">
         <div class="mb-4">
             <label class="mb-3">{{ __('career') }}</label>
-            <select name="career_ids[]" class="form-control" multiple="multiple">
+            <select name="career_ids[]" class="form-control select2" multiple="multiple">
                 @php
                 if(isset($item)){
                 $selected_ids = $item->careers->pluck('id')->toArray();
                 }
                 @endphp
                 @foreach (\App\Models\Career::all() as $career)
-                <option {{ isset($selected_ids) && in_array($career->id, $selected_ids) ?? 'selected' }}
+                <option @selected( isset($selected_ids) && in_array($career->id, $selected_ids) )
                     value="{{ $career->id }}">
                     {{ $career->name }}
                 </option>
@@ -34,7 +34,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('deadline') }}</label>
-            <input type="text" class="form-control" name="deadline" value="{{ $item->deadline ?? old('deadline') }}">
+            <input type="date" class="form-control" name="deadline" value="{{ $item->deadline ?? old('deadline') }}">
             <x-admintheme::form-input-error field="deadline" />
         </div>
         <div class="mb-4">
@@ -58,7 +58,7 @@
         <div class="mb-4">
             <label class="mb-3">{{ __('gender') }}</label>
             <select name="gender" class="form-control">
-                <option {{ !isset($item) ?? 'selected' }} value="">Không yêu cầu</option>
+                <option {{ !@'selected' }} value="">Không yêu cầu</option>
                 <option {{ isset($item) && $item->gender == 1 ?? 'selected' }} value="1">Nam</option>
                 <option {{ isset($item) && $item->gender == 2 ?? 'selected' }} value="2">Nữ</option>
             </select>
@@ -70,7 +70,7 @@
                 value="{{ $item->work_address ?? old('work_address') }}">
             <x-admintheme::form-input-error field="work_address" />
         </div>
-        <div class="mb-4 d-flex">
+        <div class="mb-4 row">
             <div class="col-6">
                 <label class="mb-3">{{ __('degree') }}</label>
                 <select name="degree_id" class="form-control">
@@ -96,8 +96,25 @@
         <div class="mb-4">
             <label class="mb-3">{{ __('requirements') }}</label>
             <textarea name="requirements" placeholder="Yêu cầu..."
-                class="form-control">{{ isset($item) ?? $item->requirements }}</textarea>
+                class="form-control html-editor">{{ @$item->requirements }}</textarea>
             <x-admintheme::form-input-error field="requirements" />
+        </div>
+        <div class="mb-4">
+            <label class="mb-3">Từ khóa</label>
+            @php
+                if(isset($item)){
+                    $selected_ids = $item->job_tags->pluck('id')->toArray();
+                }
+            @endphp
+            <select name="job_tag_ids[]" class="form-control select2" multiple="multiple">
+                @foreach (\App\Models\JobTag::all() as $job_tag)
+                <option @selected( isset($selected_ids) && in_array($job_tag->id, $selected_ids) )
+                    value="{{ $job_tag->id }}">
+                    {{ $job_tag->name }}
+                </option>
+                @endforeach
+            </select>
+            <x-admintheme::form-input-error field="job_tag_ids" />
         </div>
     </div>
 </div>

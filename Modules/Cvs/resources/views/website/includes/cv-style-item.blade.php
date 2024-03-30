@@ -17,7 +17,7 @@
         @endif
         <h4 class="mt-4 fw-bolder"><a href="{{ $item->file_cv }}">{{ $item->name }}</a></h4>
         <div class="">
-            <a href="{{ $item->file_cv }}" class="btn btn-success w-100">
+            <a href="{{ $item->file_cv }}" class="btn btn-success w-100" download>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-cloud-download" viewBox="0 0 16 16">
                     <path

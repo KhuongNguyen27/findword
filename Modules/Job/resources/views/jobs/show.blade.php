@@ -12,7 +12,7 @@
                             {{ session('error') }}
                         </div>
                         @endif
-                        @if (session('success') || true)
+                        @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
                         </div>
@@ -78,20 +78,20 @@
                                             <div class="job-detail__info--section-content">
                                                 <div class="job-detail__info--section-content-title">Kinh nghiệm</div>
                                                 <div class="job-detail__info--section-content-value">
-                                                    {{ $job->experience ?? '-' }}</div>
+                                                    {{ is_numeric($job->experience) ? $job->experience.' năm' : 'Không yêu cầu' }}</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="job-detail__info--flex mt-3">
-                                        <div class="quantity-applied-user disabled">
+                                        <!-- <div class="quantity-applied-user disabled">
                                             <div class="quantity-applied-user__icon">
                                                 <i class="fa fa-solid fa-lock"></i>
                                             </div>
                                             <div class="quantity-applied-user__text">
                                                 Số lượt ứng tuyển: -
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="job-detail__info--deadline">
                                             <span class="job-detail__info--deadline--icon">
                                                 <i class="fa fa-solid fa-clock"></i>
@@ -109,11 +109,12 @@
                                             </span>
                                             Ứng tuyển ngay
                                         </a>
-                                        <a class="job-detail__info--actions-button button-white" href="">
+                                        <a class="job-detail__info--actions-button button-white do-bookmark"
+                                            data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
                                             <span class="button-icon">
                                                 <i class="fa fa-regular fa-heart"></i>
                                             </span>
-                                            Lưu tin
+                                            Yêu thích
                                         </a>
                                     </div>
 

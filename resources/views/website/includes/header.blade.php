@@ -32,7 +32,7 @@ $currentRouteName = \Request::route()->getName();
             </button> -->
             <!-- Dashboard Option -->
             <div class="dropdown dashboard-option">
-                <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span>Hi,{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu">

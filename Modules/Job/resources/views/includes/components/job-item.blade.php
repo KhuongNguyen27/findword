@@ -7,8 +7,8 @@ span.flaticon-bookmark.active {
     <div class="inner-box">
         <div class="content">
             <span class="tag-job-flash">
-                @if( $job->jobpackage_id == 2 || $job->jobpackage_id == 4)
-                <img src="{{ asset('website-assets/job-bags/'.$job->jobpackage_id.'.png') }}" alt="">
+                @if( $job->job_package->image_fm )
+                <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>
             <span class="company-logo">

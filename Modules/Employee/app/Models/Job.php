@@ -14,8 +14,9 @@ use App\Models\JobPackage;
 use App\Models\Level;
 use App\Models\Rank;
 use App\Models\Wage;
+use App\Models\Job as MainJob;
 
-class Job extends Model
+class Job extends MainJob
 {
     use HasFactory;
 
@@ -81,7 +82,7 @@ class Job extends Model
     {
         return $this->belongsTo(Wage::class);
     }
-    public function getImage($user_id)
+    public function getImage($user_id = 0)
     {
         $userEmployee = $this->userEmployee;
 

@@ -9,10 +9,11 @@
                 <div class="big-column col-xl-4 col-lg-3 col-md-12">
                     <div class="footer-column about-widget">
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
-                            style="width:80px!important" height="50" src="{{ asset('website-assets/images/logo.png')}}"
-                            alt="" title="">Tuyển dụng Huế</a></div>
+                                    style="width:80px!important" height="50"
+                                    src="{{ asset('website-assets/images/logo.png')}}" alt="" title="">Tuyển dụng
+                                Huế</a></div>
                         <p class="phone-num"><span>
-                            Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
+                                Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
                         <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
                                 href="mailto:support@superio.com" class="email">support@superio.com</a></p>
                     </div>
@@ -93,7 +94,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2024 <a href="#">Superio</a>. All Right Reserved.
+                <div class="copyright-text">© 2024 <a href="#">Tuyển Dụng Huế</a>. All Right Reserved.
                     <br><span style="font-size:12px;">Website đang được phát triển và hoàn thiện</span>
                 </div>
                 <div class="social-links">
@@ -110,3 +111,34 @@
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
 </footer>
 <!-- End Main Footer -->
+<div id="button-contact-vr" class="">
+    <div id="gom-all-in-one">
+        <!-- v3 -->
+        <!-- zalo -->
+        <div id="zalo-vr" class="button-contact">
+            <div class="phone-vr">
+                <div class="phone-vr-circle-fill"></div>
+                <div class="phone-vr-img-circle">
+                    <a target="_blank" href="https://zalo.me/0589595143">
+                        <img alt="Zalo"
+                            src="https://anhhuyvt.rrtech247.com/wp-content/plugins/button-contact-vr/img/zalo.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end zalo -->
+        <!-- Phone -->
+        <div id="phone-vr" class="button-contact">
+            <div class="phone-vr">
+                <div class="phone-vr-circle-fill"></div>
+                <div class="phone-vr-img-circle">
+                    <a href="tel:0965358381">
+                        <img alt="Phone"
+                            src="https://anhhuyvt.rrtech247.com/wp-content/plugins/button-contact-vr/img/phone.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end phone -->
+    </div><!-- end v3 class gom-all-in-one -->
+</div>

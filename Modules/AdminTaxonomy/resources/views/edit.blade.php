@@ -1,6 +1,8 @@
 @extends('admintheme::layouts.master')
 @section('content')
-@include('admintheme::includes.globals.breadcrumb')
+@include('admintheme::includes.globals.breadcrumb',[
+        'page_title' => 'Sửa phân loại'
+    ])
 <form action="{{ route('admintaxonomy.update',$item->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')

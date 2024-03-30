@@ -3,17 +3,17 @@
         <li class="dropdown">
             <a href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
             <ul>
-                <li><a href="{{ route('jobs.vnjobs.today') }}">Việc làm hôm nay</a></li>
-                <li><a href="{{ route('jobs.vnjobs.hot') }}">Việc làm hot nhất</a></li>
-                <li><a href="{{ route('jobs.vnjobs.urgent') }}">Tuyển gấp</a></li>
+                <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.vnjobs','urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
         <li class="dropdown">
             <a href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
             <ul>
-                <li><a href="{{ route('jobs.nnjobs.today') }}">Việc làm hôm nay</a></li>
-                <li><a href="{{ route('jobs.nnjobs.hot') }}">Việc làm hot nhất</a></li>
-                <li><a href="{{ route('jobs.nnjobs.urgent') }}">Tuyển gấp</a></li>
+                <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm hôm nay</a></li>
+                <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm hot nhất</a></li>
+                <li><a href="{{ route('jobs.nnjobs','urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
 
@@ -23,6 +23,7 @@
             <a href="javascript:;">Hồ sơ & CV</a>
             <ul>
                 <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
+                <li><a href="{{ route('staff.job-applied') }}">Việc làm đã nộp</a></li>
                 <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
             </ul>
         </li>
