@@ -26,9 +26,11 @@
                         <!-- Candidate block three -->
                         <div class="row">
                             @foreach ($items as $item)
+                            @if($item->typeCV == "")
                             <div class="col-md-6 col-12 pr-12">
                                 @include('staff::includes.components.box-cv')
                             </div>
+                            @endif
                             @endforeach
                         </div>
 
@@ -38,7 +40,8 @@
                 <div id="manager-cv" class="applicants-widget ls-widget">
                     <div class="widget-title">
                         <h4>CV đã tải lên</h4>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#uploadCVModal" class="btn btn-primary" style="cursor: pointer;">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#uploadCVModal"
+                            class="btn btn-primary" style="cursor: pointer;">
                             Tải lên
                         </button>
                     </div>
@@ -46,9 +49,11 @@
                         <!-- Candidate block three -->
                         <div class="row">
                             @foreach ($items as $item)
+                            @if($item->typeCV == "file")
                             <div class="col-md-6 col-12 pr-12">
                                 @include('staff::includes.components.box-cv-upload')
                             </div>
+                            @endif
                             @endforeach
                         </div>
 
