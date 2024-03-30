@@ -27,15 +27,9 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('/viec-lam-trong-nuoc', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
-Route::get('/viec-lam-trong-nuoc/hom-nay', [JobController::class,'vnjobs_today'])->name('jobs.vnjobs.today');
-Route::get('/viec-lam-trong-nuoc/hot', [JobController::class,'vnjobs_hot'])->name('jobs.vnjobs.hot');
-Route::get('/viec-lam-trong-nuoc/tuyen-gap', [JobController::class,'vnjobs_urgent'])->name('jobs.vnjobs.urgent');
+Route::get('/viec-lam-trong-nuoc/{job_type?}', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
 
-Route::get('/viec-lam-ngoai-nuoc', [JobController::class,'nnjobs'])->name('jobs.nnjobs');
-Route::get('/viec-lam-ngoai-nuoc/hom-nay', [JobController::class,'nnjobs_today'])->name('jobs.nnjobs.today');
-Route::get('/viec-lam-ngoai-nuoc/hot', [JobController::class,'nnjobs_hot'])->name('jobs.nnjobs.hot');
-Route::get('/viec-lam-ngoai-nuoc/tuyen-gap', [JobController::class,'nnjobs_urgent'])->name('jobs.nnjobs.urgent');
+Route::get('/viec-lam-ngoai-nuoc/{job_type?}', [JobController::class,'nnjobs'])->name('jobs.nnjobs');
 
 Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.index');
 

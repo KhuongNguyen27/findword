@@ -13,8 +13,8 @@ use Modules\Staff\app\Models\UserJobFavorite;
 use Modules\Employee\app\Models\CareerJob;
 
 use Carbon\Carbon;
-
-class Job extends Model
+use App\Models\Job as MainJob;
+class Job extends MainJob
 {
     use HasFactory;
 
@@ -75,7 +75,7 @@ class Job extends Model
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
-    public function getImage()
+    public function getImage($user_id = 0)
     {
         if ($this->image != null) {
             return "/website-assets/images/".$this->image;

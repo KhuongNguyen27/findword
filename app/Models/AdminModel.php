@@ -85,7 +85,12 @@ class AdminModel extends Model
         if ($request->hasFile('image')) {
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
         } 
-        $model::create($data);
+
+        if (method_exists($model, 'overrideSaveItem')) {
+            $item = $model::overrideSaveItem($data,$request);
+        } else {
+            $item = $model::create($data);
+        }
     }
     public static function updateItem($id,$request,$table = ''){
         if($table){
@@ -100,8 +105,13 @@ class AdminModel extends Model
         if ($request->hasFile('image')) {
             self::deleteFile($item->image);
             $data['image'] = $model::uploadFile($request->file('image'), self::$upload_dir);
-        } 
-        $item->update($data);
+        }
+        if (method_exists($model, 'overrideUpdateItem')) {
+            $item = $model::overrideUpdateItem($id,$data,$request);
+        } else {
+            $item->update($data);
+        }
+        
     }
     public static function deleteItem($id,$table = ''){
         if($table){

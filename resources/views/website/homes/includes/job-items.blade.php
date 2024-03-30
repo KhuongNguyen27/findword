@@ -23,9 +23,10 @@
             <div class="theme-card-body">
                 <div class="swiper featureJobsSwiper">
                     <div class="swiper-wrapper">
+                    @foreach ($vip_jobs as $vip_job)
                         <div class="swiper-slide">
                             <div class="row">
-                                @foreach ($jobs['job_vip'] as $job)
+                                @foreach ($vip_job as $job)
                                 <!-- Job Block -->
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
@@ -39,69 +40,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="row">
-                                @foreach ($jobs['job_gap'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                    'job' => $job,
-                                    'job_info' => true,
-                                    'bookmark' => true,
-                                    'simple' => true,
-                                    'company_name' => true,
-                                    ])
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="row">
-                                @foreach ($jobs['job_uu_tien'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                    'job' => $job,
-                                    'job_info' => true,
-                                    'bookmark' => true,
-                                    'simple' => true,
-                                    'company_name' => true,
-                                    ])
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="row">
-                                @foreach ($jobs['job_hot'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                    'job' => $job,
-                                    'job_info' => true,
-                                    'bookmark' => true,
-                                    'simple' => true,
-                                    'company_name' => true,
-                                    ])
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="row">
-                                @foreach ($jobs['job_thuong'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                    'job' => $job,
-                                    'job_info' => true,
-                                    'bookmark' => true,
-                                    'simple' => true,
-                                    ])
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
+                    @endforeach
                     </div>
                 </div>
             </div>

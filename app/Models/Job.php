@@ -37,7 +37,32 @@ class Job extends AdminModel
         'start_hour',
         'end_hour'
     ];
-    public function getImage()
+
+    public static function overrideSaveItem($data,$table = ''){
+        $model = self::class;
+        $item = $model::create($data);
+        if( !empty($data['career_ids']) ){
+            $item->careers()->attach($data['career_ids']);
+        }
+        if( !empty($data['job_tag_ids']) ){
+            $item->job_tags()->attach($data['job_tag_ids']);
+        }
+        return $item;
+    }
+    public static function overrideUpdateItem($id,$data,$request){
+        $item = self::findOrFail($id);
+        if( !empty($data['career_ids']) ){
+            $item->careers()->sync($data['career_ids']);
+            unset($data['career_ids']);
+        }
+        if( !empty($data['job_tag_ids']) ){
+            $item->job_tags()->sync($data['job_tag_ids']);
+            unset($data['job_tag_ids']);
+        }
+        return $item->update($data);
+    }
+
+    public function getImage($user_id = 0)
     {
         if ($this->image != null) {
             return "/website-assets/images/".$this->image;
@@ -55,6 +80,10 @@ class Job extends AdminModel
     public function careers()
     {
         return $this->belongsToMany(Career::class, 'career_job','job_id','career_id');
+    }
+    public function job_tags()
+    {
+        return $this->belongsToMany(JobTag::class, 'job_job_tag','job_id','job_tag_id');
     }
     public function career()
     {
@@ -434,5 +463,6 @@ class Job extends AdminModel
         
         return $jobs;
     }
+    
 
 }

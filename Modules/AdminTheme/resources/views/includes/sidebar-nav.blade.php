@@ -78,6 +78,16 @@
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('work_pattern') }}
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admintaxonomy.index',['type'=>'JobPackage']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Gói Tin
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admintaxonomy.index',['type'=>'JobTag']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Thẻ công việc
+                </a>
+            </li>
         </ul>
     </li>
     <li class="menu-label">{{ __('system') }}</li>

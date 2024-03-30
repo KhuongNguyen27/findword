@@ -31,4 +31,14 @@ class JobPackage extends AdminModel
     {
         return $this->belongsToMany(Job::class);
     }
+    public function getImageFmAttribute()
+    {
+        if ( $this->image != null) {
+            if( strpos($this->image,'http') !== false ){
+                return $this->image;
+            }
+            return asset($this->image);
+        }
+        return null;
+    }
 }

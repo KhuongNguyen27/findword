@@ -44,8 +44,13 @@ class AdminPost extends Model
         }
         if ($request->hasFile('image')) {
             $data['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
-        } 
-        $item = $model::create($data);
+        }
+        if (method_exists($model, 'saveItem')) {
+            $item = $model::saveItem($data);
+        } else {
+            $item = $model::create($data);
+        }
+        return $item;
     }
 
     // Relationships

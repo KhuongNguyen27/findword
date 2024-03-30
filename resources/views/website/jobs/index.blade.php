@@ -40,55 +40,7 @@
                             
                         </div>
                         <div class="row">
-                            @foreach ($jobs['job_vip'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_gap'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_uu_tien'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_hot'] as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                            @foreach ($jobs['job_thuong'] as $job)
+                            @foreach ($jobs as $job)
                                 <!-- Job Block -->
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     @include('job::includes.components.job-item', [
@@ -101,6 +53,10 @@
                                 <!-- Job Block -->
                             @endforeach
                         </div>
+                        <div class="ls-pagination">
+                            {{ $jobs->appends(request()->input())->links() }}
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('website-assets/css/button-contact-vr.css')}}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/custom.css')}}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
