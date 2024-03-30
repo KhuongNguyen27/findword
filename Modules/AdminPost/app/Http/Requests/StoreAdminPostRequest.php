@@ -19,12 +19,6 @@ class StoreAdminPostRequest extends FormRequest
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['name'] = 'required|max:255';
             $rules['description'] = 'required|max:255';
-            $rules['deadline'] = 'required|max:255';
-            $rules['work_address'] = 'required|max:255';
-            $rules['degree_id'] = 'required|max:255';
-            $rules['requirements'] = 'required|max:255';
-            $rules['created_at'] = 'required|max:255';
-            $rules['updated_at'] = 'required|max:255';
         }
         return $rules;
     }

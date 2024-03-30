@@ -45,7 +45,6 @@
             </li>
         </ul>
     </li>
-    <li class="menu-label">{{ __('job_config') }}</li>
     <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
@@ -81,45 +80,27 @@
             </li>
         </ul>
     </li>
-    <li class="menu-label">{{ __('transaction') }}</li>
+    <li class="menu-label">{{ __('system') }}</li>
     <li>
         <a class="has-arrow" aria-expanded="false" href="javascript:;">
             <div class="parent-icon">
                 <span class="material-symbols-outlined">account_circle</span>
             </div>
-            <div class="menu-title">{{ __('transaction') }}</div>
+            <div class="menu-title">Hệ thống</div>
         </a>
         <ul class="mm-collapse">
             <li>
-                <a href="{{ route('admin.transactions.index') }}">
-                    <span class="material-symbols-outlined">arrow_right</span>{{ __('list') }}</a>
+                <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Bài viết</a>
             </li>
-        </ul>
-    </li>
-    <li class="menu-label">Cv Mẫu</li>
-    <li>
-        <a class="has-arrow" aria-expanded="false" href="javascript:;">
-            <div class="parent-icon">
-                <span class="material-symbols-outlined">account_circle</span>
-            </div>
-            <div class="menu-title">Cv Mẫu</div>
-        </a>
-        <ul class="mm-collapse">
             <li>
                 <a href="{{ route('admin.cvs.index') }}">
-                    <span class="material-symbols-outlined">arrow_right</span>{{ __('list') }}</a>
+                    <span class="material-symbols-outlined">arrow_right</span>Mẫu CV</a>
             </li>
-        </ul>
-    </li>
-    <!-- <li class="menu-label">{{ __('system') }}</li>
-    <li>
-        <a class="has-arrow" aria-expanded="false" href="javascript:;">
-            <div class="parent-icon">
-                <span class="material-symbols-outlined">account_circle</span>
-            </div>
-            <div class="menu-title">{{ __('account') }}</div>
-        </a>
-        <ul class="mm-collapse">
+            <li>
+                <a href="{{ route('admin.transactions.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Giao dịch</a>
+            </li>
             <li>
                 <a href="{{ route('adminuser.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('admin') }}</a>
@@ -129,6 +110,6 @@
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('group') }}</a>
             </li>
         </ul>
-    </li> -->
+    </li>
 </ul>
 <!--end navigation-->

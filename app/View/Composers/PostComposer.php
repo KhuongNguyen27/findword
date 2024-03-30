@@ -4,9 +4,9 @@ namespace App\View\Composers;
  
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-use Modules\Staff\app\Models\UserJobFavorite;
+use App\Models\Post;
  
-class JobFavorite
+class PostComposer
 {
     /**
      * Create a new profile composer.
@@ -18,11 +18,7 @@ class JobFavorite
      */
     public function compose(View $view): void
     {
-        $items = [];
-        if( Auth::user() ){
-            $items = UserJobFavorite::where( 'user_id', Auth::id())->pluck('job_id')->toArray();
-        }
-        $view->with('cr_user_favorites', $items);
-        
+        $items = Post::where('status',1)->limit(3)->get();
+        $view->with('shared_posts', $items);
     }
 }

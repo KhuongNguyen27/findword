@@ -1,11 +1,11 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => __('adminpost::general.title_index'),
-'actions' => [
-'add_new' => route($route_prefix.'create',['type'=>request()->type]),
-//'export' => route($route_prefix.'export'),
-]
+    'page_title' => 'Danh sách bài viết',
+    'actions' => [
+        'add_new' => route($route_prefix.'create',['type'=>request()->type]),
+        //'export' => route($route_prefix.'export'),
+    ]
 ])
 
 <!-- Item actions -->
@@ -30,6 +30,16 @@
 </form>
 
 <div class="card mt-4">
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">
@@ -54,12 +64,8 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-3">
-                                    <div class="product-box">
-                                        <img src="{{ $item->image_fm }}" alt="">
-                                    </div>
                                     <div class="product-info">
                                         <a href="javascript:;" class="product-title">{{ $item->name }}</a>
-                                        <p class="mb-0 product-category">(0)</p>
                                     </div>
                                 </div>
                             </td>
