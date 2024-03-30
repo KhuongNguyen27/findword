@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -28,7 +28,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/dark-theme.css') }}" rel="stylesheet">
-    <x-admintheme::head.tinymce-config />
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-admintheme', 'resources/assets/sass/app.scss') }} --}}
@@ -57,6 +56,8 @@
     <script src="{{ asset('admin-assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('admin-assets/js/main.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <x-admintheme::head.tinymce-config />
+    
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-admintheme', 'resources/assets/js/app.js') }} --}}
     @yield('footer')

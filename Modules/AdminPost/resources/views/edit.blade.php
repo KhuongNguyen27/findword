@@ -1,13 +1,12 @@
 @extends('admintheme::layouts.master')
-@include('admintheme::includes.globals.breadcrumb',[
-'page_title' => __('user_list'),
-'actions' => [
-'add_new' => route($route_prefix.'create',['type'=>request()->type]),
-//'export' => route($route_prefix.'export'),
-]
-])
 @section('content')
-@include('admintheme::includes.globals.breadcrumb')
+@include('admintheme::includes.globals.breadcrumb',[
+    'page_title' => 'Danh sách bài viết',
+    'actions' => [
+        'add_new' => route($route_prefix.'create',['type'=>request()->type]),
+        //'export' => route($route_prefix.'export'),
+    ]
+])
 <form action="{{ route('adminpost.update',$item->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
