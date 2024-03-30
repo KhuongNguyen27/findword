@@ -43,6 +43,7 @@ Route::group([
 	Route::post('/change-password/{id}', [ProfileController::class,'changePassword'])->name('profile.changePassword');
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');
+    Route::post('/uploadCV',[UserCvController::class,'uploadCV'])->name('uploadCV');
     Route::resource('cv', UserCvController::class)->names('cv');
     Route::resource('experience', UserExperienceController::class)->names('experience');
     Route::resource('education', UserEducationController::class)->names('education');

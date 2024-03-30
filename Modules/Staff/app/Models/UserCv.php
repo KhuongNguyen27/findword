@@ -31,6 +31,8 @@ class UserCv extends Model
         'desired_location',
         'wage_id',
         'career_objective',
+        'file_path',
+        'typeCV',
     ];
     public static function savePersonalInformation($request,$cv_id = 0){
         if($cv_id){

@@ -18,9 +18,11 @@ use Modules\Staff\app\Models\Wage;
 use Modules\Staff\app\Models\Career;
 use Modules\Staff\app\Models\FormWork;
 use Illuminate\Support\Facades\Log;
+use App\Traits\UploadFileTrait;
 
 class UserCvController extends Controller
 {
+    use UploadFileTrait;
     /**
      * Display a listing of the resource.
      */
@@ -142,6 +144,22 @@ class UserCvController extends Controller
             default:
                 return redirect()->route('staff.cv.edit',$id,['id'=>$id,'tab'=>'personal-information'])  ->with('success', 'Hồ sơ được cập nhật thành công.');;
                 break;
+        }
+    }
+    public function uploadCV(Request $request){
+        try {
+            $data = $request->except('_token','_method');
+            $data['user_id'] = Auth::id();
+            $data['status'] = -1;
+            if ($request->hasFile('file')) {
+                $data['file_path'] = $this->uploadFile($request->file('file'), 'uploads/cv_file_upload');
+            }
+            $data['typeCV'] = "file";
+            $item = UserCv::create($data);
+            return back()->with('success','Tải lên CV thành công');
+        } catch (\Exception $e) {
+            Log::error('Bug in '.$e->getMessage());
+            return back()->with('error','Tải lên CV lỗi');
         }
     }
     /**
