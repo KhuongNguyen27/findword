@@ -489,3 +489,14 @@ span.company-logo img {
 .ls-pagination li .page-link {
     padding: unset !important;
 }
+.news-section .owl-carousel .owl-nav.disabled, .news-section .owl-carousel .owl-dots.disabled {
+    display: unset !important;
+}
+.two-line-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Number of lines to display */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 45px; /* Adjust the height as needed */
+  }

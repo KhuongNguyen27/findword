@@ -64,6 +64,8 @@
     </section>
     <!-- End Job Section -->
 
+    @include('website.includes.global.ad-banners')
+
     @include('website.includes.global.attractive-jobs')
 
     <!-- End News Section -->

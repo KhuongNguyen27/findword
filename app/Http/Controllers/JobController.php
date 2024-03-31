@@ -65,7 +65,8 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
+        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
+        $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
 
         // Việc làm mới nhất trong nước
         $query = Job::where('status',1)->orderBy('id','DESC');
@@ -82,6 +83,9 @@ class JobController extends Controller
             $query->where('rank_id', $request->rank_id);
         }
         if( $request->province_id ){
+            if( $request->province_id == 'quoc_te' ){
+                return redirect()->route('jobs.nnjobs',$request->all());
+            }
             $query->where('province_id', $request->province_id);
         }
         switch ($job_type) {

@@ -19,11 +19,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $model = new Job;
         $items = $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
-        $provinces = Province::all();
+        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->orderBy()->get();
+        $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
+       
         // Việc làm hấp dẫn
         $hot_jobs = Job::where('jobpackage_id',JobPackage::HOT)->orderBy('id','DESC')->limit(20)->get()->chunk(10);
         // Việc làm tốt nhất

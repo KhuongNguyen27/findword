@@ -6,6 +6,7 @@
                     <span class="icon flaticon-map-locator"></span>
                     <select name="province_id" class="form-select chosen-select">
                         <option value="">Tất cả địa điểm</option>
+                        <option value="quoc_te">Quốc tế</option>
                         @foreach ($provinces as $province)
                             <option @selected( $province->id == request()->province_id ) value="{{ $province->id }}">{{ $province->name }}</option>
                         @endforeach
