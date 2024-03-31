@@ -1,6 +1,6 @@
 <!-- Mobile Header -->
 <div class="mobile-header">
-    <div class="logo"><a href="index.html"><img src="images/logo.svg" alt="" title=""></a></div>
+    <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo.png')}}" alt="" title=""></a></div>
 
     <!--Nav Box-->
     <div class="nav-outer clearfix">
@@ -8,7 +8,7 @@
         <div class="outer-box">
             <!-- Login/Register -->
             <div class="login-box">
-                <a href="login-popup.html" class="call-modal"><span class="icon-user"></span></a>
+                <a href="{{ route('staff.register') }}" class="call-modal"><span class="icon-user"></span></a>
             </div>
 
             <a href="#nav-mobile" class="mobile-nav-toggler"><span class="flaticon-menu-1"></span></a>

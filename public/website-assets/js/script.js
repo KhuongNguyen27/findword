@@ -328,14 +328,16 @@
 	}
 
 	//Candidates Carousel
-	if ($('.candidates-carousel').length) {
-		$('.candidates-carousel').owlCarousel({
+	if ($('.job-categories-owl').length) {
+		$('.job-categories-owl').owlCarousel({
 			loop:true,
-			nav:false,
+			nav:true,
+			dots:false,
+			margin:10,
 			smartSpeed: 500,
 			autoplay: true,
 			autoplayTimeout:10000,
-			navText: [ '<span class="flaticon-back"></span>', '<span class="flaticon-next"></span>' ],
+			navText: [ '<span class="nav-btn prev-slide flaticon-back"></span>', '<span class="nav-btn next-slide flaticon-next"></span>' ],
 			responsive:{
 				0:{
 					items:1

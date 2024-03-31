@@ -35,7 +35,7 @@
     </script>
     <script src="{{ asset('website-assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/chosen.min.js')}}"></script>
-    <script src="{{ asset('website-assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('website-assets/js/bootstrap-5.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/jquery.fancybox.js')}}"></script>
     <script src="{{ asset('website-assets/js/jquery.modal.min.js')}}"></script>
     <script src="{{ asset('website-assets/swiper/swiper-bundle.min.js')}}"></script>

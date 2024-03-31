@@ -500,3 +500,23 @@ span.company-logo img {
     text-overflow: ellipsis;
     height: 45px; /* Adjust the height as needed */
   }
+  .main-menu a.active {
+    color: #28c1bc !important;
+}
+.swiper-button-next, .swiper-button-prev {
+    height: 30px !important;
+    width: 30px !important;
+    cursor: pointer;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-button-next::after, .swiper-button-prev::after{
+    font-size: 13px !important;
+}
+.profile-header {
+    background-color: #28c1bc !important;
+}

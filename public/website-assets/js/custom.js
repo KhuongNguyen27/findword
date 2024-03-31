@@ -42,3 +42,38 @@ jQuery(document).ready(function () {
         
     }
 });
+
+
+
+new Swiper(".jobCategoriesSwiper", {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+new Swiper(".mySwiper", {
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+new Swiper(".featureJobsSwiper", {
+    navigation: {
+        nextEl: ".btn-feature-jobs-next",
+        prevEl: ".btn-feature-jobs-pre",
+    },
+    effect: "slide",
+});
+new Swiper(".attractiveJobsSwiper", {
+    navigation: {
+        nextEl: ".btn-attractive-jobs-next",
+        prevEl: ".btn-attractive-jobs-pre",
+    },
+    effect: "slide",
+});
+
+jQuery( document ).ready( function(){
+    jQuery('#advanceSearchBtn').on('click',function(){
+        jQuery('#advanceSearch').toggle('slow')
+    })
+})

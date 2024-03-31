@@ -1,7 +1,7 @@
 <div class="job-search-form">
     <form method="get" action="{{ route($route) }}">
         <div class="row">
-            @if (!isset($country))
+            @if (!isset($country) || true)
                 <div class="form-group col">
                     <span class="icon flaticon-map-locator"></span>
                     <select name="province_id" class="form-select chosen-select">
@@ -53,6 +53,38 @@
             <div class="form-group col btn-box">
                 <button type="submit" class="theme-btn btn-style-one"><span
                         class="btn-title">{{ __('search') }}</span></button>
+            </div>
+            <div class="form-group col-lg-1 btn-box">
+                <button id="advanceSearchBtn" type="button" class="theme-btn btn-style-two btn-icon">
+                    <i class="fas fa-solid fa-cog text-white"></i>
+                </button>
+            </div>
+            <div id="advanceSearch" style="display:none" class="form-group col-lg-12">
+                <div class="row">
+                    @if( isset($degrees) )
+                    <div class="form-group col location">
+                        <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
+                        <select name="degree_id" class="form-select chosen-select">
+                            <option value="">Tất cả trình độ</option>
+                            @foreach ($degrees as $degree)
+                                <option @selected( $degree->id == request()->degree_id ) value="{{ $degree->id }}">{{ $degree->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
+                    @if( isset($formworks) )
+                    <div class="form-group col location">
+                        <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
+                        <select name="formwork_id" class="form-select chosen-select">
+                            <option value="">Tất cả hình thức</option>
+                            @foreach ($formworks as $formwork)
+                                <option @selected( $formwork->id == request()->formwork_id ) value="{{ $formwork->id }}">{{ $formwork->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
+                    
+                </div>
             </div>
         </div>
     </form>

@@ -1,8 +1,8 @@
-<div id="dashboard-section" class="lazy" data-lazy-function="initDashboard">
+<div id="dashboard-section"  class="lazy d-none d-md-block" data-lazy-function="initDashboard">
     <div class="container lazy" id="dashboard" data-lazy-function="initDashboardHomeJS">
         <div class="block-dashboard">
             <div class="block-dashboard__header">
-                <h3>Thị trường việc làm hôm nay <span>16/03/2024</span></h3>
+                <h3>Thị trường việc làm hôm nay <span><?= date('d/m/Y')?></span></h3>
             </div>
             <div class="block-dashboard__content">
                 <div class="block-newest-job">
@@ -13,66 +13,37 @@
                         <img class="block-newest-job__icon-top "
                             src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/dashboard/icon-top.png">
                         <div class id="sliderNewJobPublish">
+                            @foreach( $lasest_jobs as $job )
                             <div class="job-item active animated zoomIn">
-                                <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo"
-                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
+                                <a class="job-item__link" target="_blank" href="{{ route('website.jobs.show', $job->slug) }}">
+                                    <img class="job-item__logo" src="{{ $job->userEmployee->image_fm }}">
                                 </a>
                                 <div>
-                                    <a class="job-item__link" target="_blank">
-                                        <p class="job-item__title">Digital Marketing Leader</p>
+                                    <a class="job-item__link" href="{{ route('website.jobs.show', $job->slug) }}" target="_blank">
+                                        <p class="job-item__title">{{ $job->name }}</p>
                                     </a>
-                                    <a class="job-item__link" target="_blank" href="#">
-                                        <p class="job-item__company">CÔNG TY TNHH MULTI TECH SOLUTION</p>
+                                    <a class="job-item__link" target="_blank" href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}">
+                                        <p class="job-item__company">{{ $job->userEmployee->name }}</p>
                                     </a>
-                                    <p class="job-item__location">Hồ Chí Minh</p>
+                                    <p class="job-item__location">{{ $job->work_address }}</p>
                                 </div>
                             </div>
-                            <div class="job-item active animated zoomIn">
-                                <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo"
-                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
-                                </a>
-                                <div>
-                                    <a class="job-item__link" target="_blank">
-                                        <p class="job-item__title">Digital Marketing Leader</p>
-                                    </a>
-                                    <a class="job-item__link" target="_blank" href="#">
-                                        <p class="job-item__company">CÔNG TY TNHH MULTI TECH SOLUTION</p>
-                                    </a>
-                                    <p class="job-item__location">Hồ Chí Minh</p>
-                                </div>
-                            </div>
-                            <div class="job-item active animated zoomIn">
-                                <a class="job-item__link" target="_blank" href="#">
-                                    <img class="job-item__logo"
-                                        src="https://cdn-new.topcv.vn/unsafe/200x/https://static.topcv.vn/company_logos/cong-ty-tnhh-multi-tech-solution-63f742639ad01.jpg">
-                                </a>
-                                <div>
-                                    <a class="job-item__link" target="_blank">
-                                        <p class="job-item__title">Digital Marketing Leader</p>
-                                    </a>
-                                    <a class="job-item__link" target="_blank" href="#">
-                                        <p class="job-item__company">CÔNG TY TNHH MULTI TECH SOLUTION</p>
-                                    </a>
-                                    <p class="job-item__location">Hồ Chí Minh</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="block-statistics-job">
                     <div class="block-work-market work-market">
                         <div class="item">
-                            <p class=" quantity quantity_job_new_today">1.921</p>
+                            <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today }}</p>
                             <p class="title">Việc làm mới 24h gần nhất</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_job_recruitment">50.635</p>
+                            <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment }}</p>
                             <p class="title">Việc làm đang tuyển</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_company_recruitment">15.224</p>
+                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment }}</p>
                             <p class="title">Công ty đang tuyển</p>
                         </div>
                     </div>
