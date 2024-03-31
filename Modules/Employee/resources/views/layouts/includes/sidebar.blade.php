@@ -8,9 +8,9 @@
         <ul class="navigation">
             <li><a href="{{ route('employee.home')}}"> <i class="la la-home"></i>{{ __('dashboard') }}</a></li>
             <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>{{ __('profile') }}</a></li>
-            <li><a href="{{ route('employee.job.create')}}"><i class="la la-paper-plane"></i>{{ __('post') }}</a></li>
+            <li><a href="{{ route('employee.job.create')}}"><i class="la la-paper-plane"></i>Đăng tin</a></li>
             <li><a href="{{ route('employee.job.index')}}"><i class="la la-briefcase"></i>{{ __('work_manager') }}</a></li>
-            <li><a href="{{ route('employee.cv.index')}}"><i class="la la-box"></i>{{ __('cv_manager') }}</a></li>
+            <!-- <li><a href="{{ route('employee.cv.index')}}"><i class="la la-box"></i>{{ __('cv_manager') }}</a></li> -->
             <li><a href="{{ route('employee.transaction.index')}}"><i class="la la-box"></i>{{ __('transaction_manager') }}</a></li>
             <li><a href="{{ route('employee.profile.editpassword')}}"><i class="la la-box"></i>{{ __('change_password') }}</a></li>
             <li><a href="{{ route('employee.logout')}}"><i class="la la-sign-out"></i>{{ __('logout') }}</a></li>

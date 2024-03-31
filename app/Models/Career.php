@@ -40,6 +40,16 @@ class Career extends AdminModel
     public function getCreatedAtFmAttribute(){
         return date('d-m-Y',strtotime($this->created_at));
     }
+    public function getImageFmAttribute()
+    {
+        if ( $this->image != null) {
+            if( strpos($this->image,'http') !== false ){
+                return $this->image;
+            }
+            return asset('storage/images/'.$this->image);
+        }
+        return "/website-assets/images/favicon.png";
+    }
 
     public function job()
     {

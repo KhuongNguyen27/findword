@@ -11,6 +11,8 @@ use App\Models\Province;
 use App\Models\UserEmployee;
 use App\Models\User;
 use App\Models\JobPackage;
+use App\Models\Level;
+use App\Models\FormWork;
 
 use Illuminate\Support\Str;
 class JobController extends Controller
@@ -65,9 +67,10 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
-        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
+        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->orderBy('name')->get();
         $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
-
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         // Việc làm mới nhất trong nước
         $query = Job::where('status',1)->orderBy('id','DESC');
         $query->where('country', 'VN');
@@ -81,6 +84,12 @@ class JobController extends Controller
         }
         if( $request->rank_id ){
             $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->degree_id ){
+            $query->where('degree_id', $request->degree_id);
+        }
+        if( $request->formwork_id ){
+            $query->where('formwork_id', $request->formwork_id);
         }
         if( $request->province_id ){
             if( $request->province_id == 'quoc_te' ){
@@ -122,6 +131,8 @@ class JobController extends Controller
             'provinces' => $provinces,
             'employees' => $employees,
             'title' => $title,
+            'degrees' => $degrees,
+            'formworks' => $formworks,
         ];
         return view('website.jobs.index',$params);
     }
@@ -131,6 +142,8 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $provinces = Province::all();
         // Việc làm mới nhất trong nước
         $query = Job::where('status',1)->orderBy('id','DESC');
@@ -149,6 +162,12 @@ class JobController extends Controller
         if( $request->province_id ){
             $query->where('province_id', $request->province_id);
         }
+        if( $request->degree_id ){
+            $query->where('degree_id', $request->degree_id);
+        }
+        if( $request->formwork_id ){
+            $query->where('formwork_id', $request->formwork_id);
+        }
         $jobs = $query->paginate(12);
 
         // Việc làm hấp dẫn trong nước
@@ -165,6 +184,8 @@ class JobController extends Controller
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
+            'degrees' => $degrees,
+            'formworks' => $formworks,
             'title' => 'Việc làm ngoài nước',
         ];
         return view('website.jobs.index',$params);

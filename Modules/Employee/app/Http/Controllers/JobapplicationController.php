@@ -141,7 +141,7 @@ class JobapplicationController extends Controller
                     $cv_infor['email'] => $cv_infor['name']
                 ])->notify(new Notifications("refuse-job", $cv_infor));
             }
-            return redirect()->route('employee.cv.index')->with('success', $message);
+            return redirect()->back()->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
             Log::error('Lỗi xảy ra: ' . $e->getMessage());
@@ -154,10 +154,10 @@ class JobapplicationController extends Controller
             $cv = UserJobApply::find($request->id);
             $cv->forceDelete();
             $message = "Xóa thành công!";
-            return redirect()->route('employee.cv.index')->with('success', $message);
+            return redirect()->back()->with('success', $message);
         } catch (QueryException $e) {
             Log::error('Bug occurred: ' . $e->getMessage());
-            return redirect()->route('employee.cv.index')->with('error', 'Xóa thất bại!');
+            return redirect()->back()->with('error', 'Xóa thất bại!');
         }
     }
     public function sendEmail ($id)

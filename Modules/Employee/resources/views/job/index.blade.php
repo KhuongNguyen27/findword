@@ -17,8 +17,7 @@
                                 <h4>{{ __('work_list') }}</h4>
                                 <form class="form-search" action="{{ route('employee.job.index') }}">
                                     <div class="chosen-outer1">
-                                        <input
-                                            type="text" value="{{ request('name') }}" placeholder="{{ __('work_name') }}..." name="name">
+                                        <input type="text" value="{{ request('name') }}" placeholder="{{ __('work_name') }}..." name="name">
                                     </div>
 
                                     <div class="chosen-outer1">
@@ -45,7 +44,7 @@
                             </div>
                             <div class="widget-content">
                                 <div class="table-outer">
-                                    <table class="default-table manage-job-table">
+                                    <table class="table">
                                         <thead>
                                             @if (session('error'))
                                                 <div class="alert alert-danger" role="alert">
@@ -76,14 +75,14 @@
                                                         <ul class="option-list">
                                                             <li>{{ $countID[$job->id] }} {{ __('profile') }}</li>
                                                             <li><a href="{{ route('employee.job.showjobcv', $job->id) }}"
-                                                                    data-text="View Aplication"><span
+                                                                    data-text="Xem danh sách ứng tuyển"><span
                                                                         class="la la-eye"></span></a></li>
                                                         </ul>
                                                     </td>
                                                     <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
                                                         {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
                                                     @if ($job->status == 1)
-                                                        <td><span class="green-button">{{ __('recruitment') }}</span></td>
+                                                        <td><span class="label label-success">{{ __('recruitment') }}</span></td>
                                                     @elseif ($job->status == 0)
                                                         <td><span class="danger-button">{{ __('stop_recruiting') }}</span></td>
                                                     @endif

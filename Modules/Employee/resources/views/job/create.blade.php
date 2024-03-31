@@ -151,6 +151,7 @@ input {
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                         <select name="province_id" class="chosen-select form-select">
                                             <option value="">Tất cả địa điểm</option>
+                                            <option value="9999">Quốc tế</option>
                                             @foreach ($param['provinces'] as $province)
                                             <option value="{{ $province->id }}"
                                                 {{ old('province_id') == $province->id ? 'selected' : '' }}>
@@ -164,12 +165,10 @@ input {
                                     </div>
                                     <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                         <label>Quốc gia </label>
-                                        <input type="text" value="{{ old('country') }}" name="country"
-                                            placeholder="Quốc gia làm việc...">
-                                        @if ($errors->any())
-                                        <p style="color:red">
-                                            {{ $errors->first('country') }}</p>
-                                        @endif
+                                        <select name="country" class="chosen-select">
+                                            <option @selected(old('country') == 'VN') value="VN">Trong nước</option>
+                                            <option @selected(old('country') == 'NN') value="NN">Ngoài nước</option>
+                                        </select>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Vị Trí <span class="label-required">*</span></label>

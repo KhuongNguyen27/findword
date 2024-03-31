@@ -53,8 +53,6 @@ $currentRouteName = \Request::route()->getName();
                             href="{{ route('staff.job-applied')}}"><i class="la la-briefcase"></i>Việc làm đã
                             nộp</a>
                     </li>
-                    <li class="@if($currentRouteName == '#') active @endif"><a href="#"><i
-                                class="la la-file-invoice"></i>Công ty đang theo dõi</a></li>
                     @endif
                     @if(Auth::user()->type == 'employee')
                     <li class="@if($currentRouteName == 'employee.home') active @endif"><a

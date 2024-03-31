@@ -1,7 +1,10 @@
+@php
+    $currentRouteName = \Request::route()->getName();
+@endphp
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
         <li class="dropdown">
-            <a href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
+            <a class="@if ($currentRouteName == 'jobs.vnjobs') active @endif" href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
             <ul>
                 <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm hôm nay</a></li>
                 <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm hot nhất</a></li>
@@ -9,7 +12,7 @@
             </ul>
         </li>
         <li class="dropdown">
-            <a href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
+            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
             <ul>
                 <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm hôm nay</a></li>
                 <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm hot nhất</a></li>
@@ -17,10 +20,10 @@
             </ul>
         </li>
 
-        <li><a href="{{ route('employees.index') }}">Công ty</a></li>
+        <li><a class="@if ($currentRouteName == 'employees.index') active @endif" href="{{ route('employees.index') }}">Công ty</a></li>
 
         <li class="dropdown">
-            <a href="javascript:;">Hồ sơ & CV</a>
+            <a class="@if ($currentRouteName == 'cvs.index') active @endif" href="javascript:;">Hồ sơ & CV</a>
             <ul>
                 <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
                 <li><a href="{{ route('staff.job-applied') }}">Việc làm đã nộp</a></li>
@@ -28,10 +31,10 @@
             </ul>
         </li>
         @if (Auth::check() && (Auth::user()->type == "employee"))
-        <li><a href="{{ route('website.account.index') }}">Bảng giá</a></li>
+        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{ route('website.account.index') }}">Bảng giá</a></li>
         @endif
         <!-- Only for Mobile View -->
-        <li class="mm-add-listing">
+        <!-- <li class="mm-add-listing">
             <a href="add-listing.html" class="theme-btn btn-style-one">Job Post</a>
             <span>
                 <span class="contact-info">
@@ -46,6 +49,6 @@
                     <a href="#"><span class="fab fa-linkedin-in"></span></a>
                 </span>
             </span>
-        </li>
+        </li> -->
     </ul>
 </nav>

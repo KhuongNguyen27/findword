@@ -92,7 +92,7 @@
         </form>
         <div class="bottom-box">
             <div class="text">Đã có tài khoản? <a href="{{ route('staff.login')}}">Đăng nhập</a></div>
-            <div class="divider"><span>Hoặc</span></div>
+            <!-- <div class="divider"><span>Hoặc</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">
                     <a href="#" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i> Đăng
@@ -102,7 +102,7 @@
                     <a href="#" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i> Đăng nhập qua
                         Gmail</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

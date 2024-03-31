@@ -263,9 +263,6 @@
                                     <li class="time">Việc làm mở – 2</li>
                                 </ul>
                             </div>
-                            <!-- <div class="text">Netflix is the world's leading streaming entertainment service with over
-                                                                                195 million paid memberships in over 190 countries enjoying TV series, documentaries and
-                                                                                feature films across a wide variety...</div> -->
                             <button class="bookmark-btn"><span class="flaticon-bookmark"></span></button>
                         </div>
                     </div>

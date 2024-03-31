@@ -233,25 +233,6 @@ $(document).ready(function() {
 })
 </script>
 <script>
-new Swiper(".mySwiper", {
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-});
-new Swiper(".featureJobsSwiper", {
-    navigation: {
-        nextEl: ".btn-feature-jobs-next",
-        prevEl: ".btn-feature-jobs-pre",
-    },
-    effect: "fade",
-});
-new Swiper(".attractiveJobsSwiper", {
-    navigation: {
-        nextEl: ".btn-attractive-jobs-next",
-        prevEl: ".btn-attractive-jobs-pre",
-    },
-    effect: "fade",
-});
+
 </script>
 @endsection
