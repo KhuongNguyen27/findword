@@ -98,13 +98,9 @@ class AuthController extends Controller
         DB::beginTransaction();
         try {
             $socialUser = Socialite::driver('facebook')->user();
-            dd($socialUser);
             $user = User::where('email', $socialUser->email)->first();
-
             if ($user) {
-
                 Auth::login($user);
-
                 return redirect()->intended('staff');
             } else {
                 $newUser = User::firtsOrCreate(
