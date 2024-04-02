@@ -48,7 +48,7 @@
         </form>
 
         <div class="bottom-box">
-            <div class="text">{{ __('do_not_have_an_account') }}? <a href="{{ route('staff.register')}}">{{ __('register') }}</a></div>
+            <div class="text">{{ __('do_not_have_an_account') }}? <a class="theme-btn btn-style-one" href="{{ route('staff.register')}}">{{ __('register') }}</a></div>
             <div class="divider"><span>{{ __('or') }}</span></div>
             <div class="btn-box row d-flex justify-content-center">
                 {{-- <div class="col-lg-6 col-md-12">
