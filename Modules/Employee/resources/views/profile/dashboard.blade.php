@@ -1,69 +1,73 @@
 @extends('employee::layouts.master')
 @section('content')
-<!-- Dashboard -->
-<section class="user-dashboard">
-    <div class="dashboard-outer">
-        <div class="upper-title-box">
-            <h3>{{ __('hello') }}, {{auth()->user()->name}}</h3>
-            <div class="text">{{ __('have_a_good_day') }}!</div>
-        </div>
-        @if (session('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-        </div>
-        @endif
-        @if (session('success'))
-        <div class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-        @endif
-        <div class="row">
-            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="ui-item">
-                    <div class="left">
-                        <i class="icon flaticon-briefcase"></i>
-                    </div>
-                    <div class="right">
-                        <h4>{{$count_jobs}}</h4>
-                        <p>{{ __('job') }}</p>
-                    </div>
+    <!-- Dashboard -->
+    <section class="user-dashboard">
+        <div class="dashboard-outer">
+            <div class="upper-title-box">
+                <h3>{{ __('hello') }}, {{ auth()->user()->name }}</h3>
+                <div class="text">{{ __('have_a_good_day') }}!</div>
+            </div>
+            @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="row">
+                <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    <a href="{{ route('employee.job.index') }}">
+                        <div class="ui-item">
+                            <div class="left">
+                                <i class="icon flaticon-briefcase"></i>
+                            </div>
+                            <div class="right">
+                                <h4>{{ $count_jobs }}</h4>
+                                <p>{{ __('job') }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    <a href="{{ route('employee.cv.index') }}">
+                        <div class="ui-item ui-red">
+                            <div class="left">
+                                <i class="icon la la-file-invoice"></i>
+                            </div>
+                            <div class="right">
+                                <h4>{{ $count_CVapply }}</h4>
+                                <p>{{ __('profile') }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12"> 
+                        <div class="ui-item ui-green">
+                            <div class="left">
+                                <i class="icon la la-bookmark-o"></i>
+                            </div>
+                            <div class="right">
+                                <h4>0</h4>
+                                <p>{{ __('favourite') }}</p>
+                            </div>
+                        </div> 
                 </div>
             </div>
-            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="ui-item ui-red">
-                    <div class="left">
-                        <i class="icon la la-file-invoice"></i>
-                    </div>
-                    <div class="right">
-                        <h4>{{$count_CVapply}}</h4>
-                        <p>{{ __('profile') }}</p>
-                    </div>
-                </div>
-            </div>
-          
-            <div class="ui-block col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                <div class="ui-item ui-green">
-                    <div class="left">
-                        <i class="icon la la-bookmark-o"></i>
-                    </div>
-                    <div class="right">
-                        <h4>0</h4>
-                        <p>{{ __('favourite') }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="row">
+            <div class="row">
 
 
-          
-
-      
-         
 
 
-            {{-- <div class="col-lg-12">
+
+
+
+
+                {{-- <div class="col-lg-12">
                 <!-- applicants Widget -->
                 <div class="applicants-widget ls-widget">
                     <div class="widget-title">
@@ -272,8 +276,8 @@
                     </div>
                 </div>
             </div> --}}
+            </div>
         </div>
-    </div>
-</section>
-<!-- End Dashboard -->
+    </section>
+    <!-- End Dashboard -->
 @endsection
