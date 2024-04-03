@@ -34,7 +34,7 @@ return [
     'facebook' => [
         'client_id' => '724420766524762',
         'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
-        'redirect' => 'https://tuyendunghue.vn/login/facebook/callback',
+        'redirect' => 'https://tuyendunghue.vn/auth/facebook/callback',
     ],
 
     'google' => [
