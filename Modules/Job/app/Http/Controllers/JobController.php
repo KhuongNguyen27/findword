@@ -17,6 +17,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Career;
 use Modules\Employee\app\Models\CareerJob;
+use Modules\Staff\app\Models\UserJobAplied;
 
 class JobController extends Controller
 {
@@ -141,15 +142,16 @@ class JobController extends Controller
     }
     public function aplication($slug)
     {
-        // dd($this->model::checkInfo());
         if (auth()->check()) {
             $job = Job::where('slug', $slug)->first();
             $userCvs = UserCv::where('user_id', auth()->user()->id)->get();
             $user_employee = UserEmployee::find($job->user_id);
+            $job_applies = UserJobAplied::all();
             $params = [
                 'userCvs' => $userCvs,
                 'user_employee' => $user_employee,
-                'job' =>$job
+                'job' =>$job,
+                'job_applies' => $job_applies
             ];
             return view('job::aplications.index', $params);
         } else {
