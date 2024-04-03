@@ -67,8 +67,8 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
-        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->orderBy('name')->get();
-        $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
+        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
+        $provinces = Province::whereIn('id',[31,1,50,32])->orderByRaw("FIELD(id, 31, 1, 50, 32)")->get()->merge($normal_provinces);
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         // Việc làm mới nhất trong nước
