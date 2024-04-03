@@ -22,7 +22,7 @@
                             <div class="widget-content">
                                 @foreach ($userJobApplies as $userJobApplie)
                                     <div class="col-lg-6 col-md-12 col-sm-12">
-                                        @include('job::includes.components.job-item', [
+                                        @include('staff::includes.components.job-item', [
                                             'job' => $userJobApplie->job,
                                             'job_info' => true,
                                             'job_other_info' => false,
