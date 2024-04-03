@@ -49,21 +49,21 @@
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-lg-12 col-md-12">
-                                            <label>Mật Khẩu hiện tại:</label>
+                                            <label>{{ __('current_password') }}:<span style="color: red"> *</span></label>
                                             <input type="password" name="password" value="" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('password') }}</p>
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12 col-md-12">
-                                            <label>Mật Khẩu mới:</label>
+                                            <label>{{ __('new_password') }}:<span style="color: red" > *</span></label>
                                             <input type="password" name="newpassword" value="" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('newpassword') }}</p>
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-12 col-md-12">
-                                            <label>Xác nhận lại mật Khẩu:</label>
+                                            <label>{{ __('repeat_password') }}:<span style="color: red" > *</span></label>
                                             <input type="password" name="confirmpassword" value="" placeholder="">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('confirmpassword') }}</p>
