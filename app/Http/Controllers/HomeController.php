@@ -25,7 +25,13 @@ class HomeController extends Controller
         $wages = Wage::where('status', 1)->get();
         $ranks = Rank::where('status', 1)->get();
         $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
-        $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
+        $provinces = Province::whereIn('id', [31, 1, 50, 32])
+        ->orderByRaw("FIELD(id, 31, 1, 50, 32)")
+        ->get()->concat($normal_provinces);
+    
+      
+       
+
        
         // Việc làm hấp dẫn
         $hot_jobs = Job::where('status',1)->where('jobpackage_id',JobPackage::HOT)->orderBy('id','DESC')->limit(20)->get()->chunk(10);
