@@ -8,6 +8,10 @@
                         <option value="">Tất cả địa điểm</option>
                         <option value="quoc_te">Quốc tế</option>
                         @foreach ($provinces as $province)
+                            @php 
+                            $province->name = str_replace('Tỉnh ','',$province->name);
+                            $province->name = str_replace('Thành phố ','',$province->name);
+                            @endphp 
                             <option @selected( $province->id == request()->province_id ) value="{{ $province->id }}">{{ $province->name }}</option>
                         @endforeach
                     </select>
@@ -89,5 +93,4 @@
         </div>
     </form>
 </div>
-@include('website.homes.includes.hero-banner')
 

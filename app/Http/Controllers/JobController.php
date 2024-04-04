@@ -98,6 +98,9 @@ class JobController extends Controller
             $query->where('province_id', $request->province_id);
         }
         switch ($job_type) {
+            case 'moi-nhat':
+                $title = 'Việc làm trong nước mới nhất';
+                break;
             case 'hot':
                 $query->where('jobpackage_id',JobPackage::HOT);
                 $title = 'Việc làm trong nước hot nhất';
@@ -112,9 +115,14 @@ class JobController extends Controller
                 break;
             default:
                 $title = 'Việc làm trong nước';
+                $jobs = $query->paginate(12);
                 break;
         }
-        $jobs = $query->paginate(12);
+        $view_path = 'website.jobs.index';
+        if($job_type){
+            $view_path = 'website.jobs.sub-index';
+            $jobs = $query->paginate(30);
+        }
 
         // Việc làm hấp dẫn trong nước
         $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
@@ -133,8 +141,9 @@ class JobController extends Controller
             'title' => $title,
             'degrees' => $degrees,
             'formworks' => $formworks,
+            'job_type' => $job_type,
         ];
-        return view('website.jobs.index',$params);
+        return view($view_path,$params);
     }
     // Ngoài nước
     public function nnjobs (Request $request){

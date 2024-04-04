@@ -1,11 +1,6 @@
 @extends('website.layouts.master')
+@section('title') {{ $title }} @endsection
 @section('content')
-    <!-- Banner Section-->
-    <style>
-        span.flaticon-bookmark.active {
-            color: red;
-        }
-    </style>
     <section class="banner-section pb-5">
         <div class="auto-container">
             <div class="row">
@@ -18,6 +13,7 @@
                         </div>
                         <!-- Job Search Form -->
                         @include('website.homes.includes.job-search-form')
+                        @include('website.homes.includes.hero-banner')
                         <!-- Job Search Form -->
                     </div>
                 </div>
