@@ -72,6 +72,7 @@ class JobController extends Controller
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         // Việc làm mới nhất trong nước
+        // $imageUserEmployyee = UserEmployee::class;
         $query = Job::where('status',1)->orderBy('id','DESC');
         $query->where('country', 'VN');
         if( $request->career_id ){
