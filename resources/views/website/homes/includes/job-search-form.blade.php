@@ -106,12 +106,17 @@
 </div>
 @endif
 @if( isset($allowSort) )
+@php
+$inactiveClass = 'btn btn-sm btn-light';
+$activeClass = $inactiveClass . ' bg-info text-white';
+$sort = request()->sort;
+@endphp
 <div class="popular-searches mb-2 mt-1">
     <span class="popular-title text-white">Sắp xếp theo: </span>
-    <a class="btn btn-sm btn-light" href="#">Mặc định</a>
-    <a class="btn btn-sm btn-light" href="#">Lương (cao - thấp)</a>
-    <a class="btn btn-sm btn-light" href="#">Ngày đăng (mới nhất)</a>
-    <a class="btn btn-sm btn-light" href="#">Ngày đăng (cũ nhất)</a>
+    <a href="{{ url()->current() }}?sort=default" class="{{ $sort == 'default' ? $activeClass : $inactiveClass }}">Mặc định</a>
+    <a href="{{ url()->current() }}?sort=salary-desc" class="{{ $sort == 'salary-desc' ? $activeClass : $inactiveClass }}" >Lương (cao - thấp)</a>
+    <a href="{{ url()->current() }}?sort=date-desc" class="{{ $sort == 'date-desc' ? $activeClass : $inactiveClass }}" >Ngày đăng (mới nhất)</a>
+    <a href="{{ url()->current() }}?sort=date-asc" class="{{ $sort == 'date-asc' ? $activeClass : $inactiveClass }}" >Ngày đăng (cũ nhất)</a>
 </div>
 @endif
 

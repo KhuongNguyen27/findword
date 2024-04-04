@@ -20,12 +20,29 @@ class CareerController extends Controller
         $ranks = Rank::where('status', 1)->get();
         $careers = Career::where('status', 1)->get();
         $request->merge(['career_id'=>$item->id]);
-        $query = Job::where('status',1)->orderBy('id','DESC');
+        $query = Job::where('status',1);
 
         $career_id = $item->id;
         $query->whereHas('careers',function($q) use($career_id){
             $q->where('career_id',$career_id);
         });
+
+        $sort = $request->sort;
+        switch ($sort) {
+            case 'salary-desc':
+                $query->orderBy('wage_id','DESC');
+                break;
+            case 'date-desc':
+                $query->orderBy('created_at','DESC');
+                break;
+            case 'date-asc':
+                $query->orderBy('created_at','ASC');
+                break;
+            default:
+                $query->orderBy('created_at','DESC');
+                break;
+        }
+
         $jobs = $query->limit(20)->paginate(15);
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
