@@ -3,11 +3,11 @@
         <div class="ls-outer theme-card">
             <div class="ls-switcher theme-card-header">
                 <div class="sec-title mb-3 mt-3">
-                    <h2 class="">Việc làm tốt nhất</h2>
+                    <h2 class="">{{ $sec_title }}</h2>
                 </div>
                 <div class="box-header__tool">
                     <span class="see-more">
-                        <a href="{{ route('jobs.vnjobs') }}" class="mb-3 mt-3">
+                        <a href="{{ $sec_link }}" class="mb-3 mt-3">
                             <span class="btn-title text-uppercase">Xem tất cả</span>
                         </a>
                     </span>
@@ -23,14 +23,14 @@
             <div class="theme-card-body">
                 <div class="swiper featureJobsSwiper">
                     <div class="swiper-wrapper">
-                    @foreach ($vip_jobs as $vip_job)
+                    @foreach ($chunk_jobs as $chunk_job)
                         <div class="swiper-slide">
                             <div class="row">
-                                @foreach ($vip_job as $job)
+                                @foreach ($chunk_job as $job_item)
                                 <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="{{ $item_class }}">
                                     @include('job::includes.components.job-item', [
-                                    'job' => $job,
+                                    'job' => $job_item,
                                     'job_info' => true,
                                     'bookmark' => true,
                                     'simple' => true,

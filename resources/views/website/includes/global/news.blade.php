@@ -5,9 +5,9 @@
                  <div class="sec-title mb-3 mt-3">
                      <h2>{{ __('career_guide') }}</h2>
                  </div>
-                 <a href="{{ route('website.home') }}" class="mb-3 mt-3">
+                 <!-- <a href="{{ route('website.home') }}" class="mb-3 mt-3">
                      <span class="btn-title text-uppercase">Xem tất cả</span>
-                 </a>
+                 </a> -->
              </div>
          </div>
          <div class="theme-card-body">

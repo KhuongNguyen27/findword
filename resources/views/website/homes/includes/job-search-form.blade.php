@@ -8,6 +8,10 @@
                         <option value="">Tất cả địa điểm</option>
                         <option value="quoc_te">Quốc tế</option>
                         @foreach ($provinces as $province)
+                            @php 
+                            $province->name = str_replace('Tỉnh ','',$province->name);
+                            $province->name = str_replace('Thành phố ','',$province->name);
+                            @endphp 
                             <option @selected( $province->id == request()->province_id ) value="{{ $province->id }}">{{ $province->name }}</option>
                         @endforeach
                     </select>
@@ -87,7 +91,28 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+
+        </div>
     </form>
 </div>
-@include('website.homes.includes.hero-banner')
+<!-- Popular Search -->
+<div class="popular-searches mb-2 mt-1">
+    <span class="popular-title text-white">Từ khóa liên quan: </span>
+    <a class="text-white" href="#">Designer</a>, 
+    <a class="text-white" href="#">Developer</a>, 
+    <a class="text-white" href="#">Web</a>, 
+    <a class="text-white" href="#">IOS</a>, 
+    <a class="text-white" href="#">PHP</a>, 
+    <a class="text-white" href="#">Senior</a>, 
+    <a class="text-white" href="#">Engineer</a>
+</div>
+
+<div class="popular-searches mb-2 mt-1">
+    <span class="popular-title text-white">Sắp xếp theo: </span>
+    <a class="btn btn-sm btn-light" href="#">Mặc định</a>
+    <a class="btn btn-sm btn-light" href="#">Lương (cao - thấp)</a>
+    <a class="btn btn-sm btn-light" href="#">Ngày đăng (mới nhất)</a>
+    <a class="btn btn-sm btn-light" href="#">Ngày đăng (cũ nhất)</a>
+</div>
 

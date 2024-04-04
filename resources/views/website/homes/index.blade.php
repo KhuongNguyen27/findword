@@ -20,7 +20,6 @@ span.flaticon-bookmark.active {
                     <!-- Job Search Form -->
                     @include('website.homes.includes.job-search-form')
                     <!-- Job Search Form -->
-                
                 </div>
             </div>
 
@@ -31,7 +30,12 @@ span.flaticon-bookmark.active {
 
 
 <!-- Job Section -->
-@include('website.homes.includes.job-items')
+@include('website.homes.includes.job-items',[
+    'sec_title' => 'Việc làm tốt nhất',
+    'chunk_jobs' => $vip_jobs,
+    'item_class' => 'col-lg-4 col-md-12 col-sm-12',
+    'sec_link' => route('jobs.vnjobs','tot-nhat')
+])
 <!-- End Job Section -->
 
 @include('website.includes.global.ad-banners')
