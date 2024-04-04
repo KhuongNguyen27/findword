@@ -454,9 +454,9 @@ div.popover {
     min-height: 100px;
 }
 .tag-job-flash {
-    left: -10px;
+    left: -15px;
     position: absolute;
-    top: -10px;
+    top: -15px;
     z-index: 9;
 }
 .tag-job-flash img {
@@ -562,4 +562,7 @@ span.company-logo img {
 }
 .company-cover .company-cover-inner {
     background: linear-gradient(90deg, #28c1bc, #c7c8ca) !important;
+}
+#dashboard .block-dashboard {
+    background: linear-gradient(83.78deg, #28c1bc 1.64%, #c7c8ca 93.62%) !important;
 }

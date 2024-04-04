@@ -1,8 +1,9 @@
-<style>
-span.flaticon-bookmark.active {
-    color: red;
-}
-</style>
+<?php
+$startDate = strtotime($job->start_day); // Chuyển ngày bắt đầu thành dạng timestamp
+$endDate = strtotime($job->end_day); // Chuyển ngày kết thúc thành dạng timestamp
+$remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày còn lại
+$updated_at = $job->updated_at->diffForHumans();
+?>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box">
         <div class="content">
@@ -27,14 +28,13 @@ span.flaticon-bookmark.active {
                     @if( auth()->check() )
                     <span class="salary">{{ $job->wage->name ?? '' }}</span>
                     @else
-                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Đăng nhập để
-                            xem</a></span>
+                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem mức lương</a></span>
                     @endif
                 </li>
                 <li><span class="address">{{ $job->work_address }}</span></li>
                 @if (@$job_other_info)
-                <li><span class="address">Cập nhật 1 giờ trước</span></li>
-                <li><span class="address">Còn 40 ngày để ứng tuyển</span></li>
+                <li><span class="address">Cập nhật <?= $updated_at; ?></span></li>
+                <li><span class="address">Còn <?php echo $remainingDays;?> ngày để ứng tuyển</span></li>
                 @endif
             </ul>
             @endif
