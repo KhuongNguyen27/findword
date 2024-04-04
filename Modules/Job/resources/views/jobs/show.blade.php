@@ -1,23 +1,22 @@
 @extends('website.layouts.master')
 @section('content')
-<section class="job-real-detail-section job-detail-section pt-5">
+<section class="job-real-detail-section job-detail-section pt-5 job-package-{{ @$job->job_package->slug }}">
     <div class="job-detail-outer">
         <div class="auto-container">
+            <!-- Job Block -->
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+            @endif
+            @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="row">
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
                     <div class="job-block-outer">
-                        <!-- Job Block -->
-                        @if (session('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session('error') }}
-                        </div>
-                        @endif
-                        @if (session('success'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('success') }}
-                        </div>
-                        @endif
-
                         <div class="job-block-seven style-two">
                             <div class="inner-box">
                                 <div class="content">

@@ -435,18 +435,6 @@ div.popover {
 .default-form .form-group {
     margin-bottom: 15px !important;
 }
-.job-jobpackage-1 .company-logo {
-    border: 2px solid #ffc107 !important;
-    border-radius: 12px;
-}
-.job-jobpackage-4 .company-logo {
-    border: 2px solid #ffc107 !important;
-    border-radius: 12px;
-}
-.job-jobpackage-2 .company-logo {
-    border: 2px solid #2ac6ab !important;
-    border-radius: 12px;
-}
 .job-block .content {
     padding-left: 84px !important;
 }
@@ -565,4 +553,34 @@ span.company-logo img {
 }
 #dashboard .block-dashboard {
     background: linear-gradient(83.78deg, #28c1bc 1.64%, #c7c8ca 93.62%) !important;
+}
+.job-detail__box--right {
+    padding: 17px !important;
+}
+.job-detail__box--right.job-detail__company {
+    gap: 0 !important;
+}
+/* Các loại TIN */
+.company-logo {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+}
+/* VIP */
+.job-package-tin-vip .job-block-outer,
+.job-package-tin-vip .job-detail__company {
+    background-color: #ffc107 !important;
+}
+.job-jobpackage-1 h4 a {
+    color: #ffc107 !important;
+}
+.job-jobpackage-1 .company-logo {
+    border: 2px solid #ffc107 !important;
+}
+/* HOT */
+.job-jobpackage-4 .company-logo {
+    border: 2px solid #f72443 !important;
+}
+/* GAP */
+.job-jobpackage-2 .company-logo {
+    border: 2px solid #2ac6ab !important;
 }

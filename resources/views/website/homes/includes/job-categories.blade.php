@@ -21,7 +21,7 @@
                                         </span>
                                         <h4><a href="{{ route('careers.show',$career->slug) }}">{{ $career->name }}</a>
                                         </h4>
-                                        <p>{{ $career->count_jobs ?? 0 }} việc làm</p>
+                                        <p>{{ $career->jobs->count() ?? 0 }} việc làm</p>
                                     </div>
                                 </div>
                             </div>

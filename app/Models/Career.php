@@ -53,6 +53,10 @@ class Career extends AdminModel
 
     public function job()
     {
-        return $this->belongsToMany(Job::class, 'carrer_job', 'carrer_id', 'job_id');
+        return $this->belongsToMany(Job::class, 'carrer_job', 'career_id', 'job_id');
+    }
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'career_job', 'career_id', 'job_id');
     }
 }
