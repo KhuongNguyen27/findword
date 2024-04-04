@@ -14,7 +14,10 @@
                                 uy tín tại Việt Nam</div>
                         </div>
                         <!-- Job Search Form -->
-                        @include('website.homes.includes.job-search-form')
+                        @include('website.homes.includes.job-search-form',[
+                            'allowKeywords' => true,
+                            'allowSort' => true,
+                        ])
                         <!-- Job Search Form -->
                     </div>
                 </div>
