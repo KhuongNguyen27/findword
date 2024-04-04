@@ -13,6 +13,8 @@ use App\Models\User;
 use App\Models\JobPackage;
 use App\Models\Level;
 use App\Models\FormWork;
+use App\Models\JobJobTag;
+use App\Models\JobTag;
 
 use Illuminate\Support\Str;
 class JobController extends Controller
@@ -120,6 +122,23 @@ class JobController extends Controller
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
+
+        $sort = $request->sort;
+        switch ($sort) {
+            case 'salary-desc':
+                $query->orderBy('wage_id','DESC');
+                break;
+            case 'date-desc':
+                $query->orderBy('created_at','DESC');
+                break;
+            case 'date-asc':
+                $query->orderBy('created_at','ASC');
+                break;
+            default:
+                $query->orderBy('created_at','DESC');
+                break;
+        }
+
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
@@ -129,6 +148,9 @@ class JobController extends Controller
         // Việc làm hấp dẫn trong nước
         $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
+
+        $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
+        $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
         $employees = UserEmployee::get();
         $params = [
@@ -144,6 +166,7 @@ class JobController extends Controller
             'degrees' => $degrees,
             'formworks' => $formworks,
             'job_type' => $job_type,
+            'job_tags' => $job_tags,
         ];
         return view($view_path,$params);
     }
@@ -157,7 +180,7 @@ class JobController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $provinces = Province::all();
         // Việc làm mới nhất trong nước
-        $query = Job::where('status',1)->orderBy('id','DESC');
+        $query = Job::where('status',1);
         $query->where('country','!=', 'VN');
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
@@ -201,11 +224,29 @@ class JobController extends Controller
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
+        $sort = $request->sort;
+        switch ($sort) {
+            case 'salary-desc':
+                $query->orderBy('wage_id','DESC');
+                break;
+            case 'date-desc':
+                $query->orderBy('created_at','DESC');
+                break;
+            case 'date-asc':
+                $query->orderBy('created_at','ASC');
+                break;
+            default:
+                $query->orderBy('created_at','DESC');
+                break;
+        }
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
             $jobs = $query->paginate(10);
         }
+
+        $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
+        $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
         // Việc làm hấp dẫn trong nước
         $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
@@ -225,6 +266,7 @@ class JobController extends Controller
             'degrees' => $degrees,
             'formworks' => $formworks,
             'job_type' => $job_type,
+            'job_tags' => $job_tags,
         ];
         return view($view_path,$params);
     }
