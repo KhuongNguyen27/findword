@@ -461,13 +461,13 @@ div.popover {
 }
 .tag-job-flash img {
     height: auto;
-    width: 30px;
+    width: 36px;
 }
 .modal-backdrop {
     z-index: 0 !important;
 }
 span.company-logo img {
-    height: 63px;
+    height: 71px;
     border-radius: 12px;
     object-fit: contain;
 }
@@ -519,4 +519,47 @@ span.company-logo img {
 }
 .profile-header {
     background-color: #28c1bc !important;
+}
+.sub-banner-section {
+    padding-top: 100px;
+}
+.sub-banner-section .banner {
+    background: linear-gradient(90deg, #28c1bc, #c7c8ca 105.53%);
+    border-radius: 5px 5px 0 0;
+    min-height: 180px;
+    padding: 5px 32px;
+    position: relative;
+}
+.banner .title {
+    color: #fff;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    margin: initial;
+    margin-bottom: 8px;
+    margin-top: 26px;
+}
+.banner .description {
+    color: #fff;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin: initial;
+    margin-bottom: 18px;
+    width: 100%;
+}
+.jobs-wrapper {
+    padding: 10px;
+    padding-top: 32px;
+}
+.ls-pagination {
+    margin-top: 0 !important;
+}
+.ls-pagination nav {
+    margin-top: 50px !important;
+}
+.company-cover .company-cover-inner {
+    background: linear-gradient(90deg, #28c1bc, #c7c8ca) !important;
 }
