@@ -36,11 +36,9 @@
                 @endif
             </div>
                 <?php
-                // Tính số ngày còn lại giữa ngày kết thúc và ngày bắt đầu
                 $startDate = strtotime($job->start_day); // Chuyển ngày bắt đầu thành dạng timestamp
                 $endDate = strtotime($job->end_day); // Chuyển ngày kết thúc thành dạng timestamp
                 $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày còn lại
-                // Truyền số ngày còn lại vào trang HTML
                 ?>
                 <div class="deadline block-info_item">
                     <i class="fa fa-clock"></i>
