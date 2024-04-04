@@ -97,6 +97,7 @@
     </form>
 </div>
 <!-- Popular Search -->
+@if( isset($allowKeywords) )
 <div class="popular-searches mb-2 mt-1">
     <span class="popular-title text-white">Từ khóa liên quan: </span>
     <a class="text-white" href="#">Designer</a>, 
@@ -107,7 +108,8 @@
     <a class="text-white" href="#">Senior</a>, 
     <a class="text-white" href="#">Engineer</a>
 </div>
-
+@endif
+@if( isset($allowSort) )
 <div class="popular-searches mb-2 mt-1">
     <span class="popular-title text-white">Sắp xếp theo: </span>
     <a class="btn btn-sm btn-light" href="#">Mặc định</a>
@@ -115,4 +117,6 @@
     <a class="btn btn-sm btn-light" href="#">Ngày đăng (mới nhất)</a>
     <a class="btn btn-sm btn-light" href="#">Ngày đăng (cũ nhất)</a>
 </div>
+@endif
+
 

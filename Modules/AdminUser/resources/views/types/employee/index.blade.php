@@ -51,6 +51,7 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
+                            <th>{{ __('position') }}</th>
                             <th>{{ __('email') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
