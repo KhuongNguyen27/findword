@@ -24,40 +24,12 @@
     <!-- End Banner Section-->
 
     <!-- Job Section -->
-    <section class="ls-section pt-5 pb-5" style="background:#f3f5f7!important;">
-        <div class="auto-container">
-            <div class="sec-title">
-                <h2>Việc làm mới nhất</h2>
-            </div>
-            <div class="row">
-                <div class="content-column col-lg-12">
-                    <div class="ls-outer">
-                        <div class="ls-switcher">
-                            
-                        </div>
-                        <div class="row">
-                            @foreach ($jobs as $job)
-                                <!-- Job Block -->
-                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                    @include('job::includes.components.job-item', [
-                                        'job' => $job,
-                                        'job_info' => true,
-                                        'bookmark' => true,
-                                        'simple' => true,
-                                    ])
-                                </div>
-                                <!-- Job Block -->
-                            @endforeach
-                        </div>
-                        <div class="ls-pagination">
-                            {{ $jobs->appends(request()->input())->links() }}
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('website.homes.includes.job-items',[
+        'sec_title' => $title,
+        'item_class' => 'col-lg-4 col-md-12 col-sm-12',
+        'chunk_jobs' => $jobs,
+        'sec_link' => route('jobs.vnjobs','moi-nhat')
+    ])
     <!-- End Job Section -->
 
     @include('website.includes.global.ad-banners')

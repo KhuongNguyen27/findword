@@ -35,18 +35,29 @@
 
                         </div>
                         <div class="row">
-                            @foreach ($jobs as $job)
-                            <!-- Job Block -->
-                            <div class="col-lg-4 col-md-12 col-sm-12">
-                                @include('job::includes.components.job-item', [
-                                'job' => $job,
-                                'job_info' => true,
-                                'bookmark' => true,
-                                'simple' => true,
-                                ])
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        @foreach ($jobs as $job)
+                                        <!-- Job Block -->
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            @include('job::includes.components.job-item', [
+                                            'job' => $job,
+                                            'job_info' => true,
+                                            'job_other_info' => true,
+                                            'bookmark' => true,
+                                            'simple' => false,
+                                            'company_name' => true,
+                                            ])
+                                        </div>
+                                        <!-- Job Block -->
+                                        @endforeach
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @include('website.includes.global.attractive-banner')
+                                    </div>
+                                </div>
                             </div>
-                            <!-- Job Block -->
-                            @endforeach
                         </div>
                         <div class="ls-pagination">
                             {{ $jobs->appends(request()->input())->links() }}

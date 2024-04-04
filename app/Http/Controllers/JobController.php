@@ -100,6 +100,7 @@ class JobController extends Controller
         switch ($job_type) {
             case 'moi-nhat':
                 $title = 'Việc làm trong nước mới nhất';
+                $query->orderBy('id','DESC');
                 break;
             case 'hot':
                 $query->where('jobpackage_id',JobPackage::HOT);
@@ -115,13 +116,13 @@ class JobController extends Controller
                 break;
             default:
                 $title = 'Việc làm trong nước';
-                $jobs = $query->paginate(12);
+                $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
-            $jobs = $query->paginate(30);
+            $jobs = $query->paginate(10);
         }
 
         // Việc làm hấp dẫn trong nước
