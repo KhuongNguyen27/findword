@@ -6,7 +6,7 @@
                 'sec_title' => 'Việc làm hấp dẫn',
                 'item_class' => 'col-lg-6 col-md-12 col-sm-12',
                 'chunk_jobs' => $hot_jobs,
-                'sec_link' => route('jobs.vnjobs','hap-dan')
+                'sec_link' => route(@$route,'hap-dan')
             ])
             </div>
             <div class="col-lg-4">

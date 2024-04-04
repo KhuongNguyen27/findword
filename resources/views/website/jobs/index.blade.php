@@ -28,7 +28,7 @@
         'sec_title' => $title,
         'item_class' => 'col-lg-4 col-md-12 col-sm-12',
         'chunk_jobs' => $jobs,
-        'sec_link' => route('jobs.vnjobs','moi-nhat')
+        'sec_link' => route($route,'moi-nhat')
     ])
     <!-- End Job Section -->
 

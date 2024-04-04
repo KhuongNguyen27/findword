@@ -148,7 +148,7 @@ class JobController extends Controller
         return view($view_path,$params);
     }
     // Ngoài nước
-    public function nnjobs (Request $request){
+    public function nnjobs (Request $request, $job_type = ''){
         $model = new Job;
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
@@ -179,27 +179,54 @@ class JobController extends Controller
         if( $request->formwork_id ){
             $query->where('formwork_id', $request->formwork_id);
         }
-        $jobs = $query->paginate(12);
+        switch ($job_type) {
+            case 'moi-nhat':
+                $title = 'Việc làm ngoài nước mới nhất';
+                $query->orderBy('id','DESC');
+                break;
+            case 'hot':
+                $query->where('jobpackage_id',JobPackage::HOT);
+                $title = 'Việc làm ngoài nước hot nhất';
+                break;
+            case 'today':
+                $query->where('jobpackage_id',JobPackage::HOT);
+                $title = 'Việc làm ngoài nước hôm nay';
+                break;
+            case 'urgent':
+                $query->where('jobpackage_id',JobPackage::GAP);
+                $title = 'Việc làm ngoài nước tuyển gấp';
+                break;
+            default:
+                $title = 'Việc làm ngoài nước';
+                $jobs = $query->limit(20)->get()->chunk(12);
+                break;
+        }
+        $view_path = 'website.jobs.index';
+        if($job_type){
+            $view_path = 'website.jobs.sub-index';
+            $jobs = $query->paginate(10);
+        }
 
         // Việc làm hấp dẫn trong nước
-        $hot_jobs = Job::where('status',1)->where('country','!=', 'VN')->where('jobpackage_id',JobPackage::HOT)
+        $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
+
         $employees = UserEmployee::get();
         $params = [
-            'country' => 'NN',
-            'route' => 'jobs.nnjobs',
             'careers' => $careers,
+            'route' => 'jobs.nnjobs',
             'ranks' => $ranks,
             'jobs' => $jobs,
             'hot_jobs' => $hot_jobs,
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
+            'title' => $title,
             'degrees' => $degrees,
             'formworks' => $formworks,
-            'title' => 'Việc làm ngoài nước',
+            'job_type' => $job_type,
         ];
-        return view('website.jobs.index',$params);
+        return view($view_path,$params);
     }
    
 }
