@@ -353,8 +353,12 @@ function calculateDays() {
     var timeDiff = endDay - startDay;
     var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-    if (!isNaN(dayDiff) && dayDiff >= 0) {
+    if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <= 60) { // Kiểm tra số ngày có nằm trong khoảng từ 0 đến 60 không
         numberDayInput.value = dayDiff;
+    } else {
+        alert("Số ngày không được vượt quá 60");
+        endDayInput.value = "";
+        numberDayInput.value = "";
     }
 
     // validate

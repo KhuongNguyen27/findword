@@ -33,27 +33,27 @@ class JobController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Job::query (true)->where('user_id', auth()->user()->id);
-        
-        if($request->name){
+        $query = Job::query(true)->where('user_id', auth()->user()->id);
+
+        if ($request->name) {
             $query->where('name', 'LIKE', '%' . $request->name . '%');
         }
-        if($request->start_day){
+        if ($request->start_day) {
             $query->where('start_day', '>=', $request->start_day);
         }
-        if($request->end_day){
+        if ($request->end_day) {
             $query->where('end_day', '<=', $request->end_day);
         }
-        if($request->status != ''){
+        if ($request->status != '') {
             $query->where('status', $request->status);
         }
-        
-        $query->orderBy('id','desc');
+
+        $query->orderBy('id', 'desc');
         $jobs = $query->paginate(5);
         $countID = [];
         foreach ($jobs as $job) {
             $count = $job->jobApplications->count();
-            $countID[$job->id] = $count;   
+            $countID[$job->id] = $count;
         }
         return view('employee::job.index', compact('jobs', 'countID'));
     }
@@ -63,15 +63,15 @@ class JobController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->verify == User::ACTIVE){
-            $careers = Career::where('status',Career::ACTIVE)->get();
-            $degrees = Level::where('status',Level::ACTIVE)->get();
-            $ranks = Rank::where('status',Rank::ACTIVE)->get();
-            $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-            $wages = Wage::where('status',Wage::ACTIVE)->get();
-            $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
-            $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->orderBy('name')->get();
-            $provinces = Province::whereIn('id',[31,1,50,32])->get()->merge($normal_provinces);
+        if (Auth::user()->verify == User::ACTIVE) {
+            $careers = Career::where('status', Career::ACTIVE)->get();
+            $degrees = Level::where('status', Level::ACTIVE)->get();
+            $ranks = Rank::where('status', Rank::ACTIVE)->get();
+            $formworks = FormWork::where('status', FormWork::ACTIVE)->get();
+            $wages = Wage::where('status', Wage::ACTIVE)->get();
+            $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
+            $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
+            $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
             $param = [
                 'careers' => $careers,
                 'degrees' => $degrees,
@@ -81,9 +81,9 @@ class JobController extends Controller
                 'job_packages' => $job_packages,
                 'provinces' => $provinces
             ];
-            return view('employee::job.create',compact('param'));
-        }else{
-            return back()->with('error','Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
+            return view('employee::job.create', compact('param'));
+        } else {
+            return back()->with('error', 'Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
         }
     }
 
@@ -98,7 +98,7 @@ class JobController extends Controller
             if ($price) {
                 $user = Auth::user();
                 if ($user->points < $price) {
-                    return back()->with("error","Điểm tuyển dụng không đủ vui lòng nạp thêm");
+                    return back()->with("error", "Điểm tuyển dụng không đủ vui lòng nạp thêm");
                 }
                 $user->points -= $price;
                 $user->save();
@@ -119,7 +119,7 @@ class JobController extends Controller
             $job->start_day = $request->start_day;
             $job->experience = $request->experience;
             $job->wage_id = $request->wage_id;
-            if($request->gender){
+            if ($request->gender) {
                 $job->gender = $request->gender;
             }
             $job->rank_id = $request->rank_id;
@@ -143,7 +143,7 @@ class JobController extends Controller
             }
             $job->save();
             // lưu vào bảng career_job
-            if($request->career_ids){
+            if ($request->career_ids) {
                 $job->careers()->attach($request->career_ids);
             }
             DB::commit();
@@ -159,14 +159,14 @@ class JobController extends Controller
     /**
      * Show the specified resource.
      */
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
-        $careers = Career::where('status',Career::ACTIVE)->get();
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $ranks = Rank::where('status',Rank::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $wages = Wage::where('status',Wage::ACTIVE)->get();
-        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+        $careers = Career::where('status', Career::ACTIVE)->get();
+        $degrees = Level::where('status', Level::ACTIVE)->get();
+        $ranks = Rank::where('status', Rank::ACTIVE)->get();
+        $formworks = FormWork::where('status', FormWork::ACTIVE)->get();
+        $wages = Wage::where('status', Wage::ACTIVE)->get();
+        $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
         $param = [
             'careers' => $careers,
@@ -176,10 +176,10 @@ class JobController extends Controller
             'wages' => $wages,
             'job_packages' => $job_packages
         ];
-        if(auth()->user()->id == $job->user_id){
+        if (auth()->user()->id == $job->user_id) {
             $careerjobs = $job->careers()->pluck('career_id');
-            return view('employee::job.show',compact(['job','param','careerjobs']));
-        }else{
+            return view('employee::job.show', compact(['job', 'param', 'careerjobs']));
+        } else {
             return redirect()->route('employee.job.index')->with('error', 'bạn không có quyền truy cập link này!');
         }
     }
@@ -187,25 +187,28 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
-        $careers = Career::where('status',Career::ACTIVE)->get();
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $ranks = Rank::where('status',Rank::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $wages = Wage::where('status',Wage::ACTIVE)->get();
-        $job_packages = JobPackage::where('status',JobPackage::ACTIVE)->get();
+        $careers = Career::where('status', Career::ACTIVE)->get();
+        $degrees = Level::where('status', Level::ACTIVE)->get();
+        // dd($degrees);
+        $ranks = Rank::where('status', Rank::ACTIVE)->get();
+        $formworks = FormWork::where('status', FormWork::ACTIVE)->get();
+        $wages = Wage::where('status', Wage::ACTIVE)->get();
+        $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
+        $provinces = Province::get();
         $param = [
             'careers' => $careers,
             'degrees' => $degrees,
             'ranks' => $ranks,
             'formworks' => $formworks,
             'wages' => $wages,
-            'job_packages' => $job_packages
+            'job_packages' => $job_packages,
+            'provinces' => $provinces
         ];
         $careerjobs = $job->careers()->pluck('career_id');
-        return view('employee::job.edit',compact(['job','param','careerjobs']));
+        return view('employee::job.edit', compact(['job', 'param','careerjobs']));
     }
 
     /**
@@ -224,7 +227,6 @@ class JobController extends Controller
                 $slug = "{$maybe_slug}-{$next}";
                 $next++;
             }
-
             // lưu jobs
 
 
@@ -252,11 +254,10 @@ class JobController extends Controller
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
             $job->status = Job::ACTIVE;
-
             $job->save();
 
             // lưu vào bảng career_job
-            if($request->career_ids){
+            if ($request->career_ids) {
                 $job->careers()->sync($request->career_ids);
             }
 
@@ -279,7 +280,7 @@ class JobController extends Controller
     {
         try {
             $job = Job::find($id);
-            dd($job);
+            // dd($job);
             $job->delete();
             $message = "Xóa thành công!";
             return redirect()->route('employee.job.index')->with('success', $message);
@@ -289,23 +290,24 @@ class JobController extends Controller
         }
     }
 
-    
 
-    public function showjobcv(Request $request, $id){
+
+    public function showjobcv(Request $request, $id)
+    {
         $cv_apllys = UserJobApply::where('job_id', $request->id)->get();
         $count_job = UserJobApply::where('job_id', $request->id)->count();
         $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
-        ->where('status', 1)->where('job_id', $request->id)
-        ->count();
+            ->where('status', 1)->where('job_id', $request->id)
+            ->count();
         $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
-        ->where('status', 0)->where('job_id', $request->id)
-        ->count();
+            ->where('status', 0)->where('job_id', $request->id)
+            ->count();
         $param_count = [
             'count_job' => $count_job,
             'count_cv_appled' => $count_cv_appled,
             'count_not_applly' => $count_not_applly
         ];
         $job = Job::findOrFail($request->id);
-        return view('employee::job.show_cvJob',compact('cv_apllys','job','param_count'));
+        return view('employee::job.show_cvJob', compact('cv_apllys', 'job', 'param_count'));
     }
 }
