@@ -69,6 +69,9 @@ class AdminModel extends Model
         }else{
             $model = self::class;
         }
+        if (method_exists($model, 'overrideFindItem')) {
+            return $model::overrideFindItem($id,$table);
+        }
         return $model::findOrFail($id);
     }
     public static function saveItem($request,$table = ''){
@@ -109,7 +112,6 @@ class AdminModel extends Model
         if (method_exists($model, 'overrideUpdateItem')) {
             $item = $model::overrideUpdateItem($id,$data,$request);
         } else {
-            dd($data);
             $item->update($data);
         }
         

@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
     @include('admintheme::includes.globals.breadcrumb',[
-        'page_title' => __('title_index'),
+        'page_title' => 'Gói Tin',
         'actions' => [
             'add_new' => route($route_prefix.'create',['type'=>request()->type]),
             //'export' => route($route_prefix.'export'),
@@ -39,6 +39,7 @@
                                     <input class="form-check-input" type="checkbox">
                                 </th>
                                 <th>{{ __('name') }}</th>
+                                <th>{{ __('price') }}</th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
@@ -51,6 +52,7 @@
                                     <input class="form-check-input" type="checkbox">
                                 </td>
                                 <td>{!! $item->name !!}</td>
+                                <td>{!! number_format($item->price) !!}</td>
                                 <td>{!! $item->status_fm !!}</td>
                                 <td>
                                     <div class="dropdown">
