@@ -28,7 +28,7 @@
                             <div class="pricing-table col-lg-4 col-md-6 col-sm-12">
                                 <div class="inner-box">
                                     <div class="title">
-                                        <h2>{{ $item->accountname }}</h2>
+                                        <h2>{{ $item->name }}</h2>
                                     </div>
                                     <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm/
                                             tháng</span></div>

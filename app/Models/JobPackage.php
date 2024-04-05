@@ -18,7 +18,13 @@ class JobPackage extends AdminModel
         'parent_id',
         'status',
         'position',
-        'price'
+        'price',
+        'job_small_logo_border_color',
+        'job_small_title_color',
+        'job_small_box_border_color',
+        'job_detail_header_bg',
+        'job_detail_company_bg',
+        'job_detail_company_bg',
     ];
 
     const VIP = 1;

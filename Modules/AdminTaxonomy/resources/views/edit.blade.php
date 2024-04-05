@@ -12,7 +12,7 @@
             @include('admintaxonomy::includes.form-left')
         </div>
         <div class="col-12 col-lg-4">
-        @include('admintaxonomy::includes.form-right')
+            @include('admintaxonomy::includes.form-right')
         </div>
     </div>
 </form>
