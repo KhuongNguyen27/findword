@@ -27,6 +27,7 @@ class AdminUser extends Model
         'type',
         'status',
         'verify',
+        'position',
     ];
     
     protected static function newFactory(): AdminUserFactory
