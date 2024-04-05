@@ -7,11 +7,6 @@
             //'export' => route($route_prefix.'export'),
         ],
     ])
-    <style>
-        tbody tr {
-            cursor: move;
-        }
-    </style>
     <!-- Item actions -->
     <form action="{{ route($route_prefix . 'index') }}" method="get">
         <input type="hidden" name="type" value="{{ request()->type }}">
@@ -57,7 +52,9 @@
                             <tr>
                                 <th>{{ __('code') }}</th>
                                 <th>{{ __('name') }}</th>
+                                @if (request()->type == 'employee' )
                                 <th>{{ __('position') }}</th>
+                                @endif
                                 <th>{{ __('email') }}</th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('created_at') }}</th>
@@ -72,7 +69,9 @@
                                         <td>{{ $item->name }}
                                             <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
                                         </td>
-                                        <td>{{ $item->position }}</td>
+                                        @if (request()->type == 'employee' )
+                                            <td>{{ $item->employee->position }}</td>
+                                        @endif
                                         <td>{{ $item->email }}</td>
                                         <td>{!! $item->status_fm !!}</td>
                                         <td>{{ $item->created_at_fm }}</td>
@@ -131,21 +130,5 @@
     </div>
 @endsection
 @section('footer')
-    <script>
-        $(document).ready(function() {
-            // Kiểm tra nếu có dữ liệu đã lưu trước đó
-            if (localStorage.getItem("sortableTableOrder")) {
-                $("#sortable-table").html(localStorage.getItem("sortableTableOrder"));
-            }
-
-            // Sắp xếp lại các hàng
-            $("#sortable-table").sortable({
-                axis: "y",
-                stop: function(event, ui) {
-                    // Lưu trạng thái của thứ tự hàng vào localStorage
-                    localStorage.setItem("sortableTableOrder", $("#sortable-table").html());
-                }
-            });
-        });
-    </script>
+   
 @endsection
