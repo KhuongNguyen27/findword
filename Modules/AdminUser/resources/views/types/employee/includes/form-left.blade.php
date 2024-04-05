@@ -5,6 +5,10 @@
             <input type="text" class="form-control" name="name_company" value="{{ $item->employee->name ?? '' }}" placeholder="">
             <x-admintheme::form-input-error field="name_company"/>
         </div>
+        <div>
+            <label class="mb-3" >Độ ưu tiên</label>
+            <input type="number" name="position" class="form-control" value="{{ ($item->user->position) }}" >
+        </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('address') }}</label>
             <input type="text" class="form-control" name="address" value="{{ $item->employee->address ?? '' }}" placeholder="">
