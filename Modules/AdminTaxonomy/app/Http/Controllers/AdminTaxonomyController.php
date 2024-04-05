@@ -26,6 +26,9 @@ class AdminTaxonomyController extends Controller
             'model'         => $this->model,
             'items'         => $items
         ];
+        if ($type && view()->exists($this->view_path.'types.'.$type.'.index')) {
+            return view($this->view_path.'types.'.$type.'.index', $params);
+        }
         return view($this->view_path.'index', $params);
     }
 
@@ -34,11 +37,15 @@ class AdminTaxonomyController extends Controller
      */
     public function create(Request $request)
     {
+        $type = $request->type;
         $params = [
             'route_prefix'  => $this->route_prefix,
             'model'         => $this->model,
             'type'         => $request->type,
         ];
+        if ($type && view()->exists($this->view_path.'types.'.$type.'.create')) {
+            return view($this->view_path.'types.'.$type.'.create', $params);
+        }
         return view($this->view_path.'create', $params);
     }
 
@@ -70,6 +77,9 @@ class AdminTaxonomyController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
+            if ($type && view()->exists($this->view_path.'types.'.$type.'.show')) {
+                return view($this->view_path.'types.'.$type.'.show', $params);
+            }
             return view($this->view_path.'show', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
@@ -90,6 +100,9 @@ class AdminTaxonomyController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
+            if ($type && view()->exists($this->view_path.'types.'.$type.'.edit')) {
+                return view($this->view_path.'types.'.$type.'.edit', $params);
+            }
             return view($this->view_path.'edit', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

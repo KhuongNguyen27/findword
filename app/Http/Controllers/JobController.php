@@ -75,7 +75,7 @@ class JobController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         // Việc làm mới nhất trong nước
         // $imageUserEmployyee = UserEmployee::class;
-        $query = Job::where('status',1)->orderBy('id','DESC');
+        $query = Job::where('status',1);
         $query->where('country', 'VN');
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {

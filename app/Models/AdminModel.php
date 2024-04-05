@@ -109,6 +109,7 @@ class AdminModel extends Model
         if (method_exists($model, 'overrideUpdateItem')) {
             $item = $model::overrideUpdateItem($id,$data,$request);
         } else {
+            dd($data);
             $item->update($data);
         }
         

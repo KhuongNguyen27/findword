@@ -112,6 +112,10 @@
                     <span class="material-symbols-outlined">arrow_right</span>Giao dịch</a>
             </li>
             <li>
+                <a href="{{ route('admintaxonomy.index',['type'=>'Account']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Gói Tài Khoản</a>
+            </li>
+            <li>
                 <a href="{{ route('adminuser.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('admin') }}</a>
             </li>
