@@ -113,6 +113,7 @@ class AdminUser extends Model
                 $user_employee->phone = $data['phone'];
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
+                $user_employee->position = $item->$position;
                 if ($request->hasFile('background')) {
                     self::deleteFile($user_employee->background);
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
@@ -164,6 +165,7 @@ class AdminUser extends Model
                 $user_employee->phone = $data['phone'];
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
+                $user_employee->position = $data['position'];
                 if ($request->hasFile('background')) {
                     self::deleteFile($user_employee->background);
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');

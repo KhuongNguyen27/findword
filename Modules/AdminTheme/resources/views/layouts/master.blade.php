@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('admin-assets/css/dark-theme.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
     {{-- Vite CSS --}}
     {{-- {{ module_vite('build-admintheme', 'resources/assets/sass/app.scss') }} --}}
@@ -51,6 +52,8 @@
     <script src="{{ asset('admin-assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!--BS Scripts-->
     <script src="{{ asset('admin-assets/js/bootstrap.bundle.min.js') }}"></script>
