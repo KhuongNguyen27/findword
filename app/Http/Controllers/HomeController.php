@@ -46,7 +46,13 @@ class HomeController extends Controller
                 ELSE 7
             END")
         ->orderBy('jobs.id','DESC')->limit(20)->get()->chunk(10);
+        $statistical_career_jobs = Career::withCount('jobs')->get();
         
+        $statistical_jobs = Job::selectRaw('COUNT(*) as count, DATE(created_at) as date')
+        ->groupBy('date')
+        ->get();
+        $statistical_career_jobs_json = json_encode($statistical_career_jobs);
+        $statistical_jobs_json = json_encode($statistical_jobs);
         // Việc làm tốt nhất
         $vip_jobs = Job::select('jobs.*')
         ->where('jobs.status',1)
@@ -91,6 +97,8 @@ class HomeController extends Controller
             'lasest_jobs' => $lasest_jobs,
             'degrees' => $degrees,
             'formworks' => $formworks,
+            'statistical_career_jobs_json' => $statistical_career_jobs_json,
+            'statistical_jobs_json' => $statistical_jobs_json,
         ];
         return view('website.homes.index',$params);
     }
