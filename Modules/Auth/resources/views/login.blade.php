@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Login to Superio</h3>
+        <h3>Login to {{ env('APP_NAME') }}</h3>
         <!--Login Form-->
         <form action="{{ route('auth.postLogin')}}" method="POST">
             @if (session('error'))

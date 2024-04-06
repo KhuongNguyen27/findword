@@ -6,7 +6,7 @@
                 <div class="sec-title mb-3 mt-3">
                     <h2 class="">Top công ty hàng đầu</h2>
                 </div>
-                <a href="{{ route('website.home') }}" class="mb-3 mt-3">
+                <a href="{{ route('employees.index') }}" class="mb-3 mt-3">
                     <span class="btn-title text-uppercase">Xem tất cả</span>
                 </a>
             </div>

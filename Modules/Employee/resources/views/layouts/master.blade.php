@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Superio | Just another HTML Template | Dashboard</title>
+    <title>{{ env('APP_NAME') }} | Just another HTML Template | Dashboard</title>
 
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">

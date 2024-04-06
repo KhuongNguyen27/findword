@@ -69,7 +69,7 @@
                     <div class="form-group col location">
                         <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>
                         <select name="degree_id" class="form-select chosen-select">
-                            <option value="">Tất cả trình độ</option>
+                            <option value="">Tất cả lĩnh vực</option>
                             @foreach ($degrees as $degree)
                                 <option @selected( $degree->id == request()->degree_id ) value="{{ $degree->id }}">{{ $degree->name }}</option>
                             @endforeach

@@ -8,7 +8,7 @@
         <div class="outer-box">
             <!-- Login/Register -->
             <div class="login-box">
-                <a href="{{ route('staff.register') }}" class="call-modal"><span class="icon-user"></span></a>
+                <a onclick="window.location.href='{{ route('staff.register') }}'" href="{{ route('staff.register') }}" class="call-modal"><span class="icon-user"></span></a>
             </div>
 
             <a href="#nav-mobile" class="mobile-nav-toggler"><span class="flaticon-menu-1"></span></a>

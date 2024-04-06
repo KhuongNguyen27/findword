@@ -552,7 +552,7 @@ span.company-logo img {
     background: linear-gradient(90deg, #28c1bc, #c7c8ca) !important;
 }
 #dashboard .block-dashboard {
-    background: linear-gradient(83.78deg, #28c1bc 1.64%, #c7c8ca 93.62%) !important;
+    background: linear-gradient(83.78deg, #28c1bc 1.64%, #6ec7c7 93.62%) !important;
 }
 .job-detail__box--right {
     padding: 17px !important;
@@ -583,4 +583,9 @@ span.company-logo img {
 /* GAP */
 .job-jobpackage-2 .company-logo {
     border: 2px solid #2ac6ab !important;
+}
+@media screen and (max-width: 1230px) {
+    .logo-text {
+        display: none;
+    }
 }

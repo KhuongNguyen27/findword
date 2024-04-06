@@ -10,7 +10,8 @@ use App\Models\Province;
 use App\Models\UserEmployee;
 use App\Models\JobPackage;
 use Carbon\Carbon;
-
+use App\Models\Level;
+use App\Models\FormWork;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,6 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $degrees = Level::where('status',Level::ACTIVE)->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $job_categories = Career::where('status', 1)->get()->chunk(9);
         $careers = Career::where('status', 1)->get();
         $wages = Wage::where('status', 1)->get();
@@ -86,6 +89,8 @@ class HomeController extends Controller
             'quantity_job_new_today' => $quantity_job_new_today,
             'quantity_job_recruitment' => $quantity_job_recruitment,
             'lasest_jobs' => $lasest_jobs,
+            'degrees' => $degrees,
+            'formworks' => $formworks,
         ];
         return view('website.homes.index',$params);
     }

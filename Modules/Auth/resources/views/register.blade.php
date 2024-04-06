@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Tạo tài khoản Superio miễn phí</h3>
+        <h3>Tạo tài khoản {{ env('APP_NAME') }} miễn phí</h3>
         <!--Login Form-->
         <form action="{{ route('auth.postRegister') }}" method='post'>
             @if (session('error'))
