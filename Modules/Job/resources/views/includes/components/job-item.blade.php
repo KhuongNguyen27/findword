@@ -1,8 +1,9 @@
 <?php
-$startDate = strtotime($job->start_day); // Chuyển ngày bắt đầu thành dạng timestamp
-$endDate = strtotime($job->end_day); // Chuyển ngày kết thúc thành dạng timestamp
+$startDate = time(); // Chuyển ngày bắt đầu thành dạng timestamp
+$endDate = strtotime($job->deadline); // Chuyển ngày kết thúc thành dạng timestamp
 $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày còn lại
-$updated_at = $job->updated_at && $job->updated_at->diffForHumans();
+$remainingDays = round($remainingDays);
+$updated_at = $job->updated_at ? $job->updated_at->diffForHumans() : '';
 
 $small_logo_border_color        = $job->job_package->job_small_logo_border_color;
 $small_logo_border_color_style  = $small_logo_border_color ? 'border-color: '.$small_logo_border_color.' !important;' : '';
@@ -13,6 +14,12 @@ $small_box_border_color_style   = $small_box_border_color ? 'color: '.$small_box
 
 $detail_header_bg               = $job->job_package->job_detail_header_bg;
 $detail_company_bg              = $job->job_package->job_detail_company_bg;
+
+$job->work_address = str_replace(', Vietnam','',$job->work_address);
+$job->work_address = str_replace(', Việt Nam','',$job->work_address);
+$work_address = explode(',',$job->work_address);
+$job->work_address = end($work_address);
+// $job->work_address = end( explode(',',$job->work_address) );
 ?>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
