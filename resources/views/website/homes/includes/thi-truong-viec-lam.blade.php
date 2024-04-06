@@ -1,4 +1,4 @@
-<div id="dashboard-section"  class="lazy d-none d-md-block" data-lazy-function="initDashboard">
+<div id="dashboard-section" class="lazy d-none d-md-block" data-lazy-function="initDashboard">
     <div class="container lazy" id="dashboard" data-lazy-function="initDashboardHomeJS">
         <div class="block-dashboard">
             <div class="block-dashboard__header">
@@ -15,14 +15,17 @@
                         <div class id="sliderNewJobPublish">
                             @foreach( $lasest_jobs as $job )
                             <div class="job-item active animated zoomIn">
-                                <a class="job-item__link" target="_blank" href="{{ route('website.jobs.show', $job->slug) }}">
+                                <a class="job-item__link" target="_blank"
+                                    href="{{ route('website.jobs.show', $job->slug) }}">
                                     <img class="job-item__logo" src="{{ $job->userEmployee->image_fm }}">
                                 </a>
                                 <div>
-                                    <a class="job-item__link" href="{{ route('website.jobs.show', $job->slug) }}" target="_blank">
+                                    <a class="job-item__link" href="{{ route('website.jobs.show', $job->slug) }}"
+                                        target="_blank">
                                         <p class="job-item__title">{{ $job->name }}</p>
                                     </a>
-                                    <a class="job-item__link" target="_blank" href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}">
+                                    <a class="job-item__link" target="_blank"
+                                        href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}">
                                         <p class="job-item__company">{{ $job->userEmployee->name }}</p>
                                     </a>
                                     <p class="job-item__location">{{ $job->work_address }}</p>
@@ -48,34 +51,35 @@
                         </div>
                     </div>
                     <div class="block-chart">
-                        <div class="item-chart">
+                        <div class="item-chart" style="background-color:#4ec3bf">
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
                                         class="caption"> Tăng trưởng cơ hội việc làm </span>
                                 </div>
-                            </div> <img class="img-responsive loading-chart lazy"
+                            </div>
+                            <img class="img-responsive loading-chart lazy mt-2" style="display:none"
                                 data-src="https://static.topcv.vn/v4/image/welcome/section-header/loading-chart.svg" />
-                            <div class="box-chart">
+                            <div class="box-chart" style="display:block!important">
                                 <div style="height: 220px"> <canvas id="myChartJobOpportunityGrowthDashboard"></canvas>
                                 </div>
                             </div>
                         </div>
-                        <div class="item-chart">
+                        <div class="item-chart" style="background-color:#4ec3bf">
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
                                         class="caption"> Nhu cầu tuyển dụng theo </span>
                                 </div>
                                 <div class="box-select"> <select name="demand-job-select"
-                                        id="demand-job-select-dashboard" class="form-control select2">
-                                        <option value="2"> Ngành nghề </option>
-                                        <option value="4"> Mức lương </option>
+                                        id="demand-job-select-dashboard" class="form-control select2 text-white">
+                                        <option value="2" class="text-black"> Ngành nghề </option>
+                                        <option value="4" class="text-black"> Mức lương </option>
                                     </select> </div>
-                            </div> <img class="img-responsive loading-chart lazy"
+                            </div> <img class="img-responsive loading-chart lazy" style="display:none"
                                 data-src="https://static.topcv.vn/v4/image/welcome/section-header/loading-chart.svg" />
-                            <div class="box-chart">
-                                <div style="height: 170px"> <canvas id="myChartDemandJobDashboard"></canvas> </div>
+                            <div class="box-chart" style="display:block!important">
+                                <div style="height: 220px"> <canvas id="myChartDemandJobDashboard"></canvas> </div>
                                 <div id="htmlLegendDemandJobDashboard"></div>
                             </div>
                         </div>
