@@ -14,17 +14,17 @@ class AccountSeeder extends Seeder
     {
         $datas = [
             [
-                'accountname' => 'Thường',
+                'name' => 'Thường',
                 'description' => 'mô tả gói khách hàng',
                 'price' => 0,
             ],
             [
-                'accountname' => 'Premium',
+                'name' => 'Premium',
                 'description' => 'mô tả gói khách hàng Premium',
                 'price' => 200000,
             ],
             [
-                'accountname' => 'Vip',
+                'name' => 'Vip',
                 'description' => 'mô tả gói khách hàng Vip',
                 'price' => 500000,
             ]

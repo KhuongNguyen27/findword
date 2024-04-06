@@ -20,7 +20,7 @@ class Account extends Model
     const VIP  = 3;
     protected $table = "accounts"; 
     protected $fillable = [
-        'accountname',
+        'name',
         'description',
         'price',
     ];

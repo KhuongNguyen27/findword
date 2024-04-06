@@ -22,6 +22,7 @@ class UserEmployee extends Model
         'address',
         'image',
         'user_id',
+        'position',
     ];
     
    

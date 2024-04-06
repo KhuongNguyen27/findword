@@ -6,6 +6,10 @@
             <x-admintheme::form-input-error field="name_company"/>
         </div>
         <div class="mb-4">
+            <label class="mb-3" >Độ ưu tiên</label>
+            <input type="number" name="position" class="form-control" value="{{ ($item->employee->position ?? '') }}" >
+        </div>
+        <div class="mb-4">
             <label class="mb-3">{{ __('address') }}</label>
             <input type="text" class="form-control" name="address" value="{{ $item->employee->address ?? '' }}" placeholder="">
             <x-admintheme::form-input-error field="address"/>

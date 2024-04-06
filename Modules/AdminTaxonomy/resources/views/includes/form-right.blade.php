@@ -20,4 +20,4 @@
     </div>
 </div>
 
-@yield('form-right')
+@yield('custom-fields-right')
