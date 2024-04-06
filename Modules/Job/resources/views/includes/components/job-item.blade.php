@@ -2,21 +2,31 @@
 $startDate = strtotime($job->start_day); // Chuyển ngày bắt đầu thành dạng timestamp
 $endDate = strtotime($job->end_day); // Chuyển ngày kết thúc thành dạng timestamp
 $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày còn lại
-$updated_at = $job->updated_at->diffForHumans();
+$updated_at = $job->updated_at && $job->updated_at->diffForHumans();
+
+$small_logo_border_color        = $job->job_package->job_small_logo_border_color;
+$small_logo_border_color_style  = $small_logo_border_color ? 'border-color: '.$small_logo_border_color.' !important;' : '';
+$small_title_color              = $job->job_package->job_small_title_color;
+$small_title_color_style        = $small_title_color ? 'color: '.$small_title_color.' !important;' : '';
+$small_box_border_color         = $job->job_package->job_small_box_border_color;
+$small_box_border_color_style   = $small_box_border_color ? 'color: '.$small_box_border_color.' !important;' : '';
+
+$detail_header_bg               = $job->job_package->job_detail_header_bg;
+$detail_company_bg              = $job->job_package->job_detail_company_bg;
 ?>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
-    <div class="inner-box">
+    <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
             <span class="tag-job-flash">
                 @if( $job->job_package->image_fm )
                 <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>
-            <span class="company-logo">
+            <span class="company-logo"  style="{{ $small_logo_border_color_style }}" >
                 <img src="{{ $job->userEmployee->image_fm }}">
             </span>
             <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
-                <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
+                <a style="{{ $small_title_color_style }}" href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
             @if (isset($company_name))
             <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"

@@ -58,13 +58,9 @@ class AccountController extends Controller
             }
             $user->points -= $package->price*($duration->number_date/30);
             $user->save();
-            $package_current = UserAccount::whereUser_id($user->id)->orderBy('created_at','desc')->first();
+            $package_current = UserAccount::where('user_id',$user->id)->delete();
             $is_current = 1;
             $register_date = date('Y-m-d H:i:s');
-            if ($package_current) {
-                $is_current = 0;
-                $register_date = $package_current->expiration_date;
-            }
             $register_date = new \DateTime($register_date);
             $expiration_date = clone $register_date;
             $expiration_date->add(new \DateInterval('P'.$duration->number_date.'D'));

@@ -15,7 +15,7 @@ use App\Models\Level;
 use App\Models\FormWork;
 use App\Models\JobJobTag;
 use App\Models\JobTag;
-
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 class JobController extends Controller
 {
@@ -75,7 +75,7 @@ class JobController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         // Việc làm mới nhất trong nước
         // $imageUserEmployyee = UserEmployee::class;
-        $query = Job::where('status',1);
+        $query = Job::select('jobs.*')->where('jobs.status',1);
         $query->where('country', 'VN');
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
@@ -103,22 +103,81 @@ class JobController extends Controller
         switch ($job_type) {
             case 'moi-nhat':
                 $title = 'Việc làm trong nước mới nhất';
-                $query->orderBy('id','DESC');
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 break;
             case 'hot':
-                $query->where('jobpackage_id',JobPackage::HOT);
+                // Việc làm Hot nhất	Toàn bộ các tin đăng	
+                //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot' THEN 2
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-vip' THEN 4
+                        WHEN job_packages.slug = 'tin-gap' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $title = 'Việc làm trong nước hot nhất';
                 break;
             case 'today':
-                $query->where('jobpackage_id',JobPackage::HOT);
+                //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $startDate = Carbon::now()->subHours(48);
+                $endDate = Carbon::now();
+                $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
+                
                 $title = 'Việc làm trong nước hôm nay';
                 break;
             case 'urgent':
-                $query->where('jobpackage_id',JobPackage::GAP);
+                // Tuyển gấp	Toàn bộ các tin đăng	
+                // Gấp.VIP -> Gấp -> Hop.VIP -> VIP -> Hot -> Tin thường
+                // $query->where('jobpackage_id',JobPackage::GAP);
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-gap' THEN 2
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-vip' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $title = 'Việc làm trong nước tuyển gấp';
                 break;
             default:
                 $title = 'Việc làm trong nước';
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -129,13 +188,12 @@ class JobController extends Controller
                 $query->orderBy('wage_id','DESC');
                 break;
             case 'date-desc':
-                $query->orderBy('created_at','DESC');
+                $query->orderBy('jobs.created_at','DESC');
                 break;
             case 'date-asc':
-                $query->orderBy('created_at','ASC');
+                $query->orderBy('jobs.created_at','ASC');
                 break;
             default:
-                $query->orderBy('created_at','DESC');
                 break;
         }
 
@@ -179,8 +237,8 @@ class JobController extends Controller
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $provinces = Province::all();
-        // Việc làm mới nhất trong nước
-        $query = Job::where('status',1);
+        // Việc làm mới nhất ngoài nước
+        $query = Job::where('jobs.status',1);
         $query->where('country','!=', 'VN');
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
@@ -205,22 +263,81 @@ class JobController extends Controller
         switch ($job_type) {
             case 'moi-nhat':
                 $title = 'Việc làm ngoài nước mới nhất';
-                $query->orderBy('id','DESC');
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 break;
             case 'hot':
-                $query->where('jobpackage_id',JobPackage::HOT);
+                // Việc làm Hot nhất	Toàn bộ các tin đăng	
+                //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot' THEN 2
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-vip' THEN 4
+                        WHEN job_packages.slug = 'tin-gap' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $title = 'Việc làm ngoài nước hot nhất';
                 break;
             case 'today':
-                $query->where('jobpackage_id',JobPackage::HOT);
+                //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $startDate = Carbon::now()->subHours(48);
+                $endDate = Carbon::now();
+                $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
+                
                 $title = 'Việc làm ngoài nước hôm nay';
                 break;
             case 'urgent':
-                $query->where('jobpackage_id',JobPackage::GAP);
+                // Tuyển gấp	Toàn bộ các tin đăng	
+                // Gấp.VIP -> Gấp -> Hop.VIP -> VIP -> Hot -> Tin thường
+                // $query->where('jobpackage_id',JobPackage::GAP);
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-gap' THEN 2
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-vip' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $title = 'Việc làm ngoài nước tuyển gấp';
                 break;
             default:
                 $title = 'Việc làm ngoài nước';
+                $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        ELSE 7
+                    END");
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -230,13 +347,13 @@ class JobController extends Controller
                 $query->orderBy('wage_id','DESC');
                 break;
             case 'date-desc':
-                $query->orderBy('created_at','DESC');
+                $query->orderBy('jobs.created_at','DESC');
                 break;
             case 'date-asc':
-                $query->orderBy('created_at','ASC');
+                $query->orderBy('jobs.created_at','ASC');
                 break;
             default:
-                $query->orderBy('created_at','DESC');
+                $query->orderBy('jobs.created_at','DESC');
                 break;
         }
         $view_path = 'website.jobs.index';
@@ -248,7 +365,7 @@ class JobController extends Controller
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
-        // Việc làm hấp dẫn trong nước
+        // Việc làm hấp dẫn ngoài nước
         $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
 
