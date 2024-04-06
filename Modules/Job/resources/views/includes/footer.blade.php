@@ -13,7 +13,7 @@
                         <p class="phone-num"><span>
                                 Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
                         <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
-                                href="mailto:support@superio.com" class="email">support@superio.com</a></p>
+                                href="mailto:support@{{ env('APP_NAME') }}.com" class="email">support@{{ env('APP_NAME') }}.com</a></p>
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2024 <a href="#">Superio</a>. All Right Reserved.</div>
+                <div class="copyright-text">© 2024 <a href="#">{{ env('APP_NAME') }}</a>. All Right Reserved.</div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>

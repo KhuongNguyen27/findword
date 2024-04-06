@@ -7,7 +7,7 @@
             <div class="block-dashboard__content">
                 <div class="block-newest-job">
                     <img class="block-newest-job__img"
-                        src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/dashboard/dashboard-item.png">
+                        src="{{ asset('website-assets/images/macos.png') }}?t={{ time() }}">
                     <div class="wrapper">
                         <p class="block-newest-job__title">Việc làm mới nhất</p>
                         <img class="block-newest-job__icon-top "

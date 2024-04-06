@@ -42,7 +42,7 @@
         @yield('content')
     </main>
     @extends('admintheme::includes.footer')
-    <script src="{{ asset('admin-assets/js/jquery.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
     $(document).ready(function() {
@@ -52,7 +52,6 @@
     <script src="{{ asset('admin-assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('admin-assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!--BS Scripts-->

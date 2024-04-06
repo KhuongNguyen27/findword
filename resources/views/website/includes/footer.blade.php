@@ -10,8 +10,7 @@
                     <div class="footer-column about-widget">
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
                                     style="width:80px!important" height="50"
-                                    src="{{ asset('website-assets/images/logo.png')}}" alt="" title="">Tuyển dụng
-                                Huế</a></div>
+                                    src="{{ asset('website-assets/images/logo.png')}}" alt="" title="">{{ env('APP_NAME') }}</a></div>
                         <p class="phone-num"><span>
                                 Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
                         <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
@@ -95,7 +94,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2024 <a href="#">Tuyển Dụng Huế</a>. All Right Reserved.
+                <div class="copyright-text">© 2024 <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>. All Right Reserved.
                     <br><span style="font-size:12px;">Website đang được phát triển và hoàn thiện</span>
                 </div>
                 <div class="social-links">

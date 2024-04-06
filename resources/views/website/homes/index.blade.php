@@ -1,4 +1,5 @@
 @extends('website.layouts.master')
+@section('title') {{ env('APP_NAME') }} @endsection
 @section('content')
 
 <!-- Banner Section-->

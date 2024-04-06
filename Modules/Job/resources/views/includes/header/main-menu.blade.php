@@ -21,7 +21,7 @@
                 <span class="contact-info">
                     <span class="phone-num"><span>Call us</span><a href="tel:1234567890">123 456 7890</a></span>
                     <span class="address">329 Queensberry Street, North Melbourne VIC <br>3051, Australia.</span>
-                    <a href="mailto:support@superio.com" class="email">support@superio.com</a>
+                    <a href="mailto:support@{{ env('APP_NAME') }}.com" class="email">support@{{ env('APP_NAME') }}.com</a>
                 </span>
                 <span class="social-links">
                     <a href="#"><span class="fab fa-facebook-f"></span></a>

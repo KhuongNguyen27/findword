@@ -104,6 +104,10 @@
                     <span class="material-symbols-outlined">arrow_right</span>Bài viết</a>
             </li>
             <li>
+                <a href="{{ route('adminpost.index',['type'=>'Page']) }}">
+                    <span class="material-symbols-outlined">arrow_right</span>Trang</a>
+            </li>
+            <li>
                 <a href="{{ route('admin.cvs.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>Mẫu CV</a>
             </li>

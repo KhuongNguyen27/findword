@@ -27,7 +27,7 @@ class AdminPostController extends Controller
             'model'         => $this->model,
             'items'         => $items
         ];
-        if ($type) {
+        if ($type && view()->exists($this->view_path.'types.'.$type.'.index')) {
             return view($this->view_path.'types.'.$type.'.index', $params);
         }
         return view($this->view_path.'index', $params);
@@ -45,7 +45,7 @@ class AdminPostController extends Controller
             'model'         => $this->model,
             'type'         => $request->type,
         ];
-        if ($type) {
+        if ($type && view()->exists($this->view_path.'types.'.$type.'.create')) {
             return view($this->view_path.'types.'.$type.'.create', $params);
         }
         return view($this->view_path.'create', $params);
@@ -54,7 +54,7 @@ class AdminPostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAdminPostRequest $request): RedirectResponse
+    public function store(StoreAdminPostRequest $request , $type = ''): RedirectResponse
     {
         $type = $request->type;
         try {
@@ -80,7 +80,7 @@ class AdminPostController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
-            if ($type) {
+            if ($type && view()->exists($this->view_path.'types.'.$type.'.show')) {
                 return view($this->view_path.'types.'.$type.'.show', $params);
             }
             return view($this->view_path.'show', $params);
@@ -105,7 +105,7 @@ class AdminPostController extends Controller
                 'model'         => $this->model,
                 'item' => $item
             ];
-            if ($type) {
+            if ($type && view()->exists($this->view_path.'types.'.$type.'.edit')) {
                 return view($this->view_path.'types.'.$type.'.edit', $params);
             }
             return view($this->view_path.'edit', $params);

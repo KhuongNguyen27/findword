@@ -36,7 +36,7 @@
 
         <!-- Copyright -->
         <div class="copyright-text">
-            <p>© 2021 Superio. All Right Reserved.</p>
+            <p>© 2021 {{ env('APP_NAME') }}. All Right Reserved.</p>
         </div>
     </div><!-- End Page Wrapper -->
     <script src="{{ asset('website-assets/js/jquery.js')}}"></script>

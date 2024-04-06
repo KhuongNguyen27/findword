@@ -8,7 +8,7 @@ $currentRouteName = \Request::route()->getName();
                 <div class="logo">
                     <a href="{{ route('home') }}" class="fw-bold fs-4 text-black">
                         <img style="width:80px!important" height="50" src="{{ asset('website-assets/images/logo.png')}}">
-                        <span>Tuyển dụng Huế</span>
+                        <span class="logo-text">{{ env('APP_NAME') }}</span>
                     </a>
                 </div>
             </div>

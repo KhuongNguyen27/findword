@@ -13,7 +13,7 @@ class StoreAdminPostRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => 'required|unique:posts,name|max:255',
+            'name' => 'required|max:255',
             'description'=>'required|max:255'
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
