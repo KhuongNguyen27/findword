@@ -136,7 +136,8 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            if ($request->jobpackage_id) {
+            // VIP tự động duyệt
+            if ($request->jobpackage_id == 1) {
                 $job->status = Job::ACTIVE;
             } else {
                 $job->status = Job::INACTIVE;

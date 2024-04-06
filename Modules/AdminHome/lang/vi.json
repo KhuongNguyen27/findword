@@ -66,7 +66,7 @@
     "language":"Ngôn ngữ",
     "no_item_found":"Không có mục nào",
     "profile_list":"Danh sách hồ sơ",
-    "hue_find_work":"Tuyển dụng Huế",
+    "hue_find_work":"{{ env('APP_NAME') }}",
     "close":"Đóng",
     "post":"Tin đăng",
     "inconfirm":"Không xác nhận",

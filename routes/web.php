@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ToolController;
 
 
 /*
@@ -37,6 +38,7 @@ Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.ind
 Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 Route::get('/bai-viet/{slug}', [PostController::class,'show'])->name('posts.show');
 Route::get('/trang/{slug}', [PageController::class,'show'])->name('pages.show');
+Route::get('/importVNW', [ToolController::class,'importVNW']);
 
 
 Route::prefix('themes')->group(function () {

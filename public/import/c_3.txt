@@ -1,0 +1,3741 @@
+{
+    "meta": {
+        "code": 200,
+        "message": "Success",
+        "nbHits": 528,
+        "page": 3,
+        "nbPages": 59,
+        "hitsPerPage": 9
+    },
+    "data": [
+        {
+            "companyId": 8162,
+            "companyName": "Panasonic Appliances Vietnam",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/db/10925853.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/PAPVN/en/Appliances-Logo.jpg",
+            "companyProfile": "Panasonic Appliances Vietnam Co., Ltd. (PAPVN), 100% invested by Panasonic Corporation, is one of the leading companies specialized in manufacturing two products: Refrigerator and Washing Machine. Established in 2003, PAPVN has two factories at two locations now:\r\n- Refrigerator Factory at Thang Long Industrial Park, Dong Anh, Hanoi\r\n- Washing Machine Factory and R\u0026D Center at Thang Long Industrial Park II, Yen My, Hung Yen\r\n\r\nWe consider “Making people before making products” as one of the most fundamental management philosophies because we believe that without good people, our business cannot be a success.\r\n\r\nTo know more about us, you are kindly invited to visit our fan page on Facebook: \r\nhttps://www.facebook.com/papvntuyendung/",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/52501.jpg",
+                "https://images.vietnamworks.com/company_profile/66916.jpg",
+                "https://images.vietnamworks.com/company_profile/84231.jpg"
+            ],
+            "jobVideoURLs": [
+                "https://youtu.be/zuMpLDXpBb0"
+            ],
+            "address": "Plot B6, Thang Long Industrial Park, Vong La, Dong Anh, Ha Noi",
+            "companySizeId": 5,
+            "companySizeName": "500-999",
+            "companySizeNameVI": "500-999",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 619,
+                    "addressId": 576,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.123528,
+                        "lon": 105.777717
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 646,
+                    "addressId": 604,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.920747,
+                        "lon": 106.062282
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 2614,
+                    "addressId": 2233,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.920747,
+                        "lon": 106.062282
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 30148,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 111476,
+                    "addressId": 422,
+                    "cityId": 27,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Hai Duong",
+                    "cityNameVI": "Hải Dương"
+                },
+                {
+                    "workingLocationId": 111477,
+                    "addressId": 3119,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.121444,
+                        "lon": 106.11105
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 26,
+                    "industryName": "Production/Process",
+                    "industryNameVI": "Sản Xuất"
+                },
+                {
+                    "industryId": 75,
+                    "industryName": "Household",
+                    "industryNameVI": "Hàng gia dụng"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 26,
+                    "industryName": "Production/Process",
+                    "industryNameVI": "Sản Xuất"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 30,
+                    "industryV3Name": "Manufacturing",
+                    "industryV3NameVI": "Sản xuất"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 30,
+                    "industryV3Name": "Manufacturing",
+                    "industryV3NameVI": "Sản xuất"
+                }
+            ],
+            "followerCount": 421,
+            "viewCount": 0,
+            "onlineJobCount": 7,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "papvn",
+            "companyNameCCP": "Panasonic Appliances Vietnam",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/PAPVN/en/Cover_photo.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762798,
+                    "address": "Plot B6, Thang Long Industrial Park, Vong La, Dong Anh, Ha Noi",
+                    "jobDescription": "\u003cp\u003e1. Team Management\n• Supervise and lead work of team members, ensure smooth operation of C\u0026amp;B system.\n• Provide guidance, mentorship and support to team members, fostering performance excellence.\n• Provide constructive feedback to enhance team productivity and effectiveness.\n2. Regulation Update and Revision\n• Stay update with industry trends, best practices and government requirements related to C\u0026amp;B areas.\n•...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003e• Bachelor\u0026#039;s degree in HR, Law, BA or related fields\n• Solid experience in C\u0026amp;B, in which at least 2 years in Supervisory position and more than 2 years in HR at FDI manufacturing company.\n• In-depth knowledge of Labor Law, PIT, Insurance, ect. related to C\u0026amp;B areas.\n• Good English (equivalent to TOEIC 700\u0026#43;)\n• Good coaching...",
+                    "jobTitle": "HR Supervisor",
+                    "jobUrl": "https://www.vietnamworks.com/hr-supervisor--1762798-jv",
+                    "locations": "Hung Yen, Ha Noi",
+                    "locationsVI": "Hưng Yên, Hà Nội",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 32,
+                            "cityName": "Hung Yen",
+                            "cityNameVI": "Hưng Yên"
+                        },
+                        {
+                            "cityId": 24,
+                            "cityName": "Ha Noi",
+                            "cityNameVI": "Hà Nội"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1762361,
+                    "address": "Plot B6, Thang Long Industrial Park, Vong La, Dong Anh, Ha Noi",
+                    "jobDescription": "\u003cp\u003e*CONTRACT DURATION: 12 MONTHS\nWe are looking for Purchasing Senior Staff who are willing to join Delivery team (Purchasing Department):\n• Control order quantity, delivery plan and negotiate with Suppliers to catch up production plan and minimize invetory\n• Cooperate with PSI (Production - Sale - Inventory) team to adjust order quantity or delivery plan if production...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003e• Bachelor Degree in Economics or Technical area\n• Have 1-2 years working experience in Purchasing field and knowledge of logistic in manufacturing company\n• Have experience in using SAP and knowledge of material management is advantage\n• Intermediate English (Japanese is a plus)\n• Good command of MS Office (Word, Excel, Outlook)\n• Fresher with remarkable abilities is...",
+                    "jobTitle": "Purchasing Senior Staff (Delivery)",
+                    "jobUrl": "https://www.vietnamworks.com/purchasing-senior-staff-delivery--1762361-jv",
+                    "locations": "Hung Yen",
+                    "locationsVI": "Hưng Yên",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 32,
+                            "cityName": "Hung Yen",
+                            "cityNameVI": "Hưng Yên"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 60453,
+            "companyName": "Công ty Cổ phần Thông minh MK",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/fa/11259301.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/mk-group/vi/MKGroup-Logo.png",
+            "companyProfile": "http://mk.com.vn/ or http://mksmart.com.vn\r\nTập đoàn MK (MK Group) được thành lập năm 1999, là doanh nghiệp chuyên sâu về các giải pháp Xác thực Bảo mật số và Thẻ thông minh.\r\n\r\nMK Group tự hào về việc làm chủ hoàn toàn các công nghệ lõi liên quan đến lĩnh vực bảo mật số thông minh, thẻ thông minh, sinh trắc học, đáp ứng các nhu cầu khắt khe của thị trường trong nước và xuất khẩu ra nước ngoài.\r\n\r\nTrong bối cảnh cuộc cách mạng công nghiệp lần thứ 4 (4.0), MK Group đã định hướng và xây dựng giá trị cốt lõi của mình theo định hướng “BẢO MẬT SỐ THÔNG MINH - SMART DIGITAL SECURITY”, góp phần “nâng cao năng lực cạnh tranh toàn cầu, thúc đẩy công nghiệp thông minh và phát triển kinh tế số” của đất nước.\r\n\r\nSmart – Phương thức thanh toán, định danh và trao đổi dữ liệu thông minh\r\nDigital – Số hóa các hoạt động nhận dạng và giao dịch\r\nSecurity – Bảo mật dữ liệu, danh tính và giao dịch\r\nTrải qua hơn 20 năm xây dựng và phát triển, Tập đoàn MK cùng các đơn vị thành viên không ngừng đầu tư nghiên cứu các giải pháp mang hàm lượng chất xám công nghệ cao dựa trên những thành tựu và xu hướng công nghệ thế giới để phục vụ tốt hơn cho các hoạt động an ninh bảo mật, chính phủ điện tử, tài chính – ngân hàng, giao thông công cộng cũng như góp phần mang lại một cuộc sống văn minh, tiện lợi và an toàn cho người dân.",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/59699.jpg",
+                "https://images.vietnamworks.com/company_profile/92475.jpg",
+                "https://images.vietnamworks.com/company_profile/92476.jpg"
+            ],
+            "jobVideoURLs": [
+                "https://www.youtube.com/watch?v=oi03ec2uAj4\u0026t=59s"
+            ],
+            "address": "Tòa The Vista - Số 4 ngõ 15 Duy Tân - Phường Dịch Vọng Hậu - Quận Cầu Giấy - Hà Nội",
+            "companySizeId": 5,
+            "companySizeName": "500-999",
+            "companySizeNameVI": "500-999",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "- Thu nhập hấp dẫn với mức thưởng hàng năm, thưởng dịp lễ tết, thưởng dự án, thưởng thành tích.\r\n- Chương trình tôn vinh nhân viên xuất sắc, nhân viên nỗ lực và nhân viên gắn bó lâu dài với Công ty. \r\n- Xét tăng lương hàng năm tương xứng với đóng góp của cá nhân.\r\n- Chăm sóc sức khỏe toàn diện cho CBCNV với gói Bảo hiểm sức khỏe AON và Chương trình khám sức khỏe định kỳ hàng năm.\r\n- Du lịch hè, du xuân, tiệc sinh nhật hàng tháng và các hoạt động tập thể do Công ty tổ chức.\r\n- Thời gian làm việc 5 ngày/ tuần, nghỉ Thứ Bảy, Chủ nhật.\r\n- Môi trường làm việc chuyên nghiệp tại Công ty hàng đầu về công nghệ thẻ.",
+            "profileBaseName": "mk",
+            "isUpgradeProfile": 1,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 191,
+                    "addressId": 21426,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030872,
+                        "lon": 105.782152
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 5074,
+                    "addressId": 4097,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.778717,
+                        "lon": 106.689512
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 11303,
+                    "addressId": 42372,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.192817,
+                        "lon": 105.766019
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 24299,
+                    "addressId": 16687,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030831,
+                        "lon": 105.782051
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 32961,
+                    "addressId": 24685,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030912,
+                        "lon": 105.782087
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 36860,
+                    "addressId": 23829,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.849904,
+                        "lon": 106.802001
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 63057,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 147339,
+                    "addressId": 84260,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030218,
+                        "lon": 105.78333
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 148324,
+                    "addressId": 84798,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.778675,
+                        "lon": 106.689649
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 26,
+                    "industryName": "Production/Process",
+                    "industryNameVI": "Sản Xuất"
+                },
+                {
+                    "industryId": 35,
+                    "industryName": "IT - Software",
+                    "industryNameVI": "IT - Phần mềm"
+                },
+                {
+                    "industryId": 66,
+                    "industryName": "High Technology",
+                    "industryNameVI": "Công nghệ cao"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 35,
+                    "industryName": "IT - Software",
+                    "industryNameVI": "IT - Phần mềm"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 25,
+                    "industryV3Name": "IT Software/SaaS",
+                    "industryV3NameVI": "Phần Mềm CNTT/Dịch vụ Phần mềm"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 36,
+                    "industryV3Name": "Packaging/Printing/Labeling",
+                    "industryV3NameVI": "Bao bì/In ấn/Dán nhãn"
+                }
+            ],
+            "followerCount": 78,
+            "viewCount": 0,
+            "onlineJobCount": 8,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "mk-group",
+            "companyNameCCP": "MK Group",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 3,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/mk-group/vi/ảnh_bìa_2.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762352,
+                    "address": "Tòa The Vista - Số 4 ngõ 15 Duy Tân - Phường Dịch Vọng Hậu - Quận Cầu Giấy - Hà Nội",
+                    "jobDescription": "\u003cp\u003e- Thực hiện công việc kiểm toán nội bộ định kỳ tại Công ty, các đơn vị thành viên. Kiểm tra, rà soát các tài liệu, số liệu kế toán, tài chính của báo cáo tài chính, báo cáo kế toán quản trị.\n- Kiểm tra việc tuân thủ chấp hành các quy định của...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003e1. Yêu cầu công việc\n-\tTốt nghiệp Đại học trở lên chuyên ngành về Kế toán – Kiểm toán, Tài chính – Ngân hàng\n-       Tối thiểu kinh nghiệm 3 năm trở lên \n-\tTiếng Anh: đọc hiểu tốt\n-\tƯu tiên có chứng chỉ kiểm toán do bộ tài chính cấp, kinh...",
+                    "jobTitle": "Kiểm Toán Nội Bộ",
+                    "jobUrl": "https://www.vietnamworks.com/kiem-toan-noi-bo-40--1762352-jv",
+                    "locations": "Ha Noi",
+                    "locationsVI": "Hà Nội",
+                    "salary": "",
+                    "prettySalary": "$800 - $1000",
+                    "salaryRangeId": 0,
+                    "salaryMin": 800,
+                    "salaryMax": 1000,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 24,
+                            "cityName": "Ha Noi",
+                            "cityNameVI": "Hà Nội"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1757780,
+                    "address": "Tòa The Vista - Số 4 ngõ 15 Duy Tân - Phường Dịch Vọng Hậu - Quận Cầu Giấy - Hà Nội",
+                    "jobDescription": "- Sửa chữa máy móc phục vụ sản xuất.\r\n- Tham gia các khóa đào tạo kỹ thuật và tiếp nhận các máy mới. \r\n- Hướng dẫn công nhân vận hành và khắc phục các lỗi nhỏ xảy ra trong quá trình sản xuất. \r\n- Thực hiện các chỉ đạo khác của BGĐ.",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "1. Yêu cầu công việc\r\n- Nam giới.\r\n- Trình độ: Cao đẳng trở lên, tốt nghiệp chuyên ngành Điện, Cơ điện tử, Tự động hóa, Cơ khí.\r\n- Công việc chính: Support sản xuất sửa chữa máy.\r\n- Chăm chỉ, nhiệt tình trong công việc.\r\n\r\n2. Quyền lợi\r\n- Tham gia BHXH theo quy định của pháp luật, kết...",
+                    "jobTitle": "[02] Nhân Viên Kỹ Thuật",
+                    "jobUrl": "https://www.vietnamworks.com/02-nhan-vien-ky-thuat--1757780-jv",
+                    "locations": "Ha Noi",
+                    "locationsVI": "Hà Nội",
+                    "salary": "",
+                    "prettySalary": "$350 - $550",
+                    "salaryRangeId": 0,
+                    "salaryMin": 350,
+                    "salaryMax": 550,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 24,
+                            "cityName": "Ha Noi",
+                            "cityNameVI": "Hà Nội"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 69308,
+            "companyName": "Công Ty Cổ Phần Liên Doanh Ô Tô Hyundai Thành Công Việt Nam (Hyundai By TC Motor)",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/8a/11065558.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/null/en/Logo_update.png",
+            "companyProfile": "Hyundai Thanh Cong Viet Nam Auto Joint Venture Joint Stock Company (HTV), with the size of company \u003e500 employees, is a official partner of Hyundai Motor Corporation (HMC) in Korea, exclusive distribution and assembling Hyundai cars ( Assembly factory in Ninh Binh Province). Now, we have 67 agents in VietNam and will archive 78 agents in 2021 in all over the country. In 2020 Hyundai Thanh Cong Viet Nam Auto Joint Venture JSC continues to be the best selling car brand in Viet Nam. So that, to perfect this great organization, we are looking for suitable candidates for almost positions in Sale \u0026 Marketing, IT Department, Business Planning \u0026 Strategies......",
+            "website": "",
+            "jobImageURLs": null,
+            "jobVideoURLs": [
+                "https://www.youtube.com/watch?v=VdEXRzUSKM4"
+            ],
+            "address": "Tầng 12, tòa nhà Thành Công Tower, số 79 Đường Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+            "companySizeId": 4,
+            "companySizeName": "100-499",
+            "companySizeNameVI": "100-499",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 2294,
+                    "addressId": 1985,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.777935,
+                        "lon": 106.70201
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 2295,
+                    "addressId": 1986,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.777935,
+                        "lon": 106.70201
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 5263,
+                    "addressId": 4230,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.029613,
+                        "lon": 105.786224
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 10781,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 43938,
+                    "addressId": 78373,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.019841,
+                        "lon": 105.81623
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 52183,
+                    "addressId": 32412,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.777935,
+                        "lon": 106.70201
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 69643,
+                    "addressId": 774,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 69644,
+                    "addressId": 5129,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 70141,
+                    "addressId": 41940,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.029403,
+                        "lon": 105.786527
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 139661,
+                    "addressId": 78373,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.019841,
+                        "lon": 105.81623
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 142560,
+                    "addressId": 86847,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.029689,
+                        "lon": 105.786489
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 148307,
+                    "addressId": 84785,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.792452,
+                        "lon": 106.681333
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 150470,
+                    "addressId": 86053,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.792452,
+                        "lon": 106.681333
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 67,
+                    "industryName": "Auto/Automotive",
+                    "industryNameVI": "Tự động hóa/Ô tô"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 67,
+                    "industryName": "Auto/Automotive",
+                    "industryNameVI": "Tự động hóa/Ô tô"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 30,
+                    "industryV3Name": "Manufacturing",
+                    "industryV3NameVI": "Sản xuất"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 30,
+                    "industryV3Name": "Manufacturing",
+                    "industryV3NameVI": "Sản xuất"
+                },
+                {
+                    "industryV3Id": 30,
+                    "industryV3Name": "Manufacturing",
+                    "industryV3NameVI": "Sản xuất"
+                }
+            ],
+            "followerCount": 598,
+            "viewCount": 0,
+            "onlineJobCount": 6,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "cong-ty-co-phan-lien-doanh-o-to-hyundai-thanh-cong-viet-nam",
+            "companyNameCCP": "Công ty Cổ phần Liên doanh Ô tô Hyundai Thành Công Việt Nam",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 3,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/null/en/banner_trang_CCP.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762340,
+                    "address": "Tầng 6, Golden Season Building số 14 Nguyễn Văn Trỗi, phường 17, quận Phú Nhuận, TP.HCM",
+                    "jobDescription": "\u003cp\u003e1.\tPhát triển và nâng cao năng lực bán lẻ (hoạt động đào tạo)\n‒\tTheo dõi, quản lý, đánh giá các hoạt động đào tạo của Đại lý (thông qua Giảng viên nội bộ), đảm bảo số lượng và chất lượng các hoạt động đào tạo tại ĐL\n‒\tTheo dõi thúc đẩy các hoạt động tự học...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003e- Tốt nghiệp đại học chuyên ngành Kinh tế, Quản trị kinh doanh, Tài chính ngân hàng, Oto, giao thông vận tải. \n- Có kinh nghiệm tổ chức quản lý các hoạt động đào tạo mang tính chất hệ thống\nƯu tiên ứng viên có kiến thức về sản phẩm, thị trường oto hoặc có...",
+                    "jobTitle": "Chuyên Viên Phát Triển Đại Lý (Mảng Đào Tạo)",
+                    "jobUrl": "https://www.vietnamworks.com/chuyen-vien-phat-trien-dai-ly-mang-dao-tao--1762340-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1757086,
+                    "address": "Tầng 12, tòa nhà Thành Công Tower, số 79 Đường Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+                    "jobDescription": "Quản lý hoạt động tổng thể hệ thống Đại lý\r\n‒\tLà đầu mối hỗ trợ thông tin tổng thể với Đại lý theo phân công và hỗ trợ để đảm bảo việc tuân thủ, triển khai, duy trì các hoạt động theo đúng tiêu chuẩn, chính sách quy định của nhà phân phối, đảm bảo...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "Bằng cấp: Tốt nghiệp đại học chuyên ngành Kinh tế, Kỹ thuật ô tô, Quản trị kinh doanh, Tài chính ngân hàng\r\n\r\nKinh nghiệm làm việc\r\n- Ưu tiên ứng viên có kiến thức về sản phẩm, thị trường ô tô hoặc có kinh nghiệm về triển khai hoạt động đào tạo tại các tổ chức...",
+                    "jobTitle": "Chuyên Viên Phát Triển Đại Lý",
+                    "jobUrl": "https://www.vietnamworks.com/chuyen-vien-phat-trien-dai-ly--1757086-jv",
+                    "locations": "Ha Noi",
+                    "locationsVI": "Hà Nội",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 24,
+                            "cityName": "Ha Noi",
+                            "cityNameVI": "Hà Nội"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 259408,
+            "companyName": "The Away Group Viet Nam LTD",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/b7/11176090.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/awaydigital/en/logoAD.png",
+            "companyProfile": "Away Digital Teams is a specialist recruitment and management service that attracts top talent in Vietnam to help business find, build, and manage remote teams.\r\n\r\nWe are proudly Australian owned and managed with offices in Melbourne and Ho Chi Minh City. We pride ourselves on the culture that we have created that enables us to attract and retain exceptional talent for your teams.\r\n\r\nWith roles specifically designed to individual needs, and the flexibility to have 1 or 100 people in your team, we take the time to truly understand your business so we can tailor a resourcing solution that works for you.\r\n\r\nFrom Web Development and Graphic Design to Digital Marketing, Finance and Accounting, we can source talent across a broad range of areas.\r\n\r\nOur management team has a wealth of experience building and leading high performing teams in a range of areas – you tell us what you want, and we do all the work to deliver that for you.\r\nhttps://awaydigitalteams.com/",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/83586.jpg"
+            ],
+            "jobVideoURLs": null,
+            "address": "Tầng 12 Tòa nhà IPC, 1489 Nguyễn Văn Linh, P. Tân Phong, Quận 7, TPHCM",
+            "companySizeId": 4,
+            "companySizeName": "100-499",
+            "companySizeNameVI": "100-499",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 1610,
+                    "addressId": 1441,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.728097,
+                        "lon": 106.704044
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 45169,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 53316,
+                    "addressId": 32943,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.727896,
+                        "lon": 106.704161
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 62786,
+                    "addressId": 37882,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.727896,
+                        "lon": 106.704161
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 95864,
+                    "addressId": 5129,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 5,
+                    "industryName": "Architecture/Interior Design",
+                    "industryNameVI": "Kiến trúc/Thiết kế nội thất "
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 5,
+                    "industryName": "Architecture/Interior Design",
+                    "industryNameVI": "Kiến trúc/Thiết kế nội thất "
+                },
+                {
+                    "industryId": 7,
+                    "industryName": "Civil/Construction",
+                    "industryNameVI": "Xây dựng"
+                },
+                {
+                    "industryId": 35,
+                    "industryName": "IT - Software",
+                    "industryNameVI": "IT - Phần mềm"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 5,
+                    "industryV3Name": "Architecture/Interior Design",
+                    "industryV3NameVI": "Kiến trúc/Thiết kế nội thất"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 5,
+                    "industryV3Name": "Architecture/Interior Design",
+                    "industryV3NameVI": "Kiến trúc/Thiết kế nội thất"
+                }
+            ],
+            "followerCount": 215,
+            "viewCount": 0,
+            "onlineJobCount": 3,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "awaydigital",
+            "companyNameCCP": "Away Digital",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/awaydigital/en/Cover__compressed.jpg",
+            "jobs": [
+                {
+                    "jobId": 1749601,
+                    "address": "Tầng 12 Tòa nhà IPC, 1489 Nguyễn Văn Linh, P. Tân Phong, Quận 7, TPHCM",
+                    "jobDescription": "•\tDeliver and check high-quality BIM models, data, and documentation to ensure quality of service. Development of sound drawing presentation and understanding are essential as is the level of understanding of the design \u0026 building process \r\n•\tCung cấp và kiểm tra các mô hình, dữ liệu và tài liệu BIM chất lượng cao để đảm...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "•\tGraduated from university, major in HVAC Construction and related fields\r\n•\tHave 2 to 4 years related experience required\r\n•      Open for member level to leader level\r\n•\tProficient in Revit MEP, Navisworks\r\n•\tMust have experience interpreting HVAC system modeling and coordinating various projects.\r\n•\tHard-working, be ready to learn new things\r\n•\tHaving the ability to work under...",
+                    "jobTitle": "REVIT MEP - HVAC Modeler",
+                    "jobUrl": "https://www.vietnamworks.com/revit-mep-hvac-modeler-1749601-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1759820,
+                    "address": "Tầng 12 Tòa nhà IPC, 1489 Nguyễn Văn Linh, P. Tân Phong, Quận 7, TPHCM",
+                    "jobDescription": "• Lead the design, coding, testing, debugging, and maintenance of complex web applications using PHP and React. \r\n• Establish and maintain development workflows, ensuring we consistently follow industry best practices. \r\n• Conduct thorough code reviews to maintain high code quality and adherence to best practices. \r\n• Collaborate with project managers and stakeholders to define...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "• Proven experience as a Senior Full Stack Developer/Backend Magento Developer, with strong skills in PHP and React\r\n• Experience with Adobe Commerce (Magento), Magento 2 (plus).\r\n• Experience with other e-commerce platforms and CMS is advantageous.\r\n• Strong knowledge of web technologies like HTML5, CSS3, JavaScript, and related frameworks. \r\n• Knowledge of MySQL or other relational...",
+                    "jobTitle": "Sr Software Engineer (Magento/php/react) - Upto $4000",
+                    "jobUrl": "https://www.vietnamworks.com/sr-software-engineer-magento-php-react-upto-4000--1759820-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "$2000 - $4000",
+                    "salaryRangeId": 0,
+                    "salaryMin": 2000,
+                    "salaryMax": 4000,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 1945,
+            "companyName": "Capgemini Vietnam",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/fb/11126096.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/Capgemini/en/Capture.jpg",
+            "companyProfile": "At Capgemini, exciting careers and a stimulating workplace come with a great sense of belonging. We invest in creating an environment where the most talented, qualified people want to be – and stay.\r\n\r\nWith more than 300 offices in 30 countries around the globe, we are one of the world’s largest providers of Consulting, Outsourcing and Technology Services.\r\n\r\nCapgemini is committed to helping you achieve your potential. Together, we’ll determine the career path that will take you as far as you want to go.\r\n\r\nAt Capgemini, you have the opportunity to:\r\n\r\n•\tBenefit from merit-based promotion, determined by your performance, skills and willingness to take on greater responsibility.\r\n•\tMake important contacts, working with top experts and making the most of our buddy system. Your coaches and mentors will work with you to help you reach your potential.\r\n•\tBuild your knowledge base through a wide range of training and experiences.\r\n•\tContribute to a global team that acts with passion, commitment and integrity.\r\n\r\nYou enjoy a challenge? You have a thirst for knowledge and a desire to be one of the best? Then benefit from the Capgemini culture. At Capgemini, we draw on each other’s capacities and experiences, to inspire and motivate one another.",
+            "website": "",
+            "jobImageURLs": null,
+            "jobVideoURLs": [
+                "https://www.youtube.com/watch?v=uW1NFJOq7Mk"
+            ],
+            "address": "Centre Point, 106 Nguyen Van Troi",
+            "companySizeId": 4,
+            "companySizeName": "100-499",
+            "companySizeNameVI": "100-499",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 3419,
+                    "addressId": 2863,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 5752,
+                    "addressId": 48919,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.79734,
+                        "lon": 106.673366
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 17288,
+                    "addressId": 57,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 17479,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 8,
+                    "industryName": "Consulting",
+                    "industryNameVI": "Tư vấn"
+                },
+                {
+                    "industryId": 35,
+                    "industryName": "IT - Software",
+                    "industryNameVI": "IT - Phần mềm"
+                },
+                {
+                    "industryId": 66,
+                    "industryName": "High Technology",
+                    "industryNameVI": "Công nghệ cao"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 35,
+                    "industryName": "IT - Software",
+                    "industryNameVI": "IT - Phần mềm"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 25,
+                    "industryV3Name": "IT Software/SaaS",
+                    "industryV3NameVI": "Phần Mềm CNTT/Dịch vụ Phần mềm"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 25,
+                    "industryV3Name": "IT Software/SaaS",
+                    "industryV3NameVI": "Phần Mềm CNTT/Dịch vụ Phần mềm"
+                }
+            ],
+            "followerCount": 157,
+            "viewCount": 0,
+            "onlineJobCount": 5,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "capgemini",
+            "companyNameCCP": "Capgemini",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/Capgemini/en/Banner.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762318,
+                    "address": "Centre Point, 106 Nguyen Van Troi",
+                    "jobDescription": "\u003cp\u003eAbout the Role/position:\nIn this role, you will be a senior manual tester. You will work alongside a team of like-minded individuals within the Testing community and partner closely with our clients on a wide variety of collaborative and innovative engagements. \n\nOne should be a phenomenal teammate with a forward-thinking mindset, ability and confidence to...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003eMust have: Technical Requirements / Qualifications\n\nPrimary Skills:  \n- Tools: Postman, Azure DevOps, JIRA/Confluence, HP QC \n•\tMinimum 3\u0026#43; years of relevant experience primarily in a tester role\n•\tGood communication in French is a must\n•\tWillingness to fully take responsibility and ownership of the quality assurance process.\n•\tHands-on experience with Agile methodologies; demonstrated ability to provide a testing...",
+                    "jobTitle": "Senior Manual Tester (French)",
+                    "jobUrl": "https://www.vietnamworks.com/senior-manual-tester-french--1762318-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1762322,
+                    "address": "Centre Point, 106 Nguyen Van Troi",
+                    "jobDescription": "\u003cp\u003eAbout the Role/position\nIn this role, you will be familiar with tester position. You will be trained on testing techniques and then work alongside senior testers within the Testing community. \n\nOne should be a phenomenal teammate with a forward-thinking mindset, ability and confidence to challenge the status quo to define future visions.\n \nWhat we are...",
+                    "jobLevel": "Intern/Student",
+                    "jobLevelVI": "Thực tập sinh/Sinh viên",
+                    "jobRequirement": "\u003cp\u003ePrimary Skills:  \n- Programming Language: Any Object Oriented Programming language like Java/Python/C# (applied for IT Degree) \n\nQualifications\nSoftware testers often have a degree in Computer Science or IT. However, the role is open to graduates from a variety of majors with good French communication.\u003c/p\u003e",
+                    "jobTitle": "Internship Tester (French)",
+                    "jobUrl": "https://www.vietnamworks.com/internship-tester-french--1762322-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 83562,
+            "companyName": "Geodis Vietnam Co. Ltd.",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/de/11125252.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/geodis-vietnam-company-limited/en/Logo1.jpg",
+            "companyProfile": "GEODIS makes customers more competitive by delivering their cargo across five continents and by making their supply chain transparent and easy to manage. With its five lines of business (Supply Chain Optimization, Freight Forwarding, Contract Logistics, Distribution \u0026 Express and Road Transport), GEODIS manages its customers Supply Chain by providing end-to-end solutions enabled by our people, our infrastructure, processes and systems.\r\n \r\nOur Freight Forwarding division has more than 9,000 employees in over 60 countries. The entire GEODIS Group, being a global logistics provider with 30,000 employees, spans a network covering 120 countries. As part of the French railway company SNCF, GEODIS offers a wide range of sustainable, innovative and cost saving multimodal solutions.\r\n \r\nIn Asia Pacific, GEODIS operates 127 locations in 15 countries including Australia, Bangladesh, China, Hong Kong, India, Indonesia, Japan, Korea, Malaysia, New Zealand, Philippines, Singapore, Taiwan, Thailand and Vietnam.\r\n\r\nFor further information about Geodis Wilson’s innovative approach, please visit www.geodis.com\r\n\r\nWe are located in: \r\nHo Chi Minh Office:\r\n9th Floor, Bluesky Office Building, 01 Bach Dang Street, Ward 2, Tan Binh District, HCMC\r\n\r\nDong Nai Warehouse:\r\nWarehouse 24, No. 14 Phan Dang Luu Street, Quarter 7, Long Binh Ward, Bien Hoa city, Dong Nai Province, Viet Nam\r\n\r\nHa Noi Office:\r\nSuite 1105, 11th Floor, Ocean Park Building, 01 Dao Duy Anh Street, Dong Da District, Ha Noi, Vietnam.\r\n\r\nHai Phong Office: \r\nLot H\u0026F, Nomura Industrial Park, An Duong, Hai Phong. \r\n384 Lach Tray, Dang Giang Ward, Ngo Quyen District, Hai Phong City.\r\n\r\nBac Ninh Warehouse:\r\nPhytophaco Warehouse, Mot 5, Tan Hong Industrial, Tu Son Province, Bac Ninh/Vietnam",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/83914.jpg"
+            ],
+            "jobVideoURLs": null,
+            "address": "Bluesky Office Building, No. 01 Bach Dang, Ward 2, Tan Binh District, HCMC",
+            "companySizeId": 4,
+            "companySizeName": "100-499",
+            "companySizeNameVI": "100-499",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 10651,
+                    "addressId": 74161,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.007089,
+                        "lon": 105.840307
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 11026,
+                    "addressId": 44515,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.814491,
+                        "lon": 106.67033
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 12294,
+                    "addressId": 9208,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.898474,
+                        "lon": 106.820487
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 83959,
+                    "addressId": 66217,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.834281,
+                        "lon": 106.696721
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 91894,
+                    "addressId": 53450,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.893557,
+                        "lon": 106.59528
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 105415,
+                    "addressId": 60477,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.007089,
+                        "lon": 105.840307
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 106368,
+                    "addressId": 60999,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.915831,
+                        "lon": 106.895152
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 115487,
+                    "addressId": 1992,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.844912,
+                        "lon": 106.688084
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 19,
+                    "industryName": "Export-Import",
+                    "industryNameVI": "Xuất nhập khẩu"
+                },
+                {
+                    "industryId": 36,
+                    "industryName": "Freight/Logistics",
+                    "industryNameVI": "Vận chuyển/Giao nhận"
+                },
+                {
+                    "industryId": 53,
+                    "industryName": "Warehouse",
+                    "industryNameVI": "Kho vận"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 36,
+                    "industryName": "Freight/Logistics",
+                    "industryNameVI": "Vận chuyển/Giao nhận"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 47,
+                    "industryV3Name": "Transportation",
+                    "industryV3NameVI": "Vận tải"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 47,
+                    "industryV3Name": "Transportation",
+                    "industryV3NameVI": "Vận tải"
+                }
+            ],
+            "followerCount": 158,
+            "viewCount": 0,
+            "onlineJobCount": 4,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "geodis-vietnam",
+            "companyNameCCP": "Geodis Vietnam Company Limited",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/geodis-vietnam-company-limited/en/banner.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762317,
+                    "address": "Bluesky Office Building, No. 01 Bach Dang, Ward 2, Tan Binh District, HCMC",
+                    "jobDescription": "\u003cp\u003epGEODIS is a Supply Chain Operator ranking among the top companies in its field in Europe and the World. GEODIS, which is part of SNCF Logistics, which in turn is a business line of the SNCF Group, is the number one Transport and Logistics operator in France and ranked number four in Europe. The...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003ep• University degree or equivalent\n• Minimum 3 year\u0026#039;s experience with documented sales record\n• Sales experience and working knowledge of the international transportation and logistics industry\n• Familiarity with the financial aspects of the relevant local economy as well as international market conditions and trends, and international business issues, including currency factors and cultural differences\n• Good...",
+                    "jobTitle": "Logistics Senior Field Sales",
+                    "jobUrl": "https://www.vietnamworks.com/logistics-senior-field-sales-1762317-jv",
+                    "locations": "Ha Noi, Ho Chi Minh",
+                    "locationsVI": "Hà Nội, Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 24,
+                            "cityName": "Ha Noi",
+                            "cityNameVI": "Hà Nội"
+                        },
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1755775,
+                    "address": "Bluesky Office Building, No. 01 Bach Dang, Ward 2, Tan Binh District, HCMC",
+                    "jobDescription": "- Provides administrative support, such as booking meeting rooms, coordinating daily office activities, making car arrangements, coordinating with company event organization (seminar, happy hour, preparing birthday, wedding, congratulation cards) and following up making the name cards, brochures, printing documents and providing related support.\r\n\r\n- Performs receptionist duties, such as greeting and assisting customers, answering and...",
+                    "jobLevel": "Intern/Student",
+                    "jobLevelVI": "Thực tập sinh/Sinh viên",
+                    "jobRequirement": "- 3rd/4th year students or Freshers with major of Human Resources, Business Administration or other related majors at Universities\r\n\r\n- Fluent in English, Excellent in both speaking and writing of English\r\n\r\n- Be proficent at Canva, Excel, Work, Powerpoint\r\n\r\n- Hold a great passion for Admin and HR jobs\r\n\r\n- Hardworking, result-driven and proactive in work\r\n\r\n- Can work...",
+                    "jobTitle": "Admin HR Intern",
+                    "jobUrl": "https://www.vietnamworks.com/admin-hr-intern-1755775-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 92345,
+            "companyName": "Công Ty TNHH Bất Động Sản Smartland",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/40/11125892.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/vietnamworks/en/Picture1.png",
+            "companyProfile": "Thành lập vào năm 2004, tiền thân của Smartland là Công Ty Thiết Kế Xây Dựng và Giao Dịch Bất Động Sản Netxinh. Sau một thời gian thay đổi và thích ứng, ban lãnh đạo quyết định đổi thương hiệu thành Công Ty TNHH Bất Động Sản Smartland, tái định hướng và tập trung vào mảng phân phối, tư vấn, đầu tư và quản lý bất động sản. Năm 2016, SmartRealtors ra đời đánh dấu bước phát triển mới khi vươn tay ra thị trường phân phối thị bất động sản nghỉ dưỡng. Trải qua hành trình hơn 18 năm với định hướng phát triển mạnh mẽ, Smartland và SmartRealtors đã trở thành những đơn vị hàng đầu về tư vấn và phân phối bất động sản cao cấp tại Việt Nam. Là đối tác tin cậy thực hiện tư vấn chiến lược và phân phối dự án đồng hành cùng các tập đoàn bất động sản hàng đầu Việt Nam và trên thế giới như: Tập đoàn Vingroup, tập đoàn Sun Group, Phú Long, Refico - CII, Masteise Homes, Keppel Land, Charm Group, ...\r\n\r\nSmartland - SmartRealtors đã khẳng định được vai trò và vị thế của mình trong ngành bất động sản, là những đối tác chiến lược đáng tin cậy của các chủ đầu tư lớn với hàng loạt những thành quả đáng ghi nhận:\r\n- Năm 2016, Smartland là 1 trong 6 Đại lý chiến lược trên tổng 30 Đại lý của toàn hệ thống Vinhomes và SmartRealtors là “Đơn vị phân phối bất động sản xuất sắc nhất năm 2016” của Tập đoàn Sun Group với doanh số bán trên 1500 tỷ đồng\r\n- Năm 2017, SmartRealtors là “Đại lý xuất sắc năm 2017” từ chủ đầu tư Sun Group với doanh số bán trên 2000 tỷ đồng. Smartland là đại lý đạt doanh số cao nhất trong tổng 5 đại lý của dự án One Verandah Chủ đầu tư MapleTree (Singapore) và là  “Đại lý phân phối tiêu biểu” của dự án T\u0026T Millennia City,...\r\n- Năm 2018, Smartland “Đại lý đạt doanh số cao nhất\" dự án Mövenpick Resort Cam Ranh của chủ đầu tư Eurowindow Holdings và là đại lý phân phối độc quyền dự án Banyan Tree Residences Lăng Cô của Chủ đầu tư Tập đoàn Banyan Tree (Singapore),...\r\n- Năm 2019, SmartRealtors là Top 3 Đại lý chiến lược bán hàng xuất sắc nhất của Tập đoàn Sun Group và là TOP 5 Đại lý bán hàng xuất sắc dự án Vinhomes Grand Park. Đại lý đạt doanh số cao nhất đợt VIP launch của dự án The River Thu Thiem,..\r\n- Năm 2020, chúng tôi là Top 3 đại lý xuất sắc nhất Quý 4 và Top 3 Đại lý chiến lược bán hàng xuất sắc nhất của Tập đoàn Sun Property Group.\r\n- Năm 2021, SmartRealtors \u0026 Partners - Đại lý chiến lược bán hàng xuất sắc nhất của Tập đoàn Sun Property Group,..\r\n\r\nSong song với những thành quả đạt được trong thời gian qua, Smartland - SmartRealtors không ngừng nỗ lực và cam kết mang lại quyền lợi tốt nhất cho khách hàng đối tác và chủ đầu tư.\r\nTạo nên môi trường làm việc với nhiều cơ hội phát triển cho nhân viên, đảm bảo chế độ và phúc lợi khen thưởng đối với nhân viên có thành tích xuất sắc, đồng thời không ngừng cải thiện và nâng cao chất lượng nhân sự thông qua các công tác tuyển dụng, chọn lọc, nâng cao chất lượng đào tạo, phân lớp sale cho từng nhóm sản phẩm phù hợp. Tạo dựng uy tín và xây dựng những giá trị khác biệt trong thị trường môi giới bất động sản qua chiến lược kinh doanh từng giai đoạn, gia tăng lợi thế cạnh tranh.",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/88353.jpg",
+                "https://images.vietnamworks.com/company_profile/88352.jpg",
+                "https://images.vietnamworks.com/company_profile/91108.jpg"
+            ],
+            "jobVideoURLs": null,
+            "address": "Tầng 2 Toà nhà Đại Dũng, Shophouse Sài Gòn Pearl, 92 Nguyễn Hữu Cảnh, P. 22, Q. Bình Thạnh",
+            "companySizeId": 4,
+            "companySizeName": "100-499",
+            "companySizeNameVI": "100-499",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 415,
+                    "addressId": 404,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.791045,
+                        "lon": 106.718995
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 19122,
+                    "addressId": 31659,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.790526,
+                        "lon": 106.719108
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 30072,
+                    "addressId": 19976,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.790526,
+                        "lon": 106.719108
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 44260,
+                    "addressId": 5129,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 66337,
+                    "addressId": 46919,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.790886,
+                        "lon": 106.718728
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 71280,
+                    "addressId": 69342,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.790987,
+                        "lon": 106.718428
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 99134,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 100908,
+                    "addressId": 58152,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.011601,
+                        "lon": 105.862837
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 100909,
+                    "addressId": 58153,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.0198,
+                        "lon": 108.228729
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 102737,
+                    "addressId": 4317,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 18.679585,
+                        "lon": 105.681333
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 103586,
+                    "addressId": 59521,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 18.686346,
+                        "lon": 105.680968
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 126770,
+                    "addressId": 1278,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.054407,
+                        "lon": 108.202167
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 130993,
+                    "addressId": 75179,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.791005,
+                        "lon": 106.71846
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 142757,
+                    "addressId": 774,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 143254,
+                    "addressId": 82065,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.012325,
+                        "lon": 105.863319
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 147590,
+                    "addressId": 523,
+                    "cityId": 39,
+                    "geoLoc": {
+                        "lat": 10.695572,
+                        "lon": 106.243121
+                    },
+                    "cityName": "Long An",
+                    "cityNameVI": "Long An"
+                },
+                {
+                    "workingLocationId": 147591,
+                    "addressId": 265,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 11.325402,
+                        "lon": 106.477017
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 154114,
+                    "addressId": 88123,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.790526,
+                        "lon": 106.719108
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 30,
+                    "industryName": "Real Estate",
+                    "industryNameVI": "Bất động sản"
+                },
+                {
+                    "industryId": 32,
+                    "industryName": "Retail/Wholesale",
+                    "industryNameVI": "Bán lẻ/Bán sỉ"
+                },
+                {
+                    "industryId": 33,
+                    "industryName": "Sales",
+                    "industryNameVI": "Bán hàng"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 30,
+                    "industryName": "Real Estate",
+                    "industryNameVI": "Bất động sản"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 40,
+                    "industryV3Name": "Real Estate/Rental/Leasing",
+                    "industryV3NameVI": "Bất Động Sản/Cho thuê"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 40,
+                    "industryV3Name": "Real Estate/Rental/Leasing",
+                    "industryV3NameVI": "Bất Động Sản/Cho thuê"
+                }
+            ],
+            "followerCount": 57,
+            "viewCount": 0,
+            "onlineJobCount": 2,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "smart-land",
+            "companyNameCCP": "CÔNG TY TNHH BĐS SMARTLAND",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/smart-land/en/1920x510-s2_1_.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762259,
+                    "address": "Tầng 2 Toà nhà Đại Dũng, Shophouse Sài Gòn Pearl, 92 Nguyễn Hữu Cảnh, P. 22, Q. Bình Thạnh",
+                    "jobDescription": "* Hỗ trợ công việc cho Ban Giám Đốc\r\n•\tLên kế hoạch làm việc của Tổng giám đốc với các phòng ban.\r\n•\tTheo dõi việc triển khai, đôn đốc, kiểm tra, tổng hợp và báo cáo tiến độ thực hiện công việc của các phòng, bộ phận, đơn vị theo yêu cầu của Tổng giám đốc.\r\n•\tPhối...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "• Độ tuổi: 9X - 8X\r\n• Ngoại hình tốt\r\n• Từ 3 - 5 năm kinh nghiệm cho vai trò trợ lý giám đốc\r\n• Soạn thảo các văn bản pháp lý, HĐKT chuẩn.\r\n• Hiểu biết về kinh doanh, đặc biệt trong lĩnh vực bđs là 1 lợi thế\r\n• Trung thành tuyệt đối, bảo mật thông...",
+                    "jobTitle": "Trợ Lý Giám Đốc (Tuyển Gấp Nữ 9X - 8X)",
+                    "jobUrl": "https://www.vietnamworks.com/tro-ly-giam-doc-tuyen-gap-nu-9x-8x-1762259-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Từ $1000",
+                    "salaryRangeId": 0,
+                    "salaryMin": 1000,
+                    "salaryMax": 0,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1742278,
+                    "address": "Tầng 2 Toà nhà Đại Dũng, Shophouse Sài Gòn Pearl, 92 Nguyễn Hữu Cảnh, P. 22, Q. Bình Thạnh",
+                    "jobDescription": "1.\tNội Bộ\r\n•\tTiếp nhận và giải đáp thắc mắc về toàn bộ các vấn đề liên quan đến công tác nhân sự bao gồm quy chế quy định công ty…\r\n•\tChịu trách nhiệm chính trong các công việc liên quan đến xử lý kỷ luật lao động nếu có nhân sự thực hiện công việc không...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "•\tNữ, 9x ( 90, 91, 92. Kinh nghiệm cứng xử lý vấn đề về con người và các vấn đề liên quan đến nội bộ) .\r\n•\tCó ít nhất 04 năm kinh nghiệm tại vị trí tương đương\r\n•\tCó kỹ năng làm việc với con người, nắm bắt tâm lý tốt\r\n•\tTốt nghiệp Đại học trở lên...",
+                    "jobTitle": "Senior Human Resource | Chuyên Viên Nhân Sự (Nữ 9X, Tối Thiếu 4 Năm Kinh Nghiệm)",
+                    "jobUrl": "https://www.vietnamworks.com/senior-human-resource-chuyen-vien-nhan-su-nu-9x-toi-thieu-4-nam-kinh-nghiem-1742278-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 41338,
+            "companyName": "Shinhan Vietnam Finance Company Limited",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/f1/11218794.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/null/en/logo_vuông_chữ_xanh_không_nền.png",
+            "companyProfile": "Shinhan Vietnam Finance Company Ltd. (SVFC), An overseas of Shinhan Card (a member of Shinhan Financial Group Korea), a fully foreign owned consumer finance company (previous name Prudential Vietnam Finance Company) officially operates with Shinhan Finance brand name since July 2019. With Shinhan Card’s know how in financial products and more than 17 years experience of the Company in Vietnam consumer lending market, Shinhan Finance will be the best customer oriented Finance Company in Vietnam. \r\nWith the widespread business network nationwide, the company has capability to serve customers with flexible financial solutions, enabling our customers to fulfill their dreams and enhance their living standards We are highly honored to serve nearly one million of Vietnamese customers and more and more customers have trust in using the company’s services We will continue to develop our strength, improve service quality as well as ensure credit management quality and risk management, committing to become a transparent and reliable financial company in the Vietnamese market with the business philosophy Be “the best” company rather than “the most profitable”.",
+            "website": "",
+            "jobImageURLs": null,
+            "jobVideoURLs": null,
+            "address": "17F \u0026 23/F. Saigon Trade Center. 37 Ton Duc Thang. D.1. HCMC. Vietnam",
+            "companySizeId": 7,
+            "companySizeName": "5,000-9,999",
+            "companySizeNameVI": "5.000-9.999",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "We always care about career advancement of employees at Prudential Finance. As career progress, you will take on variable roles which will develop your specialist professional skills and discover your potential capacity. From that discovery, we will request you to have another assignment to improve your existing skill as well as to build, contribute your new ability. We commit to support you with learning and training programs and further development opportunities which offer cross-functional, cross cultural….All of which will help you fulfill your new assignment.",
+            "profileBaseName": "cong-ty-tnhh-mot-thanh-vien-tai-chinh-prudential-viet-nam",
+            "isUpgradeProfile": 1,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 332,
+                    "addressId": 332,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.760555,
+                        "lon": 106.674772
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 633,
+                    "addressId": 588,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.176817,
+                        "lon": 106.062548
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                },
+                {
+                    "workingLocationId": 814,
+                    "addressId": 28167,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.801466,
+                        "lon": 106.652597
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 816,
+                    "addressId": 1351,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.021575,
+                        "lon": 105.854216
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 994,
+                    "addressId": 897,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 20.955835,
+                        "lon": 105.756366
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 995,
+                    "addressId": 441,
+                    "cityId": 23,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Ha Nam",
+                    "cityNameVI": "Hà Nam"
+                },
+                {
+                    "workingLocationId": 997,
+                    "addressId": 431,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.054407,
+                        "lon": 108.202167
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 1037,
+                    "addressId": 935,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784167,
+                        "lon": 106.703611
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 1866,
+                    "addressId": 14032,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 1867,
+                    "addressId": 58083,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.835569,
+                        "lon": 106.660495
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 3270,
+                    "addressId": 1682,
+                    "cityId": 33,
+                    "geoLoc": {
+                        "lat": 12.25851,
+                        "lon": 109.052608
+                    },
+                    "cityName": "Khanh Hoa",
+                    "cityNameVI": "Khánh Hòa"
+                },
+                {
+                    "workingLocationId": 3274,
+                    "addressId": 33933,
+                    "cityId": 58,
+                    "geoLoc": {
+                        "lat": 10.353046,
+                        "lon": 106.359397
+                    },
+                    "cityName": "Tien Giang",
+                    "cityNameVI": "Tiền Giang"
+                },
+                {
+                    "workingLocationId": 3277,
+                    "addressId": 11442,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.947079,
+                        "lon": 106.825146
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 3280,
+                    "addressId": 13462,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.98143,
+                        "lon": 106.655893
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 3283,
+                    "addressId": 66669,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.059642,
+                        "lon": 108.211667
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 10638,
+                    "addressId": 8000,
+                    "cityId": 3,
+                    "geoLoc": {
+                        "lat": 10.350478,
+                        "lon": 107.085996
+                    },
+                    "cityName": "Ba Ria - Vung Tau",
+                    "cityNameVI": "Bà Rịa - Vũng Tàu"
+                },
+                {
+                    "workingLocationId": 10639,
+                    "addressId": 8001,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.694575,
+                        "lon": 106.606658
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 13469,
+                    "addressId": 1212,
+                    "cityId": 23,
+                    "geoLoc": {
+                        "lat": 20.58352,
+                        "lon": 105.92299
+                    },
+                    "cityName": "Ha Nam",
+                    "cityNameVI": "Hà Nam"
+                },
+                {
+                    "workingLocationId": 15778,
+                    "addressId": 11420,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030658,
+                        "lon": 105.787174
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 23040,
+                    "addressId": 15951,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 26008,
+                    "addressId": 32919,
+                    "cityId": 57,
+                    "geoLoc": {
+                        "lat": 16.059642,
+                        "lon": 108.211667
+                    },
+                    "cityName": "Thua Thien Hue",
+                    "cityNameVI": "Thừa Thiên Huế"
+                },
+                {
+                    "workingLocationId": 26180,
+                    "addressId": 522,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 11.325402,
+                        "lon": 106.477017
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 26181,
+                    "addressId": 33260,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.947019,
+                        "lon": 106.825015
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 30145,
+                    "addressId": 20018,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.021343,
+                        "lon": 105.854268
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 30516,
+                    "addressId": 60526,
+                    "cityId": 2,
+                    "geoLoc": {
+                        "lat": 10.330467,
+                        "lon": 105.483709
+                    },
+                    "cityName": "An Giang",
+                    "cityNameVI": "An Giang"
+                },
+                {
+                    "workingLocationId": 33010,
+                    "addressId": 21598,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784106,
+                        "lon": 106.703654
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 40749,
+                    "addressId": 26145,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.175336,
+                        "lon": 106.066492
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                },
+                {
+                    "workingLocationId": 40917,
+                    "addressId": 26240,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.837218,
+                        "lon": 106.655492
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 42317,
+                    "addressId": 27074,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.800808,
+                        "lon": 106.653083
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 51690,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 51897,
+                    "addressId": 32278,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.017636,
+                        "lon": 105.780996
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 51900,
+                    "addressId": 32280,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.6942,
+                        "lon": 106.606565
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 51901,
+                    "addressId": 32282,
+                    "cityId": 3,
+                    "geoLoc": {
+                        "lat": 10.346272,
+                        "lon": 107.084183
+                    },
+                    "cityName": "Ba Ria - Vung Tau",
+                    "cityNameVI": "Bà Rịa - Vũng Tàu"
+                },
+                {
+                    "workingLocationId": 51902,
+                    "addressId": 32283,
+                    "cityId": 57,
+                    "geoLoc": {
+                        "lat": 16.458593,
+                        "lon": 107.591646
+                    },
+                    "cityName": "Thua Thien Hue",
+                    "cityNameVI": "Thừa Thiên Huế"
+                },
+                {
+                    "workingLocationId": 52187,
+                    "addressId": 32413,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 20.969334,
+                        "lon": 105.76822
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 52284,
+                    "addressId": 32468,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784167,
+                        "lon": 106.703611
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 52384,
+                    "addressId": 32512,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 37.548916,
+                        "lon": -77.465454
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 55433,
+                    "addressId": 33936,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 21.026281,
+                        "lon": 105.811005
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 55434,
+                    "addressId": 33935,
+                    "cityId": 49,
+                    "geoLoc": {
+                        "lat": 21.026281,
+                        "lon": 105.811005
+                    },
+                    "cityName": "Quang Ninh",
+                    "cityNameVI": "Quảng Ninh"
+                },
+                {
+                    "workingLocationId": 64411,
+                    "addressId": 7620,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.849409,
+                        "lon": 106.753706
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 68538,
+                    "addressId": 1992,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.844912,
+                        "lon": 106.688084
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 71546,
+                    "addressId": 68011,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 20.250615,
+                        "lon": 105.974454
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 83946,
+                    "addressId": 1102,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 86967,
+                    "addressId": 68006,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.508928,
+                        "lon": 107.181626
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 91548,
+                    "addressId": 53253,
+                    "cityId": 57,
+                    "geoLoc": {
+                        "lat": 16.458593,
+                        "lon": 107.591646
+                    },
+                    "cityName": "Thua Thien Hue",
+                    "cityNameVI": "Thừa Thiên Huế"
+                },
+                {
+                    "workingLocationId": 95485,
+                    "addressId": 6372,
+                    "cityId": 47,
+                    "geoLoc": {
+                        "lat": 15.563829,
+                        "lon": 108.482168
+                    },
+                    "cityName": "Quang Nam",
+                    "cityNameVI": "Quảng Nam"
+                },
+                {
+                    "workingLocationId": 95538,
+                    "addressId": 60532,
+                    "cityId": 48,
+                    "geoLoc": {
+                        "lat": 15.121253,
+                        "lon": 108.805082
+                    },
+                    "cityName": "Quang Ngai",
+                    "cityNameVI": "Quảng Ngãi"
+                },
+                {
+                    "workingLocationId": 96624,
+                    "addressId": 1470,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.852571,
+                        "lon": 106.016997
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 99768,
+                    "addressId": 57535,
+                    "cityId": 40,
+                    "geoLoc": {
+                        "lat": 20.429876,
+                        "lon": 106.163895
+                    },
+                    "cityName": "Nam Dinh",
+                    "cityNameVI": "Nam Định"
+                },
+                {
+                    "workingLocationId": 100685,
+                    "addressId": 1422,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 19.234249,
+                        "lon": 104.920037
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 100686,
+                    "addressId": 5168,
+                    "cityId": 53,
+                    "geoLoc": {
+                        "lat": 11.335155,
+                        "lon": 106.109885
+                    },
+                    "cityName": "Tay Ninh",
+                    "cityNameVI": "Tây Ninh"
+                },
+                {
+                    "workingLocationId": 116247,
+                    "addressId": 66668,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.059642,
+                        "lon": 108.211667
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 116541,
+                    "addressId": 37372,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.030658,
+                        "lon": 105.787174
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 117846,
+                    "addressId": 52943,
+                    "cityId": 33,
+                    "geoLoc": {
+                        "lat": 12.250019,
+                        "lon": 109.188165
+                    },
+                    "cityName": "Khanh Hoa",
+                    "cityNameVI": "Khánh Hòa"
+                },
+                {
+                    "workingLocationId": 118556,
+                    "addressId": 68010,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 15.121387,
+                        "lon": 108.804415
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 118560,
+                    "addressId": 68008,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 11.325402,
+                        "lon": 106.477017
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 118561,
+                    "addressId": 68007,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 118581,
+                    "addressId": 13183,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784106,
+                        "lon": 106.703654
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 118583,
+                    "addressId": 68024,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.173336,
+                        "lon": 106.063076
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                },
+                {
+                    "workingLocationId": 118584,
+                    "addressId": 68025,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.94319,
+                        "lon": 106.823822
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 118585,
+                    "addressId": 76813,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.976281,
+                        "lon": 106.670333
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 118595,
+                    "addressId": 68034,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.801466,
+                        "lon": 106.652597
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 118596,
+                    "addressId": 68035,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.060693,
+                        "lon": 108.215206
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 119384,
+                    "addressId": 68492,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.981456,
+                        "lon": 106.655962
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 120478,
+                    "addressId": 29565,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.7532,
+                        "lon": 106.664522
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 122315,
+                    "addressId": 70160,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.173336,
+                        "lon": 106.063076
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                },
+                {
+                    "workingLocationId": 124130,
+                    "addressId": 18674,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.800754,
+                        "lon": 106.653259
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 124769,
+                    "addressId": 71608,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.850718,
+                        "lon": 106.764422
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 126028,
+                    "addressId": 7323,
+                    "cityId": 71,
+                    "geoLoc": {
+                        "lat": 10.063363,
+                        "lon": 105.594339
+                    },
+                    "cityName": "Mekong Delta",
+                    "cityNameVI": "ĐBSCL"
+                },
+                {
+                    "workingLocationId": 131501,
+                    "addressId": 75483,
+                    "cityId": 15,
+                    "geoLoc": {
+                        "lat": 10.049285,
+                        "lon": 105.775744
+                    },
+                    "cityName": "Can Tho",
+                    "cityNameVI": "Cần Thơ"
+                },
+                {
+                    "workingLocationId": 147954,
+                    "addressId": 84609,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.910694,
+                        "lon": 106.713127
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 149895,
+                    "addressId": 85744,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784167,
+                        "lon": 106.703611
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 149946,
+                    "addressId": 85770,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.784167,
+                        "lon": 106.703611
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 150052,
+                    "addressId": 32,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 150244,
+                    "addressId": 85924,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.755194,
+                        "lon": 106.664441
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 150788,
+                    "addressId": 86231,
+                    "cityId": 53,
+                    "geoLoc": {
+                        "lat": 11.317139,
+                        "lon": 106.098437
+                    },
+                    "cityName": "Tay Ninh",
+                    "cityNameVI": "Tây Ninh"
+                },
+                {
+                    "workingLocationId": 151667,
+                    "addressId": 86750,
+                    "cityId": 10,
+                    "geoLoc": {
+                        "lat": 13.772996,
+                        "lon": 109.237535
+                    },
+                    "cityName": "Binh Dinh",
+                    "cityNameVI": "Bình Định"
+                },
+                {
+                    "workingLocationId": 151668,
+                    "addressId": 86752,
+                    "cityId": 23,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Ha Nam",
+                    "cityNameVI": "Hà Nam"
+                },
+                {
+                    "workingLocationId": 152330,
+                    "addressId": 87121,
+                    "cityId": 15,
+                    "geoLoc": {
+                        "lat": 10.00294,
+                        "lon": 105.801334
+                    },
+                    "cityName": "Can Tho",
+                    "cityNameVI": "Cần Thơ"
+                },
+                {
+                    "workingLocationId": 152332,
+                    "addressId": 87123,
+                    "cityId": 20,
+                    "geoLoc": {
+                        "lat": 10.454972,
+                        "lon": 105.634035
+                    },
+                    "cityName": "Dong Thap",
+                    "cityNameVI": "Đồng Tháp"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 59,
+                    "industryName": "Finance/Investment",
+                    "industryNameVI": "Tài chính/Đầu tư"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 42,
+                    "industryName": "Banking",
+                    "industryNameVI": "Ngân hàng"
+                },
+                {
+                    "industryId": 59,
+                    "industryName": "Finance/Investment",
+                    "industryNameVI": "Tài chính/Đầu tư"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 19,
+                    "industryV3Name": "Finance",
+                    "industryV3NameVI": "Tài Chính"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 19,
+                    "industryV3Name": "Finance",
+                    "industryV3NameVI": "Tài Chính"
+                }
+            ],
+            "followerCount": 548,
+            "viewCount": 0,
+            "onlineJobCount": 36,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "svfc-vietnam",
+            "companyNameCCP": "Shinhan Vietnam Finance Company Limited",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/null/en/MicrosoftTeams-image_94_.png",
+            "jobs": [
+                {
+                    "jobId": 1762270,
+                    "address": "17F \u0026 23/F. Saigon Trade Center. 37 Ton Duc Thang. D.1. HCMC. Vietnam",
+                    "jobDescription": "\u003cp\u003epJob Summary:\nCollection Support Supervisor is an integral part of the Collection Support Department - Process and Controlling Team. In this role, he/she will perform activities of supervisory collection Process, Controlling Activities and is also delegated tasks from Head of Collection Support.\n\nKey Roles \u0026amp; Responsibilities\nHis/her key accountabilities include:\n• In charge of controlling whole/assigned Processes (which...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003ep1. Education background: University Graduated, major: Law, Finance, Banking\n2. Work Experience: 03 year of Collection experience preferred.\n3. Knowledge, Competencies, Skills:\n- Experience and knowledge of Collection processes and best practice\n- Excellent influencing and negotiation skills\n- Excellent interpersonal, communication and presentation skills\n- Experience of working in a high-pressure environment and working to tight deadlines.\n- Excellent project...",
+                    "jobTitle": "Collection Support Supervisor (Process \u0026 Controlling Team)",
+                    "jobUrl": "https://www.vietnamworks.com/collection-support-supervisor-process-controlling-team-1762270-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "$800 - $1200",
+                    "salaryRangeId": 0,
+                    "salaryMin": 800,
+                    "salaryMax": 1200,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1761821,
+                    "address": "17F \u0026 23/F. Saigon Trade Center. 37 Ton Duc Thang. D.1. HCMC. Vietnam",
+                    "jobDescription": "\u003cp\u003eI. Job Summary:\n· Responsible for delivery and develop to ensure the relevant sales training programs in plan.\n· Provide coaching for new/ revised training to key line trainers, observe \u0026amp; provide feedback for key line trainer in sales training programs.\n· Measure sales training programs qualification and training result.\n· Work closely with Sales Head to develop...",
+                    "jobLevel": "Director and above",
+                    "jobLevelVI": "Giám Đốc và Cấp Cao Hơn",
+                    "jobRequirement": "\u003cp\u003e1.   Qualification\n· Bachelor degree in related disciplines\n\n2. Work Experience\n· 5-10 years experiences in training/ planning\n· 1 year in similar position\n\n3. Knowledge\n· Strong in analysis \u0026amp; presenting ideas\n\n4. Skills\n· Well-structured communication\n· Good in English \u0026amp; fluent in Vietnamese\n· Good interpersonal and convincing\n· Strong in both making \u0026amp; answering questions.\n· Strong at coaching \u0026amp;...",
+                    "jobTitle": "Head of Sales Planning and Development",
+                    "jobUrl": "https://www.vietnamworks.com/head-of-sales-planning-and-development-1761821-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "$1700 - $2400",
+                    "salaryRangeId": 0,
+                    "salaryMin": 1700,
+                    "salaryMax": 2400,
+                    "isSalaryVisible": true,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "companyId": 241344,
+            "companyName": "Ngân Hàng TMCP Phát Triển TP.HCM (HDBank)",
+            "companyLogoURL": "https://images.vietnamworks.com/pictureofcompany/9c/11157037.png",
+            "companyLogoUrlCCP": "https://images02.vietnamworks.com/companyprofile/HDBank/en/_2_LOGO.jpg",
+            "companyProfile": "Là một trong 10 Ngân hàng TMCP hàng đầu Việt Nam, với hơn 30 năm kinh nghiệm hoạt động tại Việt Nam và đang vươn mình ra thế giới, HDBank có tiềm lực tài chính mạnh mẽ và công nghệ hiện đại, cung cấp đa dạng về dịch vụ tài chính ngân hàng cá nhân, doanh nghiệp và nhà đầu tư. HDBank đã hoàn thiện mô hình điểm giao dịch hiện đại, dịch vụ khách hàng chuyên nghiệp, thân thiện với thông điệp « Cam kết lợi ích cao nhất » cho khách hàng và cộng đồng xã hội.\r\n\r\nHDBank thành lập năm 1990, là một trong những ngân hàng TMCP đầu tiên của Việt Nam. HDBank có nguồn lực tài chính mạnh mẽ và công nghệ hiện đại, cung cấp đa dạng về dịch vụ tài chính ngân hàng cá nhân, doanh nghiệp và nhà đầu tư.\r\nTính đến tháng 31/3/2022, HDBank có: mạng lưới 329 điểm giao dịch ngân hàng và 22.803 điểm giao dịch tài chính của HD SAISON phục vụ  20 triệu khách hàng trong hệ sinh thái đặc quyền từ hàng không, siêu thị, viễn thông, tài chính - ngân hàng ..., đặc biệt tại các khu vực nông thôn. Cổ phiếu cũng lọt top danh mục chỉ số VN30, Top 30 cố phiếu có vốn hóa giá trị và thanh toán tốt nhất. Với hệ sinh thái đặc quyền và năng lực M\u0026A mạnh mẽ, HDBank hướng tới vị trí dẫn đầu thị trường.\r\n\r\n*Giải thưởng tiêu biểu:\r\n1. Bằng khen cho Tập thể Ngân hàng Thương mại cổ phần Phát triển Thành phố Hồ Chí Minh (HDBank) vì đã có thành tích xuất sắc trong công tác phòng, chống dịch bệnh Covid-19; góp phần vào sự nghiệp xây dựng chủ nghĩa xã hội và bảo vệ Tổ quốc do Thủ tướng Chính phủ trao tặng. \r\n2. Cờ thi đua của Ngân hàng Nhà nước cho HDBank vì đã có thành tích xuất sắc, dẫn đầu phong trào thi đua Ngành ngân hàng trong năm qua.\r\n3. Top 5 Ngân hàng có khối lượng giao dịch ngoại hối lớn nhất trên FX Matching năm 2021 (Top 5 Most Volume Traded 2021) từ Refinitiv.\r\n4. Top 50 Doanh nghiệp tăng trưởng xuất sắc nhất Việt Nam năm 2022\r\n5. Top 50 Công ty đại chúng uy tín \u0026 hiệu quả năm 2022\r\n6. Top 5 ngân hàng thương mại Việt Nam uy tín năm 2022 (VietnamReport – Vietnamnet)\r\n7. Giải thưởng “Nơi làm việc tốt nhất Châu Á” 5 năm liên tiếp do HR Asia Awards- Tạp chí hàng đầu về nhân sự tại khu vực châu Á bình chọn.\r\n8. 09 Bằng khen của Ngân hàng Nhà nước cho tập thể \r\n9. 51 kỷ niệm chương của Ngân hàng Nhà nước cho sự nghiệp Ngân hàng \r\n10. Top 20 công ty phát triển bền vững nhất sàn chứng khoán (HOSE)\r\n11. Doanh nghiệp dẫn đầu các ngành Việt Nam- ASEAN- EU (Hội Phát triển hợp tác kinh tế Việt Nam – ASEAN)\r\n12. Top thương hiệu tài chính dẫn đầu Việt Nam\r\n13. App Ngân hàng được yêu thích nhất 2021\r\n14. HDBank nhận 2 giải thưởng toàn cầu “Ngân hàng xuất sắc nhất” và “Ngân hàng chuyển đổi số xuất sắc nhất”\r\n15. Ngân hàng Số tốt nhất Việt Nam 2021 theo đánh giá của Asiamoney \r\n16. App HDBank -Top 10 Giải Tin \u0026 Dùng- Thời báo Kinh tế VN\r\n17. Top những ngân hàng thương mại tư nhân niêm yết tốt nhất 2021 do Forbes đánh giá\r\n18. Top 10 doanh nghiệp bền vững do VCCI đánh giá\r\n19. Giải thưởng Chất lượng điện toán Thanh toán quốc tế xuất sắc 4 năm liên tiếp do NH JP Morgan đánh giá. \r\n\r\nTrong hành trình hơn 30 năm chinh phục thị trường, HDBank luôn luôn hướng đến sự phát triển bền vững, gắn kết cộng đồng trong nỗ lực mang lại lợi ích cao nhất cho khách hàng, cổ đông, đối tác, tập thể CBNV.",
+            "website": "",
+            "jobImageURLs": [
+                "https://images.vietnamworks.com/company_profile/82103.jpg",
+                "https://images.vietnamworks.com/company_profile/82104.jpg",
+                "https://images.vietnamworks.com/company_profile/82105.jpg"
+            ],
+            "jobVideoURLs": null,
+            "address": "Toà nhà HD - 25Bis Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, TP. HCM",
+            "companySizeId": 8,
+            "companySizeName": "10,000-19,999",
+            "companySizeNameVI": "10.000-19.999",
+            "contactName": "",
+            "contactEmail": "",
+            "allowRedirect": 0,
+            "allowRedirectJobIds": "",
+            "whyWorkWithUs": "",
+            "profileBaseName": "",
+            "isUpgradeProfile": 0,
+            "isDeleteProfile": 0,
+            "isAllowUserEdit": 0,
+            "workingLocation": [
+                {
+                    "workingLocationId": 2451,
+                    "addressId": 55803,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.783459,
+                        "lon": 106.699186
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 14891,
+                    "addressId": 10835,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 18.67648,
+                        "lon": 105.680804
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 14892,
+                    "addressId": 10836,
+                    "cityId": 56,
+                    "geoLoc": {
+                        "lat": 19.80492,
+                        "lon": 105.774813
+                    },
+                    "cityName": "Thanh Hoa",
+                    "cityNameVI": "Thanh Hóa"
+                },
+                {
+                    "workingLocationId": 14893,
+                    "addressId": 10837,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.848297,
+                        "lon": 106.705314
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 14898,
+                    "addressId": 10841,
+                    "cityId": 38,
+                    "geoLoc": {
+                        "lat": 20.855621,
+                        "lon": 106.681437
+                    },
+                    "cityName": "Lao Cai",
+                    "cityNameVI": "Lào Cai"
+                },
+                {
+                    "workingLocationId": 14899,
+                    "addressId": 10842,
+                    "cityId": 42,
+                    "geoLoc": {
+                        "lat": 20.263492,
+                        "lon": 105.974371
+                    },
+                    "cityName": "Ninh Binh",
+                    "cityNameVI": "Ninh Bình"
+                },
+                {
+                    "workingLocationId": 14900,
+                    "addressId": 10843,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.855621,
+                        "lon": 106.681437
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 16851,
+                    "addressId": 12134,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 16852,
+                    "addressId": 12135,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.756719,
+                        "lon": 106.677489
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 16857,
+                    "addressId": 12140,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.803901,
+                        "lon": 106.715351
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 18552,
+                    "addressId": 13309,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.029518,
+                        "lon": 105.809069
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 18554,
+                    "addressId": 13310,
+                    "cityId": 38,
+                    "geoLoc": {
+                        "lat": 22.495753,
+                        "lon": 103.968139
+                    },
+                    "cityName": "Lao Cai",
+                    "cityNameVI": "Lào Cai"
+                },
+                {
+                    "workingLocationId": 18555,
+                    "addressId": 13311,
+                    "cityId": 49,
+                    "geoLoc": {
+                        "lat": 20.95204,
+                        "lon": 107.077481
+                    },
+                    "cityName": "Quang Ninh",
+                    "cityNameVI": "Quảng Ninh"
+                },
+                {
+                    "workingLocationId": 19498,
+                    "addressId": 13840,
+                    "cityId": 13,
+                    "geoLoc": {
+                        "lat": 10.93797,
+                        "lon": 108.103807
+                    },
+                    "cityName": "Binh Thuan",
+                    "cityNameVI": "Bình Thuận"
+                },
+                {
+                    "workingLocationId": 19504,
+                    "addressId": 13843,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.783459,
+                        "lon": 106.699186
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 20475,
+                    "addressId": 14444,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.036312,
+                        "lon": 105.851147
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 20478,
+                    "addressId": 14446,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.022254,
+                        "lon": 105.811966
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 20661,
+                    "addressId": 14546,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.020592,
+                        "lon": 105.854465
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 22825,
+                    "addressId": 15832,
+                    "cityId": 56,
+                    "geoLoc": {
+                        "lat": 19.812185,
+                        "lon": 105.77261
+                    },
+                    "cityName": "Thanh Hoa",
+                    "cityNameVI": "Thanh Hóa"
+                },
+                {
+                    "workingLocationId": 22826,
+                    "addressId": 15833,
+                    "cityId": 49,
+                    "geoLoc": {
+                        "lat": 20.952413,
+                        "lon": 107.080015
+                    },
+                    "cityName": "Quang Ninh",
+                    "cityNameVI": "Quảng Ninh"
+                },
+                {
+                    "workingLocationId": 22827,
+                    "addressId": 15834,
+                    "cityId": 63,
+                    "geoLoc": {
+                        "lat": 21.313555,
+                        "lon": 105.59832
+                    },
+                    "cityName": "Vinh Phuc",
+                    "cityNameVI": "Vĩnh Phúc"
+                },
+                {
+                    "workingLocationId": 24210,
+                    "addressId": 16643,
+                    "cityId": 43,
+                    "geoLoc": {
+                        "lat": 11.569015,
+                        "lon": 108.994944
+                    },
+                    "cityName": "Ninh Thuan",
+                    "cityNameVI": "Ninh Thuận"
+                },
+                {
+                    "workingLocationId": 24211,
+                    "addressId": 16644,
+                    "cityId": 57,
+                    "geoLoc": {
+                        "lat": 16.465596,
+                        "lon": 107.594847
+                    },
+                    "cityName": "Thua Thien Hue",
+                    "cityNameVI": "Thừa Thiên Huế"
+                },
+                {
+                    "workingLocationId": 27048,
+                    "addressId": 350,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 27049,
+                    "addressId": 18257,
+                    "cityId": 7,
+                    "geoLoc": {
+                        "lat": 21.056854,
+                        "lon": 106.090472
+                    },
+                    "cityName": "Bac Ninh",
+                    "cityNameVI": "Bắc Ninh"
+                },
+                {
+                    "workingLocationId": 27050,
+                    "addressId": 5897,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 19.234249,
+                        "lon": 104.920037
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 27878,
+                    "addressId": 689,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.852571,
+                        "lon": 106.016997
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 42619,
+                    "addressId": 27263,
+                    "cityId": 65,
+                    "geoLoc": {
+                        "lat": 21.716769,
+                        "lon": 104.898588
+                    },
+                    "cityName": "Yen Bai",
+                    "cityNameVI": "Yên Bái"
+                },
+                {
+                    "workingLocationId": 42620,
+                    "addressId": 27264,
+                    "cityId": 60,
+                    "geoLoc": {
+                        "lat": 21.776725,
+                        "lon": 105.22802
+                    },
+                    "cityName": "Tuyen Quang",
+                    "cityNameVI": "Tuyên Quang"
+                },
+                {
+                    "workingLocationId": 42621,
+                    "addressId": 27265,
+                    "cityId": 16,
+                    "geoLoc": {
+                        "lat": 22.666637,
+                        "lon": 106.263985
+                    },
+                    "cityName": "Cao Bang",
+                    "cityNameVI": "Cao Bằng"
+                },
+                {
+                    "workingLocationId": 43505,
+                    "addressId": 6259,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.654682,
+                        "lon": 106.057849
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 43507,
+                    "addressId": 24535,
+                    "cityId": 56,
+                    "geoLoc": {
+                        "lat": 19.806692,
+                        "lon": 105.785182
+                    },
+                    "cityName": "Thanh Hoa",
+                    "cityNameVI": "Thanh Hóa"
+                },
+                {
+                    "workingLocationId": 43508,
+                    "addressId": 11278,
+                    "cityId": 49,
+                    "geoLoc": {
+                        "lat": 20.971198,
+                        "lon": 107.044807
+                    },
+                    "cityName": "Quang Ninh",
+                    "cityNameVI": "Quảng Ninh"
+                },
+                {
+                    "workingLocationId": 44011,
+                    "addressId": 6794,
+                    "cityId": 63,
+                    "geoLoc": {
+                        "lat": 21.281597,
+                        "lon": 105.724974
+                    },
+                    "cityName": "Vinh Phuc",
+                    "cityNameVI": "Vĩnh Phúc"
+                },
+                {
+                    "workingLocationId": 44015,
+                    "addressId": 13471,
+                    "cityId": 58,
+                    "geoLoc": {
+                        "lat": 10.405064,
+                        "lon": 106.118672
+                    },
+                    "cityName": "Tien Giang",
+                    "cityNameVI": "Tiền Giang"
+                },
+                {
+                    "workingLocationId": 44016,
+                    "addressId": 28056,
+                    "cityId": 60,
+                    "geoLoc": {
+                        "lat": 21.776725,
+                        "lon": 105.22802
+                    },
+                    "cityName": "Tuyen Quang",
+                    "cityNameVI": "Tuyên Quang"
+                },
+                {
+                    "workingLocationId": 44017,
+                    "addressId": 14712,
+                    "cityId": 50,
+                    "geoLoc": {
+                        "lat": 16.740307,
+                        "lon": 107.185468
+                    },
+                    "cityName": "Quang Tri",
+                    "cityNameVI": "Quảng Trị"
+                },
+                {
+                    "workingLocationId": 49915,
+                    "addressId": 2450,
+                    "cityId": 66,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Other",
+                    "cityNameVI": "Khác"
+                },
+                {
+                    "workingLocationId": 50348,
+                    "addressId": 2339,
+                    "cityId": 39,
+                    "geoLoc": {
+                        "lat": 10.695572,
+                        "lon": 106.243121
+                    },
+                    "cityName": "Long An",
+                    "cityNameVI": "Long An"
+                },
+                {
+                    "workingLocationId": 50349,
+                    "addressId": 5129,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 50350,
+                    "addressId": 522,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 11.325402,
+                        "lon": 106.477017
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 50985,
+                    "addressId": 1021,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.957413,
+                        "lon": 106.842687
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 52413,
+                    "addressId": 5168,
+                    "cityId": 53,
+                    "geoLoc": {
+                        "lat": 11.335155,
+                        "lon": 106.109885
+                    },
+                    "cityName": "Tay Ninh",
+                    "cityNameVI": "Tây Ninh"
+                },
+                {
+                    "workingLocationId": 52414,
+                    "addressId": 1449,
+                    "cityId": 13,
+                    "geoLoc": {
+                        "lat": 11.09037,
+                        "lon": 108.072078
+                    },
+                    "cityName": "Binh Thuan",
+                    "cityNameVI": "Bình Thuận"
+                },
+                {
+                    "workingLocationId": 52415,
+                    "addressId": 1424,
+                    "cityId": 10,
+                    "geoLoc": {
+                        "lat": 13.886021,
+                        "lon": 109.107739
+                    },
+                    "cityName": "Binh Dinh",
+                    "cityNameVI": "Bình Định"
+                },
+                {
+                    "workingLocationId": 53582,
+                    "addressId": 7685,
+                    "cityId": 21,
+                    "geoLoc": {
+                        "lat": 13.807894,
+                        "lon": 108.109375
+                    },
+                    "cityName": "Gia Lai",
+                    "cityNameVI": "Gia Lai"
+                },
+                {
+                    "workingLocationId": 54934,
+                    "addressId": 33690,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.783459,
+                        "lon": 106.699186
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 55191,
+                    "addressId": 33820,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.020592,
+                        "lon": 105.854465
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 55316,
+                    "addressId": 33880,
+                    "cityId": 55,
+                    "geoLoc": {
+                        "lat": 21.413875,
+                        "lon": 105.848618
+                    },
+                    "cityName": "Thai Nguyen",
+                    "cityNameVI": "Thái Nguyên"
+                },
+                {
+                    "workingLocationId": 55317,
+                    "addressId": 1802,
+                    "cityId": 46,
+                    "geoLoc": {
+                        "lat": 17.610272,
+                        "lon": 106.348747
+                    },
+                    "cityName": "Quang Binh",
+                    "cityNameVI": "Quảng Bình"
+                },
+                {
+                    "workingLocationId": 55318,
+                    "addressId": 33882,
+                    "cityId": 45,
+                    "geoLoc": {
+                        "lat": 12.878635,
+                        "lon": 108.950223
+                    },
+                    "cityName": "Phu Yen",
+                    "cityNameVI": "Phú Yên"
+                },
+                {
+                    "workingLocationId": 55325,
+                    "addressId": 10683,
+                    "cityId": 37,
+                    "geoLoc": {
+                        "lat": 21.853708,
+                        "lon": 106.761519
+                    },
+                    "cityName": "Lang Son",
+                    "cityNameVI": "Lạng Sơn"
+                },
+                {
+                    "workingLocationId": 55326,
+                    "addressId": 1683,
+                    "cityId": 45,
+                    "geoLoc": {
+                        "lat": 13.088186,
+                        "lon": 109.092876
+                    },
+                    "cityName": "Phu Yen",
+                    "cityNameVI": "Phú Yên"
+                },
+                {
+                    "workingLocationId": 59066,
+                    "addressId": 35827,
+                    "cityId": 37,
+                    "geoLoc": {
+                        "lat": 21.848213,
+                        "lon": 106.762919
+                    },
+                    "cityName": "Lang Son",
+                    "cityNameVI": "Lạng Sơn"
+                },
+                {
+                    "workingLocationId": 59067,
+                    "addressId": 35828,
+                    "cityId": 56,
+                    "geoLoc": {
+                        "lat": 19.812053,
+                        "lon": 105.774299
+                    },
+                    "cityName": "Thanh Hoa",
+                    "cityNameVI": "Thanh Hóa"
+                },
+                {
+                    "workingLocationId": 59068,
+                    "addressId": 35829,
+                    "cityId": 60,
+                    "geoLoc": {
+                        "lat": 21.776725,
+                        "lon": 105.22802
+                    },
+                    "cityName": "Tuyen Quang",
+                    "cityNameVI": "Tuyên Quang"
+                },
+                {
+                    "workingLocationId": 59070,
+                    "addressId": 35831,
+                    "cityId": 41,
+                    "geoLoc": {
+                        "lat": 18.898909,
+                        "lon": 105.304338
+                    },
+                    "cityName": "Nghe An",
+                    "cityNameVI": "Nghệ An"
+                },
+                {
+                    "workingLocationId": 59071,
+                    "addressId": 35832,
+                    "cityId": 49,
+                    "geoLoc": {
+                        "lat": 21.033908,
+                        "lon": 106.764821
+                    },
+                    "cityName": "Quang Ninh",
+                    "cityNameVI": "Quảng Ninh"
+                },
+                {
+                    "workingLocationId": 59073,
+                    "addressId": 2130,
+                    "cityId": 32,
+                    "geoLoc": {
+                        "lat": 20.939444,
+                        "lon": 105.925927
+                    },
+                    "cityName": "Hung Yen",
+                    "cityNameVI": "Hưng Yên"
+                },
+                {
+                    "workingLocationId": 73260,
+                    "addressId": 43591,
+                    "cityId": 15,
+                    "geoLoc": {
+                        "lat": 10.024133,
+                        "lon": 105.774066
+                    },
+                    "cityName": "Can Tho",
+                    "cityNameVI": "Cần Thơ"
+                },
+                {
+                    "workingLocationId": 73261,
+                    "addressId": 795,
+                    "cityId": 15,
+                    "geoLoc": {
+                        "lat": 10.045162,
+                        "lon": 105.746854
+                    },
+                    "cityName": "Can Tho",
+                    "cityNameVI": "Cần Thơ"
+                },
+                {
+                    "workingLocationId": 84299,
+                    "addressId": 25962,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 84300,
+                    "addressId": 49418,
+                    "cityId": 35,
+                    "geoLoc": {
+                        "lat": 22.386223,
+                        "lon": 103.470263
+                    },
+                    "cityName": "Lai Chau",
+                    "cityNameVI": "Lai Châu"
+                },
+                {
+                    "workingLocationId": 84301,
+                    "addressId": 12004,
+                    "cityId": 69,
+                    "geoLoc": {
+                        "lat": 0,
+                        "lon": 0
+                    },
+                    "cityName": "Dien Bien",
+                    "cityNameVI": "Điện Biên"
+                },
+                {
+                    "workingLocationId": 84305,
+                    "addressId": 35272,
+                    "cityId": 30,
+                    "geoLoc": {
+                        "lat": 20.827515,
+                        "lon": 105.339079
+                    },
+                    "cityName": "Hoa Binh",
+                    "cityNameVI": "Hòa Bình"
+                },
+                {
+                    "workingLocationId": 87312,
+                    "addressId": 629,
+                    "cityId": 17,
+                    "geoLoc": {
+                        "lat": 16.054407,
+                        "lon": 108.202167
+                    },
+                    "cityName": "Da Nang",
+                    "cityNameVI": "Đà Nẵng"
+                },
+                {
+                    "workingLocationId": 92517,
+                    "addressId": 878,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 11.068631,
+                        "lon": 107.167598
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 92518,
+                    "addressId": 3117,
+                    "cityId": 12,
+                    "geoLoc": {
+                        "lat": 11.751189,
+                        "lon": 106.723464
+                    },
+                    "cityName": "Binh Phuoc",
+                    "cityNameVI": "Bình Phước"
+                },
+                {
+                    "workingLocationId": 92593,
+                    "addressId": 8580,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.823099,
+                        "lon": 106.629664
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 93122,
+                    "addressId": 29525,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.027764,
+                        "lon": 105.83416
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 97785,
+                    "addressId": 56486,
+                    "cityId": 35,
+                    "geoLoc": {
+                        "lat": 22.386223,
+                        "lon": 103.470263
+                    },
+                    "cityName": "Lai Chau",
+                    "cityNameVI": "Lai Châu"
+                },
+                {
+                    "workingLocationId": 97786,
+                    "addressId": 56487,
+                    "cityId": 69,
+                    "geoLoc": {
+                        "lat": 21.804231,
+                        "lon": 103.107653
+                    },
+                    "cityName": "Dien Bien",
+                    "cityNameVI": "Điện Biên"
+                },
+                {
+                    "workingLocationId": 100159,
+                    "addressId": 57727,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 11.797051,
+                        "lon": 106.965376
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 100166,
+                    "addressId": 57731,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.684032,
+                        "lon": 107.035843
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 100362,
+                    "addressId": 57835,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.754028,
+                        "lon": 106.663375
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 103863,
+                    "addressId": 1992,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.844912,
+                        "lon": 106.688084
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 105891,
+                    "addressId": 60742,
+                    "cityId": 37,
+                    "geoLoc": {
+                        "lat": 21.853708,
+                        "lon": 106.761519
+                    },
+                    "cityName": "Lang Son",
+                    "cityNameVI": "Lạng Sơn"
+                },
+                {
+                    "workingLocationId": 106411,
+                    "addressId": 61025,
+                    "cityId": 54,
+                    "geoLoc": {
+                        "lat": 20.402609,
+                        "lon": 106.500962
+                    },
+                    "cityName": "Thai Binh",
+                    "cityNameVI": "Thái Bình"
+                },
+                {
+                    "workingLocationId": 106752,
+                    "addressId": 61179,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.668385,
+                        "lon": 107.032304
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 107133,
+                    "addressId": 61413,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.849547,
+                        "lon": 106.704879
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 118661,
+                    "addressId": 68070,
+                    "cityId": 14,
+                    "geoLoc": {
+                        "lat": 9.185815,
+                        "lon": 105.138136
+                    },
+                    "cityName": "Ca Mau",
+                    "cityNameVI": "Cà Mau"
+                },
+                {
+                    "workingLocationId": 123800,
+                    "addressId": 71017,
+                    "cityId": 29,
+                    "geoLoc": {
+                        "lat": 10.783819,
+                        "lon": 106.699283
+                    },
+                    "cityName": "Ho Chi Minh",
+                    "cityNameVI": "Hồ Chí Minh"
+                },
+                {
+                    "workingLocationId": 150842,
+                    "addressId": 87337,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 21.05127,
+                        "lon": 105.728658
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 150843,
+                    "addressId": 86254,
+                    "cityId": 24,
+                    "geoLoc": {
+                        "lat": 20.958678,
+                        "lon": 105.768861
+                    },
+                    "cityName": "Ha Noi",
+                    "cityNameVI": "Hà Nội"
+                },
+                {
+                    "workingLocationId": 152488,
+                    "addressId": 87339,
+                    "cityId": 28,
+                    "geoLoc": {
+                        "lat": 20.855393,
+                        "lon": 106.685479
+                    },
+                    "cityName": "Hai Phong",
+                    "cityNameVI": "Hải Phòng"
+                },
+                {
+                    "workingLocationId": 152661,
+                    "addressId": 87342,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.790971,
+                        "lon": 106.947114
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 152664,
+                    "addressId": 87335,
+                    "cityId": 19,
+                    "geoLoc": {
+                        "lat": 10.963426,
+                        "lon": 106.938964
+                    },
+                    "cityName": "Dong Nai",
+                    "cityNameVI": "Đồng Nai"
+                },
+                {
+                    "workingLocationId": 152672,
+                    "addressId": 87343,
+                    "cityId": 11,
+                    "geoLoc": {
+                        "lat": 10.904187,
+                        "lon": 106.768002
+                    },
+                    "cityName": "Binh Duong",
+                    "cityNameVI": "Bình Dương"
+                },
+                {
+                    "workingLocationId": 152676,
+                    "addressId": 87322,
+                    "cityId": 53,
+                    "geoLoc": {
+                        "lat": 11.031992,
+                        "lon": 106.362511
+                    },
+                    "cityName": "Tay Ninh",
+                    "cityNameVI": "Tây Ninh"
+                },
+                {
+                    "workingLocationId": 152704,
+                    "addressId": 87344,
+                    "cityId": 20,
+                    "geoLoc": {
+                        "lat": 10.289175,
+                        "lon": 105.767156
+                    },
+                    "cityName": "Dong Thap",
+                    "cityNameVI": "Đồng Tháp"
+                }
+            ],
+            "industries": [
+                {
+                    "industryId": 33,
+                    "industryName": "Sales",
+                    "industryNameVI": "Bán hàng"
+                },
+                {
+                    "industryId": 42,
+                    "industryName": "Banking",
+                    "industryNameVI": "Ngân hàng"
+                },
+                {
+                    "industryId": 59,
+                    "industryName": "Finance/Investment",
+                    "industryNameVI": "Tài chính/Đầu tư"
+                }
+            ],
+            "industriesCCP": [
+                {
+                    "industryId": 42,
+                    "industryName": "Banking",
+                    "industryNameVI": "Ngân hàng"
+                }
+            ],
+            "industriesV3": [
+                {
+                    "industryV3Id": 9,
+                    "industryV3Name": "Banking",
+                    "industryV3NameVI": "Ngân hàng"
+                }
+            ],
+            "industriesV3CCP": [
+                {
+                    "industryV3Id": 9,
+                    "industryV3Name": "Banking",
+                    "industryV3NameVI": "Ngân hàng"
+                }
+            ],
+            "followerCount": 169,
+            "viewCount": 0,
+            "onlineJobCount": 23,
+            "isFollowed": 0,
+            "createdOn": "0001-01-01T00:06:30+07:00",
+            "updatedOn": "0001-01-01T00:06:30+07:00",
+            "companySlug": "hdbank",
+            "companyNameCCP": "Ngân Hàng Thương Mại Cổ Phần Phát Triển TP.HCM",
+            "firstPublishedOn": "0001-01-01T00:06:30+07:00",
+            "lastPublishedOn": "0001-01-01T00:06:30+07:00",
+            "profilePublishedSiteMask": 1,
+            "bannerDesktopUri": "https://images02.vietnamworks.com/companyprofile/HDBank/en/_1_.jpg",
+            "jobs": [
+                {
+                    "jobId": 1762249,
+                    "address": "Toà nhà HD - 25Bis Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, TP. HCM",
+                    "jobDescription": "\u003cp\u003ea. Xây dựng mối quan hệ với các Định chế tài chính (ĐCTC), khai thác cơ hội kinh doanh và hợp tác với các ĐCTC.\nb. Xây dựng quan hệ với các tổ chức chính phủ (NHNN, Bộ tài chính, Kho bạc nhà nước, cơ quan quản lý dự án…) và các tổ chức nước...",
+                    "jobLevel": "Experienced (non-manager)",
+                    "jobLevelVI": "Nhân viên",
+                    "jobRequirement": "\u003cp\u003e1. Tốt nghiệp Đại học, chuyên ngành: Tài chính, Ngân hàng, Quản trị Kinh doanh hoặc chuyên môn nghiệp vụ tương đương.\n2. Trình độ Tin học: thành thạo vi tính văn phòng.\n3. Trình độ ngoại ngữ (Tiếng Anh): thành thạo, giao tiếp tốt.\n4. Kinh nghiệm: Có tối thiểu 03 năm kinh nghiệm công tác...",
+                    "jobTitle": "Chuyên Viên Cao Cấp QHKH Định Chế Tài Chính",
+                    "jobUrl": "https://www.vietnamworks.com/chuyen-vien-cao-cap-qhkh-dinh-che-tai-chinh-1762249-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                },
+                {
+                    "jobId": 1759049,
+                    "address": "Toà nhà HD - 25Bis Nguyễn Thị Minh Khai, Phường Bến Nghé, Quận 1, TP. HCM",
+                    "jobDescription": "I. Trách nhiệm chính:\r\n1.\tQuản lý, điều hành công việc chung của đơn vị\r\n2.\tQuản lý nghiên cứu, thiết kế, triển khai sản phẩm dịch vụ đối với KHDN Lớn \r\n3.\tQuản lý phân bổ thực hiện kế hoạch kinh doanh của Khối Khách hàng doanh nghiệp lớn\r\n4.\tXây dựng/tham gia xây dựng, hỗ trợ triển khai chính...",
+                    "jobLevel": "Manager",
+                    "jobLevelVI": "Trưởng phòng",
+                    "jobRequirement": "1.\tTrình độ chuyên môn: Tốt nghiệp đại học trở lên các chuyên ngành phù hợp như kinh tế, tài chính, ngân hàng, quản trị kinh doanh hoặc chuyên môn nghiệp vụ tương đương.\r\n2.\tTrình độ Tin học: thành thạo vi tính văn phòng.\r\n3.\tTrình độ ngoại ngữ (Tiếng Anh): Cấp độ C hoặc tương đương\r\n4. ...",
+                    "jobTitle": "Phó Phòng Cash Sales - Khối KHDN Lớn và Định Chế Tài Chính - Hội Sở HCM",
+                    "jobUrl": "https://www.vietnamworks.com/pho-phong-cash-sales-khoi-khdn-lon-va-dinh-che-tai-chinh-hoi-so-hcm-1759049-jv",
+                    "locations": "Ho Chi Minh",
+                    "locationsVI": "Hồ Chí Minh",
+                    "salary": "",
+                    "prettySalary": "Thương lượng",
+                    "salaryRangeId": 0,
+                    "salaryMin": 0,
+                    "salaryMax": 0,
+                    "isSalaryVisible": false,
+                    "WorkingLocations": [
+                        {
+                            "cityId": 29,
+                            "cityName": "Ho Chi Minh",
+                            "cityNameVI": "Hồ Chí Minh"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

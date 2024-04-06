@@ -166,12 +166,12 @@ input {
                                     <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                         <label>Quốc gia </label>
                                         <select name="country" class="chosen-select">
-                                            <option @selected(old('country') == 'VN') value="VN">Trong nước</option>
-                                            <option @selected(old('country') == 'NN') value="NN">Ngoài nước</option>
+                                            <option @selected(old('country')=='VN' ) value="VN">Trong nước</option>
+                                            <option @selected(old('country')=='NN' ) value="NN">Ngoài nước</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
-                                        <label>Vị Trí <span class="label-required">*</span></label>
+                                        <label>Lĩnh Vực <span class="label-required">*</span></label>
                                         <select name="degree_id" class="chosen-select">
                                             @foreach ($param['degrees'] as $degree)
                                             <option value="{{ $degree->id }}">{{ $degree->name }}</option>
@@ -303,8 +303,8 @@ input {
 
 
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Giờ bắt đầu đăng :</label>
-                                            <input type="time" value="{{ old('start_hour') }}" name="start_hour"
+                                            <label>Giờ bắt đầu đăng :<span class="label-required">*</span></label>
+                                            <input type="time" value="{{ old('start_hour') ? old('start_hour') : '00:00' }}" name="start_hour"
                                                 id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                             <p style="color:red">
@@ -312,8 +312,8 @@ input {
                                             @endif
                                         </div>
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Giờ Kết thúc :</label>
-                                            <input type="time" value="{{ old('end_hour') }}" name="end_hour"
+                                            <label>Giờ Kết thúc :<span class="label-required">*</span></label>
+                                            <input type="time" value="{{ old('end_hour') ? old('end_hour') : '23:59' }}" name="end_hour"
                                                 id="nameInput" placeholder="Giờ...">
                                             @if ($errors->any())
                                             <p style="color:red">
@@ -347,30 +347,35 @@ function calculateDays() {
     var endDayInput = document.querySelector('input[name="end_day"]');
     var numberDayInput = document.querySelector('input[name="number_day"]');
 
-    var startDay = new Date(startDayInput.value);
-    var endDay = new Date(endDayInput.value);
+    if (startDayInput.value && endDayInput.value) {
+        var startDay = new Date(startDayInput.value);
+        var endDay = new Date(endDayInput.value);
 
-    var timeDiff = endDay - startDay;
-    var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        var timeDiff = endDay - startDay;
+        var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-    if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <= 60) { // Kiểm tra số ngày có nằm trong khoảng từ 0 đến 60 không
-        numberDayInput.value = dayDiff;
-    } else {
-        alert("Số ngày không được vượt quá 60");
-        endDayInput.value = "";
-        numberDayInput.value = "";
+        if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <=
+            60) { // Kiểm tra số ngày có nằm trong khoảng từ 0 đến 60 không
+            numberDayInput.value = dayDiff;
+        } else {
+            alert("Số ngày không được vượt quá 60");
+            endDayInput.value = "";
+            numberDayInput.value = "";
+        }
+
+        // validate
+
+        var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+        var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+
+        if (endDate < startDate) {
+            alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+            document.querySelector('input[name="end_day"]').value = "";
+        }
+        handle_price_package();
     }
 
-    // validate
 
-    var startDate = new Date(document.querySelector('input[name="start_day"]').value);
-    var endDate = new Date(document.querySelector('input[name="end_day"]').value);
-
-    if (endDate < startDate) {
-        alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
-        document.querySelector('input[name="end_day"]').value = "";
-    }
-    handle_price_package();
 }
 
 // hàm xử lý tính giá tiền

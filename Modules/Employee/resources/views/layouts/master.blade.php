@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{{ env('APP_NAME') }} | Just another HTML Template | Dashboard</title>
+    <title>{{ env('APP_NAME') }}</title>
 
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
@@ -34,7 +34,7 @@
 
         <!-- Copyright -->
         <div class="copyright-text">
-            <p>© <?= date('Y');?> Tuyển dụng Huế. All Right Reserved.</p>
+            <p>© <?= date('Y');?> {{ env('APP_NAME') }}. All Right Reserved.</p>
         </div>
     </div><!-- End Page Wrapper -->
     <script src="{{ asset('website-assets/js/jquery.js')}}"></script>

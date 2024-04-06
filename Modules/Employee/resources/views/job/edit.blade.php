@@ -16,10 +16,7 @@
                             <div class="widget-title">
                                 <h4></h4>
                             </div>
-
                             <div class="widget-content">
-
-
                                 <form action="{{ route('employee.job.update', $job->id) }}" method="post"
                                     class="default-form">
                                     @if (session('error'))
@@ -178,16 +175,16 @@
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>giới tính</label>
+                                            <label>Giới tính</label>
                                             @if ($job->status == 0)
                                                 <select name="gender" class="chosen-select">
-                                                    <option value="">không yêu cầu</option>
+                                                    <option value="">Không yêu cầu</option>
                                                     <option @selected($job->gender == 1) value="1">Nam</option>
                                                     <option @selected($job->gender == 2) value="2">Nữ</option>
                                                 </select>
                                             @elseif ($job->status == 1)
                                                 <select name="gender" style="pointer-events: none;">
-                                                    <option value="">không yêu cầu</option>
+                                                    <option value="">Không yêu cầu</option>
                                                     <option @selected($job->gender == 1) value="1">Nam</option>
                                                     <option @selected($job->gender == 2) value="2">Nữ</option>
                                                 </select>
@@ -259,8 +256,6 @@
                                                     {{ $errors->first('degree_id') }}</p>
                                             @endif
                                         </div>
-
-
 
 
                                         <!-- About Company -->
