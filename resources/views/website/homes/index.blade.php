@@ -73,14 +73,45 @@ $("#section-header .box-load-more").click(function() {
 });
 </script>
 <script>
+function createJob(items) {
+    var data = [];
+    var labels = [];
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        data.push(item.count);
+        labels.push(item.date);
+    }
+    return {
+        labels: labels,
+        data: data
+    };
+}
+function createCareer(items) {
+    var data = [];
+    var labels = [];
+    for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        data.push(item.jobs_count);
+        labels.push(item.name);
+    }
+    return {
+        labels: labels,
+        data: data
+    };
+}
+
+var data_careers = {!!$statistical_career_jobs_json!!};
+var data_jobs = {!!$statistical_jobs_json!!};
+var chart_career = createCareer(data_careers);
+var chart_job = createJob(data_jobs);
+
 const ctx = document.getElementById('myChartJobOpportunityGrowthDashboard');
 new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['07/03', '13/03', '19/03', '25/03', '31/03', '06/04'],
+        labels: chart_job.labels,
         datasets: [{
-            label: '# of Votes',
-            data: [23056, 48299, 30458, 50768, 40975, 48482],
+            data: chart_job.data,
             backgroundColor: '#4ec3bf',
             borderColor: 'rgba(255, 99, 132, 1)',
         }]
@@ -102,10 +133,9 @@ const ctx1 = document.getElementById('myChartDemandJobDashboard');
 new Chart(ctx1, {
     type: 'bar',
     data: {
-        labels: ['Kinh doanh', 'Marketing', 'Dịch vụ', 'Tư vấn', 'Hành chính'],
+        labels: chart_career.labels,
         datasets: [{
-            label: '# of Votes',
-            data: [15407, 7991, 5051, 4885, 4605],
+            data: chart_career.data,
             borderWidth: 1,
             // backgroundColor: '#4ec3bf',
             borderColor: 'rgba(255, 99, 132, 1)',

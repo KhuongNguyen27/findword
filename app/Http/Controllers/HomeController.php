@@ -46,7 +46,6 @@ class HomeController extends Controller
                 ELSE 7
             END")
         ->orderBy('jobs.id','DESC')->limit(20)->get()->chunk(10);
-        
         // Việc làm tốt nhất
         $vip_jobs = Job::select('jobs.*')
         ->where('jobs.status',1)
@@ -70,11 +69,19 @@ class HomeController extends Controller
 
         // Thị trường việc làm
         $lasest_jobs = Job::where('status',1)->orderBy('id','DESC')->limit(3)->get();
-        $quantity_job_new_today = Job::where('status',1)->where("created_at",">=",Carbon::now()->subDay())->where("created_at","<=",Carbon::now())->count();
+        $quantity_job_new_today = Job::where('created_at', '>=', Carbon::now()->subDay())
+        ->count();
         $quantity_job_recruitment = Job::where('status',1)->count();
-        $quantity_company_recruitment = UserEmployee::count();
-
+        $quantity_company_recruitment = Job::with('userEmployee')->get()->pluck('userEmployee')->unique()->count();
         $employees = UserEmployee::where('is_top',1)->limit(12)->get();
+ 
+        // Biểu đồ 
+        $statistical_career_jobs = Career::withCount('jobs')->get();
+        $statistical_jobs = Job::selectRaw('COUNT(*) as count, DATE(created_at) as date')
+        ->groupBy('date')
+        ->get();
+        $statistical_career_jobs_json = json_encode($statistical_career_jobs);
+        $statistical_jobs_json = json_encode($statistical_jobs);
         $params = [
             'route' => 'jobs.vnjobs',
             'careers' => $careers,
@@ -91,6 +98,8 @@ class HomeController extends Controller
             'lasest_jobs' => $lasest_jobs,
             'degrees' => $degrees,
             'formworks' => $formworks,
+            'statistical_career_jobs_json' => $statistical_career_jobs_json,
+            'statistical_jobs_json' => $statistical_jobs_json,
         ];
         return view('website.homes.index',$params);
     }

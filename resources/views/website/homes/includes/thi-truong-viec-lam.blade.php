@@ -71,11 +71,11 @@
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
                                         class="caption"> Nhu cầu tuyển dụng theo </span>
                                 </div>
-                                <div class="box-select"> <select name="demand-job-select"
-                                        id="demand-job-select-dashboard" class="form-control select2 text-white">
-                                        <option value="2" class="text-black"> Ngành nghề </option>
-                                        <option value="4" class="text-black"> Mức lương </option>
-                                    </select> </div>
+                                    <!-- <div class="box-select"> <select name="demand-job-select"
+                                            id="demand-job-select-dashboard" class="form-control select2 text-white">
+                                            <option value="2" class="text-black"> Ngành nghề </option>
+                                            <option value="4" class="text-black"> Mức lương </option>
+                                        </select> </div> -->
                             </div> <img class="img-responsive loading-chart lazy" style="display:none"
                                 data-src="https://static.topcv.vn/v4/image/welcome/section-header/loading-chart.svg" />
                             <div class="box-chart" style="display:block!important">

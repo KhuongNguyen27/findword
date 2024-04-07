@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class JobSeed extends Seeder
 {
@@ -12,6 +13,6 @@ class JobSeed extends Seeder
      */
     public function run(): void
     {
-        //
+        
     }
 }
