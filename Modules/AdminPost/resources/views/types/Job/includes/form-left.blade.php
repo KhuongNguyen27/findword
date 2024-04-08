@@ -55,7 +55,8 @@
             </select>
             <x-admintheme::form-input-error field="deadline" />
         </div>
-        <div class="mb-4">
+      <div class="row">
+      <div class="col-6 mb-4">
             <label class="mb-3">{{ __('gender') }}</label>
             <select name="gender" class="form-control">
                 <option {{ !@'selected' }} value="">Không yêu cầu</option>
@@ -64,6 +65,13 @@
             </select>
             <x-admintheme::form-input-error field="deadline" />
         </div>
+        <div class="col-6 mb-4">
+            <label class="mb-3">{{ __('position') }}</label>
+            <input type="number" class="form-control" name="position"
+                value="{{ $item->position ?? old('position') }}">
+            <x-admintheme::form-input-error field="position" />
+        </div>
+      </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('work_address') }}</label>
             <input type="text" class="form-control" name="work_address"
@@ -95,8 +103,8 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('requirements') }}</label>
-            <textarea name="requirements" placeholder="Yêu cầu..."
-                class="form-control html-editor">{{ @$item->requirements }}</textarea>
+            <textarea name="requirements" placeholder="Yêu cầu..." id="requirements"
+                class="form-control">{{ @$item->requirements }}</textarea>
             <x-admintheme::form-input-error field="requirements" />
         </div>
         <div class="mb-4">

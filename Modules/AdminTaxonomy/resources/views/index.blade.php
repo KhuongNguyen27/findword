@@ -40,6 +40,7 @@
                                 </th>
                                 <th>{{ __('name') }}</th>
                                 <th>{{ __('status') }}</th>
+                                <th>{{ __('position') }}</th>
                                 <th>{{ __('created_at') }}</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
@@ -53,6 +54,7 @@
                                 </td>
                                 <td>{!! $item->name !!}</td>
                                 <td>{!! $item->status_fm !!}</td>
+                                <td>{!! $item->position !!}</td>
                                 <td>{{ $item->created_at_fm }}</td>
                                 <td>
                                     <div class="dropdown">

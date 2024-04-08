@@ -26,6 +26,7 @@ class AdminTaxonomyController extends Controller
             'model'         => $this->model,
             'items'         => $items
         ];
+        // dd($items);
         if ($type && view()->exists($this->view_path.'types.'.$type.'.index')) {
             return view($this->view_path.'types.'.$type.'.index', $params);
         }
