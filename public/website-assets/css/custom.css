@@ -594,3 +594,6 @@ span.company-logo img {
         display: none;
     }
 }
+#dashboard .block-dashboard {
+    background: linear-gradient(83.78deg, #022423 1.64%, #6ec7c7 93.62%) !important;
+}
