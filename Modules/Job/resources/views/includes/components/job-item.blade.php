@@ -48,7 +48,15 @@ $job->work_address = end($work_address);
                     <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem mức lương</a></span>
                     @endif
                 </li>
-                <li><span class="address">{{ $job->work_address }}</span></li>
+                <li>
+                    <span class="address">
+                        @php
+                            $address = $job->work_address;
+                            $shortAddress = Str::limit($address, 20);
+                        @endphp
+                        {{ $shortAddress }}
+                    </span>
+                </li>
                 @if (@$job_other_info)
                 <li><span class="address">Cập nhật <?= $updated_at; ?></span></li>
                 <li><span class="address">Còn <?php echo $remainingDays;?> ngày để ứng tuyển</span></li>
