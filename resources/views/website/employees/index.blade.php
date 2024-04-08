@@ -63,7 +63,7 @@
                                                     </span>
                                                     @php
                                                         $address = $item->address ? $item->address : '-';
-                                                        $shortAddress = Str::limit($address, 40); 
+                                                        $shortAddress = mb_substr($address,0, 40); 
                                                     @endphp
                                                     {{ $shortAddress }}
                                                 </li>
