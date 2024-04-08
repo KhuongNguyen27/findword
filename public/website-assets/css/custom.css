@@ -95,7 +95,6 @@
     font-weight: 500 !important;
     line-height: 16px !important;
 }
-
 .col-job-info .address,
 .col-job-info .salary {
     background: #f4f5f5;
@@ -106,6 +105,10 @@
     font-weight: 500;
     line-height: 16px;
     padding: 4px 8px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bookmark-btn {
@@ -349,7 +352,7 @@ span.thumb-cover {
     position: absolute;
     width: 30px;
     cursor: pointer;
-    top: 100px !important;
+    top: 75px !important;
     background: white;
     border: 1px solid #ccc;
     border-radius: 50%;

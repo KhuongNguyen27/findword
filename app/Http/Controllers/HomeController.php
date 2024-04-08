@@ -64,7 +64,7 @@ class HomeController extends Controller
         ->orderBy('jobs.id','DESC')
         ->limit(12)
         ->get()
-        ->chunk(6);
+        ->chunk(9);
 
 
         // Thị trường việc làm
