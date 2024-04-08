@@ -38,7 +38,9 @@ $job->work_address = end($work_address);
             </h4>
             @if (isset($company_name))
                 <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
-                    class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
+                    class="text-silver company company_name">
+                    <span class="text_ellipsis">{{ $job->userEmployee->name }}</span>
+                </a>
             @endif
             @if ($job_info)
                 <ul class="job-info mb-0">
