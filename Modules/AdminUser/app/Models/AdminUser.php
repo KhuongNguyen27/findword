@@ -27,6 +27,7 @@ class AdminUser extends Model
         'type',
         'status',
         'verify',
+        'position',
     ];
     
     protected static function newFactory(): AdminUserFactory
@@ -132,7 +133,7 @@ class AdminUser extends Model
         try {
             $data = $request->except(['_token', '_method']);
             $item = self::findOrFail($id);
-            $userData   = $request->only(['name', 'email','password','type','status','verify']);
+            $userData   = $request->only(['name', 'email','password','type','status','verify','position']);
             if ($request->hasFile('image')) {
                 self::deleteFile($item->image);
                 $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
@@ -146,7 +147,10 @@ class AdminUser extends Model
                 $custom_fields = $request->only($item->{$item->type}->custom_fields);
                 $item->{$item->type}()->update($custom_fields);
             }
-            $item->verify = $data['verify'];
+            if (isset($data['verify'])) {
+                $verifyValue = $data['verify'];
+            } else {
+            }
             $item->update($userData);
             if($type == "staff"){
                 $user_staff = UserStaff::where('user_id',$item->id)->first();

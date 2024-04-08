@@ -89,13 +89,24 @@
                                 <x-admintheme::form-input-error field="experience_years" />
                             </div>
                         </div>
-                        <div class="mb-4">
-                            <label class="mb-3">{{ __('outstanding_achievements') }} <span
-                                    class="label-required text-danger">*</span></label>
-                            <input type="text" class="form-control" name="outstanding_achievements"
-                                value="{{ $item->staff->outstanding_achievements ?? old('outstanding_achievements') }}"
-                                style="border: none; background-color: white" disabled readonly>
-                            <x-admintheme::form-input-error field="outstanding_achievements" />
+                      <div class="row">
+                        <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('outstanding_achievements') }} <span
+                                        class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="outstanding_achievements"
+                                    value="{{ $item->staff->outstanding_achievements ?? old('outstanding_achievements') }}"
+                                    style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="outstanding_achievements" />
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label class="mb-3">{{ __('position') }} <span
+                                        class="label-required text-danger">*</span></label>
+                                <input type="text" class="form-control" name="position"
+                                    value="{{ $item->position ?? old('position') }}"
+                                    style="border: none; background-color: white" disabled readonly>
+                                <x-admintheme::form-input-error field="position" />
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

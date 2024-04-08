@@ -49,7 +49,6 @@ class AdminModel extends Model
         }else{
             $query = self::query(true);
         }
-        
         if($request->type && Schema::hasColumn($tableName, 'type')){
             $query->where('type',$request->type);
         }

@@ -5,7 +5,7 @@
             <img src="https://codervent.com/roksyn/demo/ltr/assets/images/logo-icon.png" class="logo-img" alt="">
         </div>
         <div class="logo-name flex-grow-1">
-            <h5 class="mb-0">{{ __('hue_find_work') }}</h5>
+            <h5 class="mb-0">{{ ENV('APP_NAME') }}</h5>
         </div>
         <div class="sidebar-close ">
             <span class="material-symbols-outlined">{{ __('close') }}</span>
