@@ -5,19 +5,19 @@ $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày c
 $remainingDays = round($remainingDays);
 $updated_at = $job->updated_at ? $job->updated_at->diffForHumans() : '';
 
-$small_logo_border_color        = $job->job_package->job_small_logo_border_color;
-$small_logo_border_color_style  = $small_logo_border_color ? 'border-color: '.$small_logo_border_color.' !important;' : '';
-$small_title_color              = $job->job_package->job_small_title_color;
-$small_title_color_style        = $small_title_color ? 'color: '.$small_title_color.' !important;' : '';
-$small_box_border_color         = $job->job_package->job_small_box_border_color;
-$small_box_border_color_style   = $small_box_border_color ? 'color: '.$small_box_border_color.' !important;' : '';
+$small_logo_border_color = $job->job_package->job_small_logo_border_color;
+$small_logo_border_color_style = $small_logo_border_color ? 'border-color: ' . $small_logo_border_color . ' !important;' : '';
+$small_title_color = $job->job_package->job_small_title_color;
+$small_title_color_style = $small_title_color ? 'color: ' . $small_title_color . ' !important;' : '';
+$small_box_border_color = $job->job_package->job_small_box_border_color;
+$small_box_border_color_style = $small_box_border_color ? 'color: ' . $small_box_border_color . ' !important;' : '';
 
-$detail_header_bg               = $job->job_package->job_detail_header_bg;
-$detail_company_bg              = $job->job_package->job_detail_company_bg;
+$detail_header_bg = $job->job_package->job_detail_header_bg;
+$detail_company_bg = $job->job_package->job_detail_company_bg;
 
-$job->work_address = str_replace(', Vietnam','',$job->work_address);
-$job->work_address = str_replace(', Việt Nam','',$job->work_address);
-$work_address = explode(',',$job->work_address);
+$job->work_address = str_replace(', Vietnam', '', $job->work_address);
+$job->work_address = str_replace(', Việt Nam', '', $job->work_address);
+$work_address = explode(',', $job->work_address);
 $job->work_address = end($work_address);
 // $job->work_address = end( explode(',',$job->work_address) );
 ?>
@@ -25,45 +25,53 @@ $job->work_address = end($work_address);
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
             <span class="tag-job-flash">
-                @if( $job->job_package->image_fm )
-                <img src="{{ $job->job_package->image_fm }}" alt="">
+                @if ($job->job_package->image_fm)
+                    <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>
-            <span class="company-logo"  style="{{ $small_logo_border_color_style }}" >
+            <span class="company-logo" style="{{ $small_logo_border_color_style }}">
                 <img src="{{ $job->userEmployee->image_fm }}">
             </span>
             <h4 class="job-title quickview-job text_ellipsis" title="{{ $job->name }}">
-                <a style="{{ $small_title_color_style }}" href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
+                <a style="{{ $small_title_color_style }}"
+                    href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
             @if (isset($company_name))
-            <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
-                class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
+                <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
+                    class="text-silver company text_ellipsis company_name">{{ $job->userEmployee->name }}</a>
             @endif
             @if ($job_info)
-            <ul class="job-info mb-0">
-                <li>
-                    @if( auth()->check() )
-                    <span class="salary">{{ $job->wage->name ?? '' }}</span>
-                    @else
-                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem mức lương</a></span>
+                <ul class="job-info mb-0">
+                    <li>
+                        @if (auth()->check())
+                            <span class="salary">
+                                @if (isset($job->wage->name))
+                                    {{ $job->wage->name }}
+                                @else
+                                    Chưa xác nhận
+                                @endif
+                            </span>
+                        @else
+                            <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem
+                                    mức lương</a></span>
+                        @endif
+                    </li>
+                    <li><span class="address">{{ $job->work_address }}</span></li>
+                    @if (@$job_other_info)
+                        <li><span class="address">Cập nhật <?= $updated_at ?></span></li>
+                        <li><span class="address">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>
                     @endif
-                </li>
-                <li><span class="address">{{ $job->work_address }}</span></li>
-                @if (@$job_other_info)
-                <li><span class="address">Cập nhật <?= $updated_at; ?></span></li>
-                <li><span class="address">Còn <?php echo $remainingDays;?> ngày để ứng tuyển</span></li>
-                @endif
-            </ul>
+                </ul>
             @endif
             @if ($bookmark)
-            <a href="javascript:;" class="bookmark-btn"
-                data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                @if (in_array($job->id, $cr_user_favorites))
-                <span class="flaticon-bookmark active"></span>
-                @else
-                <span class="flaticon-bookmark"></span>
-                @endif
-            </a>
+                <a href="javascript:;" class="bookmark-btn"
+                    data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
+                    @if (in_array($job->id, $cr_user_favorites))
+                        <span class="flaticon-bookmark active"></span>
+                    @else
+                        <span class="flaticon-bookmark"></span>
+                    @endif
+                </a>
             @endif
             <div class="quickview-job-hide"></div>
             <div class="quickview-job-content" style="display:none;">
