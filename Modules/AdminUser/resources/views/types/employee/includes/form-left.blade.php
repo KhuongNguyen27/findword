@@ -29,7 +29,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
-            <textarea class="tinymce" name="about" cols="4" rows="6">{{ $item->employee->about ?? old('about') }}</textarea>
+            <textarea id="description" class="tinymce" name="about" cols="4" rows="6">{{ $item->employee->about ?? old('about') }}</textarea>
             <div id="tinycomments-container">
                 <x-admintheme::form-input-error field="about"/>
             </div>
