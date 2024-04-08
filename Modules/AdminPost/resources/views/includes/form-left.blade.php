@@ -7,7 +7,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
-            <textarea class="form-control html-editor" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
+            <textarea class="form-control" id="description" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
             <x-admintheme::form-input-error field="description"/>
         </div>
     </div>

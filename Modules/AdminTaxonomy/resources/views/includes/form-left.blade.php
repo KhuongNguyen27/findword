@@ -6,8 +6,13 @@
             <x-admintheme::form-input-error field="name"/>
         </div>
         <div class="mb-4">
+            <label class="mb-3">{{ __('position') }}</label>
+            <input type="number" class="form-control" name="position" value="{{ $item->position ?? old('position') }}">
+            <x-admintheme::form-input-error field="position"/>
+        </div>
+        <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
-            <textarea class="html-editor" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
+            <textarea class="html-editor" name="description" id="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
             <div id="tinycomments-container">
                 <x-admintheme::form-input-error field="description"/>
             </div>

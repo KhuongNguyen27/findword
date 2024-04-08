@@ -2,7 +2,7 @@
     <script src="https://cdn.tiny.cloud/1/1jhkvs1dgso07gthij84cl3n089g7zidgzkmjx7t8ip0g3ae/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
-    <script>
+    <!-- <script>
       tinymce.init({
         selector: '.html-editor',
         readonly: false,
@@ -16,6 +16,13 @@
         ],
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
       });
+    </script> -->
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+    CKEDITOR.replace('description');
+    </script>
+    <script>
+    CKEDITOR.replace('requirements');
     </script>
     
     

@@ -47,6 +47,7 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
+                            <th>{{ __('position') }}</th>
                             <th>{{ __('package') }}</th>
                             <th>{{ __('start') }}</th>
                             <th>{{ __('end') }}</th>
@@ -63,6 +64,7 @@
                                 {{ $item->name }}
                                 <p class="mb-0 product-category">{{ $item->user->name ?? '' }}</p>
                             </td>
+                            <td>{{ $item->position }}</td>
                             <td>{{ $item->job_package->name  ?? '' }}</td>
                             <td>{{ $item->start_day }}</td>
                             <td>{{ $item->end_day }}</td>

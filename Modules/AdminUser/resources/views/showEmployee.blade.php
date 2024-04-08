@@ -41,9 +41,14 @@
                                 <td>{{ $item->employee->address }}</td>
                                 <td>{{ $item->employee->website }}</td>
                             </tr>
+                            <tr class="col-6" >
+                                <th> {{__('position')}}: </th>
+                                <td> {{ $item->position }} </td>
+                            </tr>
                             <tr class="col-6">
                                 <th>Mô tả:</th>
                             </tr>
+                          
                             <tr class="col-6">
                                 <td>{!! $item->employee->about !!}</td>
                             </tr>

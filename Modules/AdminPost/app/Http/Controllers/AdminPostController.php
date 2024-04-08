@@ -22,6 +22,7 @@ class AdminPostController extends Controller
         // $this->authorize('viewAny',$this->model);
         $type = $request->type;
         $items = $this->model::getItems($request,null,$type);
+        
         $params = [
             'route_prefix'  => $this->route_prefix,
             'model'         => $this->model,

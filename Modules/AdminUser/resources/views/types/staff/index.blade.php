@@ -44,7 +44,8 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
-                            <th>Email</th>
+                            <th>{{__('email')}}</th>
+                            <th>{{ __('position') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
                             <th>{{ __('action') }}</th>
@@ -59,6 +60,7 @@
                             <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
                             </td>
                             <td>{{ $item->email }}</td>
+                            <td>{{ $item->position }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>{{ $item->created_at_fm }}</td>
                             <td>
