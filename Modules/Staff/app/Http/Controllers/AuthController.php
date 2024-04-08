@@ -82,7 +82,7 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Bug occurred: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Registration failed');
+            return redirect()->back()->with('error', 'Đăng ký không thành công');
         }
     }
 
@@ -157,5 +157,6 @@ class AuthController extends Controller
         }
     }
 }
+
 
 
