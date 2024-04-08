@@ -1,5 +1,5 @@
 <!-- Top Companies -->
-<section class="top-companies pt-5 pb-5">
+<section class="top-companies pt-3 pb-3">
     <div class="auto-container">
         <div class="ls-outer theme-card">
             <div class="ls-switcher theme-card-header">

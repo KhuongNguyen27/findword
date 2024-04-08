@@ -1,4 +1,4 @@
-<section class="ls-section pt-5 pb-5 list-feature-jobs" style="background:#f3f5f7!important;">
+<section class="ls-section pt-2 pb-2 list-feature-jobs" style="background:#f3f5f7!important;">
     <div class="auto-container">
         <div class="row">
             <div class="content-column col-lg-8">
