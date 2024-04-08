@@ -73,6 +73,10 @@ class Job extends AdminModel
     {
         return $this->belongsTo(User::class);
     }
+    public function province()
+    {
+        return $this->belongsTo(Province::class,'province_id','id');
+    }
     public function job_package()
     {
         return $this->belongsTo(JobPackage::class,'jobpackage_id','id');

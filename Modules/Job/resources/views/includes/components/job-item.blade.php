@@ -20,6 +20,11 @@ $job->work_address = str_replace(', Việt Nam', '', $job->work_address);
 $work_address = explode(',', $job->work_address);
 $job->work_address = end($work_address);
 // $job->work_address = end( explode(',',$job->work_address) );
+
+if( $job->province ){
+    $job->province->name = str_replace('Tỉnh','',$job->province->name);
+    $job->province->name = str_replace('Thành phố','',$job->province->name);
+}
 ?>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
@@ -47,10 +52,10 @@ $job->work_address = end($work_address);
                     <li>
                         @if (auth()->check())
                             <span class="salary">
-                                @if (isset($job->wage->name))
-                                    {{ $job->wage->name }}
+                                @if ($job->salaryMin || $job->salaryMax)
+                                    {{ $job->salaryMin }} - {{ $job->salaryMax }}
                                 @else
-                                    Chưa xác nhận
+                                    Thương lượng
                                 @endif
                             </span>
                         @else
@@ -58,10 +63,10 @@ $job->work_address = end($work_address);
                                     mức lương</a></span>
                         @endif
                     </li>
-                    <li><span class="address">{{ $job->work_address }}</span></li>
+                    <li><span class="address">{{ $job->province->name }}</span></li>
                     @if (@$job_other_info)
-                        <li><span class="address">Cập nhật <?= $updated_at ?></span></li>
-                        <li><span class="address">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>
+                        <li><span class="salary job-updated">Cập nhật <?= $updated_at ?></span></li>
+                        <li><span class="salary job-remain">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>
                     @endif
                 </ul>
             @endif

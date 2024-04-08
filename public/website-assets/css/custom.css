@@ -107,11 +107,13 @@
     font-weight: 500;
     line-height: 16px;
     padding: 4px 8px;
+}
+/* .col-job-info .address{
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
+} */
 
 .bookmark-btn {
     color: #28c1bc;
@@ -596,4 +598,11 @@ span.company-logo img {
 }
 #dashboard .block-dashboard {
     background: linear-gradient(83.78deg, #022423 1.64%, #6ec7c7 93.62%) !important;
+}
+h4.job-title {
+    width: 100% !important;
+}
+h4.job-title {
+    width: 100% !important;
+    display: block;
 }
