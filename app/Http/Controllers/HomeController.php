@@ -21,12 +21,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $job_categories = Career::where('status', 1)->get()->chunk(9);
-        $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
+        $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
+        $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
+        $careers = Career::where('status', 1)->orderBy('position')->get();
+        $wages = Wage::where('status', 1)->orderBy('position')->get();
+        $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
         $provinces = Province::whereIn('id', [31, 1, 50, 32])
         ->orderByRaw("FIELD(id, 31, 1, 50, 32)")
