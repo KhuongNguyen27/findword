@@ -25,7 +25,16 @@ class HomeController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $job_categories = Career::where('status', 1)->get()->chunk(9);
         $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
+        $wages = [
+            'duoi_10tr'=> 'Dưới 10 triệu',
+            '10-15'=>'10 - 15 triệu',
+            '15-20'=>'15 - 20 triệu',
+            '20-25'=>'20 - 25 triệu',
+            '25-30'=>'25 - 30 triệu',
+            '30-50'=>'30 - 50 triệu',
+            'tren_50'=>'Trên 50 triệu',
+            'thoa_thuan'=>'Thỏa thuận'
+        ];
         $ranks = Rank::where('status', 1)->get();
         $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
         $provinces = Province::whereIn('id', [31, 1, 50, 32])

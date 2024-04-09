@@ -23,7 +23,16 @@ class JobController extends Controller
     public function vnjobs(Request $request, $job_type = ''){
         $model = new Job;
         $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
+        $wages = [
+            'duoi_10tr'=> 'Dưới 10 triệu',
+            '10-15'=>'10 - 15 triệu',
+            '15-20'=>'15 - 20 triệu',
+            '20-25'=>'20 - 25 triệu',
+            '25-30'=>'25 - 30 triệu',
+            '30-50'=>'30 - 50 triệu',
+            'tren_50'=>'Trên 50 triệu',
+            'thoa_thuan'=>'Thỏa thuận'
+        ];
         $ranks = Rank::where('status', 1)->get();
         $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
         $provinces = Province::whereIn('id',[31,1,50,32])->orderByRaw("FIELD(id, 31, 1, 50, 32)")->get()->merge($normal_provinces);
@@ -39,8 +48,37 @@ class JobController extends Controller
             });
         }
         if( $request->wage_id ){
-            $query->where('wage_id', $request->wage_id);
+            
+            switch ($request->wage_id) {
+                case 'duoi_10tr':
+                        $query->where('salaryMax','<=', 10000000);
+                    break;
+                case '10-15':
+                    $query->whereBetween('salaryMax',[10000000,15000000]);
+                    break;
+                case '15-20':
+                    $query->whereBetween('salaryMax',[15000000,20000000]);
+                    break;
+                case '20-25':
+                    $query->whereBetween('salaryMax',[20000000,25000000]);
+
+                    break;
+                case '25-30':
+                    $query->whereBetween('salaryMax',[25000000,30000000]);
+                    break;
+                case '30-50':
+                    $query->whereBetween('salaryMax',[30000000,50000000,]);
+                    break;
+                case 'tren_50':
+                    $query->where('salaryMax','>=',[50000000,]);
+                    break;
+                case 'thoa_thuan':
+                default:
+                    $salaryMax = 0;
+                    break;
+            }
         }
+     
         if( $request->rank_id ){
             $query->where('rank_id', $request->rank_id);
         }
@@ -188,7 +226,16 @@ class JobController extends Controller
     public function nnjobs (Request $request, $job_type = ''){
         $model = new Job;
         $careers = Career::where('status', 1)->get();
-        $wages = Wage::where('status', 1)->get();
+        $wages = [
+            'duoi_10tr'=> 'Dưới 10 triệu',
+            '10-15'=>'10 - 15 triệu',
+            '15-20'=>'15 - 20 triệu',
+            '20-25'=>'20 - 25 triệu',
+            '25-30'=>'25 - 30 triệu',
+            '30-50'=>'30 - 50 triệu',
+            'tren_50'=>'Trên 50 triệu',
+            'thoa_thuan'=>'Thỏa thuận'
+        ];
         $ranks = Rank::where('status', 1)->get();
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
@@ -202,7 +249,35 @@ class JobController extends Controller
             });
         }
         if( $request->wage_id ){
-            $query->where('wage_id', $request->wage_id);
+            
+            switch ($request->wage_id) {
+                case 'duoi_10tr':
+                        $query->where('salaryMax','<=', 10000000);
+                    break;
+                case '10-15':
+                    $query->whereBetween('salaryMax',[10000000,15000000]);
+                    break;
+                case '15-20':
+                    $query->whereBetween('salaryMax',[15000000,20000000]);
+                    break;
+                case '20-25':
+                    $query->whereBetween('salaryMax',[20000000,25000000]);
+
+                    break;
+                case '25-30':
+                    $query->whereBetween('salaryMax',[25000000,30000000]);
+                    break;
+                case '30-50':
+                    $query->whereBetween('salaryMax',[30000000,50000000,]);
+                    break;
+                case 'tren_50':
+                    $query->where('salaryMax','>=',[50000000,]);
+                    break;
+                case 'thoa_thuan':
+                default:
+                    $salaryMax = 0;
+                    break;
+            }
         }
         if( $request->rank_id ){
             $query->where('rank_id', $request->rank_id);

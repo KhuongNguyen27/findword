@@ -7,7 +7,16 @@
 //'export' => route($route_prefix.'export'),
 ]
 ])
-
+ @if (session('error'))
+ <div class="alert alert-danger" role="alert">
+     {{ session('error') }}
+ </div>
+@endif
+@if (session('success'))
+ <div class="alert alert-success" role="alert">
+     {{ session('success') }}
+ </div>
+@endif
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <input type="hidden" name="type" value="{{ request()->type }}">

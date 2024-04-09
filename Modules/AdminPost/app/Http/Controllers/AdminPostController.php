@@ -58,6 +58,8 @@ class AdminPostController extends Controller
     public function store(StoreAdminPostRequest $request , $type = ''): RedirectResponse
     {
         $type = $request->type;
+        $request->merge(['province_id'=> 1]) ;
+        // dd($request);
         try {
             $this->model::saveItem($request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));
@@ -109,7 +111,7 @@ class AdminPostController extends Controller
             if ($type && view()->exists($this->view_path.'types.'.$type.'.edit')) {
                 return view($this->view_path.'types.'.$type.'.edit', $params);
             }
-            return view($this->view_path.'edit', $params);
+            return view($this->view_path.'edit', $params)->with('success',('thanh cong'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
