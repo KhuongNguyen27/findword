@@ -164,5 +164,7 @@
     "do_not_have_an_account":"Bạn chưa có tài khoản",
     "or":"hoặc",
     "cv":"Số CV",
-    "position":"Độ ưu tiên"
+    "position":"Độ ưu tiên",
+    "salaryMin":"Mức lương tối thiểu",
+    "salaryMax":"Mức lương tối đa"
 }

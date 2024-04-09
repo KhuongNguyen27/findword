@@ -35,7 +35,9 @@ class Job extends AdminModel
         'end_day',
         'price',
         'start_hour',
-        'end_hour'
+        'end_hour',
+        'salaryMin',
+        'salaryMax',
     ];
 
     public static function overrideSaveItem($data,$table = ''){
