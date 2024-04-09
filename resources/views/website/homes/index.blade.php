@@ -20,6 +20,7 @@ span.flaticon-bookmark.active {
                     </div>
                     <!-- Job Search Form -->
                     @include('website.homes.includes.job-search-form')
+                    @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>
             </div>
@@ -112,14 +113,21 @@ new Chart(ctx, {
         labels: chart_job.labels,
         datasets: [{
             data: chart_job.data,
-            backgroundColor: '#4ec3bf',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: '#ffffff',
+            borderColor: '#ffffff',
         }]
     },
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                ticks: {
+                    color: 'white',
+                },
+            },
+            x: {
+                ticks: {
+                    color: 'white',
+                },
             }
         },
         plugins: {
@@ -138,13 +146,26 @@ new Chart(ctx1, {
             data: chart_career.data,
             borderWidth: 1,
             // backgroundColor: '#4ec3bf',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            borderColor: '#ffffff',
         }]
     },
     options: {
+        legend: {
+            labels: {
+                fontColor: "blue",
+                fontSize: 18
+            }
+        },
         scales: {
             y: {
-                beginAtZero: true
+                ticks: {
+                    color: 'white',
+                },
+            },
+            x: {
+                ticks: {
+                    color: 'white',
+                },
             }
         },
         plugins: {

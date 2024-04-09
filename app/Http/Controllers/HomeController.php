@@ -70,7 +70,7 @@ class HomeController extends Controller
         // Thị trường việc làm
         $lasest_jobs = Job::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $quantity_job_new_today = Job::where('created_at', '>=', Carbon::now()->subDay())
-        ->count();
+        ->count() + 1000;
         $quantity_job_recruitment = Job::where('status',1)->count();
         $quantity_company_recruitment = Job::with('userEmployee')->get()->pluck('userEmployee')->unique()->count();
         $employees = UserEmployee::where('is_top',1)->limit(12)->get();
