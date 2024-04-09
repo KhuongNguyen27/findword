@@ -109,7 +109,7 @@ input {
                                     </div>
 
                                     <!-- Input -->
-                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
+                                    {{-- <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Lương <span class="label-required">*</span></label>
                                         <select name="wage_id" class="chosen-select">
                                             @foreach ($param['wages'] as $wage)
@@ -120,6 +120,14 @@ input {
                                         <p style="color:red">
                                             {{ $errors->first('wage_id') }}</p>
                                         @endif
+                                    </div> --}}
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                        <label>Mức lương tối thiểu </label>
+                                       <input type="number" name="salaryMin" id="salaryMin" value="{{ old('salaryMin') }}"/>
+                                    </div>
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                        <label>Mưc lương tối đa </label>
+                                       <input type="number" name="salaryMax" id="salaryMax" value="{{ old('salaryMax') }}"/>
                                     </div>
 
 

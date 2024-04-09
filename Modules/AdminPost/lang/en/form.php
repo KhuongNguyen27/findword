@@ -25,4 +25,6 @@ return [
     'end_hour' => 'Giờ kết thúc',
     'jobpackage_id' => 'Loại tin đăng',
     'formwork_id'   => 'Hình thức làm việc',
+    'salaryMin'   => 'Mức lương tối thiểu',
+    'salaryMax'   => 'Mức lương tối đa'
 ];

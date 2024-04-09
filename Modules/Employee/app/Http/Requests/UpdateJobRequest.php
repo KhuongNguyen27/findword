@@ -27,7 +27,7 @@ class UpdateJobRequest extends FormRequest
             'formwork_id' => 'required',
             'deadline' => 'required',
             'experience' => 'required',
-            'wage_id' => 'required',
+            // 'wage_id' => 'required',
             'work_address' => 'required',
             'degree_id' => 'required',
             'description' => 'required',
