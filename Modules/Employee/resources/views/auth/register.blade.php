@@ -90,7 +90,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label>{{ __('company_phone') }}<span class="label-required">*</span></label>
-                            <input type="text" name="text" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
+                            <input type="number" name="text" placeholder="{{ __('company_phone') }}" value="{{ old('phone') }}">
                             @if ($errors->any())
                             <p style="color:red">{{ $errors->first('phone') }}</p>
                             @endif
