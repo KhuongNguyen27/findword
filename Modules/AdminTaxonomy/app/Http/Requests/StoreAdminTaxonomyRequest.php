@@ -33,7 +33,8 @@ class StoreAdminTaxonomyRequest extends FormRequest
             'name.required'=>'Vui lòng nhập tên',
             'name.max'=>'Tên không được quá 255 ký tự',
             'description'=>'Vui lòng nhập mô tả',
-            'description.max'=>'Mô tả phải dưới 255 ký tự'
+            'description.max'=>'Mô tả phải dưới 255 ký tự',
+            'name.unique'=>'Trường này đã tồn tại'
         ];
     }
 
