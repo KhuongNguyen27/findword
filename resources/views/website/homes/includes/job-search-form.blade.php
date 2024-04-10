@@ -1,6 +1,11 @@
 <div class="job-search-form">
     <form method="get" action="{{ route($route) }}">
         <div class="row">
+            @if(!isset($name))
+                <div class="form-group col">
+                    <input name="name"  placeholder="Vị trí ứng tuyển">
+                </div>
+            @endif
             @if (!isset($country) || true)
                 <div class="form-group col">
                     <span class="icon flaticon-map-locator"></span>
@@ -42,17 +47,7 @@
                 </select>
             </div>
             @endif
-            @if( isset($careers) )
-            <div class="form-group col location">
-                <span class="icon flaticon-target"></span>
-                <select name="career_id" class="form-select chosen-select">
-                    <option value="">Tất cả ngành nghề</option>
-                    @foreach ($careers as $career)
-                        <option @selected( $career->id == request()->career_id ) value="{{ $career->id }}">{{ $career->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            @endif
+        
             <!-- Form Group -->
             <div class="form-group col btn-box">
                 <button type="submit" class="theme-btn btn-style-one"><span
@@ -65,6 +60,17 @@
             </div>
             <div id="advanceSearch" style="display:none" class="form-group col-lg-12">
                 <div class="row">
+                    @if( isset($careers) )
+                    <div class="form-group col location">
+                        <span class="icon flaticon-target"></span>
+                        <select name="career_id" class="form-select chosen-select">
+                            <option value="">Tất cả ngành nghề</option>
+                            @foreach ($careers as $career)
+                                <option @selected( $career->id == request()->career_id ) value="{{ $career->id }}">{{ $career->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
                     @if( isset($degrees) )
                     <div class="form-group col location">
                         <span class="icon flaticon-stocks-graphic-on-laptop-monitor"></span>

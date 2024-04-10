@@ -45,6 +45,10 @@ class JobController extends Controller
         // $imageUserEmployyee = UserEmployee::class;
         $query = Job::select('jobs.*')->where('jobs.status',1);
         $query->where('country', 'VN');
+        // dd($request->name);
+        if($request->name){
+            $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+        }
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
                 $query->where('career_id', $request->career_id);
@@ -250,6 +254,9 @@ class JobController extends Controller
             $query->whereHas('careers', function ($query) use($request) {
                 $query->where('career_id', $request->career_id);
             });
+        }
+        if($request->name){
+            $query->where('jobs.name','LIKE','%' . $request->name. '%');
         }
         if( $request->wage_id ){
             
