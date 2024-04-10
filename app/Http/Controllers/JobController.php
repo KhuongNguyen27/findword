@@ -27,7 +27,7 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
-
+        $job_packages = JobPackage::where('status', 1)->get();
         $model = new Job;
         $wages = [
             'duoi_10tr'=> 'Dưới 10 triệu',
@@ -39,8 +39,8 @@ class JobController extends Controller
             'tren_50'=>'Trên 50 triệu',
             'thoa_thuan'=>'Thỏa thuận'
         ];
-        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
-        $provinces = Province::whereIn('id',[31,1,50,32])->orderByRaw("FIELD(id, 31, 1, 50, 32)")->get()->merge($normal_provinces);
+        $normal_provinces = Province::whereNotIn('id',[1,50,32])->get();
+        $provinces = Province::whereIn('id',[1,50,32])->orderByRaw("FIELD(id,1,50,32)")->get()->merge($normal_provinces);
         // Việc làm mới nhất trong nước
         // $imageUserEmployyee = UserEmployee::class;
         $query = Job::select('jobs.*')->where('jobs.status',1);
@@ -49,6 +49,12 @@ class JobController extends Controller
         if($request->name){
             $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
         }
+        if ($request->jobpackage_id) {
+            $query->whereHas('job_package', function ($query) use ($request) {
+                $query->where('jobpackage_id', $request->jobpackage_id);
+            });
+        }
+        
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
                 $query->where('career_id', $request->career_id);
@@ -226,6 +232,7 @@ class JobController extends Controller
             'formworks' => $formworks,
             'job_type' => $job_type,
             'job_tags' => $job_tags,
+            'job_packages'=> $job_packages,
         ];
         return view($view_path,$params);
     }
@@ -246,6 +253,7 @@ class JobController extends Controller
         $ranks = Rank::where('status', 1)->get();
         $degrees = Level::where('status',Level::ACTIVE)->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
+        $job_packages  = JobPackage::where('status',1)->get();
         $provinces = Province::all();
         // Việc làm mới nhất ngoài nước
         $query = Job::where('jobs.status',1);
@@ -253,6 +261,11 @@ class JobController extends Controller
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
                 $query->where('career_id', $request->career_id);
+            });
+        }
+        if ($request->jobpackage_id) {
+            $query->whereHas('job_package', function ($query) use ($request) {
+                $query->where('jobpackage_id', $request->jobpackage_id);
             });
         }
         if($request->name){
@@ -425,6 +438,7 @@ class JobController extends Controller
             'formworks' => $formworks,
             'job_type' => $job_type,
             'job_tags' => $job_tags,
+            'job_packages' => $job_packages ,
         ];
         return view($view_path,$params);
     }

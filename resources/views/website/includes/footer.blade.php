@@ -9,8 +9,8 @@
                 <div class="big-column col-xl-4 col-lg-3 col-md-12">
                     <div class="footer-column about-widget">
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
-                                    style="width:80px!important" height="50"
-                                    src="{{ asset('website-assets/images/logo.png')}}" alt="" title="">{{ env('APP_NAME') }}</a></div>
+                                    style="width:200px!important" height="50"
+                                    src="{{ asset('website-assets/images/logo-footer.png')}}" alt="" title=""></a></div>
                         <p class="phone-num"><span>
                                 Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
                         <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
@@ -58,7 +58,7 @@
                                 <h4 class="widget-title">Về chúng tôi</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Trang việc làme</a></li>
+                                        <li><a href="#">Trang việc làm</a></li>
                                         <li><a href="#">Trang việc làm thay thế</a></li>
                                         <li><a href="#">Trang tiếp tục</a></li>
                                         <li><a href="#">Blog</a></li>
