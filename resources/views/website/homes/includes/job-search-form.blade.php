@@ -36,8 +36,8 @@
                 <span class="icon flaticon-money"></span>
                 <select name="wage_id" class="form-select chosen-select">
                     <option value="">Tất cả mức lương</option>
-                    @foreach ($wages as $wage)
-                        <option @selected( $wage->id == request()->wage_id )  value="{{ $wage->id }}">{{ $wage->name }}</option>
+                    @foreach ($wages as $key => $wage)
+                        <option {{ $key == request()->wage_id ? 'selected' : '' }} value="{{ $key }}">{{ $wage }}</option>
                     @endforeach
                 </select>
             </div>

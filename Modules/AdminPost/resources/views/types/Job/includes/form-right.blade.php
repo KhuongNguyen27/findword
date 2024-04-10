@@ -7,14 +7,16 @@
             <label class="mb-3">{{ __('jobpackage') }}</label>
             <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" class="form-control">
                 @foreach (\App\Models\JobPackage::all() as $job_package)
-                <option data-price="{{ $job_package->price }}"
-                    {{ isset($item) && $item->jobpackage_id == $job_package->id ?? 'selected' }}
-                    value="{{ $job_package->id }}">
-                    {{ $job_package->name }}</option>
+                    <option data-price="{{ $job_package->price }}"
+                        {{ isset($item) && $item->jobpackage_id == $job_package->id ? 'selected' : '' }}
+                        value="{{ $job_package->id }}">
+                        {{ $job_package->name }}
+                    </option>
                 @endforeach
             </select>
             <x-admintheme::form-input-error field="jobpackage_id" />
         </div>
+        
         <div class="mb-4 row">
             <div class="col-6">
                 <label class="mb-3">{{ __('start_day') }}</label>

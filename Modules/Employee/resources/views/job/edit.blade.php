@@ -149,7 +149,7 @@
                                         </div>
 
                                         <!-- Input -->
-                                        <div class="form-group col-lg-6 col-md-12">
+                                        {{-- <div class="form-group col-lg-6 col-md-12">
                                             <label>Lương</label>
                                             @if ($job->status == 0)
                                                 <select name="wage_id" class="chosen-select">
@@ -170,8 +170,30 @@
                                                 <p style="color:red">
                                                     {{ $errors->first('wage_id') }}</p>
                                             @endif
-                                        </div>
-
+                                        </div> --}}
+                                        @if ($job->status == 0)
+                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                                <label>Mức lương tối thiểu </label>
+                                                <input type="number" name="salaryMin" id="salaryMin"
+                                                    value="{{ $job->salaryMin }}" />
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                                <label>Mưc lương tối đa </label>
+                                                <input type="number" name="salaryMax" id="salaryMax"
+                                                    value="{{ $job->salaryMax }}" />
+                                            </div>
+                                        @elseif($job->status == 1)
+                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                                <label>Mức lương tối thiểu </label>
+                                                <input type="number" name="salaryMin" id="salaryMin"
+                                                    value="{{ $job->salaryMin }}" readonly/>
+                                            </div>
+                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                                <label>Mưc lương tối đa </label>
+                                                <input type="number" name="salaryMax" id="salaryMax"
+                                                    value="{{ $job->salaryMax }}" readonly />
+                                            </div>
+                                        @endif
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
@@ -198,11 +220,12 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Nơi làm việc</label>
                                             @if ($job->status == 0)
-                                                <input type="text" value="{{ $job->work_address }}" name="work_address"
-                                                    id="nameInput" placeholder="Nơi làm việc...">
+                                                <input type="text" value="{{ $job->work_address }}"
+                                                    name="work_address" id="nameInput" placeholder="Nơi làm việc...">
                                             @elseif ($job->status == 1)
-                                                <input type="text" value="{{ $job->work_address }}" name="work_address"
-                                                    id="nameInput" placeholder="Nơi làm việc..." readonly>
+                                                <input type="text" value="{{ $job->work_address }}"
+                                                    name="work_address" id="nameInput" placeholder="Nơi làm việc..."
+                                                    readonly>
                                             @endif
                                             @if ($errors->any())
                                                 <p style="color:red">

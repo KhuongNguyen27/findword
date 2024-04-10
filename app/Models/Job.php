@@ -25,7 +25,6 @@ class Job extends AdminModel
         'formwork_id',
         'deadline',
         'experience',
-        'wage_id',
         'gender',
         'work_address',
         'rank_id',
@@ -35,7 +34,10 @@ class Job extends AdminModel
         'end_day',
         'price',
         'start_hour',
-        'end_hour'
+        'end_hour',
+        'salaryMin',
+        'salaryMax',
+        'province_id'
     ];
 
     public static function overrideSaveItem($data,$table = ''){

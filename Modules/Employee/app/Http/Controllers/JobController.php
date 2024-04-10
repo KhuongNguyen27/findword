@@ -118,7 +118,9 @@ class JobController extends Controller
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
             $job->experience = $request->experience;
-            $job->wage_id = $request->wage_id;
+            // $job->wage_id = $request->wage_id;
+            $job->salaryMin = $request->salaryMin;
+            $job->salaryMax = $request->salaryMax;
             if ($request->gender) {
                 $job->gender = $request->gender;
             }
@@ -238,7 +240,9 @@ class JobController extends Controller
             $job->deadline = $request->deadline;
             $job->start_day = $request->start_day;
             $job->experience = $request->experience;
-            $job->wage_id = $request->wage_id;
+            // $job->wage_id = $request->wage_id;
+            $job->salaryMin = $request->salaryMin;
+            $job->salaryMax = $request->salaryMax;
             if($request->gender){
                 $job->gender = $request->gender;
             }
