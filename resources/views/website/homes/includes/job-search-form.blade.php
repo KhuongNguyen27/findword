@@ -3,7 +3,6 @@
         <div class="row">
             @if(!isset($name))
                 <div class="form-group col">
-                    <span class="icon flaticon-map-locator" ></span>
                     <input name="name"  placeholder="Vị trí ứng tuyển">
                 </div>
             @endif
