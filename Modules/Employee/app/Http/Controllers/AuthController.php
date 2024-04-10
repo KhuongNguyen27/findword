@@ -99,7 +99,7 @@ class AuthController extends Controller
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch
             Notification::route('mail', [
-                'nguyenhuukhuong27102000@gmail.com' => 'Khuongnguyen'
+                env('ADMIN_EMAIL') => env('ADMIN_NAME')
             ])->notify(new Notifications("register",$user->toArray()));
             return redirect()->route('employee.login')->with('success', $message);
         } catch (\Exception $e) {
