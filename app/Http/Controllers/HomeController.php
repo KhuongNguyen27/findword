@@ -26,6 +26,7 @@ class HomeController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
         $careers = Career::where('status', 1)->orderBy('position')->get();
+        $job_packages = JobPackage::where('status', 1)->get();
         $wages = [
             'duoi_10tr'=> 'Dưới 10 triệu',
             '10-15'=>'10 - 15 triệu',
@@ -37,9 +38,9 @@ class HomeController extends Controller
             'thoa_thuan'=>'Thỏa thuận'
         ];
          $ranks = Rank::where('status', 1)->orderBy('position')->get();
-        $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
-        $provinces = Province::whereIn('id', [31, 1, 50, 32])
-        ->orderByRaw("FIELD(id, 31, 1, 50, 32)")
+        $normal_provinces = Province::whereNotIn('id',[1,50,32])->get();
+        $provinces = Province::whereIn('id', [ 1, 50, 32])
+        ->orderByRaw("FIELD(id,1,50,32)")
         ->get()->concat($normal_provinces);
     
         // Việc làm hấp dẫn
@@ -110,6 +111,7 @@ class HomeController extends Controller
             'formworks' => $formworks,
             'statistical_career_jobs_json' => $statistical_career_jobs_json,
             'statistical_jobs_json' => $statistical_jobs_json,
+            'job_packages' => $job_packages,
         ];
         return view('website.homes.index',$params);
     }

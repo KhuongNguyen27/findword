@@ -6,5 +6,5 @@
     <p>Hãy nhớ: Liên kết chỉ hoạt động một lần khi nhấp chuột</p>
     <a href="{{ route('auth.getReset',$data['token']) }}">Đặt lại mật khẩu</a>
     <p><br>Nếu bạn không thực hiện bất kỳ hành động nào,<br>vui lòng liên hệ với quản trị viên qua email:<a href="gmail.com">
-            nguyenhuukhuong27102000@gmail.com</a></p>
+        env('ADMIN_EMAIL')</a></p>
 </div>

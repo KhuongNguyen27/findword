@@ -74,7 +74,7 @@ class AuthController extends Controller
                 'birthdate' => $request->birthdate,
             ]);
             Notification::route('mail', [
-                'nguyenhuukhuong27102000@gmail.com' => 'Khuongnguyen'
+                env('ADMIN_EMAIL') => env('ADMIN_NAME')
             ])->notify(new Notifications("register", $user->toArray()));
             $message = "Đăng ký thành công";
             DB::commit();

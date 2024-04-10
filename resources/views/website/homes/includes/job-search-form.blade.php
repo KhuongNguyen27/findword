@@ -60,6 +60,15 @@
             </div>
             <div id="advanceSearch" style="display:none" class="form-group col-lg-12">
                 <div class="row">
+                    <div class="form-group col location">
+                        <span class="icon flaticon-target"></span>
+                        <select name="jobpackage_id" class="form-select chosen-select">
+                            <option value="">Chọn gói tin</option>
+                            @foreach ($job_packages as $job_package)
+                            <option @selected( $job_package->id == request()->jobpackage_id ) value="{{ $job_package->id }}">{{ $job_package->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @if( isset($careers) )
                     <div class="form-group col location">
                         <span class="icon flaticon-target"></span>
