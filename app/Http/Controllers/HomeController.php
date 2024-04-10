@@ -21,10 +21,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $job_categories = Career::where('status', 1)->get()->chunk(9);
-        $careers = Career::where('status', 1)->get();
+
+        $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
+        $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
+        $careers = Career::where('status', 1)->orderBy('position')->get();
         $wages = [
             'duoi_10tr'=> 'Dưới 10 triệu',
             '10-15'=>'10 - 15 triệu',
@@ -35,7 +36,7 @@ class HomeController extends Controller
             'tren_50'=>'Trên 50 triệu',
             'thoa_thuan'=>'Thỏa thuận'
         ];
-        $ranks = Rank::where('status', 1)->get();
+         $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $normal_provinces = Province::whereNotIn('id',[31,1,50,32])->get();
         $provinces = Province::whereIn('id', [31, 1, 50, 32])
         ->orderByRaw("FIELD(id, 31, 1, 50, 32)")
@@ -79,7 +80,7 @@ class HomeController extends Controller
         // Thị trường việc làm
         $lasest_jobs = Job::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $quantity_job_new_today = Job::where('created_at', '>=', Carbon::now()->subDay())
-        ->count();
+        ->count() + 1000;
         $quantity_job_recruitment = Job::where('status',1)->count();
         $quantity_company_recruitment = Job::with('userEmployee')->get()->pluck('userEmployee')->unique()->count();
         $employees = UserEmployee::where('is_top',1)->limit(12)->get();

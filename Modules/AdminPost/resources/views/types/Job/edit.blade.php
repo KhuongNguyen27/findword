@@ -6,3 +6,4 @@
 @section('custom-fields-right')
 @include('adminpost::types.Job.includes.form-right')
 @endsection
+

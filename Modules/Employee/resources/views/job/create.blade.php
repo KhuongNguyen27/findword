@@ -154,30 +154,32 @@ input {
                                             {{ $errors->first('work_address') }}</p>
                                         @endif
                                     </div>
-
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;">
+                                        <label>Quốc gia</label>
+                                        <select name="country" class="chosen-select">
+                                            <option id="vn" value="VN" {{ old('country') == 'VN' ? 'selected' : '' }}>Trong nước</option>
+                                            <option id="nn" value="NN" {{ old('country') == 'NN' ? 'selected' : '' }}>Ngoài nước</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                         <select name="province_id" class="chosen-select form-select">
                                             <option value="">Tất cả địa điểm</option>
-                                            <option value="9999">Quốc tế</option>
+                                            <option value="9999" selected>Quốc tế</option>
+                                            @if(old('country') == 'NN')
+                                            @elseif(old('country') == 'VN')
+                                            @endif
                                             @foreach ($param['provinces'] as $province)
-                                            <option value="{{ $province->id }}"
-                                                {{ old('province_id') == $province->id ? 'selected' : '' }}>
-                                                {{ $province->name }}</option>
+                                                <option value="{{ $province->id }}" {{ old('province_id') == $province->id ? 'selected' : '' }}>
+                                                    {{ $province->name }}
+                                                </option>
                                             @endforeach
                                         </select>
-                                        @if ($errors->any())
-                                        <p style="color:red">
-                                            {{ $errors->first('province_id') }}</p>
-                                        @endif
+                                        @error('province_id')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                        <label>Quốc gia </label>
-                                        <select name="country" class="chosen-select">
-                                            <option @selected(old('country')=='VN' ) value="VN">Trong nước</option>
-                                            <option @selected(old('country')=='NN' ) value="NN">Ngoài nước</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Lĩnh Vực <span class="label-required">*</span></label>
                                         <select name="degree_id" class="chosen-select">

@@ -38,20 +38,20 @@
                 <div class="block-statistics-job">
                     <div class="block-work-market work-market">
                         <div class="item">
-                            <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today }}</p>
+                            <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today + 586 }}</p>
                             <p class="title">Việc làm mới 24h gần nhất</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment }}</p>
+                            <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment + 2000 }}</p>
                             <p class="title">Việc làm đang tuyển</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment }}</p>
+                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment + 1000 }}</p>
                             <p class="title">Công ty đang tuyển</p>
                         </div>
                     </div>
                     <div class="block-chart">
-                        <div class="item-chart" style="background-color:#4ec3bf">
+                        <div class="item-chart">
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item-chart" style="background-color:#4ec3bf">
+                        <div class="item-chart">
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
