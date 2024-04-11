@@ -9,7 +9,7 @@
                 <div class="big-column col-xl-4 col-lg-3 col-md-12">
                     <div class="footer-column about-widget">
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
-                                    style="width:200px!important" height="50"
+                                    style="width:600px;margin-left:-10%" height="50"
                                     src="{{ asset('website-assets/images/logo-footer.png')}}" alt="" title=""></a></div>
                         <p class="phone-num"><span>
                                 Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>

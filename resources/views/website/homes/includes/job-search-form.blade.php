@@ -62,8 +62,8 @@
                 <div class="row">
                     <div class="form-group col location">
                         <span class="icon flaticon-target"></span>
-                        <select name="jobpackage_id" class="form-select chosen-select">
-                            <option value="">Chọn gói tin</option>
+                        <select name="jobpackage_id" class="form-select chosen-select" style="font-size: 36px">
+                            <option value="">Tất cả loại tin</option>
                             @foreach ($job_packages as $job_package)
                             <option @selected( $job_package->id == request()->jobpackage_id ) value="{{ $job_package->id }}">{{ $job_package->name }}</option>
                             @endforeach
