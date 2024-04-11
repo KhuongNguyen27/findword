@@ -27,7 +27,7 @@ class JobController extends Controller
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
-        $job_packages = JobPackage::where('status', 1)->get();
+        $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $model = new Job;
         $wages = [
             'duoi_10tr'=> 'Dưới 10 triệu',
