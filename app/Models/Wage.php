@@ -16,7 +16,9 @@ class Wage extends AdminModel
         'image',
         'parent_id',
         'status',
-        'position'
+        'position',
+        'salaryMin',
+        'salaryMax',
     ];
 
     public function job()
