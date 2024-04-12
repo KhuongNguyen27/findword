@@ -17,6 +17,11 @@
             <label class="mb-3">{{ __('status') }}</label>
             <x-admintheme::form-status model="{{ $model }}" status="{{ $item->status ?? old('status') }}"/>
         </div>
+        {{-- <div class="mb-4">
+            <label class="mb-3">{{ __('auto_approve') }}</label>
+            <input type="checkbox" name="auto_approve" value="1" {{ $item->auto_approve ? 'checked' : '' }}>
+        </div>
+         --}}
     </div>
 </div>
 
