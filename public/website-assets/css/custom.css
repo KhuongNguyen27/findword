@@ -606,3 +606,9 @@ h4.job-title {
     width: 100% !important;
     display: block;
 }
+.main-menu .navigation {
+    position: static;
+    display: flex;
+    align-items: center;
+    margin-left: -15%;
+  }

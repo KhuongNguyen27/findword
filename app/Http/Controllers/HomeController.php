@@ -27,21 +27,12 @@ class HomeController extends Controller
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $job_packages = JobPackage::where('status', 1)->get();
-        // $wages = [
-        //     '0-10000000' => 'Dưới 10 triệu',
-        //     '10000000-15000000' => '10 - 15 triệu',
-        //     '15000000-20000000' => '15 - 20 triệu',
-        //     '20000000-25000000' => '20 - 25 triệu',
-        //     '25000000-30000000' => '25 - 30 triệu',
-        //     '30000000-50000000' => '30 - 50 triệu',
-        //     '50000000-0' => 'Trên 50 triệu',
-        //     '0-0' => 'Thỏa thuận'
-        // ];
         $wages = Wage::where('status', 1)->orderBy('position')->get();
         $newWages = [];
         foreach($wages as $wage){
             $newWages[$wage->salaryMin. '-'. $wage->salaryMax] = $wage->name;
         }
+        $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $normal_provinces = Province::whereNotIn('id', [1, 50, 32])->get();
         $provinces = Province::whereIn('id', [1, 50, 32])

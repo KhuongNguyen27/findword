@@ -32,7 +32,7 @@ class JobController extends Controller
         }
 
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
-        $job_packages = JobPackage::where('status', 1)->get();
+        $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $model = new Job;
         
         $normal_provinces = Province::whereNotIn('id',[1,50,32])->get();
