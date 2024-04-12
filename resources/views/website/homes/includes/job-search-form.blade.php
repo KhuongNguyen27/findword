@@ -11,7 +11,7 @@
                     <span class="icon flaticon-map-locator"></span>
                     <select name="province_id" class="form-select chosen-select">
                         <option value="">Tất cả địa điểm</option>
-                        <option value="quoc_te">Quốc tế</option>
+                        <option value="quoc_te" >Quốc tế</option>
                         @foreach ($provinces as $province)
                             @php 
                             $province->name = str_replace('Tỉnh ','',$province->name);
@@ -134,5 +134,4 @@ $sort = request()->sort;
     <a href="{{ url()->current() }}?sort=date-asc" class="{{ $sort == 'date-asc' ? $activeClass : $inactiveClass }}" >Ngày đăng (cũ nhất)</a>
 </div>
 @endif
-
 

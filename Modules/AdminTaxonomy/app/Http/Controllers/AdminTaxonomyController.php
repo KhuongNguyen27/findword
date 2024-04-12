@@ -56,6 +56,7 @@ class AdminTaxonomyController extends Controller
     public function store(StoreAdminTaxonomyRequest $request): RedirectResponse
     {
         $type = $request->type;
+        // dd($request);
         try {
             $this->model::saveItem($request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));

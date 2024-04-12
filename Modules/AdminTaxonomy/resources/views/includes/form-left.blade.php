@@ -11,6 +11,20 @@
             <x-admintheme::form-input-error field="position"/>
         </div>
         <div class="mb-4">
+            <label class="mb-3">{{ __('salaryMin') }}</label>
+            <input class="form-control" name="salaryMin" type="number"  value="{{ $item->salaryMin ?? old('salaryMin') }}">
+            <div id="tinycomments-container">
+                <x-admintheme::form-input-error field="salaryMin"/>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="mb-3">{{ __('salaryMax') }}</label>
+            <input class="form-control" name="salaryMax" type="number" value="{{ $item->salaryMax ?? old('salaryMax') }}" >
+            <div id="tinycomments-container">
+                <x-admintheme::form-input-error field="salaryMax"/>
+            </div>
+        </div>
+        <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
             <textarea class="html-editor" name="description" id="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>
             <div id="tinycomments-container">

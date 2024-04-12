@@ -26,19 +26,15 @@ class JobController extends Controller
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
+        $newWages = [];
+        foreach($wages as $wage){
+            $newWages[$wage->salaryMin. '-'. $wage->salaryMax] = $wage->name;
+        }
+
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $job_packages = JobPackage::where('status', 1)->get();
         $model = new Job;
-        $wages = [
-            'duoi_10tr'=> 'Dưới 10 triệu',
-            '10-15'=>'10 - 15 triệu',
-            '15-20'=>'15 - 20 triệu',
-            '20-25'=>'20 - 25 triệu',
-            '25-30'=>'25 - 30 triệu',
-            '30-50'=>'30 - 50 triệu',
-            'tren_50'=>'Trên 50 triệu',
-            'thoa_thuan'=>'Thỏa thuận'
-        ];
+        
         $normal_provinces = Province::whereNotIn('id',[1,50,32])->get();
         $provinces = Province::whereIn('id',[1,50,32])->orderByRaw("FIELD(id,1,50,32)")->get()->merge($normal_provinces);
         // Việc làm mới nhất trong nước
@@ -61,34 +57,16 @@ class JobController extends Controller
             });
         }
         if( $request->wage_id ){
-            
-            switch ($request->wage_id) {
-                case 'duoi_10tr':
-                        $query->where('salaryMax','<=', 10000000);
-                    break;
-                case '10-15':
-                    $query->whereBetween('salaryMax',[10000000,15000000]);
-                    break;
-                case '15-20':
-                    $query->whereBetween('salaryMax',[15000000,20000000]);
-                    break;
-                case '20-25':
-                    $query->whereBetween('salaryMax',[20000000,25000000]);
-
-                    break;
-                case '25-30':
-                    $query->whereBetween('salaryMax',[25000000,30000000]);
-                    break;
-                case '30-50':
-                    $query->whereBetween('salaryMax',[30000000,50000000,]);
-                    break;
-                case 'tren_50':
-                    $query->where('salaryMax','>=',[50000000,]);
-                    break;
-                case 'thoa_thuan':
-                default:
-                    $salaryMax = 0;
-                    break;
+            $wage_id = $request->wage_id;//'10-15'
+            $wage = explode('-', $wage_id);
+            if($wage[0] == 0){
+                $query->where('salaryMin','<=', $wage[1]);
+            }
+            elseif($wage[1] == 0){
+                $query->where('salaryMin','>=', $wage[0]);
+            }
+            else{
+                $query->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
             }
         }
      
@@ -224,7 +202,7 @@ class JobController extends Controller
             'ranks' => $ranks,
             'jobs' => $jobs,
             'hot_jobs' => $hot_jobs,
-            'wages' => $wages,
+            'wages' => $newWages,
             'provinces' => $provinces,
             'employees' => $employees,
             'title' => $title,
