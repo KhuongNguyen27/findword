@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('wages', function (Blueprint $table) {
-            // $table->double('salaryMin')->nullable();
-            // $table->double('salaryMax')->nullable();
+        Schema::table('job_packages', function (Blueprint $table) {
+            $table->boolean('auto_approve')->default(false);
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('wages', function (Blueprint $table) {
-            //
+        Schema::table('job_packages', function (Blueprint $table) {
+            $table->dropColumn('auto_approve');
         });
     }
 };
