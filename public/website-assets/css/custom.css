@@ -591,6 +591,10 @@ span.company-logo img {
 .job-jobpackage-2 .company-logo {
     border: 2px solid #2ac6ab !important;
 }
+.job-jobpackage-7 .tag-job-flash img, 
+.job-jobpackage-2 .tag-job-flash img {
+    width: 64px !important;
+}
 @media screen and (max-width: 1230px) {
     .logo-text {
         display: none;

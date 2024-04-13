@@ -74,45 +74,18 @@ $("#section-header .box-load-more").click(function() {
 });
 </script>
 <script>
-function createJob(items) {
-    var data = [];
-    var labels = [];
-    for (let i = 0; i < items.length; i++) {
-        let item = items[i];
-        data.push(item.count);
-        labels.push(item.date);
-    }
-    return {
-        labels: labels,
-        data: data
-    };
-}
-function createCareer(items) {
-    var data = [];
-    var labels = [];
-    for (let i = 0; i < items.length; i++) {
-        let item = items[i];
-        data.push(item.jobs_count);
-        labels.push(item.name);
-    }
-    return {
-        labels: labels,
-        data: data
-    };
-}
-
-var data_careers = {!!$statistical_career_jobs_json!!};
-var data_jobs = {!!$statistical_jobs_json!!};
-var chart_career = createCareer(data_careers);
-var chart_job = createJob(data_jobs);
+var tang_truong_labels = <?php echo json_encode($tang_truong_labels); ?>;
+var tang_truong_values = <?php echo json_encode($tang_truong_values); ?>;
+var nhu_cau_labels = <?php echo json_encode($nhu_cau_labels); ?>;
+var nhu_cau_values = <?php echo json_encode($nhu_cau_values); ?>;
 
 const ctx = document.getElementById('myChartJobOpportunityGrowthDashboard');
 new Chart(ctx, {
     type: 'line',
     data: {
-        labels: chart_job.labels,
+        labels: tang_truong_labels,
         datasets: [{
-            data: chart_job.data,
+            data: tang_truong_values,
             backgroundColor: '#ffffff',
             borderColor: '#ffffff',
         }]
@@ -141,11 +114,10 @@ const ctx1 = document.getElementById('myChartDemandJobDashboard');
 new Chart(ctx1, {
     type: 'bar',
     data: {
-        labels: chart_career.labels,
+        labels: nhu_cau_labels,
         datasets: [{
-            data: chart_career.data,
+            data: nhu_cau_values,
             borderWidth: 1,
-            // backgroundColor: '#4ec3bf',
             borderColor: '#ffffff',
         }]
     },
