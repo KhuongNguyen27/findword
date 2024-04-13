@@ -152,7 +152,7 @@ class JobController extends Controller
                 $title = 'Việc làm trong nước tuyển gấp';
                 break;
             default:
-                $title = 'Việc làm trong nước';
+                $title = 'Việc làm trong nước Hôm nay';
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1
@@ -359,7 +359,7 @@ class JobController extends Controller
                 $title = 'Việc làm ngoài nước tuyển gấp';
                 break;
             default:
-                $title = 'Việc làm ngoài nước';
+                $title = 'Việc làm ngoài nước Hôm nay';
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1
