@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('jobs', function (Blueprint $table) {
-            // $table->bigInteger('position');
+            $table->bigInteger('position');
         });
     }
 

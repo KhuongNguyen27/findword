@@ -368,7 +368,7 @@ span.thumb-cover {
     right: -10px;
 }
 .owl-carousel .prev-slide{
-    left: 0;
+    left: -10px;
 }
 .list-feature-jobs .btn-slick-arrow {
     align-items: center;
