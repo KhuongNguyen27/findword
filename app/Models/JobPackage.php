@@ -25,6 +25,7 @@ class JobPackage extends AdminModel
         'job_detail_header_bg',
         'job_detail_company_bg',
         'job_detail_company_bg',
+        'auto_approve',
     ];
 
     const VIP = 1;

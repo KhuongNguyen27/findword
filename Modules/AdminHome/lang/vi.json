@@ -166,5 +166,6 @@
     "cv":"Số CV",
     "position":"Độ ưu tiên",
     "salaryMin":"Mức lương tối thiểu",
-    "salaryMax":"Mức lương tối đa"
+    "salaryMax":"Mức lương tối đa",
+    "auto_approve":"Tự động duyệt"
 }
