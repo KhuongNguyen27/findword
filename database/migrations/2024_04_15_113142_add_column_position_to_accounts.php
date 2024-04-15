@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('job_packages', function (Blueprint $table) {
-        //     $table->boolean('auto_approve')->default(false);
-        // });
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->bigInteger('position');
+        });
     }
 
     /**
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::table('job_packages', function (Blueprint $table) {
-        //     $table->dropColumn('auto_approve');
-        // });
+        Schema::table('acnounts', function (Blueprint $table) {
+            //
+        });
     }
 };

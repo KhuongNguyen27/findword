@@ -58,13 +58,14 @@ class AdminTaxonomyController extends Controller
         $type = $request->type;
         // dd($request);
         try {
-            $this->model::saveItem($request,$type);
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));
+            $this->model::saveItem($request, $type);
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.store_item_success'));
         } catch (QueryException $e) {
             Log::error('Error in store method: ' . $e->getMessage());
             return redirect()->back()->with('error', __('sys.item_not_found'));
         }
     }
+    
 
     /**
      * Show the specified resource.
@@ -118,6 +119,7 @@ class AdminTaxonomyController extends Controller
     public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
+        // dd($request);
         try {
             $this->model::updateItem($id,$request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
