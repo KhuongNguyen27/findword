@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>Mật Khẩu</label>
-                <input id="password-field" type="password" name="password" value="" placeholder="Nhập mật khẩu vào đây"
+                <input id="password-field" type="password" name="password" value="" placeholder=" {{__('enter_password')}} "
                     value="{{ old('Password') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('password') }}</p>
@@ -36,20 +36,19 @@
                 <div class="field-outer">
                     <div class="input-group checkboxes square">
                         <input type="checkbox" name="remember" value="1" id="remember">
-                        <label for="remember" class="remember"><span class="custom-checkbox"></span>Ghi nhớ mật
-                            khẩu</label>
+                        <label for="remember" class="remember"><span class="custom-checkbox"></span> {{__('remember_me')}} </label>
                     </div>
-                    <a href="{{ route('auth.forgot')}}" class="pwd">Lấy lại mật khẩu?</a>
+                    <a href="{{ route('auth.forgot')}}" class="pwd">{{__('reset_password')}} ?</a>
                 </div>
             </div>
 
             <div class="form-group">
-                <button class="theme-btn btn-style-one" type="submit" name="log-in">Đăng Nhập</button>
+                <button class="theme-btn btn-style-one" type="submit" name="log-in"> {{__('login')}} </button>
             </div>
         </form>
 
         <div class="bottom-box">
-            <div class="text">Bạn có muốn đăng ký tài khoản? <a href="{{ route('employee.register')}}">Đăng ký</a></div>
+            <div class="text">{{__('sign_up_for_an_account')}}? <a href="{{ route('employee.register')}}"> {{__('register')}} </a></div>
             {{-- <div class="divider"><span>or</span></div>
             <div class="btn-box row">
                 <div class="col-lg-6 col-md-12">

@@ -166,5 +166,8 @@
     "cv":"Số CV",
     "position":"Độ ưu tiên",
     "salaryMin":"Mức lương tối thiểu",
-    "salaryMax":"Mức lương tối đa"
+    "salaryMax":"Mức lương tối đa",
+    "sign_up_for_an_account":"Bạn có muốn đăng ký tài khoản",
+    "reset_password":"Lấy lại mật khẩu",
+    "enter_password":"Nhập mật khẩu vào đây"
 }
