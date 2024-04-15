@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-        'page_title' => 'Sửa phân loại'
+        'page_title' => __('account_jobpackge_edit')
     ])
 <form action="{{ route('admintaxonomy.update',$item->id) }}" method="post" enctype="multipart/form-data">
     @csrf
@@ -16,5 +16,18 @@
         </div>
     </div>
 </form>
-<!--end row-->
+<style>
+    #image-wrapper {
+        display: none !important;
+    }
+    #status-wrapper{
+        display: none !important;
+    }
+    #salary_min_wrapper{
+        display: none !important;
+    }
+    #salary_max_wrapper{
+        display: none !important;
+    }
+</style>
 @endsection

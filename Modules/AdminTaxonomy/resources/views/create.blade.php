@@ -15,5 +15,4 @@
             </div>
         </div>
     </form>
-    <!--end row-->
 @endsection

@@ -23,6 +23,7 @@ class Account extends Model
         'name',
         'description',
         'price',
+        'position'
     ];
     
     // Relationship
