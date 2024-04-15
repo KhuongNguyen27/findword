@@ -139,12 +139,20 @@
                     </div>
                 </div>
                 <div class="form__check" style="margin-bottom: 50px;">
-                    <input id="accept_pp" type="checkbox" name="accept_pp">
+                    <input id="accept_pp" type="checkbox" name="accept_pp" onchange="showPopup()">
                     <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}<span
                             class="label-required">*</span></label>
                     @if ($errors->has('accept_pp'))
                         <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                     @endif
+                    <div id="popup" class="popup" style="display: none;">
+                        <div class="popup-content">
+                            <span class="close" onclick="closePopup()">&times;</span>
+                            <p style="color: red">
+                                {{ __('please_read_carefully_and_accept_the_terms_of_service_and_privacy_policy') }}
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div class="">
                     <button class="theme-btn btn-style-one " type="submit"
@@ -168,4 +176,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function showPopup() {
+            var accept_pp_checkbox = document.getElementById('accept_pp');
+            var popup = document.getElementById('popup');
+            if (!accept_pp_checkbox.checked) {
+                popup.style.display = 'block';
+            } else {
+                popup.style.display = 'none';
+            }
+        }
+    </script>
 @endsection
