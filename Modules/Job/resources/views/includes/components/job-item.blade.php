@@ -5,15 +5,15 @@ $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày c
 $remainingDays = round($remainingDays);
 $updated_at = $job->updated_at ? $job->updated_at->diffForHumans() : '';
 
-$small_logo_border_color = $job->job_package->job_small_logo_border_color;
+$small_logo_border_color = @$job->job_package->job_small_logo_border_color;
 $small_logo_border_color_style = $small_logo_border_color ? 'border-color: ' . $small_logo_border_color . ' !important;' : '';
-$small_title_color = $job->job_package->job_small_title_color;
+$small_title_color = @$job->job_package->job_small_title_color;
 $small_title_color_style = $small_title_color ? 'color: ' . $small_title_color . ' !important;' : '';
-$small_box_border_color = $job->job_package->job_small_box_border_color;
+$small_box_border_color = @$job->job_package->job_small_box_border_color;
 $small_box_border_color_style = $small_box_border_color ? 'color: ' . $small_box_border_color . ' !important;' : '';
 
-$detail_header_bg = $job->job_package->job_detail_header_bg;
-$detail_company_bg = $job->job_package->job_detail_company_bg;
+$detail_header_bg = @$job->job_package->job_detail_header_bg;
+$detail_company_bg = @$job->job_package->job_detail_company_bg;
 
 $job->work_address = str_replace(', Vietnam', '', $job->work_address);
 $job->work_address = str_replace(', Việt Nam', '', $job->work_address);
@@ -30,7 +30,7 @@ if( $job->province ){
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
             <span class="tag-job-flash">
-                @if ($job->job_package->image_fm)
+                @if ( @$job->job_package->image_fm)
                     <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>

@@ -10,16 +10,23 @@ use App\Models\Rank;
 use App\Models\Job;
 use App\Models\JobJobTag;
 use App\Models\JobTag;
+use App\Models\JobPackage;
 
 class CareerController extends Controller
 {
     public function show($slug, Request $request){
         $item = Career::where('status', 1)->where('slug',$slug)->firstOrFail();
         $provinces = Province::all();
-        $wages = Wage::where('status', 1)->get();
-        $ranks = Rank::where('status', 1)->get();
+        $wages = Wage::where('status', 1)->orderBy('position')->get();
+        $newWages = [];
+        foreach($wages as $wage){
+            $newWages[$wage->salaryMin. '-'. $wage->salaryMax] = $wage->name;
+        }
+        $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $careers = Career::where('status', 1)->get();
         $request->merge(['career_id'=>$item->id]);
+        $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
+
         $query = Job::where('status',1);
 
         $career_id = $item->id;
@@ -51,11 +58,12 @@ class CareerController extends Controller
             'title' => $item->name,
             'item' => $item,
             'jobs' => $jobs,
-            'wages' => $wages,
+            'wages' => $newWages,
             'provinces' => $provinces,
             'ranks' => $ranks,
             'careers' => $careers,
             'job_tags' => $job_tags,
+            'job_packages' => $job_packages,
             'route' => 'home',
         ];
 
