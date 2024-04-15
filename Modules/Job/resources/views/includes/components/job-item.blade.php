@@ -52,11 +52,7 @@ if( $job->province ){
                     <li>
                         @if (auth()->check())
                             <span class="salary">
-                                @if ($job->salaryMin || $job->salaryMax)
-                                    {{ $job->salaryMin }} - {{ $job->salaryMax }}
-                                @else
-                                    Thương lượng
-                                @endif
+                            {{ $job->salary_fm }}
                             </span>
                         @else
                             <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem

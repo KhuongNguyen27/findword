@@ -23,8 +23,11 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Support\Facades\Session;
 
+use App\Traits\UploadFileTrait;
+
 class AuthController extends Controller
 {
+    use UploadFileTrait;
     public function login()
     {
         if (Auth::check()) {
@@ -74,14 +77,16 @@ class AuthController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->type = "employee";
-            $user->status = 0;
+            $user->status = 1;
             $user->tax_code = $request->tax_code;
             $user->password = bcrypt($request->password);
             $user->save();
-            // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)
-            $imagePath = $request->file('image')->store('public/images');
-            // Lấy tên tệp tin hình ảnh
-            $imageName = basename($imagePath);
+            
+            $imagePath = '';
+            if( $request->hasFile('image') ){
+                $imagePath = self::uploadFile( $request->file('image') ,'employees');
+            }
+
             $request->cp_slug = $request->cp_slug ? $request->cp_slug : $request->cp_name;
             $slug = $maybe_slug = Str::slug($request->cp_slug);
             $next = 2;
@@ -95,7 +100,7 @@ class AuthController extends Controller
                 'phone' => $request->phone,
                 'slug' => $slug,
                 'address' => $request->address,
-                'image' => $imageName
+                'image' => $imagePath
             ]);
             $message = "Đăng ký thành công!";
             DB::commit(); // Hoàn thành giao dịch

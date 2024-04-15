@@ -595,6 +595,7 @@ span.company-logo img {
 .job-jobpackage-2 .tag-job-flash img {
     width: 64px !important;
 }
+
 @media screen and (max-width: 1230px) {
     .logo-text {
         display: none;
@@ -616,3 +617,12 @@ h4.job-title {
     align-items: center;
     margin-left: -15%;
   }
+
+.box-job-quick-view-tooltip .box-footer .btn {
+    border: 1px solid #28c1bc !important;
+    color: #28c1bc !important;
+}
+.box-job-quick-view-tooltip .box-footer .btn.btn-view-detail-quick-view {
+    background: #28c1bc !important;
+    color: #fff !important;
+}

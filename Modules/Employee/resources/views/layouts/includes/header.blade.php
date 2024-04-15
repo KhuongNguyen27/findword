@@ -27,28 +27,13 @@
                  <!-- Dashboard Option -->
                  <div class="dropdown dashboard-option">
                      <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                        {{-- <img src="{{ asset('/storage/images/' . auth()->user()->getImage(auth()->user()->id)) }}" alt="avatar" class="thumb"> --}}
                         <span class="name">Xin chào, {{ auth()->user()->name }}</span>
                      </a>
                      <ul class="dropdown-menu">
-                         {{-- <li><a href="dashboard.html"> <i class="la la-home"></i> Dashboard</a></li> --}}
                          <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>Hồ sơ</a>
                          </li>
-                         {{-- <li class="active"><a href="dashboard-post-job.html"><i class="la la-paper-plane"></i>Post a
-                                 New Job</a></li>
-                         <li><a href="dashboard-manage-job.html"><i class="la la-briefcase"></i> Manage Jobs </a></li>
-                         <li><a href="dashboard-applicants.html"><i class="la la-file-invoice"></i> All Applicants</a>
-                         </li>
-                         <li><a href="dashboard-resumes.html"><i class="la la-bookmark-o"></i>Shortlisted Resumes</a>
-                         </li>
-                         <li><a href="dashboard-packages.html"><i class="la la-box"></i>Packages</a></li>
-                         <li><a href="dashboard-messages.html"><i class="la la-comment-o"></i>Messages</a></li>
-                         <li><a href="dashboard-resume-alerts.html"><i class="la la-bell"></i>Resume Alerts</a></li>
-                         <li><a href="dashboard-change-password.html"><i class="la la-lock"></i>Change Password</a></li>
-                         <li><a href="dashboard-company-profile.html"><i class="la la-user-alt"></i>View Profile</a>
-                         </li> --}}
+                         
                          <li><a href="{{ route('employee.logout')}}"><i class="la la-sign-out"></i>Đăng xuất</a></li>
-                         {{-- <li><a href="index.html"><i class="la la-trash"></i>Delete Profile</a></li> --}}
                      </ul>
                  </div>
              </div>

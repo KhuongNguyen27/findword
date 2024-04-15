@@ -92,7 +92,7 @@ class ProfileController extends Controller
             'outstanding_achievements' => $request->input('outstanding_achievements'),
         ];
         if ($request->hasFile('image')) {
-            $imagePath = UserStaff::uploadFile($request->file('image'), 'images');
+            $imagePath = UserStaff::uploadFile($request->file('image'), 'staffs');
             $data['image'] = $imagePath;
         }
         $staff->update($data);

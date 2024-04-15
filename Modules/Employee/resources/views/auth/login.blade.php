@@ -1,4 +1,6 @@
 @extends('website.layouts.auth')
+@section('title') Đăng nhập nhà tuyển dụng @endphp @endsection
+
 @section('content')
 <!-- Login Form -->
 <div class="login-form default-form">

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Superio | Just another HTML Template | Login</title>
+    <title> @yield('title')</title>
     <!-- Stylesheets -->
     <link href="{{ asset('website-assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">

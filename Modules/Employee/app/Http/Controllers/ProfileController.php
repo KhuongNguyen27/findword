@@ -19,13 +19,14 @@ use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Modules\Employee\app\Models\UserJobApply;
 
+use App\Traits\UploadFileTrait;
 
 class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
+    use UploadFileTrait;
     public function dashboard()
     {
         $count_jobs = Job::where('user_id', auth()->user()->id)->count();
@@ -86,15 +87,14 @@ class ProfileController extends Controller
             }
             $userEmployee->slug = $slug;
 
-            if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('public/images');
-                $imageName = basename($imagePath);
-                $userEmployee->image = $imageName;
+            $imagePath = '';
+            if( $request->hasFile('image') ){
+                $imagePath = self::uploadFile( $request->file('image') ,'employees');
+                $userEmployee->image = $imagePath;
             }
-            if ($request->hasFile('background')) {
-                $backgroundPath = $request->file('background')->store('public/backgrounds');
-                $backgroundName = basename($backgroundPath);
-                $userEmployee->background = $backgroundName;
+            if ( $request->hasFile('background') ) {
+                $backgroundPath = self::uploadFile( $request->file('image') ,'backgrounds');
+                $userEmployee->background = $backgroundPath;
             }
             $userEmployee->save();
 

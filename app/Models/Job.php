@@ -114,6 +114,17 @@ class Job extends AdminModel
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
+    function getSalaryFmAttribute(){
+        if( $this->salaryMin && $this->salaryMax ){
+            return number_format($this->salaryMin).' - '. number_format($this->salaryMax);
+        }elseif( $this->salaryMax ){
+            return 'Lên đến '.number_format($this->salaryMax);
+        }elseif( $this->salaryMin ){
+            return 'Từ '. number_format($this->salaryMin);
+        }else{
+            return 'Thương lượng';
+        }
+    }
     // Custom methods
     public static function handleSearch($request,$query){
         if($request->jobpackage_id){

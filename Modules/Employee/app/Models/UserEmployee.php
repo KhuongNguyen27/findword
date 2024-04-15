@@ -50,7 +50,7 @@ class UserEmployee extends Model
             if( strpos($this->image,'http') !== false ){
                 return $this->image;
             }
-            return 'storage/images/'.$this->image;
+            return asset($this->image);
         }
         return "/website-assets/images/favicon.png";
     }
@@ -60,7 +60,7 @@ class UserEmployee extends Model
             if( strpos($this->background,'http') !== false ){
                 return $this->background;
             }
-            return asset('storage/images/'.$this->background);
+            return asset($this->background);
         }
         return "/website-assets/images/backgroudemploy.jpg";
     }

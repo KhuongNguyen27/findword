@@ -1,5 +1,11 @@
 @extends('website.layouts.master')
 @section('content')
+    @php 
+    $job_detail_header_bg = @$job->job_package->job_detail_header_bg;
+    $job_detail_company_bg = @$job->job_package->job_detail_company_bg;
+    $job_detail_header_bg = $job_detail_header_bg ? $job_detail_header_bg.' !important' : '';
+    $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg.' !important' : '';
+    @endphp
     <section class="job-real-detail-section job-detail-section pt-5 job-package-{{ @$job->job_package->slug }}">
         <div class="job-detail-outer">
             <div class="auto-container">
@@ -16,7 +22,7 @@
                 @endif
                 <div class="row">
                     <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                        <div class="job-block-outer">
+                        <div class="job-block-outer" style="background-color: {{ $job_detail_header_bg }};">
                             <div class="job-block-seven style-two">
                                 <div class="inner-box">
                                     <div class="content">
@@ -40,7 +46,7 @@
                                                     <div class="job-detail__info--section-content-title">Mức lương</div>
                                                     <div class="job-detail__info--section-content-value">
                                                         @if (auth()->check())
-                                                            {{ $job->wage->name }}
+                                                            {{ $job->salary_fm }}
                                                         @else
                                                             <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
                                                         @endif
@@ -166,7 +172,7 @@
                         <aside class="sidebar">
 
                             <!-- Company info -->
-                            <div class="job-detail__box--right job-detail__company">
+                            <div class="job-detail__box--right job-detail__company" style="background-color: {{ $job_detail_company_bg }};">
                                 <div class="job-detail__company--information">
                                     <div class="job-detail__company--information-item company-name">
                                         <a rel="nofollow" class="company-logo"
@@ -280,9 +286,10 @@
                                             <div class="box-general-group-info">
                                                 <div class="box-general-group-info-title">Mức lương khởi điểm</div>
                                                 @if (Auth::check())
-                                                    <div class="box-general-group-info-value">{{ $job->wage->name }}</div>
-                                                    @endif
+                                                    <div class="box-general-group-info-value">{{ $job->salary_fm }}</div>
+                                                @else
                                                     <a href="{{route('staff.login')}}" >Đăng nhập để xem</a>
+                                                @endif
                                             </div>
                                         </div>
                                     @endif

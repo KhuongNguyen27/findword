@@ -46,7 +46,7 @@ class Career extends AdminModel
             if( strpos($this->image,'http') !== false ){
                 return $this->image;
             }
-            return asset('storage/images/'.$this->image);
+            return asset(''.$this->image);
         }
         return "/website-assets/images/favicon.png";
     }
