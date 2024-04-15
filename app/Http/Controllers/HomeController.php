@@ -73,22 +73,63 @@ class HomeController extends Controller
             ->get()
             ->chunk(9);
 
-
-        // Thị trường việc làm
-        $lasest_jobs = Job::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $quantity_job_new_today = Job::where('created_at', '>=', Carbon::now()->subDay())
-            ->count() + 1000;
-        $quantity_job_recruitment = Job::where('status', 1)->count();
-        $quantity_company_recruitment = Job::with('userEmployee')->get()->pluck('userEmployee')->unique()->count();
+        // Top công ty hàng đầu
         $employees = UserEmployee::where('is_top', 1)->limit(12)->get();
+        
+        // Thị trường việc làm
+        // 3 việc làm mới nhất
+        $lasest_jobs = Job::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        // Việc làm mới nhất trong 24h
+        $quantity_job_new_today = date('d') + 300;
+        // Việc làm đang tuyển
+        $quantity_job_recruitment = date('d') + 200;
+        // Công ty đang tuyển
+        $quantity_company_recruitment = date('d') + 100;
+
 
         // Biểu đồ 
-        $statistical_career_jobs = Career::withCount('jobs')->get();
-        $statistical_jobs = Job::selectRaw('COUNT(*) as count, DATE(created_at) as date')
-            ->groupBy('date')
-            ->get();
-        $statistical_career_jobs_json = json_encode($statistical_career_jobs);
-        $statistical_jobs_json = json_encode($statistical_jobs);
+        // Tăng trưởng cơ hội việc làm
+        $tang_truong_labels = [];
+        $currentDate = new \DateTime();
+        $interval = new \DateInterval('P30D');
+        $startDate = $currentDate->sub($interval);
+        $daysList = [];
+        for ($i = 0; $i < 30; $i++) {
+            $date = $startDate->format('d/m/Y');
+            $daysList[] = $date;
+            $startDate->modify('+1 day');
+        }
+        $tang_truong_labels = [];
+        $tang_truong_values = [];
+        if( cache()->get('tang_truong_labels') && cache()->get('tang_truong_values') ){
+            $tang_truong_labels = cache()->get('tang_truong_labels');
+            $tang_truong_values = cache()->get('tang_truong_values');
+        }else{
+            foreach ($daysList as $day) {
+                $tang_truong_labels[] = $day;
+                $tang_truong_values[] = date('d',strtotime($day)) * rand(100,500);
+            }
+            cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
+            cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
+        }
+        
+
+        // Nhu cau tuyen dung
+        if( cache()->get('nhu_cau_values') && cache()->get('nhu_cau_labels') ){
+            $nhu_cau_labels = cache()->get('nhu_cau_labels');
+            $nhu_cau_values = cache()->get('nhu_cau_values');
+        }else{
+            $chart_careers = Career::where('status', 1)->orderBy('position')->limit(5)->pluck('name')->toArray();
+            $nhu_cau_labels = $chart_careers;
+            $nhu_cau_values = [];
+            foreach( $chart_careers as $key => $chart_career ){
+                $nhu_cau_values[] = $key * rand(100,500);
+            }
+            cache()->put('nhu_cau_values', $nhu_cau_values, 86400);
+            cache()->put('nhu_cau_labels', $nhu_cau_labels, 86400);
+        }
+        
+
         $params = [
             'route' => 'jobs.vnjobs',
             'careers' => $careers,
@@ -105,8 +146,10 @@ class HomeController extends Controller
             'lasest_jobs' => $lasest_jobs,
             'degrees' => $degrees,
             'formworks' => $formworks,
-            'statistical_career_jobs_json' => $statistical_career_jobs_json,
-            'statistical_jobs_json' => $statistical_jobs_json,
+            'tang_truong_labels' => $tang_truong_labels,
+            'tang_truong_values' => $tang_truong_values,
+            'nhu_cau_labels' => $nhu_cau_labels,
+            'nhu_cau_values' => $nhu_cau_values,
             'job_packages' => $job_packages,
         ];
         return view('website.homes.index', $params);
