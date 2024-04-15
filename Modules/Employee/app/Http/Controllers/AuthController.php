@@ -75,6 +75,7 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->type = "employee";
             $user->status = 0;
+            $user->tax_code = $request->tax_code;
             $user->password = bcrypt($request->password);
             $user->save();
             // Lưu tệp tin hình ảnh vào thư mục lưu trữ (ví dụ: public/images)

@@ -31,6 +31,7 @@ class StoreRegisterRequest extends FormRequest
             'password' => 'required|min:6|max:255',
             'repeatpassword'=> 'required|same:password|max:255',
             'image'=> 'required',
+            'tax_code'=> 'required',
             // 'year_of_birth'=> 'required|min:4|max:4',
         ];
     }
@@ -55,6 +56,7 @@ class StoreRegisterRequest extends FormRequest
             'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'repeatpassword.same' => 'Mật khẩu không khớp!',
             'image.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'tax_code.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'year_of_birth'=>'Vui lòng nhập đầy đủ thông tin',
             'year_of_birth.min'=>'Năm sinh chưa đúng định dạng',
             'year_of_birth.max'=>'Năm sinh chưa đúng định dạng',

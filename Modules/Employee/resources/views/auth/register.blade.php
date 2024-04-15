@@ -114,6 +114,17 @@
                             @endif
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>{{ __('company_taxcode') }}<span class="label-required">*</span></label>
+                            <input type="number" name="tax_code" placeholder="{{ __('company_taxcode') }}"
+                                value="{{ old('tax_code') }}">
+                            @if ($errors->any())
+                                <p style="color:red">{{ $errors->first('tax_code') }}</p>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-lg-12">

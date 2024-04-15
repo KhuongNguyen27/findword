@@ -23,6 +23,7 @@ class UserEmployee extends Model
         'image',
         'user_id',
         'position',
+        'tax_code',
     ];
     
    
