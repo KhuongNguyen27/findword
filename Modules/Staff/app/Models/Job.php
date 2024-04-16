@@ -71,7 +71,7 @@ class Job extends Model
     {
         $userEmployee = $this->userEmployee->first();
         if ($userEmployee && $userEmployee->image !== null) {
-            return 'storage/images/'.$userEmployee->image;
+            return asset($userEmployee->image);
         }
         return "/website-assets/images/favicon.png";
     }

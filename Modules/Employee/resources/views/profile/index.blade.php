@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="new-image-preview" style="margin-left:0px">
                                         <?php if (isset($user_employee->image)):?>
-                                        <img src="<?php echo asset('/storage/images/'.$user_employee->image); ?>" alt="Preview Image">
+                                        <img src="<?php echo asset($user_employee->image); ?>" alt="Preview Image">
                                         <?php endif; ?>
                                     </div>
                                 </div>

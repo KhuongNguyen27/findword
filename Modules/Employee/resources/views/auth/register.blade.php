@@ -1,4 +1,5 @@
 @extends('website.layouts.auth')
+@section('title') Đăng ký nhà tuyển dụng @endphp @endsection
 @section('content')
     <!-- Login Form -->
     <div class="login-form default-form">
@@ -147,7 +148,6 @@
                     @endif
                     <div id="popup" class="popup" style="display: none;">
                         <div class="popup-content">
-                            <span class="close" onclick="closePopup()">&times;</span>
                             <p style="color: red">
                                 {{ __('please_read_carefully_and_accept_the_terms_of_service_and_privacy_policy') }}
                             </p>

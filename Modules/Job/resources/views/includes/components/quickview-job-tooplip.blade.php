@@ -15,7 +15,7 @@
                     </a>
                 @endif
                 @if (auth()->check())
-                    <label class="salary">{{ $job->wage->name ?? '' }}</label>
+                    <label class="salary">{{ $job->salary_fm }}</label>
                 @else
                     <label class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Đăng nhập để
                             xem</a></label>
