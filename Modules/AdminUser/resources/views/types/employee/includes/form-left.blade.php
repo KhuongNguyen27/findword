@@ -28,6 +28,11 @@
             <x-admintheme::form-input-error field="website"/>
         </div>
         <div class="mb-4">
+            <label class="mb-3"> Token </label>
+            <input type="number" class="form-control" name="points" value="{{ $item->points ?? '' }}" placeholder="" max="9999">
+            <x-admintheme::form-input-error field="points"/>
+        </div>
+        <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
             <textarea id="description" class="tinymce" name="about" cols="4" rows="6">{{ $item->employee->about ?? old('about') }}</textarea>
             <div id="tinycomments-container">
