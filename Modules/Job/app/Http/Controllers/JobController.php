@@ -39,18 +39,18 @@ class JobController extends Controller
         } else {
             $paginate = 3;
         }
-        if($request->name){
+        if ($request->name) {
             $query->where('name', 'LIKE', '%' . $request->name . '%');
         }
 
-        if($request->address_work){
+        if ($request->address_work) {
             $query->where('work_address', 'LIKE', '%' . $request->address_work . '%');
         }
         if ($segment) {
             $query->where('country', 'LIKE', '%vietnam%');
         } else {
             $query->where('country', 'NOT LIKE', '%vietnam%')
-                    ->orWhereNull('country');
+                ->orWhereNull('country');
         }
         if ($request->career_search) {
             $query->whereHas('careers', function ($query) use ($request) {
@@ -63,10 +63,10 @@ class JobController extends Controller
                 }
             });
         }
-        
+
         $items = $query->where('status', 1)->orderBy('id', 'desc')->distinct()->get();
-        
-        
+
+
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $perPage = $paginate;
         $offset = ($currentPage - 1) * $perPage;
@@ -83,7 +83,7 @@ class JobController extends Controller
         $param = [
             'items' => $paginatedItems,
             'request' => $request,
-            'careers'=> $careers
+            'careers' => $careers
         ];
         return view($this->link_view . 'index', $param);
     }
@@ -110,22 +110,22 @@ class JobController extends Controller
     {
         $model = new Job;
         $user_id = Auth::id();
-        $job = Job::where('slug', $slug)->with('userEmployee','careers')->firstOrFail();
-        $career_id = CareerJob::where('job_id',$job->id)->first();
-        $jobs = Job::pluck('more_information');
+        $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+        $career_id = CareerJob::where('job_id', $job->id)->first();
         $job_relate_to = [];
         if ($career_id) {
             $job_relate_to = $model->getJobforCareerId($career_id->career_id);
         }
-        $job_employ = Job::where('user_id',$job->user_id)->get();
+        $job_employ = Job::where('user_id', $job->user_id)->get();
+        $moreInformation = $job->more_information ?? null;
         $params = [
             'job' => $job,
             'user_id' => $user_id,
             'job_relate_to' => $job_relate_to,
             'job_employ' => $job_employ,
-            'jobs'=>$jobs,
+            'moreInformation'=>$moreInformation,
         ];
-        return view('job::jobs.show',$params);
+        return view('job::jobs.show', $params);
     }
 
     /**
@@ -153,7 +153,7 @@ class JobController extends Controller
             $params = [
                 'userCvs' => $userCvs,
                 'user_employee' => $user_employee,
-                'job' =>$job,
+                'job' => $job,
                 'job_applies' => $job_applies
             ];
             return view('job::aplications.index', $params);

@@ -70,13 +70,13 @@
 
                                         <div class="job-detail__info--flex mt-3">
                                             <!-- <div class="quantity-applied-user disabled">
-                                                <div class="quantity-applied-user__icon">
-                                                    <i class="fa fa-solid fa-lock"></i>
-                                                </div>
-                                                <div class="quantity-applied-user__text">
-                                                    Số lượt ứng tuyển: -
-                                                </div>
-                                            </div> -->
+                                                    <div class="quantity-applied-user__icon">
+                                                        <i class="fa fa-solid fa-lock"></i>
+                                                    </div>
+                                                    <div class="quantity-applied-user__text">
+                                                        Số lượt ứng tuyển: -
+                                                    </div>
+                                                </div> -->
                                             <div class="job-detail__info--deadline">
                                                 <span class="job-detail__info--deadline--icon">
                                                     <i class="fa fa-solid fa-clock"></i>
@@ -122,12 +122,13 @@
                             <div class="text">
                                 {!! $job->requirements ?? '-' !!}
                             </div>
-                            <div class="job-sub-title"> {{__('more_information')}} </div>
-                            <div class="text">
-                                {!! $jobs->more_information ?? '_' !!}
-                            </div>
+                            @if ($job->more_information)
+                                <div class="job-sub-title">{{ __('more_information') }}</div>
+                                <div class="text">
+                                    {!! $job->more_information !!}
+                                </div>
+                            @endif
                         </div>
-
                         <div class="job-detail">
                             <h4 class="job-sub-title">Việc làm cùng công ty</h4>
                             <div class="row">
@@ -285,8 +286,8 @@
                                                 <div class="box-general-group-info-title">Mức lương khởi điểm</div>
                                                 @if (Auth::check())
                                                     <div class="box-general-group-info-value">{{ $job->wage->name }}</div>
-                                                    @endif
-                                                    <a href="{{route('staff.login')}}" >Đăng nhập để xem</a>
+                                                @endif
+                                                <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
                                             </div>
                                         </div>
                                     @endif
@@ -361,18 +362,18 @@
                                     </div>
                                 </div>
                                 <!-- <div class="box-category">
-                                    <div class="box-title">Khu vực</div>
-                                    <div class="box-category-tags">
-                                        <span><a class="box-category-tag"
-                                                href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-nam-tu-liem-kl1d131"
-                                                target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Nam Từ Liêm">Nam
-                                                Từ Liêm</a></span>
-                                        <span><a class="box-category-tag"
-                                                href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-ha-noi-kl1"
-                                                target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Hà Nội">Hà
-                                                Nội</a></span>
-                                    </div>
-                                </div> -->
+                                        <div class="box-title">Khu vực</div>
+                                        <div class="box-category-tags">
+                                            <span><a class="box-category-tag"
+                                                    href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-nam-tu-liem-kl1d131"
+                                                    target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Nam Từ Liêm">Nam
+                                                    Từ Liêm</a></span>
+                                            <span><a class="box-category-tag"
+                                                    href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-ha-noi-kl1"
+                                                    target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Hà Nội">Hà
+                                                    Nội</a></span>
+                                        </div>
+                                    </div> -->
                             </div>
                         </aside>
                     </div>
