@@ -31,6 +31,7 @@ class Job extends MainJob
         'Job_requirements ',
         'wage_id',
         'formwork_id',
+        'more_information',
     ];
     // Relationship
     public function user(): BelongsTo

@@ -227,8 +227,7 @@ input {
                                             {{ $errors->first('requirements') }}</p>
                                         @endif
                                     </div>
-
-
+               
                                 </div>
                             </div>
                         </div>

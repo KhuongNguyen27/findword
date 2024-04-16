@@ -80,12 +80,12 @@
             </li>
             <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'JobPackage']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Gói Tin
+                    <span class="material-symbols-outlined">arrow_right</span>{{__('jobpackage')}}
                 </a>
             </li>
             <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'JobTag']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Thẻ công việc
+                    <span class="material-symbols-outlined">arrow_right</span>{{__('card_job')}}
                 </a>
             </li>
         </ul>
@@ -96,28 +96,28 @@
             <div class="parent-icon">
                 <span class="material-symbols-outlined">account_circle</span>
             </div>
-            <div class="menu-title">Hệ thống</div>
+            <div class="menu-title"> {{__('system')}} </div>
         </a>
         <ul class="mm-collapse">
             <li>
                 <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Bài viết</a>
+                    <span class="material-symbols-outlined">arrow_right</span> {{__('post')}} </a>
             </li>
             <li>
                 <a href="{{ route('adminpost.index',['type'=>'Page']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Trang</a>
+                    <span class="material-symbols-outlined">arrow_right</span>{{__('page')}}</a>
             </li>
             <li>
                 <a href="{{ route('admin.cvs.index') }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Mẫu CV</a>
+                    <span class="material-symbols-outlined">arrow_right</span> {{__('cv_template')}} </a>
             </li>
             <li>
                 <a href="{{ route('admin.transactions.index') }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Giao dịch</a>
+                    <span class="material-symbols-outlined">arrow_right</span> {{__('transaction')}} </a>
             </li>
             <li>
                 <a href="{{ route('admintaxonomy.index',['type'=>'Account']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span>Gói Tài Khoản</a>
+                    <span class="material-symbols-outlined">arrow_right</span>{{__('account_jobpackage')}}</a>
             </li>
             <li>
                 <a href="{{ route('adminuser.index') }}">

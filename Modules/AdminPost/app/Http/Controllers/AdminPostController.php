@@ -124,6 +124,7 @@ class AdminPostController extends Controller
     public function update(StoreAdminPostRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
+        // dd($request->more_information);
         try {
             $this->model::updateItem($id,$request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
