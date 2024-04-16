@@ -144,6 +144,9 @@
     <script>
     CKEDITOR.replace('requirements');
     </script>
+     <script>
+        CKEDITOR.replace('more_information');
+      </script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ use Modules\Employee\app\Models\UserEmployee;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Career;
+use App\Models\Post;
 use Modules\Employee\app\Models\CareerJob;
 use Modules\Staff\app\Models\UserJobAplied;
 
@@ -111,6 +112,7 @@ class JobController extends Controller
         $user_id = Auth::id();
         $job = Job::where('slug', $slug)->with('userEmployee','careers')->firstOrFail();
         $career_id = CareerJob::where('job_id',$job->id)->first();
+        $jobs = Job::pluck('more_information');
         $job_relate_to = [];
         if ($career_id) {
             $job_relate_to = $model->getJobforCareerId($career_id->career_id);
@@ -121,6 +123,7 @@ class JobController extends Controller
             'user_id' => $user_id,
             'job_relate_to' => $job_relate_to,
             'job_employ' => $job_employ,
+            'jobs'=>$jobs,
         ];
         return view('job::jobs.show',$params);
     }

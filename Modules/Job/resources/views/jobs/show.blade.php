@@ -40,7 +40,7 @@
                                                     <div class="job-detail__info--section-content-title">Mức lương</div>
                                                     <div class="job-detail__info--section-content-value">
                                                         @if (auth()->check())
-                                                            {{ $job->wage->name }}
+                                                            {{-- {{ $job->wage->name }} --}}
                                                         @else
                                                             <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
                                                         @endif
@@ -121,6 +121,10 @@
                             <h4 class="job-sub-title">Yêu cầu</h4>
                             <div class="text">
                                 {!! $job->requirements ?? '-' !!}
+                            </div>
+                            <div class="job-sub-title"> {{__('more_information')}} </div>
+                            <div class="text">
+                                {!! $jobs->more_information ?? '_' !!}
                             </div>
                         </div>
 
