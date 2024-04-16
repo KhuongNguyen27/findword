@@ -59,6 +59,7 @@ class AdminUserController extends Controller
     public function store(StoreAdminUserRequest $request)
     {
         $type = $request->type;
+        // dd($request->type);
         try {
             $this->model::saveItem($request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));

@@ -55,7 +55,7 @@
                                 @if (request()->type == 'employee' )
                                 <th>{{ __('position') }}</th>
                                 @endif
-                                <th>{{ __('email') }}</th>
+                                <th> {{__('points')}} </th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('created_at') }}</th>
                                 <th>{{ __('action') }}</th>
@@ -72,7 +72,7 @@
                                         @if (request()->type == 'employee' )
                                             <td>{{ $item->employee->position }}</td>
                                         @endif
-                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->points }}</td>
                                         <td>{!! $item->status_fm !!}</td>
                                         <td>{{ $item->created_at_fm }}</td>
                                         <td>

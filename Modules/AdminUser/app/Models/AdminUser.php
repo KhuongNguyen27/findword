@@ -3,6 +3,7 @@
 namespace Modules\AdminUser\app\Models;
 
 use App\Models\AdminModel as Model;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\AdminUser\Database\factories\AdminUserFactory;
 use Modules\Staff\app\Models\UserStaff;
@@ -28,6 +29,7 @@ class AdminUser extends Model
         'status',
         'verify',
         'position',
+        'points',
     ];
     
     protected static function newFactory(): AdminUserFactory
@@ -108,13 +110,17 @@ class AdminUser extends Model
                     $next++;
                 }
                 $user_employee = new UserEmployee;
+                $user = User::get()->first();
                 $user_employee->slug = $slug;
                 $user_employee->user_id = $item->id;
                 $user_employee->name = $data['name_company'];
                 $user_employee->phone = $data['phone'];
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
-                $user_employee->position = $item->$position;
+                $user_employee->position = $data['position'];
+                if ($user) {
+                    $user->points = $user_employee->points;
+                }
                 if ($request->hasFile('background')) {
                     self::deleteFile($user_employee->background);
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
@@ -133,7 +139,7 @@ class AdminUser extends Model
         try {
             $data = $request->except(['_token', '_method']);
             $item = self::findOrFail($id);
-            $userData   = $request->only(['name', 'email','password','type','status','verify','position']);
+            $userData   = $request->only(['name', 'email','password','type','status','verify','position','points']);
             if ($request->hasFile('image')) {
                 self::deleteFile($item->image);
                 $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
@@ -165,11 +171,15 @@ class AdminUser extends Model
             }
             if($type =="employee"){
                 $user_employee = UserEmployee::where('user_id',$item->id)->first();
+                $user = User::get()->first();
                 $user_employee->name = $data['name_company'];
                 $user_employee->phone = $data['phone'];
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
                 $user_employee->position = $data['position'];
+                if ($user && isset($data['points'])) {
+                    $user->points = $data['points'];
+                }
                 if ($request->hasFile('background')) {
                     self::deleteFile($user_employee->background);
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
