@@ -99,10 +99,12 @@
                                     <div class="table-content">
                                         <ul>
                                             @foreach($item->job_package as $package)
-                                            <li><span>Miễn phí {{ $package->amount }} {{ $package->job_package->name }}/
-                                                    tháng</span></li>
+                                                @if($package->job_package !== null)
+                                                    <li><span>Miễn phí {{ $package->amount }} {{ $package->job_package->name }}/ tháng</span></li>
+                                                @endif
                                             @endforeach
                                         </ul>
+                                        
                                     </div>
                                     <div class="table-footer">
                                         <a href="{{ route($route_prefix.'show',$item->id) }}"

@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="mb-4">
                 <label class="mb-3">{{__('price')}}</label>
-                <input type="text" class="form-control" name="price" value="{{ $item->price ?? old('price') }}">
+                <input type="number" class="form-control" name="price" value="{{ $item->price ?? old('price') }}">
                 <x-admintheme::form-input-error field="price"/>
             </div>
         </div>
