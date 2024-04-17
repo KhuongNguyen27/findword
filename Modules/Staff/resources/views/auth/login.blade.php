@@ -51,12 +51,12 @@
             <div class="text">{{ __('do_not_have_an_account') }}? <a class="" href="{{ route('staff.register')}}">{{ __('register') }}</a></div>
             <div class="divider"><span>{{ __('or') }}</span></div>
             <div class="btn-box row d-flex justify-content-center">
-                <div class="col-lg-6 col-md-6">
+                {{-- <div class="col-lg-6 col-md-6">
                     <a href="{{ route('login.facebook') }}" class="theme-btn social-btn-two facebook-btn"><i class="fab fa-facebook-f"></i>
                         {{ __('facebook_login') }}
                     </a>
-                </div>
-                <div class="col-lg-6 col-md-6">
+                </div> --}}
+                <div class="col-lg-12 col-md-12">
                     <a href="{{ route('login.google') }}" class="theme-btn social-btn-two google-btn"><i class="fab fa-google"></i>
                         {{ __('gmail_login') }}
                     </a>
