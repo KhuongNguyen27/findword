@@ -18,14 +18,7 @@ class AdminModel extends Model
 
     static $upload_dir = 'uploads';
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'image',
-        'status',
-        'position'
-    ];
+   
 
     public static function setUploadDir( $upload_dir ){
         self::$upload_dir = $upload_dir;

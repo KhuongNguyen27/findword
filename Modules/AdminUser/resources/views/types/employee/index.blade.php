@@ -57,6 +57,7 @@
                                 @endif
                                 <th> {{__('points')}} </th>
                                 <th>{{ __('status') }}</th>
+                                <th>{{ __('verify') }}</th>
                                 <th>{{ __('created_at') }}</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
@@ -74,6 +75,7 @@
                                         @endif
                                         <td>{{ $item->points }}</td>
                                         <td>{!! $item->status_fm !!}</td>
+                                        <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>
                                         <td>{{ $item->created_at_fm }}</td>
                                         <td>
                                             <div class="dropdown">

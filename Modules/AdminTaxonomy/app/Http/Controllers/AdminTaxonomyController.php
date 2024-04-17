@@ -119,7 +119,7 @@ class AdminTaxonomyController extends Controller
     public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
-        // dd($request);
+        // dd($request->type);
         try {
             $this->model::updateItem($id,$request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
