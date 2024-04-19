@@ -10,14 +10,14 @@
         <!--Pricing Tabs-->
         <div class="pricing-tabs tabs-box">
             <!--Tab Btns-->
-            <!-- <div class="tab-buttons">
+             <div class="tab-buttons">
                 <h4>Tiết kiệm đến 10%</h4>
                 <ul class="tab-btns">
                     <li data-tab="#monthly" class="tab-btn active-btn">Gói tháng</li>
                     <li data-tab="#annual" class="tab-btn">Gói năm</li>
                 </ul>
-            </div> -->
-
+            </div>
+            
             <!--Tabs Container-->
             <div class="tabs-content">
                 <!--Tab / Active Tab-->
@@ -68,14 +68,15 @@
                                     <div class="title">
                                         <h2>{{ $item->name }}</h2>
                                     </div>
-                                    <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm/
+                                    <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm /
                                             tháng</span></div>
                                     <div class="table-content">
                                         <ul>
-                                            @foreach($item->job_package as $package)
+                                            {{-- @foreach($item->job_package as $package)
                                             <li><span>Miễn phí {{ $package->amount }} {{ $package->job_package->name }}/
                                                     tháng</span></li>
-                                            @endforeach
+                                            @endforeach --}}
+                                            {!!$item->description!!}
                                         </ul>
                                     </div>
                                     <div class="table-footer">
@@ -94,15 +95,16 @@
                                     <div class="title">
                                         <h2>{{ $item->name }}</h2>
                                     </div>
-                                    <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm/
+                                    <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm /
                                             tháng</span></div>
                                     <div class="table-content">
                                         <ul>
-                                            @foreach($item->job_package as $package)
+                                            {{-- @foreach($item->job_package as $package)
                                                 @if($package->job_package !== null)
                                                     <li><span>Miễn phí {{ $package->amount }} {{ $package->job_package->name }}/ tháng</span></li>
                                                 @endif
-                                            @endforeach
+                                            @endforeach --}}
+                                            {!! $item->description !!}
                                         </ul>
                                         
                                     </div>

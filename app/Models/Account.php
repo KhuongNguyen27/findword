@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends AdminModel
 {
     use HasFactory;
+    protected $fillable =
+    [
+        'name',
+        'price',
+        'description',
+        'position',
+    ];
 
     public static function overrideUpdateItem($id,$data,$request){
         $item = self::findOrFail($id);
