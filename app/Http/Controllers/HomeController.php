@@ -34,7 +34,7 @@ class HomeController extends Controller
         }
         $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
-        $normal_provinces = Province::whereNotIn('id', [1, 50, 32])->get();
+        $normal_provinces = Province::whereNotIn('name', [1, 50, 32])->orderBy('name')->get();
         $provinces = Province::whereIn('id', [1, 50, 32])
             ->orderByRaw("FIELD(id,1,50,32)")
             ->get()->concat($normal_provinces);

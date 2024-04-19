@@ -95,7 +95,7 @@
         <div class="auto-container">
             <div class="outer-box">
                 <div class="copyright-text">© 2024 <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>. All Right Reserved.
-                    <br><span style="font-size:12px;">Website đang được phát triển và hoàn thiện</span>
+                    <br><span style="font-size:12px;"> {{__('Website_is_undergoing_upgrades_and_development')}} </span>
                 </div>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
