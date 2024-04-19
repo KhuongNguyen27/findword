@@ -35,7 +35,7 @@ class JobController extends Controller
         $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $model = new Job;
         
-        $normal_provinces = Province::whereNotIn('id',[1,50,32])->get();
+        $normal_provinces = Province::whereNotIn('id',[1,50,32])->orderBy('name')->get();
         $provinces = Province::whereIn('id',[1,50,32])->orderByRaw("FIELD(id,1,50,32)")->get()->merge($normal_provinces);
         // Việc làm mới nhất trong nước
         // $imageUserEmployyee = UserEmployee::class;
