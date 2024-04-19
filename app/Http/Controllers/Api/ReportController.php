@@ -12,15 +12,15 @@ class ReportController extends Controller
         $passWord = $request->input('password');
         if($userName === 'info@timviecsieunhanh.vn' && $passWord === 'GciTHdp.MS72'){
             $data = [
-                "soLuongTruyCap" => 100,
-                "soNguoiBan" => 20,
-                "soNguoiBanMoi" => 5,
-                "tongSoSanPham" => 20000,
-                "soSanPhamMoi" => 1200,
-                "soLuongGiaoDich" => 200,
-                "tongSoDonHangThanhCong" => 150,
-                "tongSoDonHangKhongThanhCong" => 50,
-                "tongGiaTriGiaoDich" => 1500000000
+                "soLuongTruyCap" => 0,
+                "soNguoiBan" => 0,
+                "soNguoiBanMoi" => 0,
+                "tongSoSanPham" => 0,
+                "soSanPhamMoi" => 0,
+                "soLuongGiaoDich" => 0,
+                "tongSoDonHangThanhCong" => 0,
+                "tongSoDonHangKhongThanhCong" => 0,
+                "tongGiaTriGiaoDich" => 0
             ];
             return response()->json($data);
         }
