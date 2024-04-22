@@ -31,7 +31,7 @@ Route::group([
 	Route::get('/transaction/delete/{id}', [TransactionController::class,'destroy'])->name('transaction.destroy');
 });
 Route::group([
-	'middleware' => ['auth.employee'],
+	// 'middleware' => ['auth.employee'],
 	'as' => 'admin.',
 	'prefix' => 'admin'
 ], function () {
