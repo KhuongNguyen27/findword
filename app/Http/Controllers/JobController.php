@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Career;
+use App\Models\Country;
 use App\Models\Job;
 use App\Models\Wage;
 use App\Models\Rank;
@@ -26,6 +27,7 @@ class JobController extends Controller
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
+        $countries = Country::get();
         $newWages = [];
         foreach($wages as $wage){
             $newWages[$wage->salaryMin. '-'. $wage->salaryMax] = $wage->name;
@@ -194,7 +196,6 @@ class JobController extends Controller
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
-
         $employees = UserEmployee::get();
         $params = [
             'careers' => $careers,
@@ -211,6 +212,7 @@ class JobController extends Controller
             'job_type' => $job_type,
             'job_tags' => $job_tags,
             'job_packages'=> $job_packages,
+            'countries'=>$countries,
         ];
         return view($view_path,$params);
     }
@@ -233,6 +235,7 @@ class JobController extends Controller
         $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
         $job_packages  = JobPackage::where('status',1)->get();
         $provinces = Province::all();
+        $countries = Country::all();
         // Việc làm mới nhất ngoài nước
         $query = Job::where('jobs.status',1);
         $query->where('country','!=', 'VN');
@@ -416,7 +419,8 @@ class JobController extends Controller
             'formworks' => $formworks,
             'job_type' => $job_type,
             'job_tags' => $job_tags,
-            'job_packages' => $job_packages ,
+            'job_packages' => $job_packages,
+            'countries'=>$countries,
         ];
         return view($view_path,$params);
     }

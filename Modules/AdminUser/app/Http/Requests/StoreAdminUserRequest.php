@@ -35,7 +35,6 @@ class StoreAdminUserRequest extends FormRequest
                 'name_company' => 'required',
                 'address' => 'required',
                 'website' => 'required',
-                'about' => 'required',
             ];
         }
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {

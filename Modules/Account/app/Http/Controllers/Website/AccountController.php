@@ -25,7 +25,7 @@ class AccountController extends Controller
     protected $model        = Account::class;
     public function index()
     {
-        $items = $this->model::all();
+        $items = $this->model::orderBy('position')->get();
         $package_current = UserAccount::whereUser_id(Auth::id())->pluck('account_id','expiration_date',)->toArray();
         $params = [
             'items' => $items,

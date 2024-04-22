@@ -11,18 +11,22 @@
                     <span class="icon flaticon-map-locator"></span>
                     <select name="province_id" class="form-select chosen-select">
                         <option value="">Tất cả địa điểm</option>
-                        @if (request()->route()->getName() != 'jobs.vnjobs')
+                        @if (request()->route()->getName() != 'jobs.vnjobs' )
                             <option value="quoc_te">Quốc tế</option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                            @endforeach
+                        @elseif (request()->route()->getName() != 'jobs.nnjobs')
+                            @foreach ($provinces as $province)
+                                @php
+                                    $province->name = str_replace('Tỉnh ', '', $province->name);
+                                    $province->name = str_replace('Thành phố ', '', $province->name);
+                                @endphp
+                                <option @selected($province->id == request()->province_id) value="{{ $province->id }}">{{ $province->name }}</option>
+                            @endforeach
                         @endif
-                        @foreach ($provinces as $province)
-                            @php
-                                $province->name = str_replace('Tỉnh ', '', $province->name);
-                                $province->name = str_replace('Thành phố ', '', $province->name);
-                            @endphp
-                            <option @selected($province->id == request()->province_id) value="{{ $province->id }}">{{ $province->name }}
-                            </option>
-                        @endforeach
                     </select>
+                    
                 </div>
             @else
                 <div></div>
@@ -158,4 +162,3 @@
             class="{{ $sort == 'date-asc' ? $activeClass : $inactiveClass }}">Ngày đăng (cũ nhất)</a>
     </div>
 @endif
-

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Employee\app\Http\Requests\CreateJobRequest;
 use Modules\Employee\app\Http\Requests\UpdateJobRequest;
 use App\Models\Career;
+use App\Models\Country;
 use App\Models\Level;
 use App\Models\Rank;
 use App\Models\Wage;
@@ -72,6 +73,7 @@ class JobController extends Controller
             $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
+            $countries = Country::all();
             $param = [
                 'careers' => $careers,
                 'degrees' => $degrees,
@@ -79,7 +81,8 @@ class JobController extends Controller
                 'formworks' => $formworks,
                 'wages' => $wages,
                 'job_packages' => $job_packages,
-                'provinces' => $provinces
+                'provinces' => $provinces,
+                'countries'=>$countries,
             ];
             return view('employee::job.create', compact('param'));
         } else {

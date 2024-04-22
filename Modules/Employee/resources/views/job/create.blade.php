@@ -121,11 +121,11 @@ input {
                                             {{ $errors->first('wage_id') }}</p>
                                         @endif
                                     </div> --}}
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mức lương tối thiểu </label>
                                        <input type="number" name="salaryMin" id="salaryMin" value="{{ old('salaryMin') }}"/>
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mưc lương tối đa </label>
                                        <input type="number" name="salaryMax" id="salaryMax" value="{{ old('salaryMax') }}"/>
                                     </div>
@@ -154,21 +154,19 @@ input {
                                             {{ $errors->first('work_address') }}</p>
                                         @endif
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;">
+
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;">
                                         <label>Quốc gia</label>
-                                        <select name="country" class="chosen-select">
+                                        <select name="country" class="chosen-select" id="country">
                                             <option id="vn" value="VN" {{ old('country') == 'VN' ? 'selected' : '' }}>Trong nước</option>
                                             <option id="nn" value="NN" {{ old('country') == 'NN' ? 'selected' : '' }}>Ngoài nước</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;">
+                                    
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;" id="provinceDiv">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
-                                        <select name="province_id" class="chosen-select form-select">
+                                        <select name="province_id" class="chosen-select form-select" id="province">
                                             <option value="">Tất cả địa điểm</option>
-                                            <option value="9999" selected>Quốc tế</option>
-                                            @if(old('country') == 'NN')
-                                            @elseif(old('country') == 'VN')
-                                            @endif
                                             @foreach ($param['provinces'] as $province)
                                                 <option value="{{ $province->id }}" {{ old('province_id') == $province->id ? 'selected' : '' }}>
                                                     {{ $province->name }}
@@ -176,6 +174,21 @@ input {
                                             @endforeach
                                         </select>
                                         @error('province_id')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    
+                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;" id="internationalDiv">
+                                        <label>Quốc tế<span class="label-required">*</span></label>
+                                        <select name="name" class="chosen-select form-select" id="international">
+                                            <option value="">Tất cả địa điểm</option>
+                                            @foreach ($param['countries'] as $country)
+                                                <option value="{{ $country->id }}" {{ old('id') == $country->id ? 'selected' : '' }}>
+                                                    {{ $country->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('name')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -345,6 +358,7 @@ input {
 
     </div>
 </section>
+
 @endsection
 
 @section('footer')
@@ -413,5 +427,21 @@ $(document).ready(function() {
 var currentDate = new Date().toISOString().split('T')[0];
 
 document.getElementById('deadlineInput').min = currentDate;
+</script>
+<script>
+    $(document).ready(function() {
+        $('#country').change(function() {
+            var selectedValue = $(this).val();
+            if (selectedValue === 'VN') {
+                $('#provinceDiv').show();
+                $('#internationalDiv').hide();
+            } else if (selectedValue === 'NN') {
+                $('#provinceDiv').hide();
+                $('#internationalDiv').show();
+            }
+        });
+    });
+
+
 </script>
 @endsection
