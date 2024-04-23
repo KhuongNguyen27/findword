@@ -2,13 +2,13 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="{{ asset('website-assets/images/banner/1100x220-1.png') }}" alt="">
+                <img src="{{ asset('website-assets/images/banner/BANNER_TUYENDUNGHUE_7_1100x220.png') }}" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="{{ asset('website-assets/images/banner/1100x220-2.png') }}" alt="">
+                <img src="{{ asset('website-assets/images/banner/TUYENDUNGHUE_8_1100x220.png') }}" alt="">
             </div>
             <div class="swiper-slide">
-                <img src="{{ asset('website-assets/images/banner/1100x220-3.png') }}" alt="">
+                <img src="{{ asset('website-assets/images/banner/TUYENDUNGHUE_BANNER_9_1100x220.png') }}" alt="">
             </div>
         </div>
         <div class="swiper-button-next"></div>

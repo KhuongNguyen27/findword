@@ -3,10 +3,16 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="{{ asset('website-assets/images/banner/346x577-1.png') }}" alt="">
+                    <img src="{{ asset('website-assets/images/banner/BANNER_TUYENDUNG_2_346x577.png') }}" alt="">
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('website-assets/images/banner/346x577-2.png') }}" alt="">
+                    <img src="{{ asset('website-assets/images/banner/BANNER_TUYENDUNG_6_346x577.png') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ asset('website-assets/images/banner/BANNER_10_346x577.png') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ asset('website-assets/images/banner/BANNER_11_346x577.png') }}" alt="">
                 </div>
             </div>
             <div class="swiper-button-next"></div>
