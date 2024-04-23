@@ -38,6 +38,7 @@ class Job extends AdminModel
         'salaryMin',
         'salaryMax',
         'province_id',
+        'country_id',
         'more_information',
     ];
 

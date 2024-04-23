@@ -29,7 +29,7 @@
         </div>
         <div class="mb-4">
             <label class="mb-3"> Token </label>
-            <input type="number" class="form-control" name="points" value="{{ $item->points ?? '' }}" placeholder="" max="9999">
+            <input type="number" class="form-control" name="points" value="{{ $item->points ?? '' }}" placeholder="">
             <x-admintheme::form-input-error field="points"/>
         </div>
         <div class="mb-4">

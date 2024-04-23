@@ -33,11 +33,12 @@ class UpdateAdminUserRequest extends FormRequest
                 'name_company' => 'required',
                 'address' => 'required',
                 'website' => 'required',
-                'about' => 'required',
+                'points'=>'max:100000000'
             ];
         }
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['email'] = 'required';
+            $rules['points'] = 'numeric|max:100000000';
             unset($rules['password']);
         }
         return $rules;
@@ -47,7 +48,8 @@ class UpdateAdminUserRequest extends FormRequest
         return [
             'required'=>'Vui lòng điền đẩy đủ thông tin',
             'max'=>'Không quá 255 ký tự',
-            'unique'=>'Tên đã sử dụng'
+            'unique'=>'Tên đã sử dụng',
+            'points.max'=>'Số tiền tối đa là 100 triệu VND'
         ];
     }
 

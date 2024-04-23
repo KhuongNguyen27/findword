@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Career;
+use App\Models\Country;
 use App\Models\Job;
 use App\Models\Wage;
 use App\Models\Rank;
@@ -27,6 +28,7 @@ class HomeController extends Controller
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
         $careers = Career::where('status', 1)->orderBy('position')->get();
         $job_packages = JobPackage::where('status', 1)->get();
+        $countries = Country::all();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
         $newWages = [];
         foreach($wages as $wage){
@@ -151,6 +153,7 @@ class HomeController extends Controller
             'nhu_cau_labels' => $nhu_cau_labels,
             'nhu_cau_values' => $nhu_cau_values,
             'job_packages' => $job_packages,
+            'countries' => $countries,
         ];
         return view('website.homes.index', $params);
     }
