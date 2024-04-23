@@ -163,7 +163,7 @@ input {
                                         </select>
                                     </div>
                                     
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;" id="provinceDiv">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;" id="provinceDiv">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                         <select name="province_id" class="chosen-select form-select" id="province">
                                             <option value="">Tất cả địa điểm</option>
@@ -176,12 +176,12 @@ input {
                                     
                                     </div>
                                     
-                                    <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;" id="internationalDiv">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;" id="internationalDiv">
                                         <label>Quốc tế<span class="label-required">*</span></label>
-                                        <select name="name" class="chosen-select form-select" id="international">
+                                        <select name="country_id" class="chosen-select form-select" id="international">
                                             <option value="">Tất cả địa điểm</option>
                                             @foreach ($param['countries'] as $country)
-                                                <option value="{{ $country->id }}" {{ old('id') == $country->id ? 'selected' : '' }}>
+                                                <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
                                                     {{ $country->name }}
                                                 </option>
                                             @endforeach
