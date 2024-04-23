@@ -638,7 +638,6 @@ h4.job-title {
     align-items: center;
 }
 
-/* Nội dung của modal */
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -647,7 +646,6 @@ h4.job-title {
     max-width: 400px;
 }
 
-/* Nút đóng modal */
 .close {
     color: #aaa;
     float: right;
