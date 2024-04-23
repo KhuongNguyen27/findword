@@ -21,6 +21,9 @@ class CreateJobRequest extends FormRequest
 
     public function rules(): array
     {
+
+        // dd(request()->all());
+
         $rules = [
             'name' => 'required|max:100',
             'career_ids' => 'required',
@@ -33,6 +36,7 @@ class CreateJobRequest extends FormRequest
             'country_id' => 'required',
             'country' => 'required|max:100',
             'degree_id' => 'required',
+            'country_id' => 'required',
             'description' => 'required',
             'requirements' => 'required',
             'rank_id' => 'required',
