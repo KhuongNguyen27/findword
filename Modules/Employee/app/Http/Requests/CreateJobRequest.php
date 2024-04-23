@@ -21,7 +21,8 @@ class CreateJobRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        // dd(request()->all());
+        $rules = [
             'name' => 'required|max:100',
             'career_ids' => 'required',
             'formwork_id' => 'required',
@@ -32,6 +33,7 @@ class CreateJobRequest extends FormRequest
             'province_id' => 'required',
             'country' => 'required|max:100',
             'degree_id' => 'required',
+            'country_id' => 'required',
             'description' => 'required',
             'requirements' => 'required',
             'rank_id' => 'required',
@@ -43,6 +45,13 @@ class CreateJobRequest extends FormRequest
             'start_hour' => 'required',
             'end_hour' => 'required',
         ];
+        if( request()->country == 'NN' ){
+            unset( $rules['province_id'] );
+        }
+        if( request()->country == 'VN' ){
+            unset( $rules['country_id'] );
+        }
+        return $rules;
     }
 
     public function messages()
