@@ -173,9 +173,7 @@ input {
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('province_id')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
+                                    
                                     </div>
                                     
                                     <div class="form-group col-lg-3 col-md-12" style="margin-bottom: 3%!important;" id="internationalDiv">
@@ -188,9 +186,7 @@ input {
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('name')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
+                                    
                                     </div>
                                     
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
@@ -358,7 +354,12 @@ input {
 
     </div>
 </section>
-
+<style>
+   
+    #internationalDiv{
+        display: none
+    }
+</style>
 @endsection
 
 @section('footer')
