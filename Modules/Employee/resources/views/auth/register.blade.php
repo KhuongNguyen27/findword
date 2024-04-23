@@ -145,7 +145,7 @@
                             class="label-required">*</span></label>
                     @if ($errors->has('accept_pp'))
                         <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
-                    @endif
+                    @else
                     <div id="popup" class="popup" style="display: none;">
                         <div class="popup-content">
                             <p style="color: red">
@@ -153,6 +153,7 @@
                             </p>
                         </div>
                     </div>
+                @endif
                 </div>
                 <div class="">
                     <button class="theme-btn btn-style-one " type="submit"
@@ -178,13 +179,9 @@
     </div>
     <script>
         function showPopup() {
-            var accept_pp_checkbox = document.getElementById('accept_pp');
-            var popup = document.getElementById('popup');
-            if (!accept_pp_checkbox.checked) {
-                popup.style.display = 'block';
-            } else {
-                popup.style.display = 'none';
-            }
-        }
+        var accept_pp_checkbox = document.getElementById('accept_pp');
+        var popup = document.getElementById('popup');
+        popup.style.display = accept_pp_checkbox.checked ? 'none' : 'block';
+    }
     </script>
 @endsection

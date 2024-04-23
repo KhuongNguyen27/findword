@@ -32,6 +32,7 @@ class StoreRegisterRequest extends FormRequest
             'repeatpassword'=> 'required|same:password|max:255',
             'image'=> 'required',
             'tax_code'=> 'required',
+            'accept_pp' => 'accepted',
             // 'year_of_birth'=> 'required|min:4|max:4',
         ];
     }
@@ -60,6 +61,7 @@ class StoreRegisterRequest extends FormRequest
             'year_of_birth'=>'Vui lòng nhập đầy đủ thông tin',
             'year_of_birth.min'=>'Năm sinh chưa đúng định dạng',
             'year_of_birth.max'=>'Năm sinh chưa đúng định dạng',
+            'accept_pp'=>'Vui lòng đọc kỹ và chấp nhận các điều khoản và chính sách bảo mật'
         ];
     }
 }
