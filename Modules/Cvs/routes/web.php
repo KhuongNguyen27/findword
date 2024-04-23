@@ -18,9 +18,9 @@ use Modules\Cvs\app\Http\Controllers\Website\CvsController as WebsiteCvs;
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
-    'middleware' => ['auth.employee']
+    // 'middleware' => ['auth.employee']
 ], function () {
-    Route::get('/cvs', [AdminCvs::class,'index'])->name('cvs.index')->withoutMiddleware(['auth.employee']);
+    Route::get('/cvs', [AdminCvs::class,'index'])->name('cvs.index');
 	Route::get('/cvs/create', [AdminCvs::class,'create'])->name('cvs.create');
 	Route::post('/cvs/store', [AdminCvs::class,'store'])->name('cvs.store');
 	Route::get('/cvs/edit/{id}', [AdminCvs::class,'edit'])->name('cvs.edit');
