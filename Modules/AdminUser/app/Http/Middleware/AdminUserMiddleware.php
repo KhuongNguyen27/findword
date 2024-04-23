@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\AdminUser\app\Http\Middleware;
 
 use Closure;
@@ -13,14 +12,11 @@ class AdminUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()) {
-            if ($request->user()->status == 1 && $request->user()->type == 'user') {
+        if (Auth::check()) {
+            if (Auth::user()->type == 'user') {
                 return $next($request);
-            }else{
-                Auth::logout();
-                return redirect()->route('admin.home')->with('error','Tài khoản không hoạt động. Vui lòng liên hệ quản trị viên!!');
             }
         }
-        return redirect()->route('admin.home');
+        return redirect()->route('login');
     }
 }

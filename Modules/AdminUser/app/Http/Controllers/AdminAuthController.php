@@ -27,7 +27,6 @@ class AdminAuthController extends Controller
         {
             $data = $request->except('_method','_token');
             if (Auth::attempt($data)) {
-                
                 $request->session()->regenerate();
                 return redirect()->route('admin.home');
             }
