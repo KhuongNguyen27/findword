@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-end">
-                <a href="{{ route('adminuser.forgotPass') }}">
+                <a href="{{ route('auth.forgot') }}">
                     {{ __('forgot_password') }}
                 </a>
             </div>

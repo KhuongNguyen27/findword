@@ -98,6 +98,7 @@ class AdminModel extends Model
         $data = $request->all();
         $data = $request->except(['_token', '_method','type']);
         if ($request->hasFile('image')) {
+            // dd(self::$upload_dir);
             self::deleteFile($item->image);
             $data['image'] = $model::uploadFile($request->file('image'), self::$upload_dir);
         }
