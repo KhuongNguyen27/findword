@@ -67,10 +67,10 @@ class TransactionController extends Controller
             Notification::route('mail', [
                 env('ADMIN_EMAIL') => env('ADMIN_NAME')
             ])->notify(new Notifications("transfer",$item->toArray()));
-            return redirect()->route($this->route_prefix.'index')->with('success',  'Nạp tiền thành công. Vui lòng chờ quản trị viên phê duyệt!');
+            return redirect()->route($this->route_prefix.'index')->with('success',  'Yêu cầu xác nhận của bạn đã được gửi thành công. Vui lòng chờ quản trị viên phê duyệt!');
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->back()->with('error',  'Nạp tiền thất bại. Vui lòng liên hệ quản trị viên!');
+            return redirect()->back()->with('error',  'Yêu cầu xác nhận của bạn đã thất bại. Vui lòng liên hệ quản trị viên!');
         }
     }
 
