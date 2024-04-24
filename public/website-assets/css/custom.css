@@ -660,3 +660,12 @@ h4.job-title {
     color: #000;
     cursor: pointer;
 }
+.pricing-table .title {
+    text-align: center;
+}
+.pricing-table .inner-box {
+    padding: 10px !important;
+}
+.pricing-table .table-content {
+    min-height: 430px !important;
+}
