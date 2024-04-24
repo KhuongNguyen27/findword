@@ -6,13 +6,16 @@
                     <input name="name" placeholder="Vị trí ứng tuyển">
                 </div>
             @endif
-            @if (!isset($country) || true)
+            @if (!isset($country) || true )
                 <div class="form-group col">
                     <span class="icon flaticon-map-locator"></span>
                     <select name="province_id" class="form-select chosen-select">
                         <option value="">Tất cả địa điểm</option>
-                        @if (request()->route()->getName() != 'jobs.vnjobs' )
-                            <option value="quoc_te">Quốc tế</option>
+                        @if(request()->route()->getname() != 'jobs.vnjobs')
+                        <option value="quoc_te">Quốc tế</option>
+                        @endif
+                     
+                        @if (request()->route()->getName() == 'jobs.nnjobs' )
                             @foreach ($countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
