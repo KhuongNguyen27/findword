@@ -43,7 +43,7 @@
                                     <form action="{{ route($route_prefix.'store') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $item->id }}">
-                                        <div class="table-content">
+                                        {{-- <div class="table-content">
                                             <select class="form-control" name="duration_id">
                                                 <option value="" style="color:gray">-- Lựa chọn thời gian sử dụng --
                                                 </option>
@@ -51,7 +51,7 @@
                                                 <option value="{{ $duration->id }}">{{ $duration->name }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="table-footer">
                                             <button type="submit" class="theme-btn btn-style-three w-100">Mua
                                                 gói</button>
