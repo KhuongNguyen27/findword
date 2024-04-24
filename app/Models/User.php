@@ -76,6 +76,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(\Modules\Account\app\Models\UserAccount::class);
     }
+	  public function userStaff()
+      {
+          return $this->hasOne(UserStaff::class);
+      }
     public function getAccountName(){
         if ($this->account->where('is_current',1)->first()) {
             return $this->account->where('is_current',1)->first()->account->accountname;
