@@ -43,6 +43,7 @@
                                     <form action="{{ route($route_prefix.'store') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="package_id" value="{{ $item->id }}">
+                                        <input type="hidden" name="duration_id" value="1">
                                         {{-- <div class="table-content">
                                             <select class="form-control" name="duration_id">
                                                 <option value="" style="color:gray">-- Lựa chọn thời gian sử dụng --

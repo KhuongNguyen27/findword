@@ -172,23 +172,23 @@
                                             @endif
                                         </div> --}}
                                         @if ($job->status == 0)
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Mức lương tối thiểu </label>
                                                 <input type="number" name="salaryMin" id="salaryMin"
                                                     value="{{ $job->salaryMin }}" />
                                             </div>
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Mưc lương tối đa </label>
                                                 <input type="number" name="salaryMax" id="salaryMax"
                                                     value="{{ $job->salaryMax }}" />
                                             </div>
                                         @elseif($job->status == 1)
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Mức lương tối thiểu </label>
                                                 <input type="number" name="salaryMin" id="salaryMin"
                                                     value="{{ $job->salaryMin }}" readonly/>
                                             </div>
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
+                                            <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Mưc lương tối đa </label>
                                                 <input type="number" name="salaryMax" id="salaryMax"
                                                     value="{{ $job->salaryMax }}" readonly />
