@@ -17,7 +17,7 @@ use Modules\AdminHome\app\Http\Controllers\AdminHomeController;
 Route::group([
     'prefix' => 'admin',
     'middleware' => [
-        'auth'
+        'auth','auth.admin'
     ]
 ], function () {
     Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');

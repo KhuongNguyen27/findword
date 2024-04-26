@@ -22,7 +22,6 @@ Route::group(
     function () {
         Route::group([
             'prefix' => 'adminuser',
-            // 'middleware' => ['admin'],
         ], function () {
             Route::get('login', [AdminAuthController::class, 'login'])->name('login');
             Route::post('postLogin', [AdminAuthController::class, 'postLogin'])->name('adminuser.postLogin');
@@ -38,7 +37,7 @@ Route::group(
             Route::post('postResetPass', [AdminAuthController::class, 'postResetPass'])->name('adminuser.postResetPass');
         });
 
-        Route::group(['middleware' => ['auth']], function () {
+        Route::group(['middleware' => ['auth','auth.admin']], function () {
             Route::get('adminuser/{id}/cvs/{type}', [AdminUserController::class, 'showCVs'])->name('adminuser.showCVs');
             Route::get('adminuser/{id}/cv/{type}', [AdminUserController::class, 'showCV'])->name('adminuser.showCV');
             Route::resource('adminuser', AdminUserController::class)->names('adminuser');
