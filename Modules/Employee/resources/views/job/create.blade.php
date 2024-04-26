@@ -434,7 +434,8 @@
         }
 
         $(document).ready(function() {
-            $('.career_ids').select2();d
+        $('.career_ids').select2();
+    });
     </script>
     <script>
         var currentDate = new Date().toISOString().split('T')[0];

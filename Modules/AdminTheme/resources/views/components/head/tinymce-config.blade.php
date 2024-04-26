@@ -17,12 +17,17 @@
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
       });
     </script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script>
-      CKEDITOR.replace('description');
-    CKEDITOR.replace('requirements');
-    CKEDITOR.replace('more_information');
+      if ($('#description').length) {
+        CKEDITOR.replace('description');
+    }
+    if ($('#requirements').length) {
+        CKEDITOR.replace('requirements');
+    }
+    if ($('#more_information').length) {
+        CKEDITOR.replace('more_information');
+    }
     </script>
     
 
