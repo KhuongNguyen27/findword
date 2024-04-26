@@ -21423,7 +21423,7 @@ Work Section
 	.mm-add-listing,
 	#toggle-user-sidebar,
 	.nav-outer .mobile-nav-toggler{
-		display: block;
+		display: flex;
 	}
 
 	.nav-outer .mobile-nav-toggler{

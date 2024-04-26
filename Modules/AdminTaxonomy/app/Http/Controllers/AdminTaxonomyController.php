@@ -98,6 +98,7 @@ class AdminTaxonomyController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
+            // dd($request->$item);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
