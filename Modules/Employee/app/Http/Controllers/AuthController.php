@@ -80,6 +80,7 @@ class AuthController extends Controller
             $user->status = 1;
             $user->tax_code = $request->tax_code;
             $user->password = bcrypt($request->password);
+            // dd($request->email);
             $user->save();
             
             $imagePath = '';

@@ -672,3 +672,41 @@ h4.job-title {
 body.dashboard .main-header .nav-outer{
     max-height: 100px
     }
+    @media (max-width:600px) {
+        .custom-display-mobile{
+            display: inline-block !important;
+            width: 100%;
+        }
+        .custom-job-package-mobile{
+            font-size: 9px !important;
+        }
+        .job-detail__info--sections{
+            display: inline-block !important;
+        }
+        .job-detail__info--section{
+            width: 100% !important;
+    
+        }
+        .job-detail__info--flex{
+            display: inline-block !important;
+            max-width: 100% !important;
+            margin-bottom: 2px !important;
+        }
+        .job-detail__info--deadline{
+            width:100% !important;
+            margin: 5px;
+        }
+    }
+    @media only screen and (max-width: 1000px) {
+        .banner-section .content-column .inner-column {
+            padding: 120px 0 50px;
+        }
+        }
+        @media only screen and (max-width: 1023px){
+            .custom-job-section-mobile{
+                padding: 0px 0px 0px 0px !important;
+            }
+            .custom-banner-section-mobile{
+                padding: 0px 0px 0px 0px;
+            }
+        }

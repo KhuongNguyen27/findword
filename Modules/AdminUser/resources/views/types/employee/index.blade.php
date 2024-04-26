@@ -71,7 +71,7 @@
                                             <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
                                         </td>
                                         @if (request()->type == 'employee' )
-                                            <td>{{ $item->employee->position }}</td>
+                                            <td>{{ $item->employee->position ?? 0 }}</td>
                                         @endif
                                         <td>{{ $item->points }}</td>
                                         <td>{!! $item->status_fm !!}</td>

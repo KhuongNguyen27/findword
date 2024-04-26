@@ -83,12 +83,12 @@
                                                 </button>
                                             </form>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
+                                                href="{{ route($rout    e_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 Show CV
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </td>
