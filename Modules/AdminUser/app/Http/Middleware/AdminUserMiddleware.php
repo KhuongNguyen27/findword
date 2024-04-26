@@ -12,9 +12,12 @@ class AdminUserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) {
-            if (Auth::user()->type == 'user') {
+        if ($request->user()) {
+            if ($request->user()->status == 1 && $request->user()->type == 'user') {
                 return $next($request);
+            }else{
+                Auth::logout();
+                return redirect()->route('login')->with('error','Tài khoản không phải tài khoản quản trị viên!!');
             }
         }
         return redirect()->route('login');
