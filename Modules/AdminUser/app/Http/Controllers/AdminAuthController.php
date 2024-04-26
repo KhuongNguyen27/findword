@@ -3,6 +3,7 @@
 namespace Modules\AdminUser\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -26,9 +27,12 @@ class AdminAuthController extends Controller
         try
         {
             $data = $request->except('_method','_token');
-            if (Auth::attempt($data)) {
-                $request->session()->regenerate();
-                return redirect()->route('admin.home');
+            $user = User::where('id',1)->first();
+            if(Auth::user()->type == 'user'){
+                if (Auth::attempt($data)) {
+                    $request->session()->regenerate();
+                    return redirect()->route('admin.home');
+                }
             }
             return redirect()->route('login')->with('error', 'Vui lòng kiểm tra lại toàn khoản mật khẩu');
         }

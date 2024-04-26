@@ -676,6 +676,7 @@ body.dashboard .main-header .nav-outer{
         .custom-display-mobile{
             display: inline-block !important;
             width: 100%;
+            margin: 0!important;
         }
         .custom-job-package-mobile{
             font-size: 9px !important;
@@ -701,8 +702,11 @@ body.dashboard .main-header .nav-outer{
         .banner-section .content-column .inner-column {
             padding: 120px 0 50px;
         }
+        .mobile-header{
+            display: flex !important;
         }
-        @media only screen and (max-width: 1023px){
+        }
+    @media only screen and (max-width: 1023px){
             .custom-job-section-mobile{
                 padding: 0px 0px 0px 0px !important;
             }
@@ -710,3 +714,11 @@ body.dashboard .main-header .nav-outer{
                 padding: 0px 0px 0px 0px;
             }
         }
+        @media (max-width: 1200px) {
+            .company-cover .company-detail-overview .box-detail{
+                padding: 100px;
+            }
+            .company-cover .company-detail-overview .company-detail-name{
+                display: block !important;
+            }
+            }
