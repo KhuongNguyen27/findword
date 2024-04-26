@@ -81,7 +81,7 @@ class CreateJobRequest extends FormRequest
             'end_day.required' => 'Trường yêu cầu!',
             'start_hour.required' => 'Trường yêu cầu!',
             'end_hour.required' => 'Trường yêu cầu!',
-            
+            'country_id.required' => 'Trường yêu cầu!',
             ];
     }
 

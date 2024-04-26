@@ -669,3 +669,6 @@ h4.job-title {
 .pricing-table .table-content {
     min-height: 430px !important;
 }
+body.dashboard .main-header .nav-outer{
+    max-height: 100px
+    }
