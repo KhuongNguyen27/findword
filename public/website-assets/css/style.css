@@ -99,7 +99,6 @@ Global Settings
 ====================================================================
 
 ***/
-
     .page-title {
         margin-top: 100px;
     }
@@ -23129,6 +23128,3 @@ Work Section
     transform-origin: top left;
   }
 }  */
-.dashboard .main-header .nav-outer{
-  max-height: 100px;
-  }
