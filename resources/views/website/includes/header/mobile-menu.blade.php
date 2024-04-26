@@ -1,6 +1,6 @@
 <!-- Mobile Header -->
 <div class="mobile-header">
-    <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo.png')}}" alt="" title=""></a></div>
+    <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo-hd.png')}}" alt="" title=""></a></div>
 
     <!--Nav Box-->
     <div class="nav-outer clearfix">

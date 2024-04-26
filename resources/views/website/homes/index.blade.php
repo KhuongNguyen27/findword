@@ -8,7 +8,7 @@ span.flaticon-bookmark.active {
     color: red;
 }
 </style>
-<section class="banner-section pb-5">
+<section class="banner-section pb-5 custom-banner-section-mobile">
     <div class="auto-container">
         <div class="row">
             <div class="content-column col-lg-12 col-md-12 col-sm-12">

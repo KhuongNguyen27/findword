@@ -1,6 +1,6 @@
 <div class="job-search-form">
     <form method="get" action="{{ route($route) }}">
-        <div class="row">
+        <div class="row custom-display-mobile">
             @if (!isset($name))
                 <div class="form-group col">
                     <input name="name" placeholder="Vị trí ứng tuyển">
@@ -82,11 +82,11 @@
                 </button>
             </div>
             <div id="advanceSearch" style="display:none" class="form-group col-lg-12">
-                <div class="row">
+                <div class="row custom-display-mobile">
                     <div class="form-group col location">
                         <span class="icon flaticon-target"></span>
-                        <select name="jobpackage_id" class="form-select chosen-select" style="font-size: 36px">
-                            <option value="">Tất cả loại tin</option>
+                        <select name="jobpackage_id" class="form-select chosen-select" >
+                            <option class="custom-job-package-mobile" value="">Tất cả loại tin</option>
                             @foreach ($job_packages as $job_package)
                                 <option @selected($job_package->id == request()->jobpackage_id) value="{{ $job_package->id }}">
                                     {{ $job_package->name }}</option>

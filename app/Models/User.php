@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\HasPermissions;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Modules\Account\app\Models\Account;
+use Modules\Account\app\Models\UserAccount;
 
 class User extends Authenticatable
 {
@@ -34,7 +37,6 @@ class User extends Authenticatable
         'facebook_id',
         'type',
         'points',
-
     ];
 
     /**
@@ -100,6 +102,24 @@ class User extends Authenticatable
         return null;
     }
     public function checkJob($job_package = 1){
+        $user = Auth::user();
+        $account_current = $this->account->where('is_current',1)->first();
+        if($user->verify == $this::ACTIVE && empty($account_current)){
+            $currentDate = now(); // Lấy ngày hiện tại
+            $nextMonth = $currentDate->addMonth(); // Thêm 1 tháng
+            UserAccount::firstOrCreate(
+                [
+                    'user_id' => $user->id,
+                    'account_id' => 5,
+                    'duration_id' => 1,
+                ],
+                [
+                    'register_date' => $currentDate,
+                    'expiration_date' => $nextMonth,
+                    'is_current' => 1,
+                ]
+            );
+        }
         if ($this->account->where('is_current',1)->first()) {
             $firstDayOfMonth = Carbon::now()->startOfMonth();
             $lastDayOfMonth = Carbon::now()->endOfMonth();

@@ -1,4 +1,4 @@
-<section class="job-section ls-section list-feature-jobs pt-3 pb-3" style="background:#f3f5f7!important;">
+<section class="job-section ls-section list-feature-jobs pt-3 pb-3 custom-job-section-mobile" style="background:#f3f5f7!important;">
     <div class="auto-container">
         <div class="ls-outer theme-card">
             <div class="ls-switcher theme-card-header">
