@@ -26,6 +26,7 @@ if( $job->province ){
     $job->province->name = str_replace('Thành phố','',$job->province->name);
 }
 ?>
+<?php if($job->userEmployee):?>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
@@ -85,3 +86,4 @@ if( $job->province ){
         </div>
     </div>
 </div>
+<?php endif;?>

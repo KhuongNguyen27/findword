@@ -68,7 +68,7 @@
                                                 <div class="job-detail__info--section-content">
                                                     <div class="job-detail__info--section-content-title">Kinh nghiệm</div>
                                                     <div class="job-detail__info--section-content-value">
-                                                        {{ is_numeric($job->experience) ? $job->experience . ' năm' : 'Không yêu cầu' }}
+                                                        {{ $job->experience ? $job->experience . ' năm' : 'Không yêu cầu' }}
                                                     </div>
                                                 </div>
                                             </div>

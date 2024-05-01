@@ -1,18 +1,22 @@
 @extends('website.layouts.master')
 @section('content')
+@php 
+$job_detail_header_bg = @$job->job_package->job_detail_header_bg;
+$job_detail_company_bg = @$job->job_package->job_detail_company_bg;
+$job_detail_header_bg = $job_detail_header_bg ? $job_detail_header_bg.' !important' : '';
+$job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg.' !important' : '';
+@endphp
 <section class="job-real-detail-section job-detail-section pt-5">
     <div class="job-detail-outer">
         <div class="auto-container">
             <div class="row">
                 <div class="content-column col-lg-8 col-md-12 col-sm-12">
-                    <div class="job-block-outer">
-                        <!-- Job Block -->
+                <div class="job-block-outer" style="background-color: {{ $job_detail_header_bg }};">
                         <div class="job-block-seven style-two">
                             <div class="inner-box">
                                 <div class="content">
                                     <h1 class="job-detail-title">
-                                        <a href="{{ route('website.jobs.show',$job->slug) }}">Ứng tuyển
-                                            {{ $job->name }}</a>
+                                        <a href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
                                     </h1>
                                     <div class="job-detail__info--sections">
                                         <div class="job-detail__info--section">
@@ -30,27 +34,12 @@
                                             <div class="job-detail__info--section-content">
                                                 <div class="job-detail__info--section-content-title">Mức lương</div>
                                                 <div class="job-detail__info--section-content-value">
-                                                    @if( auth()->check() )
-                                                    {{ $job->wage->name }}
+                                                    @if (auth()->check())
+                                                        {{ $job->salary_fm }}
                                                     @else
-                                                    <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
+                                                        <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
                                                     @endif
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="job-detail__info--section">
-                                            <div class="job-detail__info--section-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
-                                                    viewBox="0 0 25 24" fill="none">
-                                                    <path
-                                                        d="M21.2866 8.45C20.2366 3.83 16.2066 1.75 12.6666 1.75C12.6666 1.75 12.6666 1.75 12.6566 1.75C9.1266 1.75 5.0866 3.82 4.0366 8.44C2.8666 13.6 6.0266 17.97 8.8866 20.72C9.9466 21.74 11.3066 22.25 12.6666 22.25C14.0266 22.25 15.3866 21.74 16.4366 20.72C19.2966 17.97 22.4566 13.61 21.2866 8.45ZM12.6666 13.46C10.9266 13.46 9.5166 12.05 9.5166 10.31C9.5166 8.57 10.9266 7.16 12.6666 7.16C14.4066 7.16 15.8166 8.57 15.8166 10.31C15.8166 12.05 14.4066 13.46 12.6666 13.46Z"
-                                                        fill="white"></path>
-                                                </svg>
-                                            </div>
-                                            <div class="job-detail__info--section-content">
-                                                <div class="job-detail__info--section-content-title">Địa điểm</div>
-                                                <div class="job-detail__info--section-content-value">
-                                                    {{ $job->work_address }}</div>
                                             </div>
                                         </div>
                                         <div class="job-detail__info--section" id="job-detail-info-experience">
@@ -68,20 +57,36 @@
                                             <div class="job-detail__info--section-content">
                                                 <div class="job-detail__info--section-content-title">Kinh nghiệm</div>
                                                 <div class="job-detail__info--section-content-value">
-                                                    {{ $job->experience ?? '-' }}</div>
+                                                    {{ $job->experience ? $job->experience . ' năm' : 'Không yêu cầu' }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="job-detail__info--flex mt-3">
+                                        <!-- <div class="quantity-applied-user disabled">
+                                                <div class="quantity-applied-user__icon">
+                                                    <i class="fa fa-solid fa-lock"></i>
+                                                </div>
+                                                <div class="quantity-applied-user__text">
+                                                    Số lượt ứng tuyển: -
+                                                </div>
+                                            </div> -->
                                         <div class="job-detail__info--deadline">
                                             <span class="job-detail__info--deadline--icon">
                                                 <i class="fa fa-solid fa-clock"></i>
                                             </span>
                                             Hạn nộp hồ sơ:
-                                            {{ $job->end_day ? date('d/m/Y',strtotime($job->end_day)) : '-' }}
+                                            {{ $job->deadline ? date('d/m/Y', strtotime($job->deadline)) : '-' }}
+                                        </div>
+                                        <div class="job-detail__info--deadline">
+                                            <span class="job-detail__info--deadline--icon">
+                                                <i class="fa fa-solid fa-map"></i>
+                                            </span>
+                                            {{ $job->work_address }}
                                         </div>
                                     </div>
+
 
                                 </div>
                             </div>
@@ -154,68 +159,48 @@
                 <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
                         <!-- Company info -->
-                        <div class="job-detail__box--right job-detail__company">
-                            <div class="job-detail__company--information">
-                                <div class="job-detail__company--information-item company-name">
-                                    <a rel="nofollow" class="company-logo"
-                                        href="{{ route('employee.show',$job->userEmployee->slug) }}" target="_blank"
-                                        data-toggle="tooltip" title="" data-placement="top"
-                                        data-original-title="{{ $job->userEmployee->name }}">
-                                        <img src="{{  $job->userEmployee->image_fm }}"
-                                            alt="{{ $job->userEmployee->name }}" class="img-responsive">
-                                    </a>
-                                    <h2 class="company-name-label">
-                                        <a rel="nofollow" class="name"
-                                            href="{{ route('employee.show',$job->userEmployee->slug) }}" target="_blank"
+                        <div class="job-detail__box--right job-detail__company" style="background-color: {{ $job_detail_company_bg }};">
+                                <div class="job-detail__company--information">
+                                    <div class="job-detail__company--information-item company-name">
+                                        <a rel="nofollow" class="company-logo"
+                                            href="{{ route('employee.show', $job->userEmployee->slug) }}" target="_blank"
                                             data-toggle="tooltip" title="" data-placement="top"
-                                            data-original-title="{{ $job->userEmployee->name }}">{{ $job->userEmployee->name }}</a>
-                                        <div class="company-subdetail-label">
+                                            data-original-title="{{ $job->userEmployee->name }}">
+                                            <img src="{{ $job->userEmployee->image_fm }}"
+                                                alt="{{ $job->userEmployee->name }}" class="img-responsive">
+                                        </a>
+                                        <h2 class="company-name-label">
+                                            <a rel="nofollow" class="name"
+                                                href="{{ route('employee.show', $job->userEmployee->slug) }}"
+                                                target="_blank" data-toggle="tooltip" title="" data-placement="top"
+                                                data-original-title="{{ $job->userEmployee->name }}">{{ $job->userEmployee->name }}</a>
+                                            <div class="company-subdetail-label">
+                                                {{ $job->userEmployee->website }}
+                                            </div>
+                                        </h2>
+                                    </div>
+                                    <div class="job-detail__company--information-item company-address">
+                                        <div class="company-title mr-5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 16 16" fill="none">
+                                                <path
+                                                    d="M13.7467 5.63334C13.0467 2.55334 10.36 1.16667 8 1.16667C8 1.16667 8 1.16667 7.99334 1.16667C5.64 1.16667 2.94667 2.54667 2.24667 5.62667C1.46667 9.06667 3.57334 11.98 5.48 13.8133C6.18667 14.4933 7.09334 14.8333 8 14.8333C8.90667 14.8333 9.81334 14.4933 10.5133 13.8133C12.42 11.98 14.5267 9.07334 13.7467 5.63334ZM8 8.97334C6.84 8.97334 5.9 8.03334 5.9 6.87334C5.9 5.71334 6.84 4.77334 8 4.77334C9.16 4.77334 10.1 5.71334 10.1 6.87334C10.1 8.03334 9.16 8.97334 8 8.97334Z"
+                                                    fill="#7F878F"></path>
+                                            </svg>
+                                            Địa điểm:
                                         </div>
-                                    </h2>
+                                        <div class="company-value" data-toggle="tooltip" title=""
+                                            data-placement="top" data-original-title="{{ $job->userEmployee->address }}">
+                                            {{ $job->userEmployee->address }}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="job-detail__company--information-item company-scale">
-                                    <div class="company-title mr-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 16 16" fill="none">
-                                            <path
-                                                d="M5.99998 1.33334C4.25331 1.33334 2.83331 2.75334 2.83331 4.5C2.83331 6.21334 4.17331 7.6 5.91998 7.66C5.97331 7.65334 6.02665 7.65334 6.06665 7.66C6.07998 7.66 6.08665 7.66 6.09998 7.66C6.10665 7.66 6.10665 7.66 6.11331 7.66C7.81998 7.6 9.15998 6.21334 9.16665 4.5C9.16665 2.75334 7.74665 1.33334 5.99998 1.33334Z"
-                                                fill="#7F878F"></path>
-                                            <path
-                                                d="M9.38664 9.43333C7.52664 8.19333 4.49331 8.19333 2.61997 9.43333C1.77331 10 1.30664 10.7667 1.30664 11.5867C1.30664 12.4067 1.77331 13.1667 2.61331 13.7267C3.54664 14.3533 4.77331 14.6667 5.99997 14.6667C7.22664 14.6667 8.45331 14.3533 9.38664 13.7267C10.2266 13.16 10.6933 12.4 10.6933 11.5733C10.6866 10.7533 10.2266 9.99333 9.38664 9.43333Z"
-                                                fill="#7F878F"></path>
-                                            <path
-                                                d="M13.3267 4.89333C13.4333 6.18667 12.5133 7.32 11.24 7.47333C11.2333 7.47333 11.2333 7.47333 11.2267 7.47333H11.2067C11.1667 7.47333 11.1267 7.47333 11.0933 7.48667C10.4467 7.52 9.85334 7.31333 9.40668 6.93333C10.0933 6.32 10.4867 5.4 10.4067 4.4C10.36 3.86 10.1733 3.36667 9.89334 2.94667C10.1467 2.82 10.44 2.74 10.74 2.71333C12.0467 2.6 13.2133 3.57333 13.3267 4.89333Z"
-                                                fill="#7F878F"></path>
-                                            <path
-                                                d="M14.66 11.06C14.6067 11.7067 14.1933 12.2667 13.5 12.6467C12.8333 13.0133 11.9933 13.1867 11.16 13.1667C11.64 12.7333 11.92 12.1933 11.9733 11.62C12.04 10.7933 11.6467 10 10.86 9.36667C10.4133 9.01333 9.89333 8.73333 9.32666 8.52667C10.8 8.1 12.6533 8.38667 13.7933 9.30667C14.4067 9.8 14.72 10.42 14.66 11.06Z"
-                                                fill="#7F878F"></path>
-                                        </svg>
-                                        SDT:
-                                    </div>
-                                    <div class="company-value">{{ $job->userEmployee->phone }}</div>
-                                </div>
-                                <div class="job-detail__company--information-item company-address">
-                                    <div class="company-title mr-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 16 16" fill="none">
-                                            <path
-                                                d="M13.7467 5.63334C13.0467 2.55334 10.36 1.16667 8 1.16667C8 1.16667 8 1.16667 7.99334 1.16667C5.64 1.16667 2.94667 2.54667 2.24667 5.62667C1.46667 9.06667 3.57334 11.98 5.48 13.8133C6.18667 14.4933 7.09334 14.8333 8 14.8333C8.90667 14.8333 9.81334 14.4933 10.5133 13.8133C12.42 11.98 14.5267 9.07334 13.7467 5.63334ZM8 8.97334C6.84 8.97334 5.9 8.03334 5.9 6.87334C5.9 5.71334 6.84 4.77334 8 4.77334C9.16 4.77334 10.1 5.71334 10.1 6.87334C10.1 8.03334 9.16 8.97334 8 8.97334Z"
-                                                fill="#7F878F"></path>
-                                        </svg>
-                                        Địa điểm:
-                                    </div>
-                                    <div class="company-value" data-toggle="tooltip" title="" data-placement="top"
-                                        data-original-title="{{$job->userEmployee->address}}">
-                                        {{$job->userEmployee->address}}
-                                    </div>
+                                <div class="job-detail__company--link">
+                                    <a rel="nofollow" href="{{ route('employee.show', $job->userEmployee->slug) }}"
+                                        target="_blank">Xem trang công ty</a>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </div>
                             </div>
-                            <div class="job-detail__company--link">
-                                <a rel="nofollow" href="{{ route('employee.show',$job->userEmployee->slug) }}"
-                                    target="_blank">Xem trang công ty</a>
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </div>
-                        </div>
 
                         <!-- Thông tin chi tiết -->
                         <div

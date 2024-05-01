@@ -12,7 +12,7 @@ class EmployeeController extends Controller
         if( $request->name ){
             $query->where('name','LIKE',"%$request->name%");
         }
-        $items = $query->paginate(9);
+        $items = $query->orderBy('position')->paginate(9);
         $params = [
             'items' => $items
         ];

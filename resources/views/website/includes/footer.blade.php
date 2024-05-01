@@ -12,10 +12,10 @@
                                     style="width:600px;margin-left:-10%" height="50"
                                     src="{{ asset('website-assets/images/logo-footer.png')}}" alt="" title=""></a></div>
                         <p class="phone-num"><span>
-                                Gọi cho chúng tôi </span><a href="thebeehost@support.com">123 456 7890</a></p>
-                        <p class="address">329 Đường Queensberry, Bắc Melbourne VIC<br> 3051, Australia. <br><a
-                                href="mailto:support@superio.com" class="email">support@superio.com</a></p>
-                                <p>Fanpage: <a href="https://www.facebook.com/tuyendunghue24h">tuyendunghue24h</a></p>
+                                Gọi cho chúng tôi </span><a href="thebeehost@support.com">0817 198 779</a></p>
+                        <p class="address">CM2-03A Eco Garden, Thủy Vân, Thừa Thiên Huế<br><a
+                                href="mailto:info@timviecsieunhanh.vn" class="email">info@timviecsieunhanh.vn</a></p>
+                                <p>Fanpage: <a href="https://www.facebook.com/timviecsieunhanhOfficial">timviecsieunhanhOfficial</a></p>
                     </div>
                 </div>
 

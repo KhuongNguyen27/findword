@@ -121,7 +121,7 @@ class JobController extends Controller
             case 'today':
                 //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $startDate = Carbon::now()->subHours(48);
+                $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
                 $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
@@ -133,8 +133,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
-                
+                    END")
+                ->orderBy('created_at', 'desc');
                 $title = 'Việc làm trong nước hôm nay';
                 break;
             case 'urgent':
@@ -150,7 +150,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                ->orderBy('created_at', 'desc');
                 $title = 'Việc làm trong nước tuyển gấp';
                 break;
             default:
@@ -164,7 +165,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                ->orderBy('created_at', 'desc');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -187,7 +189,7 @@ class JobController extends Controller
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
-            $jobs = $query->paginate(10);
+            $jobs = $query->paginate(25);
         }
 
         // Việc làm hấp dẫn trong nước
@@ -197,6 +199,9 @@ class JobController extends Controller
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
         $employees = UserEmployee::get();
+        $top_employees = UserEmployee::orderBy('position')->limit(8)->get();
+
+        
         $params = [
             'careers' => $careers,
             'route' => 'jobs.vnjobs',
@@ -206,6 +211,7 @@ class JobController extends Controller
             'wages' => $newWages,
             'provinces' => $provinces,
             'employees' => $employees,
+            'top_employees' => $top_employees,
             'title' => $title,
             'degrees' => $degrees,
             'formworks' => $formworks,
@@ -309,7 +315,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                    ->orderBy('created_at', 'desc');
                 break;
             case 'hot':
                 // Việc làm Hot nhất	Toàn bộ các tin đăng	
@@ -323,13 +330,14 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-gap' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                    ->orderBy('created_at', 'desc');
                 $title = 'Việc làm ngoài nước hot nhất';
                 break;
             case 'today':
                 //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $startDate = Carbon::now()->subHours(48);
+                $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
                 $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
@@ -341,7 +349,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                    ->orderBy('created_at', 'desc');
                 
                 $title = 'Việc làm ngoài nước hôm nay';
                 break;
@@ -358,7 +367,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                    ->orderBy('created_at', 'desc');
                 $title = 'Việc làm ngoài nước tuyển gấp';
                 break;
             default:
@@ -372,7 +382,8 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
-                    END");
+                    END")
+                    ->orderBy('created_at', 'desc');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -405,6 +416,8 @@ class JobController extends Controller
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
 
         $employees = UserEmployee::get();
+        $top_employees = UserEmployee::orderBy('position')->limit(8)->get();
+
         $params = [
             'careers' => $careers,
             'route' => 'jobs.nnjobs',
@@ -414,6 +427,7 @@ class JobController extends Controller
             'wages' => $wages,
             'provinces' => $provinces,
             'employees' => $employees,
+            'top_employees' => $top_employees,
             'title' => $title,
             'degrees' => $degrees,
             'formworks' => $formworks,

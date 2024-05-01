@@ -99,8 +99,10 @@
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Kinh Nghiệm <span class="label-required">*</span></label>
                                             <select name="experience" class="chosen-select">
-                                                <option value="2">Có yêu cầu</option>
-                                                <option value="1">Không yêu cầu</option>
+                                                <option value="0">Không yêu cầu</option>
+                                                @for($i = 1; $i <= 15; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
                                             </select>
                                             @if ($errors->any())
                                                 <p style="color:red">
@@ -335,27 +337,6 @@
                                                 @endif
                                             </div>
 
-
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                                <label>Giờ bắt đầu đăng :<span class="label-required">*</span></label>
-                                                <input type="time"
-                                                    value="{{ old('start_hour') ? old('start_hour') : '00:00' }}"
-                                                    name="start_hour" id="nameInput" placeholder="Giờ...">
-                                                @if ($errors->any())
-                                                    <p style="color:red">
-                                                        {{ $errors->first('start_hour') }}</p>
-                                                @endif
-                                            </div>
-                                            <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                                <label>Giờ Kết thúc :<span class="label-required">*</span></label>
-                                                <input type="time"
-                                                    value="{{ old('end_hour') ? old('end_hour') : '23:59' }}"
-                                                    name="end_hour" id="nameInput" placeholder="Giờ...">
-                                                @if ($errors->any())
-                                                    <p style="color:red">
-                                                        {{ $errors->first('end_hour') }}</p>
-                                                @endif
-                                            </div>
                                         </div>
                                         <!-- Input -->
                                         <div class="form-group col-lg-12 col-md-12 text-right">
@@ -434,7 +415,7 @@
         }
 
         $(document).ready(function() {
-        $('.career_ids').select2();
+        // $('.career_ids').select2();
     });
     </script>
     <script>

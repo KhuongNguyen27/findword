@@ -45,8 +45,6 @@ class CreateJobRequest extends FormRequest
             'jobpackage_id' => 'required',
             'price' => 'required',
             'end_day' => 'required',
-            'start_hour' => 'required',
-            'end_hour' => 'required',
         ];
         if( request()->country == 'NN' ){
             unset( $rules['province_id'] );

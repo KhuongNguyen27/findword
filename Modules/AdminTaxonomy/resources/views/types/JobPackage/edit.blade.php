@@ -48,6 +48,12 @@
             <input type="text" class="form-control" name="price" value="{{ $item->price ?? old('price') }}">
             <x-admintheme::form-input-error field="price"/>
         </div>
+        <div class="mb-4">
+            <label class="mb-3">Tự động duyệt</label>
+            <input type="hidden" name="auto_approve" value="0">
+            <input type="checkbox" value="1" name="auto_approve" class="form-checkbox" id="nameInput" @checked(@$item->auto_approve == 1)>
+            <x-admintheme::form-input-error field="auto_approve" />
+        </div>
     </div>
 </div>
 @endsection

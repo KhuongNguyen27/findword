@@ -38,9 +38,6 @@ class UpdateJobRequest extends FormRequest
             'jobpackage_id' => 'required',
             'price' => 'required',
             'end_day' => 'required',
-            'start_hour' => 'required',
-            'end_hour' => 'required',
-            
         ];
     }
 
