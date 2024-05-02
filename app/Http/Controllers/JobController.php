@@ -316,7 +316,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('jobs.created_at', 'desc');
                 break;
             case 'hot':
                 // Việc làm Hot nhất	Toàn bộ các tin đăng	
@@ -331,7 +331,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('jobs.created_at', 'desc');
                 $title = 'Việc làm ngoài nước hot nhất';
                 break;
             case 'today':
@@ -350,7 +350,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('jobs.created_at', 'desc');
                 
                 $title = 'Việc làm ngoài nước hôm nay';
                 break;
@@ -368,7 +368,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('jobs.created_at', 'desc');
                 $title = 'Việc làm ngoài nước tuyển gấp';
                 break;
             default:
@@ -383,7 +383,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                    ->orderBy('created_at', 'desc');
+                    ->orderBy('jobs.created_at', 'desc');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
