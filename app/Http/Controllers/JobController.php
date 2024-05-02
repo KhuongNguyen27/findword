@@ -134,7 +134,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                ->orderBy('created_at', 'desc');
+                ->orderBy('jobs.created_at', 'desc');
                 $title = 'Việc làm trong nước hôm nay';
                 break;
             case 'urgent':
@@ -151,7 +151,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                ->orderBy('created_at', 'desc');
+                ->orderBy('jobs.created_at', 'desc');
                 $title = 'Việc làm trong nước tuyển gấp';
                 break;
             default:
@@ -166,7 +166,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         ELSE 7
                     END")
-                ->orderBy('created_at', 'desc');
+                ->orderBy('jobs.created_at', 'desc');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
