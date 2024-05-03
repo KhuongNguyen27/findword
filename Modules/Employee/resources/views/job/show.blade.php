@@ -131,7 +131,7 @@
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>giới tính</label>
+                                            <label>Giới tính</label>
                                             <select name="gender" class="chosen-select" disabled>
                                                 <option @selected($job->gender == '') value="">Không yêu cầu</option>
                                                 <option @selected($job->gender == 1) value="1">Nam</option>
@@ -185,7 +185,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mô tả công việc</label>
-                                            <textarea name="description" placeholder="Mô tả..." readonly>{{ $job->description }}</textarea>
+                                            <textarea name="description" placeholder="Mô tả..." readonly>{{ isset($jobs->description) ? $jobs->description : '' }}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('description') }}</p>
@@ -195,7 +195,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Yêu cầu công việc</label>
-                                            <textarea name="requirements" placeholder="Yêu cầu..." readonly>{{ $job->requirements }}</textarea>
+                                            <textarea name="requirements" placeholder="Yêu cầu..." readonly>{{ isset($jobs->requirements) ? $jobs->requirements : ''}}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('requirements') }}</p>
