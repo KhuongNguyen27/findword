@@ -23131,3 +23131,6 @@ Work Section
 .dashboard .main-header .nav-outer{
   max-height: 100px
   }
+  .main-footer .logo img {
+    width: 100% !important;
+}
