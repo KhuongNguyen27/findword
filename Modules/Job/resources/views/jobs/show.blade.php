@@ -383,6 +383,9 @@
                                     </div> -->
                             </div>
                         </aside>
+                        <div class="box-category">
+                            @include('website.includes.global.attractive-banner')
+                        </div>
                     </div>
                 </div>
                 <!-- Related Jobs -->
