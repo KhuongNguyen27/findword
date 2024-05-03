@@ -130,7 +130,7 @@ class AuthController extends Controller
         DB::beginTransaction();
         try {
             $socialUser = Socialite::driver('google')->user();
-            $user = User::where('google_id', $socialUser->id)->first();
+            $user = User::where('email', $socialUser->email)->first();
             if ($user) {
                 Auth::login($user);
                 return redirect()->intended('staff');
