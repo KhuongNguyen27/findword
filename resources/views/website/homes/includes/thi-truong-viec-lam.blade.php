@@ -2,7 +2,7 @@
     <div class="container lazy" id="dashboard" data-lazy-function="initDashboardHomeJS">
         <div class="block-dashboard">
             <div class="block-dashboard__header">
-                <h3>Thị trường việc làm hôm nay <span><?= date('d/m/Y')?></span></h3>
+                <h3>Thị trường việc làm hôm nay <span><?= date('d/m/Y') ?></span></h3>
             </div>
             <div class="block-dashboard__content">
                 <div class="block-newest-job">
@@ -13,24 +13,28 @@
                         <img class="block-newest-job__icon-top "
                             src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/dashboard/icon-top.png">
                         <div class id="sliderNewJobPublish">
-                            @foreach( $lasest_jobs as $job )
-                            <div class="job-item active animated zoomIn">
-                                <a class="job-item__link" target="_blank"
-                                    href="{{ route('website.jobs.show', $job->slug) }}">
-                                    <img class="job-item__logo" src="{{ $job->userEmployee->image_fm }}">
-                                </a>
-                                <div>
-                                    <a class="job-item__link" href="{{ route('website.jobs.show', $job->slug) }}"
-                                        target="_blank">
-                                        <p class="job-item__title">{{ $job->name }}</p>
-                                    </a>
+                            @foreach ($lasest_jobs as $job)
+                                <div class="job-item active animated zoomIn">
                                     <a class="job-item__link" target="_blank"
-                                        href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}">
-                                        <p class="job-item__company">{{ $job->userEmployee->name }}</p>
+                                        href="{{ route('website.jobs.show', $job->slug) }}">
+                                        @if ($job->userEmployee)
+                                            <img class="job-item__logo" src="{{ $job->userEmployee->image_fm }}">
+                                        @endif
                                     </a>
-                                    <p class="job-item__location">{{ $job->work_address }}</p>
+                                    <div>
+                                        <a class="job-item__link" href="{{ route('website.jobs.show', $job->slug) }}"
+                                            target="_blank">
+                                            <p class="job-item__title">{{ $job->name }}</p>
+                                        </a>
+                                        @if ($job->userEmployee)
+                                            <a class="job-item__link" target="_blank"
+                                                href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}">
+                                                <p class="job-item__company">{{ $job->userEmployee->name }}</p>
+                                            </a>
+                                        @endif
+                                        <p class="job-item__location">{{ $job->work_address }}</p>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -46,7 +50,8 @@
                             <p class="title">Việc làm đang tuyển</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment + 1000 }}</p>
+                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment + 1000 }}
+                            </p>
                             <p class="title">Công ty đang tuyển</p>
                         </div>
                     </div>
@@ -71,7 +76,7 @@
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
                                         class="caption"> Nhu cầu tuyển dụng theo </span>
                                 </div>
-                                    <!-- <div class="box-select"> <select name="demand-job-select"
+                                <!-- <div class="box-select"> <select name="demand-job-select"
                                             id="demand-job-select-dashboard" class="form-control select2 text-white">
                                             <option value="2" class="text-black"> Ngành nghề </option>
                                             <option value="4" class="text-black"> Mức lương </option>
@@ -89,4 +94,4 @@
         </div>
     </div>
 </div>
-<link href="{{ asset('website-assets/css/dashboard.css')}}" rel="stylesheet">
+<link href="{{ asset('website-assets/css/dashboard.css') }}" rel="stylesheet">

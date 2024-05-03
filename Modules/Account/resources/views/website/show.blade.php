@@ -33,12 +33,7 @@
                                     <div class="price">{{ number_format($item->price) }}<span class="duration">Điểm/
                                             tháng</span></div>
                                     <div class="table-content">
-                                        <ul>
-                                            @foreach($item->job_package as $package)
-                                            <li><span>Miễn phí {{ $package->amount }} {{ $package->job_package->name }}/
-                                                    tháng</span></li>
-                                            @endforeach
-                                        </ul>
+                                            {!!$item->description!!}
                                     </div>
                                     <form action="{{ route($route_prefix.'store') }}" method="post">
                                         @csrf

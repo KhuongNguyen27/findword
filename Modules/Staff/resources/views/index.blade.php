@@ -28,13 +28,13 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
-                                    <span><strong>{{ __('logo_upload') }}</strong></span>
+                                    <span><strong>{{ __('avatar_upload') }}</strong></span>
                                     <div class="uploading-outer">
                                         <div class="uploadButton">
                                             <input class="uploadButton-input" type="file" name="image"
                                                 accept="image/*, application/pdf" id="upload" multiple>
                                             <label class="uploadButton-button ripple-effect" for="upload">
-                                                {{ __('browse_logo') }}
+                                                {{ __('avatar_browse') }}
                                             </label>
                                             <span class="uploadButton-file-name"></span>
                                         </div>
