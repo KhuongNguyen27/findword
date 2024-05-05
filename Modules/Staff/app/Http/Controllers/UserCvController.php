@@ -87,8 +87,17 @@ class UserCvController extends Controller
             'userExperiences' => $userExperiences,
             'userSkills' => $userSkills,
         ];
-    
-        return view('staff::cv.show', $params);
+        if($item->file_path){
+            if( file_exists($item->file_path) ){
+                header("Content-type:application/pdf");
+                echo file_get_contents( asset($item->file_path) );
+                die();
+            }else{
+                return view('staff::cv.show', $params);
+            }
+        }else{
+            return view('staff::cv.show', $params);
+        }
     }
     /**
      * Show the form for editing the specified resource.

@@ -77,8 +77,8 @@ class ProfileController extends Controller
         $staff = UserStaff::findOrFail($id);
         $user = $staff->user;
         $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            // 'name' => $request->input('name'),
+            // 'email' => $request->input('email'),
         ]);
 
 

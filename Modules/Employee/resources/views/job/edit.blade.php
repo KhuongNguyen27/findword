@@ -284,7 +284,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mô tả công việc</label>
-                                            <textarea name="description" placeholder="Mô tả...">{{ $job->description }}</textarea>
+                                            <textarea name="description" id="description" placeholder="Mô tả...">{{ $job->description }}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('description') }}</p>
@@ -294,7 +294,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Yêu cầu công việc</label>
-                                            <textarea name="requirements" placeholder="Yêu cầu...">{{ $job->requirements }}</textarea>
+                                            <textarea name="requirements" id="requirements" placeholder="Yêu cầu...">{{ $job->requirements }}</textarea>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('requirements') }}</p>
@@ -414,39 +414,6 @@
                                                         @if ($errors->any())
                                                             <p style="color:red">
                                                                 {{ $errors->first('price') }}</p>
-                                                        @endif
-                                                    </div>
-
-                                                    <div class="form-group col-lg-3 col-md-12">
-                                                        <label>Giờ bắt đầu đăng :</label>
-                                                        @if ($job->status == 0)
-                                                            <input type="time" name="start_hour"
-                                                                value="{{ $job->start_hour }}" id="nameInput"
-                                                                placeholder="Giờ...">
-                                                        @elseif($job->status == 1)
-                                                            <input type="time" name="start_hour"
-                                                                value="{{ $job->start_hour }}" id="nameInput"
-                                                                placeholder="Giờ..." readonly>
-                                                        @endif
-                                                        @if ($errors->any())
-                                                            <p style="color:red">
-                                                                {{ $errors->first('start_hour') }}</p>
-                                                        @endif
-                                                    </div>
-                                                    <div class="form-group col-lg-3 col-md-12">
-                                                        <label>Giờ Kết thúc :</label>
-                                                        @if ($job->status == 0)
-                                                            <input type="time" name="end_hour"
-                                                                value="{{ $job->end_hour }}" id="nameInput"
-                                                                placeholder="Giờ...">
-                                                        @elseif ($job->status == 1)
-                                                            <input type="time" name="end_hour"
-                                                                value="{{ $job->end_hour }}" id="nameInput"
-                                                                placeholder="Giờ..." readonly>
-                                                        @endif
-                                                        @if ($errors->any())
-                                                            <p style="color:red">
-                                                                {{ $errors->first('end_hour') }}</p>
                                                         @endif
                                                     </div>
 

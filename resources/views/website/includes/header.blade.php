@@ -17,10 +17,10 @@ $currentRouteName = \Request::route()->getName();
         <div class="outer-box">
             @if(Auth::check())
                 @if(Auth::user()->type == "employee")
-                <button class="menu-btn">
+                <a class="menu-btn" href="{{ route('employee.transaction.create') }}">
                     <span class="icon flaticon-money-1"></span>
                     <span class="fs-5" style="color:#202124">{{ number_format(Auth::user()->points, 0, '', '.') ?? 0 }}P</span>
-                </button>
+                </a>
                 @endif
             <!-- <button class="menu-btn">
                 <span class="count">1</span>

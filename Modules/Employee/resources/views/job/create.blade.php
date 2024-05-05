@@ -110,19 +110,7 @@
                                             @endif
                                         </div>
 
-                                        <!-- Input -->
-                                        {{-- <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
-                                        <label>Lương <span class="label-required">*</span></label>
-                                        <select name="wage_id" class="chosen-select">
-                                            @foreach ($param['wages'] as $wage)
-                                            <option value="{{ $wage->id }}">{{ $wage->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @if ($errors->any())
-                                        <p style="color:red">
-                                            {{ $errors->first('wage_id') }}</p>
-                                        @endif
-                                    </div> --}}
+                                        <div class="">Để trống mức lương có nghĩa là Thỏa Thuận</div>
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Mức lương tối thiểu </label>
                                             <input type="number" name="salaryMin" id="salaryMin"
@@ -133,7 +121,6 @@
                                             <input type="number" name="salaryMax" id="salaryMax"
                                                 value="{{ old('salaryMax') }}" />
                                         </div>
-
 
                                         <!-- Input -->
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">

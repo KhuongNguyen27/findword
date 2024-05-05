@@ -60,7 +60,7 @@ if( $job->province ){
                                     mức lương</a></span>
                         @endif
                     </li>
-                    <li><span class="address">{{ $job->province->name }}</span></li>
+                    <li><span class="address">{{ @$job->province->name }}</span></li>
                     @if (@$job_other_info)
                         <li><span class="salary job-updated">Cập nhật <?= $updated_at ?></span></li>
                         <li><span class="salary job-remain">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>

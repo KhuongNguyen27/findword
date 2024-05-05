@@ -93,7 +93,10 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if (!$user) {
-                return redirect()->back()->with('error', 'Email not found');
+                return redirect()->back()->with('error', 'Tài khoản không tìm thấy');
+            }
+            if( $user->google_id ){
+                return redirect()->back()->with('error', 'Tài khoản này được Đăng nhập bằng Gmail. Không thể lấy lại mật khẩu.');
             }
             $token = strtoupper(Str::random(10));
             $existingToken = PasswordResetToken::where('email', $user->email)->first();

@@ -108,7 +108,7 @@
                                             </a>
                                             <a class="job-detail__info--actions-button button-white do-bookmark"
                                                 data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                                                <span class="button-icon">
+                                                <span class="button-icon {{ (in_array($job->id, $cr_user_favorites)) ? 'active' : ''; }}">
                                                     <i class="fa fa-regular fa-heart"></i>
                                                 </span>
                                                 Yêu thích
@@ -395,7 +395,35 @@
     </section>
 @endsection
 
-@section('footer')
+@section('header')
     <link rel="stylesheet"
         href="https://static.topcv.vn/v4/css/components/desktop/job-detail-new.min.befd3ea464210690.css">
+@endsection
+@section('footer')
+<script>
+        $(document).ready(function() {
+            $('.do-bookmark').on('click', function(e) {
+                var btnWhitlist = $(this)
+                e.preventDefault();
+
+                var url = $(this).data('href');
+
+                $.ajax({
+                    url: url,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            if (response.type == 'add') {
+                                btnWhitlist.find('span').addClass('active');
+                            } else {
+                                btnWhitlist.find('span').removeClass('active');
+                            }
+                        }
+                    },
+                    error: function() {}
+                });
+            });
+        });
+    </script>
 @endsection

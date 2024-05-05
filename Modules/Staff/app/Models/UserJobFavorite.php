@@ -17,7 +17,7 @@ class UserJobFavorite extends Model
     protected $fillable = [];
     public function job()
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(\App\Models\Job::class);
     }
     public function user()
     {

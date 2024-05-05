@@ -71,7 +71,6 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
 <!-- End Job Section -->
 <!-- End News Section -->

@@ -143,6 +143,7 @@ class AuthController extends Controller
                         'password' => bcrypt('123456'),
                         'type' => 'staff',
                         'status' => 1,
+                        'google_id' => $socialUser->id,
                     ]);
                 $user_staff = UserStaff::create(
                     ['user_id'=> $newUser->id,]

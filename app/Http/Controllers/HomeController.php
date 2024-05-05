@@ -154,6 +154,7 @@ class HomeController extends Controller
             'nhu_cau_values' => $nhu_cau_values,
             'job_packages' => $job_packages,
             'countries' => $countries,
+            'title' => 'Việc làm trong nước hôm nay'
         ];
         return view('website.homes.index', $params);
     }
