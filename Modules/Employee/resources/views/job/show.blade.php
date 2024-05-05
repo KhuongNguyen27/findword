@@ -185,7 +185,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Mô tả công việc</label>
-                                            <textarea name="description" placeholder="Mô tả..." readonly>{{ isset($jobs->description) ? $jobs->description : '' }}</textarea>
+                                            <div name="description" placeholder="Mô tả..." readonly>{!! $job->description !!}</div>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('description') }}</p>
@@ -195,7 +195,7 @@
                                         <!-- About Company -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Yêu cầu công việc</label>
-                                            <textarea name="requirements" placeholder="Yêu cầu..." readonly>{{ isset($jobs->requirements) ? $jobs->requirements : ''}}</textarea>
+                                            <div name="requirements" placeholder="Yêu cầu..." readonly>{!! $job->requirements !!}</div>
                                             @if ($errors->any())
                                                 <p style="color:red">
                                                     {{ $errors->first('requirements') }}</p>

@@ -40,6 +40,7 @@ class StoreRegisterRequest extends FormRequest
             'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'year_of_birth.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
+            'email.unique' => 'Email này đã được sử dụng !',
             'password.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',     
             'accept_pp.accepted' => 'Vui lòng chấp nhận các điều khoản!',

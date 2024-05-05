@@ -124,7 +124,7 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg.' !impo
                                                 </td>
                                                 <td class="text-center">{{ $userCv->created_at->format('d/m/Y') }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('staff.cv.show', ['cv' => $userCv->id]) }}"
+                                                    <a target="_blank" href="{{ route('staff.cv.show', ['cv' => $userCv->id]) }}"
                                                         onclick="return openResumeModel('{{ $userCv->id }}')"
                                                         class="">
                                                         Xem

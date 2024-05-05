@@ -27,8 +27,8 @@
                                             @include('job::includes.components.job-item', [
                                                 'job' => $job,
                                                 'job_info' => true,
-                                                'bookmark' => true,
-                                                'simple' => true,
+                                                'job_other_info' => true,
+                                                'bookmark' => false,
                                             ])
                                         </div>
                                     @endforeach

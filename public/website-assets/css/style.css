@@ -23135,3 +23135,11 @@ Work Section
     width: 100% !important;
     margin-left: -4% !important;
 }
+
+
+span.button-icon.active .fa-heart::before{
+  font-weight: 900 !important;
+}
+span.flaticon-bookmark.active::before {
+  color: red !important;
+}

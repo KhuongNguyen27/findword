@@ -45,10 +45,7 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function userEmployee()
-    {
-        return $this->belongsTo(UserEmployee::class,'user_id','user_id');
-    }
+    
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
@@ -84,4 +81,27 @@ class Job extends Model
     //     }
     //     return "/website-assets/images/favicon.png";
     // }
+    public function province()
+    {
+        return $this->belongsTo(\App\Models\Province::class,'province_id','id');
+    }
+    public function job_package()
+    {
+        return $this->belongsTo(\App\Models\JobPackage::class,'jobpackage_id','id');
+    }
+    public function userEmployee()
+    {
+        return $this->belongsTo(\App\Models\UserEmployee::class,'user_id','user_id');
+    }
+    function getSalaryFmAttribute(){
+        if( $this->salaryMin && $this->salaryMax ){
+            return number_format($this->salaryMin).' - '. number_format($this->salaryMax);
+        }elseif( $this->salaryMax ){
+            return 'Lên đến '.number_format($this->salaryMax);
+        }elseif( $this->salaryMin ){
+            return 'Từ '. number_format($this->salaryMin);
+        }else{
+            return 'Thương lượng';
+        }
+    }
 }
