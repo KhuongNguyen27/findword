@@ -830,3 +830,6 @@ body.dashboard .main-header .nav-outer {
 .company-subdetail-label {
     font-size: 14px;
 }
+.label-required{
+    color: red ;
+}

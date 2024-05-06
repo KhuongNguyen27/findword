@@ -104,7 +104,7 @@
                                 </script>
                                 <div class="row">
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('employer_name') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('employer_name') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="user_name" value="{{ $user->name }}" placeholder="Tên nhà tuyển dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
@@ -112,7 +112,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('email_address') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('email_address') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="email" value="{{ $user->email }}" placeholder="Email Nhà Tuyển Dụng">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_name') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('company_name') }}<span class="label-required"> *</span></label>
                                         <input id="name" type="text" name="name" value="{{ isset($user_employee->name) ? $user_employee->name : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_address') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('company_address') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="address" value="{{ isset($user_employee->address) ? $user_employee->address : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
@@ -136,7 +136,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('phone') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('phone') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="phone" value="{{ isset($user_employee->phone) ? $user_employee->phone : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -144,7 +144,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-6 col-md12">
-                                        <label>{{ __('company_website') }}<span class="label-required">*</span></label>
+                                        <label>{{ __('company_website') }}<span class="label-required"> *</span></label>
                                         <input type="url" name="website" value="{{ isset($user_employee->website) ? $user_employee->website : '' }}" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('website') }}</p>
@@ -152,7 +152,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-12 col-md-12">
-                                        <label>Giới thiệu công ty<span class="label-required">*</span></label>
+                                        <label>Giới thiệu công ty<span class="label-required"> *</span></label>
                                         <textarea name="about" id="about">{{ isset($user_employee->about) ? $user_employee->about : 'Mô tả về công ty của bạn' }}</textarea>
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('about') }}</p>
@@ -160,7 +160,7 @@
                                     </div>
 
                                     <div class="form-group col-lg-12 col-md-12">
-                                        <label>Ảnh bìa<span class="label-required">*</span></label>
+                                        <label>Ảnh bìa<span class="label-required"> *</span></label>
                                         <input type="file" name="background" class="form-control">
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('background') }}</p>
