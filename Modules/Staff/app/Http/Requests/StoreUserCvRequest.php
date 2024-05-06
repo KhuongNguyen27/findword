@@ -35,6 +35,7 @@ class StoreUserCvRequest extends FormRequest
                 'desired_location' => 'required',
                 'wage_id' => 'required|numeric',
                 'career_objective' => 'required',
+                
             ];
         }
 
@@ -60,6 +61,7 @@ class StoreUserCvRequest extends FormRequest
             'birthdate.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'gender.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'experience_years.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            'outstanding_achievements'=>'Vui lòng nhập đầy đủ thông tin.',
 
             'name.max' => 'Tên không được qua 255 ký tự',
             'email.email' => 'Địa chỉ email không đúng',

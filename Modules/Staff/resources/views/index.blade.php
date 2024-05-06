@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('fullname') }}</label>
+                                            <label>{{ __('fullname') }} <span class="label-required">*</span></label>
                                             <input type="text" name="name" value="{{ $item->user->name }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('name') }}</p>
@@ -56,7 +56,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('email') }}</label>
+                                            <label>{{ __('email') }}<span class="label-required"> *</span></label>
                                             <input type="text" name="email" value="{{ $item->user->email }}"
                                                 placeholder="creativelayers">
                                             @if ($errors->any())
@@ -65,7 +65,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('phone') }}</label>
+                                            <label>{{ __('phone') }}<span class="label-required"> *</span></label>
                                             <input type="text" name="phone" value="{{ $item->phone }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('phone') }}</p>
@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('year_of_birth') }}</label>
+                                            <label>{{ __('year_of_birth') }}<span class="label-required"> *</span></label>
                                             <input type="date" name="birthdate" value="{{ $item->birthdate }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('birthdate') }}</p>
@@ -81,7 +81,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('year_of_experience') }}</label>
+                                            <label>{{ __('year_of_experience') }}<span class="label-required"> *</span></label>
                                             <input type="number" name="experience_years"
                                                 value="{{ $item->experience_years }}">
                                             @if ($errors->any())
@@ -90,7 +90,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('gender') }}</label>
+                                            <label>{{ __('gender') }} </label>
                                             <select name="gender" class="form-control">
                                                 <option value="nam" {{ $item->gender == 'nam' ? 'selected' : '' }}>Nam
                                                 </option>
@@ -103,7 +103,7 @@
 
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('province_city') }}</label>
+                                            <label>{{ __('province_city') }}<span class="label-required"> *</span></label>
                                             <input type="text" name="city" value="{{ $item->city }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('city') }}</p>
@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12">
-                                            <label>{{ __('address') }}</label>
+                                            <label>{{ __('address') }}<span class="label-required"> *</span></label>
                                             <input type="text" name="address" value="{{ $item->address }}">
                                             @if ($errors->any())
                                                 <p style="color:red">{{ $errors->first('address') }}</p>
@@ -119,7 +119,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-12 col-md-12">
-                                            <label>{{ __('outstanding_achievements') }}</label>
+                                            <label>{{ __('outstanding_achievements') }}<span class="label-required"> *</span></label>
                                             <input type="text" name="outstanding_achievements"
                                                 value="{{ $item->outstanding_achievements }}">
                                             @if ($errors->any())

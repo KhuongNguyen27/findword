@@ -17,7 +17,10 @@
                 <div class="row">
                     <!-- Thông tin cá nhân -->
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Tên CV</label>
+                        <label>
+                            Tên CV
+                            <span class="label-required" > *</span>
+                        </label>
                         <input type="text" name="cv_file" value="{{ old('cv_file') ?? $item->cv_file }}">
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('cv_file') }}</p>
@@ -26,7 +29,10 @@
                     <!-- Thông tin công việc -->
 
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Nhập vị trí muốn ứng tuyển</label>
+                        <label>
+                            Nhập vị trí muốn ứng tuyển
+                            <span class="label-required" > *</span>
+                        </label>
                         <input type="text" name="desired_position"
                             value="{{ old('desired_position') ?? $item->desired_position }}">
                         @if ($errors->any())
@@ -89,7 +95,10 @@
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Nơi làm việc mong muốn</label>
+                        <label>
+                            Nơi làm việc mong muốn
+                            <span class="label-required" > *</span>
+                        </label>
                         <input type="text" name="desired_location"
                             value="{{ old('desired_location') ?? $item->desired_location }}">
                         @if ($errors->any())
@@ -112,7 +121,10 @@
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
-                        <label>Mục tiêu nghề nghiệp</label>
+                        <label>
+                            Mục tiêu nghề nghiệp
+                            <span class="label-required" > *</span>
+                        </label>
                         <input type="text" name="career_objective"
                             value="{{ old('career_objective') ?? $item->career_objective }}">
                         @if ($errors->any())
@@ -121,7 +133,7 @@
                     </div>
 
                     <div class="form-group col-lg-6 col-md-12">
-                        <button class="theme-btn btn-style-one">Save</button>
+                        <button class="theme-btn btn-style-one"> {{__('save')}} </button>
                     </div>
                 </div>
             </form>
