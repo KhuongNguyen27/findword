@@ -3,7 +3,9 @@
         <div class="ls-outer theme-card">
             <div class="ls-switcher theme-card-header">
                 <div class="sec-title mb-3 mt-3">
-                    <h2 class="">{{ $title }}</h2>
+                    @if(request()->route()->getName() == 'jobs.vnjobs' )
+                        <h2 class="">{{ $sec_title }}</h2>
+                    @endif
                 </div>
                 <div class="box-header__tool">
                     <span class="see-more">

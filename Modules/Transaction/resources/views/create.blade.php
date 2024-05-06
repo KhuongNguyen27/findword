@@ -3,7 +3,8 @@
     <section class="user-dashboard">
         <div class="dashboard-outer">
             <div class="upper-title-box">
-                <h3>Quản Lý Giao Dịch</h3>
+                <h3>Quản lý giao dịch </h3>
+                <h3 style="color: red"> 1 VND = 1 P</h3>
                 {{-- <div class="text">Ready to jump back in?</div> --}}
             </div>
             <div class="row">
