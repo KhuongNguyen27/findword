@@ -92,9 +92,13 @@ class ProfileController extends Controller
                 $imagePath = self::uploadFile( $request->file('image') ,'employees');
                 $userEmployee->image = $imagePath;
             }
+            $backgroundPath = '';
             if ( $request->hasFile('background') ) {
-                $backgroundPath = self::uploadFile( $request->file('image') ,'backgrounds');
+                $backgroundPath = self::uploadFile( $request->file('background') ,'backgrounds');
                 $userEmployee->background = $backgroundPath;
+            }else
+            {
+                $backgroundPath = 'website/images/logo.svg';
             }
             $userEmployee->save();
 
