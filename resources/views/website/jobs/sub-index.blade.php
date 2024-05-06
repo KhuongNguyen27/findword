@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         @include('website.includes.global.attractive-banner')
-                                        @include('website.includes.global.employees-top')
+                                        @include('website.includes.global.special-employee-jobs')
                                     </div>
                                 </div>
                             </div>

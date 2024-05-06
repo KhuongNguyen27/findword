@@ -51,12 +51,12 @@
                                                         <tr>
                                                             <td>{{ $key + 1 }}</td>
                                                             <td>{{ $cv_aplly->cv->cv_file }}</td>
-                                                            <td>{{ $cv_aplly->created_at }}</td>
+                                                            <td>{{ date('d/m/Y H:i',strtotime($cv_aplly->created_at)) }}</td>
                                                             <td>
                                                                 <div class="option-box">
                                                                     <ul class="option-list">
                                                                         <li>
-                                                                            <a href="{{ route('employee.cv.show', $cv_aplly->id) }}"
+                                                                            <a target="_blank" href="{{ route('employee.cv.show', $cv_aplly->id) }}"
                                                                                 data-text="Xem hồ sơ">
                                                                                 <span class="la la-eye"></span>
                                                                             </a>
