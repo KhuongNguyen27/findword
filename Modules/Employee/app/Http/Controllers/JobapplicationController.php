@@ -99,7 +99,11 @@ class JobapplicationController extends Controller
                 $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userExperiences = UserExperience::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userSkills = UserSkill::where('cv_id', $cv_job_apply->cv->id)->get();
-                // dd($educations);
+                if($item->file_path && file_exists($item->file_path)){
+                    header("Content-type:application/pdf");
+                    echo file_get_contents( asset($item->file_path) );
+                    die();
+                }
 
                 $params = [
                     'item' => $item,
