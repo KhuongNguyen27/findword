@@ -1,5 +1,7 @@
 @extends('website.layouts.master')
-@section('title') {{ $title }} @endsection
+@section('title')
+    {{ $title }}
+@endsection
 @section('content')
     <section class="banner-section pb-5">
         <div class="auto-container">
@@ -24,17 +26,18 @@
     <!-- End Banner Section-->
 
     <!-- Job Section -->
-    @include('website.homes.includes.job-items',[
+    @include('website.homes.includes.job-items', [
         'sec_title' => $title,
         'item_class' => 'col-lg-4 col-md-12 col-sm-12',
         'chunk_jobs' => $jobs,
-        'sec_link' => route($route,'moi-nhat')
+        'sec_link' => route($route, 'moi-nhat'),
     ])
     <!-- End Job Section -->
 
     @include('website.includes.global.ad-banners')
 
     @include('website.includes.global.attractive-jobs')
+
 
     <!-- End News Section -->
 @endsection
