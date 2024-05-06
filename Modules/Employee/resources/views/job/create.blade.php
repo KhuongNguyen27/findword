@@ -84,7 +84,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Hình thức làm việc <span class="label-required">*</span></label>
+                                            <label>Hình thức làm việc</label>
                                             <select name="formwork_id" class="chosen-select">
                                                 @foreach ($param['formworks'] as $formwork)
                                                     <option value="{{ $formwork->id }}">{{ $formwork->name }}</option>
@@ -97,7 +97,7 @@
                                         </div>
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Kinh Nghiệm <span class="label-required">*</span></label>
+                                            <label>Kinh Nghiệm</label>
                                             <select name="experience" class="chosen-select">
                                                 <option value="0">Không yêu cầu</option>
                                                 @for($i = 1; $i <= 15; $i++)
@@ -285,7 +285,7 @@
                                                 <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a>
                                             </div>
                                             <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
-                                                <label>Ngày bắt đầu <span class="label-required">*</span></label>
+                                                <label>Ngày bắt đầu</label>
                                                 <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}" name="start_day"
                                                     placeholder="" onchange="calculateDays()" readonly>
                                                 @if ($errors->any())

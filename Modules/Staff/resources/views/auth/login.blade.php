@@ -18,14 +18,20 @@
             @endif
             @csrf
             <div class="form-group">
-                <label>{{ __('email') }}</label>
+                <label>
+                    {{ __('email') }}
+                    <span class="label-required" > *</span>
+                </label>
                 <input type="email" name="email" placeholder="abc@gmail.com" value="{{ old('email') }}">
                 @if ($errors->any())
                 <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
             </div>
             <div class="form-group">
-                <label>{{ __('password') }}</label>
+                <label>
+                    {{ __('password') }}
+                    <span class="label-required" > *</span>
+                </label>
                 <input id="password-field" type="password" name="password" value="" placeholder="{{ __('password') }}"
                     value="{{ old('Password') }}">
                 @if ($errors->any())

@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('name') }}<span class="label-required">*</span></label>
+                            <label>{{ __('name') }}<span class="label-required"> *</span></label>
                             <input type="text" name="name" placeholder="{{ __('name') }}"
                                 value="{{ old('name') }}">
                             @if ($errors->any())
@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('email') }}<span class="label-required">*</span></label>
+                            <label>{{ __('email') }}<span class="label-required"> *</span></label>
                             <input type="email" name="email" placeholder="{{ __('email') }}"
                                 value="{{ old('email') }}">
                             @if ($errors->any())
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('phone') }}<span class="label-required">*</span></label>
+                            <label>{{ __('phone') }}<span class="label-required"> *</span></label>
                             <input type="number" name="phone" placeholder="{{ __('phone') }}"
                                 value="{{ old('phone') }}">
                             @if ($errors->any())
@@ -62,7 +62,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('repeat_password') }}<span class="label-required">*</span></label>
+                            <label>{{ __('repeat_password') }}<span class="label-required"> *</span></label>
                             <input type="password" name="repeatpassword" placeholder="{{ __('repeat_password') }}">
                             @if ($errors->any())
                                 <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
@@ -74,7 +74,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('company_name') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_name') }}<span class="label-required"> *</span></label>
                             <input type="text" name="cp_name" id="cp_name" placeholder="{{ __('company_name') }}"
                                 value="{{ old('cp_name') }}">
                             @if ($errors->any())
@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_website') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_website') }}<span class="label-required"> *</span></label>
                             <input type="text" name="website" placeholder="{{ __('company_website') }}"
                                 value="{{ old('website') }}">
                             @if ($errors->any())
@@ -96,7 +96,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label>{{ __('company_phone') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_phone') }}<span class="label-required"> *</span></label>
                             <input type="number" name="text" placeholder="{{ __('company_phone') }}"
                                 value="{{ old('phone') }}">
                             @if ($errors->any())
@@ -107,7 +107,7 @@
 
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('company_address') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_address') }}<span class="label-required"> *</span></label>
                             <input type="text" name="address" placeholder="{{ __('company_address') }}"
                                 value="{{ old('address') }}">
                             @if ($errors->any())
@@ -117,7 +117,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('company_taxcode') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_taxcode') }}<span class="label-required"> *</span></label>
                             <input type="number" name="tax_code" placeholder="{{ __('company_taxcode') }}"
                                 value="{{ old('tax_code') }}">
                             @if ($errors->any())
@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label>{{ __('company_logo') }}<span class="label-required">*</span></label>
+                            <label>{{ __('company_logo') }}<span class="label-required"> *</span></label>
                             <input type="file" name="image" class="form-control" id="inputGroupFile02"
                                 placeholder="ađấ">
                             @if ($errors->any())
@@ -142,7 +142,7 @@
                 <div class="form__check" style="margin-bottom: 50px;">
                     <input id="accept_pp" type="checkbox" name="accept_pp" onchange="showPopup()">
                     <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}<span
-                            class="label-required">*</span></label>
+                            class="label-required"> *</span></label>
                     @if ($errors->has('accept_pp'))
                         <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                     @else
