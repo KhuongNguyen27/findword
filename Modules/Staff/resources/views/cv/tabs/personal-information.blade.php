@@ -52,7 +52,7 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>
-                            Phone
+                            {{__('phone')}}
                             <span class="label-required"> *</span>
                         </label>
                         <input type="number" class="form-control" name="phone"
