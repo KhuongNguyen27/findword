@@ -219,6 +219,7 @@ class JobController extends Controller
             'job_tags' => $job_tags,
             'job_packages'=> $job_packages,
             'countries'=>$countries,
+            'special_employee_jobs'=>$this->_special_employee_jobs(),
         ];
         return view($view_path,$params);
     }
@@ -435,8 +436,21 @@ class JobController extends Controller
             'job_tags' => $job_tags,
             'job_packages' => $job_packages,
             'countries'=>$countries,
+            'special_employee_jobs'=>$this->_special_employee_jobs(),
         ];
         return view($view_path,$params);
+    }
+
+    private function _special_employee_jobs(){
+        $employee_id = 373180;
+        $employee = UserEmployee::where('user_id',$employee_id)->first();
+        $jobs = Job::where('user_id',$employee_id)
+        ->where('status',1)
+        ->limit(10)->get();
+        return [
+            'employee' => $employee,
+            'jobs' => $jobs,
+        ];
     }
    
 }
