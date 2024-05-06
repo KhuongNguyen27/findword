@@ -102,29 +102,36 @@ class User extends Authenticatable
         return null;
     }
     public function checkJob($job_package = 1){
-        $user = Auth::user();
         $account_current = $this->account->where('is_current',1)->first();
-        if($user->verify == $this::ACTIVE && empty($account_current)){
-            $currentDate = now(); // Lấy ngày hiện tại
-            $nextMonth = $currentDate->addMonth(); // Thêm 1 tháng
-            UserAccount::firstOrCreate(
+        $currentDate = now(); // Lấy ngày hiện tại
+        $nextMonth = $currentDate->addMonth(); // Thêm 1 tháng
+        if ($account_current && $account_current->account_id == $this::ACTIVE) {
+            $expirationDate = $account_current->expiration_date;
+            $expirationDate = Carbon::parse($expirationDate);
+            $currentDate = Carbon::now();
+            $daysRemaining = $currentDate->diffInDays($expirationDate);
+            if($daysRemaining<0){
+                $account_current->expiration_date = $nextMonth->format('Y-m-d H:i:s');
+            }
+        }
+        if($this->verify == $this::ACTIVE && empty($account_current)){
+            $account_current = UserAccount::firstOrCreate(
                 [
-                    'user_id' => $user->id,
-                    'account_id' => 5,
+                    'user_id' => $this->id,
+                    'account_id' => 1,
                     'duration_id' => 1,
                 ],
                 [
-                    'register_date' => $currentDate,
-                    'expiration_date' => $nextMonth,
+                    'register_date' => $currentDate->format('Y-m-d H:i:s'),
+                    'expiration_date' => $nextMonth->format('Y-m-d H:i:s'),
                     'is_current' => 1,
                 ]
             );
         }
-        if ($this->account->where('is_current',1)->first()) {
+        if ($account_current) {
             $firstDayOfMonth = Carbon::now()->startOfMonth();
             $lastDayOfMonth = Carbon::now()->endOfMonth();
-            // dd($this->account->where('is_current',1)->first()->account->job_package);
-            $user_package = $this->account->where('is_current',1)->first()->account->job_package;
+            $user_package = $account_current->account->job_package;
             $count_job_avaible = $user_package->where('job_package_id',$job_package)->first() !== null ? $user_package->where('job_package_id',$job_package)->first()->amount : 0; 
             $count_job_current = $this->job->where('jobpackage_id',$job_package)->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->count();
             return $count_job_avaible-$count_job_current > 0 ? $count_job_avaible-$count_job_current : 0 ;
