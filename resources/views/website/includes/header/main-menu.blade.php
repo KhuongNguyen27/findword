@@ -21,7 +21,6 @@
         </li>
 
         <li><a class="@if ($currentRouteName == 'employees.index') active @endif" href="{{ route('employees.index') }}">Công ty</a></li>
-        @if (Auth::check() && (Auth::user()->type != "employee"))
 
         <li class="dropdown">
             <a class="@if ($currentRouteName == 'cvs.index') active @endif" href="javascript:;">Hồ sơ & CV</a>
@@ -31,7 +30,6 @@
                 <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
             </ul>
         </li>
-        @endif
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{ route('website.account.index') }}">Bảng giá</a></li>
         @endif
