@@ -237,10 +237,10 @@ class JobController extends Controller
             'tren_50'=>'Trên 50 triệu',
             'thoa_thuan'=>'Thỏa thuận'
         ];
-        $ranks = Rank::where('status', 1)->get();
-        $degrees = Level::where('status',Level::ACTIVE)->get();
-        $formworks = FormWork::where('status',FormWork::ACTIVE)->get();
-        $job_packages  = JobPackage::where('status',1)->get();
+        $ranks = Rank::where('status', 1)->orderBy('position')->get();
+        $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
+        $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
+        $job_packages = JobPackage::whereIn('slug',['tin-gap','tin-hot'])->get();
         $provinces = Province::all();
         $countries = Country::all();
         // Việc làm mới nhất ngoài nước
