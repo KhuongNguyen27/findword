@@ -291,8 +291,8 @@
                                             </div>
                                             <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Ngày bắt đầu <span class="label-required">*</span></label>
-                                                <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}"
-                                                    name="start_day" placeholder="" onchange="calculateDays()" readonly>
+                                                <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}" name="start_day"
+                                                    placeholder="" onchange="calculateDays()" readonly>
                                                 @if ($errors->any())
                                                     <p style="color:red">
                                                         {{ $errors->first('start_day') }}</p>
@@ -330,13 +330,13 @@
                                             </div>
 
                                         </div>
+                                        <!-- Input -->
+                                        <div class="form-group col-lg-12 col-md-12 text-right">
+                                            <button class="theme-btn btn-style-one">Đăng Tin</button>
+                                        </div>
                                     </div>
                                 </div>
-
-								<!-- Input -->
-								<div class="form-group col-lg-12 col-md-12 text-right">
-									<button class="theme-btn btn-style-one">Đăng Tin</button>
-								</div>
+                            </div>
                     </form>
 
                 </div>
