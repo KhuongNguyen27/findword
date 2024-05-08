@@ -1,6 +1,6 @@
 <?php
 $startDate = time(); // Chuyển ngày bắt đầu thành dạng timestamp
-$endDate = strtotime($job->deadline); // Chuyển ngày kết thúc thành dạng timestamp
+$endDate = @strtotime($job->deadline); // Chuyển ngày kết thúc thành dạng timestamp
 $remainingDays = ($endDate - $startDate) / (60 * 60 * 24); // Tính số ngày còn lại
 $remainingDays = round($remainingDays);
 $updated_at = $job->updated_at ? $job->updated_at->diffForHumans() : '';

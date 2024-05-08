@@ -35,7 +35,6 @@
                 <div class="content-column col-lg-12">
                     <div class="ls-outer">
                         <div class="ls-switcher">
-
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
@@ -55,7 +54,7 @@
                                         </div>
                                         <!-- Job Block -->
                                         @endforeach
-                                    </div>
+                                    </div>  
                                     <div class="col-lg-4">
                                         @include('website.includes.global.attractive-banner')
                                         {{-- @include('website.includes.global.special-employee-jobs') --}}
