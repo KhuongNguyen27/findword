@@ -152,7 +152,7 @@
                                                     {{ $errors->first('work_address') }}</p>
                                             @endif
                                         </div>
-
+                               
                                         <div class="form-group col-lg-3 col-md-12">
                                             <label>Vị trí</label>
                                             <select name="degree_id" class="chosen-select" disabled>

@@ -31,8 +31,8 @@ class HomeController extends Controller
         $countries = Country::all();
         $wages = Wage::where('status', 1)->orderBy('position')->get();
         $newWages = [];
-        foreach($wages as $wage){
-            $newWages[$wage->salaryMin. '-'. $wage->salaryMax] = $wage->name;
+        foreach ($wages as $wage) {
+            $newWages[$wage->salaryMin . '-' . $wage->salaryMax] = $wage->name;
         }
         $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
@@ -44,7 +44,7 @@ class HomeController extends Controller
         // Việc làm hấp dẫn
         $hot_jobs = Job::select('jobs.*')->where('jobs.status', 1)
             ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
-            ->where('jobs.wage_id', '>=', 2)
+            // ->where('jobs.wage_id', '>=', 2)
             ->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
@@ -55,9 +55,12 @@ class HomeController extends Controller
                 ELSE 7
             END")
             ->orderBy('jobs.id', 'DESC')->limit(20)->get()->chunk(10);
-        // Việc làm tốt nhất
+        // Việc làm trong nước hôm nay
+        $startDate = Carbon::now()->subHours(72);
+        $endDate = Carbon::now();
         $vip_jobs = Job::select('jobs.*')
             ->where('jobs.status', 1)
+            ->whereBetween('jobs.created_at', [$startDate, $endDate])
             ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
             // ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
             // ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
@@ -71,13 +74,13 @@ class HomeController extends Controller
                 ELSE 7
             END")
             ->orderBy('jobs.id', 'DESC')
-            ->limit(12)
+            ->limit(10)
             ->get()
             ->chunk(9);
 
         // Top công ty hàng đầu
         $employees = UserEmployee::where('is_top', 1)->limit(12)->get();
-        
+
         // Thị trường việc làm
         // 3 việc làm mới nhất
         $lasest_jobs = Job::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
@@ -103,34 +106,34 @@ class HomeController extends Controller
         }
         $tang_truong_labels = [];
         $tang_truong_values = [];
-        if( cache()->get('tang_truong_labels') && cache()->get('tang_truong_values') ){
+        if (cache()->get('tang_truong_labels') && cache()->get('tang_truong_values')) {
             $tang_truong_labels = cache()->get('tang_truong_labels');
             $tang_truong_values = cache()->get('tang_truong_values');
-        }else{
+        } else {
             foreach ($daysList as $day) {
                 $tang_truong_labels[] = $day;
-                $tang_truong_values[] = date('d',strtotime($day)) * rand(100,500);
+                $tang_truong_values[] = date('d', strtotime($day)) * rand(100, 500);
             }
             cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
             cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
         }
-        
+
 
         // Nhu cau tuyen dung
-        if( cache()->get('nhu_cau_values') && cache()->get('nhu_cau_labels') ){
+        if (cache()->get('nhu_cau_values') && cache()->get('nhu_cau_labels')) {
             $nhu_cau_labels = cache()->get('nhu_cau_labels');
             $nhu_cau_values = cache()->get('nhu_cau_values');
-        }else{
+        } else {
             $chart_careers = Career::where('status', 1)->orderBy('position')->limit(5)->pluck('name')->toArray();
             $nhu_cau_labels = $chart_careers;
             $nhu_cau_values = [];
-            foreach( $chart_careers as $key => $chart_career ){
-                $nhu_cau_values[] = $key * rand(100,500);
+            foreach ($chart_careers as $key => $chart_career) {
+                $nhu_cau_values[] = $key * rand(100, 500);
             }
             cache()->put('nhu_cau_values', $nhu_cau_values, 86400);
             cache()->put('nhu_cau_labels', $nhu_cau_labels, 86400);
         }
-        
+
 
         $params = [
             'route' => 'jobs.vnjobs',
@@ -158,4 +161,104 @@ class HomeController extends Controller
         ];
         return view('website.homes.index', $params);
     }
+   public function homejobs(Request $request, $job_type = '')
+    {
+        $degrees = Level::where('status', Level::ACTIVE)->orderBy('position')->get();
+        $formworks = FormWork::where('status', FormWork::ACTIVE)->orderBy('position')->get();
+        $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
+        $careers = Career::where('status', 1)->orderBy('position')->get();
+        $job_packages = JobPackage::where('status', 1)->get();
+        $countries = Country::all();
+        $wages = Wage::where('status', 1)->orderBy('position')->get();
+        $query = Job::select('jobs.*')->where('jobs.status',1);
+        
+        $newWages = [];
+        foreach ($wages as $wage) {
+            $newWages[$wage->salaryMin . '-' . $wage->salaryMax] = $wage->name;
+        }
+        $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
+        $ranks = Rank::where('status', 1)->orderBy('position')->get();
+        $normal_provinces = Province::whereNotIn('name', [1, 50, 32])->orderBy('name')->get();
+        $provinces = Province::whereIn('id', [1, 50, 32])
+            ->orderByRaw("FIELD(id,1,50,32)")
+            ->get()->concat($normal_provinces); 
+        switch($job_type)
+        {
+            case'viec-lam-hom-nay':
+        $title = 'Việc làm hôm nay';
+
+        // Việc làm  hôm nay
+        $startDate = Carbon::now()->subHours(72);
+        $endDate = Carbon::now();
+        $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+        $vip_jobs = Job::select('jobs.*')
+            ->where('jobs.status', 1)
+            ->whereBetween('jobs.created_at', [$startDate, $endDate])
+            ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+            // ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
+            // ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
+            ->orderByRaw("CASE
+                WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+                WHEN job_packages.slug = 'tin-vip' THEN 3
+                WHEN job_packages.slug = 'tin-gap' THEN 4
+                WHEN job_packages.slug = 'tin-hot' THEN 5
+                WHEN job_packages.slug = 'tin-thuong' THEN 6
+                ELSE 7
+            END")
+            ->orderBy('jobs.id', 'DESC')
+            ->limit(12)
+            ->get()
+            ->chunk(9);
+            break;
+		
+        }
+
+        $view_path = 'website.homes.index';
+        if($job_type )
+			{
+				$view_path = 'website.homes.home-sub-index';
+				$jobs = $query->paginate(25);
+
+			}
+        $params =
+				[
+					'route' => 'jobs.homejobs',
+					'jobs' => $jobs,
+					'careers' => $careers,
+					'job_categories' => $job_categories,
+					'ranks' => $ranks,
+					'vip_jobs' => $vip_jobs,	
+					'wages' => $newWages,
+					'provinces' => $provinces,
+					'degrees' => $degrees,
+					'formworks' => $formworks,
+					'job_packages' => $job_packages,
+					'countries' => $countries,
+					'title' => 'Việc làm hôm nay',
+				];
+       return view($view_path, $params);
+
+    }
+
+	// public function homeAttractive(){
+	// 		$hot_jobs = Job::select('jobs.*')->where('jobs.status', 1)
+    //         ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+    //         ->where('jobs.wage_id', '>=', 2)
+    //         ->orderByRaw("CASE
+    //             WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+    //             WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+    //             WHEN job_packages.slug = 'tin-vip' THEN 3
+    //             WHEN job_packages.slug = 'tin-gap' THEN 4
+    //             WHEN job_packages.slug = 'tin-hot' THEN 5
+    //             WHEN job_packages.slug = 'tin-thuong' THEN 6
+    //             ELSE 7
+    //         END")
+    //         ->orderBy('jobs.id', 'DESC')->limit(20)->get()->chunk(10);
+
+	// 		$params =
+	// 		[
+	// 			'hot_jobs' => $hot_jobs,
+	// 		];
+	// }
 }

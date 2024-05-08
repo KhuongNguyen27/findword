@@ -180,7 +180,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;"
                                             id="internationalDiv">
-                                            <label>Quốc tế<span class="label-required">*</span></label>
+                                            <label>Quốc tế<span class="label-required"> *</span></label>
                                             <select name="country_id" class="chosen-select form-select"
                                                 id="international">
                                                 <option value="">Tất cả địa điểm</option>

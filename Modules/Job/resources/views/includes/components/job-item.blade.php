@@ -17,6 +17,8 @@ $detail_company_bg = @$job->job_package->job_detail_company_bg;
 
 $job->work_address = str_replace(', Vietnam', '', $job->work_address);
 $job->work_address = str_replace(', Việt Nam', '', $job->work_address);
+$job->work_address = str_replace(', Quốc tế', '',$job->work_address);
+
 $work_address = explode(',', $job->work_address);
 $job->work_address = end($work_address);
 // $job->work_address = end( explode(',',$job->work_address) );
@@ -24,6 +26,11 @@ $job->work_address = end($work_address);
 if( $job->province ){
     $job->province->name = str_replace('Tỉnh','',$job->province->name);
     $job->province->name = str_replace('Thành phố','',$job->province->name);
+}
+
+
+if ($job->international ) {
+    $job->international->name = str_replace('Quốc tế', '', $job->international->name);
 }
 ?>
 <?php if($job->userEmployee):?>
@@ -60,7 +67,12 @@ if( $job->province ){
                                     mức lương</a></span>
                         @endif
                     </li>
+                    @if($job->province)
                     <li><span class="address">{{ @$job->province->name }}</span></li>
+                    @endif
+                    @if($job->international)
+                    <li><span class="address">{{ @$job->international->name }}</span></li>
+                    @endif
                     @if (@$job_other_info)
                         <li><span class="salary job-updated">Cập nhật <?= $updated_at ?></span></li>
                         <li><span class="salary job-remain">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>

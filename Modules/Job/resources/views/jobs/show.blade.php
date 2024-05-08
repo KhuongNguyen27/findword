@@ -1,10 +1,10 @@
 @extends('website.layouts.master')
 @section('content')
-    @php 
-    $job_detail_header_bg = @$job->job_package->job_detail_header_bg;
-    $job_detail_company_bg = @$job->job_package->job_detail_company_bg;
-    $job_detail_header_bg = $job_detail_header_bg ? $job_detail_header_bg.' !important' : '';
-    $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg.' !important' : '';
+    @php
+        $job_detail_header_bg = @$job->job_package->job_detail_header_bg;
+        $job_detail_company_bg = @$job->job_package->job_detail_company_bg;
+        $job_detail_header_bg = $job_detail_header_bg ? $job_detail_header_bg . ' !important' : '';
+        $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !important' : '';
     @endphp
     <section class="job-real-detail-section job-detail-section pt-5 job-package-{{ @$job->job_package->slug }}">
         <div class="job-detail-outer">
@@ -76,13 +76,13 @@
 
                                         <div class="job-detail__info--flex mt-3">
                                             <!-- <div class="quantity-applied-user disabled">
-                                                    <div class="quantity-applied-user__icon">
-                                                        <i class="fa fa-solid fa-lock"></i>
-                                                    </div>
-                                                    <div class="quantity-applied-user__text">
-                                                        Số lượt ứng tuyển: -
-                                                    </div>
-                                                </div> -->
+                                                        <div class="quantity-applied-user__icon">
+                                                            <i class="fa fa-solid fa-lock"></i>
+                                                        </div>
+                                                        <div class="quantity-applied-user__text">
+                                                            Số lượt ứng tuyển: -
+                                                        </div>
+                                                    </div> -->
                                             <div class="job-detail__info--deadline">
                                                 <span class="job-detail__info--deadline--icon">
                                                     <i class="fa fa-solid fa-clock"></i>
@@ -108,7 +108,8 @@
                                             </a>
                                             <a class="job-detail__info--actions-button button-white do-bookmark"
                                                 data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                                                <span class="button-icon {{ (in_array($job->id, $cr_user_favorites)) ? 'active' : ''; }}">
+                                                <span
+                                                    class="button-icon {{ in_array($job->id, $cr_user_favorites) ? 'active' : '' }}">
                                                     <i class="fa fa-regular fa-heart"></i>
                                                 </span>
                                                 Yêu thích
@@ -177,7 +178,8 @@
                         <aside class="sidebar">
 
                             <!-- Company info -->
-                            <div class="job-detail__box--right job-detail__company" style="background-color: {{ $job_detail_company_bg }};">
+                            <div class="job-detail__box--right job-detail__company"
+                                style="background-color: {{ $job_detail_company_bg }};">
                                 <div class="job-detail__company--information">
                                     <div class="job-detail__company--information-item company-name">
                                         <a rel="nofollow" class="company-logo"
@@ -293,7 +295,7 @@
                                                 @if (Auth::check())
                                                     <div class="box-general-group-info-value">{{ $job->salary_fm }}</div>
                                                 @else
-                                                    <a href="{{route('staff.login')}}" >Đăng nhập để xem</a>
+                                                    <a href="{{ route('staff.login') }}">Đăng nhập để xem</a>
                                                 @endif
                                             </div>
                                         </div>
@@ -353,6 +355,25 @@
                                             </div>
                                         </div>
                                     @endif
+                                    @if ($job->international)
+                                        <div class="box-general-group">
+                                            <div class="box-general-group-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M17.39 15.67L13.35 12H10.64L6.59998 15.67C5.46998 16.69 5.09998 18.26 5.64998 19.68C6.19998 21.09 7.53998 22 9.04998 22H14.94C16.46 22 17.79 21.09 18.34 19.68C18.89 18.26 18.52 16.69 17.39 15.67ZM13.82 18.14H10.18C9.79998 18.14 9.49998 17.83 9.49998 17.46C9.49998 17.09 9.80998 16.78 10.18 16.78H13.82C14.2 16.78 14.5 17.09 14.5 17.46C14.5 17.83 14.19 18.14 13.82 18.14Z"
+                                                        fill="white"></path>
+                                                    <path
+                                                        d="M18.35 4.32C17.8 2.91 16.46 2 14.95 2H9.04998C7.53998 2 6.19998 2.91 5.64998 4.32C5.10998 5.74 5.47998 7.31 6.60998 8.33L10.65 12H13.36L17.4 8.33C18.52 7.31 18.89 5.74 18.35 4.32ZM13.82 7.23H10.18C9.79998 7.23 9.49998 6.92 9.49998 6.55C9.49998 6.18 9.80998 5.87 10.18 5.87H13.82C14.2 5.87 14.5 6.18 14.5 6.55C14.5 6.92 14.19 7.23 13.82 7.23Z"
+                                                        fill="white"></path>
+                                                </svg>
+                                            </div>
+                                            <div class="box-general-group-info">
+                                                <div class="box-general-group-info-title">Quốc gia</div>
+                                                <div class="box-general-group-info-value">{{ $job->international->name }}</div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -369,18 +390,18 @@
                                     </div>
                                 </div>
                                 <!-- <div class="box-category">
-                                        <div class="box-title">Khu vực</div>
-                                        <div class="box-category-tags">
-                                            <span><a class="box-category-tag"
-                                                    href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-nam-tu-liem-kl1d131"
-                                                    target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Nam Từ Liêm">Nam
-                                                    Từ Liêm</a></span>
-                                            <span><a class="box-category-tag"
-                                                    href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-ha-noi-kl1"
-                                                    target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Hà Nội">Hà
-                                                    Nội</a></span>
-                                        </div>
-                                    </div> -->
+                                            <div class="box-title">Khu vực</div>
+                                            <div class="box-category-tags">
+                                                <span><a class="box-category-tag"
+                                                        href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-nam-tu-liem-kl1d131"
+                                                        target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Nam Từ Liêm">Nam
+                                                        Từ Liêm</a></span>
+                                                <span><a class="box-category-tag"
+                                                        href="https://www.topcv.vn/tim-viec-lam-chuyen-vien-tu-van-tai-ha-noi-kl1"
+                                                        target="_blank" title="Tìm việc làm chuyên viên tư vấn tại Hà Nội">Hà
+                                                        Nội</a></span>
+                                            </div>
+                                        </div> -->
                             </div>
                         </aside>
                         <div class="box-category">
@@ -400,7 +421,7 @@
         href="https://static.topcv.vn/v4/css/components/desktop/job-detail-new.min.befd3ea464210690.css">
 @endsection
 @section('footer')
-<script>
+    <script>
         $(document).ready(function() {
             $('.do-bookmark').on('click', function(e) {
                 var btnWhitlist = $(this)

@@ -482,6 +482,8 @@ class Job extends AdminModel
         
         return $jobs;
     }
-    
+    public function international(){
+        return $this->belongsTo(Country::class,'country_id','id');
+    }
 
 }

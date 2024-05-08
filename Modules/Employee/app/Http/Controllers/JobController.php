@@ -141,6 +141,7 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
+            $job->country_id = $request->country_id;
             // VIP tự động duyệt
             $job_package = JobPackage::find($request->jobpackage_id);
             if ($job_package->auto_approve == 1) {
@@ -181,10 +182,11 @@ class JobController extends Controller
             'ranks' => $ranks,
             'formworks' => $formworks,
             'wages' => $wages,
-            'job_packages' => $job_packages
+            'job_packages' => $job_packages,
         ];
         if (auth()->user()->id == $job->user_id) {
             $careerjobs = $job->careers()->pluck('career_id');
+            
             return view('employee::job.show', compact(['job', 'param', 'careerjobs']));
         } else {
             return redirect()->route('employee.job.index')->with('error', 'bạn không có quyền truy cập link này!');
