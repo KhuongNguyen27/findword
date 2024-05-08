@@ -33,20 +33,20 @@ span.flaticon-bookmark.active {
 
 <!-- Job Section -->
 @include('website.homes.includes.job-items',[
-'sec_title' => 'Việc làm tốt nhất',
+'sec_title' => 'Việc làm hôm nay',
 'chunk_jobs' => $vip_jobs,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
-'sec_link' => route('jobs.vnjobs','tot-nhat')
+'sec_link' => route('jobs.homejobs','viec-lam-hom-nay')
 ])
 <!-- End Job Section -->
 
-@include('website.includes.global.ad-banners')
+@include('website.includes.global.ad-banners') 
 
 <!-- top-companies -->
 @include('website.homes.includes.top-companies')
 <!-- End Testimonial Section -->
 
-@include('website.includes.global.attractive-jobs')
+@include('website.includes.global.home-attractive-jobs')
 
 @include('website.homes.includes.thi-truong-viec-lam')
 

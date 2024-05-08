@@ -11,9 +11,11 @@ use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
 use Modules\Staff\app\Models\UserJobFavorite;
 use Modules\Employee\app\Models\CareerJob;
+use Modules\Job\app\Models\Country;
 
 use Carbon\Carbon;
 use App\Models\Job as MainJob;
+
 class Job extends MainJob
 {
     use HasFactory;
@@ -32,6 +34,8 @@ class Job extends MainJob
         'wage_id',
         'formwork_id',
         'more_information',
+        'country_id',
+
     ];
     // Relationship
     public function user(): BelongsTo
@@ -61,6 +65,9 @@ class Job extends MainJob
     public function province()
     {
         return $this->belongsTo(Province::class);
+    }
+    public function international(){
+        return $this->belongsTo(Country::class,'country_id','id');
     }
     public function level()
     {

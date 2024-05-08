@@ -18,6 +18,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Career;
 use App\Models\Post;
 use Modules\Employee\app\Models\CareerJob;
+use Modules\Job\app\Models\Country;
 use Modules\Staff\app\Models\UserJobAplied;
 
 class JobController extends Controller
@@ -111,6 +112,7 @@ class JobController extends Controller
         $model = new Job;
         $user_id = Auth::id();
         $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+        $international = Country::where('id', $job->country_id)->first();
         $career_id = CareerJob::where('job_id', $job->id)->first();
         $job_relate_to = [];
         if ($career_id) {
@@ -124,6 +126,8 @@ class JobController extends Controller
             'job_relate_to' => $job_relate_to,
             'job_employ' => $job_employ,
             'moreInformation'=>$moreInformation,
+            'international'=> $international,
+            
         ];
         return view('job::jobs.show', $params);
     }

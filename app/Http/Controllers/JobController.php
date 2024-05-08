@@ -88,14 +88,14 @@ class JobController extends Controller
             $query->where('province_id', $request->province_id);
         }
         switch ($job_type) {
-            case 'moi-nhat':
-                $title = 'Việc làm trong nước mới nhất';
+            case 'hap-dan':
+                $title = 'Việc làm trong nước hấp dẫn';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
-                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->orderByRaw("CASE
-                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
-                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 2
                         WHEN job_packages.slug = 'tin-vip' THEN 3
                         WHEN job_packages.slug = 'tin-gap' THEN 4
                         WHEN job_packages.slug = 'tin-hot' THEN 5
@@ -103,6 +103,21 @@ class JobController extends Controller
                         ELSE 7
                     END");
                 break;
+                case 'moi-nhat':
+                    $title = 'Việc làm trong nước mới nhất';
+                    //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                    //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                    $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+                    ->orderByRaw("CASE
+                            WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                            WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                            WHEN job_packages.slug = 'tin-vip' THEN 3
+                            WHEN job_packages.slug = 'tin-gap' THEN 4
+                            WHEN job_packages.slug = 'tin-hot' THEN 5
+                            WHEN job_packages.slug = 'tin-thuong' THEN 6
+                            ELSE 7
+                        END");
+                    break;
             case 'hot':
                 // Việc làm Hot nhất	Toàn bộ các tin đăng	
                 //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
@@ -244,7 +259,7 @@ class JobController extends Controller
         $provinces = Province::all();
         $countries = Country::all();
         // Việc làm mới nhất ngoài nước
-        $query = Job::where('jobs.status',1);
+        $query = Job::select('jobs.*')->where('jobs.status',1);
         $query->where('country','!=', 'VN');
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
