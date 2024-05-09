@@ -147,6 +147,14 @@
         @endforeach
     </div>
 @endif
+@if (isset($allowKeywords) && isset($job_tags) && count($job_tags))
+    <div class="popular-searches mb-2 mt-1">
+        <span class="popular-title text-white">Từ khóa liên quan: </span>
+        @foreach ($job_tags as $job_tag)
+            <a class="text-white" href="#">{{ $job_tag->name }}</a>
+        @endforeach
+    </div>
+@endif
 @if (isset($allowSort))
     @php
         $inactiveClass = 'btn btn-sm btn-light';

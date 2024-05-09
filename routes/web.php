@@ -29,6 +29,7 @@ use App\Http\Controllers\ToolController;
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/trang-chu/{job_type?}', [HomeController::class,'homejobs'])->name('jobs.homejobs');
+Route::get('/viec-lam-hap-dan', [HomeController::class,'attractive'])->name('attractive');
 
 Route::get('/viec-lam-trong-nuoc/{job_type?}', [JobController::class,'vnjobs'])->name('jobs.vnjobs');
 
