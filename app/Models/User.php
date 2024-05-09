@@ -70,18 +70,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Job::class);
     }
-    public function accounts()
-    {
+    public function accounts(){
         return $this->belongsToMany(\Modules\Account\app\Models\Account::class,'user_account');
     }
-    public function account()
-    {
+    public function account(){
         return $this->hasMany(\Modules\Account\app\Models\UserAccount::class);
     }
-	  public function userStaff()
-      {
-          return $this->hasOne(UserStaff::class);
-      }
+    public function userStaff(){
+        return $this->hasOne(UserStaff::class);
+    }
     public function getAccountName(){
         if ($this->account->where('is_current',1)->first()) {
             return $this->account->where('is_current',1)->first()->account->accountname;

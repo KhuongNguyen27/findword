@@ -43,6 +43,11 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        if(intval($user->verify) !== $user::ACTIVE){
+            return back()->with('error','Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
+        }
+        $user->checkJob();
         $params = [
             'route_prefix'  => $this->route_prefix,
         ];

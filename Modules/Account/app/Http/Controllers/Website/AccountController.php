@@ -26,7 +26,7 @@ class AccountController extends Controller
     public function index()
     {
         $items = $this->model::orderBy('position')->get();
-        $package_current = UserAccount::whereUser_id(Auth::id())->pluck('account_id','expiration_date',)->toArray();
+        $package_current = UserAccount::whereUser_id(Auth::id())->whereIs_current(1)->whereDate('expiration_date', '>', date('Y-m-d H:i:s'))->first();
         $params = [
             'items' => $items,
             'package_current' => $package_current,
@@ -58,7 +58,9 @@ class AccountController extends Controller
             }
             $user->points -= $package->price*($duration->number_date/30);
             $user->save();
-            $package_current = UserAccount::where('user_id',$user->id)->delete();
+            $package_current = UserAccount::whereUser_id($user->id)->whereIs_current($user::ACTIVE)->first();
+            $package_current->is_current = $user::INACTIVE;
+            $package_current->save();
             $is_current = 1;
             $register_date = date('Y-m-d H:i:s');
             $register_date = new \DateTime($register_date);
@@ -87,6 +89,14 @@ class AccountController extends Controller
      */
     public function show($id)
     {
+        $package_current = UserAccount::where('account_id', '<>', 1)
+            ->where('user_id', Auth::id())
+            ->where('is_current', 1)
+            ->whereDate('expiration_date', '>', date('Y-m-d H:i:s'))
+            ->first();
+        if($package_current){
+            return back()->with('error','Bạn đã mua Gói Tài khoản khác, vui lòng đợi hết thời gian sử dụng Gói Tài khoản cũ để mua thêm!');
+        }
         $item = $this->model::findOrfail($id);
         $durations = Duration::all();
         $params = [
