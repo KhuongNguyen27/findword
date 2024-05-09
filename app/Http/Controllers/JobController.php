@@ -210,7 +210,9 @@ class JobController extends Controller
         }
 
         // Việc làm hấp dẫn trong nước
-        $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)->where('jobs.salaryMax','>=',10000000)
+        $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
+        ->where('jobs.salaryMax','>=',10000000)
+        ->where('jobs.country','VN')
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
@@ -448,7 +450,10 @@ class JobController extends Controller
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
         // Việc làm hấp dẫn ngoài nước
-        $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
+        $hot_jobs = Job::where('status',1)->where('jobs.country', 'NN')
+        ->where('jobs.salaryMax','>=',10000000)
+        
+        ->where('jobpackage_id',JobPackage::HOT)
         ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
 
         $employees = UserEmployee::get();
