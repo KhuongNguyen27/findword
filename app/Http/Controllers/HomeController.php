@@ -191,7 +191,7 @@ class HomeController extends Controller
 				// Việc làm  hôm nay
 				$startDate = Carbon::now()->subHours(72);
 				$endDate = Carbon::now();
-				$query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+				// $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
 				$today_jobs = Job::select('jobs.*')
 					->where('jobs.status', 1)
 					// ->whereBetween('jobs.created_at', [$startDate, $endDate])
