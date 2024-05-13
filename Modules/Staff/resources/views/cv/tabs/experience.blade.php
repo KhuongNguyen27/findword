@@ -15,7 +15,7 @@ $showFormAdd = true;
             
             <div class="card-header">
                 <div class="card-title">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                     data-target="#collapseExperience-" aria-expanded="{{ $showFormAdd ? 'true' : 'false' }}"
                     aria-controls="collapseExperience-">
                     <i class="fas fa-plus"></i>

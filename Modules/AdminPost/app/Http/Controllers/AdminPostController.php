@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Modules\AdminPost\app\Http\Requests\StoreAdminPostRequest;
 use Illuminate\Http\Response;
 use Modules\AdminPost\app\Models\AdminPost;
+use Modules\AdminPost\app\Models\UserCV;
+use Modules\Staff\app\Models\UserExperience;
+use Modules\Staff\app\Models\UserEducation;
+use Modules\Staff\app\Models\UserSkill;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +27,7 @@ class AdminPostController extends Controller
         // $this->authorize('viewAny',$this->model);
         $type = $request->type;
         $items = $this->model::getItems($request,null,$type);
-        
+        // dd($items);
         $params = [
             'route_prefix'  => $this->route_prefix,
             'model'         => $this->model,
@@ -78,6 +83,7 @@ class AdminPostController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
+            // dd($item);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -156,6 +162,37 @@ class AdminPostController extends Controller
             $type = $request->type;
             Log::error('Error in destroy method: ' . $e->getMessage());
             return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.destroy_item_error'));
+        }
+    }
+    // public function showCV($id)
+    // {
+    //     try {
+    //         $cv = 1;
+    //         return view('adminpost::types.UserCV.show', compact('cv'));
+    //     } catch (ModelNotFoundException $e) {
+    //         Log::error('CV not found: ' . $e->getMessage());
+    //         return redirect()->route('adminpost.index')->with('error', __('CV not found'));
+    //     }
+    // }
+    public function showCV($id)
+    {
+        try {
+            $item = UserCV::findOrFail($id);
+            $userExperiences = UserExperience::where('cv_id', $id)->get();
+            $userEducations = UserEducation::where('cv_id', $id)->get();
+            $userSkills = UserSkill::where('cv_id', $id)->get();
+
+            $params = [
+                'item' => $item,
+                'userExperiences' => $userExperiences,
+                'userEducations' => $userEducations,
+                'userSkills' => $userSkills,
+            ];
+            // dd($userExperiences);
+            return view('adminpost::types.UserCV.show', $params);
+        } catch (ModelNotFoundException $e) {
+            Log::error('CV not found: ' . $e->getMessage());
+            return redirect()->route('adminpost.index')->with('error', __('CV not found'));
         }
     }
 }

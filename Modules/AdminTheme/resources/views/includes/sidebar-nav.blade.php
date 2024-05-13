@@ -22,9 +22,9 @@
                 </a>
             </li>
             <li>
-                <!-- <a href="{{ route('adminpost.index',['type'=>'UserCV']) }}">
+                <a href="{{ route('adminpost.index',['type'=>'UserCV']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>Hồ Sơ</a>
-            </li> -->
+            </li>
         </ul>
     </li>
     <li>
