@@ -1,7 +1,7 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => __('adminpost::general.title_index'),
+'page_title' => 'Hồ sơ',
 'actions' => [
 'add_new' => route($route_prefix.'create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>{{ $item->user ? $item->user->name : 'Unknown' }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -87,6 +87,12 @@
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('cv.show', ['id' => $item->id]) }}">
+                                                {{ __('show') }}
+                                            </a>
+                                        </li>
+
                                         <li>
                                             <a class="dropdown-item"
                                                 href="{{ route($route_prefix.'edit',['adminpost'=>$item->id,'type'=>request()->type]) }}">
