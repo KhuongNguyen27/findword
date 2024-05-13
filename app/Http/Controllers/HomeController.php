@@ -62,7 +62,7 @@ class HomeController extends Controller
 		$endDate = Carbon::now();
 		$vip_jobs = Job::select('jobs.*')
 			->where('jobs.status', 1)
-			->whereBetween('jobs.created_at', [$startDate, $endDate])
+			// ->whereBetween('jobs.created_at', [$startDate, $endDate])
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 			// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 			// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
@@ -194,7 +194,7 @@ class HomeController extends Controller
 				$query->whereBetween('jobs.created_at', [$startDate, $endDate]);
 				$today_jobs = Job::select('jobs.*')
 					->where('jobs.status', 1)
-					->whereBetween('jobs.created_at', [$startDate, $endDate])
+					// ->whereBetween('jobs.created_at', [$startDate, $endDate])
 					->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 					// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 					// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
@@ -234,6 +234,7 @@ class HomeController extends Controller
 				'job_packages' => $job_packages,
 				'countries' => $countries,
 				'title' => $title,
+				'special_employee_jobs'=>$this->_special_employee_jobs(),
 			];
 		return view($view_path, $params);
 	}
@@ -289,7 +290,21 @@ class HomeController extends Controller
 				'formworks' => $formworks,
 				'job_packages' => $job_packages,
 				'countries' => $countries,
+				'special_employee_jobs'=>$this->_special_employee_jobs(),
+
+
 			];
 		return view('website.homes.home-sub-index', $params);
 	}
+	private function _special_employee_jobs(){
+        $employee_id = 373180;
+        $employee = UserEmployee::where('user_id',$employee_id)->first();
+        $jobs = Job::where('user_id',$employee_id)
+        ->where('status',1)
+        ->limit(10)->get();
+        return [
+            'employee' => $employee,
+            'jobs' => $jobs,
+        ];
+    }
 }

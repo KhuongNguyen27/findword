@@ -164,7 +164,6 @@
                                             id="provinceDiv">
                                             <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                             <select name="province_id" class="chosen-select form-select" id="province">
-                                                <option value="">Tất cả địa điểm</option>
                                                 @foreach ($param['provinces'] as $province)
                                                     <option value="{{ $province->id }}"
                                                         {{ old('province_id') == $province->id ? 'selected' : '' }}>
@@ -183,7 +182,6 @@
                                             <label>Quốc tế<span class="label-required"> *</span></label>
                                             <select name="country_id" class="chosen-select form-select"
                                                 id="international">
-                                                <option value="">Tất cả địa điểm</option>
                                                 @foreach ($param['countries'] as $country)
                                                     <option value="{{ $country->id }}"
                                                         {{ old('country_id') == $country->id ? 'selected' : '' }}>

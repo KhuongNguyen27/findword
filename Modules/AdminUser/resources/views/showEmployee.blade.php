@@ -42,6 +42,10 @@
                                 <td>{{ $item->employee->website }}</td>
                             </tr>
                             <tr class="col-6" >
+                                <th>Mã số thuế doanh nghiệp: </th>
+                                <td> {{ $item->tax_code }} </td>
+                            </tr>
+                            <tr class="col-6" >
                                 <th> {{__('position')}}: </th>
                                 <td> {{ $item->position }} </td>
                             </tr>

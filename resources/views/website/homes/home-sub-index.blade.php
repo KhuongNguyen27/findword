@@ -20,6 +20,7 @@
                         ])
                         <!-- Job Search Form -->
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -57,7 +58,7 @@
                                     </div>  
                                     <div class="col-lg-4">
                                         @include('website.includes.global.attractive-banner')
-                                        {{-- @include('website.includes.global.special-employee-jobs') --}}
+                                        @include('website.includes.global.special-employee-jobs') 
                                     </div>
                                 </div>
                             </div>

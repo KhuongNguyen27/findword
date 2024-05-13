@@ -140,7 +140,7 @@ class JobController extends Controller
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
-                $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+                // $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1
@@ -377,7 +377,7 @@ class JobController extends Controller
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
-                $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
+                // $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1

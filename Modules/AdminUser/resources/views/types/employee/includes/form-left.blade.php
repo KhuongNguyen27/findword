@@ -27,6 +27,13 @@
             <input type="text" class="form-control" name="website" value="{{ $item->employee->website ?? '' }}" placeholder="">
             <x-admintheme::form-input-error field="website"/>
         </div>
+
+        <div class="mb-4">
+            <label class="mb-3">Mã số thuế doanh nghiệp</label>
+            <input type="text" class="form-control" name="tax_code" value="{{ $item->tax_code ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="tax_code"/>
+        </div>
+
         <div class="mb-4">
             <label class="mb-3"> Token </label>
             <input type="number" class="form-control" name="points" value="{{ $item->points ?? '' }}" placeholder="">
