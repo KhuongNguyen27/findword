@@ -15,7 +15,7 @@ class Province extends Model
      */
     protected $table = 'provinces';
     protected $fillable = [];
-    
+    const ALL_LOCATIONS = -1;
     public function job(){
         return $this->hasMany(Job::class);
     }

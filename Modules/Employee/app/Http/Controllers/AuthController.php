@@ -71,6 +71,7 @@ class AuthController extends Controller
     }
     public function postRegister(StoreRegisterRequest $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
         try {
             $user = new User();

@@ -95,6 +95,7 @@ class JobController extends Controller
      */
     public function store(CreateJobRequest $request): RedirectResponse
     {
+        // dd($request->all());
         DB::beginTransaction();
         try {
             $price = intval(str_replace(".", "", $request->price));

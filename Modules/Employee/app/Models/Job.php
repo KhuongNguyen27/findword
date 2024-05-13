@@ -37,7 +37,7 @@ class Job extends MainJob
     const ACTIVE    = 1;
     const INACTIVE  = 0;
     const DRAFT     = -1;
-    
+   
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
