@@ -31,7 +31,7 @@
                     <p class="profile-item"><strong>Số điện thoại :</strong> {{ $item->phone ?? '' }}</p>
                     <p class="profile-item"><strong>Địa chỉ :</strong> {{ $item->address ?? '' }}</p>
                     <p class="profile-item"><strong>Mã hồ sơ :</strong> {{ $item->id ?? '' }}</p>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -68,14 +68,19 @@
                     <div class="profile-group-info">
                         <h6 class="profile-group-title with-border">Kinh nghiệm việc làm</h6>
                         <ul class="timeline">
+                            @if($userExperiences->isEmpty())
+                            <p>Không có dữ liệu</p>
+                            @else
                             @foreach($userExperiences as $experience)
                             <li>
-                                <p><strong>Vị trí:</strong> {{ $experience->position ?? '' }}</p>
-                                <p><strong>Thời gian : </strong> {{ $experience->start_date ?? ''}}
-                                    -{{ $experience->end_date ?? '' }}</p>
-                                <p> <strong>Công việc : </strong>{{ $experience->job_description ?? ''}}</p>
+                                <p><strong>Vị trí:</strong> {{ $experience->position ?? 'Chưa cập nhật' }}</p>
+                                <p><strong>Thời gian : </strong> {{ $experience->start_date ?? 'Chưa cập nhật' }}
+                                    -{{ $experience->end_date ?? 'Chưa cập nhật' }}</p>
+                                <p> <strong>Công việc : </strong>{{ $experience->job_description ?? 'Chưa cập nhật' }}
+                                </p>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -91,13 +96,18 @@
                     <div class="profile-group-info">
                         <h6 class="profile-group-title with-border">Học vấn bằng cấp</h6>
                         <ul class="timeline">
+                            @if($userEducations->isEmpty())
+                            <p>Không có dữ liệu</p>
+                            @else
                             @foreach ($userEducations as $education)
                             <li>
-                                <p><strong>Trường : </strong>{{ $education->school_course ?? '' }}</p>
-                                <p><strong>Chuyên ngành : </strong>{{ $education->major ?? ''}}</p>
-                                <p><strong>ngày tốt nghiệp : </strong>{{ $education->graduation_date ?? ''}}</p>
+                                <p><strong>Trường : </strong>{{ $education->school_course ?? 'Không có dữ liệu' }}</p>
+                                <p><strong>Chuyên ngành : </strong>{{ $education->major ?? 'Không có dữ liệu'}}</p>
+                                <p><strong>Ngày tốt nghiệp :
+                                    </strong>{{ $education->graduation_date ?? 'Không có dữ liệu'}}</p>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -113,12 +123,17 @@
                     <div class="profile-group-info">
                         <h6 class="profile-group-title with-border">Kĩ năng chuyển môn</h6>
                         <ul class="timeline">
+                            @if($userSkills->isEmpty())
+                            <p>Không có dữ liệu</p>
+                            @else
                             @foreach($userSkills as $skill)
                             <li>
-                                <p><strong>Kĩ năng chuyên môn : </strong>{{ $skill->special_skill ?? ''}}</p>
-                                <p><strong>Mô tả : </strong>{{ $skill->description ?? ''}}</p>
+                                <p><strong>Kĩ năng chuyên môn :
+                                    </strong>{{ $skill->special_skill ?? 'Không có dữ liệu'}}</p>
+                                <p><strong>Mô tả : </strong>{{ $skill->description ?? 'Không có dữ liệu'}}</p>
                             </li>
                             @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>
