@@ -14,13 +14,14 @@ use Carbon\Carbon;
 use App\Models\Level;
 use App\Models\FormWork;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
 
 		$degrees = Level::where('status', Level::ACTIVE)->orderBy('position')->get();
@@ -45,9 +46,37 @@ class HomeController extends Controller
 		$hot_jobs = Job::select('jobs.*')->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 			->where('jobs.salarymax', '>=', 10000000)
-			->orWhere('jobs.salaryMax','')
+			->orWhere('jobs.salaryMax','');
 			// ->where('jobs.wage_id', '>=', 2)
-			->orderByRaw("CASE
+			if($request->name){
+				$hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+			}
+			if($request->province_id){
+				$hot_jobs->where('province_id', $request->province_id);
+			}
+			if( $request->rank_id ){
+				$hot_jobs->where('rank_id', $request->rank_id);
+			}
+			if( $request->degree_id ){
+				$hot_jobs->where('degree_id', $request->degree_id);
+			}
+			if( $request->formwork_id ){
+				$hot_jobs->where('formwork_id', $request->formwork_id);
+			}
+			if( $request->wage_id ){
+				$wage_id = $request->wage_id;//'10-15'
+				$wage = explode('-', $wage_id);
+				if($wage[0] == 0){
+					$hot_jobs->where('salaryMin','<=', $wage[1]);
+				}
+				elseif($wage[1] == 0){
+					$hot_jobs->where('salaryMin','>=', $wage[0]);
+				}
+				else{
+					$hot_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
+				}
+			}
+			$hot_jobs->orderByRaw("CASE
 					WHEN job_packages.slug = 'tin-hot-vip' THEN 1
 					WHEN job_packages.slug = 'tin-gap-vip' THEN 2
 					WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -56,17 +85,47 @@ class HomeController extends Controller
 					WHEN job_packages.slug = 'tin-thuong' THEN 6
 					ELSE 7
 				END")
-			->orderBy('jobs.id', 'DESC')->limit(20)->get()->chunk(10);
+			->orderBy('jobs.id', 'DESC')->limit(20);
+			$hot_jobs = $hot_jobs->get()->chunk(10);
+
 		// Việc làm trong nước hôm nay
 		$startDate = Carbon::now()->subHours(72);
 		$endDate = Carbon::now();
 		$vip_jobs = Job::select('jobs.*')
 			->where('jobs.status', 1)
 			// ->whereBetween('jobs.created_at', [$startDate, $endDate])
-			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
 			// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 			// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
-			->orderByRaw("CASE
+			if($request->name){
+				$vip_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+			}
+			if($request->province_id){
+				$vip_jobs->where('province_id', $request->province_id);
+			}
+			if( $request->rank_id ){
+				$vip_jobs->where('rank_id', $request->rank_id);
+			}
+			if( $request->degree_id ){
+				$vip_jobs->where('degree_id', $request->degree_id);
+			}
+			if( $request->formwork_id ){
+				$vip_jobs->where('formwork_id', $request->formwork_id);
+			}
+			if( $request->wage_id ){
+				$wage_id = $request->wage_id;//'10-15'
+				$wage = explode('-', $wage_id);
+				if($wage[0] == 0){
+					$vip_jobs->where('salaryMin','<=', $wage[1]);
+				}
+				elseif($wage[1] == 0){
+					$vip_jobs->where('salaryMin','>=', $wage[0]);
+				}
+				else{
+					$vip_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
+				}
+			}
+			$vip_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
                 WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -75,10 +134,8 @@ class HomeController extends Controller
                 WHEN job_packages.slug = 'tin-thuong' THEN 6
                 ELSE 7
             END")
-			->orderBy('jobs.id', 'DESC')
-			->limit(10)
-			->get()
-			->chunk(9);
+			->orderBy('jobs.id', 'DESC')->limit(10)->get();
+			$vip_jobs = $vip_jobs->get()->chunk(10);
 
 		// Top công ty hàng đầu
 		$employees = UserEmployee::where('is_top', 1)->limit(12)->get();
@@ -136,9 +193,10 @@ class HomeController extends Controller
 			cache()->put('nhu_cau_labels', $nhu_cau_labels, 86400);
 		}
 
-
+		$currentRoute = Route::current()->getName();
+		// dd($currentRoute);
 		$params = [
-			'route' => 'jobs.vnjobs',
+			'route' => $currentRoute,
 			'careers' => $careers,
 			'job_categories' => $job_categories,
 			'ranks' => $ranks,
@@ -174,6 +232,35 @@ class HomeController extends Controller
 		$wages = Wage::where('status', 1)->orderBy('position')->get();
 		$query = Job::select('jobs.*')->where('jobs.status', 1);
 
+		if($request->name){
+            $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+        }
+		if($request->province_id){
+			$query->where('province_id', $request->province_id);
+		}
+		if( $request->wage_id ){
+            $wage_id = $request->wage_id;//'10-15'
+            $wage = explode('-', $wage_id);
+            if($wage[0] == 0){
+                $query->where('salaryMin','<=', $wage[1]);
+            }
+            elseif($wage[1] == 0){
+                $query->where('salaryMin','>=', $wage[0]);
+            }
+            else{
+                $query->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
+            }
+        }
+     
+        if( $request->rank_id ){
+            $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->degree_id ){
+            $query->where('degree_id', $request->degree_id);
+        }
+        if( $request->formwork_id ){
+            $query->where('formwork_id', $request->formwork_id);
+        }
 		$newWages = [];
 		foreach ($wages as $wage) {
 			$newWages[$wage->salaryMin . '-' . $wage->salaryMax] = $wage->name;
@@ -187,7 +274,6 @@ class HomeController extends Controller
 		switch ($job_type) {
 			case 'viec-lam-hom-nay':
 				$title = 'Việc làm hôm nay';
-
 				// Việc làm  hôm nay
 				$startDate = Carbon::now()->subHours(72);
 				$endDate = Carbon::now();
@@ -195,10 +281,13 @@ class HomeController extends Controller
 				$today_jobs = Job::select('jobs.*')
 					->where('jobs.status', 1)
 					// ->whereBetween('jobs.created_at', [$startDate, $endDate])
-					->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+					->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
 					// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 					// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
-					->orderByRaw("CASE
+					if($request->province_id){
+						$today_jobs->where('province_id', $request->province_id);
+					}
+					$today_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
                 WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -208,20 +297,22 @@ class HomeController extends Controller
                 ELSE 7
            		 END")
 					->orderBy('jobs.id', 'DESC')
-					->limit(12)
-					->get()
-					->chunk(9);
-				break;
+					->limit(12);
+					
+					$today_jobs=$today_jobs->get()->chunk(9);
+					break;
 		}
 
 		$view_path = 'website.homes.index';
 		if ($job_type) {
 			$view_path = 'website.homes.home-sub-index';
-			$jobs = $query->paginate(25);
 		}
+		$jobs = $query->paginate(25);
+		$currentRoute = Route::current()->getName();
+		// dd($currentRoute);
 		$params =
 			[
-				'route' => 'jobs.homejobs',
+				'route' => $currentRoute,
 				'jobs' => $jobs,
 				'careers' => $careers,
 				'job_categories' => $job_categories,
@@ -234,6 +325,7 @@ class HomeController extends Controller
 				'job_packages' => $job_packages,
 				'countries' => $countries,
 				'title' => $title,
+				'job_type' => $job_type,
 				'special_employee_jobs'=>$this->_special_employee_jobs(),
 			];
 		return view($view_path, $params);
@@ -275,9 +367,10 @@ class HomeController extends Controller
 			ELSE 7
 			END")
 			->orderBy('jobs.id', 'DESC')->paginate(20);
+		$currentRoute = Route::current()->getName();
 		$params =
 			[
-				'route' => 'attractive',
+				'route' => $currentRoute,
 				'jobs' => $hot_jobs,
 				'title' => $title,
 				'query' => $query,
