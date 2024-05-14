@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Career;
 use App\Models\Country;
@@ -94,7 +94,7 @@ class JobController extends Controller
                 //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
                 ->where('jobs.salaryMax','>=',10000000)
-                // ->orWhere('jobs.salaryMax','')
+                ->orWhere('jobs.salaryMax','')
                     ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 2
@@ -212,18 +212,36 @@ class JobController extends Controller
         // Việc làm hấp dẫn trong nước
         $hot_jobs = Job::where('status',1)->where('country', 'VN')->where('jobpackage_id',JobPackage::HOT)
         ->where('jobs.salaryMax','>=',10000000)
-        ->where('jobs.country','VN')
-        ->orderBy('id','DESC')->limit(20)->get()->chunk(10);
+        ->orWhere('jobs.salaryMax','')
+        ->where('jobs.country','VN');
+        if($request->province_id){
+            $hot_jobs->where('province_id', $request->province_id);
+        }
+        if($request->name){
+            $hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+        }
+        if( $request->rank_id ){
+            $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->degree_id ){
+            $query->where('degree_id', $request->degree_id);
+        }
+        if( $request->formwork_id ){
+            $query->where('formwork_id', $request->formwork_id);
+        }
+        $hot_jobs->orderBy('id','DESC')->limit(20);
+        $hot_jobs=$hot_jobs ->get()->chunk(10);
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
         $employees = UserEmployee::get();
         $top_employees = UserEmployee::orderBy('position')->limit(8)->get();
 
-        
+        $currentRoute = route::current()->getName();
+// dd($currentRoute);
         $params = [
+            'route' => $currentRoute,
             'careers' => $careers,
-            'route' => 'jobs.vnjobs',
             'ranks' => $ranks,
             'jobs' => $jobs,
             'hot_jobs' => $hot_jobs,

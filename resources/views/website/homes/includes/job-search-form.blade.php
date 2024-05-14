@@ -1,9 +1,13 @@
 <div class="job-search-form">
+    @if (isset($job_type))
+    <form method="get" action="{{ route($route,$job_type) }}">
+    @else
     <form method="get" action="{{ route($route) }}">
+    @endif
         <div class="row custom-display-mobile">
             @if (!isset($name))
                 <div class="form-group col">
-                    <input name="name" placeholder="Vị trí ứng tuyển">
+                    <input name="name" placeholder="Vị trí ứng tuyển" value="{{ request()->name }}">
                 </div>
             @endif
             @if (!isset($country) || true )
@@ -17,7 +21,7 @@
                      
                         @if (request()->route()->getName() == 'jobs.nnjobs' )
                             @foreach ($countries as $country)
-                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                <option {{ $country->id == request()->province_id ? 'selected' : '' }} value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
                         @elseif (request()->route()->getName() != 'jobs.nnjobs')
                             @foreach ($provinces as $province)
