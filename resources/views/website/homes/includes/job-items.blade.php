@@ -27,6 +27,11 @@
                         <div class="swiper-slide">
                             <div class="row">
                                 @foreach ($chunk_job as $job_item)
+                                @if (!$job_item->userEmployee)
+                                    @php
+                                    continue;    
+                                    @endphp
+                                @endif
                                 <!-- Job Block -->
                                 <div class="{{ $item_class }}">
                                     @include('job::includes.components.job-item', [
