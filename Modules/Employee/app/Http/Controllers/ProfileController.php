@@ -38,6 +38,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $user_employee = UserEmployee::where('user_id', $user->id)->first();
+        // dd($user_employee);
         return view('employee::profile.index', compact(['user_employee', 'user']));
     }
 
@@ -52,6 +53,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateProfileEmployeeRequest $request, $id): RedirectResponse
     {
+        // dd($request->all());
         DB::beginTransaction();
         try {
             // Lấy đối tượng người dùng hiện tại
@@ -77,6 +79,8 @@ class ProfileController extends Controller
             $userEmployee->address = $request->address;
             $userEmployee->website = $request->website;
             $userEmployee->about = $request->about;
+            $userEmployee->is_hidden_phone = $request->has('is_hidden_phone');
+            $userEmployee->is_hidden_email = $request->has('is_hidden_email');
 
             $request->slug = $request->slug ? $request->slug : $request->name;
             $slug = $maybe_slug = Str::slug($request->slug);

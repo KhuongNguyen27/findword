@@ -29,11 +29,11 @@
                             <div class="related-jobs">
                                 @foreach($jobs as $job)
                                 @include('job::includes.components.job-item',[
-                                    'job' => $job,
-                                    'job_info' => true,
-                                    'job_other_info' => true,
-                                    'bookmark' => true,
-                                    'company_name' => true,
+                                'job' => $job,
+                                'job_info' => true,
+                                'job_other_info' => true,
+                                'bookmark' => true,
+                                'company_name' => true,
                                 ])
                                 @endforeach
                                 <div class="ls-show-more">
@@ -52,12 +52,17 @@
                             <h4 class="card-title">Thông tin liên hệ</h4>
                             <div class="card-body">
                                 <ul class="company-info mt-0">
-                                    <li><span class="icon"><i class="fa fa-solid fa-phone"></i></span>
+                                    <li>
+                                        @if ($userEmployee->is_hidden_phone == 0)
+                                        <span class="icon"><i class="fa fa-solid fa-phone"></i></span>
                                         <span>{{ $userEmployee->phone }}</span>
+                                        @endif
                                     </li>
-                                    <li><span class="icon"><i class="fa fa-solid fa-envelope"></i></span>
+                                    <li>
+                                        @if ($userEmployee->is_hidden_email == 0)
+                                        <span class="icon"><i class="fa fa-solid fa-envelope"></i></span>
                                         <span>{{ $userEmployee->user->email }}</span>
-                                    </li>
+                                        @endif
                                     <li><span class="icon"><i class="fa fa-solid fa-globe"></i></span>
                                         <span>{{ $userEmployee->website }}</span>
                                     </li>
@@ -86,4 +91,3 @@
     </div>
 </section>
 @endsection
-
