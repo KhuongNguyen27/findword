@@ -14,6 +14,7 @@ use Modules\Employee\app\Http\Requests\CvapplyRequest;
 use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
+use Modules\Staff\app\Models\UserStaff;
 
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
@@ -96,6 +97,7 @@ class JobapplicationController extends Controller
                     $cv_job_apply->save();
                 }
                 $item = UserCv::findOrFail($cv_job_apply->cv->id);
+                $userStaff = UserStaff::where('user_id', $item->user_id)->first();
                 $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userExperiences = UserExperience::where('cv_id', $cv_job_apply->cv->id)->get();
                 $userSkills = UserSkill::where('cv_id', $cv_job_apply->cv->id)->get();
@@ -110,7 +112,8 @@ class JobapplicationController extends Controller
                     'educations' => $educations,
                     'userExperiences' => $userExperiences,
                     'userSkills' => $userSkills,
-                    'cv_job_apply' => $cv_job_apply
+                    'cv_job_apply' => $cv_job_apply,
+                    'userStaff' => $userStaff
                 ];
 
                 return view('employee::cv-apply.show', $params);

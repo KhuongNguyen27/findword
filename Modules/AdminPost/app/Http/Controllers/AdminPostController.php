@@ -12,6 +12,7 @@ use Modules\AdminPost\app\Models\UserCV;
 use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
+use Modules\Staff\app\Models\UserStaff;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -178,6 +179,7 @@ class AdminPostController extends Controller
     {
         try {
             $item = UserCV::findOrFail($id);
+            $userStaff = UserStaff::where('user_id', $item->user_id)->first();
             $userExperiences = UserExperience::where('cv_id', $id)->get();
             $userEducations = UserEducation::where('cv_id', $id)->get();
             $userSkills = UserSkill::where('cv_id', $id)->get();
@@ -187,6 +189,7 @@ class AdminPostController extends Controller
                 'userExperiences' => $userExperiences,
                 'userEducations' => $userEducations,
                 'userSkills' => $userSkills,
+                'userStaff' => $userStaff,
             ];
             // dd($userExperiences);
             return view('adminpost::types.UserCV.show', $params);
