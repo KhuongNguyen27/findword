@@ -356,8 +356,36 @@ class HomeController extends Controller
 		$hot_jobs = $query
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 			->where('jobs.salaryMax', '>=', 10000000)
-			->orWhere('jobs.salaryMax','')
-			->orderByRaw("CASE
+			->orWhere('jobs.salaryMax','');
+			if($request->name){
+				$hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+			}
+			if($request->province_id){
+				$hot_jobs->where('province_id', $request->province_id);
+			}
+			if( $request->rank_id ){
+				$hot_jobs->where('rank_id', $request->rank_id);
+			}
+			if( $request->degree_id ){
+				$hot_jobs->where('degree_id', $request->degree_id);
+			}
+			if( $request->formwork_id ){
+				$hot_jobs->where('formwork_id', $request->formwork_id);
+			}
+			if( $request->wage_id ){
+				$wage_id = $request->wage_id;//'10-15'
+				$wage = explode('-', $wage_id);
+				if($wage[0] == 0){
+					$hot_jobs->where('salaryMin','<=', $wage[1]);
+				}
+				elseif($wage[1] == 0){
+					$hot_jobs->where('salaryMin','>=', $wage[0]);
+				}
+				else{
+					$hot_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
+				}
+			}
+			$hot_jobs=$hot_jobs->orderByRaw("CASE
 			WHEN job_packages.slug = 'tin-hot-vip' THEN 1
 			WHEN job_packages.slug = 'tin-gap-vip' THEN 2
 			WHEN job_packages.slug = 'tin-vip' THEN 3
