@@ -48,6 +48,7 @@
                             <th>{{ __('position') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
+                            <th>{{ __('las_login') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
@@ -63,7 +64,8 @@
                             <td>{{ $item->position }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>{{ $item->created_at_fm }}</td>
-                            <td>
+                            <td>{{ $item->last_login ? date('H:i:s d-m-Y', strtotime($item->last_login)) : '' }}</td> 
+                              <td>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
                                         type="button" data-bs-toggle="dropdown">

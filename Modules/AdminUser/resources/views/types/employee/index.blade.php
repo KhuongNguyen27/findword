@@ -59,6 +59,7 @@
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('verify') }}</th>
                                 <th>{{ __('created_at') }}</th>
+                                <th>{{ __('las_login') }}</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
                         </thead>
@@ -77,6 +78,7 @@
                                         <td>{!! $item->status_fm !!}</td>
                                         <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>
                                         <td>{{ $item->created_at_fm }}</td>
+                                        <td>{{ $item->last_login ? date('H:i:s d-m-Y', strtotime($item->last_login)) : '' }}</td> 
                                         <td>
                                             <div class="dropdown">
                                                 <button

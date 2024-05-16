@@ -37,6 +37,7 @@ class User extends Authenticatable
         'facebook_id',
         'type',
         'points',
+        'last_login'
     ];
 
     /**

@@ -285,7 +285,7 @@
                                                 @if ($errors->any())
                                                     <p style="color:red">{{ $errors->first('jobpackage_id') }}</p>
                                                 @endif
-                                                <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a>
+                                                <!-- <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a> -->
                                             </div>
                                             <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                                 <label>Ngày bắt đầu <span class="label-required">*</span></label>

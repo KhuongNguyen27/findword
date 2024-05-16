@@ -71,7 +71,8 @@
                                 <div class="uploading-outer">
                                     <div class="uploadButton">
                                         <input class="uploadButton-input" type="file" name="image"
-                                            accept="image/*, application/pdf" id="upload" multiple>
+                                            accept="image/*, application/pdf" id="upload" multiple
+                                            {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
                                         <label class="uploadButton-button ripple-effect"
                                             for="upload">{{ __('logo_browse') }}</label>
                                         <span class="uploadButton-file-name"></span>
@@ -111,18 +112,25 @@
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>{{ __('employer_name') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="user_name" value="{{ $user->name }}"
-                                            placeholder="Tên nhà tuyển dụng">
+                                            placeholder="Tên nhà tuyển dụng"
+                                            {{ ($user->verify == 1) ? 'readonly' : '' }}>
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md12">
-                                        <label>{{ __('company_website') }}<span class="label-required">
-                                                *</span></label>
+                                    <div class="form-group col-lg-6 col-md-12">
+                                        <label>{{ __('company_website') }}<span class="label-required"> *</span></label>
+                                        @if(isset($user_employee) && isset($user_employee->user) &&
+                                        $user_employee->user->verify == 1)
+                                        <input type="url" name="website"
+                                            value="{{ isset($user_employee->website) ? $user_employee->website : '' }}"
+                                            placeholder="" readonly>
+                                        @else
                                         <input type="url" name="website"
                                             value="{{ isset($user_employee->website) ? $user_employee->website : '' }}"
                                             placeholder="">
+                                        @endif
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('website') }}</p>
                                         @endif
@@ -130,30 +138,45 @@
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>{{ __('company_name') }}<span class="label-required"> *</span></label>
+                                        @if(isset($user_employee) && $user_employee->user->verify == 1)
+                                        <input id="name" type="text" name="name"
+                                            value="{{ isset($user_employee->name) ? $user_employee->name : '' }}"
+                                            placeholder="" readonly>
+                                        @else
                                         <input id="name" type="text" name="name"
                                             value="{{ isset($user_employee->name) ? $user_employee->name : '' }}"
                                             placeholder="">
+                                        @endif
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('name') }}</p>
                                         @endif
                                     </div>
 
+
                                     <div class="form-group col-lg-6 col-md-12">
-                                        <label>{{ __('company_address') }}<span class="label-required">
-                                                *</span></label>
+                                        <label>{{ __('company_address') }}<span class="label-required"> *</span></label>
+                                        @if(isset($user_employee) && isset($user_employee->user) &&
+                                        $user_employee->user->verify == 1)
+                                        <input type="text" name="address"
+                                            value="{{ isset($user_employee->address) ? $user_employee->address : '' }}"
+                                            placeholder="" readonly>
+                                        @else
                                         <input type="text" name="address"
                                             value="{{ isset($user_employee->address) ? $user_employee->address : '' }}"
                                             placeholder="">
+                                        @endif
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('address') }}</p>
                                         @endif
                                     </div>
 
+
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>{{ __('phone') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="phone"
                                             value="{{ isset($user_employee->phone) ? $user_employee->phone : '' }}"
-                                            placeholder="">
+                                            placeholder=""
+                                            {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'readonly' : '' }}>
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('phone') }}</p>
                                         @endif
@@ -166,11 +189,12 @@
                                         </div>
                                     </div>
 
-                                   
+
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>{{ __('email_address') }}<span class="label-required"> *</span></label>
                                         <input type="text" name="email" value="{{ $user->email }}"
-                                            placeholder="Email Nhà Tuyển Dụng">
+                                            placeholder="Email Nhà Tuyển Dụng"
+                                            {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'readonly' : '' }}>
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                         @endif
@@ -181,6 +205,7 @@
                                             <label class="form-check-label" for="is_hidden_email">Ẩn email</label>
                                         </div>
                                     </div>
+
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Giới thiệu công ty<span class="label-required"> *</span></label>
                                         <textarea name="about"
@@ -194,7 +219,8 @@
                                     <div class="uploading-outer-background">
                                         <div class="uploadButton-background">
                                             <input class="uploadButton-background-input" type="file" name="background"
-                                                accept="image/*, application/pdf" id="upload-background" multiple>
+                                                accept="image/*, application/pdf" id="upload-background" multiple
+                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
                                             <label class="uploadButton-background-button ripple-effect"
                                                 for="upload-background"> {{ __('background_browser') }} </label>
                                             <span class="uploadButton-background-file-name"></span>

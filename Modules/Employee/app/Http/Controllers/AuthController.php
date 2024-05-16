@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
-
+use Carbon\Carbon;
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Broadcasting\Channel;
@@ -41,20 +41,23 @@ class AuthController extends Controller
     {
         try {
             $dataUser = $request->only('email', 'password');
-            $user = User::where('email',$dataUser['email'])->first();
+            $user = User::where('email', $dataUser['email'])->first();
             $remember = $request->remember ? true : false;
             if (Auth::attempt($dataUser, $remember)) {
+                $user = Auth::user();
+                $user->last_login = Carbon::now();
+                $user->save();
                 $data = [
                     'name' => $user->name,
                     'email' => $user->email,
                 ];
-                return redirect()->route('employee.home'); 
+                return redirect()->route('employee.home');
             } else {
-                return redirect()->route('employee.login')->with('error',  __('account_or_password_is_incorrect'));
+                return redirect()->route('employee.login')->with('error', __('account_or_password_is_incorrect'));
             }
         } catch (\Exception $e) {
-            Log::error('Bug send email : '.$e->getMessage());
-            return redirect()->route('employee.home'); 
+            Log::error('Bug send email : ' . $e->getMessage());
+            return redirect()->route('employee.home');
         }
     }
     public function logout(Request $request)
@@ -62,7 +65,8 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('employee.login');
     }
-    public function register(){
+    public function register()
+    {
         if (Auth::check()) {
             return redirect()->route('employee.profile.index');
         } else {
@@ -83,10 +87,10 @@ class AuthController extends Controller
             $user->password = bcrypt($request->password);
             // dd($request->email);
             $user->save();
-            
+
             $imagePath = '';
-            if( $request->hasFile('image') ){
-                $imagePath = self::uploadFile( $request->file('image') ,'employees');
+            if ($request->hasFile('image')) {
+                $imagePath = self::uploadFile($request->file('image'), 'employees');
             }
 
             $request->cp_slug = $request->cp_slug ? $request->cp_slug : $request->cp_name;
@@ -108,7 +112,7 @@ class AuthController extends Controller
             DB::commit(); // Hoàn thành giao dịch
             Notification::route('mail', [
                 env('ADMIN_EMAIL') => env('ADMIN_NAME')
-            ])->notify(new Notifications("register",$user->toArray()));
+            ])->notify(new Notifications("register", $user->toArray()));
             return redirect()->route('employee.login')->with('success', $message);
         } catch (\Exception $e) {
             DB::rollback(); // Hoàn tác giao dịch nếu có lỗi
@@ -116,6 +120,9 @@ class AuthController extends Controller
             return view('employee::auth.register')->with('error', 'Đăng ký bị lỗi!');
         }
     }
+    // public function verification()
+    // {
+    //     return view('employee.auth.verification');
+    // }
 
-    
 }
