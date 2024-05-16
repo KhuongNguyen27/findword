@@ -13,6 +13,7 @@ use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
 use Modules\Staff\app\Models\UserStaff;
+use Illuminate\Support\Str;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -67,6 +68,8 @@ class AdminPostController extends Controller
         $request->merge(['province_id'=> 1]) ;
         // dd($request);
         try {
+            $data = $request->all();
+            $data['slug'] = Str::slug($data['name']); 
             $this->model::saveItem($request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));
         } catch (QueryException $e) {

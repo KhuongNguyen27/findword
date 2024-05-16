@@ -17,7 +17,7 @@ use Mail;
 use Illuminate\Support\Str;
 use Modules\Staff\app\Models\StaffUser;
 use App\Models\User;
-
+use Carbon\Carbon;
 use App\Notifications\Notifications;
 use Exception;
 use Illuminate\Support\Facades\Notification;
@@ -43,6 +43,9 @@ class AuthController extends Controller
         $dataUser = $request->only('email', 'password');
         $remember = $request->remember ? true : false;
         if (Auth::attempt($dataUser, $remember)) {
+            $user = Auth::user();
+            $user->last_login = Carbon::now();
+            $user->save();
             return redirect()->route('staff.home');
         } else {
             return redirect()->route('staff.login')->with('error', __('account_or_password_is_incorrect'));
