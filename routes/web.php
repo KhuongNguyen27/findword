@@ -40,6 +40,9 @@ Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.ind
 Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 Route::get('/bai-viet/{slug}', [PostController::class,'show'])->name('posts.show');
 Route::get('/trang/{slug}', [PageController::class,'show'])->name('pages.show');
+// Route::get('/trang/nha-tuyen-dung/{slug}', [PageController::class, 'show'])->name('pages1.show');
+// Route::get('/trang/ung-vien/{slug}', [PageController::class, 'show'])->name('pages2.show');
+
 Route::get('/importVNW', [ToolController::class,'importVNW']);
 
 
