@@ -833,3 +833,30 @@ body.dashboard .main-header .nav-outer {
 .label-required{
     color: red ;
 }
+.phone-num i {
+    transform: rotate(100deg);
+    color: #696969;
+    margin-right: 8px;
+}
+.email-e i {
+    margin-right: 9px;
+}
+.email {
+    color: #34C4C0;
+}
+p.email-e {
+    margin-bottom: 8px;
+}
+.main-footer .phone-num {
+    margin-bottom: 8px;
+}
+.page-icon {
+     margin-right: 9px; 
+}
+
+a.fanpages {
+color: #34C4C0 !important;
+}
+p.fanpages-f {
+    margin-bottom: 8px;
+}

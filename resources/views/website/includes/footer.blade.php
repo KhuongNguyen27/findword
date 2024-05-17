@@ -11,13 +11,20 @@
                         <div class="logo"><a href="{{ route('home') }}" class="fw-bold fs-4 text-black"><img
                                     style="width:600px;margin-left:-10%" height="50"
                                     src="{{ asset('website-assets/images/logo-footer.png')}}" alt="" title=""></a></div>
-                        <p class="phone-num"><span>
-                                Gọi cho chúng tôi </span><a href="thebeehost@support.com">0817 198 779</a></p>
-                        <p class="address">CM2-03A Eco Garden, Thủy Vân, Thừa Thiên Huế<br><a
-                                href="mailto:info@timviecsieunhanh.vn" class="email">info@timviecsieunhanh.vn</a></p>
-                        <p>Fanpage: <a
-                                href="https://www.facebook.com/timviecsieunhanhOfficial">timviecsieunhanhOfficial</a>
+                        <p>CÔNG TY CỔ PHẦN CUNG ỨNG NGUỒN NHÂN LỰC HR</p>
+                        <p>Người đại diện theo pháp luật: NGUYỄN VĂN CHOI</p>
+                        <p class="address">Địa chỉ trụ sở chính: Lô CM2-03A, khu đô thị Eco Garden, phường Thủy Vân,
+                            thành phố Huế, tỉnh Thừa Thiên Huế</p>
+                        <p class="phone-num"><i class="fas fa-phone"></i><a href="tel:02343888333">02343 888 333</a></p>
+
+                        <p class="email-e"><i
+                                    class="fas fa-envelope email-icon"></i><a href="mailto:info@timviecsieunhanh.vn" class="email">info@timviecsieunhanh.vn
+                            </a>
                         </p>
+                        <p class="fanpages-f"> <i class="fab fa-facebook-square page-icon"></i><a href="https://www.facebook.com/timviecsieunhanhOfficial" class="fanpages">timviecsieunhanhOfficial</a></p>
+
+                        <p>Số Giấy chứng nhận đăng ký doanh nghiệp: 3301729747, cấp ngày 25/03/2024 do Sở Kế hoạch và
+                            Đầu tư tỉnh Thừa Thiên Huế cấp.</p>
                     </div>
                 </div>
 
@@ -33,10 +40,15 @@
                                         <li><a href="{{route('pages.show','gioi-thieu')}}">Giới thiệu</a></li>
                                         <li><a href="{{route('pages.show','lien-he')}}">Liên hệ</a></li>
                                         <li><a href="{{route('pages.show','goc-tin-tuc')}}">Góc tin tức</a></li>
-                                        <li><a href="{{route('pages.show','chinh-sach-bao-mat')}}">Chính sách bảo mật</a></li>
-                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-ung-vien')}}">Điều khoản sử dụng ứng viên</a></li>
-                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-nha-tuyen-dung')}}">Điều khoản sử dụng nhà tuyển dụng</a></li>
+                                        <li><a href="{{route('pages.show','chinh-sach-bao-mat')}}">Chính sách bảo
+                                                mật</a></li>
+                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-ung-vien')}}">Điều khoản
+                                                sử dụng ứng viên</a></li>
+                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-nha-tuyen-dung')}}">Điều
+                                                khoản sử dụng nhà tuyển dụng</a></li>
                                         <li><a href="{{route('pages.show','quy-che-hoat-dong')}}">Quy chế hoạt động</a>
+                                        <li><a href="{{route('pages.show','giai-quyet-khieu-nai')}}">Giải quyết khiếu
+                                                nại</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -48,9 +60,9 @@
                                     Việc làm trong nước</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm hôm nay</a></li>
-                                        <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm hót nhất</a></li>
-                                        <li><a href="{{ route('jobs.vnjobs','urgent') }}">Việc làm tuyển gấp</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm Hôm nay</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm Hot nhất</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','urgent') }}">Việc làm Tuyển gấp</a></li>
                                         <!-- <li><a href="{{route('pages.show','dieu-khoan-su-dung')}}">Điều khoản sử
                                                 dụng</a></li> -->
                                     </ul>
@@ -65,9 +77,9 @@
                                     Việc làm ngoài nước</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm hôm nay</a></li>
-                                        <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm hót nhất</a></li>
-                                        <li><a href="{{ route('jobs.nnjobs','urgent') }}">Việc làm tuyển gấp</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm Hôm nay</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm Hot nhất</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','urgent') }}">Việc làm Tuyển gấp</a></li>
                                         <!-- <li><a href="{{route('pages.show','dieu-khoan-su-dung')}}">Điều khoản sử
                                                 dụng</a></li> -->
                                     </ul>
