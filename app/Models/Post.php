@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends AdminModel
 {
     use HasFactory;
+    protected $fillable = [
+        'name', 
+        'slug',
+        'short_description',
+        'description',
+        'metas',
+        'image',
+        'gallery',
+        'status',
+        'position',
+        'user_id',
+    ];
     public function getImageFmAttribute()
     {
         if ( $this->image != null) {
