@@ -15,23 +15,44 @@
                                 Gọi cho chúng tôi </span><a href="thebeehost@support.com">0817 198 779</a></p>
                         <p class="address">CM2-03A Eco Garden, Thủy Vân, Thừa Thiên Huế<br><a
                                 href="mailto:info@timviecsieunhanh.vn" class="email">info@timviecsieunhanh.vn</a></p>
-                                <p>Fanpage: <a href="https://www.facebook.com/timviecsieunhanhOfficial">timviecsieunhanhOfficial</a></p>
+                        <p>Fanpage: <a
+                                href="https://www.facebook.com/timviecsieunhanhOfficial">timviecsieunhanhOfficial</a>
+                        </p>
                     </div>
                 </div>
 
                 <div class="big-column col-xl-8 col-lg-9 col-md-12">
                     <div class="row">
+
+
+                        <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                            <div class="footer-widget links-widget">
+                                <h4 class="widget-title">Tìm việc siêu nhanh</h4>
+                                <div class="widget-content">
+                                    <ul class="list">
+                                        <li><a href="{{route('pages.show','gioi-thieu')}}">Giới thiệu</a></li>
+                                        <li><a href="{{route('pages.show','lien-he')}}">Liên hệ</a></li>
+                                        <li><a href="{{route('pages.show','goc-tin-tuc')}}">Góc tin tức</a></li>
+                                        <li><a href="{{route('pages.show','chinh-sach-bao-mat')}}">Chính sách bảo mật</a></li>
+                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-ung-vien')}}">Điều khoản sử dụng ứng viên</a></li>
+                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-nha-tuyen-dung')}}">Điều khoản sử dụng nhà tuyển dụng</a></li>
+                                        <li><a href="{{route('pages.show','quy-che-hoat-dong')}}">Quy chế hoạt động</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <h4 class="widget-title">
-                                    Dành cho ứng viên</h4>
+                                    Việc làm trong nước</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Duyệt công việc</a></li>
-                                        <li><a href="#">Duyệt danh mục</a></li>
-                                        <li><a href="#">Trang tổng quan về ứng viên</a></li>
-                                        <li><a href="#">Thông báo công việc</a></li>
-                                        <li><a href="#">Đánh dấu của tôi</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm hôm nay</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm hót nhất</a></li>
+                                        <li><a href="{{ route('jobs.vnjobs','urgent') }}">Việc làm tuyển gấp</a></li>
+                                        <!-- <li><a href="{{route('pages.show','dieu-khoan-su-dung')}}">Điều khoản sử
+                                                dụng</a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -41,19 +62,20 @@
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <h4 class="widget-title">
-                                    Nhà tuyển dụng</h4>
+                                    Việc làm ngoài nước</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Duyệt ứng viên</a></li>
-                                        <li><a href="#">Trang cho nhà tuyển dụng</a></li>
-                                        <li><a href="#">Thêm công việc</a></li>
-                                        <li><a href="#">Gói công việc</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm hôm nay</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm hót nhất</a></li>
+                                        <li><a href="{{ route('jobs.nnjobs','urgent') }}">Việc làm tuyển gấp</a></li>
+                                        <!-- <li><a href="{{route('pages.show','dieu-khoan-su-dung')}}">Điều khoản sử
+                                                dụng</a></li> -->
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="footer-column col-lg-3 col-md-6 col-sm-12">
+                        <!-- <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
                                 <h4 class="widget-title">Về chúng tôi</h4>
                                 <div class="widget-content">
@@ -66,19 +88,17 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="footer-column col-lg-3 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4 class="widget-title">Tài nguyên hữu ích</h4>
+                                <h4 class="widget-title">Hồ sơ & CV</h4>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Sơ đồ trang web</a></li>
-                                        <li><a href="#">Điều khoản sử dụng</a></li>
-                                        <li><a href="#">Trung tâm bảo mật</a></li>
-                                        <li><a href="#">Trung tâm bảo vệ</a></li>
-                                        <li><a href="#">Trung tâm trợ năng</a></li>
+                                        <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
+                                        <li><a href="{{ route('staff.job-applied') }}">Việc làm đã nộp</a></li>
+                                        <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -94,7 +114,8 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="outer-box">
-                <div class="copyright-text">© 2024 <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>. All Right Reserved.
+                <div class="copyright-text">© 2024 <a href="{{ route('home') }}">{{ env('APP_NAME') }}</a>. All Right
+                    Reserved.
                     <br><span style="font-size:12px;"> {{__('Website_is_undergoing_upgrades_and_development')}} </span>
                 </div>
                 <div class="social-links">
