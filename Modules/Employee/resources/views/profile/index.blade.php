@@ -215,6 +215,44 @@
                                         @endif
                                     </div>
 
+                                    <span><strong>{{ __('image_business_license') }}</strong></span>
+                                    <div class="uploading-outer">
+                                        <div class="uploadButton">
+                                            <input class="uploadButton-input" type="file" name="image_business_license"
+                                                accept="image/*, application/pdf" id="upload-business-license" multiple
+                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                            <label class="uploadButton-button ripple-effect"
+                                                for="upload-business-license">{{ __('image') }}</label>
+                                            <span class="uploadButton-file-name"></span>
+                                        </div>
+                                        <div class="new-image-preview" style="margin-left:0px">
+                                            <?php if (isset($user_employee->image_business_license)): ?>
+                                            <img src="<?php echo asset($user_employee->image_business_license); ?>"
+                                                alt="Preview Image">
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                    <span><strong>{{ __('logo_upload') }}</strong></span>
+                                <div class="uploading-outer">
+                                    <div class="uploadButton">
+                                        <input class="uploadButton-input" type="file" name="image"
+                                            accept="image/*, application/pdf" id="upload" multiple
+                                            {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                        <label class="uploadButton-button ripple-effect"
+                                            for="upload">{{ __('logo_browse') }}</label>
+                                        <span class="uploadButton-file-name"></span>
+                                    </div>
+                                    <div class="new-image-preview" style="margin-left:0px">
+                                        <?php if (isset($user_employee->image)):?>
+                                        <img src="<?php echo asset($user_employee->image); ?>" alt="Preview Image">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+
+
+
                                     <span><strong> {{ __('background') }} </strong></span>
                                     <div class="uploading-outer-background">
                                         <div class="uploadButton-background">
@@ -232,6 +270,7 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
+
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
@@ -263,7 +302,18 @@ $(document).ready(function() {
         }
     });
 });
-
+$(document).ready(function() {
+    $('#upload-business-license').on('change', function() {
+        $('.new-image-preview').hide();
+        var fileInput = $(this)[0];
+        var file = fileInput.files[0];
+        if (file && file.type.startsWith('image/')) {
+            var imageUrl = URL.createObjectURL(file);
+            $('.uploadButton-file-name').html('<img src="' + imageUrl +
+                '" alt="Preview Image" style="max-width: 150px; max-height: 120px;">');
+        }
+    });
+});
 $(document).ready(function() {
     $('#upload-background').on('change', function() {
         $('.new-background-preview').hide();

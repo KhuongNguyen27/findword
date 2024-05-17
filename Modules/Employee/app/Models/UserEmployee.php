@@ -24,6 +24,9 @@ class UserEmployee extends Model
         'user_id',
         'position',
         'tax_code',
+        'is_hidden_phone',
+        'is_hidden_email',
+        'image_business_license',
     ];
     
    
@@ -61,6 +64,17 @@ class UserEmployee extends Model
                 return $this->background;
             }
             return asset($this->background);
+        }
+        return "/website-assets/images/backgroudemploy.jpg";
+    }
+
+    public function getImageBusinessLicenseFmAttribute()
+    {
+        if ( $this->image_business_license != null) {
+            if( strpos($this->image_business_license,'http') !== false ){
+                return $this->image_business_license;
+            }
+            return asset($this->image_business_license);
         }
         return "/website-assets/images/backgroudemploy.jpg";
     }

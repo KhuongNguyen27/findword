@@ -11,7 +11,7 @@
     <div class="card-body">
         <div class="mb-4">
             <label class="mb-3">{{ __('image') }}</label>
-            <x-admintheme::form-image name="image" imageUrl="{{ $item->image_fm ?? '' }}" upload="1"
+            <x-admintheme::form-image name="image" imageUrl="{{ $item->employee->image_fm ?? '' }}" upload="1"
                 accept=".jpg, .png, image/jpeg, image/png" />
             <x-admintheme::form-input-error field="image" />
         </div>
