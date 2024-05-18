@@ -85,7 +85,7 @@
                                         </li>
                                         {{-- <li>
                                             <a class="dropdown-item"
-                                                href="{{ route($rout    e_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
+                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 Show CV
                                             </a>
                                         </li> --}}
