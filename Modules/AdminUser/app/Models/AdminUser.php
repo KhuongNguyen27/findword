@@ -30,54 +30,58 @@ class AdminUser extends Model
         'verify',
         'position',
         'points',
+        'tax_code',
     ];
-    
+
     protected static function newFactory(): AdminUserFactory
     {
         //return AdminUserFactory::new();
     }
-    public static function getItems($request = null,$limit = 20,$type = ''){
+    public static function getItems($request = null, $limit = 20, $type = '')
+    {
         $query = self::query(true);
-        if($request->type){
-            $query->where('type',$request->type);
-        }else{
-            $query->where('type','user');
+        if ($request->type) {
+            $query->where('type', $request->type);
+        } else {
+            $query->where('type', 'user');
         }
-        if($request->name){
-            $query->where('name','LIKE','%'.$request->name.'%');
+        if ($request->name) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
         }
-        if($request->email){
-            $query->where('email','LIKE','%'.$request->email.'%');
+        if ($request->email) {
+            $query->where('email', 'LIKE', '%' . $request->email . '%');
         }
-        if($request->phone){
+        if ($request->phone) {
             $phone = $request->phone;
-            $query->whereHas('staff', function ($query) use ($phone){
-                return $query->where('phone', 'LIKE','%'.$phone.'%');
+            $query->whereHas('staff', function ($query) use ($phone) {
+                return $query->where('phone', 'LIKE', '%' . $phone . '%');
             });
         }
-        if($request->phone_employee){
+        if ($request->phone_employee) {
             $phone = $request->phone_employee;
-            $query->whereHas('employee', function ($query) use ($phone){
-                return $query->where('phone', 'LIKE','%'.$phone.'%');
+            $query->whereHas('employee', function ($query) use ($phone) {
+                return $query->where('phone', 'LIKE', '%' . $phone . '%');
             });
         }
-        if($request->address){
+        if ($request->address) {
             $address = $request->address;
-            $query->whereHas('staff', function ($query) use ($address){
-                return $query->where('address', 'LIKE','%'.$address.'%');
+            $query->whereHas('staff', function ($query) use ($address) {
+                return $query->where('address', 'LIKE', '%' . $address . '%');
             });
         }
-        if($request->status !== NULL){
-            $query->where('status',$request->status);
+        if ($request->status !== NULL) {
+            $query->where('status', $request->status);
         }
-        $query->orderBy('id','DESC');
+        $query->orderBy('id', 'DESC');
         $items = $query->paginate($limit);
         return $items;
     }
-    public static function findItem($id,$type = ''){
+    public static function findItem($id, $type = '')
+    {
         return self::findOrFail($id);
     }
-    public static function saveItem($request,$type = ''){
+    public static function saveItem($request, $type = '')
+    {
         DB::beginTransaction();
         try {
             $data = $request->except(['_token', '_method']);
@@ -86,9 +90,9 @@ class AdminUser extends Model
             }
             if ($data['password']) {
                 $data['password'] = bcrypt($data['password']);
-            } 
+            }
             $item = self::create($data);
-            if ($type =='staff') {
+            if ($type == 'staff') {
                 $data_user_staff = [
                     'user_id' => $item->id,
                     'phone' => $data['phone'],
@@ -101,7 +105,7 @@ class AdminUser extends Model
                 ];
                 UserStaff::create($data_user_staff);
             }
-            if ($type =='employee') {
+            if ($type == 'employee') {
                 // xử lý slug
                 $slug = $maybe_slug = Str::slug($data['name_company']);
                 $next = 2;
@@ -126,6 +130,12 @@ class AdminUser extends Model
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
                     $user_employee->background = $data['background'];
                 }
+                // Xử lý giấy phép kinh doanh (image_business_license)
+                if ($request->hasFile('image_business_license')) {
+                    self::deleteFile($user_employee->image_business_license);
+                    $data['image_business_license'] = self::uploadFile($request->file('image_business_license'), 'uploads/employees');
+                    $user_employee->image_business_license = $data['image_business_license'];
+                }
                 $user_employee->save();
             }
             DB::commit();
@@ -134,22 +144,23 @@ class AdminUser extends Model
             throw new Exception($e->getMessage());
         }
     }
-    public static function updateItem($id,$request,$type = ''){
+    public static function updateItem($id, $request, $type = '')
+    {
         DB::beginTransaction();
         try {
             $data = $request->except(['_token', '_method']);
             $item = self::findOrFail($id);
-            $userData   = $request->only(['name', 'email','password','type','status','verify','position','points']);
+            $userData = $request->only(['name', 'email', 'password', 'type', 'status', 'verify', 'position', 'points']);
             if ($request->hasFile('image')) {
                 self::deleteFile($item->image);
                 $userData['image'] = self::uploadFile($request->file('image'), self::$upload_dir);
             }
             if ($userData['password']) {
                 $userData['password'] = bcrypt($userData['password']);
-            }else{
+            } else {
                 unset($userData['password']);
             }
-            if($item->{$item->type}){
+            if ($item->{$item->type}) {
                 $custom_fields = $request->only($item->{$item->type}->custom_fields);
                 $item->{$item->type}()->update($custom_fields);
             }
@@ -158,8 +169,8 @@ class AdminUser extends Model
             } else {
             }
             $item->update($userData);
-            if($type == "staff"){
-                $user_staff = UserStaff::where('user_id',$item->id)->first();
+            if ($type == "staff") {
+                $user_staff = UserStaff::where('user_id', $item->id)->first();
                 $user_staff->phone = $data['phone'];
                 $user_staff->birthdate = $data['birthdate'];
                 $user_staff->experience_years = $data['experience_years'];
@@ -169,8 +180,8 @@ class AdminUser extends Model
                 $user_staff->outstanding_achievements = $data['outstanding_achievements'];
                 $user_staff->save();
             }
-            if($type =="employee"){
-                $user_employee = UserEmployee::where('user_id',$item->id)->first();
+            if ($type == "employee") {
+                $user_employee = UserEmployee::where('user_id', $item->id)->first();
                 $user = User::get()->first();
                 $user_employee->name = $data['name_company'];
                 $user_employee->phone = $data['phone'];
@@ -185,6 +196,11 @@ class AdminUser extends Model
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
                     $user_employee->background = $data['background'];
                 }
+                if ($request->hasFile('image_business_license')) {
+                    self::deleteFile($user_employee->image_business_license);
+                    $data['image_business_license'] = self::uploadFile($request->file('image_business_license'), 'uploads/employees');
+                    $user_employee->image_business_license = $data['image_business_license'];
+                }
                 $user_employee->save();
             }
             DB::commit();
@@ -194,22 +210,25 @@ class AdminUser extends Model
         }
     }
 
-    public static function showUserCVs($request,$limit = 20,$type = ''){
+    public static function showUserCVs($request, $limit = 20, $type = '')
+    {
         $id = $request->id;
-        $modelClass = '\App\Models\\' .$type;
+        $modelClass = '\App\Models\\' . $type;
         $query = $modelClass::query(true);
         // dd($query);
-        $items = $query->where('user_id',$id)->paginate($limit);
+        $items = $query->where('user_id', $id)->paginate($limit);
         return $items;
     }
-    public static function showCV($request,$type = ''){
+    public static function showCV($request, $type = '')
+    {
         $id = $request->id;
-        $modelClass = '\App\Models\\' .$type;
+        $modelClass = '\App\Models\\' . $type;
         $query = $modelClass::query(true);
         $item = $query->findOrfail($id);
         return $item;
     }
-    public static function deleteItem($id,$type = ''){
+    public static function deleteItem($id, $type = '')
+    {
         $item = self::findItem($id);
         self::deleteFile($item->image);
         return $item->delete();
@@ -217,21 +236,35 @@ class AdminUser extends Model
 
 
     // Custom relation
-    public function staff(){
-        return $this->hasOne(\App\Models\UserStaff::class,'user_id');
+    public function staff()
+    {
+        return $this->hasOne(\App\Models\UserStaff::class, 'user_id');
     }
-    public function employee(){
-        return $this->hasOne(\App\Models\UserEmployee::class,'user_id');
+    public function employee()
+    {
+        return $this->hasOne(\App\Models\UserEmployee::class, 'user_id');
     }
-    
+
     public function getBackgroundFmAttribute()
     {
-        if ( $this->background != null) {
-            if( strpos($this->background,'http') !== false ){
+        if ($this->background != null) {
+            if (strpos($this->background, 'http') !== false) {
                 return $this->background;
             }
-            return asset('storage/images/'.$this->background);
+            return asset('storage/images/' . $this->background);
         }
-        return "/website-assets/images/backgroudemploy.jpg";
+        return ("/website-assets/images/backgroudemploy.jpg");
     }
+
+    // public function getImagebusinesslicenseFmAttribute()
+    // {
+        
+    //     if ($this->image_business_license != null) {
+    //         if (strpos($this->image_business_license, 'http') !== false) {
+    //             return $this->image_business_license;
+    //         }
+    //         return asset('storage/images/' . $this->image_business_license);
+    //     }
+    //     return "/website-assets/images/backgroudemploy.jpg";
+    // }
 }

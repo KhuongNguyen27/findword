@@ -58,8 +58,8 @@ class AdminUserController extends Controller
      */
     public function store(StoreAdminUserRequest $request)
     {
-        $type = $request->type;
         // dd($request->type);
+        $type = $request->type;
         try {
             $this->model::saveItem($request,$type);
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));
@@ -119,6 +119,8 @@ public function edit($id)
     try {
         $type = request()->type;
         $item = $this->model::findOrFail($id);
+        
+        // dd($item->employee->background_fm);
         $params = [
             'item' => $item, 
             'model' => $this->model

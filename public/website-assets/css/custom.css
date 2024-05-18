@@ -860,3 +860,91 @@ color: #34C4C0 !important;
 p.fanpages-f {
     margin-bottom: 8px;
 }
+
+.uploadButton-business .uploadButton-business-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    height: 120px;
+    width: 200px;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin: 0;
+    color: #1b2032;
+    font-size: 16px;
+    border: 2px dashed #ced4e1;
+}
+
+.uploadButton-business .uploadButton-business-input {
+    opacity: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    display: none;
+}
+
+.uploadButton-business .uploadButton-business-button:before {
+    font-family: "Flaticon";
+    content: "\f15c";
+    color: #9fa9b8;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.uploadButton-business .uploadButton-business-file-name {
+    align-items: center;
+    padding: 0 10px;
+    padding-left: 18px;
+    min-height: 36px;
+    top: 1px;
+    position: relative;
+    color: #1b2032;
+    background-color: transparent;
+    overflow: hidden;
+    line-height: 22px;
+}
+
+.new-business-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    /* margin-left: 230px; */
+}
+
+.new-business-preview {
+    display: inline-block;
+    /* width: 50%; */
+    /* height: 50%; */
+    text-align: center;
+    /* object-fit: contain; */
+}
+
+img {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    object-fit: contain;
+}
+
+.uploading-outer-business {
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #f1f3f7;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.uploading-outer-business .uploadButton-business {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

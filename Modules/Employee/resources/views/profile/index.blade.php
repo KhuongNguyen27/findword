@@ -50,23 +50,11 @@
                                 color: red;
                             }
                             </style>
-
-
-
-
-
-                            {{-- <div class="uploading-outer">
-                                <div class="uploadButton">
-                                    <input class="uploadButton-input" type="file" name="attachments[]"
-                                        accept="image/*, application/pdf" id="upload" multiple />
-                                    <label class="uploadButton-button ripple-effect" for="upload">Tải lên logo công ty</label>
-                                    <span class="uploadButton-file-name"></span>
-                                </div>
-                                <div class="text">ảnh .jpg & .png</div>
-                            </div> --}}
                             <form class="default-form" action="{{ route('employee.profile.update', $user->id) }}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
+                                <div class="col-lg-6">
                                 <span><strong>{{ __('logo_upload') }}</strong></span>
                                 <div class="uploading-outer">
                                     <div class="uploadButton">
@@ -83,6 +71,29 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="col-lg-6">
+                                <span><strong>{{ __('image_business_license') }}</strong></span>
+                                    <div class="uploading-outer-business">
+                                        <div class="uploadButton-business">
+                                            <input class="uploadButton-business-input" type="file"
+                                                name="image_business_license" accept="image/*, application/pdf"
+                                                id="upload-business-license" multiple
+                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                            <label class="uploadButton-business-button ripple-effect"
+                                                for="upload-business-license">{{ __('image') }}</label>
+                                            <span class="uploadButton-business-file-name"></span>
+                                        </div>
+                                        <div class="new-business-preview" id="business-license-preview"
+                                            style="margin-left:0px">
+                                            <?php if (isset($user_employee->image_business_license)): ?>
+                                            <img src="<?php echo asset($user_employee->image_business_license); ?>"
+                                                alt="Preview Image">
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
                                 <script>
                                 const uploadInput = document.querySelector('.uploadButton-input');
                                 const fileNameSpan = document.querySelector('.uploadButton-file-name');
@@ -214,6 +225,9 @@
                                         <p style="color:red">{{ $errors->first('about') }}</p>
                                         @endif
                                     </div>
+                                  
+                                   
+
 
                                     <span><strong> {{ __('background') }} </strong></span>
                                     <div class="uploading-outer-background">
@@ -232,6 +246,7 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
+
 
                                     <div class="form-group col-lg-6 col-md-12">
                                         <button type="submit" class="theme-btn btn-style-one">{{ __('save') }}</button>
@@ -263,6 +278,19 @@ $(document).ready(function() {
         }
     });
 });
+
+$(document).ready(function() {
+    $('#upload-business-license').on('change', function() {
+        $('.new-business-preview').hide();
+        var fileInput = $(this)[0];
+        var file = fileInput.files[0];
+        if (file && file.type.startsWith('image/')) {
+            var businessUrl = URL.createObjectURL(file);
+            $('.uploadButton-business-file-name').html('<img src="' + businessUrlUrl +
+                '" alt="Preview Background" style="max-width: 150px; max-height: 120px;">');
+        }
+    });
+})
 
 $(document).ready(function() {
     $('#upload-background').on('change', function() {
@@ -300,6 +328,41 @@ uploadInput.addEventListener('change', function() {
     } else {
         imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
     }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const businessUploadInput = document.querySelector(
+        '.uploadButton-business-input');
+    const businessFileNameSpan = document.querySelector(
+        '.uploadButton-business-file-name');
+    const businessPreviewDiv = document.querySelector(
+        '#business-license-preview'); // Use ID selector
+
+    businessUploadInput.addEventListener('change', function() {
+        const files = Array.from(businessUploadInput.files);
+        const fileNames = files.map(file => file.name);
+        businessFileNameSpan.textContent = fileNames.join(', ');
+
+        if (files.length > 0) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(event) {
+                const imagePreview = document.createElement(
+                    'img');
+                imagePreview.src = event.target.result;
+                imagePreview.classList.add(
+                    'new-image-preview'); // Áp dụng class new-image-preview
+                businessPreviewDiv.innerHTML =
+                    ''; // Xóa hình ảnh trước nếu có
+                businessPreviewDiv.appendChild(imagePreview);
+            };
+            fileReader.readAsDataURL(files[0]);
+        } else {
+            businessPreviewDiv.innerHTML =
+                ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
+        }
+    });
 });
 </script>
 {{-- background --}}

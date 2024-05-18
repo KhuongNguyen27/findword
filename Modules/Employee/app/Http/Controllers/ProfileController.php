@@ -92,6 +92,11 @@ class ProfileController extends Controller
             $userEmployee->slug = $slug;
 
             $imagePath = '';
+            if( $request->hasFile('image_business_license') ){
+                $imagePath = self::uploadFile( $request->file('image_business_license') ,'employees');
+                $userEmployee->image_business_license = $imagePath;
+            }
+            $imagePath = '';
             if( $request->hasFile('image') ){
                 $imagePath = self::uploadFile( $request->file('image') ,'employees');
                 $userEmployee->image = $imagePath;
