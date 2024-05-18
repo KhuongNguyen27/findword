@@ -50,23 +50,11 @@
                                 color: red;
                             }
                             </style>
-
-
-
-
-
-                            {{-- <div class="uploading-outer">
-                                <div class="uploadButton">
-                                    <input class="uploadButton-input" type="file" name="attachments[]"
-                                        accept="image/*, application/pdf" id="upload" multiple />
-                                    <label class="uploadButton-button ripple-effect" for="upload">Tải lên logo công ty</label>
-                                    <span class="uploadButton-file-name"></span>
-                                </div>
-                                <div class="text">ảnh .jpg & .png</div>
-                            </div> --}}
                             <form class="default-form" action="{{ route('employee.profile.update', $user->id) }}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
+                                <div class="col-lg-6">
                                 <span><strong>{{ __('logo_upload') }}</strong></span>
                                 <div class="uploading-outer">
                                     <div class="uploadButton">
@@ -83,6 +71,29 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
+                                </div>
+                                <div class="col-lg-6">
+                                <span><strong>{{ __('image_business_license') }}</strong></span>
+                                    <div class="uploading-outer-business">
+                                        <div class="uploadButton-business">
+                                            <input class="uploadButton-business-input" type="file"
+                                                name="image_business_license" accept="image/*, application/pdf"
+                                                id="upload-business-license" multiple
+                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                            <label class="uploadButton-business-button ripple-effect"
+                                                for="upload-business-license">{{ __('image') }}</label>
+                                            <span class="uploadButton-business-file-name"></span>
+                                        </div>
+                                        <div class="new-business-preview" id="business-license-preview"
+                                            style="margin-left:0px">
+                                            <?php if (isset($user_employee->image_business_license)): ?>
+                                            <img src="<?php echo asset($user_employee->image_business_license); ?>"
+                                                alt="Preview Image">
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
                                 <script>
                                 const uploadInput = document.querySelector('.uploadButton-input');
                                 const fileNameSpan = document.querySelector('.uploadButton-file-name');
@@ -214,113 +225,10 @@
                                         <p style="color:red">{{ $errors->first('about') }}</p>
                                         @endif
                                     </div>
-                                    <style>
-                                    .uploadButton-business .uploadButton-business-button {
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        flex-direction: column;
-                                        cursor: pointer;
-                                        height: 120px;
-                                        width: 200px;
-                                        border-radius: 5px;
-                                        transition: 0.3s;
-                                        margin: 0;
-                                        color: #1b2032;
-                                        font-size: 16px;
-                                        border: 2px dashed #ced4e1;
-                                    }
+                                  
+                                   
 
-                                    .uploadButton-business .uploadButton-business-input {
-                                        opacity: 0;
-                                        position: absolute;
-                                        overflow: hidden;
-                                        z-index: -1;
-                                        pointer-events: none;
-                                        height: 0;
-                                        width: 0;
-                                        display: none;
-                                    }
 
-                                    .uploadButton-business .uploadButton-business-button:before {
-                                        font-family: "Flaticon";
-                                        content: "\f15c";
-                                        color: #9fa9b8;
-                                        font-size: 20px;
-                                        transition: 0.3s;
-                                    }
-
-                                    .uploadButton-business .uploadButton-business-file-name {
-                                        align-items: center;
-                                        padding: 0 10px;
-                                        padding-left: 18px;
-                                        min-height: 36px;
-                                        top: 1px;
-                                        position: relative;
-                                        color: #1b2032;
-                                        background-color: transparent;
-                                        overflow: hidden;
-                                        line-height: 22px;
-                                    }
-
-                                    .new-business-preview {
-                                        width: 100px;
-                                        height: 100px;
-                                        object-fit: contain;
-                                        /* margin-left: 230px; */
-                                    }
-
-                                    .new-business-preview {
-                                        display: inline-block;
-                                        /* width: 50%; */
-                                        /* height: 50%; */
-                                        text-align: center;
-                                        /* object-fit: contain; */
-                                    }
-
-                                    img {
-                                        display: inline-block;
-                                        width: 100%;
-                                        height: 100%;
-                                        text-align: center;
-                                        object-fit: contain;
-                                    }
-
-                                    .uploading-outer-business {
-                                        position: relative;
-                                        display: flex;
-                                        width: 100%;
-                                        padding-bottom: 30px;
-                                        border-bottom: 1px solid #f1f3f7;
-                                        margin-bottom: 30px;
-                                        align-items: center;
-                                    }
-
-                                    .uploading-outer-business .uploadButton-business {
-                                        position: relative;
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                    }
-                                    </style>
-                                    <span><strong>{{ __('image_business_license') }}</strong></span>
-                                    <div class="uploading-outer-business">
-                                        <div class="uploadButton-business">
-                                            <input class="uploadButton-business-input" type="file"
-                                                name="image_business_license" accept="image/*, application/pdf"
-                                                id="upload-business-license" multiple
-                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
-                                            <label class="uploadButton-business-button ripple-effect"
-                                                for="upload-business">{{ __('image') }}</label>
-                                            <span class="uploadButton-business-file-name"></span>
-                                        </div>
-                                        <div class="new-business-preview" style="margin-left:0px">
-                                            <?php if (isset($user_employee->image_business_license)): ?>
-                                            <img src="<?php echo asset($user_employee->image_business_license); ?>"
-                                                alt="Preview Image">
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
                                     <span><strong> {{ __('background') }} </strong></span>
                                     <div class="uploading-outer-background">
                                         <div class="uploadButton-background">
@@ -420,6 +328,41 @@ uploadInput.addEventListener('change', function() {
     } else {
         imagePreviewDiv.innerHTML = ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
     }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const businessUploadInput = document.querySelector(
+        '.uploadButton-business-input');
+    const businessFileNameSpan = document.querySelector(
+        '.uploadButton-business-file-name');
+    const businessPreviewDiv = document.querySelector(
+        '#business-license-preview'); // Use ID selector
+
+    businessUploadInput.addEventListener('change', function() {
+        const files = Array.from(businessUploadInput.files);
+        const fileNames = files.map(file => file.name);
+        businessFileNameSpan.textContent = fileNames.join(', ');
+
+        if (files.length > 0) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(event) {
+                const imagePreview = document.createElement(
+                    'img');
+                imagePreview.src = event.target.result;
+                imagePreview.classList.add(
+                    'new-image-preview'); // Áp dụng class new-image-preview
+                businessPreviewDiv.innerHTML =
+                    ''; // Xóa hình ảnh trước nếu có
+                businessPreviewDiv.appendChild(imagePreview);
+            };
+            fileReader.readAsDataURL(files[0]);
+        } else {
+            businessPreviewDiv.innerHTML =
+                ''; // Xóa hình ảnh khi không có tệp tin nào được chọn
+        }
+    });
 });
 </script>
 {{-- background --}}
