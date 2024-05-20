@@ -40,7 +40,6 @@ return [
     'google' => [
         'client_id' => env('GG_ID'),
         'client_secret' => env('GG_SECRET'),
-        // 'redirect' => 'http://127.0.0.1:8000/handleGoogleCallback',
         'redirect' => env('GG_REDIRECT'),
     ],
 ];
