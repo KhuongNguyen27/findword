@@ -18,7 +18,8 @@ class User extends Model
         'password',
         'type',
         'status',
-        
+        'position', 
+        'google_id',
     ];
     // Trong mô hình User.php
     public function userJobFavorites()

@@ -31,16 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'facebook' => [
-        'client_id' => '724420766524762',
-        'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
-        'redirect' => 'https://timviecsieunhanh.vn/auth/facebook/callback',
-    ],
+    // 'facebook' => [
+    //     'client_id' => '724420766524762',
+    //     'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
+    //     'redirect' => 'https://timviecsieunhanh.vn/auth/facebook/callback',
+    // ],
 
     'google' => [
-        'client_id' => '67080160242-6k9okp9ct0ekvp76luokvid4m7ai0r9o.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://timviecsieunhanh.vn/login/google/callback',
+        'client_id' => env('GG_ID'),
+        'client_secret' => env('GG_SECRET'),
+        'redirect' => env('GG_REDIRECT'),
     ],
 ];
 
