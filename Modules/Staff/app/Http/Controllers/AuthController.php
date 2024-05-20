@@ -130,6 +130,7 @@ class AuthController extends Controller
     }
     public function handleGoogleCallback()
     {
+        // dd(123);
         DB::beginTransaction();
         try {
             $socialUser = Socialite::driver('google')->user();
@@ -146,6 +147,7 @@ class AuthController extends Controller
                         'password' => bcrypt('123456'),
                         'type' => 'staff',
                         'status' => 1,
+                        'position' => 0,
                         'google_id' => $socialUser->id,
                     ]);
                 $user_staff = UserStaff::create(
@@ -157,10 +159,8 @@ class AuthController extends Controller
             }
         } catch (Exception $e) {
             DB::rollBack();
-            // dd($e->getMessage());
+            Log::error('Google Callback Error: ' . $e->getMessage());
+            return redirect()->route('staff.login')->with(['error' => 'Có lỗi xảy ra khi đăng nhập bằng Google.']);
         }
     }
 }
-
-
-

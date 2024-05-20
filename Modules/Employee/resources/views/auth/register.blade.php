@@ -137,8 +137,16 @@
             </div>
             <div class="form__check" style="margin-bottom: 50px;">
                 <input id="accept_pp" type="checkbox" name="accept_pp" onchange="showPopup()">
-                <label for="accept_pp">{{ __('agree_to_the_terms_and_privacy_policy') }}<span class="label-required">
-                        *</span></label>
+                <label for="accept_pp">
+                    Chấp nhận các
+                    <a href="{{route('pages.show', 'dieu-khoan-su-dung-nha-tuyen-dung')}}" class="red-link"
+                        target="_blank">điều khoản dịch
+                        vụ</a>
+                    và
+                    <a href="{{route('pages.show', 'chinh-sach-bao-mat')}}" class="red-link" target="_blank">chính sách
+                        bảo mật</a>
+                    <span class="label-required">*</span>
+                </label>
                 @if ($errors->has('accept_pp'))
                 <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                 @else

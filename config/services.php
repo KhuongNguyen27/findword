@@ -38,9 +38,10 @@ return [
     ],
 
     'google' => [
-        'client_id' => '67080160242-6k9okp9ct0ekvp76luokvid4m7ai0r9o.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://timviecsieunhanh.vn/login/google/callback',
+        'client_id' => '606104324634-7uc1k0d7d0qgm5pl09tmvra0fqkptiip.apps.googleusercontent.com',
+        'client_secret' => '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',
+        // 'redirect' => 'http://127.0.0.1:8000/handleGoogleCallback',
+        'redirect' => 'https://timviecsieunhanh.vn/handleGoogleCallback',
     ],
 ];
 

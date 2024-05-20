@@ -1,24 +1,27 @@
 @extends('website.layouts.auth')
 @section('content')
 <!-- Login Form -->
+
 <div class="login-form default-form">
     <div class="form-inner">
         <h3>Tạo tài khoản {{ env('APP_NAME') }} miễn phí</h3>
         <!--Login Form-->
         <form action="{{ route('staff.postRegister') }}" method="post">
             @if (session('error'))
-            <div class="alert alert-danger" role="alert">
-                {{ session('error') }}
-            </div>
+                <div class="alert alert-danger" role="alert">
+                    {{ session('error') }}
+                </div>
             @endif
             @csrf
             <div class="form-group">
                 <div class="btn-box row">
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('staff.register')}}" class="theme-btn btn-style-seven"><i class="la la-user"></i> Ứng viên </a>
+                        <a href="{{route('staff.register')}}" class="theme-btn btn-style-seven"><i
+                                class="la la-user"></i> Ứng viên </a>
                     </div>
                     <div class="col-lg-6 col-md-12">
-                        <a href="{{route('employee.register')}}" class="theme-btn btn-style-four"><i class="la la-briefcase"></i> Nhà tuyển dụng </a>
+                        <a href="{{route('employee.register')}}" class="theme-btn btn-style-four"><i
+                                class="la la-briefcase"></i> Nhà tuyển dụng </a>
                     </div>
                 </div>
             </div>
@@ -28,7 +31,7 @@
                 <label>Tên <span class="label-required">*</span></label>
                 <input type="text" name="name" placeholder="Tên" value="{{ old('name') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('name') }}</p>
+                    <p style="color:red">{{ $errors->first('name') }}</p>
                 @endif
             </div>
 
@@ -36,7 +39,7 @@
                 <label>Email <span class="label-required">*</span></label>
                 <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('email') }}</p>
+                    <p style="color:red">{{ $errors->first('email') }}</p>
                 @endif
                 <div class="mt-2">
                     <p>Nhập email để nhận thông báo từ nhà tuyển dụng</p>
@@ -47,7 +50,7 @@
                 <label>Ngày sinh <span class="label-required">*</span></label>
                 <input type="date" name="birthdate" value="{{ old('birthdate') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('birthdate') }}</p>
+                    <p style="color:red">{{ $errors->first('birthdate') }}</p>
                 @endif
             </div>
 
@@ -55,7 +58,7 @@
                 <label>SĐT <span class="label-required">*</span></label>
                 <input type="text" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('phone') }}</p>
+                    <p style="color:red">{{ $errors->first('phone') }}</p>
                 @endif
                 <div class="mt-2">
                     <p>Nhập số điện thoại để nhận thông báo từ nhà tuyển dụng</p>
@@ -66,7 +69,7 @@
                 <label>Mật khẩu <span class="label-required">*</span></label>
                 <input type="password" name="password" placeholder="Mật khẩu" value="{{ old('password') }}">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('password') }}</p>
+                    <p style="color:red">{{ $errors->first('password') }}</p>
                 @endif
             </div>
 
@@ -74,15 +77,24 @@
                 <label>Xác nhận mật khẩu <span class="label-required">*</span></label>
                 <input type="password" name="repeatpassword" placeholder="Xác nhận mật khẩu">
                 @if ($errors->any())
-                <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
+                    <p style="color:red">{{ $errors->first('repeatpassword') }}</p>
                 @endif
             </div>
 
             <div class="form__check" style="margin-bottom: 50px;">
                 <input id="accept_pp" type="checkbox" name="accept_pp">
-                <label for="accept_pp">Chấp nhận các điều khoản và chính sách bảo mật <span class="label-required">*</span></label>
+                <label for="accept_pp">
+                    Chấp nhận các
+                    <a href="{{route('pages.show', 'dieu-khoan-su-dung-ung-vien')}}" class="red-link"
+                        target="_blank">điều khoản dịch
+                        vụ</a>
+                    và
+                    <a href="{{route('pages.show', 'chinh-sach-bao-mat')}}" class="red-link" target="_blank">chính sách
+                        bảo mật</a>
+                    <span class="label-required">*</span>
+                </label>
                 @if ($errors->has('accept_pp'))
-                <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
+                    <div class="error-message" style="color:red">{{ $errors->first('accept_pp') }}</div>
                 @endif
             </div>
 
