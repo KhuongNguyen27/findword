@@ -38,10 +38,10 @@ return [
     ],
 
     'google' => [
-        'client_id' => '606104324634-7uc1k0d7d0qgm5pl09tmvra0fqkptiip.apps.googleusercontent.com',
-        'client_secret' => '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',
+        'client_id' => env('GG_ID'),
+        'client_secret' => env('GG_SECRET'),
         // 'redirect' => 'http://127.0.0.1:8000/handleGoogleCallback',
-        'redirect' => 'https://timviecsieunhanh.vn/handleGoogleCallback',
+        'redirect' => env('GG_REDIRECT'),
     ],
 ];
 
