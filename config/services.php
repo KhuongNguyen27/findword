@@ -31,11 +31,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'facebook' => [
-        'client_id' => '724420766524762',
-        'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
-        'redirect' => 'https://timviecsieunhanh.vn/auth/facebook/callback',
-    ],
+    // 'facebook' => [
+    //     'client_id' => '724420766524762',
+    //     'client_secret' => 'd8295a4713da4fdf6e772ccf048b7226',
+    //     'redirect' => 'https://timviecsieunhanh.vn/auth/facebook/callback',
+    // ],
 
     'google' => [
         'client_id' => env('GG_ID'),
