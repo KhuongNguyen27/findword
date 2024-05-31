@@ -14,11 +14,11 @@ class StoreAdminPostRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|max:255',
-            'description'=>'required'
+            // 'description'=>'required'
         ];
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $rules['name'] = 'required|max:255';
-            $rules['description'] = 'required';
+            // $rules['description'] = 'required';
         }
         return $rules;
     }
