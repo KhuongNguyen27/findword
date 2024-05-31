@@ -42,11 +42,10 @@
                                         <li><a href="{{route('pages.show','goc-tin-tuc')}}">Góc tin tức</a></li>
                                         <li><a href="{{route('pages.show','chinh-sach-bao-mat')}}">Chính sách bảo
                                                 mật</a></li>
-                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-ung-vien')}}">Điều khoản
-                                                sử dụng ứng viên</a></li>
-                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung-nha-tuyen-dung')}}">Điều
-                                                khoản sử dụng nhà tuyển dụng</a></li>
-                                        <li><a href="{{route('pages.show','quy-che-hoat-dong')}}">Quy chế hoạt động</a>
+                                        <li><a href="{{route('pages.show','dieu-khoan-su-dung')}}">Điều khoản sử dụng </a></li>
+                                        <li><a href="{{route('htmlpages.quy-che-hoat-dong')}}">Quy chế hoạt động</a>
+                                        <!-- <li><a href="{{ asset('quy-che-hoat-dong.html') }}">Quy chế hoạt động</a></li> -->
+
                                         <li><a href="{{route('pages.show','giai-quyet-khieu-nai')}}">Giải quyết khiếu
                                                 nại</a>
                                         </li>

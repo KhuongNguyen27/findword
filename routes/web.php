@@ -39,7 +39,12 @@ Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.ind
 
 Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 Route::get('/bai-viet/{slug}', [PostController::class,'show'])->name('posts.show');
-Route::get('/trang/{slug}', [PageController::class,'show'])->name('pages.show');
+Route::get('/quy-che-hoat-dong', function () {
+    return view('website/htmlpages/quychehoatdong');
+})->name('htmlpages.quy-che-hoat-dong');
+
+
+Route::get('/{slug}', [PageController::class,'show'])->name('pages.show');
 // Route::get('/trang/nha-tuyen-dung/{slug}', [PageController::class, 'show'])->name('pages1.show');
 // Route::get('/trang/ung-vien/{slug}', [PageController::class, 'show'])->name('pages2.show');
 
@@ -67,6 +72,8 @@ Route::prefix('themes')->group(function () {
     Route::get('/', function () {
         return view('website/dashboards/index');
     })->name('dashboards.index');
+
+   
 
     Route::get('/post-job', function () {
         return view('website/dashboards/postjob/index');

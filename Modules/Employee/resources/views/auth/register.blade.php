@@ -139,7 +139,7 @@
                 <input id="accept_pp" type="checkbox" name="accept_pp" onchange="showPopup()">
                 <label for="accept_pp">
                     Chấp nhận các
-                    <a href="{{route('pages.show', 'dieu-khoan-su-dung-nha-tuyen-dung')}}" class="red-link"
+                    <a href="{{route('pages.show', 'dieu-khoan-su-dung')}}" class="red-link"
                         target="_blank">điều khoản dịch
                         vụ</a>
                     và

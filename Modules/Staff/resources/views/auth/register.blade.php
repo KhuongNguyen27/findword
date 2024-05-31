@@ -85,9 +85,8 @@
                 <input id="accept_pp" type="checkbox" name="accept_pp">
                 <label for="accept_pp">
                     Chấp nhận các
-                    <a href="{{route('pages.show', 'dieu-khoan-su-dung-ung-vien')}}" class="red-link"
-                        target="_blank">điều khoản dịch
-                        vụ</a>
+                    <a href="{{route('pages.show', 'dieu-khoan-su-dung')}}" class="red-link"
+                        target="_blank">điều khoản sử dụng</a>
                     và
                     <a href="{{route('pages.show', 'chinh-sach-bao-mat')}}" class="red-link" target="_blank">chính sách
                         bảo mật</a>
