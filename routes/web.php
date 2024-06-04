@@ -44,7 +44,8 @@ Route::get('/quy-che-hoat-dong', function () {
 })->name('htmlpages.quy-che-hoat-dong');
 
 
-Route::get('/{slug}', [PageController::class,'show'])->name('pages.show');
+// Route::get('/{slug}', [PageController::class,'show'])->name('pages.show');
+
 // Route::get('/trang/nha-tuyen-dung/{slug}', [PageController::class, 'show'])->name('pages1.show');
 // Route::get('/trang/ung-vien/{slug}', [PageController::class, 'show'])->name('pages2.show');
 

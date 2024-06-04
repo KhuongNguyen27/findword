@@ -10,6 +10,7 @@ use Modules\Staff\app\Http\Controllers\UserEducationController;
 use Modules\Staff\app\Http\Controllers\UserSkillController;
 use Modules\Staff\app\Http\Controllers\UserJobAppliedController;
 use Modules\Staff\app\Http\Controllers\UserJobFavoriteController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +73,5 @@ Route::get('handleGoogleCallback',[AuthController::class,'handleGoogleCallback']
 // ], function () {
 //     Route::resource('cvs', CvsExampleController::class)->names('cvs');
 // });
+
+Route::get('/{slug}', [PageController::class,'show'])->name('pages.show');
