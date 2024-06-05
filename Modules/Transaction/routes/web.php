@@ -19,7 +19,9 @@ use Modules\Transaction\app\Http\Controllers\Admin\TransactionController as Tran
 
 Route::group([
 	'middleware' => ['auth.employee'],
-	'as' => 'employee.'
+	'as' => 'employee.',
+	'prefix' => 'employee'
+
 ], function () {
     //Job
 	Route::get('/transaction', [TransactionController::class,'index'])->name('transaction.index');

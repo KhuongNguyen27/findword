@@ -6,7 +6,12 @@
 <style>
 span.flaticon-bookmark.active {
     color: red;
+    
 }
+.owl-carousel .owl-stage {
+    margin-left: 0px;
+}
+
 </style>
 <section class="banner-section pb-5 custom-banner-section-mobile">
     <div class="auto-container">
