@@ -17,28 +17,37 @@ $detail_company_bg = @$job->job_package->job_detail_company_bg;
 
 $job->work_address = str_replace(', Vietnam', '', $job->work_address);
 $job->work_address = str_replace(', Việt Nam', '', $job->work_address);
-$job->work_address = str_replace(', Quốc tế', '',$job->work_address);
+$job->work_address = str_replace(', Quốc tế', '', $job->work_address);
 
 $work_address = explode(',', $job->work_address);
 $job->work_address = end($work_address);
 // $job->work_address = end( explode(',',$job->work_address) );
 
-if( $job->province ){
-    $job->province->name = str_replace('Tỉnh','',$job->province->name);
-    $job->province->name = str_replace('Thành phố','',$job->province->name);
+if ($job->province) {
+    $job->province->name = str_replace('Tỉnh', '', $job->province->name);
+    $job->province->name = str_replace('Thành phố', '', $job->province->name);
 }
 
 
-if ($job->international ) {
+if ($job->international) {
     $job->international->name = str_replace('Quốc tế', '', $job->international->name);
 }
 ?>
-<?php if($job->userEmployee):?>
+<?php if ($job->userEmployee):?>
+<style>
+    @media (max-width: 767px) {
+        .text_ellipsis {
+            max-width: 250px;
+        }
+    }
+
+ 
+</style>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
             <span class="tag-job-flash">
-                @if ( @$job->job_package->image_fm)
+                @if (@$job->job_package->image_fm)
                     <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>
@@ -49,6 +58,7 @@ if ($job->international ) {
                 <a style="{{ $small_title_color_style }}"
                     href="{{ route('website.jobs.show', $job->slug) }}">{{ $job->name }}</a>
             </h4>
+
             @if (isset($company_name))
                 <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
                     class="text-silver company company_name">
@@ -60,7 +70,7 @@ if ($job->international ) {
                     <li>
                         @if (auth()->check())
                             <span class="salary">
-                            {{ $job->salary_fm }}
+                                {{ $job->salary_fm }}
                             </span>
                         @else
                             <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem
@@ -68,14 +78,17 @@ if ($job->international ) {
                         @endif
                     </li>
                     @if($job->province)
-                    <li><span class="address">{{ @$job->province->name }}</span></li>
+                        <li><span class="address">{{ @$job->province->name }}</span></li>
                     @endif
                     @if($job->international)
-                    <li><span class="address">{{ @$job->international->name }}</span></li>
+                        <li><span class="address">{{ @$job->international->name }}</span></li>
                     @endif
                     @if (@$job_other_info)
-                        <li><span class="salary job-updated">Cập nhật <?= $updated_at ?></span></li>
-                        <li><span class="salary job-remain">Còn <?php echo $remainingDays; ?> ngày để ứng tuyển</span></li>
+                        <li><span class="salary job-updated">Cập nhật
+                                <?= $updated_at ?>
+                            </span></li>
+                        <li><span class="salary job-remain">Còn <?php            echo $remainingDays; ?> ngày để ứng
+                                tuyển</span></li>
                     @endif
                 </ul>
             @endif

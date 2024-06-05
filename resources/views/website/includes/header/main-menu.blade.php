@@ -1,26 +1,49 @@
 @php
-    $currentRouteName = \Request::route()->getName();
+$currentRouteName = \Request::route()->getName();
 @endphp
+<style>
+/* CSS to hide mobile-only links on larger screens */
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none;
+    }
+}
+</style>
 <nav class="nav main-menu">
     <ul class="navigation" id="navbar">
+
+        @guest
+        <li class="mobile-only"><strong>Dành cho ứng viên</strong></li>
+        <li class="mobile-only"><a href="{{ route('staff.login') }}">Đăng nhập</a></li>
+        <li class="mobile-only"><a href="{{ route('staff.register') }}">Đăng kí tài khoản mới</a></li>
+        @endguest
+
+
+
         <li class="dropdown">
-            <a class="@if ($currentRouteName == 'jobs.vnjobs') active @endif" href="{{ route('jobs.vnjobs') }}">Việc làm trong nước</a>
+            <a class="@if ($currentRouteName == 'jobs.vnjobs') active @endif" href="{{ route('jobs.vnjobs') }}">Việc làm
+                trong nước</a>
             <ul>
-                <li><a href="{{ route('jobs.vnjobs','today') }}">Việc làm hôm nay</a></li>
-                <li><a href="{{ route('jobs.vnjobs','hot') }}">Việc làm hot nhất</a></li>
-                <li><a href="{{ route('jobs.vnjobs','urgent') }}">Tuyển gấp</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
-            <ul>
-                <li><a href="{{ route('jobs.nnjobs','today') }}">Việc làm hôm nay</a></li>
-                <li><a href="{{ route('jobs.nnjobs','hot') }}">Việc làm hot nhất</a></li>
-                <li><a href="{{ route('jobs.nnjobs','urgent') }}">Tuyển gấp</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'today') }}">Việc làm Hôm nay</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'hot') }}">Việc làm Hot nhất</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'urgent') }}">Tuyển gấp</a></li>
             </ul>
         </li>
 
-        <li><a class="@if ($currentRouteName == 'employees.index') active @endif" href="{{ route('employees.index') }}">Công ty</a></li>
+
+
+        <li class="dropdown">
+            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">Việc làm
+                ngoài nước</a>
+            <ul>
+                <li><a href="{{ route('jobs.nnjobs', 'today') }}">Việc làm Hôm nay</a></li>
+                <li><a href="{{ route('jobs.nnjobs', 'hot') }}">Việc làm Hot nhất</a></li>
+                <li><a href="{{ route('jobs.nnjobs', 'urgent') }}">Tuyển gấp</a></li>
+            </ul>
+        </li>
+
+        <li><a class="@if ($currentRouteName == 'employees.index') active @endif"
+                href="{{ route('employees.index') }}">Công ty</a></li>
 
         <li class="dropdown">
             <a class="@if ($currentRouteName == 'cvs.index') active @endif" href="javascript:;">Hồ sơ & CV</a>
@@ -31,10 +54,19 @@
             </ul>
         </li>
         @if (Auth::check() && (Auth::user()->type == "employee"))
-        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{ route('website.account.index') }}">Bảng giá</a></li>
-        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{route('pages.show','dac-quyen-tin')}}">Đặc quyền Tin</a></li>
+        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif"
+                href="{{ route('website.account.index') }}">Bảng giá</a></li>
+        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif"
+                href="{{route('pages.show', 'dac-quyen-tin')}}">Đặc quyền Tin</a></li>
         @endif
+
+        <!-- Dành cho nhà tuyển dụng -->
+        @guest
+        <li class="mobile-only"><strong>Dành cho nhà tuyển dụng</strong></li>
+        <li class="mobile-only"><a href="{{ route('employee.login') }}">Đăng tuyển</a></li>
+        @endguest
         <!-- Only for Mobile View -->
+
         <!-- <li class="mm-add-listing">
             <a href="add-listing.html" class="theme-btn btn-style-one">Job Post</a>
             <span>
