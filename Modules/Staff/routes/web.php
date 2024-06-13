@@ -45,11 +45,13 @@ Route::group([
     Route::put('/profile/{id}', [ProfileController::class, 'update'])->name('update');
     Route::resource('profile', ProfileController::class)->names('profile');
     Route::post('/uploadCV',[UserCvController::class,'uploadCV'])->name('uploadCV');
+    
     Route::resource('cv', UserCvController::class)->names('cv');
     Route::resource('experience', UserExperienceController::class)->names('experience');
     Route::resource('education', UserEducationController::class)->names('education');
     Route::resource('skill', UserSkillController::class)->names('skill');
-});
+    });
+    Route::get('cv/download/{id}',[UserCvController::class,'download'])->name('cv.download');
 Route::group([
     'prefix' => 'staff',
     'as' => 'staff.'
@@ -59,6 +61,9 @@ Route::group([
     // Register
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
+
+    // Route::get('/verification',[AuthController::class,'verification'])->name('verification');
+
 });
 
 Route::get('redirectToFacebook',[AuthController::class,'redirectToFacebook'])->name('login.facebook');

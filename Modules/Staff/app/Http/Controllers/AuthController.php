@@ -163,4 +163,5 @@ class AuthController extends Controller
             return redirect()->route('staff.login')->with(['error' => 'Có lỗi xảy ra khi đăng nhập bằng Google.']);
         }
     }
+
 }

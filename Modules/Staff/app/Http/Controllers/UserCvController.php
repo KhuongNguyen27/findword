@@ -19,7 +19,8 @@ use Modules\Staff\app\Models\Career;
 use Modules\Staff\app\Models\FormWork;
 use Illuminate\Support\Facades\Log;
 use App\Traits\UploadFileTrait;
-
+use App\Models\CV;
+use PDF;
 class UserCvController extends Controller
 {
     use UploadFileTrait;
@@ -38,7 +39,49 @@ class UserCvController extends Controller
     //     ];
     //     return view('staff::cv.information', $params);
     // }
+    // public function download($id)
+    // {
+        
+    //     $item = UserCv::findOrFail($id);
+    //     // dd($userCv);
+    //     // Tạo PDF từ nội dung CV
+    //     $pdf = PDF::loadView('staff::cv.pdf', compact('item'));
+    //     // Tải xuống PDF
+    //     return $pdf->download($item->cv_file . '.pdf');
+    // }
+    public function download($id)
+    {
+        $item = UserCv::findOrFail($id);
+        $educations = UserEducation::where('cv_id', $id)->get();
+        $userExperiences = UserExperience::where('cv_id',$id)->get();
+        $userSkills = UserSkill::where('cv_id',$id)->get();
+        
+        $params = [
+            'item' => $item,
+            'educations' => $educations,
+            'userExperiences' => $userExperiences,
+            'userSkills' => $userSkills,
+        ];
+    
+        $options = new \Dompdf\Options();
+        $options->set('defaultFont', 'DejaVu Sans'); // Sử dụng font hỗ trợ tiếng Việt
+        $options->set('isHtml5ParserEnabled', true);
+        $options->set('isFontSubsettingEnabled', true);
+    
+        $dompdf = new \Dompdf\Dompdf($options);
+        $html = view('staff::cv.pdf', $params)->render();
+    
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+    
+       // Clean up the filename by replacing spaces with dashes
+    $sanitizedFileName = str_replace(' ', '-', $item->cv_file);
 
+    // Stream the generated PDF to the user for download
+    return $dompdf->stream($sanitizedFileName . '.pdf', ["Attachment" => true]);
+    }
+    
     public function index()
     {
         $user = Auth::user();
@@ -184,4 +227,5 @@ class UserCvController extends Controller
         $userCv->delete();
         return redirect()->route('staff.cv.index')->with('success', 'Đã xóa hồ sơ thành công');
     }
+   
 }

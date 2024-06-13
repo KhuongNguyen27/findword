@@ -22,8 +22,16 @@
                         class="btn btn-sm bold">
                         <i class="fa fa-solid fa-share"></i> Chia sẻ</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="{{ asset($item->file_path) }}" class="btn btn-sm bold btn-download-cv" download>
+                        <i class="fa fa-solid fa-down-to-line"></i> Tải xuống
+                    </a>
+                </li> -->
+                <li>
+                    @php
+                        $sanitizedFileName = str_replace(' ', '-', $item->cv_file);
+                    @endphp
+                    <a href="{{ asset($item->file_path) }}" class="btn btn-sm bold btn-download-cv" download="{{ $sanitizedFileName }}.pdf">
                         <i class="fa fa-solid fa-down-to-line"></i> Tải xuống
                     </a>
                 </li>
