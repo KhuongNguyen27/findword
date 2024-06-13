@@ -18,5 +18,6 @@ Route::group([
     'middleware' => ['auth','auth.admin']
 ], function () {
     Route::get('cv/{id}', [AdminPostController::class, 'showCV'])->name('cv.show');
+    Route::get('user-cvs/{user_id}', [AdminPostController::class, 'show_detail_cv'])->name('user_cvs');
     Route::resource('adminpost', AdminPostController::class)->names('adminpost');
 });

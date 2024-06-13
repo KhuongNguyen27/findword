@@ -23,8 +23,7 @@
                         </p>
                         <p class="fanpages-f"> <i class="fab fa-facebook-square page-icon"></i><a href="https://www.facebook.com/timviecsieunhanhOfficial" class="fanpages">timviecsieunhanhOfficial</a></p>
 
-                        <p>Số Giấy chứng nhận đăng ký doanh nghiệp: 3301729747, cấp ngày 25/03/2024 do Sở Kế hoạch và
-                            Đầu tư tỉnh Thừa Thiên Huế cấp.</p>
+                        <p>Số Giấy chứng nhận đăng ký doanh nghiệp: 3301729747.</p>
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\AdminUser\Database\factories\AdminUserFactory;
 use Modules\Staff\app\Models\UserStaff;
+use Modules\AdminPost\app\Models\UserCV;
 use DB;
 use App\Models\UserEmployee;
 use App\Traits\UploadFileTrait;
@@ -37,6 +38,11 @@ class AdminUser extends Model
     {
         //return AdminUserFactory::new();
     }
+    public function userCVs()
+    {
+        return $this->hasMany(UserCV::class, 'user_id');
+    }
+
     public static function getItems($request = null, $limit = 20, $type = '')
     {
         $query = self::query(true);
@@ -51,6 +57,7 @@ class AdminUser extends Model
         if ($request->email) {
             $query->where('email', 'LIKE', '%' . $request->email . '%');
         }
+        
         if ($request->phone) {
             $phone = $request->phone;
             $query->whereHas('staff', function ($query) use ($phone) {
@@ -234,7 +241,7 @@ class AdminUser extends Model
         return $item->delete();
     }
 
-
+    
     // Custom relation
     public function staff()
     {
