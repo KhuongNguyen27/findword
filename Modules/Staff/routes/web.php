@@ -62,7 +62,10 @@ Route::group([
     Route::get('register',[AuthController::class,'register'])->name('register');
     Route::post('postRegister',[AuthController::class,'postRegister'])->name('postRegister');
 
-    // Route::get('/verification',[AuthController::class,'verification'])->name('verification');
+    Route::get('/verification/{email}',[AuthController::class,'verification'])->name('verification');
+    Route::post('/confirm', [AuthController::class, 'confirm'])->name('confirm');
+    Route::post('resend', [AuthController::class, 'resend'])->name('resend');
+
 
 });
 
