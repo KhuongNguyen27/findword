@@ -3,6 +3,9 @@
 namespace Modules\Staff\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerification;
+
+use App\Models\CodeEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\QueryException;
@@ -37,11 +40,19 @@ class AuthController extends Controller
             return view('staff::auth.login');
         }
     }
+    public function verification($email)
+    {
+        return view('staff::auth.verify-email', compact('email'));
 
+    }
     public function postLogin(StoreLoginRequest $request)
     {
         $dataUser = $request->only('email', 'password');
         $remember = $request->remember ? true : false;
+        $code = CodeEmail::where('email', $request->email)->first();
+        if ($code && !CodeEmail::where('email', $request->email)->first()->status) {
+            return redirect()->route('staff.verification',['email' => $request->email])->with('error', __('Vui lòng nhập mã xác thực'));
+        }
         if (Auth::attempt($dataUser, $remember)) {
             $user = Auth::user();
             $user->last_login = Carbon::now();
@@ -76,12 +87,25 @@ class AuthController extends Controller
                 'phone' => $request->phone,
                 'birthdate' => $request->birthdate,
             ]);
+
+
+            $code = mt_rand(100000, 999999);
+            CodeEmail::create([
+                'email' => $request->email,
+                'code' => $code,
+                'status' => false,
+            ]);
+
+            // Gửi email xác thực
+            Mail::to($request->email)->send(new EmailVerification($code));
+
+
             Notification::route('mail', [
                 env('ADMIN_EMAIL') => env('ADMIN_NAME')
             ])->notify(new Notifications("register", $user->toArray()));
             $message = "Đăng ký thành công";
             DB::commit();
-            return redirect()->route('staff.login')->with('success', $message);
+            return redirect()->route('staff.verification', $user->email)->with('success', $message);
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Bug occurred: ' . $e->getMessage());
@@ -89,7 +113,70 @@ class AuthController extends Controller
         }
     }
 
+    public function confirm(Request $request)
+    {
+        try {
+            // Tìm mã xác thực trong bảng code_email
+            $codeRecord = CodeEmail::where('email', $request->email)->first();
 
+            if (!$codeRecord) {
+                return redirect()->back()->with('error', 'Không tìm thấy mã xác thực cho email này.');
+            }
+
+            // Kiểm tra thời gian kể từ lần gửi cuối cùng
+            $lastSentAt = $codeRecord->last_sent_at;
+            if ($lastSentAt && Carbon::now()->diffInSeconds($lastSentAt) > 60) {
+                return redirect()->back()->with('error', 'Mã xác thực đã hết hạn. Vui lòng yêu cầu gửi lại mã.');
+            }
+
+            // Kiểm tra xem mã xác thực nhập vào có khớp với mã trong bảng không
+            if ($codeRecord->code == $request->code) {
+                // Cập nhật trạng thái của mã xác thực
+                $codeRecord->status = true;
+                $codeRecord->save();
+
+                return redirect()->route('staff.login')->with('success', 'Xác thực email thành công. Bạn có thể đăng nhập ngay bây giờ.');
+            } else {
+                return redirect()->back()->with('error', 'Mã xác thực không đúng.');
+            }
+        } catch (\Exception $e) {
+            Log::error('Xác thực email không thành công: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi trong quá trình xác thực email.');
+        }
+    }
+
+
+    public function resend(Request $request)
+    {
+        try {
+            $email = $request->email;
+            $codeRecord = CodeEmail::where('email', $email)->first();
+
+            if (!$codeRecord) {
+                return redirect()->back()->with('error', 'Không tìm thấy mã xác thực cho email này.');
+            }
+
+             // Kiểm tra thời gian kể từ lần gửi cuối cùng
+             $lastSentAt = $codeRecord->last_sent_at;
+             if ($lastSentAt && Carbon::now()->diffInSeconds($lastSentAt) < 60) {
+                 return redirect()->back()->with('error', 'Bạn cần chờ ít nhất 1 phút trước khi yêu cầu gửi lại mã xác thực.');
+             }
+             // Gửi lại mã xác thực mới
+             $newCode = mt_rand(100000, 999999);
+             $codeRecord->code = $newCode;
+             $codeRecord->status = false;
+             $codeRecord->last_sent_at = Carbon::now();
+             $codeRecord->save();
+
+            // Gửi lại email xác thực mới
+            Mail::to($email)->send(new EmailVerification($newCode));
+
+            return redirect()->back()->with('success', 'Đã gửi lại mã xác thực thành công.');
+        } catch (\Exception $e) {
+            Log::error('Gửi lại mã xác thực không thành công: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi trong quá trình gửi lại mã xác thực.');
+        }
+    }
 
 
     public function redirectToFacebook()
@@ -107,12 +194,14 @@ class AuthController extends Controller
                 return redirect()->intended('staff');
             } else {
                 $newUser = User::firtsOrCreate(
-                    ['email' => $socialUser->email], [
-                    'name' => $socialUser->name,
-                    'facebook_id' => $socialUser->id,
-                ]);
+                    ['email' => $socialUser->email],
+                    [
+                        'name' => $socialUser->name,
+                        'facebook_id' => $socialUser->id,
+                    ]
+                );
                 $user_staff = UserStaff::create(
-                    ['user_id'=> $newUser->id],
+                    ['user_id' => $newUser->id],
                 );
                 Auth::login($newUser);
                 DB::commit();
@@ -140,7 +229,7 @@ class AuthController extends Controller
                 return redirect()->intended('staff');
             } else {
                 $newUser = User::firstOrCreate(
-                    ['email' => $socialUser->email], 
+                    ['email' => $socialUser->email],
                     [
                         'name' => $socialUser->name,
                         'email' => $socialUser->email,
@@ -149,9 +238,10 @@ class AuthController extends Controller
                         'status' => 1,
                         'position' => 0,
                         'google_id' => $socialUser->id,
-                    ]);
+                    ]
+                );
                 $user_staff = UserStaff::create(
-                    ['user_id'=> $newUser->id,]
+                    ['user_id' => $newUser->id,]
                 );
                 Auth::login($newUser);
                 DB::commit();

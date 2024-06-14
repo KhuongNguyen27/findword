@@ -80,11 +80,29 @@
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li>
+                                    <li>
+                                            @php
+                                            $sanitizedFileName = str_replace(' ', '-', $item->cv_file);
+                                            @endphp
+                                            @if(!is_null($item->file_path))
+                                            <a class="dropdown-item" href="{{ asset($item->file_path) }}"
+                                                download="{{ $sanitizedFileName }}.pdf">
+                                                <i class="fa fa-solid fa-down-to-line"></i> Tải xuống
+                                            </a>
+                                            <!-- <a class="dropdown-item"  href="{{ asset($item->file_path) }}">
+                                                <i class="fa fa-solid fa-down-to-line"></i> Xem chi tiết
+                                            </a> -->
+                                            @else
+                                            <a class="dropdown-item" href="{{ route('cv.show', ['id' => $item->id]) }}">
+                                                <i class="fa fa-solid fa-down-to-line"></i> Xem chi tiết
+                                            </a>
+                                            @endif
+                                        </li>
+                                        <!-- <li>
                                             <a class="dropdown-item" href="{{ route('cv.show', ['id' => $item->id]) }}">
                                                 {{ __('show') }}
                                             </a>
-                                        </li>
+                                        </li> -->
 
                                         <!-- <li>
                                             @if(!is_null($item->file_path))
@@ -102,7 +120,7 @@
                                             </a>
                                             @endif
                                         </li> -->
-                                        <li>
+                                        <!-- <li>
                                             @if(!is_null($item->file_path))
                                             @php
                                             $sanitizedFileName = str_replace(' ', '-', $item->cv_file);
@@ -112,7 +130,7 @@
                                                 <i class="fa fa-solid fa-down-to-line"></i> Tải xuống
                                             </a>
                                             @endif
-                                        </li>
+                                        </li> -->
 
                                         <!-- <li>
                                             <a class="dropdown-item"
