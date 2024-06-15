@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CountryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CareerController;
@@ -115,4 +116,8 @@ Route::prefix('themes')->group(function () {
     Route::get('/profile', function () {
         return view('website/dashboards/profile/index');
     })->name('profile.index');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::resource('countries', CountryController::class);
 });
