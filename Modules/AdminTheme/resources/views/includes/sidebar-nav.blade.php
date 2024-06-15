@@ -88,6 +88,11 @@
                     <span class="material-symbols-outlined">arrow_right</span>{{__('card_job')}}
                 </a>
             </li>
+            <li>
+                <a href="{{ route('countries.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span>{{__('Quốc Gia')}}
+                </a>
+            </li>
         </ul>
     </li>
     <li class="menu-label">{{ __('system') }}</li>
