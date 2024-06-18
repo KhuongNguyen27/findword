@@ -15,6 +15,7 @@ use App\Models\Level;
 use App\Models\FormWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
 	 */
 	public function index(Request $request)
 	{
+		$banners = Banner::where('group_banner', 'Top Banner')->orderBy('position')->get();
+		$sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
+		$bottomBanners = Banner::where('group_banner', 'Bottom Banner')->orderBy('position')->get();
+
 
 		$degrees = Level::where('status', Level::ACTIVE)->orderBy('position')->get();
 		$formworks = FormWork::where('status', FormWork::ACTIVE)->orderBy('position')->get();
@@ -46,37 +51,35 @@ class HomeController extends Controller
 		$hot_jobs = Job::select('jobs.*')->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 			->where('jobs.salarymax', '>=', 10000000)
-			->orWhere('jobs.salaryMax','');
-			// ->where('jobs.wage_id', '>=', 2)
-			if($request->name){
-				$hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+			->orWhere('jobs.salaryMax', '');
+		// ->where('jobs.wage_id', '>=', 2)
+		if ($request->name) {
+			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
+		}
+		if ($request->province_id) {
+			$hot_jobs->where('province_id', $request->province_id);
+		}
+		if ($request->rank_id) {
+			$hot_jobs->where('rank_id', $request->rank_id);
+		}
+		if ($request->degree_id) {
+			$hot_jobs->where('degree_id', $request->degree_id);
+		}
+		if ($request->formwork_id) {
+			$hot_jobs->where('formwork_id', $request->formwork_id);
+		}
+		if ($request->wage_id) {
+			$wage_id = $request->wage_id;//'10-15'
+			$wage = explode('-', $wage_id);
+			if ($wage[0] == 0) {
+				$hot_jobs->where('salaryMin', '<=', $wage[1]);
+			} elseif ($wage[1] == 0) {
+				$hot_jobs->where('salaryMin', '>=', $wage[0]);
+			} else {
+				$hot_jobs->whereBetween('salaryMin', [$wage[0], $wage[1]]);
 			}
-			if($request->province_id){
-				$hot_jobs->where('province_id', $request->province_id);
-			}
-			if( $request->rank_id ){
-				$hot_jobs->where('rank_id', $request->rank_id);
-			}
-			if( $request->degree_id ){
-				$hot_jobs->where('degree_id', $request->degree_id);
-			}
-			if( $request->formwork_id ){
-				$hot_jobs->where('formwork_id', $request->formwork_id);
-			}
-			if( $request->wage_id ){
-				$wage_id = $request->wage_id;//'10-15'
-				$wage = explode('-', $wage_id);
-				if($wage[0] == 0){
-					$hot_jobs->where('salaryMin','<=', $wage[1]);
-				}
-				elseif($wage[1] == 0){
-					$hot_jobs->where('salaryMin','>=', $wage[0]);
-				}
-				else{
-					$hot_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
-				}
-			}
-			$hot_jobs->orderByRaw("CASE
+		}
+		$hot_jobs->orderByRaw("CASE
 					WHEN job_packages.slug = 'tin-hot-vip' THEN 1
 					WHEN job_packages.slug = 'tin-gap-vip' THEN 2
 					WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -86,7 +89,7 @@ class HomeController extends Controller
 					ELSE 7
 				END")
 			->orderBy('jobs.id', 'DESC')->limit(20);
-			$hot_jobs = $hot_jobs->get()->chunk(10);
+		$hot_jobs = $hot_jobs->get()->chunk(10);
 
 		// Việc làm trong nước hôm nay
 		$startDate = Carbon::now()->subHours(72);
@@ -95,37 +98,35 @@ class HomeController extends Controller
 			->where('jobs.status', 1)
 			// ->whereBetween('jobs.created_at', [$startDate, $endDate])
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-			// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
-			// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
-			if($request->name){
-				$vip_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+		// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
+		// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
+		if ($request->name) {
+			$vip_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
+		}
+		if ($request->province_id) {
+			$vip_jobs->where('province_id', $request->province_id);
+		}
+		if ($request->rank_id) {
+			$vip_jobs->where('rank_id', $request->rank_id);
+		}
+		if ($request->degree_id) {
+			$vip_jobs->where('degree_id', $request->degree_id);
+		}
+		if ($request->formwork_id) {
+			$vip_jobs->where('formwork_id', $request->formwork_id);
+		}
+		if ($request->wage_id) {
+			$wage_id = $request->wage_id;//'10-15'
+			$wage = explode('-', $wage_id);
+			if ($wage[0] == 0) {
+				$vip_jobs->where('salaryMin', '<=', $wage[1]);
+			} elseif ($wage[1] == 0) {
+				$vip_jobs->where('salaryMin', '>=', $wage[0]);
+			} else {
+				$vip_jobs->whereBetween('salaryMin', [$wage[0], $wage[1]]);
 			}
-			if($request->province_id){
-				$vip_jobs->where('province_id', $request->province_id);
-			}
-			if( $request->rank_id ){
-				$vip_jobs->where('rank_id', $request->rank_id);
-			}
-			if( $request->degree_id ){
-				$vip_jobs->where('degree_id', $request->degree_id);
-			}
-			if( $request->formwork_id ){
-				$vip_jobs->where('formwork_id', $request->formwork_id);
-			}
-			if( $request->wage_id ){
-				$wage_id = $request->wage_id;//'10-15'
-				$wage = explode('-', $wage_id);
-				if($wage[0] == 0){
-					$vip_jobs->where('salaryMin','<=', $wage[1]);
-				}
-				elseif($wage[1] == 0){
-					$vip_jobs->where('salaryMin','>=', $wage[0]);
-				}
-				else{
-					$vip_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
-				}
-			}
-			$vip_jobs->orderByRaw("CASE
+		}
+		$vip_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
                 WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -135,7 +136,7 @@ class HomeController extends Controller
                 ELSE 7
             END")
 			->orderBy('jobs.id', 'DESC')->limit(10)->get();
-			$vip_jobs = $vip_jobs->get()->chunk(10);
+		$vip_jobs = $vip_jobs->get()->chunk(10);
 
 		// Top công ty hàng đầu
 		$employees = UserEmployee::where('is_top', 1)->limit(12)->get();
@@ -217,7 +218,11 @@ class HomeController extends Controller
 			'nhu_cau_values' => $nhu_cau_values,
 			'job_packages' => $job_packages,
 			'countries' => $countries,
-			'title' => 'Việc làm trong nước hôm nay'
+			'title' => 'Việc làm trong nước hôm nay',
+			'banners' => $banners,
+			'sidebarBanners' => $sidebarBanners,
+			'bottomBanners' => $bottomBanners,
+
 		];
 		return view('website.homes.index', $params);
 	}
@@ -232,35 +237,33 @@ class HomeController extends Controller
 		$wages = Wage::where('status', 1)->orderBy('position')->get();
 		$query = Job::select('jobs.*')->where('jobs.status', 1);
 
-		if($request->name){
-            $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
-        }
-		if($request->province_id){
+		if ($request->name) {
+			$query->where('jobs.name', 'LIKE', '%' . $request->name . '%');
+		}
+		if ($request->province_id) {
 			$query->where('province_id', $request->province_id);
 		}
-		if( $request->wage_id ){
-            $wage_id = $request->wage_id;//'10-15'
-            $wage = explode('-', $wage_id);
-            if($wage[0] == 0){
-                $query->where('salaryMin','<=', $wage[1]);
-            }
-            elseif($wage[1] == 0){
-                $query->where('salaryMin','>=', $wage[0]);
-            }
-            else{
-                $query->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
-            }
-        }
-     
-        if( $request->rank_id ){
-            $query->where('rank_id', $request->rank_id);
-        }
-        if( $request->degree_id ){
-            $query->where('degree_id', $request->degree_id);
-        }
-        if( $request->formwork_id ){
-            $query->where('formwork_id', $request->formwork_id);
-        }
+		if ($request->wage_id) {
+			$wage_id = $request->wage_id;//'10-15'
+			$wage = explode('-', $wage_id);
+			if ($wage[0] == 0) {
+				$query->where('salaryMin', '<=', $wage[1]);
+			} elseif ($wage[1] == 0) {
+				$query->where('salaryMin', '>=', $wage[0]);
+			} else {
+				$query->whereBetween('salaryMin', [$wage[0], $wage[1]]);
+			}
+		}
+
+		if ($request->rank_id) {
+			$query->where('rank_id', $request->rank_id);
+		}
+		if ($request->degree_id) {
+			$query->where('degree_id', $request->degree_id);
+		}
+		if ($request->formwork_id) {
+			$query->where('formwork_id', $request->formwork_id);
+		}
 		$newWages = [];
 		foreach ($wages as $wage) {
 			$newWages[$wage->salaryMin . '-' . $wage->salaryMax] = $wage->name;
@@ -282,12 +285,12 @@ class HomeController extends Controller
 					->where('jobs.status', 1)
 					// ->whereBetween('jobs.created_at', [$startDate, $endDate])
 					->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-					// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
-					// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
-					if($request->province_id){
-						$today_jobs->where('province_id', $request->province_id);
-					}
-					$today_jobs->orderByRaw("CASE
+				// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
+				// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
+				if ($request->province_id) {
+					$today_jobs->where('province_id', $request->province_id);
+				}
+				$today_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
                 WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -298,9 +301,9 @@ class HomeController extends Controller
            		 END")
 					->orderBy('jobs.id', 'DESC')
 					->limit(12);
-					
-					$today_jobs=$today_jobs->get()->chunk(9);
-					break;
+
+				$today_jobs = $today_jobs->get()->chunk(9);
+				break;
 		}
 
 		$view_path = 'website.homes.index';
@@ -326,7 +329,7 @@ class HomeController extends Controller
 				'countries' => $countries,
 				'title' => $title,
 				'job_type' => $job_type,
-				'special_employee_jobs'=>$this->_special_employee_jobs(),
+				'special_employee_jobs' => $this->_special_employee_jobs(),
 			];
 		return view($view_path, $params);
 	}
@@ -356,36 +359,34 @@ class HomeController extends Controller
 		$hot_jobs = $query
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
 			->where('jobs.salaryMax', '>=', 10000000)
-			->orWhere('jobs.salaryMax','');
-			if($request->name){
-				$hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+			->orWhere('jobs.salaryMax', '');
+		if ($request->name) {
+			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
+		}
+		if ($request->province_id) {
+			$hot_jobs->where('province_id', $request->province_id);
+		}
+		if ($request->rank_id) {
+			$hot_jobs->where('rank_id', $request->rank_id);
+		}
+		if ($request->degree_id) {
+			$hot_jobs->where('degree_id', $request->degree_id);
+		}
+		if ($request->formwork_id) {
+			$hot_jobs->where('formwork_id', $request->formwork_id);
+		}
+		if ($request->wage_id) {
+			$wage_id = $request->wage_id;//'10-15'
+			$wage = explode('-', $wage_id);
+			if ($wage[0] == 0) {
+				$hot_jobs->where('salaryMin', '<=', $wage[1]);
+			} elseif ($wage[1] == 0) {
+				$hot_jobs->where('salaryMin', '>=', $wage[0]);
+			} else {
+				$hot_jobs->whereBetween('salaryMin', [$wage[0], $wage[1]]);
 			}
-			if($request->province_id){
-				$hot_jobs->where('province_id', $request->province_id);
-			}
-			if( $request->rank_id ){
-				$hot_jobs->where('rank_id', $request->rank_id);
-			}
-			if( $request->degree_id ){
-				$hot_jobs->where('degree_id', $request->degree_id);
-			}
-			if( $request->formwork_id ){
-				$hot_jobs->where('formwork_id', $request->formwork_id);
-			}
-			if( $request->wage_id ){
-				$wage_id = $request->wage_id;//'10-15'
-				$wage = explode('-', $wage_id);
-				if($wage[0] == 0){
-					$hot_jobs->where('salaryMin','<=', $wage[1]);
-				}
-				elseif($wage[1] == 0){
-					$hot_jobs->where('salaryMin','>=', $wage[0]);
-				}
-				else{
-					$hot_jobs->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
-				}
-			}
-			$hot_jobs=$hot_jobs->orderByRaw("CASE
+		}
+		$hot_jobs = $hot_jobs->orderByRaw("CASE
 			WHEN job_packages.slug = 'tin-hot-vip' THEN 1
 			WHEN job_packages.slug = 'tin-gap-vip' THEN 2
 			WHEN job_packages.slug = 'tin-vip' THEN 3
@@ -411,21 +412,22 @@ class HomeController extends Controller
 				'formworks' => $formworks,
 				'job_packages' => $job_packages,
 				'countries' => $countries,
-				'special_employee_jobs'=>$this->_special_employee_jobs(),
+				'special_employee_jobs' => $this->_special_employee_jobs(),
 
 
 			];
 		return view('website.homes.home-sub-index', $params);
 	}
-	private function _special_employee_jobs(){
-        $employee_id = 373180;
-        $employee = UserEmployee::where('user_id',$employee_id)->first();
-        $jobs = Job::where('user_id',$employee_id)
-        ->where('status',1)
-        ->limit(10)->get();
-        return [
-            'employee' => $employee,
-            'jobs' => $jobs,
-        ];
-    }
+	private function _special_employee_jobs()
+	{
+		$employee_id = 373180;
+		$employee = UserEmployee::where('user_id', $employee_id)->first();
+		$jobs = Job::where('user_id', $employee_id)
+			->where('status', 1)
+			->limit(10)->get();
+		return [
+			'employee' => $employee,
+			'jobs' => $jobs,
+		];
+	}
 }

@@ -105,6 +105,10 @@
         </a>
         <ul class="mm-collapse">
             <li>
+                <a href="{{ route('banners.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span> {{__('Banner')}} </a>
+            </li>
+            <li>
                 <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
                     <span class="material-symbols-outlined">arrow_right</span> {{__('post')}} </a>
             </li>
