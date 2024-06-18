@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CountryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -120,4 +121,5 @@ Route::prefix('themes')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::resource('countries', CountryController::class);
+    Route::resource('banners', BannerController::class);
 });

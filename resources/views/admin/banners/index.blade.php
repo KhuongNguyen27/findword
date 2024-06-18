@@ -1,15 +1,21 @@
 @extends('admintheme::layouts.master')
 @section('content')
 @include('admintheme::includes.globals.breadcrumb',[
-'page_title' => 'Quốc Gia',
+'page_title' => 'Banner',
 'actions' => [
-'add_new' => route('countries.create',['type'=>request()->type]),
+'add_new' => route('banners.create',['type'=>request()->type]),
 //'export' => route($route_prefix.'export'),
 ]
 ])
-
+<style>
+.product-table .product-box img {
+    width: 117px;
+    height: 55px;
+    border-radius: 0.25rem;
+}
+</style>
 <!-- Item actions -->
-<form action="{{ route('countries.index') }}" method="get">
+<form action="{{ route('banners.index') }}" method="get">
     <input type="hidden" name="type" value="{{ request()->type }}">
     <div class="row g-3">
         <div class="col-auto flex-grow-1">
@@ -18,7 +24,7 @@
                     value="{{ request()->name }}">
             </div>
         </div>
-
+        
         <div class="col-auto">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Search</button>
@@ -38,6 +44,10 @@
                                 <input class="form-check-input" type="checkbox">
                             </th>
                             <th>{{ __('adminpost::table.name') }}</th>
+                            <th>{{ __('adminpost::table.image') }}</th>
+                            <th>{{ __('Link') }}</th>
+                            <th>{{ __('Position') }}</th>
+                            <th>{{ __('Group') }}</th>
                             <th>{{ __('adminpost::table.action') }}</th>
                         </tr>
                     </thead>
@@ -50,13 +60,29 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-3">
-
+                                 
                                     <div class="product-info">
                                         <a href="javascript:;" class="product-title">{{ $item->name }}</a>
                                     </div>
                                 </div>
                             </td>
                             <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="product-box">
+                                        <img src="{{ $item->image_fm }}" alt="">
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td>
+                                
+                                        <img src="{{ $item->image_fm }}" alt="">
+                                 
+                                </div>
+                            </td> -->
+                          <td>{{$item->link}}</td>
+                          <td>{{$item->position}}</td>
+                          <td>{{$item->group_banner}}</td>
+                          <td>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
                                         type="button" data-bs-toggle="dropdown">
@@ -65,12 +91,12 @@
                                     <ul class="dropdown-menu">
                                         <li>
                                             <a class="dropdown-item"
-                                                href="{{ route('countries.edit',['country' => $item->id]) }}">
+                                                href="{{ route('banners.edit',['banner' => $item->id]) }}">
                                                 {{ __('edit') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('countries.destroy', ['country' => $item->id]) }}"
+                                            <form action="{{ route('banners.destroy', ['banner' => $item->id]) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
