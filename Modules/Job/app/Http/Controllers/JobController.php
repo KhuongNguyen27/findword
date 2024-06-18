@@ -2,6 +2,7 @@
 
 namespace Modules\Job\app\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -32,6 +33,7 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
+        $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $path = request()->getPathInfo();
         $segment = Str::after($path, '/jobs');
         $query = $this->model::query();
@@ -84,7 +86,8 @@ class JobController extends Controller
         $param = [
             'items' => $paginatedItems,
             'request' => $request,
-            'careers' => $careers
+            'careers' => $careers,
+            'sidebarBanners' => $sidebarBanners,
         ];
         return view($this->link_view . 'index', $param);
     }
@@ -118,6 +121,7 @@ class JobController extends Controller
         if ($career_id) {
             $job_relate_to = $model->getJobforCareerId($career_id->career_id);
         }
+        $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $job_employ = Job::where('user_id', $job->user_id)->get();
         $moreInformation = $job->more_information ?? null;
         $params = [
@@ -127,6 +131,8 @@ class JobController extends Controller
             'job_employ' => $job_employ,
             'moreInformation'=>$moreInformation,
             'international'=> $international,
+            'sidebarBanners'=> $sidebarBanners,
+            
             
         ];
         return view('job::jobs.show', $params);

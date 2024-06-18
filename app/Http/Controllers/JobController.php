@@ -17,11 +17,15 @@ use App\Models\FormWork;
 use App\Models\JobJobTag;
 use App\Models\JobTag;
 use Carbon\Carbon;
+use App\Models\Banner;
+
 use Illuminate\Support\Str;
 class JobController extends Controller
 {
     // Trong nước
     public function vnjobs(Request $request, $job_type = ''){
+
+        $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
         $job_categories = Career::where('status', 1)->orderBy('position')->get()->chunk(9);
@@ -294,6 +298,8 @@ class JobController extends Controller
             'job_packages'=> $job_packages,
             'countries'=>$countries,
             'special_employee_jobs'=>$this->_special_employee_jobs(),
+            'sidebarBanners' => $sidebarBanners,
+
         ];
         return view($view_path,$params);
     }
@@ -311,6 +317,7 @@ class JobController extends Controller
             'tren_50'=>'Trên 50 triệu',
             'thoa_thuan'=>'Thỏa thuận'
         ];
+        $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
@@ -581,6 +588,8 @@ class JobController extends Controller
             'job_packages' => $job_packages,
             'countries'=>$countries,
             'special_employee_jobs'=>$this->_special_employee_jobs(),
+            'sidebarBanners' => $sidebarBanners,
+
         ];
         return view($view_path,$params);
     }
