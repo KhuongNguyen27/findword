@@ -3,72 +3,48 @@
 namespace Modules\AdminHome\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Carbon\Carbon;
-use App\Models\User;
+use DateTime;
+use Illuminate\Support\Facades\DB;
+use Modules\AdminUser\app\Models\AdminUser;
+use Modules\Employee\app\Models\UserJobApply;
+use Modules\Transaction\app\Models\Transaction;
 
 class AdminHomeController extends Controller
 {
+    protected $model        = AdminUser::class;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $today = Carbon::now()->format('Y-m-d');
-        //employee
-            $total_employeer_create_today = User::where('type','employee')->whereDate('created_at',$today)->count();
-            $total_employeer = User::where('type','employee')->count();
-            // Số lượng tài khoản NTD tồn tại trong website
-            $total_employee_in_website = 0;
-            //số lượt NTD truy cập website
-            $total_employee_access_website = 0;
-            //số lượng tin đăng tuyển dụng
-            $total_jobs = 0;
+        $countRegisterToday = $this->model::countRegisterToday();
+        $countStaffAndEmployee = $this->model::countStaffAndEmployee();
+        $userCountAccess = $this->model::getCountAccess();
+        $objectCountJob  = Job::select(DB::raw('sum(views) as sum_views'),DB::raw('count(*) as count_job'))->first();
+        $countJobApply   = UserJobApply::count();
+        $userCountAccessLastMonth = $this->model::getAccessLastMonth();
+        $ratioHoldEmployee = (float) number_format($userCountAccessLastMonth->count_employee / $countStaffAndEmployee->count_employee *100,3);
+        $ratioHoldStaff = (float) number_format($userCountAccessLastMonth->count_staff / $countStaffAndEmployee->count_staff *100, 3);
+        $ratioJobApply = $countJobApply / $objectCountJob->count_job * 100;
+        $now = new DateTime();
 
-        //staff
-            $total_staff = User::where('type','staff')->count();
-            // Số lượng tài khoản UV tồn tại trong website
-            $total_staff_in_website = 0;
-            //Số lượt tài khoản UV truy cập website
-            $total_staff_access_website = 0;
-            $total_staff_create_today = User::where('type','staff')->whereDate('created_at',$today)->count();
-            
-        //query tổng:
-            //Số lần xem bài tin tuyển dụng
-            $total_view_jobs = 0;
-            // số lượng tin tuyển dụng có lượt nộp hồ sơ
-            $total_job_has_aplicaton = 0;
-            //Tỉ lệ giữ chân tài khoản NTD 
-            $retention_rate_employee = 0;
-            //Tỉ lệ giữ chân tài khoản UV
-            $retention_rate_staff = 0;
-            //Tỉ lệ rời bỏ của NTD
-            $churn_rate_employee = 0;
-            //Tỉ lệ rời bỏ của UV
-            $churn_rate_staff = 0;
-            //Tỉ lệ Tin tuyển dụng có hồ sơ ứng tuyển
-            $retention_rate_jobs_has_cv_aplication = 0;
-            //Tir lệ Nguồn truy cập website
-            $retention_rate_access_source_website = 0;
+        $now->modify('first day of this month');
+
+        $firstDayOfMonth = $now->format('Y-m-d');
+        $retention_rate_access_source_website = 0;
         $param = [
-            'total_employeer_create_today' => $total_employeer_create_today,
-            'total_employeer' => $total_employeer,
-            'total_staff' => $total_staff,
-            'total_staff_create_today' => $total_staff_create_today,
-            'total_employee_in_website' => $total_employee_in_website,
-            'total_employee_access_website' => $total_employee_access_website,
-            'total_jobs' => $total_jobs,
-            'total_staff_in_website' => $total_staff_in_website,
-            'total_staff_access_website' => $total_staff_access_website,
-            'total_view_jobs' => $total_view_jobs,
-            'total_job_has_aplicaton' => $total_job_has_aplicaton,
-            'retention_rate_employee' => $retention_rate_employee,
-            'retention_rate_staff' => $retention_rate_staff,
-            'churn_rate_employee' => $churn_rate_employee,
-            'churn_rate_staff' => $churn_rate_staff,
-            'retention_rate_jobs_has_cv_aplication' => $retention_rate_jobs_has_cv_aplication,
+            'countRegisterToday' => $countRegisterToday,
+            'countStaffAndEmployee' => $countStaffAndEmployee,
+            'userCountAccess' => $userCountAccess,
+            'countJobApply' => $countJobApply,
+            'ratioHoldStaff' => $ratioHoldStaff,
+            'ratioHoldEmployee' => $ratioHoldEmployee,
+            'objectCountJob' => $objectCountJob,
+            'ratioJobApply' => $ratioJobApply,
+            'firstDayOfMonth' => $firstDayOfMonth,
             'retention_rate_access_source_website' => $retention_rate_access_source_website
         ];
         return view('adminhome::index',$param);
@@ -120,6 +96,35 @@ class AdminHomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function chartAjax(Request $request)
+    {
+        $startDate     = $request->startDate;
+        $endDate       = $request->endDate;
+        $labels        = [];
+        $total_amounts = [];
+        $transactions  = new Transaction();
+        $transactions  = $transactions->select(
+            DB::raw('date(created_at) as date'),
+            DB::raw('sum(amount) as total_amount'),
+        )->whereDate('created_at', '>=', $startDate)
+        ->whereDate('created_at', '<=', $endDate);
+        $transactions = $transactions->groupBy('date');
+        $transactions = $transactions->get();
+        $startDate              = new DateTime($startDate);
+        $endDate                = new DateTime($endDate);
+        while ($startDate <= $endDate) {
+            $labels[]           = $startDate->format('Y-m-d');
+            $total_amounts[] = $transactions->where('date',  $startDate->format('Y-m-d'))->sum('total_amount');
+            $startDate->modify('+1 day');
+        }
+        $response              = [
+            'labels' => $labels,
+            'total_amounts' => $total_amounts,
+        ];
+
+        return response()->json($response);
     }
 }
 

@@ -76,7 +76,7 @@
                                             </td>
                                             <td>
                                                 <ul class="option-list">
-                                                    <li>{{ $countID[$job->id] }} {{ __('profile') }}</li>
+                                                    <li>{{ $job->job_applications_count }} {{ __('profile') }}</li>
                                                     <li><a href="{{ route('employee.job.showjobcv', $job->id) }}"
                                                             data-text="Xem danh sách ứng tuyển"><span
                                                                 class="la la-eye"></span></a></li>

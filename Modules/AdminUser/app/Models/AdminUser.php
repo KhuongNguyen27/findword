@@ -11,6 +11,7 @@ use Modules\AdminPost\app\Models\UserCV;
 use DB;
 use App\Models\UserEmployee;
 use App\Traits\UploadFileTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 
@@ -265,7 +266,7 @@ class AdminUser extends Model
 
     // public function getImagebusinesslicenseFmAttribute()
     // {
-        
+
     //     if ($this->image_business_license != null) {
     //         if (strpos($this->image_business_license, 'http') !== false) {
     //             return $this->image_business_license;
@@ -274,4 +275,59 @@ class AdminUser extends Model
     //     }
     //     return "/website-assets/images/backgroudemploy.jpg";
     // }
+
+    public static function countRegisterToday()
+    {
+        $query = self::query(true);
+        $query = $query->select(
+            [
+                DB::raw('COUNT(CASE WHEN type = "employee" THEN 1 ELSE NULL END) AS count_employee'),
+                DB::raw('COUNT(CASE WHEN type = "staff" THEN 1 ELSE NULL END) AS count_staff'),
+            ]
+        );
+        $query =  $query->whereDate('created_at', date('Y-m-d'));
+        $items = $query->first();
+        return $items;
+    }
+
+    public static function countStaffAndEmployee()
+    {
+        $query = self::query(true);
+        $query = $query->select(
+            [
+                DB::raw('COUNT(CASE WHEN type = "employee" THEN 1 ELSE NULL END) AS count_employee'),
+                DB::raw('COUNT(CASE WHEN type = "staff" THEN 1 ELSE NULL END) AS count_staff'),
+            ]
+        );
+        $items = $query->first();
+        return $items;
+    }
+
+    public static function getCountAccess()
+    {
+        $query = self::query(true);
+        $query = $query->select(
+            [
+                DB::raw('COUNT(CASE WHEN type = "employee" THEN 1 ELSE NULL END) AS count_employee'),
+                DB::raw('COUNT(CASE WHEN type = "staff" THEN 1 ELSE NULL END) AS count_staff'),
+            ]
+        );
+        $items = $query->whereNotNull('last_login');
+        $items = $query->first();
+        return $items;
+    }
+
+    public static function getAccessLastMonth()
+    {
+        $query = self::query(true);
+        $query = $query->select(
+            [
+                DB::raw('COUNT(CASE WHEN type = "employee" THEN 1 ELSE NULL END) AS count_employee'),
+                DB::raw('COUNT(CASE WHEN type = "staff" THEN 1 ELSE NULL END) AS count_staff'),
+            ]
+        );
+        $items = $query->whereDate('last_login', ">=", Carbon::now()->subDays(30)->format('Y-m-d'));
+        $items = $query->first();
+        return $items;
+    }
 }
