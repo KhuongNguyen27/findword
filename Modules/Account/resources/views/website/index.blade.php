@@ -53,10 +53,10 @@
                                             </div>
                                             <div class="table-footer">
                                                 @if(Auth::user()->verify == $item::ACTIVE)
-                                                <a href="#" class="theme-btn btn-style-three">Tài khoản đã được xác thực</a>
+                                                <a href="#" class="theme-btn btn-style-three">Tài khoản đã được xác minh</a>
                                                 @else
                                                 <a href="{{ Auth::user()->verify == 0 ? route('employee.profile.index') : '' }}"
-                                                    class="theme-btn btn-style-three">Xác thực tài khoản</a>
+                                                    class="theme-btn btn-style-three">Xác minh tài khoản</a>
                                                 @endif
                                             </div>
                                         </div>

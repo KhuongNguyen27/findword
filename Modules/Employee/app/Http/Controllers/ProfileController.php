@@ -31,6 +31,8 @@ class ProfileController extends Controller
     {
         $count_jobs = Job::where('user_id', auth()->user()->id)->count();
         $count_CVapply = UserJobApply::where('user_id', auth()->user()->id)->count();
+
+        // Kiểm tra trường status của người dùng
         return view('employee::profile.dashboard', compact(['count_jobs', 'count_CVapply']));
     }
 

@@ -14,4 +14,16 @@ class CodeEmail extends Model
         'status',
     ];
 
+    const ACTIVE = 1;
+    const INACTIVE = 0;
+    public function getStatusFmAttribute(){
+        switch ($this->status) {
+            case self::ACTIVE:
+                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">'.__('sys.active').'</span>';
+                break;
+            case self::INACTIVE:
+                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">'.__('sys.inactive').'</span>';
+                break;
+        }
+    }
 }

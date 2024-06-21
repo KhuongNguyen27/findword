@@ -51,7 +51,7 @@ class AuthController extends Controller
         $remember = $request->remember ? true : false;
         $code = CodeEmail::where('email', $request->email)->first();
         if ($code && !CodeEmail::where('email', $request->email)->first()->status) {
-            return redirect()->route('staff.verification',['email' => $request->email])->with('error', __('Vui lòng nhập mã xác thực'));
+            return redirect()->route('staff.verification', ['email' => $request->email])->with('error', __('Vui lòng nhập mã xác thực'));
         }
         if (Auth::attempt($dataUser, $remember)) {
             $user = Auth::user();
@@ -88,7 +88,8 @@ class AuthController extends Controller
                 'birthdate' => $request->birthdate,
             ]);
 
-
+            $name = $user->name;
+            // dd($name);
             $code = mt_rand(100000, 999999);
             CodeEmail::create([
                 'email' => $request->email,
@@ -97,7 +98,7 @@ class AuthController extends Controller
             ]);
 
             // Gửi email xác thực
-            Mail::to($request->email)->send(new EmailVerification($code));
+            Mail::to($request->email)->send(new EmailVerification($code, $name));
 
 
             Notification::route('mail', [
@@ -156,20 +157,27 @@ class AuthController extends Controller
                 return redirect()->back()->with('error', 'Không tìm thấy mã xác thực cho email này.');
             }
 
-             // Kiểm tra thời gian kể từ lần gửi cuối cùng
-             $lastSentAt = $codeRecord->last_sent_at;
-             if ($lastSentAt && Carbon::now()->diffInSeconds($lastSentAt) < 60) {
-                 return redirect()->back()->with('error', 'Bạn cần chờ ít nhất 1 phút trước khi yêu cầu gửi lại mã xác thực.');
-             }
-             // Gửi lại mã xác thực mới
-             $newCode = mt_rand(100000, 999999);
-             $codeRecord->code = $newCode;
-             $codeRecord->status = false;
-             $codeRecord->last_sent_at = Carbon::now();
-             $codeRecord->save();
+            // Kiểm tra thời gian kể từ lần gửi cuối cùng
+            $lastSentAt = $codeRecord->last_sent_at;
+            if ($lastSentAt && Carbon::now()->diffInSeconds($lastSentAt) < 60) {
+                return redirect()->back()->with('error', 'Bạn cần chờ ít nhất 1 phút trước khi yêu cầu gửi lại mã xác thực.');
+            }
+
+            // Tìm người dùng từ email
+            $user = User::where('email', $email)->first();
+            if (!$user) {
+                return redirect()->back()->with('error', 'Không tìm thấy người dùng với địa chỉ email này.');
+            }
+            $name = $user->name;
+            // Gửi lại mã xác thực mới
+            $newCode = mt_rand(100000, 999999);
+            $codeRecord->code = $newCode;
+            $codeRecord->status = false;
+            $codeRecord->last_sent_at = Carbon::now();
+            $codeRecord->save();
 
             // Gửi lại email xác thực mới
-            Mail::to($email)->send(new EmailVerification($newCode));
+            Mail::to($email)->send(new EmailVerification($newCode, $name));
 
             return redirect()->back()->with('success', 'Đã gửi lại mã xác thực thành công.');
         } catch (\Exception $e) {
