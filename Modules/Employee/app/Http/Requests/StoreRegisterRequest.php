@@ -19,11 +19,67 @@ class StoreRegisterRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    // public function rules(): array
+    // {
+    //     return [
+    //         'name' => 'required|max:100',
+    //         'email' => 'required|unique:users|email',
+    //         'cp_name' => 'required|max:100',
+    //         'phone' => 'required|min:10|max:11',
+    //         'address' => 'required|max:255',
+    //         'website' => 'required|max:255',
+    //         'password' => 'required|min:6|max:255',
+    //         'repeatpassword'=> 'required|same:password|max:255',
+    //         'image'=> 'required',
+    //         'tax_code'=> 'required',
+    //         'accept_pp' => 'accepted',
+    //         // 'year_of_birth'=> 'required|min:4|max:4',
+    //     ];
+    // }
+
+    // public function messages()
+    // {
+    //     return  [
+    //         'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'name.max' => 'Tên không được vượt quá 100 ký tự!',
+    //         'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'email.unique' => 'Email đã tồn tại!',
+    //         'email.email' => 'Email không hợp lệ!',
+    //         'cp_name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'cp_name.max' => 'Tên không được vượt quá 100 ký tự!',
+    //         'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'phone.max'=>'Vui lòng nhập đúng định dạng số điện thoại',
+    //         'address.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'website.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'password.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'password.min'=>'Mật khẩu tối thiếu là 6 ký tự',
+    //         'password.max'=>'Mật khẩu tối đa là 25 ký tự',
+    //         'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'repeatpassword.same' => 'Mật khẩu không khớp!',
+    //         'image.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'tax_code.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'year_of_birth'=>'Vui lòng nhập đầy đủ thông tin',
+    //         'year_of_birth.min'=>'Năm sinh chưa đúng định dạng',
+    //         'year_of_birth.max'=>'Năm sinh chưa đúng định dạng',
+    //         'accept_pp'=>'Vui lòng đọc kỹ và chấp nhận các điều khoản và chính sách bảo mật'
+    //     ];
+    // }
+
     public function rules(): array
     {
         return [
             'name' => 'required|max:100',
-            'email' => 'required|unique:users|email',
+            'email' => [
+                'required',
+                'unique:users',
+                'email',
+                function ($attribute, $value, $fail) {
+                    $domain = substr(strrchr($value, "@"), 1);
+                    if (strpos($domain, 'gm') === 0 && $domain !== 'gmail.com') {
+                        $fail('Email không đúng định dạng!');
+                    }
+                },
+            ],
             'cp_name' => 'required|max:100',
             'phone' => 'required|min:10|max:11',
             'address' => 'required|max:255',

@@ -12,15 +12,17 @@ class EmailVerification extends Mailable
     use Queueable, SerializesModels;
 
     public $code;
+    public $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($code)
+    public function __construct($code,$name)
     {
         $this->code = $code;
+        $this->name = $name;
     }
 
     /**

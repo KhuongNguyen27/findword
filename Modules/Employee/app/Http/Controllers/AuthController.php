@@ -115,6 +115,8 @@ class AuthController extends Controller
                 'image' => $imagePath
             ]);
 
+            $name = $request->cp_name;
+
             $code = mt_rand(100000, 999999);
             CodeEmail::create([
                 'email' => $request->email,
@@ -123,7 +125,7 @@ class AuthController extends Controller
             ]);
 
             // Gửi email xác thực
-            Mail::to($request->email)->send(new EmailVerification($code));
+            Mail::to($request->email)->send(new EmailVerification($code, $name));
 
 
             $message = "Đăng ký thành công!";
@@ -188,6 +190,15 @@ class AuthController extends Controller
             if ($lastSentAt && Carbon::now()->diffInSeconds($lastSentAt) < 60) {
                 return redirect()->back()->with('error', 'Bạn cần chờ ít nhất 1 phút trước khi yêu cầu gửi lại mã xác thực.');
             }
+
+            // Lấy tên công ty từ cơ sở dữ liệu
+            $user = User::where('email', $email)->first();
+            if (!$user) {
+                return redirect()->back()->with('error', 'Không tìm thấy người dùng với địa chỉ email này.');
+            }
+            $name = $user->userEmployee->name; // Lấy tên công ty từ userEmployee
+            // dd($name);
+            
             // Gửi lại mã xác thực mới
             $newCode = mt_rand(100000, 999999);
             $codeRecord->code = $newCode;
@@ -196,7 +207,7 @@ class AuthController extends Controller
             $codeRecord->save();
 
             // Gửi lại email xác thực mới
-            Mail::to($email)->send(new EmailVerification($newCode));
+            Mail::to($email)->send(new EmailVerification($newCode, $name));
 
             return redirect()->back()->with('success', 'Đã gửi lại mã xác thực thành công.');
         } catch (\Exception $e) {

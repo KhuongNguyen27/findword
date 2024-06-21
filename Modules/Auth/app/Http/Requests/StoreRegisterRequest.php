@@ -19,13 +19,23 @@ class StoreRegisterRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+     public function rules(): array
     {
         return [
             'name' => 'required|max:255',
             'phone' => 'required',
             'birthdate' => 'required',
-            'email' => 'required|unique:users|email',
+            'email' => [
+                'required',
+                'unique:users',
+                'email',
+                function ($attribute, $value, $fail) {
+                    $domain = substr(strrchr($value, "@"), 1);
+                    if (strpos($domain, 'gm') === 0 && $domain !== 'gmail.com') {
+                        $fail('Email không đúng định dạng!');
+                    }
+                },
+            ],
             'password' => 'required',
             'repeatpassword' => 'required|same:password',
             'accept_pp' => 'accepted',
@@ -34,16 +44,46 @@ class StoreRegisterRequest extends FormRequest
 
     public function messages()
     {
-        return  [
+        return [
             'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'name.max' => 'Tên không được vượt quá 255 ký tự!',
             'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'year_of_birth.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'email.unique' => 'Email này đã được sử dụng !',
+            'email.email' => 'Email không đúng định dạng!',
+            'email.email:rfc,dns' => 'Email không đúng định dạng!',
+
             'password.required' => 'Vui lòng nhập đầy đủ thông tin!',
-            'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',     
+            'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',
             'accept_pp.accepted' => 'Vui lòng chấp nhận các điều khoản!',
-            ];
+        ];
     }
+    // public function rules(): array
+    // {
+    //     return [
+    //         'name' => 'required|max:255',
+    //         'phone' => 'required',
+    //         'birthdate' => 'required',
+    //         'email' => 'required|unique:users|email',
+    //         'password' => 'required',
+    //         'repeatpassword' => 'required|same:password',
+    //         'accept_pp' => 'accepted',
+    //     ];
+    // }
+
+    // public function messages()
+    // {
+    //     return  [
+    //         'name.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'name.max' => 'Tên không được vượt quá 255 ký tự!',
+    //         'phone.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'year_of_birth.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'email.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'email.unique' => 'Email này đã được sử dụng !',
+    //         'password.required' => 'Vui lòng nhập đầy đủ thông tin!',
+    //         'repeatpassword.required' => 'Vui lòng nhập đầy đủ thông tin!',     
+    //         'accept_pp.accepted' => 'Vui lòng chấp nhận các điều khoản!',
+    //         ];
+    // }
 }

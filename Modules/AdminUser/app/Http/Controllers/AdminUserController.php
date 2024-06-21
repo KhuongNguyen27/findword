@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
 use Modules\AdminUser\app\Http\Requests\UpdateAdminUserRequest;
+use Illuminate\Support\Facades\DB; // Sử dụng DB facade
 
 class AdminUserController extends Controller
 {
-    protected $view_path    = 'adminuser::';
+    protected $view_path = 'adminuser::';
     protected $route_prefix = 'adminuser.';
-    protected $model        = AdminUser::class;
+    protected $model = AdminUser::class;
     /**
      * Display a listing of the resource.
      */
@@ -26,15 +27,26 @@ class AdminUserController extends Controller
     {
         $type = $request->type ?? '';
         $items = $this->model::getItems($request);
+
+        // Lấy giá trị của cột status từ bảng code_emails
+        $emailStatuses = DB::table('code_emails')
+            ->whereIn('email', $items->pluck('email'))
+            ->pluck('status', 'email');
+
+        // Thêm giá trị email_status vào mỗi item
+        foreach ($items as $item) {
+            $item->email_status = $emailStatuses[$item->email] ?? null;
+        }
+
         $params = [
-            'route_prefix'  => $this->route_prefix,
-            'model'         => $this->model,
-            'items'         => $items
+            'route_prefix' => $this->route_prefix,
+            'model' => $this->model,
+            'items' => $items
         ];
         if ($type) {
-            return view($this->view_path.'types.'.$type.'.index', $params);
+            return view($this->view_path . 'types.' . $type . '.index', $params);
         }
-        return view($this->view_path.'index', $params);
+        return view($this->view_path . 'index', $params);
     }
 
     /**
@@ -44,13 +56,13 @@ class AdminUserController extends Controller
     {
         $type = $request->type ?? '';
         $params = [
-            'route_prefix'  => $this->route_prefix,
-            'model'         => $this->model
+            'route_prefix' => $this->route_prefix,
+            'model' => $this->model
         ];
         if ($type) {
-            return view($this->view_path.'types.'.$type.'.create', $params);
+            return view($this->view_path . 'types.' . $type . '.create', $params);
         }
-        return view($this->view_path.'create', $params);
+        return view($this->view_path . 'create', $params);
     }
 
     /**
@@ -61,8 +73,8 @@ class AdminUserController extends Controller
         // dd($request->type);
         $type = $request->type;
         try {
-            $this->model::saveItem($request,$type);
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.store_item_success'));
+            $this->model::saveItem($request, $type);
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.store_item_success'));
         } catch (QueryException $e) {
             Log::error('Error in store method: ' . $e->getMessage());
             return redirect()->back()->with('error', __('sys.item_not_found'));
@@ -79,61 +91,61 @@ class AdminUserController extends Controller
         try {
             $item = $this->model::findOrFail($request->id);
             $params = [
-                'route_prefix'  => $this->route_prefix,
-                'model'         => $this->model,
-                'item'         => $item
+                'route_prefix' => $this->route_prefix,
+                'model' => $this->model,
+                'item' => $item
             ];
             if ($type == 'staff') {
-                return view($this->view_path.'showStaff', $params);
+                return view($this->view_path . 'showStaff', $params);
             }
             if ($type == 'employee') {
-                return view($this->view_path.'showEmployee', $params);
+                return view($this->view_path . 'showEmployee', $params);
             }
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
+            return redirect()->route($this->route_prefix . 'index')->with('error', __('sys.get_items_error'));
         }
     }
     public function showCV(Request $request)
     {
         $type = $request->type;
         try {
-            $item = $this->model::showCV($request,$type);
+            $item = $this->model::showCV($request, $type);
             $params = [
-                'route_prefix'  => $this->route_prefix,
-                'model'         => $this->model,
-                'item'         => $item
+                'route_prefix' => $this->route_prefix,
+                'model' => $this->model,
+                'item' => $item
             ];
-            return view($this->view_path.'showCV', $params);
+            return view($this->view_path . 'showCV', $params);
         } catch (QueryException $e) {
             Log::error('Error in index method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error',  __('sys.get_items_error'));
+            return redirect()->route($this->route_prefix . 'index')->with('error', __('sys.get_items_error'));
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-public function edit($id)
-{
-    try {
-        $type = request()->type;
-        $item = $this->model::findOrFail($id);
-        
-        // dd($item->employee->background_fm);
-        $params = [
-            'item' => $item, 
-            'model' => $this->model
-        ];
-        if ($type) {
-            return view($this->view_path.'types.'.$type.'.edit', $params);
+    public function edit($id)
+    {
+        try {
+            $type = request()->type;
+            $item = $this->model::findOrFail($id);
+
+            // dd($item->employee->background_fm);
+            $params = [
+                'item' => $item,
+                'model' => $this->model
+            ];
+            if ($type) {
+                return view($this->view_path . 'types.' . $type . '.edit', $params);
+            }
+            return view($this->view_path . 'edit', $params);
+        } catch (ModelNotFoundException $e) {
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->route($this->route_prefix . 'index')->with('error', __('sys.item_not_found'));
         }
-        return view($this->view_path.'edit',  $params);
-    } catch (ModelNotFoundException $e) {
-        Log::error('Item not found: ' . $e->getMessage());
-        return redirect()->route($this->route_prefix.'index')->with('error', __('sys.item_not_found'));
     }
-}
 
     /**
      * Update the specified resource in storage.
@@ -142,8 +154,8 @@ public function edit($id)
     {
         $type = $request->type;
         try {
-            $this->model::updateItem($id,$request,$type);
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
+            $this->model::updateItem($id, $request, $type);
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->back()->with('error', __('sys.item_not_found'));
@@ -164,14 +176,14 @@ public function edit($id)
             $type = $item->type;
             $this->model::deleteItem($id);
 
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.destroy_item_success'));
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.item_not_found'));
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.item_not_found'));
         } catch (QueryException $e) {
             Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.destroy_item_error'));
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.destroy_item_error'));
         }
     }
-    
+
 }
