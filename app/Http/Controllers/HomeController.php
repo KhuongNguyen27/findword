@@ -16,6 +16,7 @@ use App\Models\FormWork;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Banner;
+use Illuminate\Database\Query\JoinClause;
 
 class HomeController extends Controller
 {
@@ -50,7 +51,10 @@ class HomeController extends Controller
 		// Việc làm hấp dẫn
 		$hot_jobs = Job::select('jobs.*')->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
-			->where('jobs.salarymax', '>=', 10000000)
+			->leftJoin("auto_post_job_packages", function (JoinClause $join) {
+				$join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+					->where('auto_post_job_packages.area', '=', 'hap-dan');
+			})->where('jobs.salarymax', '>=', 10000000)
 			->orWhere('jobs.salaryMax', '');
 		// ->where('jobs.wage_id', '>=', 2)
 		if ($request->name) {
@@ -86,7 +90,8 @@ class HomeController extends Controller
 					WHEN job_packages.slug = 'tin-gap' THEN 4
 					WHEN job_packages.slug = 'tin-hot' THEN 5
 					WHEN job_packages.slug = 'tin-thuong' THEN 6
-					ELSE 7
+					WHEN auto_post_job_packages.area is not null THEN 7
+					ELSE 8
 				END")
 			->orderBy('jobs.id', 'DESC')->limit(20);
 		$hot_jobs = $hot_jobs->get()->chunk(10);
@@ -98,6 +103,10 @@ class HomeController extends Controller
 			->where('jobs.status', 1)
 			// ->whereBetween('jobs.created_at', [$startDate, $endDate])
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
+		$vip_jobs = $vip_jobs->leftJoin("auto_post_job_packages", function (JoinClause $join) {
+			$join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+				->where('auto_post_job_packages.area', '=', 'today');
+		});
 		// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 		// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
 		if ($request->name) {
@@ -133,7 +142,8 @@ class HomeController extends Controller
                 WHEN job_packages.slug = 'tin-gap' THEN 4
                 WHEN job_packages.slug = 'tin-hot' THEN 5
                 WHEN job_packages.slug = 'tin-thuong' THEN 6
-                ELSE 7
+				WHEN auto_post_job_packages.area is not null THEN 7
+                ELSE 8
             END")
 			->orderBy('jobs.id', 'DESC')->limit(10)->get();
 		$vip_jobs = $vip_jobs->get()->chunk(10);
