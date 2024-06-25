@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Modules\Account\app\Models\Account;
 use Modules\Account\app\Models\UserAccount;
+use Modules\Employee\app\Models\UserEmployee;
 
 class User extends Authenticatable
 {
@@ -152,5 +153,10 @@ class User extends Authenticatable
             }
         }
         return false;
+    }
+
+    public function userEmployee()
+    {
+        return $this->hasOne(UserEmployee::class);
     }
 }
