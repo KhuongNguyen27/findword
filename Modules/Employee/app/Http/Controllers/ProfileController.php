@@ -18,6 +18,7 @@ use Modules\Employee\app\Http\Requests\ChangepasswordRequest;
 use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
 use Modules\Employee\app\Models\UserJobApply;
+use Illuminate\Support\Facades\Storage;
 
 use App\Traits\UploadFileTrait;
 
@@ -93,11 +94,24 @@ class ProfileController extends Controller
             }
             $userEmployee->slug = $slug;
 
-            $imagePath = '';
-            if( $request->hasFile('image_business_license') ){
-                $imagePath = self::uploadFile( $request->file('image_business_license') ,'employees');
-                $userEmployee->image_business_license = $imagePath;
+            // Xử lý upload nhiều hình ảnh giấy phép kinh doanh
+        if ($request->hasFile('image_business_license')) {
+            $images = $request->file('image_business_license');
+            $imagePaths = [];
+            foreach ($images as $image) {
+                if ($image->isValid()) {
+                    $imagePaths[] = self::uploadFile($image, 'business_licenses');
+                }
             }
+            if ($userEmployee->image_business_license) {
+                $array_bg = json_decode($userEmployee->image_business_license);
+                $result = array_merge($array_bg, $imagePaths);
+                $imagePaths = $result;
+            }
+            $userEmployee->image_business_license = json_encode($imagePaths); // Lưu đường dẫn ảnh dưới dạng chuỗi JSON
+        }
+
+        // Xử lý upload các tệp tin khác
             $imagePath = '';
             if( $request->hasFile('image') ){
                 $imagePath = self::uploadFile( $request->file('image') ,'employees');
@@ -138,5 +152,28 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->newpassword);
         $user->save();
         return redirect()->back()->with('success', 'Mật khẩu đã được thay đổi thành công.');
+    }
+
+    public function deleteImage(Request $request)
+    {
+        $imagePath = $request->input('imageSrc');
+
+        // Tìm và xóa ảnh từ hệ thống tập tin
+        if (Storage::exists(public_path($imagePath))) {
+            Storage::exists(public_path($imagePath));
+        }
+
+        // Cập nhật cơ sở dữ liệu để loại bỏ đường dẫn ảnh
+        // Giả sử bạn lưu đường dẫn ảnh trong một cột image_business_license của bảng employees
+        $user_employee = Auth::user()->userEmployee; // Lấy thông tin employee của người dùng hiện tại
+
+        $images = json_decode($user_employee->image_business_license, true);
+        if (($key = array_search($imagePath, $images)) !== false) {
+            unset($images[$key]);
+        }
+        $user_employee->image_business_license = json_encode(array_values($images));
+        $user_employee->save();
+
+        return response()->json(['success' => true]);
     }
 }

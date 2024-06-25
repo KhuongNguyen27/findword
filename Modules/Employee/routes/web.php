@@ -33,6 +33,7 @@ Route::group([
 	Route::post('/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
 	Route::get('/profile/changepassword', [ProfileController::class, 'editpassword'])->name('profile.editpassword');
 	Route::post('/change-password/{id}', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
+	Route::post('/delete-image', [ProfileController::class, 'deleteImage'])->name('image.delete');
 
 
 	//Job
@@ -76,3 +77,4 @@ Route::group([
 	Route::post('resend', [AuthController::class, 'resend'])->name('resend');
 
 });
+

@@ -1,6 +1,26 @@
 @extends('employee::layouts.master')
 @section('content')
 <!-- Dashboard -->
+<style>
+.image-gallery {
+    display: flex;
+    /* Sử dụng flexbox để sắp xếp ảnh vào hàng ngang */
+    gap: 10px;
+    /* Khoảng cách giữa các ảnh */
+}
+
+.image-gallery img {
+    max-width: 150px;
+    /* Độ rộng tối đa của mỗi ảnh */
+    max-height: 120px;
+    /* Độ cao tối đa của mỗi ảnh */
+
+}
+
+i.fas.fa-times-circle {
+    margin-left: -12px;
+}
+</style>
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
@@ -54,46 +74,56 @@
                                 method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                <div class="col-lg-6">
-                                <span><strong>{{ __('logo_upload') }}</strong></span>
-                                <div class="uploading-outer">
-                                    <div class="uploadButton">
-                                        <input class="uploadButton-input" type="file" name="image"
-                                            accept="image/*, application/pdf" id="upload" multiple
-                                            {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
-                                        <label class="uploadButton-button ripple-effect"
-                                            for="upload">{{ __('logo_browse') }}</label>
-                                        <span class="uploadButton-file-name"></span>
-                                    </div>
-                                    <div class="new-image-preview" style="margin-left:0px">
-                                        <?php if (isset($user_employee->image)):?>
-                                        <img src="<?php echo asset($user_employee->image); ?>" alt="Preview Image">
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="col-lg-6">
-                                <span><strong>{{ __('image_business_license') }}</strong></span>
-                                    <div class="uploading-outer-business">
-                                        <div class="uploadButton-business">
-                                            <input class="uploadButton-business-input" type="file"
-                                                name="image_business_license" accept="image/*, application/pdf"
-                                                id="upload-business-license" multiple
-                                                {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
-                                            <label class="uploadButton-business-button ripple-effect"
-                                                for="upload-business-license">{{ __('image') }}</label>
-                                            <span class="uploadButton-business-file-name"></span>
-                                        </div>
-                                        <div class="new-business-preview" id="business-license-preview"
-                                            style="margin-left:0px">
-                                            <?php if (isset($user_employee->image_business_license)): ?>
-                                            <img src="<?php echo asset($user_employee->image_business_license); ?>"
-                                                alt="Preview Image">
-                                            <?php endif; ?>
+                                    <div class="col-lg-12">
+                                        <span><strong>{{ __('logo_upload') }}</strong></span>
+                                        <div class="uploading-outer">
+                                            <div class="uploadButton">
+                                                <input class="uploadButton-input" type="file" name="image"
+                                                    accept="image/*, application/pdf" id="upload" multiple
+                                                    {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                                <label class="uploadButton-button ripple-effect"
+                                                    for="upload">{{ __('logo_browse') }}</label>
+                                                <span class="uploadButton-file-name"></span>
+                                            </div>
+                                            <div class="new-image-preview" style="margin-left:0px">
+                                                <?php if (isset($user_employee->image)):?>
+                                                <img src="<?php echo asset($user_employee->image); ?>"
+                                                    alt="Preview Image">
+                                                <?php endif; ?>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-12">
+                                        <span><strong>{{ __('image_business_license') }}</strong></span>
+                                        <div class="uploading-outer-business">
+                                            <div class="uploadButton-business">
+                                                <input class="uploadButton-business-input" type="file"
+                                                    name="image_business_license[]" accept="image/*, application/pdf"
+                                                    id="upload-business-license" multiple
+                                                    {{ (isset($user_employee) && $user_employee->user->verify == 1) ? 'disabled' : '' }}>
+                                                <label class="uploadButton-business-button ripple-effect"
+                                                    for="upload-business-license">{{ __('Tối đa 5 ảnh') }}</label>
+                                                <span class="uploadButton-business-file-name"></span>
+                                            </div>
+                                            <div class="new-business-preview image-gallery"
+                                                id="business-license-preview" style="margin-left:0px">
+                                                @if ($user_employee->image_business_license != null)
+                                                @foreach (json_decode($user_employee->image_business_license) as $image)
+                                                <img src="{{ asset($image) }}" alt="Preview Image"
+                                                    style="max-width: 150px; max-height: 120px;">
+                                                <a href="#" class="delete-image" data-image="{{ $image }}"
+                                                    data-url="{{ route('employee.image.delete') }}">
+                                                    <i class="fas fa-times-circle"></i>
+                                                </a>
+
+                                                @endforeach
+                                                @endif
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    </div>
+                                </div>
                                 <script>
                                 const uploadInput = document.querySelector('.uploadButton-input');
                                 const fileNameSpan = document.querySelector('.uploadButton-file-name');
@@ -225,9 +255,6 @@
                                         <p style="color:red">{{ $errors->first('about') }}</p>
                                         @endif
                                     </div>
-                                  
-                                   
-
 
                                     <span><strong> {{ __('background') }} </strong></span>
                                     <div class="uploading-outer-background">
@@ -266,6 +293,45 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
+document.addEventListener('click', function(event) {
+    if (event.target.closest('.delete-image')) {
+        event.preventDefault();
+        let deleteButton = event.target.closest(
+            '.delete-image');
+        let imageSrc = deleteButton.getAttribute('data-image');
+        let deleteUrl = deleteButton.getAttribute('data-url');
+
+        // Thực hiện xóa ảnh khỏi DOM
+        deleteButton.previousElementSibling.remove(); // Xóa ảnh trước thẻ a
+        deleteButton.remove(); // Xóa thẻ a
+
+        // Gửi yêu cầu AJAX để xóa ảnh trên server
+        fetch(deleteUrl, {
+                method: 'POST',
+                body: JSON.stringify({
+                    imageSrc: imageSrc
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // Chèn CSRF token vào tiêu đề yêu cầu nếu cần
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(
+                        'Image deleted successfully.');
+                } else {
+                    console.error('Failed to delete image:',
+                        data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+});
+</script>
+
+<script>
 $(document).ready(function() {
     $('#upload').on('change', function() {
         $('.new-image-preview').hide();
@@ -279,18 +345,49 @@ $(document).ready(function() {
     });
 });
 
+
 $(document).ready(function() {
     $('#upload-business-license').on('change', function() {
         $('.new-business-preview').hide();
         var fileInput = $(this)[0];
-        var file = fileInput.files[0];
-        if (file && file.type.startsWith('image/')) {
-            var businessUrl = URL.createObjectURL(file);
-            $('.uploadButton-business-file-name').html('<img src="' + businessUrlUrl +
-                '" alt="Preview Background" style="max-width: 150px; max-height: 120px;">');
+        var files = fileInput.files;
+        var previewContainer = $('.new-business-preview');
+        previewContainer.empty(); // Xóa các ảnh cũ
+
+        if (files.length > 0) {
+            for (var i = 0; i < files.length && i < 5; i++) { // Giới hạn tối đa 5 ảnh
+                var file = files[i];
+                if (file.type.startsWith('image/')) {
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function(f) {
+                        return function(event) {
+                            var imagePreview = document.createElement('img');
+                            imagePreview.src = event.target.result;
+                            imagePreview.style.maxWidth = '150px';
+                            imagePreview.style.maxHeight = '120px';
+                            previewContainer.append(imagePreview);
+                        };
+                    })(file);
+                    fileReader.readAsDataURL(file);
+                }
+            }
         }
     });
-})
+});
+
+
+// $(document).ready(function() {
+//     $('#upload-business-license').on('change', function() {
+//         $('.new-business-preview').hide();
+//         var fileInput = $(this)[0];
+//         var file = fileInput.files[0];
+//         if (file && file.type.startsWith('image/')) {
+//             var businessUrl = URL.createObjectURL(file);
+//             $('.uploadButton-business-file-name').html('<img src="' + businessUrlUrl +
+//                 '" alt="Preview Background" style="max-width: 150px; max-height: 120px;">');
+//         }
+//     });
+// })
 
 $(document).ready(function() {
     $('#upload-background').on('change', function() {
@@ -305,6 +402,10 @@ $(document).ready(function() {
     });
 })
 </script>
+
+
+
+
 {{-- xử lý logo --}}
 <script>
 const uploadInput = document.querySelector('.uploadButton-input');

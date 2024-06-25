@@ -57,7 +57,7 @@ class AdminUser extends Model
         if ($request->email) {
             $query->where('email', 'LIKE', '%' . $request->email . '%');
         }
-        
+
         if ($request->phone) {
             $phone = $request->phone;
             $query->whereHas('staff', function ($query) use ($phone) {
@@ -204,9 +204,27 @@ class AdminUser extends Model
                     $user_employee->background = $data['background'];
                 }
                 if ($request->hasFile('image_business_license')) {
-                    self::deleteFile($user_employee->image_business_license);
-                    $data['image_business_license'] = self::uploadFile($request->file('image_business_license'), 'uploads/employees');
-                    $user_employee->image_business_license = $data['image_business_license'];
+                    // self::deleteFile($user_employee->image_business_license);
+                    // $data['image_business_license'] = self::uploadFile(json_decode($request->file('image_business_license')->toArray()), 'uploads/employees');
+                    // $user_employee->image_business_license = $data['image_business_license'];
+                    $images = $request->file('image_business_license');
+                    $imagePaths = [];
+                    foreach ($images as $image) {
+                        if ($image->isValid()) {
+                            $imagePaths[] = self::uploadFile($image, 'business_licenses');
+                        }
+                    }
+                    if ($user_employee->image_business_license) {
+                        $array_bg = json_decode($user_employee->image_business_license);
+                        $result = array_merge($array_bg, $imagePaths);
+                        $imagePaths = $result;
+                    }
+                    $user_employee->image_business_license = json_encode($imagePaths); // Lưu đường dẫn ảnh dưới dạng chuỗi JSON
+                }
+                if ($request->hasFile('image')) {
+                    self::deleteFile($item->image);
+
+                    $user_employee->image = self::uploadFile($request->file('image'), self::$upload_dir);
                 }
                 $user_employee->save();
             }
@@ -241,7 +259,7 @@ class AdminUser extends Model
         return $item->delete();
     }
 
-    
+
     // Custom relation
     public function staff()
     {
@@ -265,7 +283,7 @@ class AdminUser extends Model
 
     // public function getImagebusinesslicenseFmAttribute()
     // {
-        
+
     //     if ($this->image_business_license != null) {
     //         if (strpos($this->image_business_license, 'http') !== false) {
     //             return $this->image_business_license;
