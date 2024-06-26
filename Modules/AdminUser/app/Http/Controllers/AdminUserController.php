@@ -139,7 +139,6 @@ class AdminUserController extends Controller
         try {
             $type = request()->type;
             $item = $this->model::findOrFail($id);
-
             // dd($item->employee->background_fm);
             $params = [
                 'item' => $item,

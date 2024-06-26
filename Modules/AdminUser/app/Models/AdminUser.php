@@ -153,6 +153,7 @@ class AdminUser extends Model
     }
     public static function updateItem($id, $request, $type = '')
     {
+    //    dd($request->all());
         DB::beginTransaction();
         try {
             $data = $request->except(['_token', '_method']);
@@ -194,6 +195,7 @@ class AdminUser extends Model
                 $user_employee->phone = $data['phone'];
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
+                $user_employee->is_allowed_abroad = $data['is_allowed_abroad'];
                 $user_employee->position = $data['position'];
                 if ($user && isset($data['points'])) {
                     $user->points = $data['points'];
@@ -226,6 +228,7 @@ class AdminUser extends Model
 
                     $user_employee->image = self::uploadFile($request->file('image'), self::$upload_dir);
                 }
+                // dd($user_employee);
                 $user_employee->save();
             }
             DB::commit();

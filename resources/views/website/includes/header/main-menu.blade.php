@@ -55,9 +55,13 @@ $currentRouteName = \Request::route()->getName();
         </li>
         @if (Auth::check() && (Auth::user()->type == "employee"))
         <li><a class="@if ($currentRouteName == 'website.account.index') active @endif"
-                href="{{ route('website.account.index') }}">Bảng giá</a></li>
-        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif"
-                href="{{route('pages.show', 'dac-quyen-tin')}}">Đặc quyền Tin</a></li>
+                href="{{ route('website.account.index') }}">Bảng giá</a>
+        </li>
+
+        <li>
+            <a class="@if (Route::currentRouteName() == 'pages.show' && request()->route('slug') == 'dac-quyen-tin') active @endif"
+                href="{{ route('pages.show', 'dac-quyen-tin') }}">Đặc quyền Tin</a>
+        </li>
         @endif
 
         <!-- Dành cho nhà tuyển dụng -->
