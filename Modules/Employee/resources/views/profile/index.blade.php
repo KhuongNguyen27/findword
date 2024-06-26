@@ -170,7 +170,7 @@ i.fas.fa-times-circle {
                                         @else
                                         <input type="url" name="website"
                                             value="{{ isset($user_employee->website) ? $user_employee->website : '' }}"
-                                            placeholder="">
+                                            placeholder="Vui lòng nhập URL với https://">
                                         @endif
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('website') }}</p>

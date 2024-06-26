@@ -27,6 +27,7 @@ class UserEmployee extends Model
         'is_hidden_phone',
         'is_hidden_email',
         'image_business_license',
+        'is_allowed_abroad',
     ];
     
    

@@ -64,6 +64,8 @@ class JobController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
+        $userAllowedAbroad = $user->userEmployee->is_allowed_abroad ?? false;
         if (Auth::user()->verify == User::ACTIVE) {
             $careers = Career::where('status', Career::ACTIVE)->get();
             $degrees = Level::where('status', Level::ACTIVE)->get();
@@ -83,7 +85,10 @@ class JobController extends Controller
                 'job_packages' => $job_packages,
                 'provinces' => $provinces,
                 'countries'=>$countries,
+                'userAllowedAbroad' => $userAllowedAbroad,
+
             ];
+            // dd($param);
             return view('employee::job.create', compact('param'));
         } else {
             return back()->with('error', 'Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
@@ -322,4 +327,5 @@ class JobController extends Controller
         $job = Job::findOrFail($request->id);
         return view('employee::job.show_cvJob', compact('cv_apllys', 'job', 'param_count'));
     }
+
 }
