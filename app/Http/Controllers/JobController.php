@@ -114,6 +114,7 @@ class JobController extends Controller
                     WHEN job_packages.slug = 'tin-hot' THEN 5
                     WHEN job_packages.slug = 'tin-thuong' THEN 6
                     WHEN auto_post_job_packages.area is not null THEN 7
+                    WHEN jobs.top_position is not null THEN jobs.top_position
 					ELSE 8
                 END");
                 break;
@@ -129,6 +130,7 @@ class JobController extends Controller
                             WHEN job_packages.slug = 'tin-hot' THEN 5
                             WHEN job_packages.slug = 'tin-thuong' THEN 6
                             WHEN auto_post_job_packages.area is not null THEN 7
+                            WHEN jobs.top_position is not null THEN jobs.top_position
 					        ELSE 8
                         END");
                     break;
@@ -143,6 +145,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-gap' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END");
                 $title = 'Việc làm trong nước hot nhất';
@@ -161,6 +164,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                 ->orderBy('jobs.created_at', 'desc');
@@ -178,6 +182,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                 ->orderBy('jobs.created_at', 'desc');
@@ -193,6 +198,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                 ->orderBy('jobs.created_at', 'desc');
@@ -401,6 +407,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
@@ -419,6 +426,7 @@ class JobController extends Controller
                             WHEN job_packages.slug = 'tin-hot' THEN 5
                             WHEN job_packages.slug = 'tin-thuong' THEN 6
                             WHEN auto_post_job_packages.area is not null THEN 7
+                            WHEN jobs.top_position is not null THEN jobs.top_position
 					        ELSE 8
                         END")
                         ->orderBy('jobs.created_at', 'desc');
@@ -434,6 +442,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-gap' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
@@ -453,6 +462,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
@@ -471,6 +481,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
@@ -486,6 +497,7 @@ class JobController extends Controller
                         WHEN job_packages.slug = 'tin-hot' THEN 5
                         WHEN job_packages.slug = 'tin-thuong' THEN 6
                         WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');

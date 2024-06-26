@@ -12,6 +12,18 @@
             <x-admintheme::form-input-error field="slug"/>
         </div>
         @endif
+        @if (request()->type == 'Job')
+            <div class="mb-4">
+                <label class="mb-3">Vị trí trong top đầu</label>
+                <select class="form-select" name="top_position" id="">
+                    <option value="">Chọn vị trí trong top đầu</option>
+                    @for($i =1; $i <= 10; $i++)
+                        <option value="{{$i}}" {{($item->top_position ?? old('top_position')) == $i ? "selected" : ""}}> Luôn nằm vị trí số {{$i}} trong khu vực theo logic</option>
+                    @endfor 
+                </select>
+                <x-admintheme::form-input-error field="slug"/>
+            </div>
+        @endif
         <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
             <textarea class="form-control" id="description" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>

@@ -91,6 +91,7 @@ class HomeController extends Controller
 					WHEN job_packages.slug = 'tin-hot' THEN 5
 					WHEN job_packages.slug = 'tin-thuong' THEN 6
 					WHEN auto_post_job_packages.area is not null THEN 7
+					WHEN jobs.top_position is not null THEN jobs.top_position
 					ELSE 8
 				END")
 			->orderBy('jobs.id', 'DESC')->limit(20);
@@ -143,6 +144,7 @@ class HomeController extends Controller
                 WHEN job_packages.slug = 'tin-hot' THEN 5
                 WHEN job_packages.slug = 'tin-thuong' THEN 6
 				WHEN auto_post_job_packages.area is not null THEN 7
+				WHEN jobs.top_position is not null THEN jobs.top_position
                 ELSE 8
             END")
 			->orderBy('jobs.id', 'DESC')->limit(10)->get();
@@ -307,6 +309,7 @@ class HomeController extends Controller
                 WHEN job_packages.slug = 'tin-gap' THEN 4
                 WHEN job_packages.slug = 'tin-hot' THEN 5
                 WHEN job_packages.slug = 'tin-thuong' THEN 6
+				WHEN jobs.top_position is not null THEN jobs.top_position
                 ELSE 7
            		 END")
 					->orderBy('jobs.id', 'DESC')
@@ -403,6 +406,7 @@ class HomeController extends Controller
 			WHEN job_packages.slug = 'tin-gap' THEN 4
 			WHEN job_packages.slug = 'tin-hot' THEN 5
 			WHEN job_packages.slug = 'tin-thuong' THEN 6
+			WHEN jobs.top_position is not null THEN jobs.top_position
 			ELSE 7
 			END")
 			->orderBy('jobs.id', 'DESC')->paginate(20);
