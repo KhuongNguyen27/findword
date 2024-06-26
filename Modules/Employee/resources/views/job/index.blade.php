@@ -84,47 +84,48 @@
                                             </td>
                                             <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
                                                 {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
-                                            @if ($job->status == 1)
-                                            <td><span class="label label-success">{{ __('recruitment') }}</span></td>
-                                            @elseif ($job->status == 0)
-                                            <td><span class="danger-button">{{ __('stop_recruiting') }}</span></td>
+                                            @if ($job->status == 1 && strtotime($job->end_day) >= strtotime(date('Y-m-d')))
+                                                <td><span class="label label-success">{{ __('recruitment') }}</span></td>
+                                            @elseif ($job->status == 0 || strtotime($job->end_day) < strtotime(date('Y-m-d'))) 
+                                                <td><span  class="danger-button">{{ __('stop_recruiting') }}</span></td>
                                             @endif
-                                            <td>
-                                                <div class="option-box">
-                                                    <ul class="option-list">
-                                                        <li><a href="{{ route('employee.job.show', $job->id) }}"
-                                                                data-text="{{ __('show') }}"><span
-                                                                    class="la la-eye"></span></a></li>
-                                                        @if($job->status != 1)
-                                                        <!-- Kiểm tra nếu công việc chưa được duyệt -->
-                                                        <li><a href="{{ route('employee.job.edit', $job->id) }}"
-                                                                data-text="{{ __('edit') }}"><span
-                                                                    class="la la-pencil"></span></a></li>
-                                                        @endif
-                                                        <form action="{{ route('employee.job.delete', $job->id) }}"
-                                                            method="POST" id="deleteForm_{{ $job->id }}"
-                                                            onsubmit="confirmDelete(event, {{ $job->id }})">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <li>
-                                                                <button type="submit" class="delete-button"
-                                                                    data-text="{{ __('delete') }}">
-                                                                    <span class="la la-trash"></span>
-                                                                </button>
-                                                            </li>
-                                                        </form>
+                                                <td>
+                                                    <div class="option-box">
+                                                        <ul class="option-list">
+                                                            <li><a href="{{ route('employee.job.show', $job->id) }}"
+                                                                    data-text="{{ __('show') }}"><span
+                                                                        class="la la-eye"></span></a></li>
+                                                            @if($job->status != 1)
+                                                            <!-- Kiểm tra nếu công việc chưa được duyệt -->
+                                                            <li><a href="{{ route('employee.job.edit', $job->id) }}"
+                                                                    data-text="{{ __('edit') }}"><span
+                                                                        class="la la-pencil"></span></a></li>
+                                                            @endif
+                                                            <form action="{{ route('employee.job.delete', $job->id) }}"
+                                                                method="POST" id="deleteForm_{{ $job->id }}"
+                                                                onsubmit="confirmDelete(event, {{ $job->id }})">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <li>
+                                                                    <button type="submit" class="delete-button"
+                                                                        data-text="{{ __('delete') }}">
+                                                                        <span class="la la-trash"></span>
+                                                                    </button>
+                                                                </li>
+                                                            </form>
 
-                                                        <script>
-                                                        function confirmDelete(event, jobId) {
-                                                            event.preventDefault();
-                                                            if (confirm("Bạn có muốn xóa không?")) {
-                                                                document.getElementById('deleteForm_' + jobId).submit();
+                                                            <script>
+                                                            function confirmDelete(event, jobId) {
+                                                                event.preventDefault();
+                                                                if (confirm("Bạn có muốn xóa không?")) {
+                                                                    document.getElementById('deleteForm_' + jobId)
+                                                                        .submit();
+                                                                }
                                                             }
-                                                        }
-                                                        </script>
-                                                    </ul>
-                                                </div>
-                                            </td>
+                                                            </script>
+                                                        </ul>
+                                                    </div>
+                                                </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -33,9 +33,16 @@ class AdminUserController extends Controller
             ->whereIn('email', $items->pluck('email'))
             ->pluck('status', 'email');
 
+          // Lấy giá trị của cột is_allowed_abroad từ bảng user_employee dựa trên user_id
+        $userEmployees = DB::table('user_employee')
+            ->whereIn('user_id', $items->pluck('id')) // Sử dụng user_id thay vì email
+            ->pluck('is_allowed_abroad', 'user_id');
+        
+        // dd ($userEmployees);
         // Thêm giá trị email_status vào mỗi item
         foreach ($items as $item) {
             $item->email_status = $emailStatuses[$item->email] ?? null;
+            $item->is_allowed_abroad = $userEmployees[$item->id] ?? null;
         }
 
         $params = [
@@ -43,6 +50,7 @@ class AdminUserController extends Controller
             'model' => $this->model,
             'items' => $items
         ];
+        // dd($params);
         if ($type) {
             return view($this->view_path . 'types.' . $type . '.index', $params);
         }

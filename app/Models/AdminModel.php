@@ -144,6 +144,15 @@ class AdminModel extends Model
                 return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">Đã Xác Thực</span>';
         }
     }
+
+    public function getAllowedFmAttribute() {
+        switch ($this->is_allowed_abroad) {
+            case 0:
+                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">Chưa cấp phép</span>';
+            case 1:
+                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">Cấp phép</span>';
+        }
+    }
     public function getCreatedAtFmAttribute(){
         return date('d-m-Y',strtotime($this->created_at));
     }
