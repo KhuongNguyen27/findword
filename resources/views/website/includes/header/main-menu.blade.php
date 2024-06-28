@@ -59,8 +59,8 @@ $currentRouteName = \Request::route()->getName();
         </li>
 
         <li>
-            <a class="@if (Route::currentRouteName() == 'pages.show' && request()->route('slug') == 'dac-quyen-tin') active @endif"
-                href="{{ route('pages.show', 'dac-quyen-tin') }}">Đặc quyền Tin</a>
+            <a class="@if ($currentRouteName == 'website.jobpackage.index') active @endif"
+                href="{{ route('website.jobpackage.index') }}">Đặc quyền Tin</a>
         </li>
         @endif
 

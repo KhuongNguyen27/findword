@@ -24,6 +24,7 @@ class HomeController extends Controller
 	 */
 	public function index(Request $request)
 	{
+
 		$banners = Banner::where('group_banner', 'Top Banner')->orderBy('position')->get();
 		$sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
 		$bottomBanners = Banner::where('group_banner', 'Bottom Banner')->orderBy('position')->get();
@@ -127,8 +128,8 @@ class HomeController extends Controller
 			}
 		}
 		$vip_jobs->orderByRaw("CASE
-                WHEN job_packages.slug = 'tin-hot-vip' THEN 1
-                WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+				WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                WHEN job_packages.slug = 'tin-hot-vip' THEN 2
                 WHEN job_packages.slug = 'tin-vip' THEN 3
                 WHEN job_packages.slug = 'tin-gap' THEN 4
                 WHEN job_packages.slug = 'tin-hot' THEN 5
@@ -195,7 +196,7 @@ class HomeController extends Controller
 		}
 
 		$currentRoute = Route::current()->getName();
-		// dd($currentRoute);
+		// dd($vip_jobs);
 		$params = [
 			'route' => $currentRoute,
 			'careers' => $careers,
@@ -277,6 +278,7 @@ class HomeController extends Controller
 		switch ($job_type) {
 			case 'viec-lam-hom-nay':
 				$title = 'Việc làm hôm nay';
+				
 				// Việc làm  hôm nay
 				$startDate = Carbon::now()->subHours(72);
 				$endDate = Carbon::now();

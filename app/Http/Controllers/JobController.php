@@ -24,7 +24,7 @@ class JobController extends Controller
 {
     // Trong nước
     public function vnjobs(Request $request, $job_type = ''){
-
+// dd(123);
         $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();

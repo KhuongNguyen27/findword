@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\JobPackageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CareerController;
@@ -53,6 +54,12 @@ Route::get('/quy-che-hoat-dong', function () {
 
 Route::get('/importVNW', [ToolController::class,'importVNW']);
 
+Route::group([
+    'prefix' => 'website',
+    'as' => 'website.'
+], function () {
+    Route::resource('jobpackage', JobPackageController::class)->names('jobpackage');
+});
 
 Route::prefix('themes')->group(function () {
     

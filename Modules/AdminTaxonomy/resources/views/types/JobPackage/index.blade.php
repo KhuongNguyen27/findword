@@ -40,6 +40,7 @@
                                 </th>
                                 <th>{{ __('name') }}</th>
                                 <th>{{ __('price') }}</th>
+                                <th>{{ __('position') }}</th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
@@ -53,6 +54,7 @@
                                 </td>
                                 <td>{!! $item->name !!}</td>
                                 <td>{!! number_format($item->price) !!}</td>
+                                <td>{!! $item->position !!}</td>
                                 <td>{!! $item->status_fm !!}</td>
                                 <td>
                                     <div class="dropdown">
