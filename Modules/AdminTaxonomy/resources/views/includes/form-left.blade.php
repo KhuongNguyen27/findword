@@ -18,21 +18,21 @@
                         <label for="">Khu vực</label>
                         <select class="form-select" name="area" id="">
                             <option value="">Khu vực</option>
-                            <option value="today" {{  isset($item) && $item->autoPostJobPackage->area == "today" ? "selected" : ''}} >Việc làm Hôm nay</option>
-                            <option value="hot" {{isset($item) && $item->autoPostJobPackage->area == "hot" ? "selected" : ''}}>Việc làm Hot nhất</option>
-                            <option value="urgent" {{ isset($item) && $item->autoPostJobPackage->area == "urgent" ? "selected" : ''}}>Tuyển gấp</option>
-                            <option value="moi-nhat" {{ isset($item) && $item->autoPostJobPackage->area == "moi-nhat" ? "selected" : ''}}>Việc làm Mới nhất</option>
-                            <option value="tot-nhat" {{ isset($item) && $item->autoPostJobPackage->area == "tot-nhat" ? "selected" : ''}}>Việc làm Tốt nhất</option>
-                            <option value="hap-dan" {{ isset($item) && $item->autoPostJobPackage->area == "hap-dan" ? "selected" : ''}} >Việc làm Hấp dẫn</option>
+                            <option value="today" {{  isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "today" ? "selected" : ''}} >Việc làm Hôm nay</option>
+                            <option value="hot" {{isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "hot" ? "selected" : ''}}>Việc làm Hot nhất</option>
+                            <option value="urgent" {{ isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "urgent" ? "selected" : ''}}>Tuyển gấp</option>
+                            <option value="moi-nhat" {{ isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "moi-nhat" ? "selected" : ''}}>Việc làm Mới nhất</option>
+                            <option value="tot-nhat" {{ isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "tot-nhat" ? "selected" : ''}}>Việc làm Tốt nhất</option>
+                            <option value="hap-dan" {{ isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->area == "hap-dan" ? "selected" : ''}} >Việc làm Hấp dẫn</option>
                         </select>
                     </div>
                     <div class="col-md-4">
                         <label for="">Tự động theo ngày</label>
                         <select class="form-select" name="daily" id="">
                             <option value="">Lựa chọn</option>
-                            <option value="hàng ngày"  {{isset($item) && $item->autoPostJobPackage->daily == "hàng ngày" ? "selected" : ''}} >hàng ngày</option>
-                            <option value="trong ngày" {{isset($item) && $item->autoPostJobPackage->daily == "trong ngày" ? "selected" : ''}}>trong ngày</option>
-                            <option value="ngày tiếp theo"  {{isset($item) && $item->autoPostJobPackage->daily == "ngày tiếp theo" ? "selected" : ''}}>ngày tiếp theo</option>
+                            <option value="hàng ngày"  {{isset($item)  && $item->autoPostJobPackage && $item->autoPostJobPackage->daily == "hàng ngày" ? "selected" : ''}} >hàng ngày</option>
+                            <option value="trong ngày" {{isset($item)  && $item->autoPostJobPackage && $item->autoPostJobPackage->daily == "trong ngày" ? "selected" : ''}}>trong ngày</option>
+                            <option value="ngày tiếp theo"  {{isset($item)  && $item->autoPostJobPackage && $item->autoPostJobPackage->daily == "ngày tiếp theo" ? "selected" : ''}}>ngày tiếp theo</option>
                         </select>
                     </div>
                     <div class="col-md-4">
@@ -40,7 +40,7 @@
                         <select class="form-select" name="hour" id="">
                             <option value="">Lựa chọn</option>
                             @for($i = 1; $i <= 24;$i++)
-                                <option value="{{$i < 10 ? '0' + $i : $i}}:00" {{isset($item) &&$item->autoPostJobPackage->hour == $i ? "selected" : ''}}>{{$i < 10 ? "0" + $i : $i}}:00</option>
+                                <option value="{{$i < 10 ? '0' + $i : $i}}:00" {{isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->hour == $i ? "selected" : ''}}>{{$i < 10 ? "0" + $i : $i}}:00</option>
                             @endfor
                         </select>
                     </div>
@@ -49,7 +49,7 @@
                         <select class="form-select" name="auto_in_hour" id="">
                             <option value="">Lựa chọn</option>
                             @for($i = 1; $i <= 24;$i++)
-                                <option value="{{$i}}" {{isset($item) && $item->autoPostJobPackage->auto_in_hour == $i ? "selected" : ''}}>{{$i}}h</option>
+                                <option value="{{$i}}" {{isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->auto_in_hour == $i ? "selected" : ''}}>{{$i}}h</option>
                             @endfor
                         </select>
                     </div>
