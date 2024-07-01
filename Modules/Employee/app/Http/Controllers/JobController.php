@@ -50,13 +50,8 @@ class JobController extends Controller
         }
 
         $query->orderBy('id', 'desc');
-        $jobs = $query->paginate(5);
-        $countID = [];
-        foreach ($jobs as $job) {
-            $count = $job->jobApplications->count();
-            $countID[$job->id] = $count;
-        }
-        return view('employee::job.index', compact('jobs', 'countID'));
+        $jobs = $query->withCount('jobApplications')->paginate(5);
+        return view('employee::job.index', compact('jobs'));
     }
 
     /**

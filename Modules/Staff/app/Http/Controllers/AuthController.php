@@ -20,6 +20,7 @@ use Mail;
 use Illuminate\Support\Str;
 use Modules\Staff\app\Models\StaffUser;
 use App\Models\User;
+use App\Models\Visitor;
 use Carbon\Carbon;
 use App\Notifications\Notifications;
 use Exception;
