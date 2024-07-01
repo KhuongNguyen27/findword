@@ -3,6 +3,7 @@
 namespace Modules\AdminTaxonomy\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AutoPostJobPackage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Modules\AdminTaxonomy\app\Http\Requests\StoreAdminTaxonomyRequest;
@@ -98,7 +99,6 @@ class AdminTaxonomyController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findItem($id,$type);
-            // dd($request->$item);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
@@ -120,9 +120,28 @@ class AdminTaxonomyController extends Controller
     public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
-        // dd($request->type);
         try {
             $this->model::updateItem($id,$request,$type);
+            if ($type = "JobPackage") {
+                $autoPostJobPackage = AutoPostJobPackage::where("job_package_id", $id)->first();
+                if ($autoPostJobPackage) {
+                    $autoPostJobPackage->area = $request->area;
+                    $autoPostJobPackage->daily = $request->daily;
+                    $autoPostJobPackage->hour = $request->hour;
+                    $autoPostJobPackage->auto_in_hour = $request->auto_in_hour;
+                    $autoPostJobPackage->job_package_id = $id;
+                    $autoPostJobPackage->save();
+                } else {
+                    if ($request->area) {
+                        AutoPostJobPackage::create([
+                            'area' => $request->area,
+                            'daily' => $request->daily,
+                            'auto_in_hour' => $request->auto_in_hour,
+                            'job_package_id' => $id,
+                        ]);
+                    }
+                }
+            }
             return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

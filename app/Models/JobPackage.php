@@ -48,4 +48,8 @@ class JobPackage extends AdminModel
         }
         return null;
     }
+    
+    public function autoPostJobPackage() {
+        return $this->hasOne(AutoPostJobPackage::class, 'job_package_id');
+    }
 }

@@ -40,6 +40,7 @@ class Job extends AdminModel
         'province_id',
         'country_id',
         'more_information',
+        'top_position',
     ];
 
     public static function overrideSaveItem($data,$table = ''){
