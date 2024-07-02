@@ -19,4 +19,8 @@ class Country extends Model
     // public function job(){
     //     return $this->hasMany(Job::class);
     // }
+    public function countries()
+    {
+        return $this->belongsToMany(Job::class, 'job_province', 'country_id', 'job_id');
+    }
 }
