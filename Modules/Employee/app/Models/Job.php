@@ -86,16 +86,6 @@ class Job extends MainJob
         return $this->belongsTo(Wage::class);
     }
 
-    public function countries()
-    {
-        return $this->belongsToMany(Country::class,'job_province','job_id','country_id');
-    }
-
-    public function provinces()
-    {
-        return $this->belongsToMany(Province::class, 'job_province', 'job_id', 'province_id');
-    }
-
     public function getImage($user_id = 0)
     {
         $userEmployee = $this->userEmployee;
