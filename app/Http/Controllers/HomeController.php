@@ -119,11 +119,11 @@ class HomeController extends Controller
 		}
 		if ($request->province_id) {
 			$province_id = $request->province_id;
-			$vip_jobs = $vip_jobs->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			$vip_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
 			if ($province_id === "quoc_te") {
-				$vip_jobs =	$vip_jobs->whereNotNull('job_province.country_id');
+				$vip_jobs->whereNull('job_province.province_id');
 			}else{
-				$vip_jobs =	$vip_jobs->where('job_province.province_id',intval($province_id));
+				$vip_jobs->where('job_province.province_id',intval($province_id));
 			}
 		}
 		// if ($request->province_id) {
@@ -267,11 +267,11 @@ class HomeController extends Controller
 		}
 		if ($request->province_id) {
 			$province_id = $request->province_id;
-			$query = $query->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			$query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
 			if ($province_id === "quoc_te") {
-				$query =	$query->where('job_province.country_id','<>',NULL);
+				$query->whereNull('job_province.province_id');
 			}else{
-				$query =	$query->where('job_province.province_id',intval($province_id));
+				$query->where('job_province.province_id',intval($province_id));
 			}
 		}
 		// if ($request->province_id) {
@@ -324,11 +324,11 @@ class HomeController extends Controller
 				// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
 				if ($request->province_id) {
 					$province_id = $request->province_id;
-					$query = $query->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+					$today_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
 					if ($province_id === "quoc_te") {
-						$query =	$query->whereNotNull('job_province.country_id');
+						$today_jobs->whereNull('job_province.province_id');
 					}else{
-						$query =	$query->where('job_province.province_id',intval($province_id));
+						$today_jobs->where('job_province.province_id',intval($province_id));
 					}
 				}
 				// if ($request->province_id) {
@@ -409,7 +409,13 @@ class HomeController extends Controller
 			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$hot_jobs->where('province_id', $request->province_id);
+			$province_id = $request->province_id;
+			$hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			if ($province_id === "quoc_te") {
+				$hot_jobs->whereNull('job_province.province_id');
+			}else{
+				$hot_jobs->where('job_province.province_id',intval($province_id));
+			}
 		}
 		if ($request->rank_id) {
 			$hot_jobs->where('rank_id', $request->rank_id);
