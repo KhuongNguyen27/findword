@@ -55,14 +55,18 @@ class HomeController extends Controller
 			->leftJoin("auto_post_job_packages", function (JoinClause $join) {
 				$join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
 					->where('auto_post_job_packages.area', '=', 'hap-dan');
-			})->where('jobs.salarymax', '>=', 10000000)
-			->orWhere('jobs.salaryMax', '');
-		// ->where('jobs.wage_id', '>=', 2)
+			});
 		if ($request->name) {
 			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$hot_jobs->where('province_id', $request->province_id);
+			$province_id = $request->province_id;
+			$hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			if ($province_id === "quoc_te") {
+				$hot_jobs->whereNull('job_province.province_id');
+			}else{
+				$hot_jobs->where('job_province.province_id',intval($province_id));
+			}
 		}
 		if ($request->rank_id) {
 			$hot_jobs->where('rank_id', $request->rank_id);
@@ -97,7 +101,6 @@ class HomeController extends Controller
 				END")
 			->orderBy('jobs.id', 'DESC')->limit(20);
 		$hot_jobs = $hot_jobs->get()->chunk(10);
-
 		// Việc làm trong nước hôm nay
 		$startDate = Carbon::now()->subHours(72);
 		$endDate = Carbon::now();
@@ -115,8 +118,17 @@ class HomeController extends Controller
 			$vip_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$vip_jobs->where('province_id', $request->province_id);
+			$province_id = $request->province_id;
+			$vip_jobs = $vip_jobs->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			if ($province_id === "quoc_te") {
+				$vip_jobs =	$vip_jobs->whereNotNull('job_province.country_id');
+			}else{
+				$vip_jobs =	$vip_jobs->where('job_province.province_id',intval($province_id));
+			}
 		}
+		// if ($request->province_id) {
+		// 	$vip_jobs->where('province_id', $request->province_id);
+		// }
 		if ($request->rank_id) {
 			$vip_jobs->where('rank_id', $request->rank_id);
 		}
@@ -254,8 +266,17 @@ class HomeController extends Controller
 			$query->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$query->where('province_id', $request->province_id);
+			$province_id = $request->province_id;
+			$query = $query->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			if ($province_id === "quoc_te") {
+				$query =	$query->where('job_province.country_id','<>',NULL);
+			}else{
+				$query =	$query->where('job_province.province_id',intval($province_id));
+			}
 		}
+		// if ($request->province_id) {
+		// 	$query->where('province_id', $request->province_id);
+		// }
 		if ($request->wage_id) {
 			$wage_id = $request->wage_id;//'10-15'
 			$wage = explode('-', $wage_id);
@@ -302,8 +323,17 @@ class HomeController extends Controller
 				// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 				// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
 				if ($request->province_id) {
-					$today_jobs->where('province_id', $request->province_id);
+					$province_id = $request->province_id;
+					$query = $query->leftJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+					if ($province_id === "quoc_te") {
+						$query =	$query->whereNotNull('job_province.country_id');
+					}else{
+						$query =	$query->where('job_province.province_id',intval($province_id));
+					}
 				}
+				// if ($request->province_id) {
+				// 	$today_jobs->where('province_id', $request->province_id);
+				// }
 				$today_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
