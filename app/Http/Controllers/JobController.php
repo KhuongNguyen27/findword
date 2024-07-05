@@ -24,7 +24,7 @@ class JobController extends Controller
 {
     // Trong nước
     public function vnjobs(Request $request, $job_type = ''){
-// dd(123);
+        // dd(123);
         $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $degrees = Level::where('status',Level::ACTIVE)->orderBy('position')->get();
         $formworks = FormWork::where('status',FormWork::ACTIVE)->orderBy('position')->get();
@@ -43,10 +43,13 @@ class JobController extends Controller
         
         $normal_provinces = Province::whereNotIn('id',[1,50,32])->orderBy('name')->get();
         $provinces = Province::whereIn('id',[1,50,32])->orderByRaw("FIELD(id,1,50,32)")->get()->merge($normal_provinces);
+
         // Việc làm mới nhất trong nước
         // $imageUserEmployyee = UserEmployee::class;
         $query = Job::select('jobs.*')->where('jobs.status',1);
-        $query->where('country', 'VN');
+        $query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+        $query->whereNotNull('job_province.province_id');
+        // $query->where('country', 'VN');
         // dd($request->name);
         if($request->name){
             $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
@@ -85,12 +88,21 @@ class JobController extends Controller
         if( $request->formwork_id ){
             $query->where('formwork_id', $request->formwork_id);
         }
-        if( $request->province_id ){
-            if( $request->province_id == 'quoc_te' ){
+        
+        // if( $request->province_id ){
+        //     if( $request->province_id == 'quoc_te' ){
+        //         return redirect()->route('jobs.nnjobs',$request->all());
+        //     }
+        //     $query->where('province_id', $request->province_id);
+        // }
+        if ($request->province_id) {
+            $province_id = $request->province_id;
+			if ($province_id === "quoc_te") {
                 return redirect()->route('jobs.nnjobs',$request->all());
-            }
-            $query->where('province_id', $request->province_id);
-        }
+			}else{
+				$query->where('job_province.province_id',intval($province_id));
+			}
+		}
         $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
         $query->leftJoin("auto_post_job_packages", function (JoinClause $join) use( $job_type) {
             $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
@@ -202,6 +214,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                 ->orderBy('jobs.created_at', 'desc');
+                $query->groupBy('job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -224,19 +237,30 @@ class JobController extends Controller
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
+            $query->groupBy('job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
             $jobs = $query->paginate(25);
         }
 
         // Việc làm hấp dẫn trong nước
-        $hot_jobs = Job::where('status',1)->where('country', 'VN');
+        $hot_jobs = Job::select('jobs.*')->where('status',1);
+        $hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+        $hot_jobs->whereNotNull('job_province.province_id'); 
         $hot_jobs->where(function ($hot_jobs) {
             $hot_jobs->where('jobs.salaryMax','>=',10000000)
             ->orWhere('jobs.salaryMax','');
         });
-        $hot_jobs->where('jobs.country','VN');
-        if($request->province_id){
-            $hot_jobs->where('province_id', $request->province_id);
-        }
+        // $hot_jobs->where('jobs.country','VN');
+        // if($request->province_id){
+        //     $hot_jobs->where('province_id', $request->province_id);
+        // }
+        if ($request->province_id) {
+			$province_id = $request->province_id;
+			if ($province_id === "quoc_te") {
+                return redirect()->route('jobs.nnjobs',$request->all());
+			}else{
+				$hot_jobs->where('job_province.province_id',intval($province_id));
+			}
+		}
         if($request->name){
             $hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
         }
@@ -280,8 +304,9 @@ class JobController extends Controller
                     break;
             }
         }
-        $hot_jobs->orderBy('id','DESC')->limit(20);
-        $hot_jobs=$hot_jobs ->get()->chunk(10);
+        $hot_jobs->orderBy('jobs.id','DESC')->limit(20);
+        $hot_jobs->groupBy('job_province.job_id');
+        $hot_jobs= $hot_jobs->get()->chunk(10);
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
@@ -289,7 +314,7 @@ class JobController extends Controller
         $top_employees = UserEmployee::orderBy('position')->limit(8)->get();
 
         $currentRoute = route::current()->getName();
-// dd($currentRoute);
+        // dd($currentRoute);
         $params = [
             'route' => $currentRoute,
             'careers' => $careers,
@@ -387,6 +412,16 @@ class JobController extends Controller
         if( $request->province_id ){
             $query->where('province_id', $request->province_id);
         }
+        if ($request->province_id) {
+			$province_id = $request->province_id;
+            $query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+			if ($province_id === "quoc_te") {
+                $query->whereNull('job_province.province_id');
+			}else{
+				$query->where('job_province.country_id',intval($province_id));
+			}
+		}
+        
         if( $request->degree_id ){
             $query->where('degree_id', $request->degree_id);
         }
@@ -394,6 +429,10 @@ class JobController extends Controller
             $query->where('formwork_id', $request->formwork_id);
         }
         $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
+        $query->leftJoin("auto_post_job_packages", function (JoinClause $join) use( $job_type) {
+            $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+                ->where('auto_post_job_packages.area', '=', $job_type);
+        });
         switch ($job_type) {
             case 'moi-nhat':
                 $title = 'Việc làm ngoài nước mới nhất';
