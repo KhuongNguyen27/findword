@@ -504,7 +504,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
-                
+                $query->groupBy('job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $title = 'Việc làm ngoài nước hôm nay';
                 break;
             case 'urgent':
@@ -561,7 +561,6 @@ class JobController extends Controller
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
-            $query->groupBy('job_province.job_id');
             $jobs = $query->paginate(10);
         }
 
