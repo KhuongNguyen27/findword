@@ -361,7 +361,9 @@ class JobController extends Controller
         $countries = Country::all();
         // Việc làm mới nhất ngoài nước
         $query = Job::select('jobs.*')->where('jobs.status',1);
-        $query->where('country','!=', 'VN');
+        // $query->where('country','!=', 'VN');
+        $query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+        $query->whereNull('job_province.province_id');  
         if( $request->career_id ){
             $query->whereHas('careers', function ($query) use($request) {
                 $query->where('career_id', $request->career_id);
@@ -409,15 +411,12 @@ class JobController extends Controller
         if( $request->rank_id ){
             $query->where('rank_id', $request->rank_id);
         }
-        if( $request->province_id ){
-            $query->where('province_id', $request->province_id);
-        }
+        // if( $request->province_id ){
+        //     $query->where('province_id', $request->province_id);
+        // }
         if ($request->province_id) {
 			$province_id = $request->province_id;
-            $query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-			if ($province_id === "quoc_te") {
-                $query->whereNull('job_province.province_id');
-			}else{
+			if ($province_id !== "quoc_te") {
 				$query->where('job_province.country_id',intval($province_id));
 			}
 		}
@@ -540,6 +539,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
+                $query->groupBy('job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -561,6 +561,7 @@ class JobController extends Controller
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
+            $query->groupBy('job_province.job_id');
             $jobs = $query->paginate(10);
         }
 
@@ -568,15 +569,22 @@ class JobController extends Controller
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
         // Việc làm hấp dẫn ngoài nước
-        $hot_jobs = Job::where('status',1)->where('jobs.country', 'NN');
-
+        $hot_jobs = Job::select('jobs.*')->where('status',1);
+        $hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
+        $hot_jobs->whereNull('job_province.province_id');
         $hot_jobs->where(function ($hot_jobs) {
             $hot_jobs->where('jobs.salaryMax','>=',10000000)
             ->orWhere('jobs.salaryMax','');
         });
-        if($request->province_id){
-            $hot_jobs->where('province_id', $request->province_id);
-        }
+        // if($request->province_id){
+        //     $hot_jobs->where('province_id', $request->province_id);
+        // }
+        if ($request->province_id) {
+			$province_id = $request->province_id;
+			if ($province_id !== "quoc_te") {
+				$hot_jobs->where('job_province.country_id',intval($province_id));
+			}
+		}
         if($request->name){
             $hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
         }
@@ -590,10 +598,9 @@ class JobController extends Controller
             $hot_jobs->where('formwork_id', $request->formwork_id);
         }
         if( $request->wage_id ){
-            
             switch ($request->wage_id) {
                 case 'duoi_10tr':
-                        $hot_jobs->where('salaryMax','<=', 10000000);
+                    $hot_jobs->where('salaryMax','<=', 10000000);
                     break;
                 case '10-15':
                     $hot_jobs->whereBetween('salaryMax',[10000000,15000000]);
@@ -621,7 +628,7 @@ class JobController extends Controller
             }
         }
         
-        $hot_jobs->orderBy('id','DESC')->limit(20);
+        $hot_jobs->orderBy('jobs.id','DESC')->limit(20);
         $hot_jobs = $hot_jobs->get()->chunk(10);
         $employees = UserEmployee::get();
         $top_employees = UserEmployee::orderBy('position')->limit(8)->get();
