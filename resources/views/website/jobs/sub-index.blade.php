@@ -15,8 +15,8 @@
                         </div>
                         <!-- Job Search Form -->
                         @include('website.homes.includes.job-search-form',[
-                            'allowKeywords' => true,
-                            'allowSort' => true,
+                        'allowKeywords' => true,
+                        'allowSort' => true,
                         ])
                         <!-- Job Search Form -->
                     </div>
@@ -35,7 +35,6 @@
                 <div class="content-column col-lg-12">
                     <div class="ls-outer">
                         <div class="ls-switcher">
-
                         </div>
                         <div class="row">
                             <div class="col-lg-12">

@@ -22,33 +22,39 @@ $job->work_address = str_replace(', Quốc tế', '', $job->work_address);
 $work_address = explode(',', $job->work_address);
 $job->work_address = end($work_address);
 // $job->work_address = end( explode(',',$job->work_address) );
+// if ($job->provinces) {
+//     $provinces = '';
+//     foreach ($job->provinces as $province) {
+//         $provinces = $provinces == null ? '' : $provinces.' ,';
+//         $provinces .= str_replace('Tỉnh', '', $province->name);
+//         // $provinces = str_replace('Thành phố', '', $job->provinces->name);
+//     }
+// }
 
-if ($job->province) {
-    $job->province->name = str_replace('Tỉnh', '', $job->province->name);
-    $job->province->name = str_replace('Thành phố', '', $job->province->name);
-}
-
-
-if ($job->international) {
-    $job->international->name = str_replace('Quốc tế', '', $job->international->name);
-}
+// if ($job->countries) {
+    //     $job->countries->name = str_replace('Quốc tế', '', $job->countries->name);
+    // }
+// if ($job->countries) {
+//     $countries = '';
+//     foreach ($job->countries as $countrie) {
+//         $countries .= str_replace('Quốc tế', '', $countrie->name);
+//     }
+// }
 ?>
 <?php if ($job->userEmployee):?>
 <style>
-    @media (max-width: 767px) {
-        .text_ellipsis {
-            max-width: 250px;
-        }
+@media (max-width: 767px) {
+    .text_ellipsis {
+        max-width: 250px;
     }
-
- 
+}
 </style>
 <div class="job-block col-job-info job-jobpackage job-jobpackage-{{ $job->jobpackage_id }}">
     <div class="inner-box" style="{{ $small_box_border_color_style }}">
         <div class="content">
             <span class="tag-job-flash">
                 @if (@$job->job_package->image_fm)
-                    <img src="{{ $job->job_package->image_fm }}" alt="">
+                <img src="{{ $job->job_package->image_fm }}" alt="">
                 @endif
             </span>
             <span class="company-logo" style="{{ $small_logo_border_color_style }}">
@@ -60,47 +66,51 @@ if ($job->international) {
             </h4>
 
             @if (isset($company_name))
-                <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
-                    class="text-silver company company_name">
-                    <span class="text_ellipsis">{{ $job->userEmployee->name }}</span>
-                </a>
+            <a href="{{ route('employee.show', ['id' => $job->userEmployee->slug]) }}"
+                class="text-silver company company_name">
+                <span class="text_ellipsis">{{ $job->userEmployee->name }}</span>
+            </a>
             @endif
             @if ($job_info)
-                <ul class="job-info mb-0">
-                    <li>
-                        @if (auth()->check())
-                            <span class="salary">
-                                {{ $job->salary_fm }}
-                            </span>
-                        @else
-                            <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem
-                                    mức lương</a></span>
-                        @endif
-                    </li>
-                    @if($job->province)
-                        <li><span class="address">{{ @$job->province->name }}</span></li>
+            <ul class="job-info mb-0">
+                <li>
+                    @if (auth()->check())
+                    <span class="salary">
+                        {{ $job->salary_fm }}
+                    </span>
+                    @else
+                    <span class="salary bg-warning"><a class="text-dark" href="{{ route('staff.login') }}">Xem
+                            mức lương</a></span>
                     @endif
-                    @if($job->international)
-                        <li><span class="address">{{ @$job->international->name }}</span></li>
-                    @endif
-                    @if (@$job_other_info)
-                        <li><span class="salary job-updated">Cập nhật
-                                <?= $updated_at ?>
-                            </span></li>
-                        <li><span class="salary job-remain">Còn <?php            echo $remainingDays; ?> ngày để ứng
-                                tuyển</span></li>
-                    @endif
-                </ul>
+                </li>
+                @if($job->provinces)
+                    @foreach($job->provinces as $province)
+                        <li><span class="address">{{ $province->name }}</span></li>
+                    @endforeach
+                @endif
+                @if($job->countries)
+                    @foreach($job->countries as $countrie)
+                        <li><span class="address">{{ $countrie->name }}</span></li>
+                    @endforeach
+                @endif
+                @if (@$job_other_info)
+                <li><span class="salary job-updated">Cập nhật
+                        <?= $updated_at ?>
+                    </span></li>
+                <li><span class="salary job-remain">Còn <?php            echo $remainingDays; ?> ngày để ứng
+                        tuyển</span></li>
+                @endif
+            </ul>
             @endif
             @if ($bookmark)
-                <a href="javascript:;" class="bookmark-btn"
-                    data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
-                    @if (in_array($job->id, $cr_user_favorites))
-                        <span class="flaticon-bookmark active"></span>
-                    @else
-                        <span class="flaticon-bookmark"></span>
-                    @endif
-                </a>
+            <a href="javascript:;" class="bookmark-btn"
+                data-href="{{ route('staff.job-favorite', ['id' => $job->id]) }}">
+                @if (in_array($job->id, $cr_user_favorites))
+                <span class="flaticon-bookmark active"></span>
+                @else
+                <span class="flaticon-bookmark"></span>
+                @endif
+            </a>
             @endif
             <div class="quickview-job-hide"></div>
             <div class="quickview-job-content" style="display:none;">

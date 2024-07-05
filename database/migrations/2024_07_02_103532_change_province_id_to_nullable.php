@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->integer('top_position')->nullable();
+        Schema::table('job_province', function (Blueprint $table) {
+            $table->unsignedBigInteger('province_id')->nullable()->change();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jobs', function (Blueprint $table) {
-            $table->integer('top_position');
+        Schema::table('job_province', function (Blueprint $table) {
+            $table->integer('province_id')->nullable()->change();
         });
     }
 };

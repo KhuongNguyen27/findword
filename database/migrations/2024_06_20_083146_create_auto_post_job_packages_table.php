@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('auto_post_job_packages', function (Blueprint $table) {
             $table->id();
-            $table->string("area");
-            $table->string("daily");
-            $table->integer("auto_in_hour");
-            $table->unsignedBigInteger('job_package_id');
+            $table->string("area")->nullable();
+            $table->string("daily")->nullable();
+            $table->integer("auto_in_hour")->nullable();
+            $table->unsignedBigInteger('job_package_id')->nullable();
             $table->timestamps();
         });
     }
