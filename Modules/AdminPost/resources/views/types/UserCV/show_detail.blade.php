@@ -31,8 +31,10 @@
         </div>
     </div>
 </form>
-
 <div class="card mt-4">
+<div class="card-header bg-primary text-white">
+        <h5 class="mb-0">CV Ứng Viên: {{ $user->name }}</h5>
+    </div>
     <div class="card-body">
         <div class="product-table">
             <div class="table-responsive white-space-nowrap">

@@ -5,6 +5,7 @@ namespace Modules\Staff\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\app\Models\JobApplication;
+
 class UserCv extends Model
 {
     use HasFactory;
@@ -127,5 +128,9 @@ class UserCv extends Model
     }
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
+    }
+    public function job()
+    {
+        return $this->belongsTo(Job::class, 'job_id', 'id'); // Thay 'job_id' bằng khóa ngoại trong bảng user_cv
     }
 }

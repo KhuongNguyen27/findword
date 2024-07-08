@@ -19,9 +19,6 @@ class UserJobApply extends Model
      * The attributes that are mass assignable.
      */
     protected $table = 'user_job_applies';
-    protected $fillable = [
-        
-    ];
     
     protected static function newFactory(): UserJobApplyFactory
     {
@@ -46,4 +43,5 @@ class UserJobApply extends Model
     {
         return $this->belongsTo(Job::class, 'job_id');
     }
+    
 }

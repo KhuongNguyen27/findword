@@ -24,6 +24,7 @@
                         <p class="fanpages-f"> <i class="fab fa-facebook-square page-icon"></i><a href="https://www.facebook.com/timviecsieunhanhOfficial" class="fanpages">timviecsieunhanhOfficial</a></p>
 
                         <p>Số Giấy chứng nhận đăng ký doanh nghiệp: 3301729747.</p>
+                        <p>Giấy phép hoạt động dịch vụ việc làm số: 02/2024 do Sở Lao động - Thương binh và Xã hội tỉnh Thừa Thiên Huế cấp ngày 28/06/2024</p>
                     </div>
                 </div>
 

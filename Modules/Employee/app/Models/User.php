@@ -8,7 +8,7 @@ use Modules\Employee\Database\factories\UserFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Employee\app\Models\UserEmployee;
-
+use App\Models\UserStaff;
 class User extends Model
 {
     use HasFactory;
@@ -43,5 +43,7 @@ class User extends Model
         }
         return "/website-assets/images/favicon.png";
     }
-    
+    public function userStaff(){
+        return $this->hasOne(UserStaff::class);
+    }
 }

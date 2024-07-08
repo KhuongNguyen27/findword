@@ -16,6 +16,7 @@ use Modules\Staff\app\Models\UserSkill;
 use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -77,6 +78,7 @@ class AdminPostController extends Controller
 
     public function show_detail_cv($user_id, Request $request)
     {
+        // dd(234);
         $query = UserCV::query();
         $query->where('user_id', $user_id);
         if ($request->name) {
@@ -87,12 +89,16 @@ class AdminPostController extends Controller
         }
         $query->orderBy('id', 'DESC');
         $items = $query->paginate(25);
-        // dd($items);
+
+        // Lấy thông tin ứng viên
+        $user = User::find($user_id);
+        // dd($user);
 
         $params = [
             'route_prefix' => $this->route_prefix,
             'model' => $this->model,
             'items' => $items,
+            'user' => $user,
         ];
         return view('adminpost::types.UserCV.show_detail', $params);
 
