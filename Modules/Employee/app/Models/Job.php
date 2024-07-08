@@ -14,6 +14,9 @@ use App\Models\JobPackage;
 use App\Models\Level;
 use App\Models\Rank;
 use App\Models\Wage;
+use App\Models\JobProvince;
+use App\Models\Province;
+use App\Models\Country;
 use App\Models\Job as MainJob;
 
 class Job extends MainJob
@@ -82,6 +85,7 @@ class Job extends MainJob
     {
         return $this->belongsTo(Wage::class);
     }
+
     public function getImage($user_id = 0)
     {
         $userEmployee = $this->userEmployee;

@@ -229,7 +229,7 @@ input {
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;"
                                         id="provinceDiv">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
-                                        <select name="province_id" class="chosen-select form-select" id="province">
+                                        <select name="province_id[]" class="chosen-select form-select" id="province" multiple="multiple">
                                             @foreach ($param['provinces'] as $province)
                                             <option value="{{ $province->id }}"
                                                 {{ old('province_id') == $province->id ? 'selected' : '' }}>
@@ -246,7 +246,7 @@ input {
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;"
                                         id="internationalDiv">
                                         <label>Quốc tế<span class="label-required"> *</span></label>
-                                        <select name="country_id" class="chosen-select form-select" id="international">
+                                        <select name="country_id[]" class="chosen-select form-select" id="international" multiple="multiple">
                                             @foreach ($param['countries'] as $country)
                                             <option value="{{ $country->id }}"
                                                 {{ old('country_id') == $country->id ? 'selected' : '' }}>

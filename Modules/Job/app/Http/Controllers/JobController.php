@@ -115,6 +115,8 @@ class JobController extends Controller
         $model = new Job;
         $user_id = Auth::id();
         $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+        $job->views =  $job->views + 1;
+        $job->save();
         $international = Country::where('id', $job->country_id)->first();
         $career_id = CareerJob::where('job_id', $job->id)->first();
         $job_relate_to = [];

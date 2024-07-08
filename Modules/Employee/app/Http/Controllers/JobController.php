@@ -50,13 +50,8 @@ class JobController extends Controller
         }
 
         $query->orderBy('id', 'desc');
-        $jobs = $query->paginate(5);
-        $countID = [];
-        foreach ($jobs as $job) {
-            $count = $job->jobApplications->count();
-            $countID[$job->id] = $count;
-        }
-        return view('employee::job.index', compact('jobs', 'countID'));
+        $jobs = $query->withCount('jobApplications')->paginate(5);
+        return view('employee::job.index', compact('jobs'));
     }
 
     /**
@@ -138,7 +133,6 @@ class JobController extends Controller
             $job->price = $price;
             $job->number_day = $request->number_day;
             $job->work_address = $request->work_address;
-            $job->province_id = $request->province_id;
             $job->country = $request->country;
             $job->degree_id = $request->degree_id;
             $job->description = $request->description;
@@ -147,7 +141,11 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->country_id = $request->country_id;
+
+            // Thêm nhiều địa điểm cho tin đăng
+            // $job->country_id = json_encode($request->country_id);
+            // $job->province_id = json_encode($request->province_id);
+
             // VIP tự động duyệt
             $job_package = JobPackage::find($request->jobpackage_id);
             if ($job_package->auto_approve == 1) {
@@ -159,6 +157,12 @@ class JobController extends Controller
             // lưu vào bảng career_job
             if ($request->career_ids) {
                 $job->careers()->attach($request->career_ids);
+            }
+            if ($request->province_id) {
+                $job->provinces()->attach($request->province_id);
+            }
+            if ($request->country_id) {
+                $job->countries()->attach($request->country_id);
             }
             DB::commit();
             $message = "Thêm mới thành công!";

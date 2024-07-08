@@ -62,5 +62,6 @@
     
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-admintheme', 'resources/assets/js/app.js') }} --}}
+    @stack('js')
     @yield('footer')
 </body>

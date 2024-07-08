@@ -40,6 +40,7 @@ class Job extends AdminModel
         'province_id',
         'country_id',
         'more_information',
+        'top_position',
     ];
 
     public static function overrideSaveItem($data,$table = ''){
@@ -116,6 +117,16 @@ class Job extends AdminModel
     function getTimeCreateAttribute(){
         return $this->created_at->diffForHumans();
     }
+
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class,'job_province','job_id','country_id');
+    }
+    public function provinces()
+    {
+        return $this->belongsToMany(Province::class, 'job_province', 'job_id', 'province_id');
+    }
+    
     function getSalaryFmAttribute(){
         if( $this->salaryMin && $this->salaryMax ){
             return number_format($this->salaryMin).' - '. number_format($this->salaryMax);
