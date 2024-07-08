@@ -584,6 +584,7 @@ class JobController extends Controller
 				$hot_jobs->where('job_province.country_id',intval($province_id));
 			}
 		}
+        
         if($request->name){
             $hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
         }
