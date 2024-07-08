@@ -215,6 +215,7 @@ class JobController extends Controller
                     END")
                 ->orderBy('jobs.created_at', 'desc');
                 $query->groupBy('jobs.id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
+                
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
