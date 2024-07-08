@@ -7,7 +7,12 @@
 //'export' => route($route_prefix.'export'),
 ]
 ])
-
+<style>
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+}
+</style>
 <!-- Item actions -->
 <form action="{{ route($route_prefix.'index') }}" method="get">
     <input type="hidden" name="type" value="{{ request()->type }}">
@@ -39,10 +44,11 @@
                 <table class="table align-middle">
                     <thead class="table-light">
                         <tr>
-                            <th>
+                            <!-- <th>
                                 <input class="form-check-input" type="checkbox">
-                            </th>
+                            </th> -->
                             <th>{{ __('adminpost::table.name') }}</th>
+                            <th>CV đã tải / lưu</th>
                             <th>Tổng CV</th>
                             <th>{{ __('adminpost::table.action') }}</th>
                         </tr>
@@ -50,10 +56,10 @@
                     <tbody>
                         @if( count( $items ) )
                         @foreach( $items as $item )
-                        <tr>
-                            <td>
+                        <tr data-item-id="{{ $item->id }}">
+                        <!-- <td>
                                 <input class="form-check-input" type="checkbox">
-                            </td>
+                            </td> -->
                             <td>
                                 <div class="d-flex align-items-center gap-3">
                                  
@@ -62,6 +68,9 @@
                                         <p class="mb-0 product-category">{{ $item->user_name }}</p>
                                     </div>
                                 </div>
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox">
                             </td>
                             <td>{{ $item->user_c_vs_count }}</td>
                             <td>
@@ -110,4 +119,26 @@
     @endif
 </div>
 
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('.form-check-input');
+
+        // Load saved checkbox state from local storage
+        checkboxes.forEach(checkbox => {
+            const itemId = checkbox.closest('tr').dataset.itemId; // Lấy id của mục từ dataset của dòng tr
+            const isChecked = localStorage.getItem(itemId) === 'true';
+            checkbox.checked = isChecked;
+        });
+
+        // Save checkbox state to local storage on change
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const itemId = checkbox.closest('tr').dataset.itemId; // Lấy id của mục từ dataset của dòng tr
+                localStorage.setItem(itemId, this.checked);
+            });
+        });
+    });
+</script>
 @endsection

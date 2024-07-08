@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\View\Composers\JobFavorite;
 use App\View\Composers\PostComposer;
+use App\View\Composers\AppliedJobCountComposer;
+
 use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', JobFavorite::class);
         View::composer('website.includes.global.news', PostComposer::class);
+        View::composer('*', AppliedJobCountComposer::class);
+
     }
 }

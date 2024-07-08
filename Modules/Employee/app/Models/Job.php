@@ -97,4 +97,9 @@ class Job extends MainJob
         // You might want to provide a default image here
         return "/website-assets/images/favicon.png";
     }
+    public function getShortNameAttribute()
+    {
+        return \Illuminate\Support\Str::limit($this->name, 30);
+    }
 }
+
