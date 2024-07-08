@@ -115,7 +115,7 @@ class JobapplicationController extends Controller
                     'cv_job_apply' => $cv_job_apply,
                     'userStaff' => $userStaff
                 ];
-
+            // dd($params);
                 return view('employee::cv-apply.show', $params);
             } else {
                 return redirect()->route('employee.cv.index')->with('error', 'bạn không có quyền truy cập link này!');
@@ -170,5 +170,112 @@ class JobapplicationController extends Controller
     public function sendEmail ($id)
     {
         return view('employee::cv-apply.send-email');
+    }
+
+
+    public function applied()
+    {
+        // Lấy tất cả các job mà user hiện tại đã ứng tuyển
+        $user_id = Auth::id();
+        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+        ->whereHas('job', function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })
+            ->get();
+        // Tính số lượng ứng viên đã nộp đơn
+    $appliedCount = $items->count();
+    return view('employee::uv.applied', compact('items', 'appliedCount'));
+    }
+
+    public function referred()
+    {
+       // Lấy tất cả các job mà user hiện tại đã ứng tuyển
+       $user_id = Auth::id();
+       $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+       ->whereHas('job', function ($query) use ($user_id) {
+               $query->where('user_id', $user_id);
+           })
+           ->get();
+       // Tính số lượng ứng viên đã nộp đơn
+        return view('employee::uv.referred', compact('items'));
+    }
+    
+    // public function referred()
+    // {
+    //     // Lấy danh sách các tin tuyển dụng của nhà tuyển dụng hiện tại
+    //     $jobs = Job::where('user_id', Auth::id())->get();
+    //     // dd($jobs);
+    //     // Dùng mảng để lưu trữ các CV được đề xuất
+    //     $items = collect();
+    //     $wageIds = [];
+    //     foreach ($jobs as $job) {
+    //         if ($job->wage_id !== null) {
+    //             $wageIds[] = $job->wage_id;
+    //         }
+    //     }
+    //     $uniqueWageIds = array_unique($wageIds);
+    //     $items = UserCv::whereIn('wage_id', $uniqueWageIds)
+    //                         ->get();
+    //     // dd($items);
+    //     // Trả về view với danh sách các CV được đề xuất
+    //     return view('employee::uv.referred', compact('items'));
+    // }
+
+    private function getRandomRecommendationCount()
+    {
+        $dayOfWeek = date('w'); // Lấy ngày trong tuần (0: Chủ nhật, 1-6: Thứ 2 đến Thứ 7)
+        $daysSincePosting = min($dayOfWeek, 6) + 1; // Ngày kể từ khi lên tin tuyển dụng (1-7 ngày)
+        
+        if ($daysSincePosting == 1) {
+            return rand(10, 20); // Ngày đầu: từ 10 đến 20 hồ sơ
+        } elseif ($daysSincePosting == 2) {
+            return rand(10, 15); // Ngày thứ 2: từ 10 đến 15 hồ sơ
+        } elseif ($daysSincePosting == 3) {
+            return rand(5, 10); // Ngày thứ 3: từ 5 đến 10 hồ sơ
+        } else {
+            return rand(3, 5); // Ngày từ thứ 4 đến thứ 10: từ 3 đến 5 hồ sơ
+        }
+    }
+    
+
+    public function viewed()
+    {
+        // Lấy tất cả các job mà user hiện tại đã xem
+        $user_id = Auth::id();
+        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+            ->whereHas('job', function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })
+            ->where('is_read', UserJobApply::ACTIVE) // Giả sử 'is_read' được sử dụng để xác định công việc đã xem
+            ->get();
+            $viewedCount = $items->count();
+            // dd($viewedCount);
+
+        return view('employee::uv.viewed', compact('items','viewedCount'));
+    }
+    
+
+    public function saved()
+    {
+        // Lấy tất cả các job mà user hiện tại đã lưu
+        $user_id = Auth::id();
+        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+        ->whereHas('job', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })
+        ->where('favorites', true)
+        ->get();
+        $savedCount = $items->count();
+        // dd($items);
+        return view('employee::uv.saved', compact('items','savedCount'));
+    }
+    
+
+    public function toggleFavorite($id)
+    {
+        $userJobApply = UserJobApply::findOrFail($id);
+        $userJobApply->favorites = !$userJobApply->favorites;
+        $userJobApply->save();
+        return response()->json(['favorites' => $userJobApply->favorites]);
     }
 }

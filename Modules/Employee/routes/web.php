@@ -54,12 +54,22 @@ Route::group([
 	Route::put('/cv/update/{id}', [JobapplicationController::class, 'update'])->name('cv.update');
 	Route::delete('/cv/delete/{id}', [JobapplicationController::class, 'destroy'])->name('cvs.delete');
 	Route::get('/applied-jobs/{id}/send-email', [JobapplicationController::class, 'sendEmail'])->name('cv.sendemail');
+
+
+	Route::get('/applied', [JobapplicationController::class, 'applied'])->name('applied');
+    Route::get('/referred', [JobapplicationController::class, 'referred'])->name('referred');
+    Route::get('/viewed', [JobapplicationController::class, 'viewed'])->name('viewed');
+    Route::get('/saved', [JobapplicationController::class, 'saved'])->name('saved');
+	Route::post('/bookmark/{id}', [JobapplicationController::class, 'toggleFavorite'])->name('bookmark.toggle');
+
 });
 
 Route::post('/applied-jobs/store', [JobapplicationController::class, 'store'])->name('cv.store');
 // list employ website
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employee.index');
 Route::get('/employees/{id}', [EmployeeController::class, 'show'])->name('employee.show');
+Route::post('/employee/get-contact-info', [EmployeeController::class, 'getContactInfo'])->name('employee.get-contact-info');
+Route::post('/employee/check-contact-info', [EmployeeController::class, 'checkContactInfo'])->name('employee.check-contact-info');
 
 Route::group([
 	'prefix' => 'employee',

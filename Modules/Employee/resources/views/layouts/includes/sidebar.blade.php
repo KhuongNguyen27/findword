@@ -1,80 +1,108 @@
 <!-- Sidebar Backdrop -->
 <div class="sidebar-backdrop"></div>
+<style>
+.dropdown-toggle #totalApplicants {
+    background-color: #ff0000;
+    padding: 0px 8px;
+    border-radius:38px;
+    color: #fff;
+    margin-left: 7px;
+}
+.dropdown-toggle::after {
+    margin-left: 3.255em;
+}
+</style>
 
 <!-- User Sidebar -->
 <div class="user-sidebar">
-
     <div class="sidebar-inner">
-    <ul class="navigation">
-        
-    <li><a href="{{ route('employee.home')}}"> <i class="la la-home"></i>{{ __('dashboard') }}</a></li>
-    <li><a href="{{ route('employee.profile.index')}}"><i class="la la-user-tie"></i>{{ __('profile') }}</a></li>
-    <li><a href="{{ route('employee.job.create')}}"><i class="la la-paper-plane"></i>Đăng tin</a></li>
-    <li>
-        <a href="#" class="dropdown-toggle"><i class="la la-user-tie"></i>Ứng viên</a>
-        <ul class="sub-menu">
-            <li><a href=""><i class="la la-file-invoice"></i>UV nộp đơn (0)</a></li>
-            <li><a href=""><i class="la la-bookmark-o"></i>UV giới thiệu (0)</a></li>
-            <li><a href=""><i class="la la-box"></i>UV đã xem (0)</a></li>
-            <li><a href=""><i class="la la-comment-o"></i>UV đã lưu (0) </a></li>
-        </ul>
-    </li>
-    <li><a href="{{ route('employee.job.index')}}"><i class="la la-briefcase"></i>{{ __('work_manager') }}</a></li>
-    <!-- <li><a href="{{ route('employee.cv.index')}}"><i class="la la-box"></i>{{ __('cv_manager') }}</a></li> -->
-    <li><a href="{{ route('employee.transaction.index')}}"><i class="la la-box"></i>{{ __('transaction_manager') }}</a></li>
-    <li><a href="{{ route('employee.profile.editpassword')}}"><i class="la la-box"></i>{{ __('change_password') }}</a></li>
-    <li><a href="{{ route('employee.logout')}}"><i class="la la-sign-out"></i>{{ __('logout') }}</a></li>
-</ul>
+        <ul class="navigation">
+            <li><a href="{{ route('employee.home') }}"> <i class="la la-home"></i>{{ __('dashboard') }}</a></li>
+            <li><a href="{{ route('employee.profile.index') }}"><i class="la la-user-tie"></i>{{ __('profile') }}</a></li>
+            <li><a href="{{ route('employee.job.create') }}"><i class="la la-paper-plane"></i>Đăng tin</a></li>
+            <li>
+                <a href="#" class="dropdown-toggle"><i class="la la-users"></i> Ứng viên <span id="totalApplicants">0</span></a>
+                <ul class="sub-menu">
+                    <li><a href="{{ route('employee.applied') }}"><i class="la la-file-invoice"></i> UV nộp đơn (<span id="appliedCount">{{ $appliedCount }}</span>)</a></li>
+                    <li><a href="{{ route('employee.referred') }}"><i class="la la-user-friends"></i> UV giới thiệu (<span id="referredCount">0</span>)</a></li>
+                    <li><a href="{{ route('employee.viewed') }}"><i class="la la-eye"></i> UV đã xem (<span id="viewedCount">{{ $viewedCount }}</span>)</a></li>
+                    <li><a href="{{ route('employee.saved') }}"><i class="la la-bookmark"></i> UV đã lưu (<span id="savedCount">{{ $savedCount }}</span>)</a></li>
+                </ul>
+            </li>
 
+            <li><a href="{{ route('employee.job.index') }}"><i class="la la-briefcase"></i>{{ __('work_manager') }}</a></li>
+            <li><a href="{{ route('employee.transaction.index') }}"><i class="la la-box"></i>{{ __('transaction_manager') }}</a></li>
+            <li><a href="{{ route('employee.profile.editpassword') }}"><i class="la la-box"></i>{{ __('change_password') }}</a></li>
+            <li><a href="{{ route('employee.logout') }}"><i class="la la-sign-out"></i>{{ __('logout') }}</a></li>
+        </ul>
     </div>
 </div>
+
 <style>
     .navigation .sub-menu {
-    display: none;
-    padding-left: 20px;
-}
+        display: none;
+        padding-left: 20px;
+    }
 
-.navigation .sub-menu.active {
-    display: block;
-}
+    .navigation .sub-menu.active {
+        display: block;
+    }
 
-/* .dropdown-toggle::after {
-    float: right;
-    margin-left: 5px;
-} */
+    .navigation .dropdown-toggle.active {
+        color: #28c1bc; /* hoặc màu bạn muốn */
+        background: rgba(25, 103, 210, 0.1);
+    }
 
-/* .navigation .dropdown-toggle.active {
-    color: red; 
-} */
+    .navigation .dropdown-toggle.active i {
+        color: #28c1bc; /* hoặc màu bạn muốn */
+    }
 
-
+    .user-sidebar .navigation li.active a i, .user-sidebar .navigation li:hover a i {
+        color: #28c1bc;
+    }
 </style>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var navigationLinks = document.querySelectorAll('.user-sidebar .navigation a');
+    document.addEventListener('DOMContentLoaded', function() {
+        var navigationLinks = document.querySelectorAll('.user-sidebar .navigation a');
 
-    navigationLinks.forEach(function(link) {
-        // Add 'active' class to the link if the current URL matches the link's href
-        if (link.getAttribute('href') === window.location.href) {
-            link.parentElement.classList.add('active');
-        }
-    });
-});
+        navigationLinks.forEach(function(link) {
+            // Add 'active' class to the link if the current URL matches the link's href
+            if (link.href === window.location.href) {
+                link.parentElement.classList.add('active');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            const subMenu = this.nextElementSibling;
-            if (subMenu) {
-                subMenu.classList.toggle('active');
-                this.classList.toggle('active');
+                // Nếu liên kết này nằm trong một sub-menu, hiển thị sub-menu đó
+                var parentMenu = link.closest('.sub-menu');
+                if (parentMenu) {
+                    parentMenu.classList.add('active');
+                    var dropdownToggle = parentMenu.previousElementSibling;
+                    if (dropdownToggle && dropdownToggle.classList.contains('dropdown-toggle')) {
+                        dropdownToggle.classList.add('active');
+                    }
+                }
             }
         });
-    });
-});
 
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const subMenu = this.nextElementSibling;
+                if (subMenu) {
+                    subMenu.classList.toggle('active');
+                    this.classList.toggle('active');
+                }
+            });
+        });
+        // Calculate total applicants count
+        var appliedCount = parseInt(document.getElementById('appliedCount').innerText);
+        var viewedCount = parseInt(document.getElementById('viewedCount').innerText);
+        var savedCount = parseInt(document.getElementById('savedCount').innerText);
+
+        var totalApplicants = appliedCount + viewedCount + savedCount;
+        document.getElementById('totalApplicants').innerText = totalApplicants;
+    });
 </script>
 <!-- End User Sidebar -->
