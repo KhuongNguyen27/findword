@@ -214,8 +214,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                 ->orderBy('jobs.created_at', 'desc');
-                $query->groupBy('jobs.id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
-                
+                $query->groupBy('jobs.id','jobs.user_id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -238,7 +237,7 @@ class JobController extends Controller
         $view_path = 'website.jobs.index';
         if($job_type){
             $view_path = 'website.jobs.sub-index';
-            $query->groupBy('jobs.id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
+            $query->groupBy('jobs.id','jobs.user_id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
             $jobs = $query->paginate(25);
         }
 
@@ -306,7 +305,7 @@ class JobController extends Controller
             }
         }
         $hot_jobs->orderBy('jobs.id','DESC')->limit(20);
-        $hot_jobs->groupBy('jobs.id','jobs.id','job_province.job_id');
+        $hot_jobs->groupBy('jobs.id','jobs.user_id','job_province.job_id');
         $hot_jobs= $hot_jobs->get()->chunk(10);
 
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
@@ -505,7 +504,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
-                $query->groupBy('jobs.id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
+                $query->groupBy('jobs.id','jobs.user_id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $title = 'Việc làm ngoài nước hôm nay';
                 break;
             case 'urgent':
@@ -540,7 +539,7 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
-                $query->groupBy('jobs.id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
+                $query->groupBy('jobs.id','jobs.user_id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
@@ -585,7 +584,6 @@ class JobController extends Controller
 				$hot_jobs->where('job_province.country_id',intval($province_id));
 			}
 		}
-        
         if($request->name){
             $hot_jobs->where('jobs.name', 'LIKE', '%'.$request->name.'%');
         }
