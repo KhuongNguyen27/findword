@@ -100,33 +100,44 @@ class AdminHomeController extends Controller
 
     public function chartAjax(Request $request)
     {
+        
         $startDate     = $request->startDate;
         $endDate       = $request->endDate;
-        $labels        = [];
-        $total_amounts = [];
-        $transactions  = new Transaction();
-        $transactions  = $transactions->select(
-            DB::raw('date(created_at) as date'),
-            DB::raw('sum(amount) as total_amount'),
-        )->whereDate('created_at', '>=', $startDate)
-        ->whereDate('created_at', '<=', $endDate);
-        $transactions = $transactions->groupBy('date');
-        $transactions = $transactions->get();
-        $startDate              = new DateTime($startDate);
-        $endDate                = new DateTime($endDate);
-        while ($startDate <= $endDate) {
-            $labels[]           = $startDate->format('Y-m-d');
-            $total_amounts[] = $transactions->where('date',  $startDate->format('Y-m-d'))->sum('total_amount');
-            $startDate->modify('+1 day');
+        $dataChart       = $request->dataChart;
+        switch ($dataChart) {
+            case '1':
+                $response              = [
+                    'labels' => 'label',
+                    'total_amounts' => 'total_amounts',
+                ];
+                break;
+            
+            default:
+                $labels        = [];
+                $total_amounts = [];
+                $transactions  = new Transaction();
+                $transactions  = $transactions->select(
+                    DB::raw('date(created_at) as date'),
+                    DB::raw('sum(amount) as total_amount'),
+                )->whereDate('created_at', '>=', $startDate)
+                ->whereDate('created_at', '<=', $endDate);
+                $transactions = $transactions->groupBy('date');
+                $transactions = $transactions->get();
+                $startDate              = new DateTime($startDate);
+                $endDate                = new DateTime($endDate);
+                while ($startDate <= $endDate) {
+                    $labels[]           = $startDate->format('Y-m-d');
+                    $total_amounts[] = $transactions->where('date',  $startDate->format('Y-m-d'))->sum('total_amount');
+                    $startDate->modify('+1 day');
+                }
+                $response              = [
+                    'labels' => $labels,
+                    'total_amounts' => $total_amounts,
+                ];
+                break;
         }
-        $response              = [
-            'labels' => $labels,
-            'total_amounts' => $total_amounts,
-        ];
+        
 
         return response()->json($response);
     }
 }
-
-
-
