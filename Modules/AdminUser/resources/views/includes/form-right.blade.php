@@ -128,13 +128,6 @@
             }
         });
     }
-
-    // Example usage:
-    @foreach (json_decode($item->employee->image_business_license) as $image)
-        @if (pathinfo($image, PATHINFO_EXTENSION) == 'pdf')
-            renderPdf('{{ asset($image) }}');
-        @endif
-    @endforeach
 </script> -->
 
 
