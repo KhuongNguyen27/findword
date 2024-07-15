@@ -161,13 +161,13 @@ a.mr-2:hover {
                                             </a>
                                         </p>
                                         <p>
-                                        <i class="fas fa-briefcase"></i> {{ $item->experience_years ?? ''}} năm
-                                            <i class="fas fa-map-marker-alt"></i> {{ $item->province->name ??'' }}
+                                        <i class="fas fa-briefcase"></i> {{ $item->cv->experience_years ?? ''}} năm
+                                            <i class="fas fa-map-marker-alt"></i> {{ $item->cv->province->name ??'' }}
                                             <i class="fas fa-calendar-alt"></i>
                                             {{ date('d/m/Y',strtotime($item->created_at)) }}
-                                            {!! $item->wage ? '<i class="fas fa-dollar-sign"></i> ' .
-                                            number_format($item->wage->salaryMin, 0, ',', '.') . ' - ' .
-                                            number_format($item->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
+                                            {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
+                                            number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
+                                            number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
                                             <a class="btn-view-profile"
                                                 href="{{ route('employee.cv.showCv', $item->cv->id) }}">
                                                 <i class="fas fa-eye"></i> Xem hồ sơ
