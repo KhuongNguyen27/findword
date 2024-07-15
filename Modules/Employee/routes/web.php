@@ -54,14 +54,19 @@ Route::group([
 	Route::put('/cv/update/{id}', [JobapplicationController::class, 'update'])->name('cv.update');
 	Route::delete('/cv/delete/{id}', [JobapplicationController::class, 'destroy'])->name('cvs.delete');
 	Route::get('/applied-jobs/{id}/send-email', [JobapplicationController::class, 'sendEmail'])->name('cv.sendemail');
-
+	
 
 	Route::get('/applied', [JobapplicationController::class, 'applied'])->name('applied');
-    Route::get('/referred', [JobapplicationController::class, 'referred'])->name('referred');
     Route::get('/viewed', [JobapplicationController::class, 'viewed'])->name('viewed');
     Route::get('/saved', [JobapplicationController::class, 'saved'])->name('saved');
 	Route::post('/bookmark/{id}', [JobapplicationController::class, 'toggleFavorite'])->name('bookmark.toggle');
+	Route::get('/referred', [JobapplicationController::class, 'referred'])->name('referred');
+	Route::get('/referred-cv/{id}', [JobapplicationController::class, 'showCv'])->name('cv.showCv');
 
+	Route::get('/cv/handle-action/{id}/{action}', [JobapplicationController::class, 'handleAction'])
+    ->name('cv.handleAction');
+
+	
 });
 
 Route::post('/applied-jobs/store', [JobapplicationController::class, 'store'])->name('cv.store');

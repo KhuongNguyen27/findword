@@ -14,6 +14,7 @@ class AutoPostJobPackage extends Model
         'daily',
         'auto_in_hour',
         'job_package_id',
+        'hour'
     ];
 
 }

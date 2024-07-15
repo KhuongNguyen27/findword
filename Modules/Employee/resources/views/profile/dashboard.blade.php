@@ -6,14 +6,24 @@
     color: #28C1BC;
     /* border-color: #ffecb5; */
 }
+.notification {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #FF0000;
+}
 </style>
+
+
 <section class="user-dashboard">
     <div class="dashboard-outer">
         @if (auth()->user()->verify == 0)
         <div class="alert alert-warning" role="alert"
-            style="background-color: #e2f8ea; font-weight: bold; font-size: 1.2em;">
-            Quản Trị Viên đang tiến hành XÁC MINH TÀI KHOẢN của bạn. Vui lòng kiểm tra kỹ lại thông tin công ty tại mục
-            "Hồ sơ". <br> Tài khoản Nhà Tuyển Dụng sau khi được xác minh sẽ không thể thay đổi thông tin.
+            style="background-color: #e2f8ea; font-weight: bold; font-size: 1.1em; line-height: 31px">
+            Quản Trị Viên đang tiến hành XÁC MINH TÀI KHOẢN của bạn. Vui lòng kiểm tra kỹ lại các thông tin sau tại mục "Hồ sơ":
+            <br>- Cập nhật Giấy phép đăng ký kinh doanh (GPĐKKD)
+            <br>- Thông tin Công ty phải chính xác 100% với GPĐKKD 
+            <br>Tài khoản Nhà Tuyển Dụng chỉ được XÁC MINH khi cung cấp đúng và đầy đủ các thông tin trên
+            <br><p class="notification">Sau khi được XÁC MINH sẽ không thể thay đổi thông tin</p>
         </div>
         @endif
         <div class="upper-title-box">

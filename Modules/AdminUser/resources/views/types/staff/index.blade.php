@@ -43,8 +43,8 @@
                     <thead class="table-light">
                         <tr>
                             <th>{{ __('code') }}</th>
-                            <th>{{ __('name') }}</th>
-                            <th>{{__('email')}}</th>
+                            <th>Thông tin</th>
+                            <!-- <th>{{__('email')}}</th> -->
                             <th>{{ __('position') }}</th>
                             <th>{{ __('status') }}</th>
                             <th>{{ __('created_at') }}</th>
@@ -58,10 +58,10 @@
                         @foreach( $items as $item )
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->name }}
+                            <td>{{ Str::limit($item->name, 25) }} <br>
+                                {{ $item->email }}
                             <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
                             </td>
-                            <td>{{ $item->email }}</td>
                             <td>{{ $item->position }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>{{ $item->created_at_fm }}</td>

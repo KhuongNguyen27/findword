@@ -5,7 +5,7 @@ namespace Modules\Staff\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\app\Models\JobApplication;
-
+use App\Models\Province;
 class UserCv extends Model
 {
     use HasFactory;
@@ -34,6 +34,7 @@ class UserCv extends Model
         'career_objective',
         'file_path',
         'typeCV',
+        'province_id',
     ];
     public static function savePersonalInformation($request,$cv_id = 0){
         if($cv_id){
@@ -69,11 +70,17 @@ class UserCv extends Model
         $item->form_work_id = $request->form_work_id;
         $item->experience_years = $request->experience_years;
         $item->career_id = $request->career_id;
+        $item->province_id = $request->province_id;
         $item->desired_location = $request->desired_location;
         $item->wage_id = $request->wage_id;
         $item->career_objective = $request->career_objective;
         $item->save();
         return $item;
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'employee_cv', 'cv_id', 'user_id');
     }
     public function userExperiences()
     {
@@ -83,7 +90,10 @@ class UserCv extends Model
     {
         return $this->hasMany(UserEducation::class, 'cv_id');
     }
-
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'province_id');
+    }
     public function userSkills()
     {
         return $this->hasMany(UserSkill::class, 'cv_id');

@@ -54,7 +54,10 @@
     <script src="{{ asset('website-assets/js/script.js')}}"></script>
     @yield('footer')
 
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script> -->
+
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> -->
     <script>
       if ($('#description').length) {
         CKEDITOR.replace('description');
@@ -68,6 +71,7 @@
     if ($('#more_information').length) {
         CKEDITOR.replace('more_information');
     }
+    
     </script>
 </body>
 

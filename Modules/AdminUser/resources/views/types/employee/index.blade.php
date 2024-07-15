@@ -58,8 +58,8 @@
                                 <th> {{__('points')}} </th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('verify') }}</th>
-                                <th>{{ __('created_at') }}</th>
-                                <th>{{ __('las_login') }}</th>
+                                <!-- <th>{{ __('created_at') }}</th> -->
+                                <th>Đăng nhập</th>
                                 <th>{{ __('Xác thực') }}</th>
                                 <th>Quyền NN</th>
                                 <th>{{ __('action') }}</th>
@@ -70,7 +70,7 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}
+                                        <td>{{ Str::limit($item->employee->name, 40) }}
                                             <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
                                         </td>
                                         @if (request()->type == 'employee' )
@@ -79,8 +79,8 @@
                                         <td>{{ $item->points }}</td>
                                         <td>{!! $item->status_fm !!}</td>
                                         <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>
-                                        <td>{{ $item->created_at_fm }}</td>
-                                        <td>{{ $item->last_login ? date('H:i:s d-m-Y', strtotime($item->last_login)) : '' }}</td> 
+                                        <!-- <td>{{ $item->created_at_fm }}</td> -->
+                                        <td>{{ $item->last_login ? date('d-m-Y', strtotime($item->last_login)) : '' }}</td> 
                                         <!-- <td>{{ $item->email_status == 0 ? 'Chưa xác thực' : 'Đã xác thực' }}</td> -->
                                         <td>{!! $item->email_status_fm !!}</td>
                                         <td>{!! $item->allowed_fm !!}</td>

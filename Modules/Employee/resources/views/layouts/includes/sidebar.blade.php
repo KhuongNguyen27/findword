@@ -24,7 +24,7 @@
                 <a href="#" class="dropdown-toggle"><i class="la la-users"></i> Ứng viên <span id="totalApplicants">0</span></a>
                 <ul class="sub-menu">
                     <li><a href="{{ route('employee.applied') }}"><i class="la la-file-invoice"></i> UV nộp đơn (<span id="appliedCount">{{ $appliedCount }}</span>)</a></li>
-                    <li><a href="{{ route('employee.referred') }}"><i class="la la-user-friends"></i> UV giới thiệu (<span id="referredCount">0</span>)</a></li>
+                    <li><a href="{{ route('employee.referred') }}"><i class="la la-user-friends"></i> UV giới thiệu (<span id="referredCount">{{ $referredCount }}</span>)</a></li>
                     <li><a href="{{ route('employee.viewed') }}"><i class="la la-eye"></i> UV đã xem (<span id="viewedCount">{{ $viewedCount }}</span>)</a></li>
                     <li><a href="{{ route('employee.saved') }}"><i class="la la-bookmark"></i> UV đã lưu (<span id="savedCount">{{ $savedCount }}</span>)</a></li>
                 </ul>
@@ -100,8 +100,9 @@
         var appliedCount = parseInt(document.getElementById('appliedCount').innerText);
         var viewedCount = parseInt(document.getElementById('viewedCount').innerText);
         var savedCount = parseInt(document.getElementById('savedCount').innerText);
+        var referredCount = parseInt(document.getElementById('referredCount').innerText);
 
-        var totalApplicants = appliedCount + viewedCount + savedCount;
+        var totalApplicants = appliedCount + viewedCount + referredCount + savedCount;
         document.getElementById('totalApplicants').innerText = totalApplicants;
     });
 </script>

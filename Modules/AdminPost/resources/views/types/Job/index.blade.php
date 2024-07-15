@@ -70,7 +70,7 @@
                         <tr>
                             <td>#{{ $item->id }}</td>
                             <td>
-                                {{ $item->name }}
+                            {{ Str::limit($item->name, 70) }}
                                 <p class="mb-0 product-category">{{ $item->user->name ?? '' }}</p>
                             </td>
                             <td>{{ $item->position }}</td>

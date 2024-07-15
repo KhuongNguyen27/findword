@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <p class="profile-item"><span>Nơi làm việc:</span>
-                                                        {{ $item->address ?? '' }}
+                                                        {{ $item->province->name ?? '' }}
                                                     </p>
                                                     <p class="profile-item"><span>Tỉnh/Thành phố:</span>
                                                         {{ $item->city }}</p>

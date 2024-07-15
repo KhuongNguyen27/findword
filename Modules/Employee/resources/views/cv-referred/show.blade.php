@@ -2,6 +2,20 @@
 @section('content')
 <!-- Dashboard -->
 <style>
+.bookmarked {
+    color: red;
+    fill: red;
+}
+
+.bookmark-btn {
+    background-color: #EDF2FF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+}
+
 .with-border {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
@@ -133,6 +147,7 @@ i.fas.fa-dollar-sign {
     margin-right: 5px;
 }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <section class="user-dashboard">
     <div class="dashboard-outer">
         <div class="upper-title-box">
@@ -180,91 +195,182 @@ i.fas.fa-dollar-sign {
                                     </div>
                                     <p> {{ $item->career->name ?? '' }}</p>
                                     <!-- <p class="profile-item">Cập nhật:
-                                            {{ isset($item->created_at) ? $item->created_at->format('d/m/Y') : '' }}
-                                        </p> -->
+                                                {{ isset($item->created_at) ? $item->created_at->format('d/m/Y') : '' }}
+                                            </p> -->
                                     <button type="button" class="btn-contact-info" data-staff-id="{{ $item->user->id }}"
                                         data-employee-id="{{ Auth::user()->id }}" data-amount="10000"
-                                        data-current-point="{{ Auth::user()->points }}"
-                                        data-job-apply-id="{{ $cv_job_apply->id }}">
+                                        data-cv-id="{{ $item->id }}" data-current-point="{{ Auth::user()->points }}">
                                         Xem thông tin liên hệ
                                     </button>
-
-                                    <button class="bookmark-btn" data-job-apply-id="{{ $cv_job_apply->id }}">
-                                        <span class="flaticon-bookmark {{ $cv_job_apply->favorites ? 'bookmarked' : '' }}"></span>
+                                    <button class="bookmark-btn" data-cv-id="{{ $item->id }}"
+                                        data-route="{{ route('employee.bookmark.toggle',$item->id) }}">
+                                        <span
+                                            class="flaticon-bookmark {{ $employeeCv->favorites ? 'bookmarked' : '' }}"></span>
                                     </button>
                                 </div>
                             </div>
                         </div>
+
+
+
                         <script>
-                           document.addEventListener('DOMContentLoaded', function () {
-                                const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
+                        function getAppliedJobIdFromUrl() {
+                            let url = window.location.href;
+                            let segments = url.split('/');
+                            let id = segments.pop() || segments
+                        .pop(); // Lấy phần tử cuối cùng, có thể là ID hoặc trường hợp không có ID
+                            return id;
+                        }
 
-                                bookmarkBtns.forEach(btn => {
-                                    btn.addEventListener('click', function () {
-                                        const jobId = this.getAttribute('data-job-apply-id');
-                                        console.log('Job ID:', jobId); // Kiểm tra ID có đúng không
-                                        const isBookmarked = this.querySelector('span').classList.contains('bookmarked');
+                        // Hàm định dạng số theo kiểu phân tách hàng nghìn bằng dấu chấm
+                        function formatNumber(number) {
+                            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        }
 
-                                        fetch(`/employee/bookmark/${jobId}`, {
-                                            method: 'POST',
-                                            headers: {
-                                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                'Content-Type': 'application/json'
-                                            }
-                                        })
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            if (data.favorites) {
-                                                this.querySelector('span').classList.add('bookmarked');
-                                            } else {
-                                                this.querySelector('span').classList.remove('bookmarked');
-                                            }
-
-                                            // Hiển thị thông báo SweetAlert2
-                                            Swal.fire({
-                                                title: 'Lưu CV!',
-                                                text: isBookmarked ? 'Bỏ lưu thông tin CV thành công.' : 'Lưu thông tin CV thành công.',
-                                                icon: 'success',
-                                                confirmButtonText: 'OK'
-                                            });
-                                        })
-                                        .catch(error => {
-                                            console.error('Error:', error);
-
-                                            // Hiển thị thông báo lỗi nếu có lỗi xảy ra
-                                            Swal.fire({
-                                                title: 'Lỗi!',
-                                                text: 'Có lỗi xảy ra. Vui lòng thử lại.',
-                                                icon: 'error',
-                                                confirmButtonText: 'OK'
-                                            });
+                        // Kiểm tra nhà tuyển dụng đã xem CV hay chưa
+                        $(document).ready(function() {
+                            $.ajax({
+                                url: '{{ route('employee.check-contact-info') }}',
+                                type: 'POST',
+                                data: {
+                                    check: true,
+                                    cvId: getAppliedJobIdFromUrl(),
+                                    _token: '{{ csrf_token() }}',
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        var contactInfo = response.data;
+                                        $('#contactEmail').text(contactInfo.email);
+                                        $('#contactPhone').text(contactInfo.phone);
+                                        $('.btn-contact-info').each(function() {
+                                            $(this).addClass('disabled').attr('disabled',
+                                                true);
                                         });
-                                    });
-                                });
+                                    }
+                                }
                             });
 
+                            // Mua thông tin CV
+                            $(document).on('click', '.btn-contact-info', function() {
+                                var staffId = $(this).data('staff-id');
+                                var employeeId = $(this).data('employee-id');
+                                var amount = $(this).data('amount');
+                                var currentPoints = $(this).data('current-point');
+                                var cvId = $(this).data('cv-id');
 
+                                Swal.fire({
+                                    title: 'Xác nhận',
+                                    html: "Số <strong>Point</strong> hiện tại của bạn là <strong>" +
+                                        formatNumber(currentPoints) +
+                                        "P</strong>. Mất <strong>" + formatNumber(amount) +
+                                        "P</strong> để xem thông tin liên hệ?",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Đồng ý',
+                                    cancelButtonText: 'Hủy'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Gửi request AJAX để gọi route và phương thức trong EmployeeController
+                                        $.ajax({
+                                            url: '{{ route('employee.get-contact-info') }}',
+                                            type: 'POST',
+                                            data: {
+                                                staff_id: staffId,
+                                                employee_id: employeeId,
+                                                amount: amount,
+                                                cv_id: cvId,
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                if (response.success) {
+                                                    var contactInfo = response.data;
+                                                    $('#contactEmail').text(
+                                                        contactInfo.email
+                                                        ); // Cập nhật email
+                                                    $('#contactPhone').text(
+                                                        contactInfo.phone
+                                                        ); // Cập nhật số điện thoại
+                                                        window.location.reload();
+                                                    $('.btn-contact-info').each(
+                                                        function() {
+                                                            $(this).addClass(
+                                                                    'disabled')
+                                                                .attr(
+                                                                    'disabled',
+                                                                    true);
+                                                        });
+                                                } else {
+                                                    Swal.fire('Lỗi', response
+                                                        .message, 'error'
+                                                        ); // Hiển thị thông báo lỗi nếu có
+                                                }
+                                            },
+                                            error: function(error) {
+                                                console.error('Error:', error);
+                                                Swal.fire({
+                                                    title: 'Lỗi!',
+                                                    text: 'Có lỗi xảy ra. Vui lòng thử lại.',
+                                                    icon: 'error',
+                                                    confirmButtonText: 'OK'
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            });
+                        });
                         </script>
 
-                        <style>
-                            .bookmarked {
-                                color: red;
-                                fill: red;
-                            }
-
-                        .bookmark-btn {
-                            background-color: #EDF2FF;
-                            border: none;
-                            padding: 5px 10px;
-                            border-radius: 6px;
-                            display: inline-flex;
-                            align-items: center;
-                        }
-                        </style>
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
                         <script>
+                        $(document).ready(function() {
+                            $('.bookmark-btn').click(function() {
+                                var cvId = $(this).data('cv-id');
+                                var route = $(this).data('route');
+                                var btn = $(this);
+                                $.ajax({
+                                    url: route,
+                                    type: 'POST',
+                                    data: {
+                                        cvId: cvId,
+                                        _token: '{{ csrf_token() }}',
+                                    },
+                                    success: function(response) {
+                                        if (response.success) {
+                                            if (response.favorites) {
+                                                btn.find('.flaticon-bookmark').addClass(
+                                                    'bookmarked');
+                                            } else {
+                                                btn.find('.flaticon-bookmark').removeClass(
+                                                    'bookmarked');
+                                            }
+                                        }
+                                        var message = response.success ? response.message :
+                                            'Có lỗi xảy ra. Vui lòng thử lại.';
+                                        var icon = response.success ? 'success' : 'error';
+                                        Swal.fire({
+                                            title: 'Lưu CV!',
+                                            text: message,
+                                            icon: icon,
+                                            confirmButtonText: 'OK'
+                                        });
+                                    },
+                                    error: function(error) {
+                                        console.error('Error:', error);
+                                        Swal.fire({
+                                            title: 'Lỗi!',
+                                            text: 'Có lỗi xảy ra. Vui lòng thử lại.',
+                                            icon: 'error',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    }
+                                });
+                            });
+                        });
+                        </script>
+                        <!-- <script>
                         function getAppliedJobIdFromUrl() {
                             let url = window.location.href;
                             let segments = url.split('/');
@@ -308,11 +414,13 @@ i.fas.fa-dollar-sign {
                                 var employeeId = $(this).data('employee-id');
                                 var amount = $(this).data('amount');
                                 var currentPoints = $(this).data('current-point');
-                                var applyId = $(this).data('job-apply-id');
+                                var cvId = $(this).data('cv-id');
+
                                 // Hàm định dạng số theo kiểu phân tách hàng nghìn bằng dấu chấm
                                 function formatNumber(number) {
                                     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
                                 }
+
                                 // Gửi request AJAX để gọi route và phương thức trong EmployeeController
                                 Swal.fire({
                                     title: 'Xác nhận',
@@ -336,8 +444,7 @@ i.fas.fa-dollar-sign {
                                                 staff_id: staffId,
                                                 employee_id: employeeId,
                                                 amount: amount,
-                                                applyId: applyId,
-                                                check: false,
+                                                cv_id: cvId,
                                                 _token: '{{ csrf_token() }}'
                                             },
                                             success: function(response) {
@@ -348,23 +455,91 @@ i.fas.fa-dollar-sign {
                                                         contactInfo.phone);
                                                     $('#contactEmail').text(
                                                         contactInfo.email
-                                                    ); // Cập nhật email
+                                                        ); // Cập nhật email
                                                     $('#contactPhone').text(
                                                         contactInfo.phone
-                                                    ); // Cập nhật số điện thoại
-                                                    window.location.reload();
+                                                        ); // Cập nhật số điện thoại
+                                                    window.location
+                                                .reload(); // Reload trang để cập nhật trạng thái button
                                                 } else {
                                                     Swal.fire('Lỗi', response
                                                         .message, 'error'
-                                                    ); // Hiển thị thông báo lỗi nếu có
+                                                        ); // Hiển thị thông báo lỗi nếu có
                                                 }
+                                            },
+                                            error: function(error) {
+                                                console.error('Error:', error);
+                                                Swal.fire('Lỗi',
+                                                    'Có lỗi xảy ra. Vui lòng thử lại.',
+                                                    'error'
+                                                    ); // Hiển thị thông báo lỗi nếu có
                                             }
                                         });
                                     }
                                 });
                             });
                         });
+                        </script> -->
+
+
+                        <!-- <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
+
+                                    bookmarkBtns.forEach(btn => {
+                                        btn.addEventListener('click', function () {
+                                            const cvId = this.getAttribute('data-cv-id');
+                                            console.log('Job ID:', jobId); // Kiểm tra ID có đúng không
+                                            const isBookmarked = this.querySelector('span').classList.contains('bookmarked');
+
+                                            fetch(`/employee/bookmark/${cvId}`, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                                    'Content-Type': 'application/json'
+                                                }
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                if (data.favorites) {
+                                                    this.querySelector('span').classList.add('bookmarked');
+                                                } else {
+                                                    this.querySelector('span').classList.remove('bookmarked');
+                                                }
+
+                                                // Hiển thị thông báo SweetAlert2
+                                                Swal.fire({
+                                                    title: 'Lưu CV!',
+                                                    text: isBookmarked ? 'Bỏ lưu thông tin CV thành công.' : 'Lưu thông tin CV thành công.',
+                                                    icon: 'success',
+                                                    confirmButtonText: 'OK'
+                                                });
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+
+                                                // Hiển thị thông báo lỗi nếu có lỗi xảy ra
+                                                Swal.fire({
+                                                    title: 'Lỗi!',
+                                                    text: 'Có lỗi xảy ra. Vui lòng thử lại.',
+                                                    icon: 'error',
+                                                    confirmButtonText: 'OK'
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+
+
+                            </script> -->
+
+
                         </script>
+
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 
                         <div class="widget-content">
                             <div class="profile-body p-3">
@@ -500,27 +675,7 @@ i.fas.fa-dollar-sign {
                                             </ul>
                                         </div>
                                     </div>
-                                    <form action="{{route('employee.cv.update',$cv_job_apply->id)}}" method="post">
-                                        @csrf
-                                        @method('PUT')
-                                        <select class="form-select form-select-lg mb-3" name="status"
-                                            aria-label=".form-select-lg example">
-                                            <option @selected($cv_job_apply->status == $cv_job_apply::ACTIVE)
-                                                value="{{ $cv_job_apply::ACTIVE }}">Duyệt</option>
-                                            <option @selected($cv_job_apply->status == $cv_job_apply::INACTIVE)
-                                                value="{{ $cv_job_apply::INACTIVE }}">Không duyệt
-                                            </option>
-                                            <option @selected($cv_job_apply->status == $cv_job_apply::DRAFT)
-                                                value="{{ $cv_job_apply::DRAFT }}">Chờ duyệt
-                                            </option>
-                                        </select>
-                                        <div class="form-group col-lg-12 col-md-12 text-right">
-                                            <button class="theme-btn btn-style-one">Cập Nhật</button>
-                                            <a style="background-color: red !important;"
-                                                href="{{route('employee.cv.index')}}"
-                                                class="theme-btn btn-style-one danger">Trở về</a>
-                                        </div>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>

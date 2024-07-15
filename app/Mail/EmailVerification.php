@@ -33,6 +33,6 @@ class EmailVerification extends Mailable
     public function build()
     {
         return $this->view('emails.email-verification')
-                    ->subject('Xác thực email');
+                    ->subject('Xác thực Email (noreply)');
     }
 }

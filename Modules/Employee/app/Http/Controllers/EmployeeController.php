@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Employee\app\Http\Controllers;
+use Modules\Employee\app\Models\EmployeeCv;
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserJobApply;
 use Modules\Employee\app\Models\UserEmployee;
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 use Modules\Employee\app\Models\Job;
+use Modules\Staff\app\Models\UserCv;
 use Modules\Transaction\app\Models\Transaction; // Import Transaction model for logging transactions
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -57,16 +60,19 @@ class EmployeeController extends Controller
         }
     }
 
+    //done
     public function checkContactInfo(Request $request){
         $check = $request->input('check');
-        $applyId = $request->input('applyId');
-        if(!empty($check) && !empty($applyId)){
-            $applyJob = UserJobApply::findOrFail($applyId);
-            if($applyJob->is_checked == 1){
-                $staff = User::findOrFail($applyJob->user_id);
+        $cvId = $request->input('cvId');
+        if(!empty($check) && !empty($cvId)){
+            $checkJob = EmployeeCv::where('cv_id',$cvId)->where('user_id',Auth::id())->first();
+            if($checkJob && $checkJob->is_checked == 1){
+                $cv = UserCv::findOrFail($cvId);
+                $staff = User::findOrFail($cv->user_id);
                 $contactInfo = [
                     'email' => $staff->email,
-                    'phone' => $staff->userStaff->phone,
+                    'phone' => $staff->userStaff ? ($staff->userStaff->phone ?? 0) : 0,
+                    'favorites' => $checkJob->favorites,
                 ];
                 return response()->json([
                     'success' => true,
@@ -79,7 +85,7 @@ class EmployeeController extends Controller
             'message' => '',
         ]); 
     }
-
+    // working
     public function getContactInfo(Request $request)
     {
         // DB::beginTransaction();
@@ -88,18 +94,19 @@ class EmployeeController extends Controller
             $employeeId = $request->input('employee_id');
             $staffId = $request->input('staff_id');
             $price = $request->input('amount');
-            $applyId = $request->input('applyId');
-            // Xử lý trừ tiền và ghi log
+            $cvId = $request->input('cv_id'); 
             if(!empty($employeeId)){
                 $employee = User::findOrFail($employeeId);
                 if($employee->points >= $price){
                     $employee->points -= $price;
-                    $applyJob = UserJobApply::findOrFail($applyId);
-                    $staff = User::findOrFail($applyJob->user_id);
-                    if($applyJob){
-                        $applyJob->is_checked = 1;
-                        $applyJob->save();
-                    }
+                    $cv = UserCv::findOrFail($cvId);
+                    $staff = User::findOrFail($staffId);
+                    $employeeCv = EmployeeCv::updateOrCreate([
+                        'user_id' => $employeeId,
+                        'cv_id' => $cvId
+                    ],[
+                        'is_checked' => 1
+                    ]);
                     $employee->save();
                     $contactInfo = [
                         'id' => $staff->id,
@@ -132,6 +139,81 @@ class EmployeeController extends Controller
         }
     }
 
+    // public function getContactInfo(Request $request)
+    // {
+    //     DB::beginTransaction();
+    //     try {
+    //         // Lấy thông tin từ request
+    //         $employeeId = $request->input('employee_id');
+    //         $staffId = $request->input('staff_id');
+    //         $price = $request->input('amount');
+    //         $cvId = $request->input('cv_id'); // Lấy id của CV từ request
+    
+    //         // Kiểm tra đầu vào
+    //         if (empty($employeeId) || empty($staffId) || empty($price) || empty($cvId)) {
+    //             return response()->json([
+    //                 'success' => false,
+    //                 'message' => "Dữ liệu đầu vào không hợp lệ",
+    //             ]);
+    //         }
+    
+    //         // Xử lý trừ tiền và ghi log
+    //         $employee = User::findOrFail($employeeId);
+    //         if ($employee->points >= $price) {
+    //             $employee->points -= $price;
+    //             $employee->save();
+    
+    //             // Cập nhật bảng employee_cv
+    //             $employeeCv = EmployeeCv::where('user_id', $employeeId)
+    //                                     ->where('cv_id', $cvId)
+    //                                     ->first();
+    
+    //             if ($employeeCv) {
+    //                 $employeeCv->is_checked = 1;
+    //                 $employeeCv->save();
+    //             } else {
+    //                 EmployeeCv::create([
+    //                     'user_id' => $employeeId,
+    //                     'cv_id' => $cvId,
+    //                     'is_read' => 0,
+    //                     'is_checked' => 1,
+    //                     'favorites' => 0,
+    //                 ]);
+    //             }
+    
+    //             DB::commit();
+    
+    //             // Lấy thông tin nhân viên
+    //             $staff = User::findOrFail($staffId);
+    //             $contactInfo = [
+    //                 'id' => $staff->id,
+    //                 'email' => $staff->email,
+    //                 'phone' => $staff->userStaff->phone,
+    //             ];
+    
+    //             return response()->json([
+    //                 'success' => true,
+    //                 'data' => $contactInfo,
+    //             ]);
+    //         }
+    
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => "Nhà tuyển dụng không đủ điểm thực hiện yêu cầu",
+    //         ]);
+    //     } catch (ModelNotFoundException $e) {
+    //         DB::rollBack();
+    //         Log::error('User not found: ' . $e->getMessage());
+    //         return response()->json(['success' => false, 'message' => 'User not found']);
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         Log::error('Error processing payment: ' . $e->getMessage());
+    //         return response()->json(['success' => false, 'message' => 'Error processing payment']);
+    //     }
+    // }
+    
+
+    
     /**
      * Xử lý thanh toán và trả về mã giao dịch.
      *
