@@ -14,6 +14,7 @@ use Modules\Staff\app\Models\UserSkill;
 use Illuminate\Support\Facades\Auth;
 use Modules\Staff\app\Models\UserStaff;
 use Modules\Staff\app\Models\Rank;
+use App\Models\Province;
 use Modules\Staff\app\Models\Wage;
 use Modules\Staff\app\Models\Career;
 use Modules\Staff\app\Models\FormWork;
@@ -122,6 +123,8 @@ class UserCvController extends Controller
         $educations = UserEducation::where('cv_id', $id)->get();
         $userExperiences = UserExperience::where('cv_id',$id)->get();
         $userSkills = UserSkill::where('cv_id',$id)->get();
+        $provinces = Province::all(); // Lấy danh sách provinces từ cơ sở dữ liệu
+
         // dd($educations);
         
         $params = [
@@ -129,7 +132,9 @@ class UserCvController extends Controller
             'educations' => $educations,
             'userExperiences' => $userExperiences,
             'userSkills' => $userSkills,
+            'provinces' => $provinces,
         ];
+        // dd($params);
         if($item->file_path){
             if( file_exists($item->file_path) ){
                 header("Content-type:application/pdf");
@@ -158,6 +163,8 @@ class UserCvController extends Controller
         $wages = Wage::all();
         $careers = Career::all();
         $formWorks = FormWork::all();
+        $provinces = Province::all(); // Lấy danh sách provinces
+
         $params = [
             'user'              => $user,
             'staff'             => $staff,
@@ -171,6 +178,7 @@ class UserCvController extends Controller
             'wages'             => $wages,
             'formWorks'         => $formWorks,
             'careers'           => $careers,
+            'provinces'           => $provinces,
         ];
         return view('staff::cv.edit', $params);
     }
@@ -180,6 +188,7 @@ class UserCvController extends Controller
      */
     public function update(StoreUserCvRequest $request, $id)
     {
+        // dd($request->all());
         $cv_id = $id;
         $user = Auth::user();
         $request->merge(['user_id' => $user->id]);

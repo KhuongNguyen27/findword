@@ -3,9 +3,11 @@
 namespace Modules\Employee\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendEmailEmployeeCV;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Employee\app\Models\EmployeeCv;
 use Modules\Employee\app\Models\UserJobApply;
 use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
@@ -15,6 +17,7 @@ use Modules\Staff\app\Models\UserExperience;
 use Modules\Staff\app\Models\UserEducation;
 use Modules\Staff\app\Models\UserSkill;
 use Modules\Staff\app\Models\UserStaff;
+use Illuminate\Support\Facades\Mail;
 
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
@@ -81,8 +84,83 @@ class JobapplicationController extends Controller
             return redirect()->route('website.jobs.show', $job->slug)->with('error', 'Nộp hồ sơ thất bại!');
         }
     }
+   
+
+
+//     public function show($id)
+// {
+//     try {
+//         $cv_job_apply = UserJobApply::find($id);
+        
+//         if ($cv_job_apply) {
+//             // Trường hợp CV đã được apply
+//             if (auth()->user()->id == $cv_job_apply->job->user_id) {
+//                 if ($cv_job_apply->is_read == $this->model::INACTIVE) {
+//                     $cv_infor['name'] = $cv_job_apply->user->name;
+//                     $cv_infor['email'] = $cv_job_apply->user->email;
+//                     $cv_infor['job'] = $cv_job_apply->job->name;
+//                     Notification::route('mail', [
+//                         $cv_infor['email'] => $cv_infor['name']
+//                     ])->notify(new Notifications("read-cv", $cv_infor));
+//                     $cv_job_apply->is_read = $this->model::ACTIVE;
+//                     $cv_job_apply->save();
+//                 }
+//                 $item = UserCv::findOrFail($cv_job_apply->cv->id);
+//                 $userStaff = UserStaff::where('user_id', $item->user_id)->first();
+//                 $educations = UserEducation::where('cv_id', $cv_job_apply->cv->id)->get();
+//                 $userExperiences = UserExperience::where('cv_id', $cv_job_apply->cv->id)->get();
+//                 $userSkills = UserSkill::where('cv_id', $cv_job_apply->cv->id)->get();
+//                 if($item->file_path && file_exists($item->file_path)){
+//                     header("Content-type:application/pdf");
+//                     echo file_get_contents( asset($item->file_path) );
+//                     die();
+//                 }
+
+//                 $params = [
+//                     'item' => $item,
+//                     'educations' => $educations,
+//                     'userExperiences' => $userExperiences,
+//                     'userSkills' => $userSkills,
+//                     'cv_job_apply' => $cv_job_apply,
+//                     'userStaff' => $userStaff
+//                 ];
+//                 return view('employee::cv-apply.show', $params);
+//             } else {
+//                 return redirect()->route('employee.cv.index')->with('error', 'bạn không có quyền truy cập link này!');
+//             }
+//         } else {
+//             // Trường hợp CV chưa được apply
+//             $item = UserCv::findOrFail($id);
+//             $userStaff = UserStaff::where('user_id', $item->user_id)->first();
+//             $educations = UserEducation::where('cv_id', $item->id)->get();
+//             $userExperiences = UserExperience::where('cv_id', $item->id)->get();
+//             $userSkills = UserSkill::where('cv_id', $item->id)->get();
+//             if($item->file_path && file_exists($item->file_path)){
+//                 header("Content-type:application/pdf");
+//                 echo file_get_contents( asset($item->file_path) );
+//                 die();
+//             }
+
+//             $params = [
+//                 'item' => $item,
+//                 'educations' => $educations,
+//                 'userExperiences' => $userExperiences,
+//                 'userSkills' => $userSkills,
+//                 'cv_job_apply' => null,
+//                 'userStaff' => $userStaff
+//             ];
+//             return view('employee::cv-apply.show', $params);
+//         }
+//     } catch (ModelNotFoundException $e) {
+//         Log::error('Item not found: ' . $e->getMessage());
+//         return redirect()->route('employee.cv.index')->with('error', __('sys.item_not_found'));
+//     }
+// }
+
+
     public function show($id)
     {
+        // dd(123);
         try {
             $cv_job_apply = UserJobApply::findOrFail($id);
             if (auth()->user()->id == $cv_job_apply->job->user_id) {
@@ -125,6 +203,72 @@ class JobapplicationController extends Controller
             return redirect()->route('employee.cv.index')->with('error', __('sys.item_not_found'));
         }
     }
+    public function showCv($id)
+    {
+        try {
+            $cv = UserCv::findOrFail($id);
+            $employeeCv = EmployeeCv::firstOrCreate(
+                [
+                    'cv_id' => $id,
+                    'user_id' => auth()->user()->id
+                ],
+                [
+                    'is_read' => $this->model::INACTIVE, // giá trị mặc định cho is_read
+                    'is_checked' => 0,
+                    'favorites' => 0
+                ]
+            );
+    
+            // Kiểm tra nếu giá trị của is_read bằng INACTIVE
+            if ($employeeCv->is_read == $this->model::INACTIVE) {
+                // Cập nhật giá trị của cột is_read lên ACTIVE
+                $employeeCv->is_read = $this->model::ACTIVE;
+                $employeeCv->save();
+    
+                // Chuẩn bị thông tin cho thông báo
+                $cv_infor['name'] = $cv->user->name;
+                $cv_infor['email'] = $cv->user->email;
+                $cv_infor['job'] = "job_name"; // Thay bằng tên công việc tương ứng
+    
+                // Gửi thông báo qua email
+                Notification::route('mail', [
+                    $cv_infor['email'] => $cv_infor['name']
+                ])->notify(new Notifications("read-cv", $cv_infor));
+            }
+    
+            // Tìm thông tin liên quan đến CV
+            $userStaff = UserStaff::where('user_id', $cv->user_id)->first();
+            $educations = UserEducation::where('cv_id', $cv->id)->get();
+            $userExperiences = UserExperience::where('cv_id', $cv->id)->get();
+            $userSkills = UserSkill::where('cv_id', $cv->id)->get();
+    
+            // Nếu file CV tồn tại và có đường dẫn, hiển thị file PDF
+            if ($cv->file_path && file_exists($cv->file_path)) {
+                header("Content-type:application/pdf");
+                echo file_get_contents(asset($cv->file_path));
+                die();
+            }
+    
+            // Thiết lập tham số để truyền vào view
+            $params = [
+                'item' => $cv,
+                'educations' => $educations,
+                'userExperiences' => $userExperiences,
+                'userSkills' => $userSkills,
+                'userStaff' => $userStaff,
+                'employeeCv' => $employeeCv,
+            ];
+    
+            // Trả về view với các tham số
+            return view('employee::cv-referred.show', $params);
+        } catch (ModelNotFoundException $e) {
+            // Ghi log và chuyển hướng nếu không tìm thấy CV
+            Log::error('Item not found: ' . $e->getMessage());
+            return redirect()->route('employee.referred')->with('error', __('sys.item_not_found'));
+        }
+    }
+    
+    
     public function update(Request $request, $id): RedirectResponse
     {
         try {
@@ -189,15 +333,13 @@ class JobapplicationController extends Controller
 
     public function referred()
     {
-       // Lấy tất cả các job mà user hiện tại đã ứng tuyển
-       $user_id = Auth::id();
-       $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
-       ->whereHas('job', function ($query) use ($user_id) {
-               $query->where('user_id', $user_id);
-           })
-           ->get();
-       // Tính số lượng ứng viên đã nộp đơn
-        return view('employee::uv.referred', compact('items'));
+        
+        $items = UserCv::all();
+        // dd($items);
+        // Tính số lượng CV đã tạo
+        $referredCount = $items->count();
+    
+        return view('employee::uv.referred', compact('items', 'referredCount'));
     }
     
     // public function referred()
@@ -238,20 +380,33 @@ class JobapplicationController extends Controller
     }
     
 
+    // public function viewed()
+    // {
+    //     // Lấy tất cả các job mà user hiện tại đã xem
+    //     $user_id = Auth::id();
+    //     $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+    //         ->whereHas('job', function ($query) use ($user_id) {
+    //             $query->where('user_id', $user_id);
+    //         })
+    //         ->where('is_read', UserJobApply::ACTIVE) // Giả sử 'is_read' được sử dụng để xác định công việc đã xem
+    //         ->get();
+    //         $viewedCount = $items->count();
+    //         // dd($viewedCount);
+
+    //     return view('employee::uv.viewed', compact('items','viewedCount'));
+    // }
     public function viewed()
     {
-        // Lấy tất cả các job mà user hiện tại đã xem
+        // Lấy tất cả các CV mà user hiện tại đã xem
         $user_id = Auth::id();
-        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
-            ->whereHas('job', function ($query) use ($user_id) {
-                $query->where('user_id', $user_id);
-            })
-            ->where('is_read', UserJobApply::ACTIVE) // Giả sử 'is_read' được sử dụng để xác định công việc đã xem
+        $items = EmployeeCv::with(['cv.wage', 'cv.career'])
+            ->where('user_id', $user_id)
+            ->where('is_read', 1) 
             ->get();
-            $viewedCount = $items->count();
-            // dd($viewedCount);
-
-        return view('employee::uv.viewed', compact('items','viewedCount'));
+            // dd($items);
+        $viewedCount = $items->count();
+    
+        return view('employee::uv.viewed', compact('items', 'viewedCount'));
     }
     
 
@@ -259,10 +414,8 @@ class JobapplicationController extends Controller
     {
         // Lấy tất cả các job mà user hiện tại đã lưu
         $user_id = Auth::id();
-        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
-        ->whereHas('job', function ($query) use ($user_id) {
-            $query->where('user_id', $user_id);
-        })
+        $items = EmployeeCv::with(['cv.wage', 'cv.career'])
+        ->where('user_id', $user_id)
         ->where('favorites', true)
         ->get();
         $savedCount = $items->count();
@@ -271,11 +424,96 @@ class JobapplicationController extends Controller
     }
     
 
+    // public function toggleFavorite($id)
+    // {
+    //     $userJobApply = UserJobApply::findOrFail($id);
+    //     $userJobApply->favorites = !$userJobApply->favorites;
+    //     $userJobApply->save();
+    //     return response()->json(['favorites' => $userJobApply->favorites]);
+    // }
+
     public function toggleFavorite($id)
     {
-        $userJobApply = UserJobApply::findOrFail($id);
-        $userJobApply->favorites = !$userJobApply->favorites;
-        $userJobApply->save();
-        return response()->json(['favorites' => $userJobApply->favorites]);
+        try {
+            // Tìm thông tin CV dựa vào $id
+            $cv = UserCv::findOrFail($id);
+
+            // Tạo hoặc cập nhật bản ghi trong bảng employee_cv
+            $employeeCv = EmployeeCv::firstOrCreate(
+                [
+                    'cv_id' => $id,
+                    'user_id' => Auth::id()
+                ],
+                [
+                    'is_read' => 0,
+                    'is_checked' => 0,
+                    'favorites' => 0
+                ]
+            );
+            $employeeCv->favorites = $employeeCv->favorites ? 0 : 1;
+            $employeeCv->save();
+            return response()->json([
+                'success' => true,
+                'favorites' => $employeeCv->favorites, // Trả về trạng thái favorites sau khi thay đổi
+                'message' => $employeeCv->favorites ? 'Đã lưu thông tin CV.' : 'Đã bỏ lưu thông tin CV.'
+            ]);
+            // return response()->json(['favorites' => $employeeCv->favorites]);
+        } catch (ModelNotFoundException $e) {
+            // Xử lý khi không tìm thấy CV
+            return response()->json(['error' => 'CV not found'], 404);
+        }
     }
+
+
+
+    public function handleAction($id, $action)
+    {
+        $cv = UserCv::find($id);
+    
+        if (!$cv) {
+            return redirect()->back()->with('error', 'CV không tồn tại.');
+        }
+    
+        // Kiểm tra action và gửi email tương ứng
+        switch ($action) {
+            case 'hire':
+                Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'hire'));
+                break;
+            case 'reject':
+                Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'reject'));
+                break;
+            case 'send_email':
+                Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'send_email'));
+                break;
+            default:
+                return redirect()->back()->with('error', 'Hành động không hợp lệ.');
+        }
+    
+        return redirect()->back()->with('success', 'Email đã được gửi.');
+    }
+    // protected function processHireAction($cvId)
+    // {
+    //     // Ví dụ: Cập nhật trạng thái của CV khi tuyển dụng
+    //     $cv = EmployeeCv::findOrFail($cvId);
+    //     $cv->is_hired = true;
+    //     $cv->save();
+
+    //     // Ví dụ: Gửi email thông báo khi tuyển dụng
+    //     Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'hire'));
+    // }
+
+    // protected function processRejectAction($cvId)
+    // {
+    //     // Ví dụ: Cập nhật trạng thái của CV khi không tuyển dụng
+    //     $cv = EmployeeCv::findOrFail($cvId);
+    //     $cv->is_rejected = true;
+    //     $cv->save();
+    // }
+
+    // protected function processSendEmailAction($cvId)
+    // {
+    //     // Ví dụ: Gửi email thông báo cho CV
+    //     $cv = EmployeeCv::findOrFail($cvId);
+    //     Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'send_email'));
+    // }
 }

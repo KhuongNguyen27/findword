@@ -65,7 +65,7 @@
                             <td>
                                 <div class="d-flex align-items-center gap-3">
                                     <div class="product-info">
-                                        <a href="javascript:;" class="product-title">{{ $item->name }}</a>
+                                        <a href="javascript:;" class="product-title">{{ Str::limit($item->name, 40) }}</a>
                                     </div>
                                 </div>
                             </td>

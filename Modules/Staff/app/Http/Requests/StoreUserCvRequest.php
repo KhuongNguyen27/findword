@@ -32,7 +32,7 @@ class StoreUserCvRequest extends FormRequest
                 'rank_id' => 'required',
                 'form_work_id' => 'required',
                 'career_id' => 'required',
-                'desired_location' => 'required',
+                // 'desired_location' => 'required',
                 'wage_id' => 'required|numeric',
                 'career_objective' => 'required',
                 
@@ -50,7 +50,7 @@ class StoreUserCvRequest extends FormRequest
             'rank_id.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'form_work_id.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'career_id.required' => 'Vui lòng nhập đầy đủ thông tin.',
-            'desired_location.required' => 'Vui lòng nhập đầy đủ thông tin.',
+            // 'desired_location.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'wage_id.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'career_objective.required' => 'Vui lòng nhập đầy đủ thông tin.',
             'name.required' => 'Vui lòng nhập đầy đủ thông tin.',

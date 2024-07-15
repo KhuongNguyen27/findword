@@ -8,6 +8,8 @@ use Modules\Employee\Database\factories\UserFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Employee\app\Models\UserEmployee;
+use Modules\Staff\app\Models\UserCv;
+
 use App\Models\UserStaff;
 class User extends Model
 {
@@ -46,4 +48,10 @@ class User extends Model
     public function userStaff(){
         return $this->hasOne(UserStaff::class);
     }
+
+    public function cvs()
+    {
+        return $this->belongsToMany(UserCv::class, 'employee_cv', 'user_id', 'cv_id');
+    }
+  
 }

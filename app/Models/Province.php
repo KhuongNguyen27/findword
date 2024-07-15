@@ -16,4 +16,8 @@ class Province extends Model
     {
         return $this->belongsToMany(Job::class, 'job_province', 'province_id', 'job_id');   
     }
+    public function userCvs()
+    {
+        return $this->hasMany(UserCv::class, 'province_id');
+    }
 }

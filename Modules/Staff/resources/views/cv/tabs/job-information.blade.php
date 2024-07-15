@@ -19,7 +19,7 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>
                             Tên CV
-                            <span class="label-required" > *</span>
+                            <span class="label-required"> *</span>
                         </label>
                         <input type="text" name="cv_file" value="{{ old('cv_file') ?? $item->cv_file }}">
                         @if ($errors->any())
@@ -30,8 +30,8 @@
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>
-                            Nhập vị trí muốn ứng tuyển
-                            <span class="label-required" > *</span>
+                            Việc làm mong muốn
+                            <span class="label-required"> *</span>
                         </label>
                         <input type="text" name="desired_position"
                             value="{{ old('desired_position') ?? $item->desired_position }}">
@@ -94,7 +94,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group col-lg-6 col-md-12">
+                    <!-- <div class="form-group col-lg-6 col-md-12">
                         <label>
                             Nơi làm việc mong muốn
                             <span class="label-required" > *</span>
@@ -104,7 +104,21 @@
                         @if ($errors->any())
                         <p style="color:red">{{ $errors->first('desired_location') }}</p>
                         @endif
+                    </div> -->
+
+                    <div class="form-group col-lg-6 col-md-12">
+                        <label for="province_id">Nơi làm việc mong muốn</label>
+                        <select name="province_id" class="form-control">
+                            @foreach ($provinces as $province)
+                            <option value="{{ $province->id }}"
+                                {{ $item->province_id == $province->id ? 'selected' : '' }}>
+                                {{ $province->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                      
                     </div>
+
 
                     <div class="form-group col-lg-6 col-md-12">
                         <label>Mức lương mong muốn</label>
@@ -123,7 +137,7 @@
                     <div class="form-group col-lg-6 col-md-12">
                         <label>
                             Mục tiêu nghề nghiệp
-                            <span class="label-required" > *</span>
+                            <span class="label-required"> *</span>
                         </label>
                         <input type="text" name="career_objective"
                             value="{{ old('career_objective') ?? $item->career_objective }}">
