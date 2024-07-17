@@ -82,6 +82,10 @@ class UserCv extends Model
     {
         return $this->belongsToMany(User::class, 'employee_cv', 'cv_id', 'user_id');
     }
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_views', 'user_id', 'job_id');
+    }
     public function userExperiences()
     {
         return $this->hasMany(UserExperience::class, 'cv_id');

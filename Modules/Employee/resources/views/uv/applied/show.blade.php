@@ -12,6 +12,19 @@
     /* Đặt position để định vị nút */
 }
 
+.background-re {
+    color: #0958d9;
+    background: #e6f4ff;
+    border: 1px solid #91caff;
+    padding: 0px 9px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 12px;
+    font-size: 13px;
+}
+
+
 i.fas.fa-map-marker-alt {
     margin-left: 80px;
 }
@@ -46,6 +59,16 @@ i.fas.fa-dollar-sign {
     margin-right: 5px;
 }
 
+/* .background-red {
+    background-color: #CE3131;
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 12px;
+} */
+
 .background-red {
     background-color: #CE3131;
     color: white;
@@ -56,7 +79,6 @@ i.fas.fa-dollar-sign {
     margin-left: 12px;
     font-size: 13px;
 }
-
 
 .ls-widget .widget-content p {
     margin-bottom: 1px;
@@ -73,19 +95,6 @@ a.mr-2 {
     transition: color 0.3s ease;
     text-transform: uppercase;
 }
-
-.background-re {
-    color: #389e0d;
-    background: #f6ffed;
-    border: 1px solid #b7eb8f;
-    padding: 1px 6px;
-    border-radius: 5px;
-    display: inline-flex;
-    align-items: center;
-    margin-left: 12px;
-    font-size: 13px;
-}
-
 
 a.mr-2:hover {
     color: #0056b3;
@@ -106,6 +115,11 @@ a.mr-2:hover {
     margin-left: auto;
     font-style: italic;
 }
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
 </style>
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -119,9 +133,10 @@ a.mr-2:hover {
                 <div class="ls-widget">
                     <div class="tabs-box">
                         <div class="widget-title d-flex justify-content-between">
-                            <h4>Ứng viên đề xuất</h4>
+                            <h4>Ứng viên nộp đơn</h4>
                         </div>
                         <div class="widget-content">
+                        @if(!$items->isEmpty())
                             @foreach ($items as $item)
                             <div class="row record-box">
                                 <div class="col-2">
@@ -132,33 +147,35 @@ a.mr-2:hover {
                                 <div class="col-10">
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
-                                            <a class="mr-2" href="{{ route('employee.cv.show', $item->id) }}">
-                                                {{ $item->desired_position ?? ''}} - {{ $item->user->name }}
+                                            <a class="mr-2" href="{{ route('employee.cv.showCv', $item->cv->id) }}">
+                                                {{ $item->cv->career->name ?? ''}} - {{ $item->user->name }}
                                             </a>
                                             <div class="background-red">
                                                 <i class="flaticon-money-1"></i> 10.0000P
                                             </div>
                                             <div class="background-re">
-                                                Giới thiệu
+                                                Nộp đơn
                                             </div>
                                             <p class="viewed-status">Nộp đơn</p>
                                         </div>
                                         <p>
-                                            <a href="" class="career-link">
+                                            <a href="{{ route('website.jobs.show', $item->job->slug) }}"
+                                                class="career-link">
 
-                                                {{ $item->career->name ?? ''}}
+                                                {{ $item->job->name }}
+                                                <!-- {{ $item->job->short_name }} -->
                                             </a>
                                         </p>
                                         <p>
-                                            <i class="fas fa-briefcase"></i> {{ $item->experience_years ?? ''}} năm
-                                            <i class="fas fa-map-marker-alt"></i> {{ $item->province->name ??'' }}
+                                        <i class="fas fa-briefcase"></i> {{ $item->cv->experience_years ?? ''}} năm
+                                            <i class="fas fa-map-marker-alt"></i> {{ $item->cv->province->name ??'' }}
                                             <i class="fas fa-calendar-alt"></i>
                                             {{ date('d/m/Y',strtotime($item->created_at)) }}
-                                            {!! $item->wage ? '<i class="fas fa-dollar-sign"></i> ' .
-                                            number_format($item->wage->salaryMin, 0, ',', '.') . ' - ' .
-                                            number_format($item->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
+                                            {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
+                                            number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
+                                            number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
                                             <a class="btn-view-profile"
-                                                href="{{ route('employee.cv.showCv', $item->id) }}">
+                                                href="{{ route('employee.cv.showCv', $item->cv->id) }}">
                                                 <i class="fas fa-eye"></i> Xem hồ sơ
                                             </a>
                                         </p>
@@ -166,7 +183,9 @@ a.mr-2:hover {
                                 </div>
                             </div>
                             @endforeach
-
+                        @else
+                        <h6 class="no-data">Không có dữ liệu</h6>
+                        @endif
                         </div>
                     </div>
                 </div>

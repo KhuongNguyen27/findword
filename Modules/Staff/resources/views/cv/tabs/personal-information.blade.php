@@ -7,11 +7,11 @@
 
         <div class="widget-content">
             @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
             @endif
-            <div class="form-group col-lg-12 col-md-12">
+            <div class="form-group col-lg-6 col-md-6">
                 <div class="uploading-outer">
                     <img src="{{ asset($staff->image_fm ?? '') }}" alt="Default Image"
                         style="max-width: 150px; max-height: 120px;">
@@ -19,7 +19,29 @@
                     </div>
                 </div>
             </div>
+            @include('staff::cv.includes.uploadCVModal')
 
+            <div class="form-group col-lg-6 col-md-6">
+                <div id="manager-cv" class="applicants-widget ls-widget">
+                    <div class="widget-title">
+                        <h4>CV đã tải lên</h4>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#uploadCVModal" class="btn btn-primary" style="cursor: pointer;">
+                            Tải lên
+                        </button>
+                    </div>
+                    <div id="cv-list" class="widget-content">
+                        <div class="row">
+                            @if(isset($item->typeCV) && $item->typeCV == "file")
+                                <div class="col-md-6 col-12 pr-12">
+                                    @include('staff::includes.components.box-cv-upload')
+                                </div>
+                            @else
+                                <p>Không có CV nào được tải lên.</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form class="default-form" method="POST"
                 action="{{ route('staff.cv.update', $cv_id, ['cv_id' => $cv_id, 'tab' => $tab]) }}">
                 @csrf
@@ -31,10 +53,9 @@
                             Họ và tên
                             <span class="label-required"> *</span>
                         </label>
-                        <input type="text" class="form-control" name="name"
-                            value="{{ $item->name ?? $user->name }}">
+                        <input type="text" class="form-control" name="name" value="{{ $item->name ?? $user->name }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('name') }}</p>
+                        <p style="color:red">{{ $errors->first('name') }}</p>
                         @endif
                     </div>
 
@@ -43,10 +64,9 @@
                             Email
                             <span class="label-required"> *</span>
                         </label>
-                        <input type="text" class="form-control" name="email"
-                            value="{{ $item->email ?? $user->email }}">
+                        <input type="text" class="form-control" name="email" value="{{ $item->email ?? $user->email }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('email') }}</p>
+                        <p style="color:red">{{ $errors->first('email') }}</p>
                         @endif
                     </div>
 
@@ -58,7 +78,7 @@
                         <input type="number" class="form-control" name="phone"
                             value="{{ $item->phone ?? ($staff->phone ?? '') }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('phone') }}</p>
+                        <p style="color:red">{{ $errors->first('phone') }}</p>
                         @endif
                     </div>
 
@@ -70,7 +90,7 @@
                         <input type="date" class="form-control" name="birthdate" class="form-control"
                             value="{{ $item->birthdate ?? ($staff->birthdate ?? '') }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('birthdate') }}</p>
+                        <p style="color:red">{{ $errors->first('birthdate') }}</p>
                         @endif
                     </div>
 
@@ -82,7 +102,7 @@
                         <input type="number" class="form-control" name="experience_years"
                             value="{{ $item->experience_years ?? ($staff->experience_years ?? '') }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('experience_years') }}</p>
+                        <p style="color:red">{{ $errors->first('experience_years') }}</p>
                         @endif
                     </div>
 
@@ -92,7 +112,7 @@
                             <span class="label-required"> *</span>
                         </label>
                         @php
-                            $item->gender = $item->gender ? $staff->gender : '';
+                        $item->gender = $item->gender ? $staff->gender : '';
                         @endphp
                         <select class="form-control" name="gender">
                             <option value="nam" @selected($item->gender == 'nam')>Nam</option>
@@ -110,7 +130,7 @@
                         <input type="text" class="form-control" name="city"
                             value="{{ $item->city ?? ($staff->city ?? '') }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('city') }}</p>
+                        <p style="color:red">{{ $errors->first('city') }}</p>
                         @endif
                     </div>
 
@@ -122,7 +142,7 @@
                         <input type="text" class="form-control" name="address"
                             value="{{ $item->address ?? ($staff->address ?? '') }}">
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('address') }}</p>
+                        <p style="color:red">{{ $errors->first('address') }}</p>
                         @endif
                     </div>
 
@@ -131,9 +151,10 @@
                             Thành tích nổi bật
                             <span class="label-required"> *</span>
                         </label>
-                        <textarea class="form-control" name="outstanding_achievements">{{ $item->outstanding_achievements ?? ($staff->outstanding_achievements ?? '') }}</textarea>
+                        <textarea class="form-control"
+                            name="outstanding_achievements">{{ $item->outstanding_achievements ?? ($staff->outstanding_achievements ?? '') }}</textarea>
                         @if ($errors->any())
-                            <p style="color:red">{{ $errors->first('outstanding_achievements') }}</p>
+                        <p style="color:red">{{ $errors->first('outstanding_achievements') }}</p>
                         @endif
                     </div>
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Employee\Database\factories\JobFactory;
 use Modules\Employee\app\Models\User;
+use Modules\Staff\app\Models\UserCv;
 use Modules\Staff\app\Models\UserJobFavorite;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Career;
@@ -45,7 +46,18 @@ class Job extends MainJob
     {
         return $this->belongsTo(User::class);
     }
-
+    public function viewedUsers()
+    {
+        return $this->belongsToMany(User::class, 'job_views');
+    }
+    public function jobViews()
+    {
+        return $this->hasMany(JobView::class);
+    }
+    public function userCvs()
+    {
+        return $this->hasMany(UserCv::class, 'rank_id', 'rank_id');
+    }
     public function jobApplications()
     {
         return $this->hasMany(UserJobApply::class, 'job_id');

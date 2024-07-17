@@ -54,6 +54,72 @@ class JobController extends Controller
         return view('employee::job.index', compact('jobs'));
     }
 
+    public function appliedJobs(Request $request)
+    {
+        $user_id = Auth::id();
+        $query = Job::withCount('jobApplications')
+            ->where('user_id', $user_id);
+
+        if ($request->name) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
+        if ($request->start_day) {
+            $query->where('start_day', '>=', $request->start_day);
+        }
+        if ($request->end_day) {
+            $query->where('end_day', '<=', $request->end_day);
+        }
+        $jobs = $query->paginate(10);
+        return view('employee::uv.applied.index', compact('jobs'));
+    }
+
+    public function referredJobs(Request $request)
+    {
+        $user_id = Auth::id();
+
+        $query = Job::where('user_id', $user_id)
+            ->withCount([
+                'userCvs' => function ($query) {
+                    $query->whereColumn('rank_id', 'jobs.rank_id');
+                }
+            ]);
+
+        if ($request->name) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
+        if ($request->start_day) {
+            $query->where('start_day', '>=', $request->start_day);
+        }
+        if ($request->end_day) {
+            $query->where('end_day', '<=', $request->end_day);
+        }
+        $jobs = $query->paginate(10);
+        return view('employee::uv.referred.index', compact('jobs'));
+    }
+
+    public function viewedJobs(Request $request)
+    {
+        $user_id = Auth::id();
+        $query = Job::with([
+            'jobViews' => function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            }
+        ])
+            ->withCount(['jobViews as cv_count'])
+            ->where('user_id', $user_id);
+        if ($request->name) {
+            $query->where('name', 'LIKE', '%' . $request->name . '%');
+        }
+        if ($request->start_day) {
+            $query->where('start_day', '>=', $request->start_day);
+        }
+        if ($request->end_day) {
+            $query->where('end_day', '<=', $request->end_day);
+        }
+        $jobs = $query->paginate(10);
+        // dd($jobs);
+        return view('employee::uv.viewed.index', compact('jobs'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -79,7 +145,7 @@ class JobController extends Controller
                 'wages' => $wages,
                 'job_packages' => $job_packages,
                 'provinces' => $provinces,
-                'countries'=>$countries,
+                'countries' => $countries,
                 'userAllowedAbroad' => $userAllowedAbroad,
 
             ];
@@ -196,7 +262,7 @@ class JobController extends Controller
         ];
         if (auth()->user()->id == $job->user_id) {
             $careerjobs = $job->careers()->pluck('career_id');
-            
+
             return view('employee::job.show', compact(['job', 'param', 'careerjobs']));
         } else {
             return redirect()->route('employee.job.index')->with('error', 'bạn không có quyền truy cập link này!');
@@ -227,7 +293,7 @@ class JobController extends Controller
             'provinces' => $provinces
         ];
         $careerjobs = $job->careers()->pluck('career_id');
-        return view('employee::job.edit', compact(['job', 'param','careerjobs']));
+        return view('employee::job.edit', compact(['job', 'param', 'careerjobs']));
     }
 
     /**
@@ -259,7 +325,7 @@ class JobController extends Controller
             // $job->wage_id = $request->wage_id;
             $job->salaryMin = $request->salaryMin;
             $job->salaryMax = $request->salaryMax;
-            if($request->gender){
+            if ($request->gender) {
                 $job->gender = $request->gender;
             }
             $job->rank_id = $request->rank_id;
@@ -317,10 +383,10 @@ class JobController extends Controller
     {
         $cv_apllys = UserJobApply::where('job_id', $request->id)->get();
         $count_job = UserJobApply::where('job_id', $request->id)->count();
-        $count_cv_appled =  UserJobApply::where('user_id', auth()->user()->id)
+        $count_cv_appled = UserJobApply::where('user_id', auth()->user()->id)
             ->where('status', 1)->where('job_id', $request->id)
             ->count();
-        $count_not_applly =  UserJobApply::where('user_id', auth()->user()->id)
+        $count_not_applly = UserJobApply::where('user_id', auth()->user()->id)
             ->where('status', 0)->where('job_id', $request->id)
             ->count();
         $param_count = [

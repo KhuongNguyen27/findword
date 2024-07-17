@@ -9,6 +9,7 @@ use Modules\Employee\Database\factories\JobFactory;
 
 use Modules\Employee\app\Models\User;
 use Modules\Employee\app\Models\UserEmployee;
+use Modules\Staff\app\Models\UserCv;
 use Modules\Staff\app\Models\UserJobFavorite;
 use Modules\Employee\app\Models\CareerJob;
 use Modules\Job\app\Models\Country;
@@ -41,6 +42,10 @@ class Job extends MainJob
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function userCvs()
+    {
+        return $this->belongsToMany(UserCv::class, 'job_views', 'job_id', 'user_id');
     }
     public function careers()
     {

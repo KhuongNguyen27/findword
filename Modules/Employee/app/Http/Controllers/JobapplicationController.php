@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Employee\app\Models\EmployeeCv;
+use Modules\Employee\app\Models\JobView;
 use Modules\Employee\app\Models\UserJobApply;
 use Modules\Employee\app\Models\Job;
 use Modules\Staff\app\Models\UserCv;
@@ -317,51 +318,45 @@ class JobapplicationController extends Controller
     }
 
 
-    public function applied()
+    // public function applied()
+    // {
+    //     // Lấy tất cả các job mà user hiện tại đã ứng tuyển
+    //     $user_id = Auth::id();
+    //     $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
+    //     ->whereHas('job', function ($query) use ($user_id) {
+    //             $query->where('user_id', $user_id);
+    //         })
+    //         ->get();
+    //     // Tính số lượng ứng viên đã nộp đơn
+    // $appliedCount = $items->count();
+    // return view('employee::uv.applied', compact('items', 'appliedCount'));
+    // }
+    public function applied($id)
     {
-        // Lấy tất cả các job mà user hiện tại đã ứng tuyển
-        $user_id = Auth::id();
-        $items = UserJobApply::with(['job', 'job.province', 'cv.wage', 'cv.career'])
-        ->whereHas('job', function ($query) use ($user_id) {
-                $query->where('user_id', $user_id);
-            })
+        $job = Job::with(['province'])->findOrFail($id);
+        $items = UserJobApply::with(['cv.wage', 'cv.career'])
+            ->where('job_id', $id)
             ->get();
-        // Tính số lượng ứng viên đã nộp đơn
-    $appliedCount = $items->count();
-    return view('employee::uv.applied', compact('items', 'appliedCount'));
+        $appliedCount = $items->count();
+    
+        return view('employee::uv.applied.show', compact('job', 'items', 'appliedCount'));
     }
+    
 
-    public function referred()
-    {
-        
-        $items = UserCv::all();
-        // dd($items);
-        // Tính số lượng CV đã tạo
-        $referredCount = $items->count();
-    
-        return view('employee::uv.referred', compact('items', 'referredCount'));
-    }
-    
+
     // public function referred()
     // {
-    //     // Lấy danh sách các tin tuyển dụng của nhà tuyển dụng hiện tại
-    //     $jobs = Job::where('user_id', Auth::id())->get();
-    //     // dd($jobs);
-    //     // Dùng mảng để lưu trữ các CV được đề xuất
-    //     $items = collect();
-    //     $wageIds = [];
-    //     foreach ($jobs as $job) {
-    //         if ($job->wage_id !== null) {
-    //             $wageIds[] = $job->wage_id;
-    //         }
-    //     }
-    //     $uniqueWageIds = array_unique($wageIds);
-    //     $items = UserCv::whereIn('wage_id', $uniqueWageIds)
-    //                         ->get();
+        
+    //     $items = UserCv::all();
     //     // dd($items);
-    //     // Trả về view với danh sách các CV được đề xuất
-    //     return view('employee::uv.referred', compact('items'));
+    //     // Tính số lượng CV đã tạo
+    //     $referredCount = $items->count();
+    
+    //     return view('employee::uv.referred.show', compact('items', 'referredCount'));
     // }
+
+   
+   
 
     private function getRandomRecommendationCount()
     {
@@ -395,21 +390,44 @@ class JobapplicationController extends Controller
 
     //     return view('employee::uv.viewed', compact('items','viewedCount'));
     // }
-    public function viewed()
+    // public function viewed()
+    // {
+    //     // Lấy tất cả các CV mà user hiện tại đã xem
+    //     $user_id = Auth::id();
+    //     $items = EmployeeCv::with(['cv.wage', 'cv.career'])
+    //         ->where('user_id', $user_id)
+    //         ->where('is_read', 1) 
+    //         ->get();
+    //         // dd($items);
+    //     $viewedCount = $items->count();
+    
+    //     return view('employee::uv.viewed.show', compact('items', 'viewedCount'));
+    // }
+    public function referred($id)
     {
-        // Lấy tất cả các CV mà user hiện tại đã xem
-        $user_id = Auth::id();
-        $items = EmployeeCv::with(['cv.wage', 'cv.career'])
-            ->where('user_id', $user_id)
-            ->where('is_read', 1) 
-            ->get();
-            // dd($items);
+        // Lấy thông tin của c  ông việc dựa trên $id
+        $job = Job::findOrFail($id);
+        
+        // Lấy các CV phù hợp với công việc theo điều kiện rank_id
+        $items = UserCv::where('rank_id', $job->rank_id)->get();
+        // dd($items);
+        // Đếm số lượng CV đã lấy được
+        $referredCount = $items->count();
+        
+        return view('employee::uv.referred.show', compact('items', 'referredCount'));
+    }
+    public function viewed($id)
+    {
+        // Lấy danh sách các cv_id đã được người dùng xem từ bảng job_views
+        $jobViews = JobView::where('job_id', $id)->get();
+        // Lấy thông tin chi tiết của các CV đã xem từ bảng user_cvs
+        $userIds = $jobViews->pluck('user_id')->toArray();
+        $items = UserCv::whereIn('user_id', $userIds)->get();
+        // dd($items);
         $viewedCount = $items->count();
     
-        return view('employee::uv.viewed', compact('items', 'viewedCount'));
+        return view('employee::uv.viewed.show', compact('items', 'viewedCount'));
     }
-    
-
     public function saved()
     {
         // Lấy tất cả các job mà user hiện tại đã lưu
