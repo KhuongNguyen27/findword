@@ -138,8 +138,8 @@ a.mr-2:hover {
                                 <div class="col-10">
                                     <div class="media-body">
                                         <div class="d-flex align-items-center">
-                                            <a class="mr-2" href="{{ route('employee.cv.show', $item->id) }}">
-                                                {{ $item->desired_position ?? ''}} - {{ $item->user->name }}
+                                            <a class="mr-2" href="{{ route('employee.cv.showCv', $item->id) }}">
+                                                {{ $item->desired_position ?? ''}} - {{ $item->hash_name ?? $item->user->name }}
                                             </a>
                                             <div class="background-red">
                                                 <i class="flaticon-money-1"></i> 10.0000P
@@ -147,6 +147,16 @@ a.mr-2:hover {
                                             <div class="background-re">
                                                 Giới thiệu
                                             </div>
+                                            @if($item->is_read)
+                                            <div class="background-re">
+                                                Ứng viên đã xem
+                                            </div>
+                                            @endif
+                                            @if($item->is_applied)
+                                            <div class="background-re">
+                                                Ứng viên đã nộp đơn
+                                            </div>
+                                            @endif
                                             <p class="viewed-status">Nộp đơn</p>
                                         </div>
                                         <p>

@@ -41,7 +41,24 @@ i.fas.fa-dollar-sign {
     background-color: #0D6EFD;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 15px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    /* Đặt position để định vị nút */
+    right: 0px;
+    /* Cách mép phải 10px */
+    top: 50%;
+    /* Đặt ở giữa theo chiều dọc */
+    transform: translateY(-50%);
+    /* Căn giữa theo chiều dọc */
+}
+.kq {
+    background-color: #08b116;
+    color: white;
+    border: none;
+    padding: 4px 25px;
     border-radius: 3px;
     display: inline-flex;
     align-items: center;
@@ -56,6 +73,38 @@ i.fas.fa-dollar-sign {
 }
 
 .btn-view-profile i {
+    margin-right: 5px;
+}
+.kq i {
+    margin-right: 5px;
+}
+.viewed-btn {
+    color: #28c1bc !important;
+}
+
+.viewed-btn {
+    background-color: #EDF2FF;
+    border: none;
+    padding: 5px 8px 5px 13px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-view {
+    /* background-color: #0D6EFD; */
+
+    position: absolute;
+    /* Đặt position để định vị nút */
+    right: 65px;
+    /* Cách mép phải 10px */
+    top: 50%;
+    /* Đặt ở giữa theo chiều dọc */
+
+    /* Căn giữa theo chiều dọc */
+}
+
+.btn-view i {
     margin-right: 5px;
 }
 
@@ -115,10 +164,29 @@ a.mr-2:hover {
     margin-left: auto;
     font-style: italic;
 }
+
 .no-data {
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
+}
+
+i.fas.fa-check {
+    color: #3687D8;
+}
+
+i.fas.fa-times {
+    color: #CD3131;
+}
+
+i.fas.fa-envelope {
+    color: #08ad16;
+}
+.kq i.fas.fa-envelope {
+    color: white;
+}
+i.fas.fa-info-circle {
+    color: #08AD16;
 }
 </style>
 <section class="user-dashboard">
@@ -136,7 +204,7 @@ a.mr-2:hover {
                             <h4>Ứng viên nộp đơn</h4>
                         </div>
                         <div class="widget-content">
-                        @if(!$items->isEmpty())
+                            @if(!$items->isEmpty())
                             @foreach ($items as $item)
                             <div class="row record-box">
                                 <div class="col-2">
@@ -156,7 +224,22 @@ a.mr-2:hover {
                                             <div class="background-re">
                                                 Nộp đơn
                                             </div>
-                                            <p class="viewed-status">Nộp đơn</p>
+                                            <!-- <p class="viewed-status">Nộp đơn</p> -->
+                                            <p class="viewed-status">
+                                                @if ($item->employeeCv && $item->employeeCv->status == 1)
+                                                Không tuyển
+                                                @elseif ($item->employeeCv && $item->employeeCv->status == 2)
+                                                Đã mời phỏng vấn
+                                                @elseif ($item->employeeCv && $item->employeeCv->status == 0)
+                                                Đã gửi lời mời làm việc
+                                                @elseif ($item->employeeCv && $item->employeeCv->is_read == 1)
+                                                Đã xem thông tin liên hệ
+                                                @else
+                                                Nộp đơn
+                                                @endif
+                                            </p>
+
+
                                         </div>
                                         <p>
                                             <a href="{{ route('website.jobs.show', $item->job->slug) }}"
@@ -167,25 +250,90 @@ a.mr-2:hover {
                                             </a>
                                         </p>
                                         <p>
-                                        <i class="fas fa-briefcase"></i> {{ $item->cv->experience_years ?? ''}} năm
-                                            <i class="fas fa-map-marker-alt"></i> {{ $item->cv->province->name ??'' }}
+                                            <i class="fas fa-briefcase"></i> {{ $item->cv->experience_years ?? ''}} năm
+                                            <i class="fas fa-map-marker-alt"></i> {{ $item->cv->province->name ?? '' }}
                                             <i class="fas fa-calendar-alt"></i>
-                                            {{ date('d/m/Y',strtotime($item->created_at)) }}
+                                            {{ date('d/m/Y', strtotime($item->created_at)) }}
                                             {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
                                             number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
                                             number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
-                                            <a class="btn-view-profile"
-                                                href="{{ route('employee.cv.showCv', $item->cv->id) }}">
-                                                <i class="fas fa-eye"></i> Xem hồ sơ
-                                            </a>
+                                            @if ($item->employeeCv && $item->employeeCv->is_read == 0)
+                                                <a class="btn-view-profile"
+                                                    href="{{ route('employee.cv.showCv', $item->cv->id) }}">
+                                                    <i class="fas fa-eye"></i> Xem hồ sơ
+                                                </a>
+                                            @else
+                                                @if ($item->employeeCv && $item->employeeCv->status == 1)
+                                                <a class="kq"
+                                                    href="#">
+                                                    <i class="fas fa-envelope"></i> Kết quả
+                                                </a>
+                                                @elseif ($item->employeeCv && $item->employeeCv->status == 2)
+                                                    <div class="btn-view">
+                                                        <a href="{{ route('employee.cv.showCv', $item->cv->id) }}"
+                                                            class="viewed-btn" title="Chi tiết" data-toggle="tooltip">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                            class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                            class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>
+
+                                                    </div>
+                                                @elseif ($item->employeeCv && $item->employeeCv->status == 0)
+                                                    <div class="btn-view">
+                                                        <a href="{{ route('employee.cv.showCv', $item->cv->id) }}"
+                                                            class="viewed-btn" title="Chi tiết" data-toggle="tooltip">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                            class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                            class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>
+
+                                                    </div>
+                                                @else
+                                                    <div class="btn-view">
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'send_email']) }}"
+                                                            class="viewed-btn" title="Mời phỏng vấn" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-envelope"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                            class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-check"></i>
+                                                        </a>
+                                                        <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                            class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                            data-placement="top">
+                                                            <i class="fas fa-times"></i>
+                                                        </a>
+
+                                                    </div>
+                                                @endif
+                                            @endif
+
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-                        @else
-                        <h6 class="no-data">Không có dữ liệu</h6>
-                        @endif
+                            @else
+                            <h6 class="no-data">Không có dữ liệu</h6>
+                            @endif
                         </div>
                     </div>
                 </div>

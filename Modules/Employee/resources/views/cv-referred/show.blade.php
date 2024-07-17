@@ -188,7 +188,7 @@ i.fas.fa-dollar-sign {
                             <div class="col-10">
                                 <div class="media-body">
                                     <div class="d-flex align-items-center">
-                                        <span class="mr-2">{{ $item->user->name ?? ''}}</span>
+                                        <span class="mr-2">{{ $item->hash_name ?? $item->user->name ?? ''}}</span>
                                         <div class="background-red">
                                             <i class="flaticon-money-1"></i> 10.0000P
                                         </div>
@@ -554,7 +554,7 @@ i.fas.fa-dollar-sign {
                                                     <p class="profile-item"><strong>Giới tính :</strong>
                                                         {{ $item->gender ?? '' }}</p>
                                                     <p class="profile-item"><strong>Năm sinh :</strong>
-                                                        {{ isset($item->birthdate) ? \Carbon\Carbon::parse($item->birthdate)->format('d/m/Y') : '' }}
+                                                        {{ $item->hash_birthdate ?? ($item->birthdate ?? '') }}
                                                     </p>
                                                 </div>
                                                 <div class="col-12 col-md-4">
@@ -571,7 +571,7 @@ i.fas.fa-dollar-sign {
                                                             {{ $item->is_checked == 1 ? $item->user->email ?? 'Thông tin không có sẵn' : 'Thông tin đang ẩn' }}
                                                         </span></p>
                                                     <p class="profile-item"><strong>Địa chỉ :</strong>
-                                                        {{ $userStaff->address ?? '' }}</p>
+                                                        {{ $item->hash_address ?? ($userStaff->address ?? '') }}</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -34,7 +34,10 @@ class UserJobApply extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    public function employeeCv()
+    {
+        return $this->hasOne(EmployeeCv::class, 'cv_id', 'cv_id');
+    }
 
     /**
      * Get the job associated with the job application.

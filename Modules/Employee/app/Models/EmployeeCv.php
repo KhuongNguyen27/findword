@@ -10,7 +10,9 @@ use Modules\Staff\app\Models\UserCv;
 class EmployeeCv extends Model
 {
     use HasFactory;
-
+    const STATUS_HIRED = 0;
+    const STATUS_REJECTED = 1;
+    const STATUS_INVITED_FOR_INTERVIEW = 2;
     /**
      * The attributes that are mass assignable.
      */
@@ -22,6 +24,7 @@ class EmployeeCv extends Model
         'is_read',
         'is_checked',
         'favorites',
+        'status',
     ];    
     protected static function newFactory(): EmployeeCvFactory
     {
@@ -35,5 +38,15 @@ class EmployeeCv extends Model
     public function cv()
     {
         return $this->belongsTo(UserCv::class);
+    }
+    public function getStatusTextAttribute()
+    {
+        $statuses = [
+            self::STATUS_HIRED => 'Hired',
+            self::STATUS_REJECTED => 'Rejected',
+            self::STATUS_INVITED_FOR_INTERVIEW => 'Invited for Interview',
+        ];
+
+        return $statuses[$this->status] ?? 'Unknown';
     }
 }
