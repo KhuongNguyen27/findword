@@ -24,7 +24,10 @@ class User extends Model
     {
         //return UserFactory::new();
     }
-
+    public function viewedJobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_views');
+    }
     // Relationships
     public function userEmployee(): HasOne
     {

@@ -21,6 +21,7 @@ use App\Models\Post;
 use Modules\Employee\app\Models\CareerJob;
 use Modules\Job\app\Models\Country;
 use Modules\Staff\app\Models\UserJobAplied;
+use DB;
 
 class JobController extends Controller
 {
@@ -33,6 +34,7 @@ class JobController extends Controller
 
     public function index(Request $request)
     {
+
         $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $path = request()->getPathInfo();
         $segment = Str::after($path, '/jobs');
@@ -110,35 +112,81 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
+    // public function show(string $slug)
+    // {
+    //     // dd(123);
+    //     $model = new Job;
+    //     $user_id = Auth::id();
+    //     $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+    //     $job->views =  $job->views + 1;
+    //     $job->save();
+    //     $international = Country::where('id', $job->country_id)->first();
+    //     $career_id = CareerJob::where('job_id', $job->id)->first();
+    //     $job_relate_to = [];
+    //     if ($career_id) {
+    //         $job_relate_to = $model->getJobforCareerId($career_id->career_id);
+    //     }
+    //     $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
+    //     $job_employ = Job::where('user_id', $job->user_id)->get();
+    //     $moreInformation = $job->more_information ?? null;
+    //     $params = [
+    //         'job' => $job,
+    //         'user_id' => $user_id,
+    //         'job_relate_to' => $job_relate_to,
+    //         'job_employ' => $job_employ,
+    //         'moreInformation'=>$moreInformation,
+    //         'international'=> $international,
+    //         'sidebarBanners'=> $sidebarBanners,
+            
+            
+    //     ];
+    //     return view('job::jobs.show', $params);
+    // }
+
     public function show(string $slug)
-    {
-        $model = new Job;
-        $user_id = Auth::id();
-        $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
-        $job->views =  $job->views + 1;
-        $job->save();
-        $international = Country::where('id', $job->country_id)->first();
-        $career_id = CareerJob::where('job_id', $job->id)->first();
-        $job_relate_to = [];
-        if ($career_id) {
-            $job_relate_to = $model->getJobforCareerId($career_id->career_id);
-        }
-        $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
-        $job_employ = Job::where('user_id', $job->user_id)->get();
-        $moreInformation = $job->more_information ?? null;
-        $params = [
-            'job' => $job,
-            'user_id' => $user_id,
-            'job_relate_to' => $job_relate_to,
-            'job_employ' => $job_employ,
-            'moreInformation'=>$moreInformation,
-            'international'=> $international,
-            'sidebarBanners'=> $sidebarBanners,
-            
-            
-        ];
-        return view('job::jobs.show', $params);
+{
+    // $model = new Job;
+    $user_id = Auth::id();
+
+    $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+
+    // Tăng số lượt xem của công việc
+    $job->views =  $job->views + 1;
+    $job->save();
+    if (Auth::user() && Auth::user()->type === 'staff') {
+        // Kiểm tra xem user đã xem job này chưa
+        $jobView = DB::table('job_views')->where('job_id', $job->id)->where('user_id', $user_id)->first();
+        if (!$jobView) {    
+            // Lưu thông tin vào bảng job_views
+            DB::table('job_views')->insert([
+                'job_id' => $job->id,
+                'user_id' => $user_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        } 
     }
+
+    $international = Country::where('id', $job->country_id)->first();
+    $career_id = CareerJob::where('job_id', $job->id)->first();
+    $job_relate_to = [];
+    if ($career_id) {
+        $job_relate_to = $job->getJobforCareerId($career_id->career_id);
+    }
+    $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
+    $job_employ = Job::where('user_id', $job->user_id)->get();
+    $moreInformation = $job->more_information ?? null;
+    $params = [
+        'job' => $job,
+        'user_id' => $user_id,
+        'job_relate_to' => $job_relate_to,
+        'job_employ' => $job_employ,
+        'moreInformation' => $moreInformation,
+        'international' => $international,
+        'sidebarBanners' => $sidebarBanners,
+    ];
+    return view('job::jobs.show', $params);
+}
 
     /**
      * Show the form for editing the specified resource.

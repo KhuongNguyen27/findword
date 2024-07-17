@@ -62,28 +62,47 @@ class EmployeeController extends Controller
 
     //done
     public function checkContactInfo(Request $request){
-        $check = $request->input('check');
-        $cvId = $request->input('cvId');
-        if(!empty($check) && !empty($cvId)){
-            $checkJob = EmployeeCv::where('cv_id',$cvId)->where('user_id',Auth::id())->first();
-            if($checkJob && $checkJob->is_checked == 1){
-                $cv = UserCv::findOrFail($cvId);
-                $staff = User::findOrFail($cv->user_id);
-                $contactInfo = [
-                    'email' => $staff->email,
-                    'phone' => $staff->userStaff ? ($staff->userStaff->phone ?? 0) : 0,
-                    'favorites' => $checkJob->favorites,
-                ];
-                return response()->json([
-                    'success' => true,
-                    'data' => $contactInfo,
-                ]);    
+        try {
+            $check = $request->input('check');
+            $cvId = $request->input('cvId');
+            if(!empty($check) && !empty($cvId)){
+                // Kiểm tra đã nộp đơn hay chưa ?
+                $checkJob = EmployeeCv::where('cv_id',$cvId)->where('user_id',Auth::id())->first();
+                $is_apply = $this->checkApply($cvId,Auth::id());
+                if ($is_apply && $checkJob->is_checked !== 1) {
+                    $checkJob->is_checked = 1;
+                    $checkJob->save();
+                }
+                if($checkJob && $checkJob->is_checked == 1){
+                    $cv = UserCv::findOrFail($cvId);
+                    $staff = User::findOrFail($cv->user_id);
+                    $contactInfo = [
+                        'email' => $staff->email,
+                        'phone' => $staff->userStaff ? ($staff->userStaff->phone ?? 0) : 0,
+                        'favorites' => $checkJob->favorites,
+                    ];
+                    return response()->json([
+                        'success' => true,
+                        'data' => $contactInfo,
+                    ]);    
+                }
             }
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Đã có lỗi xảy ra',
+            ]); 
         }
-        return response()->json([
-            'success' => false,
-            'message' => '',
-        ]); 
+       
+    }
+    public function checkApply($cvId, $employeeId){
+        $jobsId = Job::where('user_id',$employeeId)->pluck('id')->toArray();
+        $appliedJobs = UserJobApply::where('cv_id',$cvId)->whereIn('job_id',$jobsId)->get();
+        if (count($appliedJobs)) {
+            return true;
+        }
+        return false;
     }
     // working
     public function getContactInfo(Request $request)

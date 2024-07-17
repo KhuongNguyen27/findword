@@ -9,9 +9,9 @@
         <div class="box-info">
             <h4 class="title-cv"><a href="{{ asset($item->file_path) }}"
                     target="_blank">{{ $item->cv_file ?? 'Chưa có tiêu đề' }} </a>
-                <!-- <a href="{{ route('staff.cv.edit', $item->id) }}" class="edit">
+                <a href="{{ route('staff.cv.edit', $item->id) }}" class="edit">
                     <i class="fa fa-solid fa-pen"></i>
-                </a> -->
+                </a>
             </h4>
             <p class="update_at">Ngày tạo <span>{{ $item->created_at->format('d/m/Y') }}</span></p>
             <ul class="action">

@@ -24,7 +24,7 @@ i.fas.fa-dollar-sign {
     margin-left: 80px;
 }
 
-.btn-view-profile {
+.btn-view {
     /* background-color: #0D6EFD; */
 
     position: absolute;
@@ -37,7 +37,7 @@ i.fas.fa-dollar-sign {
     /* Căn giữa theo chiều dọc */
 }
 
-.btn-view-profile i {
+.btn-view i {
     margin-right: 5px;
 }
 
@@ -150,11 +150,11 @@ a.mr-2:hover {
                                             <i class="fas fa-briefcase"></i> {{ $item->cv->experience_years }} năm
                                             <i class="fas fa-map-marker-alt"></i> {{ $item->cv->province->name }}
                                             <i class="fas fa-calendar-alt"></i>
-                                            {{ date('d/m/Y',strtotime($item->created_at)) }}
+                                            {{ date('d/m/Y', strtotime($item->created_at)) }}
                                             {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
                                             number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
                                             number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
-                                        <div class="btn-view-profile">
+                                        <div class="btn-view">
 
                                             <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
                                                 class="viewed-btn mr-2" title="Tuyển dụng" data-toggle="tooltip"

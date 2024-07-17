@@ -34,11 +34,11 @@ Route::group([
 	Route::get('/profile/changepassword', [ProfileController::class, 'editpassword'])->name('profile.editpassword');
 	Route::post('/change-password/{id}', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 	Route::post('/delete-image', [ProfileController::class, 'deleteImage'])->name('image.delete');
-
-
+	
+	
 	//Job
 	Route::group(['middleware' => 'badword.filter'], function () {
-		Route::get('/jobs', [JobController::class, 'index'])->name('job.index');
+		Route::get('/jobs', [JobController::class, 'index'])->name('job.index');		
 		Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
 		Route::post('/job/store', [JobController::class, 'store'])->name('job.store');
 		Route::get('/job/edit/{id}', [JobController::class, 'edit'])->name('job.edit');
@@ -46,8 +46,13 @@ Route::group([
 		Route::post('/job/update/{id}', [JobController::class, 'update'])->name('job.update');
 		Route::delete('/job/delete/{id}', [JobController::class, 'destroy'])->name('job.delete');
 		Route::get('/job/{id}/applied-jobs', [JobController::class, 'showjobcv'])->name('job.showjobcv');
-	});
 
+		Route::get('applied', [JobController::class, 'appliedJobs'])->name('applied.jobs');
+		Route::get('referred', [JobController::class, 'referredJobs'])->name('referred.jobs');
+		Route::get('viewed', [JobController::class, 'viewedJobs'])->name('viewed.jobs');
+
+	});
+	
 	// CV apply
 	Route::get('/applied-jobs', [JobapplicationController::class, 'index'])->name('cv.index');
 	Route::get('/applied-jobs/{id}', [JobapplicationController::class, 'show'])->name('cv.show');
@@ -55,12 +60,13 @@ Route::group([
 	Route::delete('/cv/delete/{id}', [JobapplicationController::class, 'destroy'])->name('cvs.delete');
 	Route::get('/applied-jobs/{id}/send-email', [JobapplicationController::class, 'sendEmail'])->name('cv.sendemail');
 	
+	
+	Route::get('/applied-job/{id}', [JobapplicationController::class, 'applied'])->name('applied');
+	Route::get('/referred-job/{id}', [JobapplicationController::class, 'referred'])->name('referred');
+    Route::get('/viewed-job/{id}', [JobapplicationController::class, 'viewed'])->name('viewed');
 
-	Route::get('/applied', [JobapplicationController::class, 'applied'])->name('applied');
-    Route::get('/viewed', [JobapplicationController::class, 'viewed'])->name('viewed');
     Route::get('/saved', [JobapplicationController::class, 'saved'])->name('saved');
 	Route::post('/bookmark/{id}', [JobapplicationController::class, 'toggleFavorite'])->name('bookmark.toggle');
-	Route::get('/referred', [JobapplicationController::class, 'referred'])->name('referred');
 	Route::get('/referred-cv/{id}', [JobapplicationController::class, 'showCv'])->name('cv.showCv');
 
 	Route::get('/cv/handle-action/{id}/{action}', [JobapplicationController::class, 'handleAction'])
