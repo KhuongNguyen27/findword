@@ -62,7 +62,7 @@ span.duration {
                                     <div class="title">
                                         <h2>{{ $item->name }}</h2>
                                     </div>
-                                    <div class="price justify-content-center">{{ number_format($item->price) }}<span class="duration">P / 01 tin</span></div>
+                                    <div class="price justify-content-center">{{ number_format($item->price) }}<span class="duration">P / tin</span></div>
                                     <div class="table-content">
                                         <ul>
                                             {!! $item->description !!}
