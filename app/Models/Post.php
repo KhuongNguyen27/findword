@@ -30,11 +30,24 @@ class Post extends AdminModel
         }
         return "/website-assets/images/favicon.png";
     }
+    // public function getShortDescriptionAttribute()
+    // {
+    //     if ( empty($this->short_description) ) {
+    //         return strip_tags( substr($this->description,0,100) );
+    //     }
+    //     return $this->short_description;
+    // }
     public function getShortDescriptionAttribute()
     {
-        if ( empty($this->short_description) ) {
-            return strip_tags( substr($this->description,0,100) );
+        if (empty($this->attributes['short_description'])) {
+            // Loại bỏ các thẻ HTML trước khi cắt chuỗi
+            $cleanDescription = strip_tags($this->description);
+            // Sử dụng mb_strimwidth để cắt chuỗi sau khi loại bỏ thẻ HTML
+            return mb_strimwidth($cleanDescription, 0, 100, '...');
         }
-        return $this->short_description;
+        
+        return $this->attributes['short_description'];
     }
+    
+
 }

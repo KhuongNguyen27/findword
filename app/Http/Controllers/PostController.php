@@ -9,7 +9,6 @@ class PostController extends Controller
 {
     public function index(){
         $items = Post::where('status',1)->paginate(9);
-        
     }
     public function show($slug){
         $item = Post::where('slug',$slug)->firstOrFail();

@@ -106,6 +106,73 @@ a.mr-2:hover {
     margin-left: auto;
     font-style: italic;
 }
+i.fas.fa-check {
+    color: #3687D8;
+}
+
+i.fas.fa-times {
+    color: #CD3131;
+}
+
+i.fas.fa-envelope {
+    color: #08ad16;
+}
+
+.kq i.fas.fa-envelope {
+    color: white;
+}
+
+i.fas.fa-info-circle {
+    color: #08AD16;
+}
+
+.kq {
+    background-color: #08b116;
+    color: white;
+    border: none;
+    padding: 4px 25px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    /* Đặt position để định vị nút */
+    right: 0px;
+    /* Cách mép phải 10px */
+    top: 50%;
+    /* Đặt ở giữa theo chiều dọc */
+    transform: translateY(-50%);
+    /* Căn giữa theo chiều dọc */
+}
+
+.kq i {
+    margin-right: 5px;
+}
+
+.viewed-btn {
+    background-color: #EDF2FF;
+    border: none;
+    padding: 5px 8px 5px 13px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-view {
+    /* background-color: #0D6EFD; */
+
+    position: absolute;
+    /* Đặt position để định vị nút */
+    right: 65px;
+    /* Cách mép phải 10px */
+    top: 50%;
+    /* Đặt ở giữa theo chiều dọc */
+
+    /* Căn giữa theo chiều dọc */
+}
+
+.btn-view i {
+    margin-right: 5px;
+}
 </style>
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -138,7 +205,9 @@ a.mr-2:hover {
                                             <div class="background-red">
                                                 <i class="flaticon-money-1"></i> 10.0000P
                                             </div>
-                                            <p class="viewed-status">Đã xem hồ sơ</p>
+                                            <!-- <p class="viewed-status">Đã xem hồ sơ</p> -->
+                                            @include('employee::uv.includes.text-status')
+
                                         </div>
                                         <p>
                                             <a href="" class="career-link">
@@ -154,18 +223,7 @@ a.mr-2:hover {
                                             {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
                                             number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
                                             number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
-                                        <div class="btn-view">
-
-                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
-                                                class="viewed-btn mr-2" title="Tuyển dụng" data-toggle="tooltip"
-                                                data-placement="top"><i class="fas fa-check"></i></a>
-                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
-                                                class="viewed-btn mr-2" title="Không tuyển dụng" data-toggle="tooltip"
-                                                data-placement="top"><i class="fas fa-times"></i></a>
-                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'send_email']) }}"
-                                                class="viewed-btn" title="Mời phỏng vấn" data-toggle="tooltip"
-                                                data-placement="top"><i class="fas fa-envelope"></i></a>
-                                        </div>
+                                             @include('employee::uv.includes.button-status')
 
                                         <script>
                                         // Đợi khi tài liệu đã sẵn sàng

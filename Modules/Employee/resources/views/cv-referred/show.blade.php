@@ -146,6 +146,42 @@ i.fas.fa-dollar-sign {
 .btn-contact-info i {
     margin-right: 5px;
 }
+
+.closed-profile {
+    pointer-events: none;
+    opacity: 0.6;
+}
+.tu-choi {
+    background-color: #ffffff;
+    color: #212529;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.no {
+    background-color: #ffffff;
+    color: #212529;
+    padding: 10px;
+    border-radius: 5px;
+    align-items: center;
+    margin-bottom: 15px;
+    display: flex;
+    column-gap: 10px;
+}
+.reason {
+    color: red;
+    margin-top: 10px;
+    font-weight:700;
+    margin-left: 15px;
+}
+.details {
+    color: #363636;
+    font-style: italic;
+}
+i.fas.fa-times-circle {
+    font-size: 29px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <section class="user-dashboard">
@@ -153,7 +189,17 @@ i.fas.fa-dollar-sign {
         <div class="upper-title-box">
             <h5>Thông tin hồ sơ</h5>
         </div>
-        <div class="row">
+        @if ($employeeCv->status == 1)
+        <div class="tu-choi">
+            <div class="no">
+                <i class="fas fa-times-circle" style="color: red;"></i> <h4>Không thành công</h4>     
+            </div>
+            <div>    
+                <span class="reason">Lí do: <span class="details">Không đạt yêu cầu của công ty</span></span>  
+            </div>
+        </div>
+        @endif
+        <div class="row {{ $employeeCv->status == 1 ? 'closed-profile' : '' }}">
             <div class="col-lg-12">
                 <!-- Ls widget -->
                 <div class="ls-widget">
@@ -171,15 +217,15 @@ i.fas.fa-dollar-sign {
                                 </div>
                             </div>
                         </div> -->
+                        @if ($employeeCv->is_checked = !1)
+                            <div class="alert-info-contact">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <p>Thông tin liên hệ sẽ được hiển thị sau khi bạn bấm vào<strong>"Xem thông tin liên
+                                        hệ"</strong> (Sử dụng
+                                    Point để xem)</p>
+                            </div>
+                        @endif
 
-
-                        <div class="alert-info-contact">
-                            <i class="fas fa-exclamation-circle"></i>
-                            <p>Thông tin liên hệ sẽ được hiển thị sau khi bạn bấm vào<strong>"Xem thị thông tin liên
-                                    hệ"</strong> (Sử
-                                dụng
-                                Point để xem)</p>
-                        </div>
                         <div class="row record-box">
                             <div class="col-2">
                                 <img class="img-fluid" src="{{asset('/website-assets/images/qrcode/qrcode1.png')}}"
@@ -218,7 +264,7 @@ i.fas.fa-dollar-sign {
                             let url = window.location.href;
                             let segments = url.split('/');
                             let id = segments.pop() || segments
-                        .pop(); // Lấy phần tử cuối cùng, có thể là ID hoặc trường hợp không có ID
+                                .pop(); // Lấy phần tử cuối cùng, có thể là ID hoặc trường hợp không có ID
                             return id;
                         }
 
@@ -288,11 +334,11 @@ i.fas.fa-dollar-sign {
                                                     var contactInfo = response.data;
                                                     $('#contactEmail').text(
                                                         contactInfo.email
-                                                        ); // Cập nhật email
+                                                    ); // Cập nhật email
                                                     $('#contactPhone').text(
                                                         contactInfo.phone
-                                                        ); // Cập nhật số điện thoại
-                                                        window.location.reload();
+                                                    ); // Cập nhật số điện thoại
+                                                    window.location.reload();
                                                     $('.btn-contact-info').each(
                                                         function() {
                                                             $(this).addClass(
@@ -304,7 +350,7 @@ i.fas.fa-dollar-sign {
                                                 } else {
                                                     Swal.fire('Lỗi', response
                                                         .message, 'error'
-                                                        ); // Hiển thị thông báo lỗi nếu có
+                                                    ); // Hiển thị thông báo lỗi nếu có
                                                 }
                                             },
                                             error: function(error) {
@@ -322,8 +368,6 @@ i.fas.fa-dollar-sign {
                             });
                         });
                         </script>
-
-
                         <script>
                         $(document).ready(function() {
                             $('.bookmark-btn').click(function() {
@@ -370,177 +414,6 @@ i.fas.fa-dollar-sign {
                             });
                         });
                         </script>
-                        <!-- <script>
-                        function getAppliedJobIdFromUrl() {
-                            let url = window.location.href;
-                            let segments = url.split('/');
-                            let id = segments.pop() || segments
-                        .pop(); // Lấy phần tử cuối cùng, có thể là ID hoặc trường hợp không có ID
-                            return id;
-                        }
-                        $(document).ready(function() {
-                            $.ajax({
-                                url: '{{ route('employee.check-contact-info') }}',
-                                type: 'POST',
-                                data: {
-                                    check: true,
-                                    applyId: getAppliedJobIdFromUrl(),
-                                    _token: '{{ csrf_token() }}',
-                                },
-                                success: function(response) {
-                                    if (response.success) {
-                                        var contactInfo = response.data;
-                                        console.log(contactInfo,
-                                            contactInfo.email,
-                                            contactInfo.phone);
-                                        // Cập nhật nội dung của các phần tử HTML
-                                        $('#contactEmail').text(
-                                            contactInfo.email
-                                        ); // Cập nhật email
-                                        $('#contactPhone').text(
-                                            contactInfo.phone
-                                        ); // Cập nhật số điện thoại
-                                        $('.btn-contact-info').each(function() {
-                                            $(this).addClass('disabled').attr('disabled',
-                                                true);
-                                        });
-                                    }
-                                }
-                            });
-                        });
-                        $(document).ready(function() {
-                            $('.btn-contact-info').click(function() {
-                                var staffId = $(this).data('staff-id');
-                                var employeeId = $(this).data('employee-id');
-                                var amount = $(this).data('amount');
-                                var currentPoints = $(this).data('current-point');
-                                var cvId = $(this).data('cv-id');
-
-                                // Hàm định dạng số theo kiểu phân tách hàng nghìn bằng dấu chấm
-                                function formatNumber(number) {
-                                    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                                }
-
-                                // Gửi request AJAX để gọi route và phương thức trong EmployeeController
-                                Swal.fire({
-                                    title: 'Xác nhận',
-                                    html: "Số <strong>Point</strong> hiện tại của bạn là <strong>" +
-                                        formatNumber(currentPoints) +
-                                        "P</strong>. Mất <strong>" + formatNumber(amount) +
-                                        "P</strong> để xem thông tin liên hệ?",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Đồng ý',
-                                    cancelButtonText: 'Hủy'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        // Gửi request AJAX để gọi route và phương thức trong EmployeeController
-                                        $.ajax({
-                                            url: '{{ route('employee.get-contact-info') }}',
-                                            type: 'POST',
-                                            data: {
-                                                staff_id: staffId,
-                                                employee_id: employeeId,
-                                                amount: amount,
-                                                cv_id: cvId,
-                                                _token: '{{ csrf_token() }}'
-                                            },
-                                            success: function(response) {
-                                                if (response.success) {
-                                                    var contactInfo = response.data;
-                                                    console.log(contactInfo,
-                                                        contactInfo.email,
-                                                        contactInfo.phone);
-                                                    $('#contactEmail').text(
-                                                        contactInfo.email
-                                                        ); // Cập nhật email
-                                                    $('#contactPhone').text(
-                                                        contactInfo.phone
-                                                        ); // Cập nhật số điện thoại
-                                                    window.location
-                                                .reload(); // Reload trang để cập nhật trạng thái button
-                                                } else {
-                                                    Swal.fire('Lỗi', response
-                                                        .message, 'error'
-                                                        ); // Hiển thị thông báo lỗi nếu có
-                                                }
-                                            },
-                                            error: function(error) {
-                                                console.error('Error:', error);
-                                                Swal.fire('Lỗi',
-                                                    'Có lỗi xảy ra. Vui lòng thử lại.',
-                                                    'error'
-                                                    ); // Hiển thị thông báo lỗi nếu có
-                                            }
-                                        });
-                                    }
-                                });
-                            });
-                        });
-                        </script> -->
-
-
-                        <!-- <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    const bookmarkBtns = document.querySelectorAll('.bookmark-btn');
-
-                                    bookmarkBtns.forEach(btn => {
-                                        btn.addEventListener('click', function () {
-                                            const cvId = this.getAttribute('data-cv-id');
-                                            console.log('Job ID:', jobId); // Kiểm tra ID có đúng không
-                                            const isBookmarked = this.querySelector('span').classList.contains('bookmarked');
-
-                                            fetch(`/employee/bookmark/${cvId}`, {
-                                                method: 'POST',
-                                                headers: {
-                                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                                    'Content-Type': 'application/json'
-                                                }
-                                            })
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                if (data.favorites) {
-                                                    this.querySelector('span').classList.add('bookmarked');
-                                                } else {
-                                                    this.querySelector('span').classList.remove('bookmarked');
-                                                }
-
-                                                // Hiển thị thông báo SweetAlert2
-                                                Swal.fire({
-                                                    title: 'Lưu CV!',
-                                                    text: isBookmarked ? 'Bỏ lưu thông tin CV thành công.' : 'Lưu thông tin CV thành công.',
-                                                    icon: 'success',
-                                                    confirmButtonText: 'OK'
-                                                });
-                                            })
-                                            .catch(error => {
-                                                console.error('Error:', error);
-
-                                                // Hiển thị thông báo lỗi nếu có lỗi xảy ra
-                                                Swal.fire({
-                                                    title: 'Lỗi!',
-                                                    text: 'Có lỗi xảy ra. Vui lòng thử lại.',
-                                                    icon: 'error',
-                                                    confirmButtonText: 'OK'
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-
-
-                            </script> -->
-
-
-                        </script>
-
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
-
                         <div class="widget-content">
                             <div class="profile-body p-3">
                                 <div class="row">
@@ -550,7 +423,7 @@ i.fas.fa-dollar-sign {
                                             <div class="row">
                                                 <div class="col-12 col-md-6">
                                                     <p class="profile-item"><strong>Họ và tên :</strong>
-                                                        {{ $item->user->name ?? '' }}</p>
+                                                    {{ $item->hash_name ?? $item->user->name ?? ''}}</p>
                                                     <p class="profile-item"><strong>Giới tính :</strong>
                                                         {{ $item->gender ?? '' }}</p>
                                                     <p class="profile-item"><strong>Năm sinh :</strong>
@@ -686,5 +559,6 @@ i.fas.fa-dollar-sign {
     </div>
     </div>
 </section>
+
 <!-- End Dashboard -->
 @endsection

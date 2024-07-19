@@ -4,6 +4,7 @@ namespace Modules\Staff\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Employee\app\Models\EmployeeCv;
 use Modules\Employee\app\Models\JobApplication;
 use App\Models\Province;
 class UserCv extends Model
@@ -146,5 +147,9 @@ class UserCv extends Model
     public function job()
     {
         return $this->belongsTo(Job::class, 'job_id', 'id'); // Thay 'job_id' bằng khóa ngoại trong bảng user_cv
+    }
+    public function employeeCv()
+    {
+        return $this->hasMany(EmployeeCv::class,'cv_id', 'id');
     }
 }
