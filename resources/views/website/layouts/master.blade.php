@@ -76,6 +76,7 @@
         });
     });
     </script>
+    @stack('js')
     @yield('footer')
 </body>
 

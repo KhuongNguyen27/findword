@@ -1,3 +1,12 @@
+ <style>
+    .news-block .image-box img {
+    display: block;
+    width: 100%;
+    transition: all 300ms ease;
+    object-fit: fill !important;
+    height: 190px;
+}
+ </style>
  <section class="news-section pt-5 pb-5">
      <div class="auto-container">
          <div class="ls-outer theme-card">
