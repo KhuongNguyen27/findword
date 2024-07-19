@@ -44,12 +44,11 @@ span.flaticon-bookmark.active {
     cursor: pointer;
     display: block;
     font-family: Inter;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: .14px;
     line-height: 22px;
     margin-bottom: 0;
-    padding-left: 34px;
     position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -64,6 +63,44 @@ span.flaticon-bookmark.active {
     margin-bottom: 0;
     line-height: 0;
     font-weight: 700;
+}
+span.hight-light {
+    color: #6bcdcd;
+    font-weight: 600;
+}
+p.hight-light.comunication-content__footer {
+    color: #6bcdcd;
+    font-weight: 600;
+}
+a.btn.btn-find-out {
+    background: #6bcdcd;
+    color: #ffffff;
+    padding: 7px 41px;
+}
+.checkbox-dont-show__input {
+    display: flex;
+    align-items: center;
+    font-size: 1em; /* Điều chỉnh kích thước chữ nếu cần */
+}
+
+.checkbox-dont-show__input input[type="checkbox"] {
+    width: 21px; /* Kích thước chiều rộng của checkbox */
+    height: 21px; /* Kích thước chiều cao của checkbox */
+    margin-right: 10px; /* Khoảng cách giữa checkbox và nhãn */
+}
+
+.checkbox-dont-show__input .checkmark {
+    display: none; /* Ẩn phần tử checkmark nếu không cần */
+}
+button.close {
+    align-items: center;
+    aspect-ratio: 1/1;
+    background: #f1f1f1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    opacity: .6;
+    width: 32px;
 }
 </style>
 <section class="banner-section pb-5 custom-banner-section-mobile">
@@ -206,6 +243,7 @@ new Chart(ctx1, {
     }
 });
 </script>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -213,9 +251,9 @@ new Chart(ctx1, {
                 <h5 class="modal-title" id="exampleModalLabel">
                     Tìm Việc Siêu Nhanh - Tiếp lợi thế, nối thành công
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                        <i class="fa-solid fa-xmark"></i>
+                    <i class="fa fa-times"></i>
                     </span>
                 </button>
             </div>
@@ -229,9 +267,9 @@ new Chart(ctx1, {
             </div>
             <div class="modal-footer">
                 <div class="icon">
-                    <img data-src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/section-header/toppy-hr-tech.png"
-                        class="lazy entered loaded" alt="toppy-hr-tech" data-ll-status="loaded"
-                        src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/section-header/toppy-hr-tech.png">
+                    <img data-src="{{ asset('website-assets/images/favicon.png')}}"
+                        class="lazy entered loaded" alt="timviecsieunhanh" data-ll-status="loaded"
+                        src="{{ asset('website-assets/images/favicon.png')}}">
                 </div>
                 <div class="comunication-content">
                     <div class="comunication-content__text">
@@ -246,23 +284,23 @@ new Chart(ctx1, {
                             Kết nối bền chặt cùng đồng nghiệp cũng là một <span class="hight-light">lợi thế</span>
                         </p>
                         <p>
-                            TopCV hiểu rõ, <span class="hight-light">lợi thế</span> nằm trong tay bạn!
+                        Tìm Việc Siêu Nhanh hiểu rõ, <span class="hight-light">lợi thế</span> nằm trong tay bạn!
                         </p>
                     </div>
                     <p class="hight-light comunication-content__footer">
-                        Với Hệ sinh thái HR Tech, TopCV luôn đồng hành để bạn thành công trong sự nghiệp
+                        Tìm Việc Siêu Nhanh luôn đồng hành để bạn thành công trong sự nghiệp
                     </p>
                 </div>
             </div>
             <div class="find-out">
                 <div class="form-check checkbox-dont-show">
                     <label class="checkbox-dont-show__input">
-                        Không hiển thị lại
                         <input type="checkbox" id="dont-show_popup_brand_community">
+                        Không hiển thị lại
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <a href="https://blog.topcv.vn/topcv-tiep-loi-the-noi-thanh-cong/" target="__blank"
+                <a href="#" target="__blank"
                     class="btn btn-find-out">
                     Tìm hiểu thêm
                 </a>
