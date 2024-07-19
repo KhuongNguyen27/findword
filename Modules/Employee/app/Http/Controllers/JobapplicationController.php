@@ -269,6 +269,7 @@ class JobapplicationController extends Controller
                     $cv->hash_address = "Thông tin đang ẩn";
                 }
             }
+            $cv->employeeCv = $checkJob;
 
             // Thiết lập tham số để truyền vào view
             $params = [
@@ -480,8 +481,9 @@ class JobapplicationController extends Controller
                 $shortName = $this->modifyString($item->user->name);
                 $item->hash_name = $shortName;
             }
-            $item->is_read = $this->is_read($item->id,$item->user->id);
+            $item->is_read = $this->is_read($item->user->id, $id);
             $item->is_applied = !empty(UserJobAplied::where('cv_id',$item->id)->where('job_id',$id)->first()) ? true : false;
+            $item->employeeCv = $checkJob;
         }
         // dd($items);
         // Đếm số lượng CV đã lấy được
@@ -496,6 +498,18 @@ class JobapplicationController extends Controller
         // Lấy thông tin chi tiết của các CV đã xem từ bảng user_cvs
         $userIds = $jobViews->pluck('user_id')->toArray();
         $items = UserCv::whereIn('user_id', $userIds)->get();
+        // Lấy ra tất cả CV hiện tại của nhà tuyển dụng
+        $jobsId = Job::where('user_id',Auth::id())->pluck('id')->toArray();
+        foreach ($items as $item) {
+            $checkJob = EmployeeCv::where('cv_id',$item->id)->where('user_id',Auth::id())->first();
+            $is_checked = $checkJob ? ($checkJob->is_checked !== 1 ? true : false) : true;
+            $is_applied = UserJobAplied::where('cv_id',$item->id)->whereIn('job_id',$jobsId)->first();
+            if($is_checked && empty($is_applied)){
+                $shortName = $this->modifyString($item->user->name);
+                $item->hash_name = $shortName;
+            }
+            $item->employeeCv = $checkJob;
+        }
         // dd($items);
         $viewedCount = $items->count();
     
@@ -595,7 +609,7 @@ class JobapplicationController extends Controller
     }
     
 
-    // public function handleAction($id, $action)
+   // public function handleAction($id, $action)
     // {
     //     $cv = UserCv::find($id);
     

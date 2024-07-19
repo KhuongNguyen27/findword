@@ -18,7 +18,7 @@ class PostComposer
      */
     public function compose(View $view): void
     {
-        $items = Post::where('status',1)->limit(3)->get();
+        $items = Post::where('status',1)->limit(10)->get();
         $view->with('shared_posts', $items);
     }
 }

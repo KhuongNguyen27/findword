@@ -37,6 +37,9 @@
             <p>© <?= date('Y');?> {{ env('APP_NAME') }}. All Right Reserved.</p>
         </div>
     </div><!-- End Page Wrapper -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
     <script src="{{ asset('website-assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('website-assets/js/chosen.min.js')}}"></script>
