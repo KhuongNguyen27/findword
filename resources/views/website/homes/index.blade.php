@@ -259,8 +259,7 @@ new Chart(ctx1, {
             </div>
             <div class="modal-body">
                 <iframe id="video-brand-communication "
-                    src="https://www.youtube.com/embed/5y9EYHhAwPs?autoplay=1&amp;mute=1" title="YouTube video player"
-                    frameborder="0"
+                src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player"                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen="">
                 </iframe>

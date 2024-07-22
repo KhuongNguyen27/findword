@@ -77,12 +77,8 @@ class JobController extends Controller
     {
         $user_id = Auth::id();
 
-        $query = Job::where('user_id', $user_id)
-            ->withCount([
-                'userCvs' => function ($query) {
-                    $query->whereColumn('rank_id', 'jobs.rank_id');
-                }
-            ]);
+        // Truy vấn lấy tất cả công việc của công ty
+        $query = Job::where('user_id', $user_id);
 
         if ($request->name) {
             $query->where('name', 'LIKE', '%' . $request->name . '%');
@@ -94,9 +90,14 @@ class JobController extends Controller
             $query->where('end_day', '<=', $request->end_day);
         }
         $jobs = $query->paginate(10);
+
+        // Thêm số lượng CV vào mỗi công việc
+        foreach ($jobs as $job) {
+            $job->user_cvs_count = $job->getUserCvsCount();
+        }
         return view('employee::uv.referred.index', compact('jobs'));
     }
-
+    
     public function viewedJobs(Request $request)
     {
         $user_id = Auth::id();

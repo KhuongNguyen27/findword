@@ -43,7 +43,7 @@ class Post extends AdminModel
             // Loại bỏ các thẻ HTML trước khi cắt chuỗi
             $cleanDescription = strip_tags($this->description);
             // Sử dụng mb_strimwidth để cắt chuỗi sau khi loại bỏ thẻ HTML
-            return mb_strimwidth($cleanDescription, 0, 100, '...');
+            return mb_strimwidth($cleanDescription, 0, 85, '...');
         }
         
         return $this->attributes['short_description'];

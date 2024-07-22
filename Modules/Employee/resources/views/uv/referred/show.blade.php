@@ -187,7 +187,6 @@ i.fas.fa-info-circle {
         <div class="upper-title-box">
             <h3>QUẢN LÝ DANH SÁCH ỨNG VIÊN</h3>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <!-- Ls widget -->
@@ -222,8 +221,7 @@ i.fas.fa-info-circle {
                                             <div class="background-re">
                                                 Ứng viên đã nộp đơn
                                             </div>
-                                            @else($item->is_read)
-
+                                            @elseif($item->is_read)
                                             <div class="background-re">
                                                 Ứng viên đã xem
                                             </div>
@@ -328,6 +326,43 @@ i.fas.fa-info-circle {
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+    $(document).ready(function() {
+        // Hiển thị thông báo thành công nếu có
+        let successMessage = "{{ session('success') }}";
+        if (successMessage) {
+            Swal.fire({
+                title: 'Thành công!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+        $('.viewed-btn').click(function(e) {
+            e.preventDefault(); 
+            let url = $(this).attr('href'); 
+            if (url) {
+                Swal.fire({
+                    title: 'Xác nhận',
+                    text: 'Bạn có chắc chắn muốn thực hiện hành động này?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Có',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            }
+        });
+    });
+    </script>
+
+
 </section>
 <!-- End Dashboard -->
 @endsection

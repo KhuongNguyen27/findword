@@ -113,5 +113,50 @@ class Job extends MainJob
     {
         return \Illuminate\Support\Str::limit($this->name, 30);
     }
+
+    public function getUserCvsCount()
+{
+    $job = $this; // Đây là đối tượng Job hiện tại
+
+    // Trường hợp ưu tiên số 1: Cùng thành phố + cùng ngành nghề + cùng rank lương
+    $count = UserCv::where('rank_id', $job->rank_id)
+        ->where('wage_id', $job->wage_id)
+        ->where('province_id', $job->province_id)
+        ->count();
+
+    // Nếu số lượng CV từ trường hợp số 1 chưa đủ 15, tiếp tục đếm CV theo trường hợp khác
+    if ($count < 15) {
+        $count += UserCv::where('rank_id', $job->rank_id)
+            ->where('province_id', $job->province_id)
+            ->whereNotIn('id', UserCv::where('rank_id', $job->rank_id)
+                ->where('wage_id', $job->wage_id)
+                ->where('province_id', $job->province_id)
+                ->pluck('id'))
+            ->count();
+    }
+
+    // Nếu số lượng CV vẫn chưa đủ 15, tiếp tục đếm CV theo trường hợp khác
+    if ($count < 15) {
+        $count += UserCv::where('province_id', $job->province_id)
+            ->whereNotIn('id', UserCv::where('rank_id', $job->rank_id)
+                ->where('wage_id', $job->wage_id)
+                ->where('province_id', $job->province_id)
+                ->pluck('id'))
+            ->count();
+    }
+
+    // Nếu số lượng CV vẫn chưa đủ 15, tiếp tục đếm CV theo trường hợp khác
+    if ($count < 15) {
+        $count += UserCv::where('rank_id', $job->rank_id)
+            ->whereNotIn('id', UserCv::where('rank_id', $job->rank_id)
+                ->where('wage_id', $job->wage_id)
+                ->where('province_id', $job->province_id)
+                ->pluck('id'))
+            ->count();
+    }
+
+    return $count;
+}
+
 }
 
