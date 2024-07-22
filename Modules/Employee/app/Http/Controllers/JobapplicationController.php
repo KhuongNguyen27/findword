@@ -451,46 +451,114 @@ class JobapplicationController extends Controller
         }
         return false;
     }
+    public function referred($id)
+    {
+        // Lấy thông tin của công việc dựa trên $id
+        $job = Job::findOrFail($id);
+    
+        // Khởi tạo mảng để lưu các CV
+        $items = collect();
+    
+        // Trường hợp ưu tiên số 1: Cùng thành phố + cùng ngành nghề + cùng rank lương
+        $cvItems = UserCv::where('rank_id', $job->rank_id)
+            ->where('wage_id', $job->wage_id)
+            ->where('province_id', $job->province_id)
+            ->get();
+        $items = $items->merge($cvItems);
+    
+        // Nếu số lượng CV từ trường hợp số 1 chưa đủ 9, tiếp tục lấy CV theo trường hợp khác
+        if ($items->count() < 15) {
+            // Trường hợp số 2: Cùng thành phố + cùng ngành nghề
+            $cvItems = UserCv::where('rank_id', $job->rank_id)
+                ->where('province_id', $job->province_id)
+                ->whereNotIn('id', $items->pluck('id')) // Loại bỏ các CV đã lấy
+                ->get();
+            $items = $items->merge($cvItems);
+        }
+    
+        // Nếu số lượng CV vẫn chưa đủ 9, tiếp tục lấy CV theo trường hợp khác
+        if ($items->count() < 15) {
+            // Trường hợp số 3: Cùng thành phố
+            $cvItems = UserCv::where('province_id', $job->province_id)
+                ->whereNotIn('id', $items->pluck('id')) // Loại bỏ các CV đã lấy
+                ->get();
+            $items = $items->merge($cvItems);
+        }
+    
+        // Nếu số lượng CV vẫn chưa đủ 9, tiếp tục lấy CV theo trường hợp khác
+        if ($items->count() < 15) {
+            // Trường hợp số 4: Cùng ngành nghề
+            $cvItems = UserCv::where('rank_id', $job->rank_id)
+                ->whereNotIn('id', $items->pluck('id')) // Loại bỏ các CV đã lấy
+                ->get();
+            $items = $items->merge($cvItems);
+        }
+    
+        // Loại bỏ các CV trùng lặp và chỉ lấy 9 CV đầu tiên
+        $items = $items->unique('id')->take(15);
+    
+        // Lấy ra tất cả CV hiện tại của nhà tuyển dụng
+        $jobsId = Job::where('user_id', Auth::id())->pluck('id')->toArray();
+    
+        // Xử lý thông tin CV
+        foreach ($items as $item) {
+            $checkJob = EmployeeCv::where('cv_id', $item->id)
+                ->where('user_id', Auth::id())
+                ->first();
+            $is_checked = $checkJob ? ($checkJob->is_checked !== 1 ? true : false) : true;
+            $is_applied = UserJobAplied::where('cv_id', $item->id)
+                ->whereIn('job_id', $jobsId)
+                ->first();
+    
+            if ($is_checked && empty($is_applied)) {
+                $shortName = $this->modifyString($item->user->name);
+                $item->hash_name = $shortName;
+            }
+            $item->is_read = $this->is_read($item->user->id, $id);
+            $item->is_applied = !empty(UserJobAplied::where('cv_id', $item->id)
+                ->where('job_id', $id)
+                ->first()) ? true : false;
+            $item->employeeCv = $checkJob;
+        }
+    
+        // Đếm số lượng CV đã lấy được
+        $referredCount = $items->count();
+    
+        // Trả về view với dữ liệu
+        return view('employee::uv.referred.show', compact('items', 'referredCount'));
+    }
+    
+    
+    
     // public function referred($id)
     // {
     //     // Lấy thông tin của c  ông việc dựa trên $id
     //     $job = Job::findOrFail($id);
         
     //     // Lấy các CV phù hợp với công việc theo điều kiện rank_id
-    //     $items = UserCv::where('rank_id', $job->rank_id)->get();
-    //     // dd($items);
+    //     $items = UserCv::where('rank_id', $job->rank_id)
+    //     ->where('wage_id', $job->wage_id)
+    //     ->where('province_id', $job->province_id)->get();
+    //     // Lấy ra tất cả CV hiện tại của nhà tuyển dụng
+    //     $jobsId = Job::where('user_id',Auth::id())->pluck('id')->toArray();
+    //     foreach ($items as $item) {
+    //         $checkJob = EmployeeCv::where('cv_id',$item->id)->where('user_id',Auth::id())->first();
+    //         $is_checked = $checkJob ? ($checkJob->is_checked !== 1 ? true : false) : true;
+    //         $is_applied = UserJobAplied::where('cv_id',$item->id)->whereIn('job_id',$jobsId)->first();
+    //         if($is_checked && empty($is_applied)){
+    //             $shortName = $this->modifyString($item->user->name);
+    //             $item->hash_name = $shortName;
+    //         }
+    //         $item->is_read = $this->is_read($item->user->id, $id);
+    //         $item->is_applied = !empty(UserJobAplied::where('cv_id',$item->id)->where('job_id',$id)->first()) ? true : false;
+    //         $item->employeeCv = $checkJob;
+    //     }
     //     // Đếm số lượng CV đã lấy được
     //     $referredCount = $items->count();
+    //     // dd($referredCount);
         
     //     return view('employee::uv.referred.show', compact('items', 'referredCount'));
     // }
-    public function referred($id)
-    {
-        // Lấy thông tin của c  ông việc dựa trên $id
-        $job = Job::findOrFail($id);
-        
-        // Lấy các CV phù hợp với công việc theo điều kiện rank_id
-        $items = UserCv::where('rank_id', $job->rank_id)->get();
-        // Lấy ra tất cả CV hiện tại của nhà tuyển dụng
-        $jobsId = Job::where('user_id',Auth::id())->pluck('id')->toArray();
-        foreach ($items as $item) {
-            $checkJob = EmployeeCv::where('cv_id',$item->id)->where('user_id',Auth::id())->first();
-            $is_checked = $checkJob ? ($checkJob->is_checked !== 1 ? true : false) : true;
-            $is_applied = UserJobAplied::where('cv_id',$item->id)->whereIn('job_id',$jobsId)->first();
-            if($is_checked && empty($is_applied)){
-                $shortName = $this->modifyString($item->user->name);
-                $item->hash_name = $shortName;
-            }
-            $item->is_read = $this->is_read($item->user->id, $id);
-            $item->is_applied = !empty(UserJobAplied::where('cv_id',$item->id)->where('job_id',$id)->first()) ? true : false;
-            $item->employeeCv = $checkJob;
-        }
-        // dd($items);
-        // Đếm số lượng CV đã lấy được
-        $referredCount = $items->count();
-        
-        return view('employee::uv.referred.show', compact('items', 'referredCount'));
-    }
     public function viewed($id)
     {
         // Lấy danh sách các cv_id đã được người dùng xem từ bảng job_views
@@ -512,7 +580,6 @@ class JobapplicationController extends Controller
         }
         // dd($items);
         $viewedCount = $items->count();
-    
         return view('employee::uv.viewed.show', compact('items', 'viewedCount'));
     }
     public function saved()
@@ -578,25 +645,34 @@ class JobapplicationController extends Controller
         }
     
         // Lấy bản ghi employee_cv tương ứng với cv_id
-        $employeeCv = EmployeeCv::where('cv_id', $id)->first();
+        // $employeeCv = EmployeeCv::where('cv_id', $id)->first();
+        $employeeCv = EmployeeCv::firstOrNew(['cv_id' => $id]);
     
-        if (!$employeeCv) {
-            return redirect()->back()->with('error', 'Employee CV không tồn tại.');
-        }
-    
+        // if (!$employeeCv) {
+        //     return redirect()->back()->with('error', 'Employee CV không tồn tại.');
+        // }
+            // Gán giá trị cho user_id nếu chưa có
+            if (!$employeeCv->exists) {
+                $employeeCv->user_id = Auth::id(); // Hoặc gán giá trị khác nếu cần
+            }
         // Kiểm tra action và gửi email tương ứng
         switch ($action) {
             case 'hire':
                 $employeeCv->status = EmployeeCv::STATUS_HIRED;
                 Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'hire'));
+                $message = 'Đã gửi email tuyển dụng thành công!';
+
                 break;
             case 'reject':
                 $employeeCv->status = EmployeeCv::STATUS_REJECTED;
                 Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'reject'));
+                $message = 'Đã gửi email từ chối ứng viên thành công!';
                 break;
             case 'send_email':
                 $employeeCv->status = EmployeeCv::STATUS_INVITED_FOR_INTERVIEW;
                 Mail::to($cv->user->email)->send(new SendEmailEmployeeCV($cv, 'send_email'));
+                $message = 'Đã gửi email mời phỏng vấn thành công!';
+
                 break;
             default:
                 return redirect()->back()->with('error', 'Hành động không hợp lệ.');
@@ -604,8 +680,9 @@ class JobapplicationController extends Controller
     
         // Lưu trạng thái mới
         $employeeCv->save();
-    
-        return redirect()->back()->with('success', 'Email đã được gửi và trạng thái đã được cập nhật.');
+        return redirect()->back()->with('success', $message);
+
+        // return redirect()->back()->with('success', 'Email đã được gửi và trạng thái đã được cập nhật.');
     }
     
 

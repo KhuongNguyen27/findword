@@ -106,6 +106,7 @@ a.mr-2:hover {
     margin-left: auto;
     font-style: italic;
 }
+
 i.fas.fa-check {
     color: #3687D8;
 }
@@ -173,6 +174,12 @@ i.fas.fa-info-circle {
 .btn-view i {
     margin-right: 5px;
 }
+.no-data {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
 </style>
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -189,6 +196,7 @@ i.fas.fa-info-circle {
                             <h4>Ứng viên đã lưu</h4>
                         </div>
                         <div class="widget-content">
+                        @if(!$items->isEmpty())
                             @foreach ($items as $item)
                             <div class="row record-box">
                                 <div class="col-2">
@@ -223,8 +231,73 @@ i.fas.fa-info-circle {
                                             {!! $item->cv->wage ? '<i class="fas fa-dollar-sign"></i> ' .
                                             number_format($item->cv->wage->salaryMin, 0, ',', '.') . ' - ' .
                                             number_format($item->cv->wage->salaryMax, 0, ',', '.') . ' VNĐ' : '' !!}
-                                             @include('employee::uv.includes.button-status')
+                                            @if ($item && $item->is_read == 0)
+                                            <a class="btn-view-profile"
+                                                href="{{ route('employee.cv.showCv', $item->cv->id) }}">
+                                                <i class="fas fa-eye"></i> Xem hồ sơ
+                                            </a>
+                                            @else
+                                            @if ($item && $item->status == 1)
+                                            <a class="kq" href="{{ route('employee.cv.showCv', $item->cv->id) }}">
+                                                <i class="fas fa-envelope"></i> Kết quả
+                                            </a>
+                                            @elseif ($item && $item->status == 2)
+                                        <div class="btn-view">
+                                            <a href="{{ route('employee.cv.showCv', $item->cv->id) }}"
+                                                class="viewed-btn" title="Chi tiết" data-toggle="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-times"></i>
+                                            </a>
 
+                                        </div>
+                                        @elseif ($item && $item->status === '0')
+                                        <div class="btn-view">
+                                            <a href="{{ route('employee.cv.showCv', $item->cv->id) }}"
+                                                class="viewed-btn" title="Chi tiết" data-toggle="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+
+                                        </div>
+                                        @else
+                                        <div class="btn-view">
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'send_email']) }}"
+                                                class="viewed-btn" title="Mời phỏng vấn" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-envelope"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'hire']) }}"
+                                                class="viewed-btn mr-2" title="Tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a href="{{ route('employee.cv.handleAction', ['id' => $item->cv->id, 'action' => 'reject']) }}"
+                                                class="viewed-btn mr-2" title="Không tuyển" data-toggle="tooltip"
+                                                data-placement="top">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+
+                                        </div>
+                                        @endif
+                                        @endif
                                         <script>
                                         // Đợi khi tài liệu đã sẵn sàng
                                         document.addEventListener('DOMContentLoaded', function() {
@@ -238,7 +311,9 @@ i.fas.fa-info-circle {
                                 </div>
                             </div>
                             @endforeach
-
+                            @else
+                            <h6 class="no-data">Không có dữ liệu</h6>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -246,6 +321,41 @@ i.fas.fa-info-circle {
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+    $(document).ready(function() {
+        // Hiển thị thông báo thành công nếu có
+        let successMessage = "{{ session('success') }}";
+        if (successMessage) {
+            Swal.fire({
+                title: 'Thành công!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+        $('.viewed-btn').click(function(e) {
+            e.preventDefault(); 
+            let url = $(this).attr('href'); 
+            if (url) {
+                Swal.fire({
+                    title: 'Xác nhận',
+                    text: 'Bạn có chắc chắn muốn thực hiện hành động này?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Có',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            }
+        });
+    });
+    </script>
 </section>
 <!-- End Dashboard -->
 @endsection

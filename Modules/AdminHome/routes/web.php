@@ -21,5 +21,6 @@ Route::group([
     ]
 ], function () {
     Route::get('/', [AdminHomeController::class,'index'])->name('admin.home');
+    Route::get('/auto-load-ajax', [AdminHomeController::class,'autoloadAjax'])->name('admin.autoloadAjax');
     Route::get('/chart-ajax-data', [AdminHomeController::class,'chartAjax'])->name('admin.chartAjax');
 });

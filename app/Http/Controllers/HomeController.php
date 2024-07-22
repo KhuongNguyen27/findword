@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Career;
 use App\Models\Country;
 use App\Models\Job;
+use App\Models\Setting;
 use App\Models\Wage;
 use App\Models\Rank;
 use App\Models\Province;
@@ -24,8 +25,22 @@ class HomeController extends Controller
 	 * Display a listing of the resource.
 	 */
 	public function index(Request $request)
-	{
-
+	{	
+		$access_time = $request->session()->get('access_time');
+		if (!$access_time) {
+			$request->session()->put(['access_time' => time()]);
+			$request->session()->save();
+			$settings = Setting::where('key', 'user_access')->whereDate('created_at', date('Y-m-d'))->first();
+			if (!$settings) {
+				$settings = new Setting();
+				$settings->key = 'user_access';
+				$settings->value = 1;
+				$settings->save();
+			} else {
+				$settings->value = $settings->value + 1;
+				$settings->save();
+			}
+		}
 		$banners = Banner::where('group_banner', 'Top Banner')->orderBy('position')->get();
 		$sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
 		$bottomBanners = Banner::where('group_banner', 'Bottom Banner')->orderBy('position')->get();
@@ -55,18 +70,14 @@ class HomeController extends Controller
 			->leftJoin("auto_post_job_packages", function (JoinClause $join) {
 				$join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
 					->where('auto_post_job_packages.area', '=', 'hap-dan');
-			});
+			})->where('jobs.salarymax', '>=', 10000000)
+			->orWhere('jobs.salaryMax', '');
+		// ->where('jobs.wage_id', '>=', 2)
 		if ($request->name) {
 			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$province_id = $request->province_id;
-			$hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-			if ($province_id === "quoc_te") {
-				$hot_jobs->whereNull('job_province.province_id');
-			}else{
-				$hot_jobs->where('job_province.province_id',intval($province_id));
-			}
+			$hot_jobs->where('province_id', $request->province_id);
 		}
 		if ($request->rank_id) {
 			$hot_jobs->where('rank_id', $request->rank_id);
@@ -101,6 +112,7 @@ class HomeController extends Controller
 				END")
 			->orderBy('jobs.id', 'DESC')->limit(20);
 		$hot_jobs = $hot_jobs->get()->chunk(10);
+
 		// Việc làm trong nước hôm nay
 		$startDate = Carbon::now()->subHours(72);
 		$endDate = Carbon::now();
@@ -118,17 +130,8 @@ class HomeController extends Controller
 			$vip_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$province_id = $request->province_id;
-			$vip_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-			if ($province_id === "quoc_te") {
-				$vip_jobs->whereNull('job_province.province_id');
-			}else{
-				$vip_jobs->where('job_province.province_id',intval($province_id));
-			}
+			$vip_jobs->where('province_id', $request->province_id);
 		}
-		// if ($request->province_id) {
-		// 	$vip_jobs->where('province_id', $request->province_id);
-		// }
 		if ($request->rank_id) {
 			$vip_jobs->where('rank_id', $request->rank_id);
 		}
@@ -266,17 +269,8 @@ class HomeController extends Controller
 			$query->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$province_id = $request->province_id;
-			$query->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-			if ($province_id === "quoc_te") {
-				$query->whereNull('job_province.province_id');
-			}else{
-				$query->where('job_province.province_id',intval($province_id));
-			}
+			$query->where('province_id', $request->province_id);
 		}
-		// if ($request->province_id) {
-		// 	$query->where('province_id', $request->province_id);
-		// }
 		if ($request->wage_id) {
 			$wage_id = $request->wage_id;//'10-15'
 			$wage = explode('-', $wage_id);
@@ -323,17 +317,8 @@ class HomeController extends Controller
 				// ->join('user_account', 'jobs.user_id', '=', 'user_account.user_id')
 				// ->where('user_account.account_id',\Modules\Account\app\Models\Account::VIP)
 				if ($request->province_id) {
-					$province_id = $request->province_id;
-					$today_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-					if ($province_id === "quoc_te") {
-						$today_jobs->whereNull('job_province.province_id');
-					}else{
-						$today_jobs->where('job_province.province_id',intval($province_id));
-					}
+					$today_jobs->where('province_id', $request->province_id);
 				}
-				// if ($request->province_id) {
-				// 	$today_jobs->where('province_id', $request->province_id);
-				// }
 				$today_jobs->orderByRaw("CASE
                 WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                 WHEN job_packages.slug = 'tin-gap-vip' THEN 2
@@ -409,13 +394,7 @@ class HomeController extends Controller
 			$hot_jobs->where('jobs.name', 'LIKE', '%' . $request->name . '%');
 		}
 		if ($request->province_id) {
-			$province_id = $request->province_id;
-			$hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-			if ($province_id === "quoc_te") {
-				$hot_jobs->whereNull('job_province.province_id');
-			}else{
-				$hot_jobs->where('job_province.province_id',intval($province_id));
-			}
+			$hot_jobs->where('province_id', $request->province_id);
 		}
 		if ($request->rank_id) {
 			$hot_jobs->where('rank_id', $request->rank_id);
