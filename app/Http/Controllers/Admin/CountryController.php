@@ -16,7 +16,7 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Country::orderByDesc('created_at');
+        $query = Country::orderBy('name', 'ASC');
     
         if ($request->has('name')) {
             $query->where('name', 'LIKE', '%' . $request->name . '%');

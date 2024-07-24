@@ -6,6 +6,15 @@
     color: red;
     fill: red;
 }
+.bookmark-btn .fa-heart {
+    color: #34c4c0;
+    font-size: 24px; /* Điều chỉnh kích thước theo nhu cầu */
+    transition: color 0.3s;
+}
+
+.bookmark-btn .fa-heart.bookmarked {
+    color: red;
+}
 
 .bookmark-btn {
     background-color: #EDF2FF;
@@ -13,7 +22,8 @@
     padding: 5px 10px;
     border-radius: 6px;
     display: inline-flex;
-    align-items: center;
+    align-items: center;    
+    margin-left: 6px;
 }
 
 .with-border {
@@ -84,11 +94,11 @@ i.fas.fa-dollar-sign {
 .background-red {
     background-color: #CE3131;
     color: white;
-    padding: 2px;
+    padding: 4px;
     border-radius: 5px;
     display: inline-flex;
     align-items: center;
-    margin-left: 12px;
+    margin-left: 6px;
 }
 
 .ls-widget .widget-content p {
@@ -217,7 +227,7 @@ i.fas.fa-times-circle {
                                 </div>
                             </div>
                         </div> -->
-                        @if ($employeeCv->is_checked = !1)
+                        @if ($employeeCv->is_checked == !1)
                             <div class="alert-info-contact">
                                 <i class="fas fa-exclamation-circle"></i>
                                 <p>Thông tin liên hệ sẽ được hiển thị sau khi bạn bấm vào<strong>"Xem thông tin liên
@@ -235,24 +245,24 @@ i.fas.fa-times-circle {
                                 <div class="media-body">
                                     <div class="d-flex align-items-center">
                                         <span class="mr-2">{{ $item->hash_name ?? $item->user->name ?? ''}}</span>
-                                        <div class="background-red">
-                                            <i class="flaticon-money-1"></i> 10.0000P
-                                        </div>
+                                        
                                     </div>
                                     <p> {{ $item->career->name ?? '' }}</p>
                                     <!-- <p class="profile-item">Cập nhật:
                                                 {{ isset($item->created_at) ? $item->created_at->format('d/m/Y') : '' }}
                                             </p> -->
-                                    <button type="button" class="btn-contact-info" data-staff-id="{{ $item->user->id }}"
-                                        data-employee-id="{{ Auth::user()->id }}" data-amount="10000"
-                                        data-cv-id="{{ $item->id }}" data-current-point="{{ Auth::user()->points }}">
-                                        Xem thông tin liên hệ
-                                    </button>
-                                    <button class="bookmark-btn" data-cv-id="{{ $item->id }}"
-                                        data-route="{{ route('employee.bookmark.toggle',$item->id) }}">
-                                        <span
-                                            class="flaticon-bookmark {{ $employeeCv->favorites ? 'bookmarked' : '' }}"></span>
-                                    </button>
+                                        <button type="button" class="btn-contact-info" data-staff-id="{{ $item->user->id }}"
+                                            data-employee-id="{{ Auth::user()->id }}" data-amount="10000"
+                                            data-cv-id="{{ $item->id }}" data-current-point="{{ Auth::user()->points }}">
+                                            Xem đầy đủ thông tin ứng viên
+                                        </button>
+                                        <div class="background-red">
+                                            <i class="flaticon-money-1"></i> 10.0000P
+                                        </div>
+                                        <button class="bookmark-btn" data-cv-id="{{ $item->id }}" data-route="{{ route('employee.bookmark.toggle', $item->id) }}">
+                                            <span class="fa-heart {{ $employeeCv->favorites ? 'fas bookmarked' : 'far' }}"></span>
+                                        </button>
+
                                 </div>
                             </div>
                         </div>
@@ -383,14 +393,14 @@ i.fas.fa-times-circle {
                                     },
                                     success: function(response) {
                                         if (response.success) {
-                                            if (response.favorites) {
-                                                btn.find('.flaticon-bookmark').addClass(
-                                                    'bookmarked');
-                                            } else {
-                                                btn.find('.flaticon-bookmark').removeClass(
-                                                    'bookmarked');
-                                            }
-                                        }
+                        var icon = btn.find('.fa-heart');
+                        if (response.favorites) {
+                            icon.removeClass('far').addClass('fas bookmarked');
+                        } else {
+                            icon.removeClass('fas bookmarked').addClass('far');
+                        }
+                    }
+
                                         var message = response.success ? response.message :
                                             'Có lỗi xảy ra. Vui lòng thử lại.';
                                         var icon = response.success ? 'success' : 'error';

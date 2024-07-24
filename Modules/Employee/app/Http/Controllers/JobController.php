@@ -137,7 +137,7 @@ class JobController extends Controller
             $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
-            $countries = Country::all();
+            $countries = Country::orderBy('name','ASC')->get();
             $param = [
                 'careers' => $careers,
                 'degrees' => $degrees,
