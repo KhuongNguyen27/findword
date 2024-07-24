@@ -219,9 +219,9 @@ i.fas.fa-info-circle {
                                             <a class="mr-2" href="{{ route('employee.cv.showCv', $item->cv->id) }}">
                                                 {{ $item->cv->career->name ?? ''}} - {{ $item->user->name }}
                                             </a>
-                                            <div class="background-red">
+                                            <!-- <div class="background-red">
                                                 <i class="flaticon-money-1"></i> 10.0000P
-                                            </div>
+                                            </div> -->
                                             <div class="background-re">
                                                 Nộp đơn
                                             </div>
@@ -234,7 +234,6 @@ i.fas.fa-info-circle {
                                                 class="career-link">
 
                                                 {{ $item->job->name }}
-                                                <!-- {{ $item->job->short_name }} -->
                                             </a>
                                         </p>
                                         <p>

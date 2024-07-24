@@ -2,6 +2,27 @@
 @section('content')
 <!-- Dashboard -->
 <style>
+.bookmark-btn {
+    background-color: #EDF2FF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;    
+    margin-left: 6px;
+}
+
+
+.bookmark-btn .fa-heart {
+    color: #FF0000;
+    font-size: 24px; /* Điều chỉnh kích thước theo nhu cầu */
+    transition: color 0.3s;
+}
+
+.bookmark-btn .fas.fa-heart.bookmarked {
+    color: #FF0000; /* Màu sắc của trái tim khi được đánh dấu */
+}
+
 .record-box {
     margin-bottom: 15px;
     padding: 10px;
@@ -311,6 +332,11 @@ i.fas.fa-info-circle {
                                         </div>
                                         @endif
                                         @endif
+                                            <!-- <button class="bookmark-btn" data-cv-id="{{ $item->id }}"
+                                                data-route="{{ route('employee.bookmark.toggle',$item->id) }}">
+                                                <span
+                                                    class="fa-heart {{ $item->employeeCv && $item->employeeCv->favorites ? 'fas bookmarked' : 'far' }}"></span>
+                                            </button> -->
                                         </p>
                                     </div>
                                 </div>
@@ -326,9 +352,56 @@ i.fas.fa-info-circle {
             </div>
         </div>
     </div>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- <script>
+    $(document).ready(function() {
+        $('.bookmark-btn').click(function() {
+            var cvId = $(this).data('cv-id');
+            var route = $(this).data('route');
+            var btn = $(this);
+            $.ajax({
+                url: route,
+                type: 'POST',
+                data: {
+                    cvId: cvId,
+                    _token: '{{ csrf_token() }}',
+                },
+                success: function(response) {
+                    if (response.success) {
+                        var icon = btn.find('.fa-heart');
+                        if (response.favorites) {
+                            icon.removeClass('far').addClass('fas bookmarked');
+                        } else {
+                            icon.removeClass('fas bookmarked').addClass('far');
+                        }
+                    }
 
+                    var message = response.success ? response.message :
+                        'Có lỗi xảy ra. Vui lòng thử lại.';
+                    var icon = response.success ? 'success' : 'error';
+                    Swal.fire({
+                        title: 'Lưu CV!',
+                        text: message,
+                        icon: icon,
+                        confirmButtonText: 'OK'
+                    });
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        title: 'Lỗi!',
+                        text: 'Có lỗi xảy ra. Vui lòng thử lại.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+    });
+    </script> -->
     <script>
     $(document).ready(function() {
         // Hiển thị thông báo thành công nếu có
@@ -342,8 +415,8 @@ i.fas.fa-info-circle {
             });
         }
         $('.viewed-btn').click(function(e) {
-            e.preventDefault(); 
-            let url = $(this).attr('href'); 
+            e.preventDefault();
+            let url = $(this).attr('href');
             if (url) {
                 Swal.fire({
                     title: 'Xác nhận',

@@ -373,7 +373,7 @@
                                         </div>
 
 
-                                        <!-- <div class="form-group col-lg-3 col-md-12">
+                                        <div class="form-group col-lg-3 col-md-12">
                                                         <label>Ngày bắt đầu</label>
                                                         @if ($job->status == 0)
                                                             <input type="date" value="{{ $job->start_day }}"
@@ -405,8 +405,8 @@
                                                             <p style="color:red">
                                                                 {{ $errors->first('end_day') }}</p>
                                                         @endif
-                                                    </div> -->
-                                        <div class="form-group col-lg-3 col-md-12">
+                                                    </div>
+                                        <!-- <div class="form-group col-lg-3 col-md-12">
                                             <label>Ngày bắt đầu</label>
                                             <input type="date" value="{{ $job->start_day }}" name="start_day"
                                                 placeholder="" onchange="calculateDays()" readonly>
@@ -424,7 +424,7 @@
                                             <p style="color:red">
                                                 {{ $errors->first('end_day') }}</p>
                                             @endif
-                                        </div>
+                                        </div> -->
 
 
                                         <div class="form-group col-lg-6 col-md-12">
