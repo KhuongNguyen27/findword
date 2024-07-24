@@ -302,6 +302,7 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, $id): RedirectResponse
     {
+        
         DB::beginTransaction();
         try {
 
@@ -341,7 +342,7 @@ class JobController extends Controller
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
             $job->user_id = Auth::id();
-            $job->status = Job::ACTIVE;
+            // $job->status = Job::ACTIVE;
             $job->save();
 
             // lưu vào bảng career_job

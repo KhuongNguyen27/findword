@@ -385,7 +385,7 @@ input {
 
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Tổng thanh toán cho tin đăng (ĐTD) :</label>
+                                            <label>Tổng thanh toán cho tin đăng (P) :</label>
                                             <input id="price" type="text" value="{{ old('price') }}" name="price"
                                                 placeholder="Giá..." readonly>
                                             @if ($errors->any())

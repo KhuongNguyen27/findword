@@ -15,6 +15,7 @@ class AdminModel extends Model
     const ACTIVE    = 1;
     const INACTIVE  = 0;
     const DRAFT     = -1;
+    const REJECTED  = 2;
 
     static $upload_dir = 'uploads';
 
@@ -121,19 +122,20 @@ class AdminModel extends Model
     }
 
     // Attributes
-    public function getStatusFmAttribute(){
-        switch ($this->status) {
-            case self::DRAFT:
-                return '<span class="lable-table bg-danger-subtle text-danger rounded border border-danger-subtle font-text2 fw-bold">'.__('sys.draf').'</span>';
-                break;
-            case self::ACTIVE:
-                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">'.__('sys.active').'</span>';
-                break;
-            case self::INACTIVE:
-                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">'.__('sys.inactive').'</span>';
-                break;
-        }
+    public function getStatusFmAttribute()
+{
+    switch ($this->status) {
+        case self::DRAFT:
+            return '<span class="lable-table bg-danger-subtle text-danger rounded border border-danger-subtle font-text2 fw-bold">'.__('sys.draft').'</span>';
+        case self::ACTIVE:
+            return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">'.__('sys.active').'</span>';
+        case self::INACTIVE:
+            return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">'.__('sys.inactive').'</span>';
+        case self::REJECTED:
+            return '<span class="lable-table bg-dark-subtle text-dark rounded border border-dark-subtle font-text2 fw-bold">Từ chối</span>';
     }
+}
+
 
     // New method for email status
     public function getEmailStatusFmAttribute() {

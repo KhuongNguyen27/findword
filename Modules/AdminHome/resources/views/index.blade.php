@@ -285,7 +285,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 window.myChart = new Chart(document.getElementById('myChart'), {
-    type: 'bar',
+    type: 'line',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
@@ -321,7 +321,7 @@ function setting_date() {
         success: function(response) {
             // console.log(response);
             window.myChart = new Chart(document.getElementById('myChart'), {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: response.labels,
                     datasets: [{

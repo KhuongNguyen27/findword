@@ -95,6 +95,17 @@ class Notifications extends Notification
             ->greeting("Xin chào,{$this->data['name']}")
             ->line("Nhà tuyển dụng đã đọc CV ứng tuyển công việc {$this->data['job']} của bạn!")
             ->line('Hãy chuẩn bị nhé');
+        } else if ($this->type === 'active-job') {
+            return (new MailMessage)
+                ->greeting("Xin chào, {$this->data['name']}")
+                ->line("Tin đăng của bạn đã được duyệt")
+                ->line("Tiêu đề tin đăng: {$this->data['job_title']}")
+                ->line("Chúc mừng bạn đã hoàn tất quá trình duyệt tin đăng!");
+        } elseif ($this->type === 'rejected-job') {
+            return (new MailMessage)
+                ->greeting("Xin chào, {$this->data['name']}")
+                ->line("Tin đăng với tiêu đề {$this->data['job_title']} của bạn đã bị từ chối.")
+                ->line('Hãy thử tạo tin đăng khác hoặc liên hệ với chúng tôi nếu cần thêm thông tin.');
         }
     }
 

@@ -21,7 +21,8 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
-
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
 class AdminPostController extends Controller
 {
     protected $view_path = 'adminpost::';
@@ -193,10 +194,31 @@ class AdminPostController extends Controller
     public function update(StoreAdminPostRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
-        // dd($request->more_information);
+    
         try {
+            $item = $this->model::findItem($id, $type);
+            $previousStatus = $item->status;
             $this->model::updateItem($id, $request, $type);
-            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.update_item_success'));
+            $updatedItem = $this->model::findItem($id, $type);
+            $newStatus = $updatedItem->status;
+            if ($previousStatus != $newStatus) {
+                $data = [
+                    'name' => $updatedItem->user->name,
+                    'job_title' => $updatedItem->name
+                ];
+            if ($newStatus == $this->model::ACTIVE) {
+                $notificationType = 'active-job';
+            } elseif ($newStatus == $this->model::REJECTED) {
+                $notificationType = 'rejected-job';
+            } else {
+                return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+                    ->with('success', __('sys.update_item_success'));
+            }
+            Notification::route('mail', $updatedItem->user->email)
+                ->notify(new Notifications($notificationType, $data));
+            }
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+                ->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->back()->with('error', __('sys.item_not_found'));
@@ -205,6 +227,7 @@ class AdminPostController extends Controller
             return redirect()->back()->with('error', __('sys.update_item_error'));
         }
     }
+    
 
     /**
      * Remove the specified resource from storage.
