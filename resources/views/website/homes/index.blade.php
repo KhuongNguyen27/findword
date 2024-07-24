@@ -59,39 +59,50 @@ span.flaticon-bookmark.active {
 .checkbox-dont-show {
     display: block;
 }
+
 .modal-title {
     margin-bottom: 0;
     line-height: 0;
     font-weight: 700;
 }
+
 span.hight-light {
     color: #6bcdcd;
     font-weight: 600;
 }
+
 p.hight-light.comunication-content__footer {
     color: #6bcdcd;
     font-weight: 600;
 }
+
 a.btn.btn-find-out {
     background: #6bcdcd;
     color: #ffffff;
     padding: 7px 41px;
 }
+
 .checkbox-dont-show__input {
     display: flex;
     align-items: center;
-    font-size: 1em; /* Điều chỉnh kích thước chữ nếu cần */
+    font-size: 1em;
+    /* Điều chỉnh kích thước chữ nếu cần */
 }
 
 .checkbox-dont-show__input input[type="checkbox"] {
-    width: 21px; /* Kích thước chiều rộng của checkbox */
-    height: 21px; /* Kích thước chiều cao của checkbox */
-    margin-right: 10px; /* Khoảng cách giữa checkbox và nhãn */
+    width: 21px;
+    /* Kích thước chiều rộng của checkbox */
+    height: 21px;
+    /* Kích thước chiều cao của checkbox */
+    margin-right: 10px;
+    /* Khoảng cách giữa checkbox và nhãn */
 }
 
 .checkbox-dont-show__input .checkmark {
-    display: none; /* Ẩn phần tử checkmark nếu không cần */
+    display: none;
+    /* Ẩn phần tử checkmark nếu không cần */
 }
+
 button.close {
     align-items: center;
     aspect-ratio: 1/1;
@@ -253,21 +264,22 @@ new Chart(ctx1, {
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
-                    <i class="fa fa-times"></i>
+                        <i class="fa fa-times"></i>
                     </span>
                 </button>
             </div>
             <div class="modal-body">
                 <iframe id="video-brand-communication "
-                src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player"                    frameborder="0"
+                    src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player"
+                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen="">
                 </iframe>
             </div>
             <div class="modal-footer">
                 <div class="icon">
-                    <img data-src="{{ asset('website-assets/images/favicon.png')}}"
-                        class="lazy entered loaded" alt="timviecsieunhanh" data-ll-status="loaded"
+                    <img data-src="{{ asset('website-assets/images/favicon.png')}}" class="lazy entered loaded"
+                        alt="timviecsieunhanh" data-ll-status="loaded"
                         src="{{ asset('website-assets/images/favicon.png')}}">
                 </div>
                 <div class="comunication-content">
@@ -283,7 +295,7 @@ new Chart(ctx1, {
                             Kết nối bền chặt cùng đồng nghiệp cũng là một <span class="hight-light">lợi thế</span>
                         </p>
                         <p>
-                        Tìm Việc Siêu Nhanh hiểu rõ, <span class="hight-light">lợi thế</span> nằm trong tay bạn!
+                            Tìm Việc Siêu Nhanh hiểu rõ, <span class="hight-light">lợi thế</span> nằm trong tay bạn!
                         </p>
                     </div>
                     <p class="hight-light comunication-content__footer">
@@ -299,8 +311,7 @@ new Chart(ctx1, {
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <a href="#" target="__blank"
-                    class="btn btn-find-out">
+                <a href="#" target="__blank" class="btn btn-find-out">
                     Tìm hiểu thêm
                 </a>
             </div>
@@ -309,10 +320,5 @@ new Chart(ctx1, {
 </div>
 @endsection
 @push('js')
-<script type="text/javascript">
-$(document).ready(function() {
-    console.log($('#exampleModal').modal('show'));
-    $('#exampleModal').modal('show');
-})
-</script>
+<script src="{{ asset('website-assets/js/popup.js') }}"></script>
 @endpush

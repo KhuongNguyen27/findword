@@ -141,6 +141,7 @@
                             <div class="row">
                                 @foreach ($job_employ as $job)
                                     <!-- Job Block -->
+                                    @if($job)
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         @include('job::includes.components.job-item', [
                                             'job' => $job,
@@ -150,15 +151,16 @@
                                             'simple' => true,
                                         ])
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
-
                         <div class="job-detail">
                             <h4 class="job-sub-title">Việc làm liên quan</h4>
                             <div class="row">
                                 @foreach ($job_relate_to as $job)
                                     <!-- Job Block -->
+                                    @if($job)
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         @include('job::includes.components.job-item', [
                                             'job' => $job,
@@ -168,10 +170,10 @@
                                             'simple' => true,
                                         ])
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
-
                     </div>
 
                     <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
