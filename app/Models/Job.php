@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\JobPackage;
 use DateTime;
+use Illuminate\Database\Query\JoinClause;
 
 class Job extends AdminModel
 {
@@ -495,6 +497,68 @@ class Job extends AdminModel
     }
     public function international(){
         return $this->belongsTo(Country::class,'country_id','id');
+    }
+
+    public static function jobQueryCommon($request, $job_type){
+        $query = Job::select('jobs.*')->where('jobs.status',1);
+        if($request->name){
+            $query->where('jobs.name', 'LIKE', '%'.$request->name.'%');
+        }
+        if ($request->jobpackage_id) {
+            $query->whereHas('job_package', function ($query) use ($request) {
+                $query->where('jobpackage_id', $request->jobpackage_id);
+            });
+        }
+        
+        if( $request->career_id ){
+            $query->whereHas('careers', function ($query) use($request) {
+                $query->where('career_id', $request->career_id);
+            });
+        }
+        if( $request->wage_id ){
+            $wage_id = $request->wage_id;//'10-15'
+            $wage = explode('-', $wage_id);
+            if($wage[0] == 0){
+                $query->where('salaryMin','<=', $wage[1]);
+            }
+            elseif($wage[1] == 0){
+                $query->where('salaryMin','>=', $wage[0]);
+            }
+            else{
+                $query->whereBetween('salaryMin',[ $wage[0], $wage[1] ]);
+            }
+        }
+     
+        if( $request->rank_id ){
+            $query->where('rank_id', $request->rank_id);
+        }
+        if( $request->degree_id ){
+            $query->where('degree_id', $request->degree_id);
+        }
+        if( $request->formwork_id ){
+            $query->where('formwork_id', $request->formwork_id);
+        }
+        
+        // if( $request->province_id ){
+        //     if( $request->province_id == 'quoc_te' ){
+        //         return redirect()->route('jobs.nnjobs',$request->all());
+        //     }
+        //     $query->where('province_id', $request->province_id);
+        // }
+        if ($request->province_id) {
+            $province_id = $request->province_id;
+			if ($province_id === "quoc_te") {
+                return redirect()->route('jobs.nnjobs',$request->all());
+			}else{
+				$query->where('job_province.province_id',intval($province_id));
+			}
+		}
+        $query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
+        $query->leftJoin("auto_post_job_packages", function (JoinClause $join) use( $job_type) {
+            $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+                ->where('auto_post_job_packages.area', '=', $job_type);
+        });
+        return $query;
     }
 
 }

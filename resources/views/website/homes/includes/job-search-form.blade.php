@@ -1,8 +1,8 @@
 <div class="job-search-form">
     @if (isset($job_type))
-    <form method="get" action="{{ route($route,$job_type) }}">
+        <form method="get" action="{{ isset($route_index) ? $route_index : route($route,$job_type) }}">
     @else
-    <form method="get" action="{{ route($route) }}">
+        <form method="get" action="{{ isset($route_index) ? $route_index : route($route) }}">
     @endif
         <div class="row custom-display-mobile">
             @if (!isset($name))

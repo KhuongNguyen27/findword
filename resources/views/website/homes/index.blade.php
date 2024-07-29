@@ -125,7 +125,7 @@ button.close {
                             uy tín tại Việt Nam</div>
                     </div>
                     <!-- Job Search Form -->
-                    @include('website.homes.includes.job-search-form')
+                    @include('website.homes.includes.job-search-form',['route_index' => route("jobs.homejobs", ['job_type'=> 'tat-ca-viec-lam'])])
                     @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>
@@ -134,7 +134,7 @@ button.close {
         </div>
     </div>
 </section>
-<!-- End Banner Section-->
+<!-- End job-item Section-->
 
 
 <!-- Job Section -->
@@ -144,15 +144,30 @@ button.close {
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
 'sec_link' => route('jobs.homejobs','viec-lam-hom-nay')
 ])
+
 <!-- End Job Section -->
 
 @include('website.includes.global.ad-banners')
+
+@include('website.homes.includes.job-items',[
+'sec_title' => 'Việc làm hót nhất',
+'chunk_jobs' => $hot,
+'item_class' => 'col-lg-4 col-md-12 col-sm-12',
+'sec_link' => route('jobs.homejobs','hot')
+])
 
 <!-- top-companies -->
 @include('website.homes.includes.top-companies')
 <!-- End Testimonial Section -->
 
 @include('website.includes.global.home-attractive-jobs')
+
+@include('website.homes.includes.job-items',[
+'sec_title' => 'Việc làm tuyển gấp',
+'chunk_jobs' => $tuyen_gap,
+'item_class' => 'col-lg-4 col-md-12 col-sm-12',
+'sec_link' => route('jobs.homejobs','urgent')
+])
 
 @include('website.homes.includes.thi-truong-viec-lam')
 

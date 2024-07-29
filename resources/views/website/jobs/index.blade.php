@@ -13,8 +13,13 @@
                             <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
                                 uy tín tại Việt Nam</div>
                         </div>
+                       
                         <!-- Job Search Form -->
-                        @include('website.homes.includes.job-search-form')
+                        @if($route == 'jobs.vnjobs')
+                        @include('website.homes.includes.job-search-form',['route_index' => route("jobs.vnjobs", ['job_type'=> 'tat-ca'])])
+                        @else 
+                        @include('website.homes.includes.job-search-form',['route_index' => route("jobs.nnjobs", ['job_type'=> 'tat-ca'])])
+                        @endif
                         @include('website.homes.includes.hero-banner')
                         <!-- Job Search Form -->
                     </div>

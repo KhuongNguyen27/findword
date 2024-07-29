@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\homeShares\HomeShare;
 use Illuminate\Support\ServiceProvider;
 use App\View\Composers\JobFavorite;
 use App\View\Composers\PostComposer;
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', JobFavorite::class);
         View::composer('website.includes.global.news', PostComposer::class);
         View::composer('*', AppliedJobCountComposer::class);
+
+        View::composer(['website.homes.index','website.homes.home-sub-index'], HomeShare::class);
 
     }
 }
