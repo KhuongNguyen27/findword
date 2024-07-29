@@ -26,7 +26,7 @@ class JobService
                 break;
 
             case 'hot':
-                $title = 'Việc làm hot';
+                $title = 'Việc làm Hot';
                 $query->where(function ($q) {
                     $q->where('job_packages.slug', "tin-gap-vip")
                         ->orWhere('job_packages.slug', "tin-hot-vip")
