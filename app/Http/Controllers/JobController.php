@@ -678,7 +678,16 @@ class JobController extends Controller
             $query->where('job_packages.slug', 'tin-gap-vip')
                 ->orWhere('job_packages.slug', 'tin-hot-vip')
                 ->orWhere('job_packages.slug', 'tin-vip');
-        });
+        })->orderByRaw("CASE
+                WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+                WHEN job_packages.slug = 'tin-vip' THEN 3
+                WHEN job_packages.slug = 'tin-gap' THEN 4
+                WHEN job_packages.slug = 'tin-hot' THEN 5
+                WHEN job_packages.slug = 'tin-thuong' THEN 6
+                WHEN auto_post_job_packages.area IS NOT NULL THEN 7
+                ELSE 8
+             END");
         // if($request->province_id){
         //     $hot_jobs->where('province_id', $request->province_id);
         // }
