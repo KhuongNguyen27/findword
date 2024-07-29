@@ -133,7 +133,9 @@ class JobController extends Controller
                     WHEN auto_post_job_packages.area is not null THEN 7
                     WHEN jobs.top_position is not null THEN jobs.top_position
 					ELSE 8
-                END");
+                END")
+                ->orderBy('jobs.id', 'desc');
+                
                 break;
             case 'moi-nhat':
                 // dd(123);
@@ -150,7 +152,9 @@ class JobController extends Controller
                         WHEN auto_post_job_packages.area is not null THEN 7
                         WHEN jobs.top_position is not null THEN jobs.top_position
                         ELSE 8
-                    END");
+                    END")                
+                    ->orderBy('jobs.id', 'desc');
+                    
                 break;
 
             case 'tat-ca':
@@ -271,14 +275,38 @@ class JobController extends Controller
             $jobs = $query->paginate(25);
         }
 
-        // Việc làm hấp dẫn trong nước
-        $hot_jobs = Job::select('jobs.*')->where('status',1);
-        $hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-        $hot_jobs->whereNotNull('job_province.province_id'); 
-        $hot_jobs->where(function ($hot_jobs) {
-            $hot_jobs->where('jobs.salaryMax','>=',8000000)
-            ->orWhere('jobs.salaryMax','');
-        });
+       // Việc làm hấp dẫn trong nước
+       $hot_jobs = Job::select('jobs.*')
+       ->where('jobs.status', 1)
+       ->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id')
+       ->whereNotNull('job_province.province_id')
+       ->where(function ($query) {
+           $query->where('jobs.salaryMax', '>=', 8000000)
+               ->orWhere('jobs.salaryMax', '');
+       })
+       ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+       ->where(function ($query) {
+           $query->where('job_packages.slug', 'tin-gap-vip')
+               ->orWhere('job_packages.slug', 'tin-hot-vip')
+               ->orWhere('job_packages.slug', 'tin-vip');
+       })
+       // Thêm điều kiện sắp xếp
+       ->orderByRaw("CASE
+               WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+               WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+               WHEN job_packages.slug = 'tin-vip' THEN 3
+               WHEN job_packages.slug = 'tin-gap' THEN 4
+               WHEN job_packages.slug = 'tin-hot' THEN 5
+               WHEN job_packages.slug = 'tin-thuong' THEN 6
+               WHEN jobs.top_position IS NOT NULL THEN jobs.top_position
+               ELSE 8
+               END");
+              
+                    
+        
+      
+        
+        
         // $hot_jobs->where('jobs.country','VN');
         // if($request->province_id){
         //     $hot_jobs->where('province_id', $request->province_id);
@@ -632,6 +660,7 @@ class JobController extends Controller
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
+        // Việc làm ngoài nước hấp dẫn home
         $hot_jobs = Job::select('jobs.*')
         ->where('jobs.status', 1)
         ->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id')
