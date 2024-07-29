@@ -19,6 +19,7 @@ class HomeController extends Controller
 	 */
 	public function index(Request $request)
 	{
+
 		// Kiểm tra và cập nhật session truy cập
 		$this->updateAccessTime($request);
 
@@ -26,7 +27,7 @@ class HomeController extends Controller
 		$query_vip_jobs = Job::select('jobs.*')
 			->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-			$query_vip_jobs =  JobService::searchHome($query_vip_jobs, $request);
+		$query_vip_jobs =  JobService::searchHome($query_vip_jobs, $request);
 
 		$data_vip_jobs = JobService::switchCase($query_vip_jobs, 'viec-lam-hom-nay');
 		$vip_jobs = $data_vip_jobs['query'];
@@ -36,16 +37,16 @@ class HomeController extends Controller
 		$query_hot = Job::select('jobs.*')
 			->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-			$query_hot =  JobService::searchHome($query_hot, $request);	
+		$query_hot =  JobService::searchHome($query_hot, $request);
 		// viec lam hot
 		$data_hot = JobService::switchCase($query_hot, 'hot');
 		$hot = $data_hot['query'];
 		$hot = $hot->limit(10)->get()->chunk(10);
 
 		$query_tuyen_gap = Job::select('jobs.*')
-		->where('jobs.status', 1)
-		->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-		$query_tuyen_gap =  JobService::searchHome($query_tuyen_gap, $request);	
+			->where('jobs.status', 1)
+			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
+		$query_tuyen_gap =  JobService::searchHome($query_tuyen_gap, $request);
 		// viec lam tuyen gap
 		$tuyen_gap = JobService::switchCase($query_tuyen_gap, 'urgent');
 		$tuyen_gap = $tuyen_gap['query'];
@@ -55,31 +56,18 @@ class HomeController extends Controller
 		$hot_jobs = Job::select('jobs.*')
 			->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
-			$hot_jobs =  JobService::searchHome($hot_jobs	, $request);
-	
+		$hot_jobs =  JobService::searchHome($hot_jobs, $request);
+
 		// Việc làm hấp dẫn
 		$hot_jobs = $hot_jobs->where(function ($query) {
 			$query->where('jobs.salaryMax', '>=', 8000000)
 				->orWhere('jobs.salaryMax', '');
 		})
-		->where(function ($query) {
-			$query->where('job_packages.slug', 'tin-gap-vip')
-				  ->orWhere('job_packages.slug', 'tin-hot-vip')
-				  ->orWhere('job_packages.slug', 'tin-vip');
-		})->orderByRaw("CASE
-					WHEN job_packages.slug = 'tin-hot-vip' THEN 1
-					WHEN job_packages.slug = 'tin-gap-vip' THEN 2
-					WHEN job_packages.slug = 'tin-vip' THEN 3
-					WHEN job_packages.slug = 'tin-gap' THEN 4
-					WHEN job_packages.slug = 'tin-hot' THEN 5
-					WHEN job_packages.slug = 'tin-thuong' THEN 6
-					WHEN jobs.top_position is not null THEN jobs.top_position
-					ELSE 8
-				END")
+			->orderBy('jobs.approved_at', 'DESC')
 			->orderBy('jobs.id', 'DESC')->limit(20);
 		$hot_jobs = $hot_jobs->get()->chunk(10);
 		// viec lam hom nay
-	
+
 
 
 
@@ -141,7 +129,7 @@ class HomeController extends Controller
 		}
 
 		$currentRoute = Route::current()->getName();
-	
+
 
 
 		$params = [
@@ -200,31 +188,17 @@ class HomeController extends Controller
 	{
 		$title = 'Việc làm hấp dẫn';
 		$query = Job::select('jobs.*')
-		->where('jobs.status', 1)
-		->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
-		->where(function ($q) {
-			$q->where('jobs.salaryMax', '>=', 8000000)
-			  ->orWhere('jobs.salaryMax', '');
-		})
-		->where(function ($q) {
-			$q->where('job_packages.slug', "tin-gap-vip")
-			  ->orWhere('job_packages.slug', "tin-hot-vip")
-			  ->orWhere('job_packages.slug', "tin-vip");
-		});
+			->where('jobs.status', 1)
+			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+			->where(function ($q) {
+				$q->where('jobs.salaryMax', '>=', 8000000)
+					->orWhere('jobs.salaryMax', '');
+			});
 
 		$query = JobService::searchHome($query, $request);
-		$hot_jobs = $query->orderByRaw("CASE
-			WHEN job_packages.slug = 'tin-hot-vip' THEN 1
-			WHEN job_packages.slug = 'tin-gap-vip' THEN 2
-			WHEN job_packages.slug = 'tin-vip' THEN 3
-			WHEN job_packages.slug = 'tin-gap' THEN 4
-			WHEN job_packages.slug = 'tin-hot' THEN 5
-			WHEN job_packages.slug = 'tin-thuong' THEN 1
-			WHEN jobs.top_position is not null THEN jobs.top_position
-			ELSE 7
-			END")
-			->orderBy('jobs.id', 'DESC')->paginate(25);
-
+		$hot_jobs = $query->orderBy('jobs.approved_at', 'DESC')  // Sắp xếp theo thời gian duyệt tin
+			->orderBy('jobs.id', 'DESC')  // Sắp xếp theo ID công việc
+			->paginate(25);  // Phân trang với 25 công việc mỗi trang
 
 		$currentRoute = Route::current()->getName();
 		$params =

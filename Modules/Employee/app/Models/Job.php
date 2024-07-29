@@ -19,6 +19,7 @@ use App\Models\JobProvince;
 use App\Models\Province;
 use App\Models\Country;
 use App\Models\Job as MainJob;
+use Carbon\Carbon;
 
 class Job extends MainJob
 {
@@ -157,6 +158,15 @@ class Job extends MainJob
 
     return $count;
 }
-
+public function updateStatus($newStatus)
+{
+    if ($this->status != 1 && $newStatus == 1) {
+        $this->status = 1;
+        $this->approved_at = Carbon::now();
+    } else {
+        $this->status = $newStatus;
+    }
+    $this->save();
+}
 }
 

@@ -23,6 +23,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
+
 class AdminPostController extends Controller
 {
     protected $view_path = 'adminpost::';
@@ -102,7 +103,6 @@ class AdminPostController extends Controller
             'user' => $user,
         ];
         return view('adminpost::types.UserCV.show_detail', $params);
-
     }
     public function create(Request $request)
     {
@@ -194,29 +194,39 @@ class AdminPostController extends Controller
     public function update(StoreAdminPostRequest $request, $id): RedirectResponse
     {
         $type = $request->type;
-    
+
         try {
             $item = $this->model::findItem($id, $type);
             $previousStatus = $item->status;
+
+            // Lưu trạng thái hiện tại
+            $newStatus = $request->input('status', $previousStatus);
+
+            // Cập nhật các thuộc tính khác
             $this->model::updateItem($id, $request, $type);
-            $updatedItem = $this->model::findItem($id, $type);
-            $newStatus = $updatedItem->status;
+
+            // Nếu trạng thái được thay đổi
             if ($previousStatus != $newStatus) {
+                $item->updateStatus($newStatus);
+
                 $data = [
-                    'name' => $updatedItem->user->name,
-                    'job_title' => $updatedItem->name
+                    'name' => $item->user->name,
+                    'job_title' => $item->name
                 ];
-            if ($newStatus == $this->model::ACTIVE) {
-                $notificationType = 'active-job';
-            } elseif ($newStatus == $this->model::REJECTED) {
-                $notificationType = 'rejected-job';
-            } else {
-                return redirect()->route($this->route_prefix . 'index', ['type' => $type])
-                    ->with('success', __('sys.update_item_success'));
+
+                if ($newStatus == $this->model::ACTIVE) {
+                    $notificationType = 'active-job';
+                } elseif ($newStatus == $this->model::REJECTED) {
+                    $notificationType = 'rejected-job';
+                } else {
+                    return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+                        ->with('success', __('sys.update_item_success'));
+                }
+
+                Notification::route('mail', $item->user->email)
+                    ->notify(new Notifications($notificationType, $data));
             }
-            Notification::route('mail', $updatedItem->user->email)
-                ->notify(new Notifications($notificationType, $data));
-            }
+
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])
                 ->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
@@ -227,7 +237,8 @@ class AdminPostController extends Controller
             return redirect()->back()->with('error', __('sys.update_item_error'));
         }
     }
-    
+
+
 
     /**
      * Remove the specified resource from storage.
