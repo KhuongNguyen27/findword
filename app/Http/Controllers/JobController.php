@@ -113,9 +113,14 @@ class JobController extends Controller
                 $title = 'Việc làm trong nước hấp dẫn';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->where(function ($query) {
-                    $query->where('jobs.salaryMax','>=',10000000)
-                    ->orWhere('jobs.salaryMax','');
+                $query->where(function ($q) {
+                    $q->where('jobs.salaryMax', '>=', 8000000)
+                      ->orWhere('jobs.salaryMax', '');
+                })
+                ->where(function ($q) {
+                    $q->where('job_packages.slug', "tin-gap-vip")
+                      ->orWhere('job_packages.slug', "tin-hot-vip")
+                      ->orWhere('job_packages.slug', "tin-vip");
                 });
                 
                 $query->orderByRaw("CASE
@@ -130,26 +135,48 @@ class JobController extends Controller
 					ELSE 8
                 END");
                 break;
-                case 'moi-nhat':
-                    $title = 'Việc làm trong nước mới nhất';
-                    //Việc làm Mới nhất	Toàn bộ các tin đăng	
-                    //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                    $query->orderByRaw("CASE
-                            WHEN job_packages.slug = 'tin-gap-vip' THEN 1
-                            WHEN job_packages.slug = 'tin-hot-vip' THEN 2
-                            WHEN job_packages.slug = 'tin-vip' THEN 3
-                            WHEN job_packages.slug = 'tin-gap' THEN 4
-                            WHEN job_packages.slug = 'tin-hot' THEN 5
-                            WHEN job_packages.slug = 'tin-thuong' THEN 6
-                            WHEN auto_post_job_packages.area is not null THEN 7
-                            WHEN jobs.top_position is not null THEN jobs.top_position
-					        ELSE 8
-                        END");
-                    break;
+            case 'moi-nhat':
+                // dd(123);
+                $title = 'Việc làm trong nước mới nhất';
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
+                        ELSE 8
+                    END");
+                break;
+
+            case 'tat-ca':
+                $title = 'Việc làm trong nước';
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
+                        ELSE 8
+                    END");
+                break;
             case 'hot':
                 // Việc làm Hot nhất	Toàn bộ các tin đăng	
                 //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
-                $query->orderByRaw("CASE
+                        $query->where(function ($q) {
+                            $q->where('job_packages.slug', "tin-gap-vip")
+                            ->orWhere('job_packages.slug', "tin-hot-vip")
+                            ->orWhere('job_packages.slug', "tin-hot");
+                        })->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                         WHEN job_packages.slug = 'tin-hot' THEN 2
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 3
@@ -183,10 +210,13 @@ class JobController extends Controller
                 $title = 'Việc làm trong nước hôm nay';
                 break;
             case 'urgent':
+                $query->where('job_packages.slug', "like", "%tin-gap-vip%")
+                ->orWhere('job_packages.slug', "like", "%tin-gap%")
+                
                 // Tuyển gấp	Toàn bộ các tin đăng	
                 // Gấp.VIP -> Gấp -> Hop.VIP -> VIP -> Hot -> Tin thường
                 // $query->where('jobpackage_id',JobPackage::GAP);
-                $query->orderByRaw("CASE
+                ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1
                         WHEN job_packages.slug = 'tin-gap' THEN 2
                         WHEN job_packages.slug = 'tin-hot-vip' THEN 3
@@ -217,7 +247,7 @@ class JobController extends Controller
                 $query->groupBy('jobs.id','jobs.user_id','job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug','jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
-        }
+        } 
 
         $sort = $request->sort;
         switch ($sort) {
@@ -246,7 +276,7 @@ class JobController extends Controller
         $hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
         $hot_jobs->whereNotNull('job_province.province_id'); 
         $hot_jobs->where(function ($hot_jobs) {
-            $hot_jobs->where('jobs.salaryMax','>=',10000000)
+            $hot_jobs->where('jobs.salaryMax','>=',8000000)
             ->orWhere('jobs.salaryMax','');
         });
         // $hot_jobs->where('jobs.country','VN');
@@ -449,30 +479,61 @@ class JobController extends Controller
 					    ELSE 8
                     END")
                     ->orderBy('jobs.created_at', 'desc');
-                break;   case 'hap-dan':
-                    $title = 'Việc làm ngoài nước hấp dẫn';
-                    //Việc làm Mới nhất	Toàn bộ các tin đăng	
-                    //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                    $query->where('jobs.salaryMax','>=',10000000)
-                ->orWhere('jobs.salaryMax','')
-                ->where('jobs.country','NN')
-                    ->orderByRaw("CASE
-                            WHEN job_packages.slug = 'tin-hot-vip' THEN 1
-                            WHEN job_packages.slug = 'tin-gap-vip' THEN 2
-                            WHEN job_packages.slug = 'tin-vip' THEN 3
-                            WHEN job_packages.slug = 'tin-gap' THEN 4
-                            WHEN job_packages.slug = 'tin-hot' THEN 5
-                            WHEN job_packages.slug = 'tin-thuong' THEN 6
-                            WHEN auto_post_job_packages.area is not null THEN 7
-                            WHEN jobs.top_position is not null THEN jobs.top_position
-					        ELSE 8
-                        END")
-                        ->orderBy('jobs.created_at', 'desc');
-                    break;
+                break;   
+            case 'tat-ca':
+                $title = 'Việc làm ngoài nước';
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
+                        ELSE 8
+                    END")
+                    ->orderBy('jobs.created_at', 'desc');
+                break;   
+            case 'hap-dan':
+                $title = 'Việc làm ngoài nước hấp dẫn';
+                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
+                $query->where(function ($q) {
+                    $q->where('jobs.salaryMax', '>=', 8000000)
+                      ->orWhere('jobs.salaryMax', '');
+                })
+                ->where('jobs.country', 'NN')
+                ->where(function ($q) {
+                    $q->where('job_packages.slug', 'tin-gap-vip')
+                      ->orWhere('job_packages.slug', 'tin-hot-vip')
+                      ->orWhere('job_packages.slug', 'tin-vip');
+                })
+                
+                ->orderByRaw("CASE
+                        WHEN job_packages.slug = 'tin-hot-vip' THEN 1
+                        WHEN job_packages.slug = 'tin-gap-vip' THEN 2
+                        WHEN job_packages.slug = 'tin-vip' THEN 3
+                        WHEN job_packages.slug = 'tin-gap' THEN 4
+                        WHEN job_packages.slug = 'tin-hot' THEN 5
+                        WHEN job_packages.slug = 'tin-thuong' THEN 6
+                        WHEN auto_post_job_packages.area is not null THEN 7
+                        WHEN jobs.top_position is not null THEN jobs.top_position
+                        ELSE 8
+                    END")
+                    ->orderBy('jobs.created_at', 'desc');
+                break;
             case 'hot':
+                $query->where(function ($q) {
+                    $q->where('job_packages.slug', 'tin-hot-vip')
+                      ->orWhere('job_packages.slug', 'tin-gap-vip')
+                      ->orWhere('job_packages.slug', 'tin-vip');
+                })
                 // Việc làm Hot nhất	Toàn bộ các tin đăng	
                 //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
-                $query->orderByRaw("CASE
+                ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-hot-vip' THEN 1
                         WHEN job_packages.slug = 'tin-hot' THEN 2
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 3
@@ -511,7 +572,11 @@ class JobController extends Controller
                 // Tuyển gấp	Toàn bộ các tin đăng	
                 // Gấp.VIP -> Gấp -> Hop.VIP -> VIP -> Hot -> Tin thường
                 // $query->where('jobpackage_id',JobPackage::GAP);
-                $query->orderByRaw("CASE
+                $query->where(function ($q) {
+                    $q->where('job_packages.slug', 'tin-gap-vip')
+                      ->orWhere('job_packages.slug', 'tin-gap');
+                })
+                ->orderByRaw("CASE
                         WHEN job_packages.slug = 'tin-gap-vip' THEN 1
                         WHEN job_packages.slug = 'tin-gap' THEN 2
                         WHEN job_packages.slug = 'tin-hot-vip' THEN 3
@@ -543,7 +608,7 @@ class JobController extends Controller
                 $jobs = $query->limit(20)->get()->chunk(12);
                 break;
         }
-        $sort = $request->sort;
+                $sort = $request->sort;
         switch ($sort) {
             case 'salary-desc':
                 $query->orderBy('wage_id','DESC');
@@ -567,13 +632,23 @@ class JobController extends Controller
         $job_job_tags = count($jobs) ? JobJobTag::whereIn('job_id',$jobs->pluck('id')->toArray())->pluck('id')->toArray() : null;
         $job_tags = $job_job_tags ? JobTag::whereIn('id',$job_job_tags)->get() : [];
 
-        // Việc làm hấp dẫn ngoài nước
-        $hot_jobs = Job::select('jobs.*')->where('status',1);
-        $hot_jobs->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id');
-        $hot_jobs->whereNull('job_province.province_id');
-        $hot_jobs->where(function ($hot_jobs) {
-            $hot_jobs->where('jobs.salaryMax','>=',10000000)
-            ->orWhere('jobs.salaryMax','');
+        $hot_jobs = Job::select('jobs.*')
+        ->where('jobs.status', 1)
+        ->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id')
+        ->whereNull('job_province.province_id')
+        ->where(function ($query) {
+            $query->where('jobs.salaryMax', '>=', 1)
+                ->orWhere('jobs.salaryMax', '');
+        })
+        ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+        ->leftJoin('auto_post_job_packages', function (JoinClause $join) use ($job_type) {
+            $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+                ->where('auto_post_job_packages.area', '=', $job_type);
+        })
+        ->where(function ($query) {
+            $query->where('job_packages.slug', 'tin-gap-vip')
+                ->orWhere('job_packages.slug', 'tin-hot-vip')
+                ->orWhere('job_packages.slug', 'tin-vip');
         });
         // if($request->province_id){
         //     $hot_jobs->where('province_id', $request->province_id);
@@ -653,6 +728,7 @@ class JobController extends Controller
             'sidebarBanners' => $sidebarBanners,
 
         ];
+
         return view($view_path,$params);
     }
 

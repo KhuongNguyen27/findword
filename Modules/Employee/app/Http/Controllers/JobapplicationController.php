@@ -228,8 +228,8 @@ class JobapplicationController extends Controller
                 $employeeCv->save();
     
                 // Chuẩn bị thông tin cho thông báo
-                $cv_infor['name'] = $cv->user->name;
-                $cv_infor['email'] = $cv->user->email;
+                $cv_infor['name'] = $cv->user ? $cv->user->name : '';
+                $cv_infor['email'] = $cv->user ? $cv->user->email : ''; 
                 $cv_infor['job'] = "job_name"; // Thay bằng tên công việc tương ứng
     
                 // Gửi thông báo qua email
@@ -260,7 +260,7 @@ class JobapplicationController extends Controller
                 $cv->birthdate = \Carbon\Carbon::parse($cv->birthdate)->format('d/m/Y');
             }
             if($is_checked && empty($is_applied)){
-                $shortName = $this->modifyString($cv->user->name);
+                $shortName = $cv->user ? $this->modifyString($cv->user->name) : false;
                 $cv->hash_name = $shortName;
                 if(!empty($cv->birthdate)){
                     $cv->hash_birthdate = $this->replaceTwoChars($cv->birthdate);
@@ -511,10 +511,10 @@ class JobapplicationController extends Controller
                 ->first();
     
             if ($is_checked && empty($is_applied)) {
-                $shortName = $this->modifyString($item->user->name);
+                $shortName = $item->user ? $this->modifyString($item->user->name) : '';
                 $item->hash_name = $shortName;
             }
-            $item->is_read = $this->is_read($item->user->id, $id);
+            $item->is_read = $item->user ? $this->is_read($item->user->id, $id) : false;
             $item->is_applied = !empty(UserJobAplied::where('cv_id', $item->id)
                 ->where('job_id', $id)
                 ->first()) ? true : false;
