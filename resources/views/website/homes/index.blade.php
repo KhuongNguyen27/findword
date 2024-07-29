@@ -150,10 +150,10 @@ button.close {
 @include('website.includes.global.ad-banners')
 
 @include('website.homes.includes.job-items',[
-'sec_title' => 'Việc làm hót nhất',
-'chunk_jobs' => $hot,
+'sec_title' => 'Việc làm tuyển gấp',
+'chunk_jobs' => $tuyen_gap,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
-'sec_link' => route('jobs.homejobs','hot')
+'sec_link' => route('jobs.homejobs','urgent')
 ])
 
 <!-- top-companies -->
@@ -162,13 +162,13 @@ button.close {
 
 @include('website.includes.global.home-attractive-jobs')
 
-@include('website.homes.includes.job-items',[
-'sec_title' => 'Việc làm tuyển gấp',
-'chunk_jobs' => $tuyen_gap,
-'item_class' => 'col-lg-4 col-md-12 col-sm-12',
-'sec_link' => route('jobs.homejobs','urgent')
-])
 
+@include('website.homes.includes.job-items',[
+'sec_title' => 'Việc làm HOT nhất',
+'chunk_jobs' => $hot,
+'item_class' => 'col-lg-4 col-md-12 col-sm-12',
+'sec_link' => route('jobs.homejobs','hot')
+])
 @include('website.homes.includes.thi-truong-viec-lam')
 
 <!-- Job Categories -->

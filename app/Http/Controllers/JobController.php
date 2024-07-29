@@ -149,7 +149,7 @@ class JobController extends Controller
                         ->orWhere('job_packages.slug', "tin-hot");
                 })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
-                $title = 'Việc làm trong nước HOT nhất';
+                $title = 'Việc làm trong nước Hot nhất';
                 break;
             case 'today':
                 //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	
@@ -456,7 +456,7 @@ class JobController extends Controller
                     //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
-                $title = 'Việc làm ngoài nước hot nhất';
+                $title = 'Việc làm ngoài nước Hot nhất';
                 break;
             case 'today':
                 //Các tin đăng trong vòng 48h tính từ lúc user access của phiên đó	

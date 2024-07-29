@@ -26,7 +26,7 @@ class JobService
                 break;
 
             case 'hot':
-                $title = 'Việc làm hot';
+                $title = 'Việc làm Hot';
                 $query->where(function ($q) {
                     $q->where('job_packages.slug', "tin-gap-vip")
                         ->orWhere('job_packages.slug', "tin-hot-vip")
@@ -35,6 +35,7 @@ class JobService
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
             case 'urgent':
+                
                 $title = 'Việc làm tuyển gấp';
                 $query->where('job_packages.slug', "tin-gap-vip")
                     ->orWhere('job_packages.slug', "tin-gap")
