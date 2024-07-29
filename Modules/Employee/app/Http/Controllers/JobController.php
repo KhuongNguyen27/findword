@@ -217,6 +217,8 @@ class JobController extends Controller
             $job_package = JobPackage::find($request->jobpackage_id);
             if ($job_package->auto_approve == 1) {
                 $job->status = Job::ACTIVE;
+                $job->approved_at = now(); // Cập nhật thời gian duyệt công việc
+
             } else {
                 $job->status = Job::INACTIVE;
             }

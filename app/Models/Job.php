@@ -43,6 +43,7 @@ class Job extends AdminModel
         'country_id',
         'more_information',
         'top_position',
+        'approved_at',
     ];
 
     public static function overrideSaveItem($data,$table = ''){
@@ -560,5 +561,15 @@ class Job extends AdminModel
         });
         return $query;
     }
-
+    public function updateStatus($newStatus)
+    {
+        if ($this->status != 1 && $newStatus == 1) {
+            $this->status = 1;
+            $this->approved_at = Carbon::now(); // Cập nhật thời gian duyệt
+        } else {
+            $this->status = $newStatus;
+        }
+        $this->save();
+    }
+    
 }
