@@ -21,7 +21,7 @@ use App\Models\Post;
 use Modules\Employee\app\Models\CareerJob;
 use Modules\Job\app\Models\Country;
 use Modules\Staff\app\Models\UserJobAplied;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class JobController extends Controller
 {
@@ -149,7 +149,6 @@ class JobController extends Controller
     $user_id = Auth::id();
 
     $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
-
     // Tăng số lượt xem của công việc
     $job->views =  $job->views + 1;
     $job->save();

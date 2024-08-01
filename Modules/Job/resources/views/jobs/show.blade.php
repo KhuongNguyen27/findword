@@ -141,7 +141,7 @@
                             <div class="row">
                                 @foreach ($job_employ as $job)
                                     <!-- Job Block -->
-                                    @if($job)
+                                    @if($job && $job->status == 1)
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         @include('job::includes.components.job-item', [
                                             'job' => $job,
