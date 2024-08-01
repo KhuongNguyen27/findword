@@ -4,7 +4,9 @@
             <div class="swiper-wrapper">
             @foreach($sidebarBanners as $banner)
                 <div class="swiper-slide">
+                  <a href="{{ $banner->link }}" target="_blank">
                     <img src="{{ asset($banner->image) }}" alt="{{ $banner->name }}">
+                    </a>
                 </div>
             @endforeach
             </div>

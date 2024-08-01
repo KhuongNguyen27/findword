@@ -292,96 +292,98 @@ class AdminHomeController extends Controller
                     ];
         
                     return response()->json($response);
-            case 'NTD-dang-ky-moi-hom-nay':
-                $query = new AdminUser();
-                $query = $query->select(
-                    [
-                        DB::raw('COUNT(CASE WHEN type = "employee" AND DATE(created_at) = CURDATE() THEN 1 ELSE NULL END) AS total_amount'),
-                        DB::raw('date(created_at) as date'),
-                    ]
-                );
-                break;
+                    case 'NTD-dang-ky-moi-hom-nay':
+                        $query = AdminUser::select(
+                            [
+                                DB::raw('COUNT(CASE WHEN type = "employee" THEN 1 ELSE NULL END) AS total_amount'),
+                                DB::raw('date(created_at) as date'),
+                            ]
+                        )
+                        ->whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $endDate)
+                        ->groupBy('date');
+                        break;
+                    
+                    case 'UV-dang-ky-moi-hom-nay':
+                        $query = AdminUser::select(
+                            [
+                                DB::raw('COUNT(CASE WHEN type = "staff" THEN 1 ELSE NULL END) AS total_amount'),
+                                DB::raw('date(created_at) as date'),
+                            ]
+                        )
+                        ->whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $endDate)
+                        ->groupBy('date');
+                        break;
+                    
 
-            case 'UV-dang-ky-moi-hom-nay':
-                $query = new AdminUser();
-                $query = $query->select(
-                    [
-                        DB::raw('COUNT(CASE WHEN type = "staff" AND DATE(created_at) = CURDATE() THEN 1 ELSE NULL END) AS total_amount'),
-                        DB::raw('date(created_at) as date'),
-                    ]
-                );
-                break;
 
-
-            case 'tong-so-NTD':
-                $users = AdminUser::select(
-                    [
-                        DB::raw('COUNT(*) AS daily_total'), 
-                        DB::raw('date(created_at) as date'),
-                    ]
-                )
-                    ->where('type', 'employee')
-                    ->whereDate('created_at', '>=', $startDate)
-                    ->whereDate('created_at', '<=', $endDate)
-                    ->groupBy('date')
-                    ->get();
-
-                $labels = [];
-                $total_amounts = [];
-                $cumulative_amount = 0;
-
-                $startDate = new DateTime($startDate);
-                $endDate = new DateTime($endDate);
-
-                while ($startDate <= $endDate) {
-                    $labels[] = $startDate->format('Y-m-d');
-                    $daily_total = $users->where('date', $startDate->format('Y-m-d'))->sum('daily_total');
-                    $cumulative_amount += $daily_total; // Cộng dồn số lượng tích lũy
-                    $total_amounts[] = $cumulative_amount;
-                    $startDate->modify('+1 day');
-                }
-
-                $response = [
-                    'labels' => $labels,
-                    'total_amounts' => $total_amounts,
-                ];
-
-                return response()->json($response);
-
-            case 'tong-so-UV':
-                $users = AdminUser::select(
-                    [
-                        DB::raw('COUNT(*) AS daily_total'), // Đếm tất cả các bản ghi cho mỗi ngày
-                        DB::raw('date(created_at) as date'),
-                    ]
-                )
-                    ->where('type', 'staff')
-                    ->whereDate('created_at', '>=', $startDate)
-                    ->whereDate('created_at', '<=', $endDate)
-                    ->groupBy('date')
-                    ->get();
-
-                $labels = [];
-                $total_amounts = [];
-                $cumulative_amount = 0;
-
-                $startDate = new DateTime($startDate);
-                $endDate = new DateTime($endDate);
-
-                while ($startDate <= $endDate) {
-                    $labels[] = $startDate->format('Y-m-d');
-                    $daily_total = $users->where('date', $startDate->format('Y-m-d'))->sum('daily_total');
-                    $cumulative_amount += $daily_total; // Cộng dồn số lượng tích lũy
-                    $total_amounts[] = $cumulative_amount;
-                    $startDate->modify('+1 day');
-                }
-
-                $response = [
-                    'labels' => $labels,
-                    'total_amounts' => $total_amounts,
-                ];
-
-                return response()->json($response);
+                case 'tong-so-NTD':
+                    $users = AdminUser::select(
+                        [
+                            DB::raw('COUNT(*) AS daily_total'), 
+                            DB::raw('date(created_at) as date'),
+                        ]
+                    )
+                        ->where('type', 'employee')
+                        ->whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $endDate)
+                        ->groupBy('date')
+                        ->get();
+                
+                    $labels = [];
+                    $total_amounts = [];
+                
+                    $startDate = new DateTime($startDate);
+                    $endDate = new DateTime($endDate);
+                
+                    while ($startDate <= $endDate) {
+                        $labels[] = $startDate->format('Y-m-d');
+                        $daily_total = $users->where('date', $startDate->format('Y-m-d'))->sum('daily_total');
+                        $total_amounts[] = $daily_total; // Chỉ lưu số lượng hàng ngày
+                        $startDate->modify('+1 day');
+                    }
+                
+                    $response = [
+                        'labels' => $labels,
+                        'total_amounts' => $total_amounts,
+                    ];
+                
+                    return response()->json($response);
+                
+                case 'tong-so-UV':
+                    $users = AdminUser::select(
+                        [
+                            DB::raw('COUNT(*) AS daily_total'), 
+                            DB::raw('date(created_at) as date'),
+                        ]
+                    )
+                        ->where('type', 'staff')
+                        ->whereDate('created_at', '>=', $startDate)
+                        ->whereDate('created_at', '<=', $endDate)
+                        ->groupBy('date')
+                        ->get();
+                
+                    $labels = [];
+                    $total_amounts = [];
+                
+                    $startDate = new DateTime($startDate);
+                    $endDate = new DateTime($endDate);
+                
+                    while ($startDate <= $endDate) {
+                        $labels[] = $startDate->format('Y-m-d');
+                        $daily_total = $users->where('date', $startDate->format('Y-m-d'))->sum('daily_total');
+                        $total_amounts[] = $daily_total; // Chỉ lưu số lượng hàng ngày
+                        $startDate->modify('+1 day');
+                    }
+                
+                    $response = [
+                        'labels' => $labels,
+                        'total_amounts' => $total_amounts,
+                    ];
+                
+                    return response()->json($response);
+                
 
 
 

@@ -59,7 +59,7 @@
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('verify') }}</th>
                                 <!-- <th>{{ __('created_at') }}</th> -->
-                                <th>Đăng nhập</th>
+                                <th>{{ __('las_login') }}</th>
                                 <th>{{ __('Xác thực') }}</th>
                                 <th>Quyền NN</th>
                                 <th>{{ __('action') }}</th>
@@ -80,7 +80,7 @@
                                         <td>{!! $item->status_fm !!}</td>
                                         <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>
                                         <!-- <td>{{ $item->created_at_fm }}</td> -->
-                                        <td>{{ $item->last_login ? date('d-m-Y', strtotime($item->last_login)) : '' }}</td> 
+                                        <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td>
                                         <!-- <td>{{ $item->email_status == 0 ? 'Chưa xác thực' : 'Đã xác thực' }}</td> -->
                                         <td>{!! $item->email_status_fm !!}</td>
                                         <td>{!! $item->allowed_fm !!}</td>

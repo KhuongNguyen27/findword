@@ -65,7 +65,7 @@
                             <td>{{ $item->position }}</td>
                             <td>{!! $item->status_fm !!}</td>
                             <td>{{ $item->created_at_fm }}</td>
-                            <td>{{ $item->last_login ? date('H:i:s d-m-Y', strtotime($item->last_login)) : '' }}</td> 
+                            <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td> 
                             <td>{!! $item->email_status_fm !!}</td>
 
                             <td>

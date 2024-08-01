@@ -31,7 +31,7 @@ class HomeController extends Controller
 
 		$data_vip_jobs = JobService::switchCase($query_vip_jobs, 'viec-lam-hom-nay');
 		$vip_jobs = $data_vip_jobs['query'];
-		$vip_jobs = $vip_jobs->limit(20)->get()->chunk(10);
+		$vip_jobs = $vip_jobs->limit(30)->get()->chunk(15);
 
 		// query: job
 		$query_hot = Job::select('jobs.*')
@@ -41,7 +41,7 @@ class HomeController extends Controller
 		// viec lam hot
 		$data_hot = JobService::switchCase($query_hot, 'hot');
 		$hot = $data_hot['query'];
-		$hot = $hot->limit(10)->get()->chunk(10);
+		$hot = $hot->limit(30)->get()->chunk(15);
 
 		$query_tuyen_gap = Job::select('jobs.*')
 			->where('jobs.status', 1)
@@ -50,7 +50,7 @@ class HomeController extends Controller
 		// viec lam tuyen gap
 		$tuyen_gap = JobService::switchCase($query_tuyen_gap, 'urgent');
 		$tuyen_gap = $tuyen_gap['query'];
-		$tuyen_gap = $tuyen_gap->limit(10)->get()->chunk(10);
+		$tuyen_gap = $tuyen_gap->limit(30)->get()->chunk(15);
 
 		// query: job
 		$hot_jobs = Job::select('jobs.*')
@@ -168,7 +168,7 @@ class HomeController extends Controller
 		if ($job_type) {
 			$view_path = 'website.homes.home-sub-index';
 		}
-		$jobs = $query->paginate(25);
+		$jobs = $query->paginate(50);
 		$currentRoute = Route::current()->getName();
 		// dd($currentRoute);
 		$params =
@@ -198,7 +198,7 @@ class HomeController extends Controller
 		$query = JobService::searchHome($query, $request);
 		$hot_jobs = $query->orderBy('jobs.approved_at', 'DESC')  // Sắp xếp theo thời gian duyệt tin
 			->orderBy('jobs.id', 'DESC')  // Sắp xếp theo ID công việc
-			->paginate(25);  // Phân trang với 25 công việc mỗi trang
+			->paginate(50);  // Phân trang với 25 công việc mỗi trang
 
 		$currentRoute = Route::current()->getName();
 		$params =

@@ -17,17 +17,14 @@
                             <h4>{{ __('work_list') }}</h4>
                             <form class="form-search" action="{{ route('employee.job.index') }}">
                                 <div class="chosen-outer1">
-                                    <input type="text" value="{{ request('name') }}"
-                                        placeholder="{{ __('work_name') }}..." name="name">
+                                    <input type="text" value="{{ request('name') }}" placeholder="{{ __('work_name') }}..." name="name">
                                 </div>
 
                                 <div class="chosen-outer1">
                                     <label for="">{{ __('from') }} :</label>
-                                    <input type="date" value="{{ request('start_day') }}" placeholder="Tên công việc..."
-                                        name="start_day" onchange="calculateDays()">
+                                    <input type="date" value="{{ request('start_day') }}" placeholder="Tên công việc..." name="start_day" onchange="calculateDays()">
                                     <label for="">{{ __('to') }} :</label>
-                                    <input type="date" value="{{ request('end_day') }}" placeholder="Tên công việc..."
-                                        name="end_day" onchange="calculateDays()">
+                                    <input type="date" value="{{ request('end_day') }}" placeholder="Tên công việc..." name="end_day" onchange="calculateDays()">
                                 </div>
 
 
@@ -77,51 +74,49 @@
                                             <td>
                                                 <ul class="option-list">
                                                     <li>{{ $job->job_applications_count }} {{ __('profile') }}</li>
-                                                    <li><a href="{{ route('employee.job.showjobcv', $job->id) }}"
-                                                            data-text="Xem danh sách ứng tuyển"><span
-                                                                class="la la-eye"></span></a></li>
+                                                    <li><a href="{{ route('employee.job.showjobcv', $job->id) }}" data-text="Xem danh sách ứng tuyển"><span class="la la-eye"></span></a></li>
                                                 </ul>
                                             </td>
                                             <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
                                                 {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
                                             @if ($job->status == 1 && strtotime($job->end_day) >= strtotime(date('Y-m-d')))
                                                 <td><span class="label label-success">{{ __('recruitment') }}</span></td>
-                                            @elseif ($job->status == 0 || strtotime($job->end_day) < strtotime(date('Y-m-d'))) 
-                                                <td><span  class="danger-button">{{ __('stop_recruiting') }}</span></td>
+                                            @elseif ($job->status == 1 && strtotime($job->end_day) < strtotime(date('Y-m-d')))
+                                                <td><span class="danger-button">Dừng tuyển</span></td>
+                                            @elseif ($job->status == 0 && strtotime($job->end_day) >= strtotime(date('Y-m-d')))
+                                                <td><span class="label label-warning">{{ __('Đang xét duyệt') }}</span></td>
+                                            @elseif ($job->status == 0 && strtotime($job->end_day) < strtotime(date('Y-m-d')))
+                                                <td><span class="danger-button">Dừng tuyển (quá hạn)</span></td>
+                                            @elseif ($job->status == 2)
+                                                <td><span class="label label-danger">{{ __('Đã từ chối') }}</span></td>
                                             @endif
                                                 <td>
                                                     <div class="option-box">
                                                         <ul class="option-list">
-                                                            <li><a href="{{ route('employee.job.show', $job->id) }}"
-                                                                    data-text="{{ __('show') }}"><span
-                                                                        class="la la-eye"></span></a></li>
+                                                            <li><a href="{{ route('employee.job.show', $job->id) }}" data-text="{{ __('show') }}"><span class="la la-eye"></span></a></li>
                                                             @if($job->status != 1)
                                                             <!-- Kiểm tra nếu công việc chưa được duyệt -->
-                                                            <li><a href="{{ route('employee.job.edit', $job->id) }}"
-                                                                    data-text="{{ __('edit') }}"><span
-                                                                        class="la la-pencil"></span></a></li>
+                                                            <li><a href="{{ route('employee.job.edit', $job->id) }}" data-text="{{ __('edit') }}"><span class="la la-pencil"></span></a></li>
                                                             @endif
-                                                            <form action="{{ route('employee.job.delete', $job->id) }}"
-                                                                method="POST" id="deleteForm_{{ $job->id }}"
-                                                                onsubmit="confirmDelete(event, {{ $job->id }})">
+                                                            <form action="{{ route('employee.job.delete', $job->id) }}" method="POST" id="deleteForm_{{ $job->id }}" onsubmit="confirmDelete(event, {{ $job->id }})">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <li>
-                                                                    <button type="submit" class="delete-button"
-                                                                        data-text="{{ __('delete') }}">
+                                                                    <button type="submit" class="delete-button" data-text="{{ __('delete') }}">
                                                                         <span class="la la-trash"></span>
                                                                     </button>
                                                                 </li>
                                                             </form>
 
                                                             <script>
-                                                            function confirmDelete(event, jobId) {
-                                                                event.preventDefault();
-                                                                if (confirm("Bạn có muốn xóa không?")) {
-                                                                    document.getElementById('deleteForm_' + jobId)
-                                                                        .submit();
+                                                                function confirmDelete(event, jobId) {
+                                                                    event.preventDefault();
+                                                                    if (confirm("Bạn có muốn xóa không?")) {
+                                                                        document.getElementById('deleteForm_' + jobId)
+                                                                            .submit();
+                                                                    }
                                                                 }
-                                                            }
+
                                                             </script>
                                                         </ul>
                                                     </div>
@@ -152,16 +147,17 @@
 
 @section('footer')
 <script>
-function calculateDays() {
-    var startDate = new Date(document.querySelector('input[name="start_day"]').value);
-    var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+    function calculateDays() {
+        var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+        var endDate = new Date(document.querySelector('input[name="end_day"]').value);
 
-    if (endDate < startDate) {
-        // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
-        alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
-        // Xóa giá trị ngày hết hạn
-        document.querySelector('input[name="end_day"]').value = "";
+        if (endDate < startDate) {
+            // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
+            alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+            // Xóa giá trị ngày hết hạn
+            document.querySelector('input[name="end_day"]').value = "";
+        }
     }
-}
+
 </script>
 @endsection

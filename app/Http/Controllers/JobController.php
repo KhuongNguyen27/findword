@@ -184,7 +184,7 @@ class JobController extends Controller
                 $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
-                $jobs = $query->limit(20)->get()->chunk(12);
+                $jobs = $query->limit(30)->get()->chunk(15);
                 break;
         }
 
@@ -207,7 +207,7 @@ class JobController extends Controller
         if ($job_type) {
             $view_path = 'website.jobs.sub-index';
             $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
-            $jobs = $query->paginate(25);
+            $jobs = $query->paginate(50);
         }
 
         // Việc làm hấp dẫn trong nước
@@ -486,7 +486,7 @@ class JobController extends Controller
                 $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
-                $jobs = $query->limit(20)->get()->chunk(12);
+                $jobs = $query->limit(30)->get()->chunk(15);
                 break;
         }
         $sort = $request->sort;
