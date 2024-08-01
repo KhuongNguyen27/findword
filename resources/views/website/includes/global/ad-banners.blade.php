@@ -5,7 +5,9 @@
                 @foreach($bottomBanners as $banner)
                     <div class="company-block-item">
                         <figure class="image">
+                        <a href="{{ $banner->link }}" target="_blank">
                             <img src="{{ asset($banner->image) }}" alt="{{ $banner->name }}">
+                        </a>
                         </figure>
                     </div>
                 @endforeach
