@@ -50,7 +50,7 @@ class JobController extends Controller
         }
 
         $query->orderBy('id', 'desc');
-        $jobs = $query->withCount('jobApplications')->paginate(5);
+        $jobs = $query->withCount('jobApplications')->paginate(10);
         return view('employee::job.index', compact('jobs'));
     }
 
@@ -127,6 +127,7 @@ class JobController extends Controller
     public function create()
     {
         $user = Auth::user();
+        // dd($user);
         $userAllowedAbroad = $user->userEmployee->is_allowed_abroad ?? false;
         if (Auth::user()->verify == User::ACTIVE) {
             $careers = Career::where('status', Career::ACTIVE)->get();
@@ -138,6 +139,12 @@ class JobController extends Controller
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
             $countries = Country::orderBy('name','ASC')->get();
+            $accounts = $user->accounts;
+            $ckeditorFeatures = $accounts->flatMap(function($account) {
+                return json_decode($account->ckeditor_features, true);
+            });
+    
+            // dd($ckeditorFeatures);
             $param = [
                 'careers' => $careers,
                 'degrees' => $degrees,
@@ -148,6 +155,8 @@ class JobController extends Controller
                 'provinces' => $provinces,
                 'countries' => $countries,
                 'userAllowedAbroad' => $userAllowedAbroad,
+                'ckeditorFeatures' => $ckeditorFeatures, 
+
 
             ];
             // dd($param);
@@ -277,6 +286,8 @@ class JobController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        $user = Auth::user();
+
         $careers = Career::where('status', Career::ACTIVE)->get();
         $degrees = Level::where('status', Level::ACTIVE)->get();
         // dd($degrees);
@@ -286,6 +297,10 @@ class JobController extends Controller
         $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
         $job = Job::findOrFail($request->id);
         $provinces = Province::get();
+        $accounts = $user->accounts;
+        $ckeditorFeatures = $accounts->flatMap(function($account) {
+            return json_decode($account->ckeditor_features, true);
+        });
         $param = [
             'careers' => $careers,
             'degrees' => $degrees,
@@ -293,7 +308,8 @@ class JobController extends Controller
             'formworks' => $formworks,
             'wages' => $wages,
             'job_packages' => $job_packages,
-            'provinces' => $provinces
+            'provinces' => $provinces,
+            'ckeditorFeatures' => $ckeditorFeatures,
         ];
         $careerjobs = $job->careers()->pluck('career_id');
         return view('employee::job.edit', compact(['job', 'param', 'careerjobs']));

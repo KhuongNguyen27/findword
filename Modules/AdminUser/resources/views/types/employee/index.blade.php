@@ -50,15 +50,14 @@
                     <table class="table align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>{{ __('code') }}</th>
+                                <th>STT</th>
                                 <th>{{ __('name') }}</th>
                                 @if (request()->type == 'employee' )
                                 <th>{{ __('position') }}</th>
                                 @endif
-                                <th> {{__('points')}} </th>
                                 <th>{{ __('status') }}</th>
                                 <th>{{ __('verify') }}</th>
-                                <!-- <th>{{ __('created_at') }}</th> -->
+                                <th>{{ __('created_at') }}</th>
                                 <th>{{ __('las_login') }}</th>
                                 <th>{{ __('Xác thực') }}</th>
                                 <th>Quyền NN</th>
@@ -67,20 +66,23 @@
                         </thead>
                         <tbody id="sortable-table">
                             @if (count($items))
-                                @foreach ($items as $item)
+                                @foreach ($items as $key => $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ Str::limit($item->employee->name, 40) }}
-                                            <p class="mb-0 product-category">{{ $item->employee->phone ?? '' }}</p>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->employee ? Str::limit($item->employee->name, 40) : '' }}
+                                            <p class="mb-0 product-category">SĐT: {{ $item->employee->phone ?? '' }}</p>
+                                            Điểm: {{ number_format($item->points, 0, ',', '.') }}P
                                         </td>
                                         @if (request()->type == 'employee' )
                                             <td>{{ $item->employee->position ?? 0 }}</td>
                                         @endif
-                                        <td>{{ $item->points }}</td>
+                                        
                                         <td>{!! $item->status_fm !!}</td>
+                                        {{-- <td>{!! $item->verify_fm !!}</td> --}}
                                         <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>
-                                        <!-- <td>{{ $item->created_at_fm }}</td> -->
+                                        <td>{!! $item->created_at ? date('H:i:s', strtotime($item->created_at)) . '<br>' . date('d-m-Y', strtotime($item->created_at)) : '' !!}</td>
                                         <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td>
+
                                         <!-- <td>{{ $item->email_status == 0 ? 'Chưa xác thực' : 'Đã xác thực' }}</td> -->
                                         <td>{!! $item->email_status_fm !!}</td>
                                         <td>{!! $item->allowed_fm !!}</td>

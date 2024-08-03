@@ -5,6 +5,7 @@ namespace Modules\Account\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Account\Database\factories\AccountJobPackageFactory;
+use Illuminate\Http\Request;
 
 class AccountJobPackage extends Model
 {
@@ -22,8 +23,11 @@ class AccountJobPackage extends Model
         'job_package_id',
         'account_id',
         'amount',
+        'ckeditor_features'
     ];
-
+    protected $casts = [
+        'ckeditor_features' => 'array',
+    ];
     // Relationship
     public function account()
     {
@@ -36,5 +40,24 @@ class AccountJobPackage extends Model
     protected static function newFactory(): AccountJobPackageFactory
     {
         //return AccountJobPackageFactory::new();
+    }
+
+    public function getCkeditorFeaturesAttribute($value)
+    {
+        return $value ? $value : [];
+    }
+
+    public function updateCKEditorConfig(Request $request)
+    {
+        $ckeditorFeatures = $request->input('ckeditor_features', []);
+        
+        foreach ($ckeditorFeatures as $accountJobPackageId => $settings) {
+            $accountJobPackage = AccountJobPackage::find($accountJobPackageId);
+            if ($accountJobPackage) {
+                $accountJobPackage->update(['ckeditor_features' => $settings]);
+            }
+        }
+
+        return redirect()->back()->with('success', __('Configuration updated successfully.'));
     }
 }

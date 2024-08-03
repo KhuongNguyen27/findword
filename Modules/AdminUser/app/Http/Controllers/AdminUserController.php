@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
 use Modules\AdminUser\app\Http\Requests\UpdateAdminUserRequest;
 use Illuminate\Support\Facades\DB; // Sử dụng DB facade
+use Modules\Account\app\Models\UserAccount;
 
 class AdminUserController extends Controller
 {
@@ -136,6 +137,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
+        // dd(123);
         try {
             $type = request()->type;
             $item = $this->model::findOrFail($id);
@@ -161,6 +163,22 @@ class AdminUserController extends Controller
     {
         $type = $request->type;
         try {
+            if (!UserAccount::where('user_id',$id)->first() && $request->verify == $this->model::ACTIVE) {
+                $register_date = date('Y-m-d H:i:s');
+                $register_date = new \DateTime($register_date);
+                $expiration_date = clone $register_date;
+                $expiration_date->add(new \DateInterval('P30D'));
+                UserAccount::create(
+                    [
+                        'user_id' => $id,
+                        'account_id' => 1,
+                        'duration_id' => 1,
+                        'is_current' => 1,
+                        'register_date' => $register_date->format('Y-m-d H:i:s'), 
+                        'expiration_date' => $expiration_date->format('Y-m-d H:i:s'), 
+                    ]
+                );
+            }
             $this->model::updateItem($id, $request, $type);
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {

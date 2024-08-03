@@ -1,13 +1,14 @@
 @extends('employee::layouts.master')
 @section('content')
 <style>
-input {
-    margin-bottom: 0%;
-}
+    input {
+        margin-bottom: 0%;
+    }
 
-.label-required {
-    color: red;
-}
+    .label-required {
+        color: red;
+    }
+
 </style>
 <!-- Dashboard -->
 <section class="user-dashboard">
@@ -49,8 +50,7 @@ input {
                                     <!-- Input -->
                                     <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                         <label>Tên công việc <span class="label-required">*</span></label>
-                                        <input type="text" value="{{ old('name') }}" name="name" id="nameInput"
-                                            placeholder="Tên công việc">
+                                        <input type="text" value="{{ old('name') }}" name="name" id="nameInput" placeholder="Tên công việc">
                                         @if ($errors->any())
                                         <p style="color:red">
                                             {{ $errors->first('name') }}</p>
@@ -61,8 +61,7 @@ input {
 
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Ngành Nghề <span class="label-required">*</span></label>
-                                        <select name="career_ids[]" class="chosen-select career_ids"
-                                            multiple="multiple">
+                                        <select name="career_ids[]" class="chosen-select career_ids" multiple="multiple">
                                             @foreach ($param['careers'] as $career)
                                             <option value="{{ $career->id }}">{{ $career->name }}</option>
                                             @endforeach
@@ -75,8 +74,7 @@ input {
 
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Hạn nộp hồ sơ <span class="label-required">*</span></label>
-                                        <input type="date" value="{{ old('deadline') }}" name="deadline"
-                                            id="deadlineInput" placeholder="">
+                                        <input type="date" value="{{ old('deadline') }}" name="deadline" id="deadlineInput" placeholder="">
                                         @if ($errors->any())
                                         <p style="color:red">
                                             {{ $errors->first('deadline') }}</p>
@@ -113,13 +111,11 @@ input {
                                     <div class="">Để trống mức lương có nghĩa là Thỏa Thuận</div>
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mức lương tối thiểu </label>
-                                        <input type="number" name="salaryMin" id="salaryMin"
-                                            value="{{ old('salaryMin') }}" />
+                                        <input type="number" name="salaryMin" id="salaryMin" value="{{ old('salaryMin') }}" />
                                     </div>
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mức lương tối đa </label>
-                                        <input type="number" name="salaryMax" id="salaryMax"
-                                            value="{{ old('salaryMax') }}" />
+                                        <input type="number" name="salaryMax" id="salaryMax" value="{{ old('salaryMax') }}" />
                                     </div>
 
                                     <!-- Input -->
@@ -138,8 +134,7 @@ input {
 
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                         <label>Nơi làm việc <span class="label-required">*</span></label>
-                                        <input type="text" value="{{ old('work_address') }}" name="work_address"
-                                            id="nameInput" placeholder="Nơi làm việc...">
+                                        <input type="text" value="{{ old('work_address') }}" name="work_address" id="nameInput" placeholder="Nơi làm việc...">
                                         @if ($errors->any())
                                         <p style="color:red">
                                             {{ $errors->first('work_address') }}</p>
@@ -179,8 +174,7 @@ input {
 
                                     <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;">
                                         <label>Quốc gia</label>
-                                        <select name="country" class="chosen-select" id="country"
-                                            style="display: none;">
+                                        <select name="country" class="chosen-select" id="country" style="display: none;">
                                             <option id="vn" value="VN">Trong nước</option>
                                             <option id="nn" value="NN">Ngoài nước</option>
                                         </select>
@@ -189,50 +183,47 @@ input {
                                     </div>
 
                                     <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var countrySelect = document.getElementById('country');
-                                        var errorText = document.getElementById('country-error');
-                                        var userAllowedAbroad = {
-                                            {
-                                                $param['userAllowedAbroad'] ? 'true' : 'false'
-                                            }
-                                        };
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            var countrySelect = document.getElementById('country');
+                                            var errorText = document.getElementById('country-error');
+                                            var userAllowedAbroad = {
+                                                {
+                                                    $param['userAllowedAbroad'] ? 'true' : 'false'
+                                                }
+                                            };
+                                            console.log('userAllowedAbroad:', userAllowedAbroad); // Log giá trị của userAllowedAbroad
 
-                                        console.log('userAllowedAbroad:',
-                                        userAllowedAbroad); // Log giá trị của userAllowedAbroad
+                                            // Lắng nghe sự kiện khi Chosen.js thay đổi giá trị
+                                            $('#country').on('change', function() {
+                                                var selectedValue = $(this).val(); // Lấy giá trị đã chọn
+                                                console.log('Selected value:'
+                                                    , selectedValue); // Log giá trị được chọn
 
-                                        // Lắng nghe sự kiện khi Chosen.js thay đổi giá trị
-                                        $('#country').on('change', function() {
-                                            var selectedValue = $(this).val(); // Lấy giá trị đã chọn
-                                            console.log('Selected value:',
-                                            selectedValue); // Log giá trị được chọn
+                                                // Kiểm tra điều kiện
+                                                if (selectedValue === 'NN' && userAllowedAbroad === false) {
 
-                                            // Kiểm tra điều kiện
-                                            if (selectedValue === 'NN' && userAllowedAbroad === false) {
+                                                    errorText.style.display = 'block';
+                                                    // Sử dụng phương thức của Chosen.js để thay đổi giá trị
+                                                    $(this).val('VN').trigger(
+                                                        'chosen:updated'); // Reset lại lựa chọn thành 'Trong nước'
+                                                } else {
+                                                    errorText.style.display = 'none';
+                                                }
+                                            });
 
-                                                errorText.style.display = 'block';
-                                                // Sử dụng phương thức của Chosen.js để thay đổi giá trị
-                                                $(this).val('VN').trigger(
-                                                'chosen:updated'); // Reset lại lựa chọn thành 'Trong nước'
-                                            } else {
-                                                errorText.style.display = 'none';
-                                            }
+                                            // Kích hoạt Chosen.js cho select
+                                            $('#country').chosen();
                                         });
 
-                                        // Kích hoạt Chosen.js cho select
-                                        $('#country').chosen();
-                                    });
                                     </script>
 
 
 
-                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;"
-                                        id="provinceDiv">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;" id="provinceDiv">
                                         <label>Tỉnh - Thành phố <span class="label-required">*</span></label>
                                         <select name="province_id[]" class="chosen-select form-select" id="province" multiple="multiple">
                                             @foreach ($param['provinces'] as $province)
-                                            <option value="{{ $province->id }}"
-                                                {{ old('province_id') == $province->id ? 'selected' : '' }}>
+                                            <option value="{{ $province->id }}" {{ old('province_id') == $province->id ? 'selected' : '' }}>
                                                 {{ $province->name }}
                                             </option>
                                             @endforeach
@@ -243,13 +234,11 @@ input {
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;"
-                                        id="internationalDiv">
+                                    <div class="form-group col-lg-6 col-md-12" style="margin-bottom: 3%!important;" id="internationalDiv">
                                         <label>Quốc tế<span class="label-required"> *</span></label>
                                         <select name="country_id[]" class="chosen-select form-select" id="international" multiple="multiple">
                                             @foreach ($param['countries'] as $country)
-                                            <option value="{{ $country->id }}"
-                                                {{ old('country_id') == $country->id ? 'selected' : '' }}>
+                                            <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
                                                 {{ $country->name }}
                                             </option>
                                             @endforeach
@@ -289,22 +278,98 @@ input {
                                         @endif
                                     </div>
 
-                                    <!-- About Company -->
                                     <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                         <label>Mô tả công việc <span class="label-required">*</span></label>
-                                        <textarea name="description" id="description"
-                                            placeholder="Mô tả...">{{ old('description') }}</textarea>
+                                        <textarea name="description" id="description1" placeholder="Mô tả...">{{ old('description') }}</textarea>
                                         @if ($errors->any())
-                                        <p style="color:red">
-                                            {{ $errors->first('description') }}</p>
+                                        <p style="color:red">{{ $errors->first('description') }}</p>
                                         @endif
                                     </div>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            var allowedFeatures = @json($param['ckeditorFeatures']);
+
+                                            var allToolbarGroups = [{
+                                                    name: 'clipboard'
+                                                    , groups: ['clipboard', 'undo']
+                                                }
+                                                , {
+                                                    name: 'editing'
+                                                    , groups: ['find', 'selection', 'spellchecker']
+                                                }
+                                                , {
+                                                    name: 'links'
+                                                }
+                                                , {
+                                                    name: 'insert'
+                                                }
+                                                , {
+                                                    name: 'forms'
+                                                }
+                                                , {
+                                                    name: 'tools'
+                                                }
+                                                , {
+                                                    name: 'document'
+                                                    , groups: ['mode', 'document', 'doctools']
+                                                }
+                                                , {
+                                                    name: 'others'
+                                                }
+                                                , {
+                                                    name: 'basicstyles'
+                                                    , groups: ['basicstyles', 'cleanup']
+                                                }
+                                                , {
+                                                    name: 'paragraph'
+                                                    , groups: ['list', 'indent', 'blocks', 'align', 'bidi']
+                                                }
+                                                , {
+                                                    name: 'styles'
+                                                }
+                                                , {
+                                                    name: 'colors'
+                                                }
+                                                , {
+                                                    name: 'about'
+                                                }
+                                            ];
+                                            var toolbarGroupsConfig = [];
+
+                                            allToolbarGroups.forEach(function(group) {
+                                                if (group.groups) {
+                                                    var filteredGroups = group.groups.filter(function(subGroup) {
+                                                        return allowedFeatures[subGroup] !== undefined;
+                                                    });
+
+                                                    if (filteredGroups.length > 0) {
+                                                        toolbarGroupsConfig.push({
+                                                            name: group.name
+                                                            , groups: filteredGroups
+                                                        });
+                                                    }
+                                                } else {
+                                                    if (allowedFeatures[group.name]) {
+                                                        toolbarGroupsConfig.push(group);
+                                                    }
+                                                }
+                                            });
+                                            // Khởi tạo CKEditor cho nhiều textarea
+                                            ['description1', 'requirements1'].forEach(function(id) {
+                                                CKEDITOR.replace(id, {
+                                                    toolbarGroups: toolbarGroupsConfig
+                                                    , removeButtons: 'Source,Save,NewPage,Preview,Print,Templates'
+                                                });
+                                            });
+                                        });
+
+                                    </script>
 
                                     <!-- About Company -->
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Yêu cầu công việc <span class="label-required">*</span></label>
-                                        <textarea name="requirements" id="requirements"
-                                            placeholder="Yêu cầu...">{{ old('requirements') }}</textarea>
+                                        <textarea name="requirements" id="requirements1" placeholder="Yêu cầu...">{{ old('requirements') }}</textarea>
                                         @if ($errors->any())
                                         <p style="color:red">
                                             {{ $errors->first('requirements') }}</p>
@@ -336,13 +401,9 @@ input {
                                     <div class="row">
                                         <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
                                             <label>Loại tin đăng <span class="label-required">*</span></label>
-                                            <select id="package_type" onchange="handle_price_package()"
-                                                name="jobpackage_id" class="chosen-select">
+                                            <select id="package_type" onchange="handle_price_package()" name="jobpackage_id" class="chosen-select">
                                                 @foreach ($param['job_packages'] as $job_package)
-                                                <option id="{{ $job_package->id }}"
-                                                    data-price="{{ $job_package->price }}"
-                                                    value="{{ $job_package->id }}"
-                                                    data-count_job="{{ Auth::user()->checkJob($job_package->id) }}">
+                                                <option id="{{ $job_package->id }}" data-price="{{ $job_package->price }}" value="{{ $job_package->id }}" data-count_job="{{ Auth::user()->checkJob($job_package->id) }}">
                                                     {{ $job_package->name }}
                                                     {{ Auth::user()->checkJob($job_package->id) > 0 ? '(' . Auth::user()->checkJob($job_package->id) . ')' : '' }}
                                                 </option>
@@ -355,8 +416,7 @@ input {
                                         </div>
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày bắt đầu <span class="label-required">*</span></label>
-                                            <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}"
-                                                name="start_day" placeholder="" onchange="calculateDays()" readonly>
+                                            <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}" name="start_day" placeholder="" onchange="calculateDays()" readonly>
                                             @if ($errors->any())
                                             <p style="color:red">
                                                 {{ $errors->first('start_day') }}</p>
@@ -365,8 +425,7 @@ input {
 
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày hết hạn <span class="label-required">*</span></label>
-                                            <input type="date" value="{{ old('end_day') }}" name="end_day"
-                                                placeholder="" onchange="calculateDays()">
+                                            <input type="date" value="{{ old('end_day') }}" name="end_day" placeholder="" onchange="calculateDays()">
                                             @if ($errors->any())
                                             <p style="color:red">
                                                 {{ $errors->first('end_day') }}</p>
@@ -375,8 +434,7 @@ input {
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Số ngày :</label>
-                                            <input type="number" value="{{ old('number_day') }}" class="number_day"
-                                                name="number_day" id="nameInput" placeholder="Số ngày..." readonly>
+                                            <input type="number" value="{{ old('number_day') }}" class="number_day" name="number_day" id="nameInput" placeholder="Số ngày..." readonly>
                                             @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('number_day') }}</p>
                                             @endif
@@ -386,8 +444,7 @@ input {
 
                                         <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                             <label>Tổng thanh toán cho tin đăng (P) :</label>
-                                            <input id="price" type="text" value="{{ old('price') }}" name="price"
-                                                placeholder="Giá..." readonly>
+                                            <input id="price" type="text" value="{{ old('price') }}" name="price" placeholder="Giá..." readonly>
                                             @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('price') }}</p>
                                             @endif
@@ -410,99 +467,103 @@ input {
     </div>
 </section>
 <style>
-#internationalDiv {
-    display: none
-}
+    #internationalDiv {
+        display: none
+    }
+
 </style>
 @endsection
 
 @section('footer')
 <script>
-//hàm xử lý tính số ngày
+    //hàm xử lý tính số ngày
 
-function calculateDays() {
-    var startDayInput = document.querySelector('input[name="start_day"]');
-    var endDayInput = document.querySelector('input[name="end_day"]');
-    var numberDayInput = document.querySelector('input[name="number_day"]');
+    function calculateDays() {
+        var startDayInput = document.querySelector('input[name="start_day"]');
+        var endDayInput = document.querySelector('input[name="end_day"]');
+        var numberDayInput = document.querySelector('input[name="number_day"]');
 
-    if (startDayInput.value && endDayInput.value) {
-        var startDay = new Date(startDayInput.value);
-        var endDay = new Date(endDayInput.value);
+        if (startDayInput.value && endDayInput.value) {
+            var startDay = new Date(startDayInput.value);
+            var endDay = new Date(endDayInput.value);
 
-        var timeDiff = endDay - startDay;
-        var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            var timeDiff = endDay - startDay;
+            var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-        if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <=
-            30) { // Kiểm tra số ngày có nằm trong khoảng từ 0 đến 30 không
-            numberDayInput.value = dayDiff;
+            if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <=
+                30) { // Kiểm tra số ngày có nằm trong khoảng từ 0 đến 30 không
+                numberDayInput.value = dayDiff;
+            } else {
+                alert("Số ngày đăng tin không vượt quá 30 ngày");
+                endDayInput.value = "";
+                numberDayInput.value = "";
+            }
+
+            // validate
+
+            var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+            var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+
+            if (endDate < startDate) {
+                alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+                document.querySelector('input[name="end_day"]').value = "";
+            }
+            handle_price_package();
+        }
+
+
+    }
+
+    // hàm xử lý tính giá tiền
+    function handle_price_package() {
+        var price = parseFloat($("#package_type").find("option:selected").data("price"));
+        var jobCount = $("#package_type").find("option:selected").data("count_job");
+        if (jobCount == 0) {
+            if (price !== undefined) {
+                var formatted_total_price = price.toLocaleString("vi-VN");
+                $("#price").val(formatted_total_price);
+            }
         } else {
-            alert("Số ngày đăng tin không vượt quá 30 ngày");
-            endDayInput.value = "";
-            numberDayInput.value = "";
+            $("#price").val(0);
         }
-
-        // validate
-
-        var startDate = new Date(document.querySelector('input[name="start_day"]').value);
-        var endDate = new Date(document.querySelector('input[name="end_day"]').value);
-
-        if (endDate < startDate) {
-            alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
-            document.querySelector('input[name="end_day"]').value = "";
-        }
-        handle_price_package();
     }
 
+    $(document).ready(function() {
+        // $('.career_ids').select2();
+    });
 
-}
-
-// hàm xử lý tính giá tiền
-function handle_price_package() {
-    var price = parseFloat($("#package_type").find("option:selected").data("price"));
-    var jobCount = $("#package_type").find("option:selected").data("count_job");
-    if (jobCount == 0) {
-        if (price !== undefined) {
-            var formatted_total_price = price.toLocaleString("vi-VN");
-            $("#price").val(formatted_total_price);
-        }
-    } else {
-        $("#price").val(0);
-    }
-}
-
-$(document).ready(function() {
-    // $('.career_ids').select2();
-});
 </script>
 <script>
-var currentDate = new Date().toISOString().split('T')[0];
-document.getElementById('deadlineInput').min = currentDate;
+    var currentDate = new Date().toISOString().split('T')[0];
+    document.getElementById('deadlineInput').min = currentDate;
+
 </script>
 
 <script>
-$(document).ready(function() {
-    $('#country').change(function() {
-        var selectedValue = $(this).val();
-        if (selectedValue === 'VN') {
-            $('#provinceDiv').show();
-            $('#internationalDiv').hide();
-        } else if (selectedValue === 'NN') {
-            $('#provinceDiv').hide();
-            $('#internationalDiv').show();
-        }
-    });
-});
-
-$(document).ready(function() {
-    $("form").submit(function(event) {
-        var salaryMin = parseInt($("#salaryMin").val());
-        var salaryMax = parseInt($("#salaryMax").val());
-        if (salaryMax <= salaryMin) {
-            alert("Mức lương tối đa phải lớn hơn mức lương tối thiểu.");
-            event.preventDefault();
-        }
+    $(document).ready(function() {
+        $('#country').change(function() {
+            var selectedValue = $(this).val();
+            if (selectedValue === 'VN') {
+                $('#provinceDiv').show();
+                $('#internationalDiv').hide();
+            } else if (selectedValue === 'NN') {
+                $('#provinceDiv').hide();
+                $('#internationalDiv').show();
+            }
+        });
     });
 
-});
+    $(document).ready(function() {
+        $("form").submit(function(event) {
+            var salaryMin = parseInt($("#salaryMin").val());
+            var salaryMax = parseInt($("#salaryMax").val());
+            if (salaryMax <= salaryMin) {
+                alert("Mức lương tối đa phải lớn hơn mức lương tối thiểu.");
+                event.preventDefault();
+            }
+        });
+
+    });
+
 </script>
 @endsection
