@@ -17,8 +17,7 @@
                             <h4></h4>
                         </div>
                         <div class="widget-content">
-                            <form action="{{ route('employee.job.update', $job->id) }}" method="post"
-                                class="default-form">
+                            <form action="{{ route('employee.job.update', $job->id) }}" method="post" class="default-form">
                                 @if (session('error'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ session('error') }}
@@ -36,11 +35,9 @@
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Tên công việc</label>
                                         @if ($job->status == 0)
-                                        <input type="text" name="name" value="{{ $job->name }}" id="nameInput"
-                                            placeholder="Tên công việc">
+                                        <input type="text" name="name" value="{{ $job->name }}" id="nameInput" placeholder="Tên công việc">
                                         @elseif ($job->status == 1)
-                                        <input type="text" name="name" value="{{ $job->name }}" id="nameInput"
-                                            placeholder="Tên công việc" readonly>
+                                        <input type="text" name="name" value="{{ $job->name }}" id="nameInput" placeholder="Tên công việc" readonly>
                                         @endif
 
                                         @if ($errors->any())
@@ -53,8 +50,7 @@
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Ngành Nghề</label>
                                         @if ($job->status == 0)
-                                        <select name="career_ids[]" class="chosen-select js-example-basic-multiple"
-                                            multiple="multiple">
+                                        <select name="career_ids[]" class="chosen-select js-example-basic-multiple" multiple="multiple">
                                             @foreach ($param['careers'] as $career)
                                             @php
                                             $selected = $careerjobs->contains($career->id)
@@ -115,8 +111,7 @@
                                         @if ($job->status == 0)
                                         <input type="date" value="{{ $job->deadline }}" name="deadline" placeholder="">
                                         @elseif ($job->status == 1)
-                                        <input type="date" value="{{ $job->deadline }}" name="deadline" placeholder=""
-                                            readonly>
+                                        <input type="date" value="{{ $job->deadline }}" name="deadline" placeholder="" readonly>
                                         @endif
 
                                         @if ($errors->any())
@@ -175,24 +170,20 @@
                                 @if ($job->status == 0)
                                 <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                     <label>Mức lương tối thiểu </label>
-                                    <input type="number" name="salaryMin" id="salaryMin"
-                                        value="{{ $job->salaryMin }}" />
+                                    <input type="number" name="salaryMin" id="salaryMin" value="{{ $job->salaryMin }}" />
                                 </div>
                                 <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                     <label>Mưc lương tối đa </label>
-                                    <input type="number" name="salaryMax" id="salaryMax"
-                                        value="{{ $job->salaryMax }}" />
+                                    <input type="number" name="salaryMax" id="salaryMax" value="{{ $job->salaryMax }}" />
                                 </div>
                                 @elseif($job->status == 1)
                                 <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                     <label>Mức lương tối thiểu </label>
-                                    <input type="number" name="salaryMin" id="salaryMin" value="{{ $job->salaryMin }}"
-                                        readonly />
+                                    <input type="number" name="salaryMin" id="salaryMin" value="{{ $job->salaryMin }}" readonly />
                                 </div>
                                 <div class="form-group col-lg-6 col-md-12" style="margin-bottom:3%!important">
                                     <label>Mưc lương tối đa </label>
-                                    <input type="number" name="salaryMax" id="salaryMax" value="{{ $job->salaryMax }}"
-                                        readonly />
+                                    <input type="number" name="salaryMax" id="salaryMax" value="{{ $job->salaryMax }}" readonly />
                                 </div>
                                 @endif
 
@@ -221,11 +212,9 @@
                                 <div class="form-group col-lg-6 col-md-12">
                                     <label>Nơi làm việc</label>
                                     @if ($job->status == 0)
-                                    <input type="text" value="{{ $job->work_address }}" name="work_address"
-                                        id="nameInput" placeholder="Nơi làm việc...">
+                                    <input type="text" value="{{ $job->work_address }}" name="work_address" id="nameInput" placeholder="Nơi làm việc...">
                                     @elseif ($job->status == 1)
-                                    <input type="text" value="{{ $job->work_address }}" name="work_address"
-                                        id="nameInput" placeholder="Nơi làm việc..." readonly>
+                                    <input type="text" value="{{ $job->work_address }}" name="work_address" id="nameInput" placeholder="Nơi làm việc..." readonly>
                                     @endif
                                     @if ($errors->any())
                                     <p style="color:red">
@@ -284,8 +273,7 @@
                                 <!-- About Company -->
                                 <div class="form-group col-lg-12 col-md-12">
                                     <label>Mô tả công việc</label>
-                                    <textarea name="description" id="description"
-                                        placeholder="Mô tả...">{{ $job->description }}</textarea>
+                                    <textarea name="description" id="description1" placeholder="Mô tả...">{{ $job->description }}</textarea>
                                     @if ($errors->any())
                                     <p style="color:red">
                                         {{ $errors->first('description') }}</p>
@@ -295,8 +283,7 @@
                                 <!-- About Company -->
                                 <div class="form-group col-lg-12 col-md-12">
                                     <label>Yêu cầu công việc</label>
-                                    <textarea name="requirements" id="requirements"
-                                        placeholder="Yêu cầu...">{{ $job->requirements }}</textarea>
+                                    <textarea name="requirements" id="requirements1" placeholder="Yêu cầu...">{{ $job->requirements }}</textarea>
                                     @if ($errors->any())
                                     <p style="color:red">
                                         {{ $errors->first('requirements') }}</p>
@@ -357,8 +344,7 @@
                                                     </div> -->
                                         <div class="form-group col-lg-12 col-md-12">
                                             <label>Loại tin đăng</label>
-                                            <select id="package_tye" name="jobpackage_id"
-                                                onchange="handle_price_package()" style="pointer-events: none;">
+                                            <select id="package_tye" name="jobpackage_id" onchange="handle_price_package()" style="pointer-events: none;">
                                                 @foreach ($param['job_packages'] as $job_package)
                                                 <option data-price="{{ $job_package->price }}" @selected($job->
                                                     jobpackage_id == $job_package->id)
@@ -374,38 +360,30 @@
 
 
                                         <div class="form-group col-lg-3 col-md-12">
-                                                        <label>Ngày bắt đầu</label>
-                                                        @if ($job->status == 0)
-                                                            <input type="date" value="{{ $job->start_day }}"
-                                                                name="start_day" placeholder=""
-                                                                onchange="calculateDays()">
-                                                        @elseif ($job->status == 1)
-                                                            <input type="date" value="{{ $job->start_day }}"
-                                                                name="start_day" placeholder=""
-                                                                onchange="calculateDays()" readonly>
-                                                        @endif
-                                                        @if ($errors->any())
-                                                            <p style="color:red">
-                                                                {{ $errors->first('start_day') }}</p>
-                                                        @endif
-                                                    </div>
+                                            <label>Ngày bắt đầu</label>
+                                            @if ($job->status == 0)
+                                            <input type="date" value="{{ $job->start_day }}" name="start_day" placeholder="" onchange="calculateDays()">
+                                            @elseif ($job->status == 1)
+                                            <input type="date" value="{{ $job->start_day }}" name="start_day" placeholder="" onchange="calculateDays()" readonly>
+                                            @endif
+                                            @if ($errors->any())
+                                            <p style="color:red">
+                                                {{ $errors->first('start_day') }}</p>
+                                            @endif
+                                        </div>
 
-                                                    <div class="form-group col-lg-3 col-md-12">
-                                                        <label>Ngày hết hạn</label>
-                                                        @if ($job->status == 0)
-                                                            <input type="date" name="end_day"
-                                                                value="{{ $job->end_day }}" placeholder=""
-                                                                onchange="calculateDays()">
-                                                        @elseif ($job->status == 1)
-                                                            <input type="date" name="end_day"
-                                                                value="{{ $job->end_day }}" placeholder=""
-                                                                onchange="calculateDays()" readonly>
-                                                        @endif
-                                                        @if ($errors->any())
-                                                            <p style="color:red">
-                                                                {{ $errors->first('end_day') }}</p>
-                                                        @endif
-                                                    </div>
+                                        <div class="form-group col-lg-3 col-md-12">
+                                            <label>Ngày hết hạn</label>
+                                            @if ($job->status == 0)
+                                            <input type="date" name="end_day" value="{{ $job->end_day }}" placeholder="" onchange="calculateDays()">
+                                            @elseif ($job->status == 1)
+                                            <input type="date" name="end_day" value="{{ $job->end_day }}" placeholder="" onchange="calculateDays()" readonly>
+                                            @endif
+                                            @if ($errors->any())
+                                            <p style="color:red">
+                                                {{ $errors->first('end_day') }}</p>
+                                            @endif
+                                        </div>
                                         <!-- <div class="form-group col-lg-3 col-md-12">
                                             <label>Ngày bắt đầu</label>
                                             <input type="date" value="{{ $job->start_day }}" name="start_day"
@@ -430,11 +408,9 @@
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Số ngày :</label>
                                             @if ($job->status == 0)
-                                            <input type="number" value="{{ $job->number_day }}" name="number_day"
-                                                class="number_day" id="nameInput" placeholder="Số ngày...">
+                                            <input type="number" value="{{ $job->number_day }}" name="number_day" class="number_day" id="nameInput" placeholder="Số ngày...">
                                             @elseif($job->status == 1)
-                                            <input type="number" value="{{ $job->number_day }}" name="number_day"
-                                                class="number_day" id="nameInput" placeholder="Số ngày..." readonly>
+                                            <input type="number" value="{{ $job->number_day }}" name="number_day" class="number_day" id="nameInput" placeholder="Số ngày..." readonly>
                                             @endif
                                             @if ($errors->any())
                                             <p style="color:red">
@@ -446,8 +422,7 @@
 
                                         <div class="form-group col-lg-6 col-md-12">
                                             <label>Tổng thanh toán cho tin đăng (P) :</label>
-                                            <input id="price" type="number" value="{{ $job->price }}" name="price"
-                                                id="nameInput" placeholder="Giá..." readonly>
+                                            <input id="price" type="number" value="{{ $job->price }}" name="price" id="nameInput" placeholder="Giá..." readonly>
                                             @if ($errors->any())
                                             <p style="color:red">
                                                 {{ $errors->first('price') }}</p>
@@ -459,9 +434,7 @@
                                     <!-- Input -->
                                     <div class="form-group col-lg-12 col-md-12 text-right">
                                         <button class="theme-btn btn-style-one">Cập Nhật</button>
-                                        <a style="background-color: red !important;"
-                                            href="{{ route('employee.job.index') }}"
-                                            class="theme-btn btn-style-one danger">Trở về</a>
+                                        <a style="background-color: red !important;" href="{{ route('employee.job.index') }}" class="theme-btn btn-style-one danger">Trở về</a>
                                     </div>
 
                                 </div>
@@ -478,60 +451,140 @@
     </div>
 </section>
 <script>
-//  xủ lý tính số ngày
-function calculateDays() {
-    var startDayInput = document.querySelector('input[name="start_day"]');
-    var endDayInput = document.querySelector('input[name="end_day"]');
-    var numberDayInput = document.querySelector('input[name="number_day"]');
+    document.addEventListener('DOMContentLoaded', function() {
+        var allowedFeatures = @json($param['ckeditorFeatures']);
 
-    var startDay = new Date(startDayInput.value);
-    var endDay = new Date(endDayInput.value);
+        var allToolbarGroups = [{
+                name: 'clipboard'
+                , groups: ['clipboard', 'undo']
+            }
+            , {
+                name: 'editing'
+                , groups: ['find', 'selection', 'spellchecker']
+            }
+            , {
+                name: 'links'
+            }
+            , {
+                name: 'insert'
+            }
+            , {
+                name: 'forms'
+            }
+            , {
+                name: 'tools'
+            }
+            , {
+                name: 'document'
+                , groups: ['mode', 'document', 'doctools']
+            }
+            , {
+                name: 'others'
+            }
+            , {
+                name: 'basicstyles'
+                , groups: ['basicstyles', 'cleanup']
+            }
+            , {
+                name: 'paragraph'
+                , groups: ['list', 'indent', 'blocks', 'align', 'bidi']
+            }
+            , {
+                name: 'styles'
+            }
+            , {
+                name: 'colors'
+            }
+            , {
+                name: 'about'
+            }
+        ];
+        var toolbarGroupsConfig = [];
 
-    var timeDiff = endDay - startDay;
-    var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        allToolbarGroups.forEach(function(group) {
+            if (group.groups) {
+                var filteredGroups = group.groups.filter(function(subGroup) {
+                    return allowedFeatures[subGroup] !== undefined;
+                });
 
-    if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <= 60) {
-        numberDayInput.value = dayDiff;
-    } else {
-        alert("Số ngày không được vượt quá 60");
-        endDayInput.value = "";
-        numberDayInput.value = "";
+                if (filteredGroups.length > 0) {
+                    toolbarGroupsConfig.push({
+                        name: group.name
+                        , groups: filteredGroups
+                    });
+                }
+            } else {
+                if (allowedFeatures[group.name]) {
+                    toolbarGroupsConfig.push(group);
+                }
+            }
+        });
+        // Khởi tạo CKEditor cho nhiều textarea
+        ['description1', 'requirements1'].forEach(function(id) {
+            CKEDITOR.replace(id, {
+                toolbarGroups: toolbarGroupsConfig
+                , removeButtons: 'Source,Save,NewPage,Preview,Print,Templates'
+            });
+        });
+    });
+
+</script>
+<script>
+    //  xủ lý tính số ngày
+    function calculateDays() {
+        var startDayInput = document.querySelector('input[name="start_day"]');
+        var endDayInput = document.querySelector('input[name="end_day"]');
+        var numberDayInput = document.querySelector('input[name="number_day"]');
+
+        var startDay = new Date(startDayInput.value);
+        var endDay = new Date(endDayInput.value);
+
+        var timeDiff = endDay - startDay;
+        var dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+        if (!isNaN(dayDiff) && dayDiff >= 0 && dayDiff <= 60) {
+            numberDayInput.value = dayDiff;
+        } else {
+            alert("Số ngày không được vượt quá 60");
+            endDayInput.value = "";
+            numberDayInput.value = "";
+        }
+
+        // validate
+
+        var startDate = new Date(document.querySelector('input[name="start_day"]').value);
+        var endDate = new Date(document.querySelector('input[name="end_day"]').value);
+
+        if (endDate < startDate) {
+            // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
+            alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
+            // Xóa giá trị ngày hết hạn
+            document.querySelector('input[name="end_day"]').value = "";
+        }
+
+        handle_price_package();
     }
 
-    // validate
-
-    var startDate = new Date(document.querySelector('input[name="start_day"]').value);
-    var endDate = new Date(document.querySelector('input[name="end_day"]').value);
-
-    if (endDate < startDate) {
-        // Nếu ngày hết hạn nhỏ hơn ngày bắt đầu, hiển thị thông báo lỗi
-        alert("Ngày hết hạn phải lớn hơn hoặc bằng ngày bắt đầu");
-        // Xóa giá trị ngày hết hạn
-        document.querySelector('input[name="end_day"]').value = "";
+    // hàm xử lý tính giá tiền
+    function handle_price_package() {
+        var price = $("#package_tye").find("option:selected").data("price");
+        var number_day = $(".number_day").val();
+        // Kiểm tra nếu cả hai giá trị đều có thì mới tính toán tổng giá trị
+        if (price !== undefined && number_day !== "") {
+            var total_price = price * number_day;
+            // Hiển thị tổng giá trị trong ô input
+            $("#price").val(total_price);
+        }
     }
 
-    handle_price_package();
-}
 
-// hàm xử lý tính giá tiền
-function handle_price_package() {
-    var price = $("#package_tye").find("option:selected").data("price");
-    var number_day = $(".number_day").val();
-    // Kiểm tra nếu cả hai giá trị đều có thì mới tính toán tổng giá trị
-    if (price !== undefined && number_day !== "") {
-        var total_price = price * number_day;
-        // Hiển thị tổng giá trị trong ô input
-        $("#price").val(total_price);
-    }
-}
+    // Gọi hàm calculateDays() lần đầu khi trang đã tải xong để tính toán số ngày ban đầu.
+    calculateDays();
 
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2();
+    });
 
-// Gọi hàm calculateDays() lần đầu khi trang đã tải xong để tính toán số ngày ban đầu.
-calculateDays();
-
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-});
 </script>
 <!-- End Dashboard -->
 @endsection

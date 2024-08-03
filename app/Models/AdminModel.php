@@ -147,6 +147,15 @@ class AdminModel extends Model
         }
     }
 
+    public function getVerifyFmAttribute() {
+        switch ($this->verify) {
+            case 0:
+                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">Không xác nhận</span>';
+            case 1:
+                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">xác nhận</span>';
+        }
+    }
+
     public function getAllowedFmAttribute() {
         switch ($this->is_allowed_abroad) {
             case 0:

@@ -3,6 +3,7 @@
 namespace Modules\AdminTaxonomy\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\AutoPostJobPackage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,17 +22,17 @@ class AdminTaxonomyController extends Controller
     public function index(Request $request)
     {
         $type = $request->type;
-        $items = $this->model::getItems($request,null,$type);
+        $items = $this->model::getItems($request, null, $type);
         $params = [
             'route_prefix'  => $this->route_prefix,
             'model'         => $this->model,
             'items'         => $items
         ];
         // dd($items);
-        if ($type && view()->exists($this->view_path.'types.'.$type.'.index')) {
-            return view($this->view_path.'types.'.$type.'.index', $params);
+        if ($type && view()->exists($this->view_path . 'types.' . $type . '.index')) {
+            return view($this->view_path . 'types.' . $type . '.index', $params);
         }
-        return view($this->view_path.'index', $params);
+        return view($this->view_path . 'index', $params);
     }
 
     /**
@@ -45,10 +46,10 @@ class AdminTaxonomyController extends Controller
             'model'         => $this->model,
             'type'         => $request->type,
         ];
-        if ($type && view()->exists($this->view_path.'types.'.$type.'.create')) {
-            return view($this->view_path.'types.'.$type.'.create', $params);
+        if ($type && view()->exists($this->view_path . 'types.' . $type . '.create')) {
+            return view($this->view_path . 'types.' . $type . '.create', $params);
         }
-        return view($this->view_path.'create', $params);
+        return view($this->view_path . 'create', $params);
     }
 
     /**
@@ -66,7 +67,7 @@ class AdminTaxonomyController extends Controller
             return redirect()->back()->with('error', __('sys.item_not_found'));
         }
     }
-    
+
 
     /**
      * Show the specified resource.
@@ -75,19 +76,19 @@ class AdminTaxonomyController extends Controller
     {
         $type = $request->type;
         try {
-            $item = $this->model::findItem($id,$type);
+            $item = $this->model::findItem($id, $type);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
                 'item' => $item
             ];
-            if ($type && view()->exists($this->view_path.'types.'.$type.'.show')) {
-                return view($this->view_path.'types.'.$type.'.show', $params);
+            if ($type && view()->exists($this->view_path . 'types.' . $type . '.show')) {
+                return view($this->view_path . 'types.' . $type . '.show', $params);
             }
-            return view($this->view_path.'show', $params);
+            return view($this->view_path . 'show', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
+            return redirect()->route($this->route_prefix . 'index')->with('error', __('sys.item_not_found'));
         }
     }
 
@@ -98,19 +99,34 @@ class AdminTaxonomyController extends Controller
     {
         $type = $request->type;
         try {
-            $item = $this->model::findItem($id,$type);
+            $item = $this->model::findItem($id, $type);
+          
+            if ($type === "Account" && isset($item->ckeditor_features)) {
+            $decodedFeatures = json_decode($item->ckeditor_features, true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $item->ckeditor_features = $decodedFeatures;
+            } else {
+                Log::error('JSON decode error in ckeditor_features: ' . json_last_error_msg());
+            }
+        }
+            $ckeditor_features = $item->ckeditor_features ?? [];
+            $selectAllChecked = !empty(array_filter($ckeditor_features)) ? 'checked' : '';
+            // dd($ckeditor_features);
             $params = [
                 'route_prefix'  => $this->route_prefix,
                 'model'         => $this->model,
-                'item' => $item
+                'item' => $item,
+                'ckeditor_features' => $ckeditor_features, 
+                'selectAllChecked' => $selectAllChecked,
+
             ];
-            if ($type && view()->exists($this->view_path.'types.'.$type.'.edit')) {
-                return view($this->view_path.'types.'.$type.'.edit', $params);
+            if ($type && view()->exists($this->view_path . 'types.' . $type . '.edit')) {
+                return view($this->view_path . 'types.' . $type . '.edit', $params);
             }
-            return view($this->view_path.'edit', $params);
+            return view($this->view_path . 'edit', $params);
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index' )->with('error', __('sys.item_not_found'));
+            return redirect()->route($this->route_prefix . 'index')->with('error', __('sys.item_not_found'));
         }
     }
 
@@ -121,8 +137,20 @@ class AdminTaxonomyController extends Controller
     {
         $type = $request->type;
         try {
-            $this->model::updateItem($id,$request,$type);
-            if ($type = "JobPackage") {
+            $this->model::updateItem($id, $request, $type);
+
+            if ($type === "Account") {
+                $ckeditorFeatures = $request->input('ckeditor_features', []);
+                $ckeditorFeaturesJson = json_encode($ckeditorFeatures);
+                $account = Account::find($id);
+                if ($account) {
+                    $account->ckeditor_features = $ckeditorFeaturesJson;
+                    $account->save();
+                } else {
+                    return redirect()->back()->with('error', __('sys.account_not_found'));
+                }
+            } else if ($type === "JobPackage") {
+                // Cập nhật các thông tin khác liên quan đến AutoPostJobPackage
                 $autoPostJobPackage = AutoPostJobPackage::where("job_package_id", $id)->first();
                 if ($autoPostJobPackage) {
                     $autoPostJobPackage->area = $request->area;
@@ -142,7 +170,8 @@ class AdminTaxonomyController extends Controller
                     }
                 }
             }
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.update_item_success'));
+
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());
             return redirect()->back()->with('error', __('sys.item_not_found'));
@@ -152,6 +181,7 @@ class AdminTaxonomyController extends Controller
         }
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
@@ -160,16 +190,16 @@ class AdminTaxonomyController extends Controller
         try {
             $id = request()->admintaxonomy;
             $type = $request->type;
-            $this->model::deleteItem($id,$type);
-            return redirect()->route($this->route_prefix.'index',['type'=>$type])->with('success', __('sys.destroy_item_success'));
+            $this->model::deleteItem($id, $type);
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
             $type = $request->type;
             Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.item_not_found'));
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.item_not_found'));
         } catch (QueryException $e) {
             $type = $request->type;
             Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->route( $this->route_prefix.'index',['type'=>$type])->with('error', __('sys.destroy_item_error'));
+            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.destroy_item_error'));
         }
     }
 }

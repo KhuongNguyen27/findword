@@ -41,8 +41,15 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $user_employee = UserEmployee::where('user_id', $user->id)->first();
+        $accounts = $user->accounts;
+        $ckeditorFeatures = $accounts->flatMap(function($account) {
+            return json_decode($account->ckeditor_features, true);
+        });
+        $param = [
+            'ckeditorFeatures' => $ckeditorFeatures,
+        ];
         // dd($user_employee);
-        return view('employee::profile.index', compact(['user_employee', 'user']));
+        return view('employee::profile.index', compact(['user_employee', 'user','param']));
     }
 
 

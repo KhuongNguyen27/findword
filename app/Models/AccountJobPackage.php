@@ -12,6 +12,10 @@ class AccountJobPackage extends Model
     protected $fillable = [
         'job_package_id',
         'account_id',
-        'amount'
+        'amount',
+        'ckeditor_features'
+    ];
+    protected $casts = [
+        'ckeditor_features' => 'array',
     ];
 }

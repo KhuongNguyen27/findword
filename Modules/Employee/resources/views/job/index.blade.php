@@ -7,7 +7,18 @@
             <h3>{{ __('workflow_management') }}</h3>
             {{-- <div class="text">Ready to jump back in?</div> --}}
         </div>
-
+<style>
+.custom-table-row {
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Đổ bóng đều 4 phía, đậm hơn */
+    border-radius: 5px;
+}
+.custom-table-row td {
+    padding: 20px;
+    border: none; /* Xóa border mặc định của bảng */
+    vertical-align: middle;
+}
+</style>
         <div class="row">
             <div class="col-lg-12">
                 <!-- Ls widget -->
@@ -67,9 +78,10 @@
 
                                     <tbody>
                                         @foreach ($jobs as $job)
-                                        <tr>
+                                 <tr class="custom-table-row">
+
                                             <td>
-                                                <h6>{{ $job->name }}</h6>
+                                                <h6>{{ Str::limit($job->name, 40, '...') }}</h6>
                                             </td>
                                             <td>
                                                 <ul class="option-list">
@@ -80,24 +92,21 @@
                                             <td>{{ date('d-m-Y', strtotime($job->start_day)) }} -
                                                 {{ date('d-m-Y', strtotime($job->end_day)) }}</td>
                                             @if ($job->status == 1 && strtotime($job->end_day) >= strtotime(date('Y-m-d')))
-                                                <td><span class="label label-success">{{ __('recruitment') }}</span></td>
+                                                <td><span class="badge bg-success">{{ __('recruitment') }}</span></td>
                                             @elseif ($job->status == 1 && strtotime($job->end_day) < strtotime(date('Y-m-d')))
-                                                <td><span class="danger-button">Dừng tuyển</span></td>
+                                                <td><span class="badge bg-danger">Hết hạn tuyển dụng</span></td>
                                             @elseif ($job->status == 0 && strtotime($job->end_day) >= strtotime(date('Y-m-d')))
-                                                <td><span class="label label-warning">{{ __('Đang xét duyệt') }}</span></td>
+                                                <td><span class="badge bg-warning text-dark">{{ __('Đang xét duyệt') }}</span></td>
                                             @elseif ($job->status == 0 && strtotime($job->end_day) < strtotime(date('Y-m-d')))
-                                                <td><span class="danger-button">Dừng tuyển (quá hạn)</span></td>
+                                                <td><span class="badge bg-danger">Hết hạn tuyển dụng</span></td>
                                             @elseif ($job->status == 2)
-                                                <td><span class="label label-danger">{{ __('Đã từ chối') }}</span></td>
+                                                <td><span class="badge bg-danger">{{ __('Đã từ chối') }}</span></td>
                                             @endif
                                                 <td>
                                                     <div class="option-box">
                                                         <ul class="option-list">
                                                             <li><a href="{{ route('employee.job.show', $job->id) }}" data-text="{{ __('show') }}"><span class="la la-eye"></span></a></li>
-                                                            @if($job->status != 1)
-                                                            <!-- Kiểm tra nếu công việc chưa được duyệt -->
-                                                            <li><a href="{{ route('employee.job.edit', $job->id) }}" data-text="{{ __('edit') }}"><span class="la la-pencil"></span></a></li>
-                                                            @endif
+                                                           
                                                             <form action="{{ route('employee.job.delete', $job->id) }}" method="POST" id="deleteForm_{{ $job->id }}" onsubmit="confirmDelete(event, {{ $job->id }})">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -107,7 +116,10 @@
                                                                     </button>
                                                                 </li>
                                                             </form>
-
+                                                            @if($job->status != 1)
+                                                            <!-- Kiểm tra nếu công việc chưa được duyệt -->
+                                                            <li><a href="{{ route('employee.job.edit', $job->id) }}" data-text="{{ __('edit') }}"><span class="la la-pencil"></span></a></li>
+                                                            @endif
                                                             <script>
                                                                 function confirmDelete(event, jobId) {
                                                                     event.preventDefault();

@@ -19,6 +19,9 @@ class AdminUser extends Model
 {
     use HasFactory;
     use UploadFileTrait;
+
+    const ACTIVE = 1;
+
     protected $table = 'users';
     /**
      * The attributes that are mass assignable.

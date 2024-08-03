@@ -55,16 +55,16 @@
                     </thead>
                     <tbody>
                         @if( count( $items ) )
-                        @foreach( $items as $item )
+                        @foreach( $items as $key => $item )
                         <tr>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ $key + 1 }}</td>
                             <td>{{ Str::limit($item->name, 25) }} <br>
                                 {{ $item->email }}
                             <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
                             </td>
                             <td>{{ $item->position }}</td>
                             <td>{!! $item->status_fm !!}</td>
-                            <td>{{ $item->created_at_fm }}</td>
+                            <td>{!! $item->created_at ? date('H:i:s', strtotime($item->created_at)) . '<br>' . date('d-m-Y', strtotime($item->created_at)) : '' !!}</td>
                             <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td> 
                             <td>{!! $item->email_status_fm !!}</td>
 
