@@ -158,12 +158,12 @@
                         <div class="job-detail">
                             <h4 class="job-sub-title">Việc làm liên quan</h4>
                             <div class="row">
-                                @foreach ($job_relate_to as $job)
+                                @foreach ($job_relate_to as $job_relate)
                                     <!-- Job Block -->
-                                    @if($job)
+                                    @if($job_relate)
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         @include('job::includes.components.job-item', [
-                                            'job' => $job,
+                                            'job' => $job_relate,
                                             'job_info' => true,
                                             'job_other_info' => true,
                                             'bookmark' => true,
@@ -188,6 +188,7 @@
                                             href="{{ route('employee.show', $job->userEmployee->slug) }}" target="_blank"
                                             data-toggle="tooltip" title="" data-placement="top"
                                             data-original-title="{{ $job->userEmployee->name }}">
+
                                             <img src="{{ $job->userEmployee->image_fm }}"
                                                 alt="{{ $job->userEmployee->name }}" class="img-responsive">
                                         </a>
