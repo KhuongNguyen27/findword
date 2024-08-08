@@ -17,6 +17,7 @@ class Job extends AdminModel
         'name',
         'user_id',
         'slug',
+        'degree_id',
         'description',
         'sort_description',
         'image',
@@ -45,7 +46,21 @@ class Job extends AdminModel
         'top_position',
         'approved_at',
     ];
-
+    public function getGenderNameAttribute()
+    {
+        $genders = [
+            '' => 'Không yêu cầu',
+            '1' => 'Nam',
+            '2' => 'Nữ',
+        ];
+    
+        return $genders[$this->gender] ?? 'Không xác định';
+    }
+        
+        public function rank()
+    {
+        return $this->belongsTo(Rank::class, 'rank_id');
+    }
     public static function overrideSaveItem($data,$table = ''){
         $model = self::class;
         $item = $model::create($data);

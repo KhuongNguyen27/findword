@@ -269,7 +269,7 @@
                                             </div>
                                             <div class="box-general-group-info">
                                                 <div class="box-general-group-info-title">Cấp bậc</div>
-                                                <div class="box-general-group-info-value">{{ $job->level->name }}</div>
+                                                <div class="box-general-group-info-value">{{ $job->rank->name }}</div>
                                             </div>
                                         </div>
                                     @endif
@@ -335,7 +335,7 @@
                                         </div>
                                         <div class="box-general-group-info">
                                             <div class="box-general-group-info-title">Giới tính</div>
-                                            <div class="box-general-group-info-value">Không yêu cầu</div>
+                                            <div class="box-general-group-info-value">{{ $job->gender_name }}</div>
                                         </div>
                                     </div>
                                     @if ($job->province)

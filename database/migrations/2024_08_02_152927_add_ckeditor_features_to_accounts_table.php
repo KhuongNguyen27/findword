@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->json('ckeditor_features')->nullable(); // Thêm cột 'ckeditor_features' sau cột 'amount'
+            $table->json('ckeditor_features')->nullable();
         });
     }
     

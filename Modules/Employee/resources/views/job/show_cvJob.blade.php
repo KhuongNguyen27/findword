@@ -56,7 +56,7 @@
                                                                 <div class="option-box">
                                                                     <ul class="option-list">
                                                                         <li>
-                                                                            <a target="_blank" href="{{ route('employee.cv.show', $cv_aplly->id) }}"
+                                                                            <a target="_blank" href="{{ route('employee.cv.showCv', $cv_aplly->cv->id) }}"
                                                                                 data-text="Xem hồ sơ">
                                                                                 <span class="la la-eye"></span>
                                                                             </a>

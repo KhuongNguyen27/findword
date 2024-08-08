@@ -63,6 +63,8 @@ class EmployeeController extends Controller
     //done
     public function checkContactInfo(Request $request){
         try {
+            // dd(123);
+
             $check = $request->input('check');
             $cvId = $request->input('cvId');
             if(!empty($check) && !empty($cvId)){
@@ -158,80 +160,7 @@ class EmployeeController extends Controller
         }
     }
 
-    // public function getContactInfo(Request $request)
-    // {
-    //     DB::beginTransaction();
-    //     try {
-    //         // Lấy thông tin từ request
-    //         $employeeId = $request->input('employee_id');
-    //         $staffId = $request->input('staff_id');
-    //         $price = $request->input('amount');
-    //         $cvId = $request->input('cv_id'); // Lấy id của CV từ request
     
-    //         // Kiểm tra đầu vào
-    //         if (empty($employeeId) || empty($staffId) || empty($price) || empty($cvId)) {
-    //             return response()->json([
-    //                 'success' => false,
-    //                 'message' => "Dữ liệu đầu vào không hợp lệ",
-    //             ]);
-    //         }
-    
-    //         // Xử lý trừ tiền và ghi log
-    //         $employee = User::findOrFail($employeeId);
-    //         if ($employee->points >= $price) {
-    //             $employee->points -= $price;
-    //             $employee->save();
-    
-    //             // Cập nhật bảng employee_cv
-    //             $employeeCv = EmployeeCv::where('user_id', $employeeId)
-    //                                     ->where('cv_id', $cvId)
-    //                                     ->first();
-    
-    //             if ($employeeCv) {
-    //                 $employeeCv->is_checked = 1;
-    //                 $employeeCv->save();
-    //             } else {
-    //                 EmployeeCv::create([
-    //                     'user_id' => $employeeId,
-    //                     'cv_id' => $cvId,
-    //                     'is_read' => 0,
-    //                     'is_checked' => 1,
-    //                     'favorites' => 0,
-    //                 ]);
-    //             }
-    
-    //             DB::commit();
-    
-    //             // Lấy thông tin nhân viên
-    //             $staff = User::findOrFail($staffId);
-    //             $contactInfo = [
-    //                 'id' => $staff->id,
-    //                 'email' => $staff->email,
-    //                 'phone' => $staff->userStaff->phone,
-    //             ];
-    
-    //             return response()->json([
-    //                 'success' => true,
-    //                 'data' => $contactInfo,
-    //             ]);
-    //         }
-    
-    //         return response()->json([
-    //             'success' => false,
-    //             'message' => "Nhà tuyển dụng không đủ điểm thực hiện yêu cầu",
-    //         ]);
-    //     } catch (ModelNotFoundException $e) {
-    //         DB::rollBack();
-    //         Log::error('User not found: ' . $e->getMessage());
-    //         return response()->json(['success' => false, 'message' => 'User not found']);
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
-    //         Log::error('Error processing payment: ' . $e->getMessage());
-    //         return response()->json(['success' => false, 'message' => 'Error processing payment']);
-    //     }
-    // }
-    
-
     
     /**
      * Xử lý thanh toán và trả về mã giao dịch.

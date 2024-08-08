@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
@@ -31,6 +32,9 @@ use App\Http\Controllers\ToolController;
 // })->name('home');
 
 Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/notifications', [NotificationController::class, 'getNotification'])->name('notifications.getNotification');
+Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])->name('notifications.markAllRead');
+
 Route::get('/trang-chu/{job_type?}', [HomeController::class,'homejobs'])->name('jobs.homejobs');
 Route::get('/viec-lam-hap-dan', [HomeController::class,'attractive'])->name('attractive');
 
