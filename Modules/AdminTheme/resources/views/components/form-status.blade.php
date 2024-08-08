@@ -10,7 +10,7 @@
     <option value="{{ $model::ACTIVE }}" @selected($status == $model::ACTIVE)>
         {{ __('sys.active') }}
     </option>
-    @if($_GET['type'] == 'Job')
+    @if(isset($_GET['type']) && $_GET['type'] == 'Job')
         <option value="{{ $model::REJECTED }}" @selected($status == $model::REJECTED)>
             Từ chối tin đăng
         </option>
