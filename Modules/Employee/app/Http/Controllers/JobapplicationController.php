@@ -100,7 +100,7 @@ class JobapplicationController extends Controller
    
     public function show($id)
     {
-        dd(234);
+        
         try {
             $cv_job_apply = UserJobApply::findOrFail($id);
             if (auth()->user()->id == $cv_job_apply->job->user_id) {
