@@ -172,7 +172,7 @@ class AdminPostController extends Controller
         $type = $request->type;
         try {
             $item = $this->model::findItem($id, $type);
-
+// dd($item);
             $params = [
                 'route_prefix' => $this->route_prefix,
                 'model' => $this->model,
@@ -193,40 +193,52 @@ class AdminPostController extends Controller
      */
     public function update(StoreAdminPostRequest $request, $id): RedirectResponse
     {
+        // dd($request->all());
         $type = $request->type;
-
+    
         try {
             $item = $this->model::findItem($id, $type);
             $previousStatus = $item->status;
-
-            // Lưu trạng thái hiện tại
+    
+            // Lấy trạng thái mới từ request, mặc định là trạng thái cũ
             $newStatus = $request->input('status', $previousStatus);
-
-            // Cập nhật các thuộc tính khác
+    
+            // Cập nhật các thuộc tính khác của item
             $this->model::updateItem($id, $request, $type);
-
-            // Nếu trạng thái được thay đổi
+    
+            // Nếu trạng thái thay đổi
             if ($previousStatus != $newStatus) {
                 $item->updateStatus($newStatus);
-
+    
                 $data = [
                     'name' => $item->user->name,
                     'job_title' => $item->name
                 ];
-
-                if ($newStatus == $this->model::ACTIVE) {
+    
+                // Xác định loại thông báo dựa vào trạng thái mới
+                if ($newStatus == 1) { // 1 là trạng thái duyệt
                     $notificationType = 'active-job';
-                } elseif ($newStatus == $this->model::REJECTED) {
+                } elseif ($newStatus == 2) { // 2 là trạng thái từ chối
                     $notificationType = 'rejected-job';
                 } else {
                     return redirect()->route($this->route_prefix . 'index', ['type' => $type])
                         ->with('success', __('sys.update_item_success'));
                 }
-
+    
+                // Tạo thông báo và gửi email
                 Notification::route('mail', $item->user->email)
                     ->notify(new Notifications($notificationType, $data));
+    
+                // Lưu thông báo vào bảng notification
+                \App\Models\Notification::create([
+                    'user_id' => $item->user->id, // ID của nhà tuyển dụng
+                    'type' => 'job', // Loại thông báo
+                    'action' => $newStatus == 1 ? 'approved' : 'rejected', // Hành động
+                    'is_read' => false,
+                    'item_id' => $id, // ID của tin đăng
+                ]);
             }
-
+    
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])
                 ->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
@@ -237,9 +249,6 @@ class AdminPostController extends Controller
             return redirect()->back()->with('error', __('sys.update_item_error'));
         }
     }
-
-
-
     /**
      * Remove the specified resource from storage.
      */

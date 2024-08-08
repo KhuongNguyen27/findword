@@ -135,6 +135,7 @@ class AdminTaxonomyController extends Controller
      */
     public function update(StoreAdminTaxonomyRequest $request, $id): RedirectResponse
     {
+
         $type = $request->type;
         try {
             $this->model::updateItem($id, $request, $type);

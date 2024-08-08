@@ -12,7 +12,7 @@ class EmployeeCv extends Model
     use HasFactory;
     const STATUS_HIRED = 0;
     const STATUS_REJECTED = 1;
-    const STATUS_INVITED_FOR_INTERVIEW = 2;
+    const STATUS_VIEWED = 2;
     /**
      * The attributes that are mass assignable.
      */
@@ -44,7 +44,7 @@ class EmployeeCv extends Model
         $statuses = [
             self::STATUS_HIRED => 'Hired',
             self::STATUS_REJECTED => 'Rejected',
-            self::STATUS_INVITED_FOR_INTERVIEW => 'Invited for Interview',
+            self::STATUS_VIEWED => 'Interview',
         ];
 
         return $statuses[$this->status] ?? 'Unknown';
