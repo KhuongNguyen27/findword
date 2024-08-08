@@ -148,7 +148,7 @@ class JobController extends Controller
     // $model = new Job;
     $user_id = Auth::id();
 
-    $job = Job::where('slug', $slug)->with('userEmployee', 'careers')->firstOrFail();
+    $job = Job::where('slug', $slug)->with( 'careers')->firstOrFail();
     // Tăng số lượt xem của công việc
     $job->views =  $job->views + 1;
     $job->save();
