@@ -86,7 +86,7 @@ class HomeController extends Controller
 		$quantity_company_recruitment = date('d') + 100;
 
 
-		// Biểu đồ 
+		// Biểu đồ
 		// Tăng trưởng cơ hội việc làm
 		$tang_truong_labels = [];
 		$currentDate = new \DateTime();
@@ -159,6 +159,7 @@ class HomeController extends Controller
 	{
 		$query = Job::select('jobs.*')->where('jobs.status', 1);
 		$query->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
+		$query->join('job_province', 'jobs.id', '=', 'job_province.job_id');
 		$query = JobService::searchHome($query, $request);
 		$data = JobService::switchCase($query, $job_type);
 		$query = $data['query'];
