@@ -21,7 +21,7 @@ class JobService
             case 'tat-ca-viec-lam':
                 $title = 'Tất cả việc làm';
 
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
 
@@ -34,14 +34,18 @@ class JobService
                 })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
-            case 'urgent':
 
-                $title = 'Việc làm tuyển gấp';
-                $query->where('job_packages.slug', "tin-gap-vip")
-                    ->orWhere('job_packages.slug', "tin-gap")
-                    ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
-                    ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
-                break;
+                case 'urgent':
+                    $title = 'Việc làm tuyển gấp';
+                    $query->where('jobs.status', 1)
+                        ->where(function ($q) {
+                            $q->where('job_packages.slug', "tin-gap-vip")
+                                ->orWhere('job_packages.slug', "tin-gap");
+                        })
+                        ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                        ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
+                    break;
+
             case 'moi-nhat':
                 $title = 'Việc làm ngoài nước mới nhất';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng
@@ -76,12 +80,15 @@ class JobService
 
     public static function searchHome($query, $request)
     {
+        
         if ($request->name) {
             $query->where('jobs.name', 'LIKE', '%' . $request->name . '%');
         }
+        
         if ($request->province_id) {
             $query->where('job_province.province_id', $request->province_id);
         }
+        
         if ($request->rank_id) {
             $query->where('rank_id', $request->rank_id);
         }

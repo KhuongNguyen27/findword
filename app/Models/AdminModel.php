@@ -141,9 +141,9 @@ class AdminModel extends Model
     public function getEmailStatusFmAttribute() {
         switch ($this->email_status) {
             case 0:
-                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">Chưa xác thực</span>';
+                return '<span class="lable-table bg-warning-subtle text-warning rounded border border-warning-subtle font-text2 fw-bold">Chưa xác Minh</span>';
             case 1:
-                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">Đã Xác Thực</span>';
+                return '<span class="lable-table bg-success-subtle text-success rounded border border-success-subtle font-text2 fw-bold">Đã Xác Minh</span>';
         }
     }
 

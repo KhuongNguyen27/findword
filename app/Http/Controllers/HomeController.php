@@ -19,7 +19,6 @@ class HomeController extends Controller
 	 */
 	public function index(Request $request)
 	{
-
 		// Kiểm tra và cập nhật session truy cập
 		$this->updateAccessTime($request);
 
@@ -28,11 +27,10 @@ class HomeController extends Controller
 			->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
 		$query_vip_jobs =  JobService::searchHome($query_vip_jobs, $request);
-
 		$data_vip_jobs = JobService::switchCase($query_vip_jobs, 'viec-lam-hom-nay');
 		$vip_jobs = $data_vip_jobs['query'];
 		$vip_jobs = $vip_jobs->limit(30)->get()->chunk(15);
-
+		
 		// query: job
 		$query_hot = Job::select('jobs.*')
 			->where('jobs.status', 1)
@@ -43,10 +41,12 @@ class HomeController extends Controller
 		$hot = $data_hot['query'];
 		$hot = $hot->limit(30)->get()->chunk(15);
 
+
 		$query_tuyen_gap = Job::select('jobs.*')
 			->where('jobs.status', 1)
 			->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id');
 		$query_tuyen_gap =  JobService::searchHome($query_tuyen_gap, $request);
+		
 		// viec lam tuyen gap
 		$tuyen_gap = JobService::switchCase($query_tuyen_gap, 'urgent');
 		$tuyen_gap = $tuyen_gap['query'];
