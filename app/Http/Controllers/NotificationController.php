@@ -31,13 +31,14 @@ class NotificationController extends Controller
             $actionMessage = '';
             $title = '';
             $icon = '';
-
+            $url = '#';
             switch ($notification->action) {
                 case 'approved':
                     $actionMessage = "Tin đăng <strong>$jobName</strong> của bạn đã được duyệt.";
                     $title = 'Công việc được duyệt';
                     $icon = 'check_circle';
                     $color = '#28a745';
+                    $url = route('employee.job.index');
                     break;
 
                 case 'rejected':
@@ -45,6 +46,7 @@ class NotificationController extends Controller
                     $title = 'Công việc bị từ chối';
                     $icon = 'cancel';
                     $color = '#dc3545';
+                    $url = route('employee.job.index');
                     break;
 
                 case 'applied':
@@ -52,11 +54,13 @@ class NotificationController extends Controller
                     $cvApply = UserJobApply::find($notification->item_id);
                     $applicantName = $cvApply ? $cvApply->user->name : 'Người nộp đơn không xác định';
                     $jobName = $cvApply ? $cvApply->job->name : 'Công việc không xác định';
+                    $jobId = $cvApply ? $cvApply->job->id : null;
 
                     $actionMessage = "<strong>$applicantName</strong> đã nộp đơn vào công việc <strong>$jobName</strong>";
                     $title = 'Ứng viên nộp đơn';
                     $icon = 'person_add';
                     $color = '#17a2b8';
+                    $url = $jobId ? route('employee.applied', ['id' => $jobId]) : '#';
                     break;
 
 
@@ -67,6 +71,7 @@ class NotificationController extends Controller
                     $title = 'NTD đã xem hồ sơ';
                     $icon = 'visibility';
                     $color = '#ffc107';
+                    $url = route('staff.cv.index');
                     break;
                 case 'hire':
                     $employeeCv = EmployeeCv::where('cv_id', $notification->item_id)->first();
@@ -76,8 +81,9 @@ class NotificationController extends Controller
                     $title = 'Phù hợp';
                     $icon = 'check_circle';
                     $color = '#28a745';
-                    break;
+                    $url = route('staff.job-applied');
 
+                    break;
                 case 'reject':
                     $employeeCv = EmployeeCv::where('cv_id', $notification->item_id)->first();
                     $recruiterName = $employeeCv ? $employeeCv->user->name : 'Nhà tuyển dụng không xác định';
@@ -86,12 +92,14 @@ class NotificationController extends Controller
                     $title = 'Chưa phù hợp';
                     $icon = 'cancel';
                     $color = '#dc3545';
+                    $url = route('staff.job-applied');
                     break;
                 default:
                     $actionMessage = 'Thông báo mới';
                     $title = 'Thông báo';
                     $icon = 'notifications';
                     $color = '#007bff';
+                    $url = '#';
                     break;
             }
 
@@ -101,6 +109,7 @@ class NotificationController extends Controller
                 'icon' => $icon,
                 'color' => $color,
                 'title' => $title,
+                'url' => $url,
                 'type' => $notification->type
             ];
             // dd($data);
@@ -126,40 +135,24 @@ class NotificationController extends Controller
     }
 
 
-    // public function getNotification()
+    // public function markAsRead(Request $request)
     // {
-    //     // Số lượng thông báo hiện tại trong bảng
-    //     $notifications = Notification::where('user_id', Auth::id())->latest()->take(10)->get();
-    //     $data = [];
-    //     $message = 'Tin đăng của bạn đã ';
+    //     // dd(123);
+    //     $notification = Notification::find($request->notification_id);
 
-    //     foreach ($notifications as $notification) {
-    //         //xử lí messages
-    //         $actionMessage = ($notification->action == 'rejected')
-    //             ? $message . "bị từ chối"
-    //             : $message . "thành công";
-
-    //         // Xử lí title và icon
-    //         $type = $notification->type;
-    //         switch ($notification->type) {
-    //             case 'job':
-    //                 $title = "Công việc";
-    //                 $icon = "forum";
-    //                 break;
-    //         }
-    //         $data[] = [
-    //             'message' => $actionMessage,
-    //             'time' => $notification->created_at->diffForHumans(),
-    //             'icon' => $icon,
-    //             'title' => $title,
-    //             'type' => $type
-    //         ];
+    //     if (!$notification) {
+    //         return response()->json(['success' => false, 'message' => 'Thông báo không tồn tại.']);
     //     }
 
-    //     return response()->json([
-    //         'success' => true,
-    //         'data' => $data,
-    //         'count' => $notifications->count()
-    //     ]);
+    //     if ($notification->user_id != Auth::id()) {
+    //         return response()->json(['success' => false, 'message' => 'Thông báo không thuộc về bạn.']);
+    //     }
+
+    //     $notification->is_read = true;
+    //     if ($notification->save()) {
+    //         return response()->json(['success' => true, 'message' => 'Thông báo đã được đánh dấu là đã đọc.']);
+    //     } else {
+    //         return response()->json(['success' => false, 'message' => 'Không thể cập nhật thông báo.']);
+    //     }
     // }
 }
