@@ -21,7 +21,7 @@ class JobService
             case 'tat-ca-viec-lam':
                 $title = 'Tất cả việc làm';
 
-                $query // Sắp xếp theo thời gian duyệt tin
+                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
 
