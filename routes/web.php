@@ -34,6 +34,7 @@ use App\Http\Controllers\ToolController;
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/notifications', [NotificationController::class, 'getNotification'])->name('notifications.getNotification');
 Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllRead'])->name('notifications.markAllRead');
+// Route::post('/notifications/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 Route::get('/trang-chu/{job_type?}', [HomeController::class,'homejobs'])->name('jobs.homejobs');
 Route::get('/viec-lam-hap-dan', [HomeController::class,'attractive'])->name('attractive');

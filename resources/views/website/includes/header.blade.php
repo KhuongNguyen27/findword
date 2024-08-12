@@ -185,6 +185,7 @@ overflow-y: scroll;
 
 
             <!-- Notification -->
+             @if(Auth::user()->type !== "user")
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
             <div class="dropdown nav-item dropdown-large">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
@@ -202,11 +203,11 @@ overflow-y: scroll;
                     </a>
                     <div class="header-notifications-list"> </div>
                     <a href="javascript:;">
-                        <div class="text-center msg-footer">View All</div>
+                        <div class="text-center msg-footer"></div>
                     </a>
                 </div>
             </div>
-
+            @endif
 
             <script>
                 document.getElementById('mark-all-read').addEventListener('click', function() {

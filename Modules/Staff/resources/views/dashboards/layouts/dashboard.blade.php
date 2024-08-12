@@ -124,7 +124,7 @@
                             for (let i = 0; i < response.data.length; i++) {
                                 let notification = response.data[i];
                                 notificationsHtml += `
-                                        <a class="dropdown-item" href="javascript:;">
+                                        <a class="dropdown-item" href="${notification.url}">
                                             <div class="d-flex align-items-center">
                                                 <div class="notify text-primary">
                                                 <span class="material-symbols-outlined" style="color: ${notification.color};">${notification.icon}</span>
