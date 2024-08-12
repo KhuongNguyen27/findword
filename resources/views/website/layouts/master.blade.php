@@ -21,7 +21,36 @@
 
         @yield('header')
     </head>
+<style>
+.msg-info {
+    word-wrap: break-word; /* Tự động ngắt dòng khi từ quá dài */
+    white-space: normal; /* Cho phép nội dung xuống dòng */
+}
+.header-notifications-list .dropdown-item .d-flex {
+    display: flex;
+    align-items: center;
+}
 
+.header-notifications-list .dropdown-item .notify {
+    width: 20px; /* Chiều rộng cố định cho icon để icon không bị thay đổi kích thước */
+    height: 20px; /* Chiều cao cố định cho icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Ngăn icon bị co lại nếu nội dung văn bản quá dài */
+}
+
+.header-notifications-list .dropdown-item .flex-grow-1 {
+    flex-grow: 1;
+    padding-left: 0px; /* Khoảng cách giữa icon và nội dung văn bản */
+}
+
+.header-notifications-list .dropdown-item .msg-info {
+    word-wrap: break-word; /* Đảm bảo văn bản dài sẽ xuống dòng thay vì bị bể layout */
+    margin: 0;
+}
+
+</style>
     <body data-anm=".anm">
         <div class="page-wrapper">
             <!-- Preloader -->
@@ -90,12 +119,12 @@
                                     notificationsHtml += `
                                         <a class="dropdown-item" href="javascript:;">
                                             <div class="d-flex align-items-center">
-                                                <div class="notify text-primary border">
-                                                    <span class="material-symbols-outlined">${notification.icon}</span>
+                                                <div class="notify text-primary">
+                                                <span class="material-symbols-outlined" style="color: ${notification.color};">${notification.icon}</span>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <h6 class="msg-name">${notification.title}<span class="msg-time float-end">${notification.time}</span></h6>
-                                                    <p class="msg-info">${notification.message}</p>
+                                                    <h6 class="msg-name" style="font-weight: bold;">${notification.title}<span class="msg-time float-end">${notification.time}</span></h6>
+                                                    <p class="msg-info" >${notification.message}</p>
                                                 </div>
                                             </div>
                                         </a>

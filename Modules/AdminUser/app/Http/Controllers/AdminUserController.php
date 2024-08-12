@@ -34,18 +34,32 @@ class AdminUserController extends Controller
             ->whereIn('email', $items->pluck('email'))
             ->pluck('status', 'email');
 
-          // Lấy giá trị của cột is_allowed_abroad từ bảng user_employee dựa trên user_id
+        // Lấy giá trị của cột is_allowed_abroad từ bảng user_employee dựa trên user_id
         $userEmployees = DB::table('user_employee')
             ->whereIn('user_id', $items->pluck('id')) // Sử dụng user_id thay vì email
             ->pluck('is_allowed_abroad', 'user_id');
-        
+
+        // Lấy tổng số lượng CV của mỗi user từ bảng user_cv
+        $userCvCounts = DB::table('user_cvs')
+            ->select('user_id', DB::raw('count(*) as total_cv'))
+            ->whereIn('user_id', $items->pluck('id'))
+            ->groupBy('user_id')
+            ->pluck('total_cv', 'user_id');
+
+        // Lấy tổng số lượng công việc đã nộp của mỗi user từ bảng user_job_applies
+        $jobApplicationCounts = DB::table('user_job_applies')
+            ->select('user_id', DB::raw('count(*) as total_jobs_applied'))
+            ->whereIn('user_id', $items->pluck('id'))
+            ->groupBy('user_id')
+            ->pluck('total_jobs_applied', 'user_id');
         // dd ($userEmployees);
         // Thêm giá trị email_status vào mỗi item
         foreach ($items as $item) {
             $item->email_status = $emailStatuses[$item->email] ?? null;
             $item->is_allowed_abroad = $userEmployees[$item->id] ?? null;
+            $item->total_cv = $userCvCounts[$item->id] ?? 0;
+            $item->total_jobs_applied = $jobApplicationCounts[$item->id] ?? 0; 
         }
-
         $params = [
             'route_prefix' => $this->route_prefix,
             'model' => $this->model,
@@ -163,7 +177,7 @@ class AdminUserController extends Controller
     {
         $type = $request->type;
         try {
-            if (!UserAccount::where('user_id',$id)->first() && $request->verify == $this->model::ACTIVE) {
+            if (!UserAccount::where('user_id', $id)->first() && $request->verify == $this->model::ACTIVE) {
                 $register_date = date('Y-m-d H:i:s');
                 $register_date = new \DateTime($register_date);
                 $expiration_date = clone $register_date;
@@ -174,8 +188,8 @@ class AdminUserController extends Controller
                         'account_id' => 1,
                         'duration_id' => 1,
                         'is_current' => 1,
-                        'register_date' => $register_date->format('Y-m-d H:i:s'), 
-                        'expiration_date' => $expiration_date->format('Y-m-d H:i:s'), 
+                        'register_date' => $register_date->format('Y-m-d H:i:s'),
+                        'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
                     ]
                 );
             }
@@ -210,5 +224,4 @@ class AdminUserController extends Controller
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.destroy_item_error'));
         }
     }
-
 }

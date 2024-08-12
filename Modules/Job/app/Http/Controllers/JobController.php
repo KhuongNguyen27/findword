@@ -167,18 +167,33 @@ class JobController extends Controller
     }
 
     $international = Country::where('id', $job->country_id)->first();
+
     $career_id = CareerJob::where('job_id', $job->id)->first();
     $job_relate_to = [];
     if ($career_id) {
         $job_relate_to = $job->getJobforCareerId($career_id->career_id);
     }
+
+
+     // Chuyển đổi $job_relate_to thành Collection nếu cần
+     $job_relate_to = collect($job_relate_to);
+
+     // Lấy các công việc của cùng một công ty
+     $job_employ = Job::where('user_id', $job->user_id)->get();
+ 
+     // Lọc các công việc liên quan không trùng với công việc của cùng một công ty
+     $companyJobIds = $job_employ->pluck('id')->toArray();
+     $filteredRelatedJobs = $job_relate_to->filter(function ($job) use ($companyJobIds) {
+         return $job && !in_array($job->id, $companyJobIds);
+     });
+
     $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
     $job_employ = Job::where('user_id', $job->user_id)->get();
     $moreInformation = $job->more_information ?? null;
     $params = [
         'job' => $job,
         'user_id' => $user_id,
-        'job_relate_to' => $job_relate_to,
+        'job_relate_to' => $filteredRelatedJobs,
         'job_employ' => $job_employ,
         'moreInformation' => $moreInformation,
         'international' => $international,

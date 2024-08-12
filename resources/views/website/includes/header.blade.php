@@ -32,10 +32,10 @@ height: 35px;
 background-color: #ffffff;
 display: flex;
 align-items: center;
-justify-content: center;
+
 color: #212529;
 border-radius: 50%;
-border: 1px solid #dee2e6;
+{{-- border: 1px solid #dee2e6; --}}
 }
 .notify-badge {
 position: absolute;
@@ -185,7 +185,7 @@ overflow-y: scroll;
 
 
             <!-- Notification -->
-            {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
             <div class="dropdown nav-item dropdown-large">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
                     <div class="position-relative">
@@ -205,7 +205,7 @@ overflow-y: scroll;
                         <div class="text-center msg-footer">View All</div>
                     </a>
                 </div>
-            </div> --}}
+            </div>
 
 
             <script>

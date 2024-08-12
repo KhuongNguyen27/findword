@@ -52,14 +52,12 @@
                             <tr>
                                 <th>STT</th>
                                 <th>{{ __('name') }}</th>
-                                @if (request()->type == 'employee' )
-                                <th>{{ __('position') }}</th>
-                                @endif
+                                
                                 <th>{{ __('status') }}</th>
-                                <th>{{ __('verify') }}</th>
+                                <th>{{ __('Xác thực') }}</th>
                                 <th>{{ __('created_at') }}</th>
                                 <th>{{ __('las_login') }}</th>
-                                <th>{{ __('Xác thực') }}</th>
+                                <th>{{ __('Xác minh') }}</th>
                                 <th>Quyền NN</th>
                                 <th>{{ __('action') }}</th>
                             </tr>
@@ -72,11 +70,12 @@
                                         <td>{{ $item->employee ? Str::limit($item->employee->name, 40) : '' }}
                                             <p class="mb-0 product-category">SĐT: {{ $item->employee->phone ?? '' }}</p>
                                             Điểm: {{ number_format($item->points, 0, ',', '.') }}P
-                                        </td>
-                                        @if (request()->type == 'employee' )
-                                            <td>{{ $item->employee->position ?? 0 }}</td>
-                                        @endif
+                                            <br>
+                                            @if (request()->type == 'employee' )
+                                                Độ ưu tiên: {{ $item->employee->position ?? 0 }}
+                                            @endif
                                         
+                                        </td>
                                         <td>{!! $item->status_fm !!}</td>
                                         {{-- <td>{!! $item->verify_fm !!}</td> --}}
                                         <td>{{ $item->verify == 0 ? __('inconfirm') : __('confirm') }}</td>

@@ -44,12 +44,11 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>Thông tin</th>
-                            <!-- <th>{{__('email')}}</th> -->
-                            <th>{{ __('position') }}</th>
-                            <th>{{ __('status') }}</th>
+                            <th>{{ __('việc đã nộp') }}</th>
+                            <th>{{ __('Số lượng CV') }}</th>
                             <th>{{ __('created_at') }}</th>
                             <th>{{ __('las_login') }}</th>
-                            <th>{{ __('Xác thực') }}</th>
+                            <th>{{ __('Xác minh') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
@@ -62,8 +61,8 @@
                                 {{ $item->email }}
                             <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
                             </td>
-                            <td>{{ $item->position }}</td>
-                            <td>{!! $item->status_fm !!}</td>
+                            <td>{{ $item->total_jobs_applied }}</td>
+                            <td>{{ $item->total_cv }}</td> 
                             <td>{!! $item->created_at ? date('H:i:s', strtotime($item->created_at)) . '<br>' . date('d-m-Y', strtotime($item->created_at)) : '' !!}</td>
                             <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td> 
                             <td>{!! $item->email_status_fm !!}</td>

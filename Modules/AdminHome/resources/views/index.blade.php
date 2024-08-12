@@ -100,11 +100,13 @@
             <div class="card-header row">
                 <div class="col-md-4">
                     <label for="">Ngày bắt đầu</label>
+                    <input type="time" id="input_start_time" value="00:00" onchange="setting_date()">
                     <input type="date" id="input_start_date" value="{{$firstDayOfMonth}}" onchange="setting_date()">
                 </div>
                 <div class="col-md-4">
                     <label for="">Ngày kết thúc</label>
-                    <input type="date" id="input_end_date" value="{{date('Y-m-d')}}" onchange="setting_date()">
+                     <input type="time" id="input_end_time" value="23:59" onchange="setting_date()">
+                     <input type="date" id="input_end_date" value="{{date('Y-m-d')}}" onchange="setting_date()">
                 </div>
                 <div class="col-md-4">
                     <label for="">Biểu đồ</label>
@@ -310,7 +312,9 @@ function setting_date() {
     }
     var data = {
         startDate: $('#input_start_date').val(),
+        {{-- startTime: $('#input_start_time').val(), --}}
         endDate: $('#input_end_date').val(),
+        {{-- endTime: $('#input_end_time').val(), --}}
         dataChart: $('#dataChart').val(),
     }
     $.ajax({
