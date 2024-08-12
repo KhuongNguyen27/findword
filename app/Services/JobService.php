@@ -34,6 +34,7 @@ class JobService
                 })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
+
                 case 'urgent':
                     $title = 'Việc làm tuyển gấp';
                     $query->where('jobs.status', 1)
@@ -44,16 +45,17 @@ class JobService
                         ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                         ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                     break;
+
             case 'moi-nhat':
                 $title = 'Việc làm ngoài nước mới nhất';
-                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Việc làm Mới nhất	Toàn bộ các tin đăng
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
             case 'hap-dan':
                 $title = 'Việc làm ngoài nước hấp dẫn';
-                //Việc làm Mới nhất	Toàn bộ các tin đăng	
+                //Việc làm Mới nhất	Toàn bộ các tin đăng
                 //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
                 $query->where('jobs.salaryMax', '>=', 8000000)
                     ->orWhere('jobs.salaryMax', '')
@@ -84,7 +86,7 @@ class JobService
         }
         
         if ($request->province_id) {
-            $query->where('province_id', $request->province_id);
+            $query->where('job_province.province_id', $request->province_id);
         }
         
         if ($request->rank_id) {
