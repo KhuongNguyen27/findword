@@ -15,20 +15,15 @@
 @php
 $groups = [
     'clipboard' => ['Undo', 'Redo'],
-    'editing' => ['Find', 'Selection', 'SpellChecker'],
+    'editing' => ['FindAndReplace', 'SelectAll'],
     'links' => ['Link', 'Unlink'],
-    'insert' => ['Image', 'Table', 'HorizontalRule'],
-    'forms' => [],
-    'tools' => ['ShowBlocks', 'Maximize'],
-    'document' => ['Mode', 'Document', 'Doctools'],
-    'others' => [], 
-    'basicstyles' =>  [ 'basicstyles', 'cleanup' ],
-    'paragraph' => [ 'list', 'indent', 'blocks', 'align', 'bidi' ],
-    'styles' => ['Format', 'Font', 'FontSize'],
-    'colors' => ['TextColor', 'BGColor'],
-    'about' => []
+    'insert' => ['ImageUpload', 'InsertTable', 'MediaEmbed', 'HorizontalLine'],
+    'basicstyles' =>  ['Bold', 'Italic', 'Underline', 'Strikethrough', 'BlockQuote'],
+    'paragraph' => ['BulletedList', 'NumberedList', 'Outdent', 'Indent', 'Alignment'],
+    'styles' => ['FontSize', 'FontFamily', 'Highlight', 'FontColor', 'FontBackgroundColor'],
 ];
 @endphp
+
 
 
 <div class="card">
