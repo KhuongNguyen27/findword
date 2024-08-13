@@ -127,26 +127,42 @@
     </script>
 
     @yield('footer')
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script> -->
 
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    <!-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> -->
-    <script>
-        if ($('#description').length) {
-            CKEDITOR.replace('description');
-        }
-        if ($('#requirements').length) {
-            CKEDITOR.replace('requirements');
-        }
-        if ($('#about').length) {
-            CKEDITOR.replace('about');
-        }
-        if ($('#more_information').length) {
-            CKEDITOR.replace('more_information');
-        }
 
-    </script>
+   {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+<script>
+    if (document.querySelector('#description1')) {
+        ClassicEditor.create(document.querySelector('#description1'))
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    if (document.querySelector('#requirements1')) {
+        ClassicEditor.create(document.querySelector('#requirements1'))
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    if (document.querySelector('#about')) {
+        ClassicEditor.create(document.querySelector('#about'))
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    if (document.querySelector('#more_information')) {
+        ClassicEditor.create(document.querySelector('#more_information'))
+            .catch(error => {
+                console.error(error);
+            });
+    }
+</script> --}}
+
 </body>
 
 </html>

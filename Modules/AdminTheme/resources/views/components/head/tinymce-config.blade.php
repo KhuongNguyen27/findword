@@ -17,17 +17,28 @@
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
       });
     </script> -->
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    <script>
-      if ($('#description').length) {
-        CKEDITOR.replace('description');
+   <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+<script>
+    // Tạo một hàm để khởi tạo CKEditor cho các phần tử nhất định
+    function initializeCKEditor(elementId) {
+        ClassicEditor
+            .create(document.querySelector(`#${elementId}`))
+            .catch(error => {
+                console.error(error);
+            });
     }
-    if ($('#requirements').length) {
-        CKEDITOR.replace('requirements');
+
+    // Khởi tạo CKEditor cho các trường cụ thể
+    if (document.querySelector('#description')) {
+        initializeCKEditor('description');
     }
-    if ($('#more_information').length) {
-        CKEDITOR.replace('more_information');
+    if (document.querySelector('#requirements')) {
+        initializeCKEditor('requirements');
     }
-    </script>
+    if (document.querySelector('#more_information')) {
+        initializeCKEditor('more_information');
+    }
+</script>
+
     
 
