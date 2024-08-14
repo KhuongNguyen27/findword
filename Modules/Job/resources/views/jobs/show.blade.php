@@ -169,7 +169,7 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         <div class="row">
                             @foreach ($job_relate_to as $job_relate)
                             <!-- Job Block -->
-                            @if($job_relate)
+                             @if($job_relate && $job_relate->status == 1)
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 @include('job::includes.components.job-item', [
                                 'job' => $job_relate,
