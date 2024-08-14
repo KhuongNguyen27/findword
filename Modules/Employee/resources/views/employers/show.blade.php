@@ -27,7 +27,9 @@
                         <h4 class="card-title">Tuyển dụng</h4>
                         <div class="card-body">
                             <div class="related-jobs">
+                           
                                 @foreach($jobs as $job)
+                              
                                 @include('job::includes.components.job-item',[
                                 'job' => $job,
                                 'job_info' => true,
@@ -35,6 +37,7 @@
                                 'bookmark' => true,
                                 'company_name' => true,
                                 ])
+                              
                                 @endforeach
                                 <div class="ls-show-more">
                                     <div class="ls-pagination">

@@ -41,10 +41,13 @@ class EmployeeController extends Controller
      */
     public function show(string $slug)
     {
+        // dd(123);
         try {
             $userEmployee = UserEmployee::where('slug',$slug)->firstOrFail();
-            $jobs = Job::where('user_id',$userEmployee->user_id)->paginate(5);
+            $jobs = Job::where('user_id',$userEmployee->user_id)->where('status',1)->paginate(5);
+            // dd($jobs);
             $count_jobs = Job::where('user_id',$userEmployee->user_id)->count();
+            // dd($count_jobs);
             $user = new User();
             $image = $user->getImage($userEmployee->user_id);
             $params = [
