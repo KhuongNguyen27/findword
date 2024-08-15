@@ -42,6 +42,7 @@ class JobService
                             $q->where('job_packages.slug', "tin-gap-vip")
                                 ->orWhere('job_packages.slug', "tin-gap");
                         })
+                        // ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                         ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                         ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                     break;

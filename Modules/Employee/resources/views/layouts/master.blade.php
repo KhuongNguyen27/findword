@@ -127,13 +127,12 @@
     </script>
 
     @yield('footer')
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 
 
 
-   {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 
-<script>
+ {{-- <script>
     if (document.querySelector('#description1')) {
         ClassicEditor.create(document.querySelector('#description1'))
             .catch(error => {
@@ -148,8 +147,8 @@
             });
     }
 
-    if (document.querySelector('#about')) {
-        ClassicEditor.create(document.querySelector('#about'))
+    if (document.querySelector('#about1')) {
+        ClassicEditor.create(document.querySelector('#about1'))
             .catch(error => {
                 console.error(error);
             });

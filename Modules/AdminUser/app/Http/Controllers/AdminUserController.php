@@ -15,7 +15,8 @@ use Modules\AdminUser\app\Http\Requests\StoreAdminUserRequest;
 use Modules\AdminUser\app\Http\Requests\UpdateAdminUserRequest;
 use Illuminate\Support\Facades\DB; // Sử dụng DB facade
 use Modules\Account\app\Models\UserAccount;
-
+use App\Notifications\Notifications;
+use Illuminate\Support\Facades\Notification;
 class AdminUserController extends Controller
 {
     protected $view_path = 'adminuser::';
@@ -175,25 +176,40 @@ class AdminUserController extends Controller
      */
     public function update(UpdateAdminUserRequest $request, $id)
     {
+        
         $type = $request->type;
         try {
-            if (!UserAccount::where('user_id', $id)->first() && $request->verify == $this->model::ACTIVE) {
-                $register_date = date('Y-m-d H:i:s');
-                $register_date = new \DateTime($register_date);
-                $expiration_date = clone $register_date;
-                $expiration_date->add(new \DateInterval('P30D'));
-                UserAccount::create(
-                    [
+
+            $user = $this->model::findOrFail($id);
+
+              // Lưu giá trị cũ của cột verify
+            $oldVerifyStatus = $user->verify;
+            $this->model::updateItem($id, $request, $type);
+
+            if ($request->verify == $this->model::ACTIVE && $oldVerifyStatus != $this->model::ACTIVE) {
+                if (!UserAccount::where('user_id', $id)->exists()) {
+                    $register_date = new \DateTime();
+                    $expiration_date = (clone $register_date)->add(new \DateInterval('P30D'));
+    
+                    UserAccount::create([
                         'user_id' => $id,
                         'account_id' => 1,
                         'duration_id' => 1,
                         'is_current' => 1,
                         'register_date' => $register_date->format('Y-m-d H:i:s'),
                         'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
-                    ]
-                );
+                    ]);
+                }
+    
+                // Gửi email thông báo
+                $data = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ];
+    
+                Notification::route('mail', $user->email)
+                            ->notify(new Notifications('veryfi', $data));
             }
-            $this->model::updateItem($id, $request, $type);
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.update_item_success'));
         } catch (ModelNotFoundException $e) {
             Log::error('Item not found: ' . $e->getMessage());

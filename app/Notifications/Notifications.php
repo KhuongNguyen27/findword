@@ -106,7 +106,14 @@ class Notifications extends Notification
                 ->greeting("Xin chào, {$this->data['name']}")
                 ->line("Tin đăng với tiêu đề {$this->data['job_title']} của bạn đã bị từ chối.")
                 ->line('Hãy thử tạo tin đăng khác hoặc liên hệ với chúng tôi nếu cần thêm thông tin.');
-        }
+        } elseif ($this->type === 'veryfi') {
+            return (new MailMessage)
+            ->greeting("Xin chào, {$this->data['name']}")
+            ->line("Tài khoản của bạn đã được xác thực.")
+            ->line("Chúng tôi rất vui thông báo rằng tài khoản của bạn đã được xác thực thành công.")
+            ->line("Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi.")
+            ->line("Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!");
+    }
     }
 
     /**
