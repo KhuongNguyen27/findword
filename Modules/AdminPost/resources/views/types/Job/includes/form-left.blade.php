@@ -38,8 +38,10 @@
         <div class="mb-4">
     <label class="mb-3">{{ __('experience') }}</label>
     <select name="experience" class="form-control">
-        <option value="2" {{ isset($item) && $item->experience == 2 ? 'selected' : '' }}>Có yêu cầu</option>
-        <option value="1" {{ isset($item) && $item->experience == 1 ? 'selected' : '' }}>Không yêu cầu</option>
+       <option value="0" @selected(isset($item) && $item->experience == 0)>Không yêu cầu</option>
+    @for ($i = 1; $i <= 15; $i++)
+        <option value="{{ $i }}" @selected(isset($item) && $item->experience == $i)>{{ $i }}</option>
+    @endfor
     </select>
     <x-admintheme::form-input-error field="experience" />
 </div>

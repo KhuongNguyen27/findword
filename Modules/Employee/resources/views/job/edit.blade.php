@@ -124,11 +124,11 @@
                                     <div class="form-group col-lg-6 col-md-12">
                                         <label>Kinh Nghiệm</label>
                                         @if ($job->status == 0)
-                                        <select name="experience" class="chosen-select">
-                                            <option @selected($job->experience == 2) value="2">Có yêu cầu</option>
-                                            <option @selected($job->experience == 1) value="1"><Kbd></Kbd>Không yêu
-                                                cầu
-                                            </option>
+                                         <select name="experience" class="chosen-select">
+                                            <option value="0">Không yêu cầu</option>
+                                            @for ($i = 1; $i <= 15; $i++)
+                                                <option value="{{ $i }}" @selected($job->experience == $i)>{{ $i }}</option>
+                                            @endfor
                                         </select>
                                         @elseif ($job->status == 1)
                                         <select name="experience" style="pointer-events: none;">

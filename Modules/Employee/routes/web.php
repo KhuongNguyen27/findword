@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageUploadController;
 use Illuminate\Support\Facades\Route;
 use Modules\Employee\app\Http\Controllers\EmployeeController;
 use Modules\Employee\app\Http\Controllers\AuthController;
@@ -17,6 +18,7 @@ use Modules\Employee\app\Http\Controllers\JobapplicationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/upload-image', [ImageUploadController::class, 'upload'])->name('upload.image');
 
 
 Route::group([
@@ -35,6 +37,7 @@ Route::group([
 	Route::post('/change-password/{id}', [ProfileController::class, 'changePassword'])->name('profile.changePassword');
 	Route::post('/delete-image', [ProfileController::class, 'deleteImage'])->name('image.delete');
 	
+
 	
 	//Job
 	Route::group(['middleware' => 'badword.filter'], function () {

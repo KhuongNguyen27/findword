@@ -56,11 +56,11 @@
                         <tr>
                             <th>{{ __('code') }}</th>
                             <th>{{ __('name') }}</th>
-                            <th>{{ __('position') }}</th>
                             <th>{{ __('package') }}</th>
                             <th>{{ __('start') }}</th>
                             <th>{{ __('end') }}</th>
                             <th>{{ __('status') }}</th>
+                            <th>{{ __('Lượt xem') }}</th>
                             <th>{{ __('action') }}</th>
                         </tr>
                     </thead>
@@ -72,12 +72,13 @@
                             <td>
                             {{ Str::limit($item->name, 70) }}
                                 <p class="mb-0 product-category">{{ $item->user->name ?? '' }}</p>
+                                Độ ưu tiên: {{ $item->position }}
                             </td>
-                            <td>{{ $item->position }}</td>
                             <td>{{ $item->job_package->name  ?? '' }}</td>
                             <td>{{ $item->start_day }}</td>
                             <td>{{ $item->end_day }}</td>
                             <td>{!! $item->status_fm !!}</td>
+                            <td>{{ $item->views }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"

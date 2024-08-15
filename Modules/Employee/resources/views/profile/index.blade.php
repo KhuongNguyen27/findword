@@ -1,5 +1,11 @@
 @extends('employee::layouts.master')
 @section('content')
+{{-- <style type="text/css">
+    .ck-editor__edittable_inline {
+        height: 950px;
+    }
+</style> --}}
+
 <!-- Dashboard -->
 <style>
     .image-gallery {
@@ -21,6 +27,9 @@
         margin-left: -12px;
     }
 
+    :root {
+        --ck-clipboard-drop-target-color: green;
+    }
 </style>
 <section class="user-dashboard">
     <div class="dashboard-outer">
@@ -515,7 +524,6 @@
     });
 
 </script>
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -550,12 +558,10 @@
         ['description1', 'requirements1', 'about1', 'more_information'].forEach(function(id) {
             if (document.querySelector('#' + id)) {
                 ClassicEditor.create(document.querySelector('#' + id), {
-                    toolbar: {
-                        items: toolbarItems
-                    }
+                    toolbar: { items: toolbarItems }
                     , language: 'vi'
                     , ckfinder: {
-                        uploadUrl: '/upload-url'
+                    uploadUrl: "{{ route('upload.image') }}?_token={{ csrf_token() }}",
                     }
                 }).catch(error => {
                     console.error(error);

@@ -286,56 +286,6 @@
                                         @endif
                                     </div>
 
-                                    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
-
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            var allowedFeatures = @json($param['ckeditorFeatures']);
-
-                                            // Tạo cấu hình toolbar dựa trên các chức năng đã được chọn
-                                            var toolbarItems = [];
-
-                                            if (allowedFeatures.clipboard) {
-                                                toolbarItems.push('undo', 'redo');
-                                            }
-                                            if (allowedFeatures.editing) {
-                                                toolbarItems.push('findAndReplace', 'selectAll');
-                                            }
-                                            if (allowedFeatures.links) {
-                                                toolbarItems.push('link');
-                                            }
-                                            if (allowedFeatures.insert) {
-                                                toolbarItems.push('imageUpload', 'insertTable', 'mediaEmbed', 'horizontalLine');
-                                            }
-                                            if (allowedFeatures.basicstyles) {
-                                                toolbarItems.push('bold', 'italic', 'underline', 'strikethrough', 'blockQuote');
-                                            }
-                                            if (allowedFeatures.paragraph) {
-                                                toolbarItems.push('bulletedList', 'numberedList', 'outdent', 'indent', 'alignment');
-                                            }
-                                            if (allowedFeatures.styles) {
-                                                toolbarItems.push('fontSize', 'fontFamily', 'highlight', 'fontColor', 'fontBackgroundColor');
-                                            }
-
-                                            // Khởi tạo CKEditor 5 cho các textarea
-                                            ['description1', 'requirements1', 'about', 'more_information'].forEach(function(id) {
-                                                if (document.querySelector('#' + id)) {
-                                                    ClassicEditor.create(document.querySelector('#' + id), {
-                                                        toolbar: {
-                                                            items: toolbarItems
-                                                        }
-                                                        , language: 'vi'
-                                                        , ckfinder: {
-                                                            uploadUrl: '/upload-url'
-                                                        }
-                                                    }).catch(error => {
-                                                        console.error(error);
-                                                    });
-                                                }
-                                            });
-                                        });
-                                    </script>
-
                                     <!-- About Company -->
                                     <div class="form-group col-lg-12 col-md-12">
                                         <label>Yêu cầu công việc <span class="label-required">*</span></label>
@@ -533,6 +483,55 @@
             }
         });
 
+    });
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var allowedFeatures = @json($param['ckeditorFeatures']);
+
+        // Tạo cấu hình toolbar dựa trên các chức năng đã được chọn
+        var toolbarItems = [];
+
+        if (allowedFeatures.clipboard) {
+            toolbarItems.push('undo', 'redo');
+        }
+        if (allowedFeatures.editing) {
+            toolbarItems.push('findAndReplace', 'selectAll');
+        }
+        if (allowedFeatures.links) {
+            toolbarItems.push('link');
+        }
+        if (allowedFeatures.insert) {
+            toolbarItems.push('imageUpload', 'insertTable', 'mediaEmbed', 'horizontalLine');
+        }
+        if (allowedFeatures.basicstyles) {
+            toolbarItems.push('bold', 'italic', 'underline', 'strikethrough', 'blockQuote');
+        }
+        if (allowedFeatures.paragraph) {
+            toolbarItems.push('bulletedList', 'numberedList', 'outdent', 'indent', 'alignment');
+        }
+        if (allowedFeatures.styles) {
+            toolbarItems.push('fontSize', 'fontFamily', 'highlight', 'fontColor', 'fontBackgroundColor');
+        }
+
+        // Khởi tạo CKEditor 5 cho các textarea
+        ['description1', 'requirements1', 'about1', 'more_information'].forEach(function(id) {
+            if (document.querySelector('#' + id)) {
+                ClassicEditor.create(document.querySelector('#' + id), {
+                    toolbar: {
+                        items: toolbarItems
+                    }
+                    , language: 'vi'
+                    , ckfinder: {
+                        uploadUrl: "{{ route('upload.image') }}?_token={{ csrf_token() }}"
+                    , }
+                }).catch(error => {
+                    console.error(error);
+                });
+            }
+        });
     });
 
 </script>
