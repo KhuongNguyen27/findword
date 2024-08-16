@@ -133,6 +133,10 @@ class AdminUser extends Model
                 $user_employee->address = $data['address'];
                 $user_employee->about = $data['about'];
                 $user_employee->position = $data['position'];
+
+                $user_employee->title_color = $data['title_color'];
+                $user_employee->background_company = $data['background_company'];
+
                 if ($user) {
                     $user->points = $user_employee->points;
                 }
@@ -201,6 +205,10 @@ class AdminUser extends Model
                 $user_employee->about = $data['about'];
                 $user_employee->is_allowed_abroad = $data['is_allowed_abroad'];
                 $user_employee->position = $data['position'];
+
+                $user_employee->title_color = $data['title_color'];
+                $user_employee->background_company = $data['background_company'];
+
                 if ($user && isset($data['points'])) {
                     $user->points = $data['points'];
                 }

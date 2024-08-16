@@ -32,6 +32,8 @@ class UserEmployee extends AdminModel
         'user_id',
         'about',
         'background',
+        'title_color',
+        'background_company',
     ];
     public function getImageFmAttribute()
     {
