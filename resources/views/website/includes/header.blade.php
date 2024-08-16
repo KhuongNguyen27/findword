@@ -182,10 +182,109 @@ overflow-y: scroll;
                 <span class="icon la la-bell"></span>
             </button> -->
             <!-- Dashboard Option -->
+            <style>
+                .flag-icon {
+                    width: 21px;
+                    height: 21px;
+                }
 
+                .btn-groupz .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: white;
+                    min-width: 50px;
+                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                    z-index: 1;
+                }
 
+                .btn-groupz:hover .dropdown-content {
+                    display: block;
+                }
+
+                .btn-groupz .dropdown-content ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .btn-groupz .dropdown-content ul li {
+                    padding: 8px 10px;
+                }
+
+                .btn-groupz .dropdown-content ul li a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                }
+
+                .btn-groupz .dropdown-content ul li a img {
+                    margin-right: 5px;
+                }
+
+            </style>
+
+<!-- Thay đổi phần header để bao gồm ngôn ngữ -->
+{{-- <div class="btn-groupz btn-groupz-empty dropdown">
+    <div class="btn-lang">
+        @if(session('locale') == 'en')
+        <img class="flag-icon" src="{{ asset('storage/images/gb.svg') }}" alt="flag-en">
+        @elseif(session('locale') == 'vi')
+        <img class="flag-icon" src="{{ asset('storage/images/vn.svg') }}" alt="flag-vn">
+        @elseif(session('locale') == 'jp')
+        <img class="flag-icon" src="{{ asset('storage/images/jp.svg') }}" alt="flag-jp">
+        @elseif(session('locale') == 'kr')
+        <img class="flag-icon" src="{{ asset('storage/images/hq.png') }}" alt="flag-kr">
+        @else
+        <!-- Hiển thị cờ mặc định nếu không có ngôn ngữ nào được chọn -->
+        <img class="flag-icon" src="{{ asset('storage/images/gb.svg') }}" alt="flag-en">
+        @endif
+    </div>
+    <span class="caret"></span>
+    <div class="dropdown-content dropdown__content--lang">
+        <ul class="drop-menu-em animate slideIn" role="menu">
+            @if(session('locale') != 'en')
+            <li>
+                <a href="{{ route('changeLang', ['lang' => 'en']) }}">
+                    <img class="flag-icon" src="{{ asset('storage/images/gb.svg') }}" alt="flag-en">
+                    English
+                </a>
+            </li>
+            @endif
+            @if(session('locale') != 'vi')
+            <li>
+                <a href="{{ route('changeLang', ['lang' => 'vi']) }}">
+                    <img class="flag-icon" src="{{ asset('storage/images/vn.svg') }}" alt="flag-vn">
+                    Vietnamese
+                </a>
+            </li>
+            @endif
+            @if(session('locale') != 'jp')
+            <li>
+                <a href="{{ route('changeLang', ['lang' => 'jp']) }}">
+                    <img class="flag-icon" src="{{ asset('storage/images/jp.svg') }}" alt="flag-jp">
+                    Japanese
+                </a>
+            </li>
+            @endif
+            @if(session('locale') != 'kr')
+            <li>
+                <a href="{{ route('changeLang', ['lang' => 'kr']) }}">
+                    <img class="flag-icon" src="{{ asset('storage/images/hq.png') }}" alt="flag-kr">
+                    Korean
+                </a>
+            </li>
+            @endif
+        </ul>
+    </div>
+</div>
+ 
+<div class="sample-text">
+    <h3>{{ \Stichoza\GoogleTranslate\GoogleTranslate::trans('Welcome to our website!', app()->getLocale()) }}</h3>
+</div> --}}
+
+         
             <!-- Notification -->
-             @if(Auth::user()->type !== "user")
+            @if(Auth::user()->type !== "user")
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined">
             <div class="dropdown nav-item dropdown-large">
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown">
@@ -212,8 +311,8 @@ overflow-y: scroll;
             <script>
                 document.getElementById('mark-all-read').addEventListener('click', function() {
                     fetch('{{ route('notifications.markAllRead') }}', {
-                                method: 'POST', 
-                                headers: {
+                                method: 'POST'
+                                , headers: {
                                     'Content-Type': 'application/json'
                                     , 'X-CSRF-TOKEN': '{{ csrf_token() }}'
                                 }
@@ -275,3 +374,10 @@ overflow-y: scroll;
     </div>
     @include('website.includes.header.mobile-menu')
 </header>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+       var url = "{{ route('changeLang')}}";
+       $('.changeLang').change(function(event){
+        window.location.href = url+"?lang="+$(this).val();
+       });
+    </script>

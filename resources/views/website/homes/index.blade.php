@@ -4,115 +4,116 @@
 
 <!-- Banner Section-->
 <style>
-span.flaticon-bookmark.active {
-    color: red;
+    span.flaticon-bookmark.active {
+        color: red;
 
-}
+    }
 
-.owl-carousel .owl-stage {
-    margin-left: 0px;
-}
+    .owl-carousel .owl-stage {
+        margin-left: 0px;
+    }
 
-.modal-body iframe {
-    border-radius: 10px;
-    min-height: 416px;
-    width: 100%;
-}
+    .modal-body iframe {
+        border-radius: 10px;
+        min-height: 416px;
+        width: 100%;
+    }
 
-.modal-footer .icon img {
-    width: 128.199px !important;
-}
+    .modal-footer .icon img {
+        width: 128.199px !important;
+    }
 
-.modal-footer {
-    align-items: inherit;
-    border-top: none;
-    display: flex;
-    gap: 17px;
-    justify-content: flex-start;
-    padding: 10px 0 16px;
-}
+    .modal-footer {
+        align-items: inherit;
+        border-top: none;
+        display: flex;
+        gap: 17px;
+        justify-content: flex-start;
+        padding: 10px 0 16px;
+    }
 
-.find-out {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px 16px;
-}
+    .find-out {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px 16px;
+    }
 
-.checkbox-dont-show__input {
-    color: var(--neutral-600, #868d94);
-    cursor: pointer;
-    display: block;
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: .14px;
-    line-height: 22px;
-    margin-bottom: 0;
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+    .checkbox-dont-show__input {
+        color: var(--neutral-600, #868d94);
+        cursor: pointer;
+        display: block;
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: .14px;
+        line-height: 22px;
+        margin-bottom: 0;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
-.checkbox-dont-show {
-    display: block;
-}
+    .checkbox-dont-show {
+        display: block;
+    }
 
-.modal-title {
-    margin-bottom: 0;
-    line-height: 0;
-    font-weight: 700;
-}
+    .modal-title {
+        margin-bottom: 0;
+        line-height: 0;
+        font-weight: 700;
+    }
 
-span.hight-light {
-    color: #6bcdcd;
-    font-weight: 600;
-}
+    span.hight-light {
+        color: #6bcdcd;
+        font-weight: 600;
+    }
 
-p.hight-light.comunication-content__footer {
-    color: #6bcdcd;
-    font-weight: 600;
-}
+    p.hight-light.comunication-content__footer {
+        color: #6bcdcd;
+        font-weight: 600;
+    }
 
-a.btn.btn-find-out {
-    background: #6bcdcd;
-    color: #ffffff;
-    padding: 7px 41px;
-}
+    a.btn.btn-find-out {
+        background: #6bcdcd;
+        color: #ffffff;
+        padding: 7px 41px;
+    }
 
-.checkbox-dont-show__input {
-    display: flex;
-    align-items: center;
-    font-size: 1em;
-    /* Điều chỉnh kích thước chữ nếu cần */
-}
+    .checkbox-dont-show__input {
+        display: flex;
+        align-items: center;
+        font-size: 1em;
+        /* Điều chỉnh kích thước chữ nếu cần */
+    }
 
-.checkbox-dont-show__input input[type="checkbox"] {
-    width: 21px;
-    /* Kích thước chiều rộng của checkbox */
-    height: 21px;
-    /* Kích thước chiều cao của checkbox */
-    margin-right: 10px;
-    /* Khoảng cách giữa checkbox và nhãn */
-}
+    .checkbox-dont-show__input input[type="checkbox"] {
+        width: 21px;
+        /* Kích thước chiều rộng của checkbox */
+        height: 21px;
+        /* Kích thước chiều cao của checkbox */
+        margin-right: 10px;
+        /* Khoảng cách giữa checkbox và nhãn */
+    }
 
-.checkbox-dont-show__input .checkmark {
-    display: none;
-    /* Ẩn phần tử checkmark nếu không cần */
-}
+    .checkbox-dont-show__input .checkmark {
+        display: none;
+        /* Ẩn phần tử checkmark nếu không cần */
+    }
 
-button.close {
-    align-items: center;
-    aspect-ratio: 1/1;
-    background: #f1f1f1;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    opacity: .6;
-    width: 32px;
-}
+    button.close {
+        align-items: center;
+        aspect-ratio: 1/1;
+        background: #f1f1f1;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        opacity: .6;
+        width: 32px;
+    }
+
 </style>
 <section class="banner-section pb-5 custom-banner-section-mobile">
     <div class="auto-container">
@@ -136,15 +137,69 @@ button.close {
 </section>
 <!-- End job-item Section-->
 
+<style>
+.screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; /* Đảm bảo lớp phủ luôn nằm trên cùng */
+    pointer-events: none; /* Không cản trở việc tương tác với các phần tử khác */
+}
 
+.screen-overlay .overlay {
+    position: absolute;
+    top: 70px; /* Khoảng cách bằng chiều cao của header */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('{{ asset('website-assets/images/background/vn4.webp') }}');
+    background-size: cover; /* Đặt hình nền để phủ toàn bộ màn hình */
+      background-position: center; /* Căn giữa hình ảnh */
+    background-repeat: no-repeat;
+    opacity: 0.02; /* Tăng độ rõ của hình nền */
+    z-index: 9998; /* Đặt thấp hơn một chút so với lớp bao quanh */
+    pointer-events: none; /* Không cản trở việc tương tác với các phần tử khác */
+}
+
+/* Thiết kế cho mobile */
+@media (max-width: 768px) {
+    .screen-overlay .overlay {
+        top: 70px; /* Đẩy xuống tương ứng với chiều cao header */
+        height: calc(100% - 70px); /* Trừ đi chiều cao của header */
+        background-image: url('{{ asset('website-assets/images/background/vnmobile.jpg') }}'); /* Thay đổi hình nền cho thiết bị di động */
+        background-size: cover; /* Đảm bảo phủ toàn bộ màn hình */
+        background-position: center center; /* Căn giữa hình ảnh */
+        background-repeat: no-repeat; /* Tránh lặp lại hình ảnh */
+        opacity: 0.02;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen-overlay .overlay {
+        top: 70px; /* Đẩy xuống tương ứng với chiều cao header */
+        height: calc(100% - 70px); /* Trừ đi chiều cao của header */
+        background-image: url('{{ asset('website-assets/images/background/vnmobile.jpg') }}'); /* Thay đổi hình nền cho thiết bị di động nhỏ hơn */
+        background-size: cover; /* Đảm bảo phủ toàn bộ màn hình */
+        background-position: center center; /* Căn giữa hình ảnh */
+        background-repeat: no-repeat; /* Tránh lặp lại hình ảnh */
+        opacity: 0.02;
+    }
+}
+
+
+</style>
 <!-- Job Section -->
-@include('website.homes.includes.job-items',[
+<div class="screen-overlay">
+                <div class="overlay"></div>
+            </div>
+@include('website.homes.includes.job-items', [
 'sec_title' => 'Việc làm hôm nay',
 'chunk_jobs' => $vip_jobs,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
-'sec_link' => route('jobs.homejobs','viec-lam-hom-nay')
+'sec_link' => route('jobs.homejobs', 'viec-lam-hom-nay'),
 ])
-
 <!-- End Job Section -->
 
 @include('website.includes.global.ad-banners')
@@ -188,86 +243,88 @@ button.close {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- <script src="{{ asset('website-assets/js/chart-demand-job-home-page.js')}}"></script> -->
 <script>
-$("#section-header .box-load-more").click(function() {
-    $('html, body').animate({
-        scrollTop: $("#dashboard").offset().top - 100
-    }, 1000);
-});
+    $("#section-header .box-load-more").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#dashboard").offset().top - 100
+        }, 1000);
+    });
+
 </script>
 <script>
-var tang_truong_labels = <?php echo json_encode($tang_truong_labels); ?>;
-var tang_truong_values = <?php echo json_encode($tang_truong_values); ?>;
-var nhu_cau_labels = <?php echo json_encode($nhu_cau_labels); ?>;
-var nhu_cau_values = <?php echo json_encode($nhu_cau_values); ?>;
+    var tang_truong_labels = < ? php echo json_encode($tang_truong_labels); ? > ;
+    var tang_truong_values = < ? php echo json_encode($tang_truong_values); ? > ;
+    var nhu_cau_labels = < ? php echo json_encode($nhu_cau_labels); ? > ;
+    var nhu_cau_values = < ? php echo json_encode($nhu_cau_values); ? > ;
 
-const ctx = document.getElementById('myChartJobOpportunityGrowthDashboard');
-new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: tang_truong_labels,
-        datasets: [{
-            data: tang_truong_values,
-            backgroundColor: '#ffffff',
-            borderColor: '#ffffff',
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                ticks: {
-                    color: 'white',
-                },
-            },
-            x: {
-                ticks: {
-                    color: 'white',
-                },
+    const ctx = document.getElementById('myChartJobOpportunityGrowthDashboard');
+    new Chart(ctx, {
+        type: 'line'
+        , data: {
+            labels: tang_truong_labels
+            , datasets: [{
+                data: tang_truong_values
+                , backgroundColor: '#ffffff'
+                , borderColor: '#ffffff'
+            , }]
+        }
+        , options: {
+            scales: {
+                y: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+                , x: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
             }
-        },
-        plugins: {
-            legend: {
-                display: false
+            , plugins: {
+                legend: {
+                    display: false
+                }
             }
         }
-    }
-});
-const ctx1 = document.getElementById('myChartDemandJobDashboard');
-new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: nhu_cau_labels,
-        datasets: [{
-            data: nhu_cau_values,
-            borderWidth: 1,
-            borderColor: '#ffffff',
-        }]
-    },
-    options: {
-        legend: {
-            labels: {
-                fontColor: "blue",
-                fontSize: 18
-            }
-        },
-        scales: {
-            y: {
-                ticks: {
-                    color: 'white',
-                },
-            },
-            x: {
-                ticks: {
-                    color: 'white',
-                },
-            }
-        },
-        plugins: {
+    });
+    const ctx1 = document.getElementById('myChartDemandJobDashboard');
+    new Chart(ctx1, {
+        type: 'bar'
+        , data: {
+            labels: nhu_cau_labels
+            , datasets: [{
+                data: nhu_cau_values
+                , borderWidth: 1
+                , borderColor: '#ffffff'
+            , }]
+        }
+        , options: {
             legend: {
-                display: false
+                labels: {
+                    fontColor: "blue"
+                    , fontSize: 18
+                }
+            }
+            , scales: {
+                y: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+                , x: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+            }
+            , plugins: {
+                legend: {
+                    display: false
+                }
             }
         }
-    }
-});
+    });
+
 </script>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -284,18 +341,12 @@ new Chart(ctx1, {
                 </button>
             </div>
             <div class="modal-body">
-                <iframe id="video-brand-communication "
-                    src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen="">
+                <iframe id="video-brand-communication " src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
                 </iframe>
             </div>
             <div class="modal-footer">
                 <div class="icon">
-                    <img data-src="{{ asset('website-assets/images/favicon.png')}}" class="lazy entered loaded"
-                        alt="timviecsieunhanh" data-ll-status="loaded"
-                        src="{{ asset('website-assets/images/favicon.png')}}">
+                    <img data-src="{{ asset('website-assets/images/favicon.png')}}" class="lazy entered loaded" alt="timviecsieunhanh" data-ll-status="loaded" src="{{ asset('website-assets/images/favicon.png')}}">
                 </div>
                 <div class="comunication-content">
                     <div class="comunication-content__text">

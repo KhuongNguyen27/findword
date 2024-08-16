@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
@@ -30,6 +31,12 @@ use App\Http\Controllers\ToolController;
 // Route::get('/', function () {
 //     return view('website.dashboards.index');
 // })->name('home');
+
+
+// Route::get('lang/{lang}',[LangController::class,'changeLanguage'])->name('lang');
+Route::get('lang/home', [LangController::class, 'index']);
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/notifications', [NotificationController::class, 'getNotification'])->name('notifications.getNotification');
