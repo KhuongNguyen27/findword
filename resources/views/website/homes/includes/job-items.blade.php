@@ -3,7 +3,7 @@
         <div class="ls-outer theme-card">
             <div class="ls-switcher theme-card-header">
                 <div class="sec-title mb-3 mt-3">
-                        <h2 class="">{{ $sec_title }}</h2>
+                    <h2 class="">{{ $sec_title }}</h2>
                 </div>
                 <div class="box-header__tool">
                     <span class="see-more">
@@ -22,15 +22,16 @@
             <!-- Jobs here -->
             <div class="theme-card-body">
                 <div class="swiper featureJobsSwiper">
+            
                     <div class="swiper-wrapper">
-                    @foreach ($chunk_jobs as $chunk_job)
+                        @foreach ($chunk_jobs as $chunk_job)
                         <div class="swiper-slide">
                             <div class="row">
                                 @foreach ($chunk_job as $job_item)
                                 @if (!$job_item->userEmployee)
-                                    @php
-                                    continue;    
-                                    @endphp
+                                @php
+                                continue;
+                                @endphp
                                 @endif
                                 <!-- Job Block -->
                                 <div class="{{ $item_class }}">
@@ -45,7 +46,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

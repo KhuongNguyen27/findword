@@ -150,8 +150,12 @@ class JobController extends Controller
 
     $job = Job::where('slug', $slug)->with( 'careers')->firstOrFail();
     // Tăng số lượt xem của công việc
-    $job->views =  $job->views + 1;
-    $job->save();
+   // Chỉ tăng số lượt xem nếu người dùng không phải là chủ sở hữu của công việc
+        if (Auth::check() && Auth::id() !== $job->user_id) {
+            // dd(123);
+            $job->views = $job->views + 1;
+            $job->save();
+        };
     if (Auth::user() && Auth::user()->type === 'staff') {
         // Kiểm tra xem user đã xem job này chưa
         $jobView = DB::table('job_views')->where('job_id', $job->id)->where('user_id', $user_id)->first();
