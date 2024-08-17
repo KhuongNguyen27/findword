@@ -12,11 +12,11 @@
         <div class="mb-4 row">
             <div class="col-lg-6">
                 <label class="mb-3">[Danh sách] Màu tiêu đề</label>
-                <input type="color" class="form-control" name="title_color" value="{{ $item->title_color ?? old('title_color') }}">
+                <input type="color" class="form-control" name="title_color" value="{{ $item->employee->title_color ?? old('title_color', '') }}">
             </div>
             <div class="col-lg-6">
                 <label class="mb-3">[Danh sách] Màu background</label>
-                <input type="color" class="form-control" name="background_company" value="{{ $item->background_company ?? old('background_company') }}">
+                <input type="color" class="form-control" name="background_company" value="{{ $item->employee->background_company ?? old('background_company', '') }}">
             </div>
         </div>
         <div class="mb-4">
