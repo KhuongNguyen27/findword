@@ -124,6 +124,7 @@ class AdminPostController extends Controller
      */
     public function store(StoreAdminPostRequest $request, $type = ''): RedirectResponse
     {
+        // dd($request->all());
         $type = $request->type;
         $request->merge(['province_id' => 1]);
         // dd($request);

@@ -24,6 +24,17 @@
                 <x-admintheme::form-input-error field="slug"/>
             </div>
         @endif
+         @if (request()->type == 'Post')
+        <div class="mb-4">
+            <label class="mb-3">Chuyên mục</label>
+            <select class="form-select" name="category">
+                <option value="">Chọn chuyên mục</option>
+                <option value="1" {{ ($item->category ?? old('category')) == 1 ? "selected" : "" }}>Cẩm Nang Nghề Nghiệp</option>
+                <option value="2" {{ ($item->category ?? old('category')) == 2 ? "selected" : "" }}>Góc Giải Trí</option>
+            </select>
+            <x-admintheme::form-input-error field="category"/>
+        </div>
+        @endif
         <div class="mb-4">
             <label class="mb-3">{{ __('description') }}</label>
             <textarea class="form-control" id="description" name="description" cols="4" rows="6">{{ $item->description ?? old('description') }}</textarea>

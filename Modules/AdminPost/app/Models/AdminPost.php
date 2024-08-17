@@ -25,6 +25,7 @@ class AdminPost extends Model
         'status',
         'position',
         'user_id',
+        'category',
     ];
     // Relationships
    

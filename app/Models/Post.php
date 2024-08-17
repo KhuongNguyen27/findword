@@ -19,6 +19,7 @@ class Post extends AdminModel
         'status',
         'position',
         'user_id',
+        'category',
     ];
     public function getImageFmAttribute()
     {
