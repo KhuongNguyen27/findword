@@ -1,4 +1,4 @@
-<div class="inner-box">
+<div class="inner-box" style="background: {{ $item->background_company }} !important;">
     <ul class="job-other-info">
         <li class="green">Nỗi bật</li>
     </ul>
@@ -10,7 +10,7 @@
     </div>
     <div class="name-wrapper">
         <h3 class="name">
-            <a href="{{ route('employee.show', ['id' => $item->slug]) }}">
+            <a href="{{ route('employee.show', ['id' => $item->slug]) }}" style="color: {{ $item->title_color }} !important;">
                 {{ $item->name }}
             </a>
         </h3>
@@ -30,7 +30,7 @@
                 </span>
                 @php
                     $address = $item->address ? $item->address : '-';
-                    $shortAddress = mb_substr($address,0, 40); 
+                    $shortAddress = mb_substr($address,0, 40);
                 @endphp
                 {{ $shortAddress }}
             </li>

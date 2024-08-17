@@ -59,7 +59,7 @@ class AdminUserController extends Controller
             $item->email_status = $emailStatuses[$item->email] ?? null;
             $item->is_allowed_abroad = $userEmployees[$item->id] ?? null;
             $item->total_cv = $userCvCounts[$item->id] ?? 0;
-            $item->total_jobs_applied = $jobApplicationCounts[$item->id] ?? 0; 
+            $item->total_jobs_applied = $jobApplicationCounts[$item->id] ?? 0;
         }
         $params = [
             'route_prefix' => $this->route_prefix,
@@ -176,7 +176,7 @@ class AdminUserController extends Controller
      */
     public function update(UpdateAdminUserRequest $request, $id)
     {
-        
+
         $type = $request->type;
         try {
 
@@ -190,7 +190,7 @@ class AdminUserController extends Controller
                 if (!UserAccount::where('user_id', $id)->exists()) {
                     $register_date = new \DateTime();
                     $expiration_date = (clone $register_date)->add(new \DateInterval('P30D'));
-    
+
                     UserAccount::create([
                         'user_id' => $id,
                         'account_id' => 1,
@@ -200,13 +200,13 @@ class AdminUserController extends Controller
                         'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
                     ]);
                 }
-    
+
                 // Gửi email thông báo
                 $data = [
                     'name' => $user->name,
                     'email' => $user->email,
                 ];
-    
+
                 Notification::route('mail', $user->email)
                             ->notify(new Notifications('veryfi', $data));
             }
