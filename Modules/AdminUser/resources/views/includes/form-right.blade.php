@@ -27,6 +27,12 @@
 
         @if (request()->type == 'employee')
         <div class="mb-4">
+            <label class="mb-3">Logo xu hướng</label>
+            <x-admintheme::form-image name="logo_trending" imageUrl="{{ $item->employee->logo_trending_fm ?? '' }}" upload="1"
+                accept=".jpg, .png, image/jpeg, image/png" />
+            <x-admintheme::form-input-error field="logo_trending" />
+        </div>
+        <div class="mb-4">
             <label class="mb-3">Giấy phép kinh doanh</label>
             <div class="image-gallery" id="business-license-preview">
                 @if (!empty($item->employee->image_business_license))
@@ -98,7 +104,7 @@
             var numPages = pdfDoc.numPages;
             console.log('# Document Loaded');
             console.log('Number of Pages: ' + numPages);
-            
+
             // Clear previous content
             pdfContainer.innerHTML = '';
 

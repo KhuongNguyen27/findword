@@ -7,6 +7,9 @@
             <img src="{{ $item->background_fm }}" alt="" style="width: 300px; height: 100px;">
         </span>
         <span class="thumb"><img src="{{ $item->image_fm }}" alt=""></span>
+        @if ($item->logo_trending)
+        <span class="logo-trending"><img src="{{ $item->logo_trending_fm }}" alt=""></span>
+        @endif
     </div>
     <div class="name-wrapper">
         <h3 class="name">

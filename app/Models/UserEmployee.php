@@ -22,6 +22,7 @@ class UserEmployee extends AdminModel
         'user_id',
         'about',
         'background',
+        'logo_trending',
     ];
     protected $fillable = [
         'name',
@@ -34,6 +35,7 @@ class UserEmployee extends AdminModel
         'background',
         'title_color',
         'background_company',
+        'logo_trending',
     ];
     public function getImageFmAttribute()
     {
@@ -55,5 +57,16 @@ class UserEmployee extends AdminModel
             return asset($this->background);
         }
         return "/website-assets/images/backgroudemploy.jpg";
+    }
+
+    public function getLogoTrendingFmAttribute()
+    {
+        if ( $this->logo_trending != null) {
+            if( strpos($this->logo_trending,'http') !== false ){
+                return $this->logo_trending;
+            }
+            return asset($this->logo_trending);
+        }
+        return "/website-assets/images/logo2.png";
     }
 }
