@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-6">
                 <label class="mb-3">[Danh sách] Màu background</label>
-                <input type="color" class="form-control" name="background_company" value="{{ $item->employee->background_company ?? old('background_company', '') }}">
+                <input type="color" class="form-control" name="background_company" value="{{ $item->employee->background_company ?? old('background_company', '#ffffff') }}">
             </div>
         </div>
         <div class="mb-4">
