@@ -145,6 +145,11 @@ class AdminUser extends Model
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
                     $user_employee->background = $data['background'];
                 }
+                if ($request->hasFile('logo_trending')) {
+                    self::deleteFile($user_employee->logo_trending);
+                    $data['logo_trending'] = self::uploadFile($request->file('logo_trending'), 'uploads/logo_trendings');
+                    $user_employee->logo_trending = $data['logo_trending'];
+                }
                 // Xử lý giấy phép kinh doanh (image_business_license)
                 if ($request->hasFile('image_business_license')) {
                     self::deleteFile($user_employee->image_business_license);
@@ -216,6 +221,11 @@ class AdminUser extends Model
                     self::deleteFile($user_employee->background);
                     $data['background'] = self::uploadFile($request->file('background'), 'uploads/backgrounds');
                     $user_employee->background = $data['background'];
+                }
+                if ($request->hasFile('logo_trending')) {
+                    self::deleteFile($user_employee->logo_trending);
+                    $data['logo_trending'] = self::uploadFile($request->file('logo_trending'), 'uploads/logo_trendings');
+                    $user_employee->logo_trending = $data['logo_trending'];
                 }
                 if ($request->hasFile('image_business_license')) {
                     // self::deleteFile($user_employee->image_business_license);
