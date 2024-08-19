@@ -13,5 +13,6 @@
     "Transaction": true,
     "Cvs": true,
     "Province": true,
-    "Account": true
+    "Account": true,
+    "Permission": true
 }

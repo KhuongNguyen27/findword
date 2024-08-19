@@ -133,7 +133,7 @@
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('admin') }}</a>
             </li>
             <li>
-                <a href="{{ route('adminuser.index') }}">
+                <a href="{{-- route('groups.index') --}}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('group') }}</a>
             </li>
         </ul>
