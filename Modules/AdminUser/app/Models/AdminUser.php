@@ -36,6 +36,7 @@ class AdminUser extends Model
         'position',
         'points',
         'tax_code',
+        'group_id',
     ];
 
     protected static function newFactory(): AdminUserFactory

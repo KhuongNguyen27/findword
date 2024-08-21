@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Permission\app\Http\Controllers\PermissionController;
+// use Modules\Permission\app\Http\Controllers\PermissionController;
+use Modules\Permission\app\Http\Controllers\GroupController;
+use Modules\Permission\app\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,14 @@ use Modules\Permission\app\Http\Controllers\PermissionController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('permission', PermissionController::class)->names('permission');
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth','auth.admin']
+], function () {
+Route::resource('groups', GroupController::class)->names('groups');
+Route::resource('users', UserController::class)->names('users');
+Route::post('groups/{id}/updateRoles', [GroupController::class, 'updateRoles'])->name('groups.updateRoles');
+
 });
+
+

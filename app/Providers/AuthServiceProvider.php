@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-use Modules\AdminPost\app\Models\AdminPost;
-use Modules\Permission\app\Policies\AdminPostPolicy;
+use App\Models\User;
+use Modules\Permission\app\Policies\UserPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Modules\Permission\app\Models\User as SystemUser;
+use Modules\AdminUser\app\Models\AdminUser as PostsUser;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        AdminPost::class => AdminPostPolicy::class,
+        User::class => UserPolicy::class,
     ];
 
     /**

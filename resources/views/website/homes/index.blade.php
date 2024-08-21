@@ -158,7 +158,7 @@
     background-size: cover; /* Đặt hình nền để phủ toàn bộ màn hình */
       background-position: center; /* Căn giữa hình ảnh */
     background-repeat: no-repeat;
-    opacity: 0.02; /* Tăng độ rõ của hình nền */
+    opacity: 0.01; /* Tăng độ rõ của hình nền */
     z-index: 9998; /* Đặt thấp hơn một chút so với lớp bao quanh */
     pointer-events: none; /* Không cản trở việc tương tác với các phần tử khác */
 }
@@ -172,7 +172,7 @@
         background-size: cover; /* Đảm bảo phủ toàn bộ màn hình */
         background-position: center center; /* Căn giữa hình ảnh */
         background-repeat: no-repeat; /* Tránh lặp lại hình ảnh */
-        opacity: 0.02;
+        opacity: 0.01;
     }
 }
 
@@ -184,7 +184,7 @@
         background-size: cover; /* Đảm bảo phủ toàn bộ màn hình */
         background-position: center center; /* Căn giữa hình ảnh */
         background-repeat: no-repeat; /* Tránh lặp lại hình ảnh */
-        opacity: 0.02;
+        opacity: 0.01;
     }
 }
 

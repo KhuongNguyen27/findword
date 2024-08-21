@@ -13,6 +13,7 @@ use Modules\AdminTaxonomy\app\Models\AdminTaxonomy;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class AdminTaxonomyController extends Controller
 {
@@ -21,6 +22,8 @@ class AdminTaxonomyController extends Controller
     protected $model        = AdminTaxonomy::class;
     public function index(Request $request)
     {
+        $this->authorize('viewAnySystem',Auth::user());
+
         $type = $request->type;
         $items = $this->model::getItems($request, null, $type);
         $params = [
@@ -40,6 +43,8 @@ class AdminTaxonomyController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('createSystem',Auth::user());
+
         $type = $request->type;
         $params = [
             'route_prefix'  => $this->route_prefix,
@@ -74,6 +79,8 @@ class AdminTaxonomyController extends Controller
      */
     public function show($id, Request $request)
     {
+        $this->authorize('viewSystem',Auth::user());
+
         $type = $request->type;
         try {
             $item = $this->model::findItem($id, $type);
@@ -97,6 +104,8 @@ class AdminTaxonomyController extends Controller
      */
     public function edit($id, Request $request)
     {
+        $this->authorize('updateSystem',Auth::user());
+
         $type = $request->type;
         try {
             $item = $this->model::findItem($id, $type);
@@ -188,6 +197,8 @@ class AdminTaxonomyController extends Controller
      */
     public function destroy(Request $request)
     {
+        $this->authorize('deleteSystem',Auth::user());
+
         try {
             $id = request()->admintaxonomy;
             $type = $request->type;

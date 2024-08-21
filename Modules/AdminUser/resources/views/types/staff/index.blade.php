@@ -59,39 +59,41 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ Str::limit($item->name, 25) }} <br>
                                 {{ $item->email }}
-                            <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
+                                <p class="mb-0 product-category">{{ $item->staff->phone ?? '' }}</p>
                             </td>
                             <td>{{ $item->total_jobs_applied }}</td>
-                            <td>{{ $item->total_cv }}</td> 
+                            <td>{{ $item->total_cv }}</td>
                             <td>{!! $item->created_at ? date('H:i:s', strtotime($item->created_at)) . '<br>' . date('d-m-Y', strtotime($item->created_at)) : '' !!}</td>
-                            <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td> 
+                            <td>{!! $item->last_login ? date('H:i:s', strtotime($item->last_login)) . '<br>' . date('d-m-Y', strtotime($item->last_login)) : '' !!}</td>
                             <td>{!! $item->email_status_fm !!}</td>
 
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret"
-                                        type="button" data-bs-toggle="dropdown">
+                                    <button class="btn btn-sm btn-light border dropdown-toggle dropdown-toggle-nocaret" type="button" data-bs-toggle="dropdown">
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu">
+                                        @if (Auth::user()->hasPermission('user_update'))
                                         <li>
                                             <a class="dropdown-item" href="{{ route($route_prefix.'edit',['adminuser' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('edit') }}
                                             </a>
                                         </li>
+                                        @endif
+                                        @if (Auth::user()->hasPermission('user_delete'))
+
                                         <li>
                                             <form action="{{ route($route_prefix.'destroy',$item->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') "
-                                                    class="dropdown-item">
+                                                <button onclick=" return confirm('{{ __('sys.confirm_delete') }}') " class="dropdown-item">
                                                     {{ __('delete') }}
                                                 </button>
                                             </form>
                                         </li>
+                                        @endif
                                         <li>
-                                            <a class="dropdown-item"
-                                                href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
+                                            <a class="dropdown-item" href="{{ route($route_prefix.'showCVs',['id' => $item->id, 'type'=>request()->type]) }}">
                                                 {{ __('show') }}
                                             </a>
                                         </li>

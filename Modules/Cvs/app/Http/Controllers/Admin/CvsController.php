@@ -13,6 +13,8 @@ use Modules\Cvs\app\Http\Requests\StoreCvRequest;
 use App\Traits\UploadFileTrait;
 use Illuminate\Support\Facades\Log;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class CvsController extends Controller
 {
     /**
@@ -24,6 +26,8 @@ class CvsController extends Controller
     protected $model        = Cv::class;
     public function index(Request $request)
     {
+        $this->authorize('viewAnySystem',Auth::user());
+
         $cvs_query = $this->model::query()->whereStatus($this->model::ACTIVE);
         $careers = Career::whereStatus(Career::ACTIVE)->get();
         $styles = Style::whereStatus(Style::ACTIVE)->get();
@@ -59,6 +63,8 @@ class CvsController extends Controller
      */
     public function create()
     {
+        $this->authorize('createSystem',Auth::user());
+
         $styles = Style::whereStatus(Style::ACTIVE)->get();
         $careers = Career::whereStatus(Career::ACTIVE)->get();
         $param = [
@@ -108,6 +114,8 @@ class CvsController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('viewSystem',Auth::user());
+
         return view('cvs::show');
     }
 
@@ -116,6 +124,8 @@ class CvsController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('updateSystem',Auth::user());
+
         $item = $this->model::findOrfail($id);
         $styles = Style::whereStatus(Style::ACTIVE)->get();
         $careers = Career::whereStatus(Career::ACTIVE)->get();
@@ -167,6 +177,8 @@ class CvsController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('deleteSystem',Auth::user());
+
         try {
             $item = $this->model::findOrfail($id);
             $item->styles()->detach();

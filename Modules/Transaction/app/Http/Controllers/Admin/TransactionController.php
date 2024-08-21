@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Modules\Transaction\app\Http\Requests\StoreTransactionsRequest;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -23,6 +24,8 @@ class TransactionController extends Controller
     protected $model        = Transaction::class;   
     public function index()
     {
+        $this->authorize('viewAnySystem',Auth::user());
+
         try {
             $items = $this->model::orderBy('created_at','DESC')->paginate(5);
             $params = [
@@ -42,6 +45,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        $this->authorize('createSystem',Auth::user());
+
         $employees = User::whereType('employee')->get();
         $params = [
             'route_prefix'  => $this->route_prefix,
@@ -81,6 +86,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('viewSystem',Auth::user());
+
         $item = $this->model::findOrFail($id);
         $item->user_id = $item->user->name;
         return new TransactionResource($item);
@@ -91,6 +98,8 @@ class TransactionController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('updateSystem',Auth::user());
+
         return view('transaction::edit');
     }
 
@@ -124,6 +133,8 @@ class TransactionController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('deleteSystem',Auth::user());
+
         try {
             $item = $this->model::findOrFail($id);
             $item->delete();

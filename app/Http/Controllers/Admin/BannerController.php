@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Traits\UploadFileTrait;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
+
 class BannerController extends Controller
 {
     use UploadFileTrait;
@@ -20,6 +23,8 @@ class BannerController extends Controller
      */
         public function index(Request $request)
         {
+            $this->authorize('viewAnySystem',Auth::user());
+
             $query = Banner::orderByDesc('created_at');
         
             if ($request->has('name')) {
@@ -36,6 +41,7 @@ class BannerController extends Controller
      */
     public function create()
     {
+        $this->authorize('createSystem',Auth::user());
         $groupBannerOptions = ['Top Banner', 'Sidebar Banner', 'Bottom Banner'];
         return view('admin.banners.create', compact('groupBannerOptions'));
     }
@@ -76,6 +82,8 @@ class BannerController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('updateSystem',Auth::user());
+
         $banner = Banner::findOrFail($id);
         $groupBannerOptions = ['Top Banner', 'Sidebar Banner', 'Bottom Banner'];
         return view('admin.banners.edit', compact('banner', 'groupBannerOptions'));
@@ -110,6 +118,8 @@ class BannerController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('deleteSystem',Auth::user());
+
         try {
             $banner = Banner::findOrFail($id);
             $banner->delete();

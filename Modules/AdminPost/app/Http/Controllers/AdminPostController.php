@@ -17,6 +17,7 @@ use Modules\Staff\app\Models\UserStaff;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -52,8 +53,14 @@ class AdminPostController extends Controller
 
     public function index(Request $request)
     {
-        // $this->authorize('viewAny',$this->model);
         $type = $request->type;
+        if ($type == "Job" ) {
+            $this->authorize('viewAny',Auth::user());
+        }else if ($type == "Post") {
+            $this->authorize('viewAnyPost',Auth::user());
+        }else if ($type == "Page") {
+            $this->authorize('viewAnySystem',Auth::user());
+        }
         if ($type === 'UserCV') {
             $uniqueUserIds = DB::table('user_cvs')
                 ->distinct()
@@ -106,8 +113,14 @@ class AdminPostController extends Controller
     }
     public function create(Request $request)
     {
-        // $this->authorize('create',$this->model);
         $type = $request->type;
+        if ($type == "Job") {
+            $this->authorize('create',Auth::user());
+        }else if ($type == "Post") {
+                $this->authorize('createPost',Auth::user());
+        }else if ($type == "Page") {
+            $this->authorize('createSystem',Auth::user());
+        }
         $params = [
             'route_prefix' => $this->route_prefix,
             'model' => $this->model,
@@ -144,8 +157,14 @@ class AdminPostController extends Controller
      */
     public function show($id, Request $request)
     {
-        // $this->authorize('view',$this->model);
         $type = $request->type;
+        if ($type == "Job") {
+            $this->authorize('view',Auth::user());
+        }else if ($type == "Post") {
+                $this->authorize('viewPost',Auth::user());
+        }else if ($type == "Page") {
+            $this->authorize('viewSystem',Auth::user());
+        }
         try {
             $item = $this->model::findItem($id, $type);
             // dd($item);
@@ -169,8 +188,14 @@ class AdminPostController extends Controller
      */
     public function edit($id, Request $request)
     {
-        // $this->authorize('update',$this->model);
         $type = $request->type;
+        if ($type == "Job") {
+            $this->authorize('update',Auth::user());
+        }else if ($type == "Post") {
+                $this->authorize('updatePost',Auth::user());
+        }else if ($type == "Page") {
+            $this->authorize('updateSystem',Auth::user());
+        }
         try {
             $item = $this->model::findItem($id, $type);
 // dd($item);
@@ -255,10 +280,16 @@ class AdminPostController extends Controller
      */
     public function destroy(Request $request)
     {
-        // $this->authorize('delete',$this->model);
         try {
             $id = request()->adminpost;
             $type = $request->type;
+            if ($type == "Job") {
+                $this->authorize('delete',Auth::user());
+            }else if ($type == "Post") {
+                    $this->authorize('deletePost',Auth::user());
+            }else if ($type == "Page") {
+                $this->authorize('deleteSystem',Auth::user());
+            }
             $this->model::deleteItem($id, $type);
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.destroy_item_success'));
         } catch (ModelNotFoundException $e) {
