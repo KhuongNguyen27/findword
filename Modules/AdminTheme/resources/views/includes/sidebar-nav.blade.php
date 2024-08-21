@@ -45,6 +45,7 @@
             </li>
         </ul>
     </li>
+    @if (Auth::user()->hasPermission('user_viewAnySystem'))
     <li>
         <a class="has-arrow" href="javascript:;">
             <div class="parent-icon">
@@ -95,6 +96,8 @@
             </li>
         </ul>
     </li>
+    @endif
+    @if (Auth::user()->hasPermission('user_viewAnySystem') || Auth::user()->hasPermission('user_viewAnyPost'))
     <li class="menu-label">{{ __('system') }}</li>
     <li>
         <a class="has-arrow" aria-expanded="false" href="javascript:;">
@@ -104,14 +107,19 @@
             <div class="menu-title"> {{__('system')}} </div>
         </a>
         <ul class="mm-collapse">
+            @if(Auth::user()->hasPermission('user_viewAnySystem'))
             <li>
                 <a href="{{ route('banners.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span> {{__('Banner')}} </a>
             </li>
-            <li>
-                <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
-                    <span class="material-symbols-outlined">arrow_right</span> {{__('post')}} </a>
-            </li>
+            @endif
+            @if(Auth::user()->hasPermission('user_viewAnyPost'))
+                <li>
+                    <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
+                        <span class="material-symbols-outlined">arrow_right</span> {{__('post')}} </a>
+                </li>
+            @endif
+            @if(Auth::user()->hasPermission('user_viewAnySystem'))
             <li>
                 <a href="{{ route('adminpost.index',['type'=>'Page']) }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{__('page')}}</a>
@@ -129,14 +137,16 @@
                     <span class="material-symbols-outlined">arrow_right</span>{{__('account_jobpackage')}}</a>
             </li>
             <li>
-                <a href="{{ route('adminuser.index') }}">
+                <a href="{{ route('users.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('admin') }}</a>
             </li>
             <li>
-                <a href="{{-- route('groups.index') --}}">
+                <a href="{{ route('groups.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span>{{ __('group') }}</a>
             </li>
+            @endif
         </ul>
     </li>
+    @endif
 </ul>
 <!--end navigation-->

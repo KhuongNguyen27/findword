@@ -12,7 +12,7 @@ class GroupRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=1; $i <= 55; $i++) { 
+        for ($i=1; $i <= 5; $i++) { 
             DB::table('group_role')->insert(
                 [
                     "group_id" => 1, 

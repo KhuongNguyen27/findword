@@ -12,6 +12,11 @@ class StoreAdminUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
+            'name' => 'required',
+        ];
         if(request()->type == 'staff'){
             $rules = [
                 'email' => 'required|email|max:255',

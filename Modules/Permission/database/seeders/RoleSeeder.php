@@ -12,8 +12,9 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $tables = ['AdminHome','AdminPost','AdminTaxonomy','AdminTheme','AdminUser','Auth','Cvs','Employee','Job','Staff','Transaction'];
-        $actions = ['viewAny','view','create','update','delete'];
+        DB::table('roles')->truncate();
+        $tables = ['user'];
+        $actions = ['viewAny','view','create','update','delete', 'viewAnySystem','viewSystem','createSystem','updateSystem','deleteSystem', 'viewAnyPost','viewPost','createPost','updatePost','deletePost'];
         foreach ($tables as $table) {
             foreach ($actions as $action) {
                 DB::table('roles')->insert(

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateCountryRequest;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CountryController extends Controller
 {
@@ -16,6 +17,8 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAnySystem',Auth::user());
+
         $query = Country::orderBy('name', 'ASC');
     
         if ($request->has('name')) {
@@ -31,6 +34,8 @@ class CountryController extends Controller
      */
     public function create()
     {
+        $this->authorize('createSystem',Auth::user());
+
         return view('admin.countries.create');
     }
 
@@ -65,6 +70,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('updateSystem',Auth::user());
+
         $country = Country::findOrFail($id);
         return view('admin.countries.edit', compact('country'));
     }
@@ -93,6 +100,8 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('deleteSystem',Auth::user());
+
         try {
             $country = Country::findOrFail($id);
             $country->delete();

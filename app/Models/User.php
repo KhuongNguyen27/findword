@@ -20,6 +20,23 @@ class User extends Authenticatable
     const ACTIVE    = 1;
     const INACTIVE  = 0;
     const DRAFT     = -1;
+    const PERMISSION = [
+        'user_viewAny' => 'Xem Danh sách',
+        'user_view' => 'Xem Chi Tiết',
+        'user_create' => 'Thêm Mới',
+        'user_update' => 'Cập Nhật',
+        'user_delete' => 'Xóa',
+        'user_viewAnySystem' => 'Xem Danh sách',
+        'user_viewSystem' => 'Xem Chi Tiết',
+        'user_createSystem' => 'Thêm Mới',
+        'user_updateSystem' => 'Cập Nhật',
+        'user_deleteSystem' => 'Xóa',
+        'user_viewAnyPost' => 'Xem Danh sách',
+        'user_viewPost' => 'Xem Chi Tiết',
+        'user_createPost' => 'Thêm Mới',
+        'user_updatePost' => 'Cập Nhật',
+        'user_deletePost' => 'Xóa'
+    ];
     /**
      * The attributes that are mass assignable.
      *

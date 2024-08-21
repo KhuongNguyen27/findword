@@ -18,7 +18,7 @@
         <div class="col">
             <input class="form-control" name="email" type="text" placeholder="Email" value="{{ request()->email }}">
         </div>
-
+       
         <div class="col">
             <div class="d-flex align-items-center gap-2 justify-content-lg-end">
                 <button class="btn btn-light px-4"><i class="bi bi-box-arrow-right me-2"></i>Tìm</button>
@@ -50,7 +50,7 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                       
                         @foreach( $items as $key => $item )
                         <tr>
                             <td>{{ $key + 1 }}</td>
@@ -61,11 +61,6 @@
                                         <i class="bi bi-three-dots"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route($route_prefix.'show', $item->id) }}">
-                                                {{ __('Cấp quyền') }}
-                                            </a>
-                                        </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route($route_prefix.'edit', $item->id) }}">
                                                 {{ __('edit') }}
@@ -85,13 +80,13 @@
                             </td>
                         </tr>
                         @endforeach
-
+                       
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
+   
 </div>
 
-@endsection
+@endsection     

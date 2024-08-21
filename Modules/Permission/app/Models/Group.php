@@ -20,11 +20,11 @@ class Group extends Model
     {
         return $this->hasMany(User::class);
     }
-    public function role()
+    public function roles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'group_role', 'group_id', 'role_id');
     }
-    
+
     protected static function newFactory(): GroupFactory
     {
         //return GroupFactory::new();

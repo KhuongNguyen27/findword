@@ -27,6 +27,8 @@ class AdminUserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('viewAny',Auth::user());
+
         $type = $request->type ?? '';
         $items = $this->model::getItems($request);
 
@@ -78,6 +80,7 @@ class AdminUserController extends Controller
      */
     public function create(Request $request)
     {
+        $this->authorize('create',Auth::user());
         $type = $request->type ?? '';
         $params = [
             'route_prefix' => $this->route_prefix,
@@ -94,8 +97,8 @@ class AdminUserController extends Controller
      */
     public function store(StoreAdminUserRequest $request)
     {
-        // dd($request->type);
         $type = $request->type;
+        // Chưa có tách type cho admin
         try {
             $this->model::saveItem($request, $type);
             return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.store_item_success'));
@@ -152,7 +155,7 @@ class AdminUserController extends Controller
      */
     public function edit($id)
     {
-        // dd(123);
+        $this->authorize('update',Auth::user());
         try {
             $type = request()->type;
             $item = $this->model::findOrFail($id);
@@ -225,6 +228,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete',Auth::user());
+
         $type = request()->type ?? '';
         try {
             $item = $this->model::findOrFail($id);

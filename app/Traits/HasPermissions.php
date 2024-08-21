@@ -29,7 +29,7 @@ trait HasPermissions
         if (!$this->group) {
             abort(403, 'You do not have permission to access this resource.');
         }
-        $this->permissionList = $this->group->role;
+        $this->permissionList = $this->group->roles;
         return $this->permissionList ?? collect();
     }
 }
