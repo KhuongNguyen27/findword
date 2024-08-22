@@ -189,6 +189,70 @@
 }
 
 
+/* Điều chỉnh modal cho mobile */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .modal-content {
+        padding: 10px;
+    }
+
+    .modal-header {
+        padding: 10px;
+    }
+
+    .modal-title {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .comunication-content {
+        text-align: left; /* Căn nội dung về bên trái */
+    }
+
+    .comunication-content__text {
+        text-align: left; /* Căn đều sang trái */
+    }
+
+    .comunication-content__text p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .comunication-content__footer {
+        font-size: 14px;
+    }
+
+    .find-out {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn-find-out {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .checkbox-dont-show__input {
+        font-size: 14px;
+    }
+}
+
+
 </style>
 <!-- Job Section -->
 <div class="screen-overlay">
@@ -332,7 +396,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Tìm Việc Siêu Nhanh - Tiếp lợi thế, nối thành công
+                    Tìm Việc Siêu Nhanh - Tiếp Lợi Thế, Nối Thành Công
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
