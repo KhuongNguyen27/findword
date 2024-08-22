@@ -1,4 +1,33 @@
 <!-- Mobile Header -->
+<style>
+/* Header di động */
+@media (max-width: 768px) {
+    .mobile-header {
+        height: 81px; 
+        padding: 0 !important;
+        display: flex; /* Giữ cho flexbox hoạt động nếu cần */
+        align-items: center !important;
+    }
+
+    .mobile-header .logo img {
+        height: 93px !important; 
+        max-height: 100% !important;
+    }
+
+    .mobile-header .outer-box {
+        margin-left: 63px;
+    }
+}
+
+/* Header cho máy tính */
+@media (min-width: 769px) {
+    .mobile-header {
+        display: none; /* Ẩn header di động trên màn hình lớn */
+    }
+}
+
+</style>
+
 <div class="mobile-header">
     <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('website-assets/images/logo-hd.png')}}" alt="" title=""></a></div>
 
