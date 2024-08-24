@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\View\Composers\JobFavorite;
 use App\View\Composers\PostComposer;
 use App\View\Composers\AppliedJobCountComposer;
-
+use App\View\Composers\PopupComposer;
 use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', AppliedJobCountComposer::class);
 
         View::composer(['website.homes.index','website.homes.home-sub-index'], HomeShare::class);
+        View::composer('*', PopupComposer::class);
 
     }
 }

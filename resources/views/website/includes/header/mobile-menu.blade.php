@@ -3,7 +3,7 @@
 /* Header di động */
 @media (max-width: 768px) {
     .mobile-header {
-        height: 81px; 
+        height: 60px; 
         padding: 0 !important;
         display: flex; /* Giữ cho flexbox hoạt động nếu cần */
         align-items: center !important;
@@ -17,6 +17,9 @@
     .mobile-header .outer-box {
         margin-left: 63px;
     }
+    .mm-menu_fullscreen.mm-menu_position-bottom {
+    top: 60px;
+}
 }
 
 /* Header cho máy tính */
@@ -52,7 +55,8 @@
                 @endif
             </div>
 
-            <a href="#nav-mobile" class="mobile-nav-toggler"><span class="flaticon-menu-1"></span></a>
+            <a href="#nav-mobile" class="mobile-nav-toggler"><i class="fas fa-bars" style="color: #2b2d33; font-size: 22px;"></i>
+</a>
         </div>
     </div>
 </div>

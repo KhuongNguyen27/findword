@@ -113,6 +113,10 @@
                     <span class="material-symbols-outlined">arrow_right</span> {{__('Banner')}} </a>
             </li>
             @endif
+             <li>
+                <a href="{{ route('popups.index') }}">
+                    <span class="material-symbols-outlined">arrow_right</span> {{__('Popup')}} </a>
+            </li>
             @if(Auth::user()->hasPermission('user_viewAnyPost'))
                 <li>
                     <a href="{{ route('adminpost.index',['type'=>'Post']) }}">
