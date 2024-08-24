@@ -1,4 +1,4 @@
-/* 
+/*
 Superio | Just another HTML Template
 
 Template Name: Superio
@@ -9,7 +9,7 @@ Version: 1.0.0
 1. Fonts
 2. Reset
 3. Global
-4. Content Elements 
+4. Content Elements
 5. Main Header / Two / Three / Four / Five
 6. Sticky Header
 7. Mobile Header
@@ -26,11 +26,11 @@ Version: 1.0.0
 18. Clients Section / Two
 19. About Section / Two / Three
 20. Fun Fact Section
-21. Recruiter Section 
+21. Recruiter Section
 22. Jobseeker Section
 23. Candidates Section / Two
 24. Candidate Detail Section
-25. Listing Section 
+25. Listing Section
 26. Listing Show More
 27. Listing Pagination
 28. Listing Section Two / Three / Four
@@ -65,7 +65,7 @@ Version: 1.0.0
 57. User Sidebar
 58. Chat Widget
 **********************************************/
-/*** 
+/***
 
 ====================================================================
 Fonts
@@ -85,14 +85,14 @@ Fonts
 @import url("mmenu.css");
 @import url("jquery.fancybox.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/*** 
+/***
 
 ====================================================================
 Reset
 ====================================================================
 
 ***/
-/*** 
+/***
 
 ====================================================================
 Global Settings
@@ -200,7 +200,7 @@ button {
 }
 .gridarea__small__icon .job_favorite .flaticon-bookmark.active {
   color: red; /* Màu xanh */
- 
+
 }
 p,
 .text {
@@ -317,7 +317,7 @@ li {
 }
 
 /*======================
-Checkbox 
+Checkbox
 =======================*/
 .checkbox-outer {
   position: relative;
@@ -497,7 +497,7 @@ Radio bOX
 }
 
 /*======================
-Switches 
+Switches
 =======================*/
 .switchbox-outer {
   position: relative;
@@ -816,7 +816,7 @@ typography
   font-family: 'Font Awesome 5 Free';
 }
 
-/*** 
+/***
 
 ====================================================================
 Content Elements
@@ -1020,7 +1020,7 @@ section hr {
   cursor: pointer;
 }
 
-/*** 
+/***
 
 ====================================================================
 Scroll To Top
@@ -1193,7 +1193,7 @@ Scroll To Top
   margin-right: 5px;
 }
 
-/*** 
+/***
 
 ====================================================================
 About Section
@@ -1368,7 +1368,7 @@ About Ssection / Style Two
   font-size: 15px;
 }
 
-/*** 
+/***
 
 ====================================================================
 About Section Two
@@ -1524,7 +1524,7 @@ About Section Two
   background-color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 About Section Three
@@ -1663,7 +1663,7 @@ Accordian Box
   margin-bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Ads Section
@@ -1946,7 +1946,7 @@ Banner Box Three
   border-color: #ffffff;
 }
 
-/*** 
+/***
 ======================
 Buttons Styles
 ======================
@@ -2340,7 +2340,7 @@ Callout Three
   float: left;
 }
 
-/*** 
+/***
 
 ====================================================================
 Clients Section
@@ -2388,7 +2388,7 @@ Clients Section
   transition: all 300ms ease;
 }
 
-/*** 
+/***
 
 ====================================================================
 Clients Section Two
@@ -2437,7 +2437,7 @@ Clients Section Two
   padding: 100px 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Top Companies
@@ -3269,7 +3269,7 @@ Contact Section
   height: 10px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Dashboard
@@ -3761,7 +3761,7 @@ Listing Block Seven
   margin-left: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 User Sidebar
@@ -3991,7 +3991,7 @@ User Sidebar
   transform: scale(0.9);
 }
 
-/*** 
+/***
 
 ====================================================================
 Chat Widget
@@ -4576,7 +4576,7 @@ Chat Widget
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Features Section
@@ -5407,7 +5407,7 @@ Fun Fact Section
   color: #696969;
 }
 
-/*** 
+/***
 
 ====================================================================
 Main Header
@@ -5788,7 +5788,7 @@ Main Header
   background-color: #ffffff;
 }
 
-/*** 
+/***
 
 ====================================================================
 Header Style Two
@@ -5854,7 +5854,7 @@ Header Style Two
   border-radius: 50px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Header Style Three
@@ -5892,7 +5892,7 @@ Header Style Three
   border-bottom-color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Header Style Four
@@ -5954,7 +5954,7 @@ Header Style Four
   background: #262C3F;
 }
 
-/*** 
+/***
 
 ====================================================================
 Header Style Five
@@ -5985,7 +5985,7 @@ Header Style Five
   transition: all 300ms ease;
 }
 
-/*** 
+/***
 
 ====================================================================
 Sticky Header
@@ -6041,7 +6041,7 @@ Sticky Header
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Mobile Header
@@ -6133,7 +6133,7 @@ Mobile Header
   font-size: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Categories
@@ -6414,7 +6414,7 @@ Job Categories
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section
@@ -6587,7 +6587,7 @@ Job Section
   margin-top: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section Two
@@ -6721,7 +6721,7 @@ Job Section Two
   margin-top: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section Three
@@ -6848,7 +6848,7 @@ Job Section Three
   flex-wrap: wrap;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section Four
@@ -7010,7 +7010,7 @@ Job Section Four
   line-height: 22px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section Five
@@ -7185,7 +7185,7 @@ Job Section Five
   margin-bottom: 50px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Section Six
@@ -7256,7 +7256,7 @@ Job Section Six
   margin-bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Detail Section
@@ -7768,7 +7768,7 @@ List Style Two
   content: "";
 }
 
-/*** 
+/***
 
 ====================================================================
 Login Popup
@@ -8756,7 +8756,7 @@ Owl Carousel Default Nav
   background: #b9c1d0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Page Title
@@ -9058,7 +9058,7 @@ Progress Bars
   margin-bottom: 5px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Registeration Banners
@@ -9550,7 +9550,7 @@ Registeration Banners
   color: #f9ab00;
 }
 
-/*** 
+/***
 
 ====================================================================
 Section Title
@@ -9955,7 +9955,7 @@ b:before {
   padding: 22px 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Job Detail Section / Style two
@@ -10101,7 +10101,7 @@ Job Detail Section / Style two
   color: #ffffff;
 }
 
-/*** 
+/***
 ==========================
 Social Icons
 ==========================
@@ -10358,7 +10358,7 @@ Default Tabs
   border-bottom: 3px solid #5c6770;
 }
 
-/*** 
+/***
 
 ====================================================================
 Testimonial Section
@@ -10492,7 +10492,7 @@ Testimonial Section
   padding: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Testimonial Section Two
@@ -10680,7 +10680,7 @@ Testimonial Section Two
   bottom: 38px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Testimonial Section Three
@@ -10807,7 +10807,7 @@ Testimonial Section Three
   color: #ffffff;
 }
 
-/*** 
+/***
 
 ====================================================================
 Testimonial Section Four
@@ -11044,7 +11044,7 @@ Radio bOX
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 App Section
@@ -11174,7 +11174,7 @@ Browse Jobs
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Candidates Section
@@ -11271,7 +11271,7 @@ Candidates Section
   color: #202124;
 }
 
-/*** 
+/***
 
 ====================================================================
 Candidates Section Two
@@ -11761,7 +11761,7 @@ Candidates Section Two
   width: 100%;
 }
 
-/*** 
+/***
 
 ====================================================================
 Candidate Detail Section
@@ -12098,7 +12098,7 @@ Candidate Detail Section
   margin-bottom: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Call To Action
@@ -12155,7 +12155,7 @@ Call To Action
   padding-bottom: 100px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Call To Action Two
@@ -12203,7 +12203,7 @@ Call To Action Two
   opacity: .85;
 }
 
-/*** 
+/***
 
 ====================================================================
 Call To Action Three
@@ -12494,7 +12494,7 @@ Invoice Section
   color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Jobseeker Section
@@ -12563,7 +12563,7 @@ Jobseeker Section
 /***
 
 ====================================================================
-Listing Section  (Ls Section) 
+Listing Section  (Ls Section)
 ====================================================================
 
 ***/
@@ -12962,7 +12962,7 @@ Ls Outer
   color: #202124;
 }
 
-/*** 
+/***
 
 ====================================================================
 Listing Show More
@@ -13024,7 +13024,7 @@ Listing Show More
   content: "";
 }
 
-/*** 
+/***
 
 ====================================================================
 Listing Pagination
@@ -13194,7 +13194,7 @@ Ls Section / style Four
   top: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Listing Maps
@@ -13410,7 +13410,7 @@ News Section
   padding-top: 19px;
 }
 
-/*** 
+/***
 
 ====================================================================
 News Section Two
@@ -13452,7 +13452,7 @@ News Section Two
   background: rgba(52, 168, 83, 0.04);
 }
 
-/*** 
+/***
 
 ====================================================================
 News Section Three
@@ -13593,7 +13593,7 @@ News Section Three
   margin-left: 20px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Pricing Section
@@ -13796,7 +13796,7 @@ Pricing Section
   width: 100%;
 }
 
-/*** 
+/***
 
 ====================================================================
 Process Section
@@ -13847,7 +13847,7 @@ Process Section
   color: #202124;
 }
 
-/*** 
+/***
 
 ====================================================================
 Recruiter Section
@@ -13904,7 +13904,7 @@ Recruiter Section
   min-width: 180px;
 }
 
-/*** 
+/***
 
 ====================================================================
 steps Section
@@ -14030,7 +14030,7 @@ steps Section
   content: "";
 }
 
-/*** 
+/***
 
 ====================================================================
 Subscribe Section
@@ -14118,7 +14118,7 @@ Subscribe Section
   color: #222222 !important;
 }
 
-/*** 
+/***
 
 ====================================================================
 Subscribe Section Two
@@ -14325,7 +14325,7 @@ border-bottom: 0 !important;*/
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/*** 
+/***
 
 ====================================================================
 Blog Grid
@@ -14581,7 +14581,7 @@ Blog Grid
   background-color: #28c1bc;
 }
 
-/*** 
+/***
 
 ====================================================================
 Blog Single
@@ -14927,7 +14927,7 @@ Comments Area
   border: 1px solid #ECEDF2;
 }
 
-/*** 
+/***
 
 ====================================================================
 Cart Section
@@ -15298,7 +15298,7 @@ CheckOut Page
   width: 100%;
 }
 
-/*** 
+/***
 
 ====================================================================
 Order Slip
@@ -15389,7 +15389,7 @@ Order Slip
   padding: 50px 60px 60px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Products Section
@@ -15476,7 +15476,7 @@ Products Section
   bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Shop Single
@@ -15671,7 +15671,7 @@ Shop Single
   min-width: 90px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Product Tabs
@@ -19119,7 +19119,7 @@ html {
   height: auto;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section
@@ -19249,7 +19249,7 @@ Banner Section
   line-height: 25px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Three
@@ -19329,7 +19329,7 @@ Banner Section Three
   margin-bottom: 0;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Four
@@ -19454,7 +19454,7 @@ Banner Section Four
   line-height: 25px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Five
@@ -19577,7 +19577,7 @@ Banner Section Five
   bottom: 60px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Six
@@ -19719,7 +19719,7 @@ Banner Section Six
   padding: 15px 30px 15px 66px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Seven
@@ -19817,7 +19817,7 @@ Banner Section Seven
   margin-right: -220px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Eight
@@ -19948,7 +19948,7 @@ Banner Section Eight
   width: 100%;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Nine
@@ -20034,7 +20034,7 @@ Banner Section Nine
   color: #FFFFFF;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section Ten
@@ -20366,7 +20366,7 @@ Info Blocks
   bottom: 85px;
 }
 
-/*** 
+/***
 
 ====================================================================
 Banner Section
@@ -20576,7 +20576,7 @@ border-bottom: 0 !important;*/
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/*** 
+/***
 
 ====================================================================
 Work Section
@@ -21005,9 +21005,9 @@ Work Section
 		min-width: 150px;
 	}
 
-	.job-search-form .ui-selectmenu-button.ui-button, 
-	.job-search-form .form-group input, 
-	.job-search-form .form-group select, 
+	.job-search-form .ui-selectmenu-button.ui-button,
+	.job-search-form .form-group input,
+	.job-search-form .form-group select,
 	.job-search-form .form-group textarea {
 		height: 50px;
 		line-height: 20px;
@@ -21485,7 +21485,7 @@ Work Section
 }
 
 @media only screen and (max-width: 1023px){
-	
+
 	.job-search-form .form-group{
 		border-radius: 0;
 	}
@@ -21567,8 +21567,8 @@ Work Section
 	}
 
 	.job-search-form .ui-selectmenu-button.ui-button,
-	.job-search-form .form-group input, 
-	.job-search-form .form-group select, 
+	.job-search-form .form-group input,
+	.job-search-form .form-group select,
 	.job-search-form .form-group textarea{
 		line-height: 20px;
 		padding: 25px 0;
@@ -21879,7 +21879,7 @@ Work Section
 	.listing-maps.style-two .job-search-form.style-two,
 	.listing-maps.style-two .job-search-form.style-two form{
 		background: none;
-	}	
+	}
 
 
 	.ls-section .filters-column{
@@ -22186,7 +22186,7 @@ Work Section
 		margin-top: 30px;
 	}
 
-	.testimonial-section-three .owl-next, 
+	.testimonial-section-three .owl-next,
 	.testimonial-section-three .owl-prev{
 		margin: 0 5px;
 	}
@@ -22363,8 +22363,8 @@ Work Section
 
 	.job-search-form .chosen-container-single .chosen-single,
 	.job-search-form .ui-selectmenu-button.ui-button,
-	.job-search-form .form-group input, 
-	.job-search-form .form-group select, 
+	.job-search-form .form-group input,
+	.job-search-form .form-group select,
 	.job-search-form .form-group textarea{
 		padding-left: 50px;
 	}
@@ -22571,7 +22571,7 @@ Work Section
 		border-radius: 0;
 	}
 
-	.main-footer.style-three .newsletter-form .form-group input[type="text"], 
+	.main-footer.style-three .newsletter-form .form-group input[type="text"],
 	.main-footer.style-three .newsletter-form .form-group input[type="email"]{
 		border-radius: 0;
 		border-radius: 10px;
@@ -22597,7 +22597,7 @@ Work Section
 		border-radius: 10px;
 	}
 
-	.subscribe-form .form-group input[type="text"], 
+	.subscribe-form .form-group input[type="text"],
 	.subscribe-form .form-group input[type="email"]{
 		position: relative;
 	}
@@ -22728,13 +22728,13 @@ Work Section
 		padding: 30px;
 	}
 
-	.banner-style-two .content, 
+	.banner-style-two .content,
 	.banner-style-one .content{
 		padding: 0;
 		text-align: center;
 	}
 
-	.banner-style-two .image, 
+	.banner-style-two .image,
 	.banner-style-one .image{
 		position: relative;
 		left: 0;
@@ -23052,12 +23052,12 @@ Work Section
 		margin-bottom: 100px;
 	}
 
-}	
+}
 
 @media only screen and (max-width: 479px){
 	.ls-section .filters-outer{
 		padding: 30px 20px 10px;
-	}	
+	}
 
 	.candidate-block-three .inner-box{
 		padding: 20px 20px 20px;
@@ -23088,7 +23088,7 @@ Work Section
 		align-items: flex-end;
 		flex-direction: column-reverse;
 	}
- 
+
   .login-bg {
       position: relative;
   }
@@ -23103,8 +23103,8 @@ Work Section
       color: #fff; /* Màu chữ */
   }
 
-  
-  
+
+
 }
 
 .green-button {
@@ -23234,4 +23234,11 @@ span.flaticon-bookmark.active::before {
 span.thumb-cover img {
   width: 100% !important;
   object-fit: cover;
+}
+.logo-trending {
+  position: absolute;
+  left: 0;
+  height: 40px;
+  width: 100px;
+  overflow: hidden;
 }
