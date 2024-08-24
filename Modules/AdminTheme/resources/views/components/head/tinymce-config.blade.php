@@ -47,6 +47,9 @@
     if (document.querySelector('#more_information')) {
         initializeCKEditor('more_information');
     }
+    if (document.querySelector('#content')) {
+        initializeCKEditor('content');
+    }
 </script>
 
 

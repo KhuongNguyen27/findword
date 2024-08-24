@@ -251,6 +251,8 @@
         font-size: 14px;
     }
 }
+/* Điều chỉnh modal */
+
 
 
 </style>
@@ -390,13 +392,15 @@
     });
 
 </script>
+@if($popup && $popup->is_active)
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Tìm Việc Siêu Nhanh - Tiếp Lợi Thế, Nối Thành Công
+                   {{ $popup->title }}
+
                 </h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
@@ -405,32 +409,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe id="video-brand-communication " src="https://www.youtube.com/embed/IsYrDEa_Qq8?autoplay=1&amp;mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
-                </iframe>
+               <iframe width="560" height="315" src="{{ $popup->video_link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="modal-footer">
                 <div class="icon">
-                    <img data-src="{{ asset('website-assets/images/favicon.png')}}" class="lazy entered loaded" alt="timviecsieunhanh" data-ll-status="loaded" src="{{ asset('website-assets/images/favicon.png')}}">
+                   <img 
+                    src="{{ $popup->image ? asset('storage/' . $popup->image) : asset('website-assets/images/favicon.png') }}" 
+                    alt="Popup Image" 
+                    class="lazy entered loaded"
+                    data-ll-status="loaded">
                 </div>
                 <div class="comunication-content">
                     <div class="comunication-content__text">
-                        <p>
-                            Trong sự nghiệp, chọn đúng việc, đi đúng hướng là một <span class="hight-light">lợi
-                                thế</span>
-                        </p>
-                        <p>
-                            Định vị bản thân chính xác là một <span class="hight-light">lợi thế</span>
-                        </p>
-                        <p>
-                            Kết nối bền chặt cùng đồng nghiệp cũng là một <span class="hight-light">lợi thế</span>
-                        </p>
-                        <p>
-                            Tìm Việc Siêu Nhanh hiểu rõ, <span class="hight-light">lợi thế</span> nằm trong tay bạn!
-                        </p>
+                          {!! $popup->content !!}
                     </div>
-                    <p class="hight-light comunication-content__footer">
-                        Tìm Việc Siêu Nhanh luôn đồng hành để bạn thành công trong sự nghiệp
-                    </p>
                 </div>
             </div>
             <div class="find-out">
@@ -448,6 +440,8 @@
         </div>
     </div>
 </div>
+@endif
+
 @endsection
 @push('js')
 <script src="{{ asset('website-assets/js/popup.js') }}"></script>
