@@ -1,5 +1,10 @@
 @extends('website.layouts.master')
 @section('content')
+<style>
+span.logo-trending {
+    margin-right: 0px !important;
+}
+</style>
     <section class="banner-section pb-5">
         <div class="auto-container">
             <div class="row">
