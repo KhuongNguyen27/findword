@@ -22,12 +22,16 @@ use App\Models\Banner;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Str;
 
+use App\Traits\SEOTrait;
+
 class JobController extends Controller
 {
+
+    use SEOTrait;
+    
     // Trong nước
     public function vnjobs(Request $request, $job_type = '')
     {
-        // dd(123);
         $sidebarBanners = Banner::where('group_banner', 'Sidebar Banner')->orderBy('position')->get();
         $degrees = Level::where('status', Level::ACTIVE)->orderBy('position')->get();
         $formworks = FormWork::where('status', FormWork::ACTIVE)->orderBy('position')->get();
@@ -316,6 +320,17 @@ class JobController extends Controller
             'sidebarBanners' => $sidebarBanners,
 
         ];
+        // Cấu hình SEO
+		$keywords = config('seo.keywords');
+        $title = $title;
+        $description = config('seo.description');
+        $canonical = config('seo.canonical');
+        $this->setSEO(
+						$title,
+						$description,
+						$canonical,
+						$keywords,
+					);
         return view($view_path, $params);
     }
     // Ngoài nước
@@ -611,7 +626,17 @@ class JobController extends Controller
             'sidebarBanners' => $sidebarBanners,
 
         ];
-
+        // Cấu hình SEO
+		$keywords = config('seo.keywords');
+        $title = $title;
+        $description = config('seo.description');
+        $canonical = config('seo.canonical');
+        $this->setSEO(
+						$title,
+						$description,
+						$canonical,
+						$keywords,
+					);
         return view($view_path, $params);
     }
 

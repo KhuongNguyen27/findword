@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+use App\Traits\SEOTrait;
+
+
 class PostController extends Controller
 {
+    use SEOTrait;
+
     public function index(){
         // $items = Post::where('status',1)->paginate(9);
                 // Lấy các bài viết theo category
@@ -21,6 +26,19 @@ class PostController extends Controller
     }
     public function show($slug){
         $item = Post::where('slug',$slug)->firstOrFail();
+
+        // Cấu hình SEO
+		$keywords = $item->short_description;
+        $title = $item->name;
+        $description = $item->short_description;
+        $canonical = config('seo.canonical');
+        $this->setSEO(
+						$title,
+						$description,
+						$canonical,
+						$keywords,
+					);
+
         return view('website.posts.show',[
             'item' => $item
         ]);
