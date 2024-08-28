@@ -3,6 +3,7 @@
 namespace Modules\Employee\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -19,12 +20,14 @@ use App\Models\User;
 use App\Models\FormWork;
 use App\Models\JobPackage;
 use App\Models\Province;
+use Carbon\Carbon;
 use Modules\Employee\app\Models\UserJobApply;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Modules\Employee\app\Models\CareerJob;
 use Illuminate\Support\Str;
-
+use Modules\Account\app\Models\UserAccount;
+use Modules\Account\app\Models\UserJobPackage;
 
 class JobController extends Controller
 {
@@ -144,6 +147,45 @@ class JobController extends Controller
                 return json_decode($account->ckeditor_features, true);
             });
     
+            $current_package = Auth::user()->account->where('is_current',User::ACTIVE)->first();
+            $currentDate = Carbon::now();
+            $expirationDate = Carbon::parse($current_package->expiration_date);
+            if (!$expirationDate->gt($currentDate)) {
+                $current_package->is_current = $user::INACTIVE;
+                $current_package->save();
+                UserJobPackage::where('user_id', $user->id)->update(['amount' => 0]);
+                $is_current = 1;
+                $register_date = date('Y-m-d H:i:s');
+                $register_date = new \DateTime($register_date);
+                $expiration_date = clone $register_date;
+                $expiration_date->add(new \DateInterval('P30D'));
+                $data = [
+                    'user_id' => Auth::id(),
+                    'account_id' => 1,
+                    'duration_id' => 1,
+                    'register_date' => $register_date->format('Y-m-d H:i:s'),
+                    'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
+                    'is_current' => $is_current
+                ];
+                $userPackage = UserAccount::create($data);
+                $countPackage = Auth::user()->accounts()->where('is_current',1)->first();
+                foreach ($countPackage->job_package as $job_package) {
+                    if ($job_package->amount > 0) {
+                        $countPackageCurrent = UserJobPackage::updateOrCreate(
+                            [
+                                'user_id' => Auth::id(),
+                                'job_package_id' => $job_package->job_package_id,
+                            ],
+                            [
+                                'amount' => $job_package->amount
+                            ]
+                        );
+                    }
+                }
+            }
+            // Lấy số lượng tin đăng từ bảng user_job_package
+            $user_job_packages = UserJobPackage::where('user_id', $user->id)
+            ->pluck('amount', 'job_package_id');
             // dd($ckeditorFeatures);
             $param = [
                 'careers' => $careers,
@@ -156,10 +198,11 @@ class JobController extends Controller
                 'countries' => $countries,
                 'userAllowedAbroad' => $userAllowedAbroad,
                 'ckeditorFeatures' => $ckeditorFeatures, 
+                'user_job_packages' => $user_job_packages, // Truyền số lượng tin đăng
 
 
             ];
-            // dd($param);
+            // dd($job_packages);
             return view('employee::job.create', compact('param'));
         } else {
             return back()->with('error', 'Tài khoản bạn chưa được xác minh. Vui lòng chờ quản trị viên xác minh công ty');
@@ -232,6 +275,19 @@ class JobController extends Controller
                 $job->status = Job::INACTIVE;
             }
             $job->save();
+
+
+                // Cập nhật số lượng tin đăng
+            $user_job_package = UserJobPackage::where('user_id', Auth::id())
+            ->where('job_package_id', $request->jobpackage_id)
+            ->first();
+            if ($user_job_package) {
+            // Giảm số lượng tin đăng
+            $user_job_package->amount -= 1; // Giảm số lượng tin đăng xuống 1
+            $user_job_package->save();
+            }
+
+
             // lưu vào bảng career_job
             if ($request->career_ids) {
                 $job->careers()->attach($request->career_ids);

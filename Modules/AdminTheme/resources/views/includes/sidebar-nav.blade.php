@@ -1,5 +1,7 @@
 <!--navigation-->
 <ul class="metismenu" id="menu">
+
+     @if (Auth::user()->hasPermission('home_viewAny'))
     <li>
         <a href="{{ route('admin.home') }}">
             <div class="parent-icon"><span class="material-symbols-outlined">home</span>
@@ -7,6 +9,8 @@
             <div class="menu-title">{{ __('dashboard') }}</div>
         </a>
     </li>
+    @endif
+     @if (Auth::user()->hasPermission('user_viewAny'))
     <li class="menu-label">{{ __('account') }}</li>
     <li>
         <a class="has-arrow" aria-expanded="false" href="javascript:;">
@@ -45,6 +49,7 @@
             </li>
         </ul>
     </li>
+     @endif
     @if (Auth::user()->hasPermission('user_viewAnySystem'))
     <li>
         <a class="has-arrow" href="javascript:;">
@@ -113,10 +118,12 @@
                     <span class="material-symbols-outlined">arrow_right</span> {{__('Banner')}} </a>
             </li>
             @endif
+             @if(Auth::user()->hasPermission('user_viewAnySystem'))
              <li>
                 <a href="{{ route('popups.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span> {{__('Popup')}} </a>
             </li>
+            @endif
             @if(Auth::user()->hasPermission('user_viewAnyPost'))
                 <li>
                     <a href="{{ route('adminpost.index',['type'=>'Post']) }}">

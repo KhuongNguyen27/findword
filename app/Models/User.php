@@ -35,7 +35,8 @@ class User extends Authenticatable
         'user_viewPost' => 'Xem Chi Tiết',
         'user_createPost' => 'Thêm Mới',
         'user_updatePost' => 'Cập Nhật',
-        'user_deletePost' => 'Xóa'
+        'user_deletePost' => 'Xóa',
+        'home_viewAny' => 'Xem Trang Chủ'
     ];
     /**
      * The attributes that are mass assignable.

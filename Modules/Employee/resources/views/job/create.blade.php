@@ -320,20 +320,25 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
-                                            <label>Loại tin đăng <span class="label-required">*</span></label>
-                                            <select id="package_type" onchange="handle_price_package()" name="jobpackage_id" class="chosen-select">
-                                                @foreach ($param['job_packages'] as $job_package)
-                                                <option id="{{ $job_package->id }}" data-price="{{ $job_package->price }}" value="{{ $job_package->id }}" data-count_job="{{ Auth::user()->checkJob($job_package->id) }}">
-                                                    {{ $job_package->name }}
-                                                    {{ Auth::user()->checkJob($job_package->id) > 0 ? '(' . Auth::user()->checkJob($job_package->id) . ')' : '' }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('jobpackage_id') }}</p>
-                                            @endif
-                                            <!-- <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a> -->
-                                        </div>
+    <label>Loại tin đăng <span class="label-required">*</span></label>
+    <select id="package_type" onchange="handle_price_package()" name="jobpackage_id" class="chosen-select">
+        @foreach ($param['job_packages'] as $job_package)
+        @php
+            // Lấy số lượng tin đăng từ dữ liệu truyền vào
+            $amount = $param['user_job_packages']->get($job_package->id, 0);
+        @endphp
+        <option id="{{ $job_package->id }}" data-price="{{ $job_package->price }}" value="{{ $job_package->id }}" data-count_job="{{ $amount }}">
+            {{ $job_package->name }}
+            {{ $amount > 0 ? '(' . $amount . ')' : '' }}
+        </option>
+        @endforeach
+    </select>
+    @if ($errors->any())
+    <p style="color:red">{{ $errors->first('jobpackage_id') }}</p>
+    @endif
+    <!-- <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a> -->
+</div>
+
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày bắt đầu <span class="label-required">*</span></label>
                                             <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}" name="start_day" placeholder="" onchange="calculateDays()" readonly>
