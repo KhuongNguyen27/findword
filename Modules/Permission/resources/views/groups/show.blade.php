@@ -22,16 +22,18 @@
                         @endphp
                         <div class="row">
                             @foreach ($chunks as $index => $chunk)
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="card border-secondary mb-3">
                                         <div class="card-header">
                                             <h6 class="d-flex justify-content-between align-items-center">
                                                 @if($index == 0)
-                                                    {{ __('Nhóm quyền UV và NTD') }}
+                                                    {{ __('Nhóm quyền Ứng Viên và Nhà Tuyển Dụng') }}
                                                 @elseif($index == 1)
                                                     {{ __('Nhóm quyền Công Việc và Hệ Thống') }}
+                                                @elseif($index == 2)
+                                                    {{ __('Nhóm quyền Tin Đăng') }}
                                                 @else
-                                                    {{ __('Nhóm quyền Tin đăng') }}
+                                                    {{ __('Nhóm quyền Trang Chủ') }}
                                                 @endif
                                                 <!-- Checkbox Select All -->
                                                 <input type="checkbox" class="form-check-input select-all" data-index="{{ $index }}">

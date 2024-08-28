@@ -14,6 +14,8 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use App\Models\AccountJobPackage;
+use Modules\Account\app\Models\UserJobPackage;
 
 class AccountController extends Controller
 {
@@ -75,6 +77,19 @@ class AccountController extends Controller
                 'is_current' => $is_current
             ];
             $userPackage = UserAccount::create($data);
+        
+            $countPackages = AccountJobPackage::where('account_id', $package->id)->get();
+            foreach ($countPackages as $countPackage) {
+                UserJobPackage::updateOrCreate(
+                    [
+                        'user_id' => $user->id,
+                        'job_package_id' => $countPackage->job_package_id
+                    ],
+                    [
+                        'amount' => $countPackage->amount
+                    ]
+                );
+            }
             DB::commit();
             return redirect()->route($this->route_prefix.'index')->with('success','Thanh toán gói thành công');
         }catch(\Exception $e){

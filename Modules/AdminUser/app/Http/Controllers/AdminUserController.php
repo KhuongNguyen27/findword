@@ -3,6 +3,7 @@
 namespace Modules\AdminUser\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AccountJobPackage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\DB; // Sử dụng DB facade
 use Modules\Account\app\Models\UserAccount;
 use App\Notifications\Notifications;
 use Illuminate\Support\Facades\Notification;
+use Modules\Account\app\Models\UserJobPackage;
+
 class AdminUserController extends Controller
 {
     protected $view_path = 'adminuser::';
@@ -190,17 +193,27 @@ class AdminUserController extends Controller
             $this->model::updateItem($id, $request, $type);
 
             if ($request->verify == $this->model::ACTIVE && $oldVerifyStatus != $this->model::ACTIVE) {
+
                 if (!UserAccount::where('user_id', $id)->exists()) {
                     $register_date = new \DateTime();
                     $expiration_date = (clone $register_date)->add(new \DateInterval('P30D'));
 
-                    UserAccount::create([
+                    $userAccount = UserAccount::create([
                         'user_id' => $id,
-                        'account_id' => 1,
+                        'account_id' => 1,  
                         'duration_id' => 1,
                         'is_current' => 1,
                         'register_date' => $register_date->format('Y-m-d H:i:s'),
                         'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
+                    ]);
+                }
+
+                $countPackages = AccountJobPackage::where('account_id',1)->get();
+                foreach ($countPackages as $countPackage) {
+                    UserJobPackage::create([
+                        'user_id' => $id,
+                        'job_package_id' => $countPackage->job_package_id,  
+                        'amount' => $countPackage->amount,  
                     ]);
                 }
 

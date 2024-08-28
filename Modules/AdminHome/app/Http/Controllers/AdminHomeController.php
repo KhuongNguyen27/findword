@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\AdminUser\app\Models\AdminUser;
 use Modules\Employee\app\Models\UserJobApply;
 use Modules\Transaction\app\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
@@ -22,6 +23,8 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
+        $this->authorize('homeView',Auth::user());
+
         $user_access = Setting::where('key', 'user_access')->first();
         $countRegisterToday = $this->model::countRegisterToday();
         $countStaffAndEmployee = $this->model::countStaffAndEmployee();

@@ -78,4 +78,9 @@ class UserPolicy
     {
         return $user->hasPermission('user_deletePost');
     }
+
+    public function homeView(User $user)
+    {
+        return $user->hasPermission('home_viewAny');
+    }
 }
