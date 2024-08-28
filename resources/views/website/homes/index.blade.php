@@ -1,5 +1,6 @@
 @extends('website.layouts.master')
 @section('title') {{ env('APP_NAME') }} @endsection
+@section('header') {!! SEO::generate() !!} @endsection
 @section('content')
 
 <!-- Banner Section-->
