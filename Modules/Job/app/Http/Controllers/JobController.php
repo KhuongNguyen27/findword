@@ -22,9 +22,11 @@ use Modules\Employee\app\Models\CareerJob;
 use Modules\Job\app\Models\Country;
 use Modules\Staff\app\Models\UserJobAplied;
 use Illuminate\Support\Facades\DB;
+use App\Traits\SEOTrait;
 
 class JobController extends Controller
 {
+    use SEOTrait;
     /**
      * Display a listing of the resource.
      */
@@ -203,6 +205,18 @@ class JobController extends Controller
         'international' => $international,
         'sidebarBanners' => $sidebarBanners,
     ];
+
+    // Cấu hình SEO
+		$keywords = $job->description;
+        $title = $job->name;
+        $description = $job->description;
+        $canonical = config('seo.canonical');
+        $this->setSEO(
+						$title,
+						$description,
+						$canonical,
+						$keywords,
+					);
     return view('job::jobs.show', $params);
 }
 
