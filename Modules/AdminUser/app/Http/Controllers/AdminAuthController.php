@@ -35,6 +35,8 @@ class AdminAuthController extends Controller
 
                 if ($user->hasPermission('home_viewAny')) {
                     return redirect()->route('admin.home');
+                } elseif ($user->hasPermission('user_viewAny')) {
+                    return redirect()->route('adminuser.index',['type'=>'staff']);
                 } elseif ($user->hasPermission('user_viewAnyPost')) {
                     return redirect()->route('adminpost.index', ['type' => 'Post']);
                 } else {
