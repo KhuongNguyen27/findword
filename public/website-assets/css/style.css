@@ -12569,7 +12569,11 @@ Listing Section  (Ls Section)
 ***/
 .ls-section {
   position: relative;
-  padding: 50px 0 100px;
+  padding: 0px 0 100px;
+}
+
+.title-box h1 {
+  color: #28c1bc;
 }
 
 .ls-section .content-column .upper-box {
