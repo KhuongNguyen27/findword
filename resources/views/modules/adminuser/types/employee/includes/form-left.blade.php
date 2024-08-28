@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-body">
+        <div class="mb-4">
+            <label class="mb-3">Tên công ty</label>
+            <input type="text" class="form-control" name="name_company" value="{{ $item->employee->name ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="name_company"/>
+        </div>
+        <div class="mb-4">
+            <label class="mb-3" >Độ ưu tiên</label>
+            <input type="number" name="position" class="form-control" value="{{ ($item->employee->position ?? '') }}" >
+        </div>
+        <div class="mb-4 row">
+            <div class="col-lg-6">
+                <label class="mb-3">[Danh sách] Màu tiêu đề</label>
+                <input type="color" class="form-control" name="title_color" value="{{ $item->employee->title_color ?? old('title_color', '#000000') }}">
+            </div>
+            <div class="col-lg-6">
+                <label class="mb-3">[Danh sách] Màu background</label>
+                <input type="color" class="form-control" name="background_company" value="{{ $item->employee->background_company ?? old('background_company', '#ffffff') }}">
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="mb-3">{{ __('address') }}</label>
+            <input type="text" class="form-control" name="address" value="{{ $item->employee->address ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="address"/>
+        </div>
+
+        <!-- Input -->
+        <div class="mb-4">
+            <label class="mb-3">{{ __('phone') }}</label>
+            <input type="text" class="form-control" name="phone" value="{{ $item->employee->phone ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="phone"/>
+        </div>
+
+        <div class="mb-4">
+            <label class="mb-3">Website </label>
+            <input type="text" class="form-control" name="website" value="{{ $item->employee->website ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="website"/>
+        </div>
+
+        <div class="mb-4">
+            <label class="mb-3">Mã số thuế doanh nghiệp</label>
+            <input type="text" class="form-control" name="tax_code" value="{{ $item->tax_code ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="tax_code"/>
+        </div>
+
+        <div class="mb-4">
+            <label class="mb-3"> Token </label>
+            <input type="number" class="form-control" name="points" value="{{ $item->points ?? '' }}" placeholder="">
+            <x-admintheme::form-input-error field="points"/>
+        </div>
+        <div class="mb-4">
+            <label class="mb-3">{{ __('description') }}</label>
+            <textarea id="description" class="tinymce" name="about" cols="4" rows="6">{{ $item->employee->about ?? old('about') }}</textarea>
+            <div id="tinycomments-container">
+                <x-admintheme::form-input-error field="about"/>
+            </div>
+        </div>
+    </div>
+</div>
+
