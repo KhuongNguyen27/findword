@@ -19,18 +19,29 @@ trait SEOTrait
      * @param string $description
      * @param string $keywords
      */
-    public function setSEO($title, $description = '', $canonical = '',$keywords = '')
+    public function setSEO($title, $description = '', $canonical = '',$keywords = '',$og_url = '')
     {
         SEOTools::setTitle($title);
 
         if (!empty($description)) {
-            SEOTools::setDescription($description);
+            $plainText = strip_tags($description);
+            $plainText = html_entity_decode($plainText);
+            $summaryText = mb_substr($plainText, 0, 160);
+            $summaryText = preg_replace('/\s+/', ' ', $summaryText);
+            $summaryText = trim($summaryText);
+            SEOTools::setDescription($summaryText);
         }
-        if (!empty($description)) {
+
+        if (!empty($canonical)) {
             SEOTools::setCanonical($canonical);
         }
+
         if (!empty($keywords)) {
             SEOMeta::addKeyword($keywords);
         }
+        if (!empty($og_url)) {
+            OpenGraph::setUrl($og_url);
+        }
+        
     }
 }

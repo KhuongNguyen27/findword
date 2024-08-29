@@ -6,7 +6,7 @@
                 <div class="content-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="title-box">
-                            <h3>Quy chế hoạt động</h3>
+                            <h1>Quy chế hoạt động</h1>
                         </div>
                     </div>
                 </div>

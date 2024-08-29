@@ -323,13 +323,15 @@ class JobController extends Controller
         // Cấu hình SEO
 		$keywords = config('seo.keywords');
         $title = $title;
-        $description = config('seo.description');
+        $description = $title.' '.config('seo.description');
         $canonical = config('seo.canonical');
+        $og_url = config('seo.canonical');
         $this->setSEO(
 						$title,
 						$description,
 						$canonical,
 						$keywords,
+                        $og_url
 					);
         return view($view_path, $params);
     }
@@ -629,13 +631,15 @@ class JobController extends Controller
         // Cấu hình SEO
 		$keywords = config('seo.keywords');
         $title = $title;
-        $description = config('seo.description');
+        $description = $title.' '.config('seo.description');
         $canonical = config('seo.canonical');
+        $og_url = config('seo.canonical');
         $this->setSEO(
 						$title,
 						$description,
 						$canonical,
 						$keywords,
+                        $og_url
 					);
         return view($view_path, $params);
     }

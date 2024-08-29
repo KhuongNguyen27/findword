@@ -121,8 +121,8 @@
         <div class="row">
             <div class="content-column col-lg-12 col-md-12 col-sm-12">
                 <div class="inner-column" data-wow-delay="1000ms">
-                    <div class="title-box">
-                        <h3>Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc.</h3>
+                    <div class="title-box custom-title-home">
+                        <h1>Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc.</h1>
                         <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
                             uy tín tại Việt Nam</div>
                     </div>

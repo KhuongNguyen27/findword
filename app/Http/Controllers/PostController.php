@@ -26,17 +26,20 @@ class PostController extends Controller
     }
     public function show($slug){
         $item = Post::where('slug',$slug)->firstOrFail();
-
+        
         // Cấu hình SEO
 		$keywords = $item->short_description;
         $title = $item->name;
         $description = $item->short_description;
-        $canonical = config('seo.canonical');
+        $canonical = config('seo.canonical').$slug;
+        $og_url = config('seo.canonical').$slug;
+
         $this->setSEO(
 						$title,
 						$description,
 						$canonical,
 						$keywords,
+                        $og_url
 					);
 
         return view('website.posts.show',[

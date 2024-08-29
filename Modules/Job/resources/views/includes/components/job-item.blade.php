@@ -54,7 +54,7 @@ $job->work_address = end($work_address);
         <div class="content">
             <span class="tag-job-flash">
                 @if (@$job->job_package->image_fm)
-                <img src="{{ $job->job_package->image_fm }}" alt="">
+                <img src="{{ $job->job_package->image_fm }}" alt="job">
                 @endif
             </span>
             <span class="company-logo" style="{{ $small_logo_border_color_style }}">

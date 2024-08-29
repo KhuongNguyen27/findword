@@ -10,7 +10,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>Nhập mã từ email của bạn</h3>
+        <h1>Nhập mã từ email của bạn</h1>
         <!--Login Form-->
         <form action="{{ route('staff.confirm')}}?email={{$email}}" method="POST">
             @if (session('error'))

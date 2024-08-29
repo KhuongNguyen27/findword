@@ -14,6 +14,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\OperatingRegulationController;
 
 
 /*
@@ -55,9 +56,8 @@ Route::get('/cong-ty', [EmployeeController::class,'index'])->name('employees.ind
 
 Route::get('/nganh-nghe/{slug}', [CareerController::class,'show'])->name('careers.show');
 Route::get('/bai-viet/{slug}', [PostController::class,'show'])->name('posts.show');
-Route::get('/quy-che-hoat-dong', function () {
-    return view('website/htmlpages/quychehoatdong');
-})->name('htmlpages.quy-che-hoat-dong');
+Route::get('/quy-che-hoat-dong', [OperatingRegulationController::class,'index'])->name('htmlpages.quy-che-hoat-dong');
+
 
 
 // Route::get('/{slug}', [PageController::class,'show'])->name('pages.show');

@@ -3,7 +3,7 @@
 <!-- Login Form -->
 <div class="login-form default-form">
     <div class="form-inner">
-        <h3>{{ __('login') }}</h3>
+        <h1>{{ __('login') }}</h1>
         <!--Login Form-->
         <form action="{{ route('staff.postLogin')}}" method="POST">
             @if (session('error'))
