@@ -8,7 +8,7 @@
                 <div class="content-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="title-box">
-                            <h3 class="title">{{ $title }}</h3>
+                            <h1 class="title">{{ $title }}</h1>
                             <div class="description">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn
                                 doanh nghiệp
                                 uy tín tại Việt Nam</div>

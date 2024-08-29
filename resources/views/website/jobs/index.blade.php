@@ -9,11 +9,10 @@
                 <div class="content-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="title-box">
-                            <h3>{{ $title }}</h3>
+                            <h1>{{ $title }}</h1>
                             <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
                                 uy tín tại Việt Nam</div>
                         </div>
-                       
                         <!-- Job Search Form -->
                         @if($route == 'jobs.vnjobs')
                         @include('website.homes.includes.job-search-form',['route_index' => route("jobs.vnjobs", ['job_type'=> 'tat-ca'])])

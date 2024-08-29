@@ -3,7 +3,6 @@
 
     <head>
         <meta charset="utf-8">
-        <title>@yield('title')</title>
         <!-- Stylesheets -->
         <link href="{{ asset('website-assets/css/bootstrap.css')}}" rel="stylesheet">
         <link href="{{ asset('website-assets/css/jquery-ui.min.css')}}" rel="stylesheet">
@@ -13,12 +12,15 @@
         <link rel="shortcut icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
         <link rel="icon" href="{{ asset('website-assets/images/favicon.png')}}" type="image/x-icon">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        {{-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> --}}
         <link href="{{ asset('website-assets/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
         <script src="{{ asset('website-assets/js/jquery.js')}}"></script>
         <script src="{{ asset('website-assets/js/jquery-ui.min.js')}}"></script>
         <link rel="stylesheet" href="https://static.topcv.vn/v4/css/components/desktop/welcome.min.f52a5c4bfa977462.css">
         {!! SEO::generate() !!}
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ asset('website-assets/images/logo-hd.png')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
         @yield('header')
     </head>
 <style>

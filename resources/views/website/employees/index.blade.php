@@ -11,7 +11,7 @@ span.logo-trending {
                 <div class="content-column col-lg-12 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="title-box">
-                            <h3>Khám phá 100.000+ công ty nổi bật</h3>
+                            <h1>Khám phá 100.000+ công ty nổi bật</h1>
                             <div class="text">Tra cứu thông tin công ty và tìm kiếm nơi làm việc tốt nhất dành cho bạn
                             </div>
                         </div>

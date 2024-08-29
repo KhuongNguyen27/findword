@@ -31,10 +31,28 @@ use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 use Modules\Staff\app\Models\UserStaff;
 
+use App\Traits\SEOTrait;
+
+
 class AuthController extends Controller
 {
+	use SEOTrait;
+
     public function login()
-    {
+    {   
+        $keywords = config('seo.keywords');
+        $title = 'Đăng nhập';
+        $description = 'Đăng nhập tìm việc siêu nhanh';
+        $canonical = config('seo.canonical').'staff/login';
+		$og_url = config('seo.canonical').'staff/login';
+        $this->setSEO(
+						$title,
+						$description,
+						$canonical,
+						$keywords,
+						$og_url
+					);
+
         if (Auth::check()) {
             return redirect()->route('staff.home');
         } else {

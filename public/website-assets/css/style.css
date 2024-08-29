@@ -23246,3 +23246,15 @@ span.thumb-cover img {
   width: 100px;
   overflow: hidden;
 }
+
+.banner-section .content-column .inner-column {
+  padding: 150px 0 0px !important;
+}
+
+.banner-section .content-column .custom-title-home h1 {
+  font-size: 50px;
+  line-height: 60px;
+  color: #28c1bc;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

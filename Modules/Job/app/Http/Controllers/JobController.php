@@ -206,16 +206,24 @@ class JobController extends Controller
         'sidebarBanners' => $sidebarBanners,
     ];
 
+    $plainText = strip_tags($job->description);
+    $plainText = html_entity_decode($plainText);
+    $summaryText = mb_substr($plainText, 0, 160);
+    $summaryText = preg_replace('/\s+/', ' ', $summaryText);
+    $summaryText = trim($summaryText);
     // Cấu hình SEO
-		$keywords = $job->description;
+		$keywords = $summaryText;
         $title = $job->name;
-        $description = $job->description;
-        $canonical = config('seo.canonical');
+        $description = $summaryText;
+        $canonical = config('seo.canonical').'jobs/'.$slug;
+        $og_url = config('seo.canonical').'jobs/'.$slug;
+
         $this->setSEO(
 						$title,
 						$description,
 						$canonical,
 						$keywords,
+                        $og_url
 					);
     return view('job::jobs.show', $params);
 }

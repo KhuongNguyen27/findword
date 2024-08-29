@@ -27,11 +27,13 @@ class HomeController extends Controller
         $title = config('seo.title');
         $description = config('seo.description');
         $canonical = config('seo.canonical');
+		$og_url = config('seo.canonical');
         $this->setSEO(
 						$title,
 						$description,
 						$canonical,
 						$keywords,
+						$og_url
 					);
 		// Kiểm tra và cập nhật session truy cập
 		$this->updateAccessTime($request);
