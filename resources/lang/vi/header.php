@@ -1,0 +1,20 @@
+<?php
+return [
+    'danh_cho_ung_vien' => 'Dành cho ứng viên',
+    'dang_nhap' => 'Đăng nhập',
+    'dang_ki_tai_khoan_moi' => 'Đăng kí tài khoản mới',
+    'viec_lam_trong_nuoc' => 'Việc làm trong nước',
+    'viec_lam_hom_nay' => 'Việc làm hôm nay',
+    'viec_lam_hot' => 'Việc làm Hot nhất',
+    'tuyen_gap' => 'Tuyển gấp',
+    'cong_ty' => 'Công ty',
+    'ho_so_cv' => 'Hồ sơ & CV',
+    'ho_so_ca_nhan' => 'Hồ sơ cá nhân',
+    'viec_lam_da_nop' => 'Việc làm đã nộp',
+    'mau_cv' => 'Mẫu CV',
+    'bang_gia' => 'Bảng giá',
+    'dac_quyen_tin' => 'Đặc quyền Tin',
+    'danh_cho_ntd' => 'Dành cho nhà tuyển dụng',
+    'dang_tuyen' => 'Đăng tuyển',
+    'hi' => 'Xin chào',
+];

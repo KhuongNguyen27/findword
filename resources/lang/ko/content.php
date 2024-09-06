@@ -1,0 +1,27 @@
+<?php
+return [
+    'viec_lam_hom_nay' => '今日の仕事',
+    'viec_lam_hot_nhat' => '핫 잡',
+    'viec_lam_tuyen_gap' => '긴급 채용',
+    'khong_hien_thi_lai' => '다시 표시하지 않기',
+    'tim_hieu_them' => '더 알아보기',
+    'xem_tat_ca' => '모두 보기',
+    'top_cong_ty_hang_dau' => '최고의 기업',
+    'viec_lam_hap_dan' => '매력적인 직업',
+    'thi_truong_viec_lam_hom_nay' => '오늘의 구직 시장',
+    'viec_lam_moi_nhat' => '최신 구인 정보',
+    'viec_lam_moi_24h' => '최근 24시간 내 최신 구인 정보',
+    'viec_lam_dang_tuyen' => '현재 채용 중인 구직 정보',
+    'cong_ty_dang_tuyen' => '현재 채용 중인 회사',
+    'tang_truong_co_hoi_viec_lam' => '구직 기회 성장',
+    'nhu_cau_tuyen_dung_theo' => '채용 수요 분류',
+    'xem_tat_ca' => '모두 보기',
+    'tinh_hinh_thi_truong_viec_lam' => '구직 시장 상황',
+    'top_nganh_nghe_noi_bat' => '주목할 만한 직종',
+    'ban_muon_tim_viec_moi' => '새로운 일을 찾고 계신가요? 여기서 구직 목록을 확인하세요',
+    'viec_lam' => '일자리',
+    'career_guide' => '경력 가이드',
+    'read_more' => '자세히 읽기',
+    'goc_giai_tri' => '엔터테인먼트 코너',
+
+];

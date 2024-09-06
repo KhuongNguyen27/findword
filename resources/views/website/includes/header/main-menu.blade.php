@@ -13,61 +13,53 @@ $currentRouteName = \Request::route()->getName();
     <ul class="navigation" id="navbar">
 
         @guest
-        <li class="mobile-only"><strong>Dành cho ứng viên</strong></li>
-        <li class="mobile-only"><a href="{{ route('staff.login') }}">Đăng nhập</a></li>
-        <li class="mobile-only"><a href="{{ route('staff.register') }}">Đăng kí tài khoản mới</a></li>
+           <li class="mobile-only"><strong>{{ __('header.danh_cho_ung_vien') }}</strong></li>
+        <li class="mobile-only"><a href="{{ route('staff.login') }}">{{ __('header.dang_nhap') }}</a></li>
+        <li class="mobile-only"><a href="{{ route('staff.register') }}">{{ __('header.dang_ki_tai_khoan_moi') }}</a></li>
         @endguest
 
 
 
         <li class="dropdown">
-            <a class="@if ($currentRouteName == 'jobs.vnjobs') active @endif" href="{{ route('jobs.vnjobs') }}">Việc làm
-                trong nước</a>
+            <a class="@if ($currentRouteName == 'jobs.vnjobs') active @endif" href="{{ route('jobs.vnjobs') }}">{{ __('header.viec_lam_trong_nuoc') }}</a>
             <ul>
-                <li><a href="{{ route('jobs.vnjobs', 'today') }}">Việc làm Hôm nay</a></li>
-                <li><a href="{{ route('jobs.vnjobs', 'hot') }}">Việc làm Hot nhất</a></li>
-                <li><a href="{{ route('jobs.vnjobs', 'urgent') }}">Tuyển gấp</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'today') }}">{{ __('header.viec_lam_hom_nay') }}</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'hot') }}">{{ __('header.viec_lam_hot') }}</a></li>
+                <li><a href="{{ route('jobs.vnjobs', 'urgent') }}">{{ __('header.tuyen_gap') }}</a></li>
             </ul>
         </li>
 
 
 
         <li class="dropdown">
-            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">Việc làm
-                ngoài nước</a>
+            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">{{ __('header.viec_lam_trong_nuoc') }}</a>
             <ul>
-                <li><a href="{{ route('jobs.nnjobs', 'today') }}">Việc làm Hôm nay</a></li>
-                <li><a href="{{ route('jobs.nnjobs', 'hot') }}">Việc làm Hot nhất</a></li>
-                <li><a href="{{ route('jobs.nnjobs', 'urgent') }}">Tuyển gấp</a></li>
+               <li><a href="{{ route('jobs.nnjobs', 'today') }}">{{ __('header.viec_lam_hom_nay') }}</a></li>
+                <li><a href="{{ route('jobs.nnjobs', 'hot') }}">{{ __('header.viec_lam_hot') }}</a></li>
+                <li><a href="{{ route('jobs.nnjobs', 'urgent') }}">{{ __('header.tuyen_gap') }}</a></li>
             </ul>
         </li>
 
         <li><a class="@if ($currentRouteName == 'employees.index') active @endif"
-                href="{{ route('employees.index') }}">Công ty</a></li>
+                href="{{ route('employees.index') }}">{{ __('header.cong_ty') }}</a></li>
 
         <li class="dropdown">
-            <a class="@if ($currentRouteName == 'cvs.index') active @endif" href="javascript:;">Hồ sơ & CV</a>
+            <a class="@if ($currentRouteName == 'cvs.index') active @endif" href="javascript:;">{{ __('header.ho_so_cv') }}</a>
             <ul>
-                <li><a href="{{ route('staff.profile.index') }}">Hồ sơ cá nhân</a></li>
-                <li><a href="{{ route('staff.job-applied') }}">Việc làm đã nộp</a></li>
-                <li><a href="{{ route('cvs.index') }}">Mẫu CV</a></li>
+                <li><a href="{{ route('staff.profile.index') }}">{{ __('header.ho_so_ca_nhan') }}</a></li>
+                <li><a href="{{ route('staff.job-applied') }}">{{ __('header.viec_lam_da_nop') }}</a></li>
+                <li><a href="{{ route('cvs.index') }}">{{ __('header.mau_cv') }}</a></li>
             </ul>
         </li>
         @if (Auth::check() && (Auth::user()->type == "employee"))
-        <li><a class="@if ($currentRouteName == 'website.account.index') active @endif"
-                href="{{ route('website.account.index') }}">Bảng giá</a>
-        </li>
-
-        <li>
-            <a class="@if ($currentRouteName == 'website.jobpackage.index') active @endif"
-                href="{{ route('website.jobpackage.index') }}">Đặc quyền Tin</a>
-        </li>
+          <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{ route('website.account.index') }}">{{ __('header.bang_gia') }}</a></li>
+        <li><a class="@if ($currentRouteName == 'website.jobpackage.index') active @endif" href="{{ route('website.jobpackage.index') }}">{{ __('header.dac_quyen_tin') }}</a></li>
         @endif
 
         <!-- Dành cho nhà tuyển dụng -->
         @guest
-        <li class="mobile-only"><strong>Dành cho nhà tuyển dụng</strong></li>
-        <li class="mobile-only"><a href="{{ route('employee.login') }}">Đăng tuyển</a></li>
+        <li class="mobile-only"><strong>{{ __('header.danh_cho_ntd') }}</strong></li>
+        <li class="mobile-only"><a href="{{ route('employee.login') }}">{{ __('header.dang_tuyen') }}</a></li>
         @endguest
         <!-- Only for Mobile View -->
 

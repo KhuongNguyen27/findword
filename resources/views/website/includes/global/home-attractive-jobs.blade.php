@@ -3,7 +3,7 @@
         <div class="row">
             <div class="content-column col-lg-8">
             @include('website.homes.includes.job-items',[
-                'sec_title' => 'Việc làm hấp dẫn',
+                'sec_title' => __('content.viec_lam_hap_dan'),
                 'item_class' => 'col-lg-6 col-md-12 col-sm-12',
                 'chunk_jobs' => $hot_jobs,
                 'sec_link' => route('attractive')

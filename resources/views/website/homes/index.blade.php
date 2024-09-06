@@ -121,10 +121,9 @@
         <div class="row">
             <div class="content-column col-lg-12 col-md-12 col-sm-12">
                 <div class="inner-column" data-wow-delay="1000ms">
-                    <div class="title-box custom-title-home">
-                        <h1>Tìm việc làm nhanh 24h, việc làm mới nhất trên toàn quốc.</h1>
-                        <div class="text">Tiếp cận 40,000+ tin tuyển dụng việc làm mỗi ngày từ hàng nghìn doanh nghiệp
-                            uy tín tại Việt Nam</div>
+                   <div class="title-box custom-title-home">
+                        <h1>{{ __('banner.title') }}</h1>
+                        <div class="text">{{ __('banner.text') }}</div>
                     </div>
                     <!-- Job Search Form -->
                     @include('website.homes.includes.job-search-form',['route_index' => route("jobs.homejobs", ['job_type'=> 'tat-ca-viec-lam'])])
@@ -262,7 +261,7 @@
                 <div class="overlay"></div>
             </div>
 @include('website.homes.includes.job-items', [
-'sec_title' => 'Việc làm hôm nay',
+'sec_title' =>  __('content.viec_lam_hom_nay'),
 'chunk_jobs' => $vip_jobs,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
 'sec_link' => route('jobs.homejobs', 'viec-lam-hom-nay'),
@@ -272,7 +271,7 @@
 @include('website.includes.global.ad-banners')
 
 @include('website.homes.includes.job-items',[
-'sec_title' => 'Việc làm tuyển gấp',
+'sec_title' => __('content.viec_lam_tuyen_gap'),
 'chunk_jobs' => $tuyen_gap,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
 'sec_link' => route('jobs.homejobs','urgent')
@@ -286,7 +285,7 @@
 
 
 @include('website.homes.includes.job-items',[
-'sec_title' => 'Việc làm HOT nhất',
+'sec_title' => __('content.viec_lam_hot_nhat'),
 'chunk_jobs' => $hot,
 'item_class' => 'col-lg-4 col-md-12 col-sm-12',
 'sec_link' => route('jobs.homejobs','hot')
@@ -430,12 +429,12 @@
                 <div class="form-check checkbox-dont-show">
                     <label class="checkbox-dont-show__input">
                         <input type="checkbox" id="dont-show_popup_brand_community">
-                        Không hiển thị lại
+                            {{ __('content.khong_hien_thi_lai') }}
                         <span class="checkmark"></span>
                     </label>
                 </div>
                 <a href="#" target="__blank" class="btn btn-find-out">
-                    Tìm hiểu thêm
+                    {{ __('content.tim_hieu_them') }}
                 </a>
             </div>
         </div>
