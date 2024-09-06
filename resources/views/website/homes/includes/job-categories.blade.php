@@ -1,8 +1,8 @@
 <section class="job-categories pt-3 pb-3">
     <div class="auto-container">
         <div class="sec-title text-center">
-            <h2 class="">Top ngành nghề nổi bật</h2>
-            <div class="text">Bạn muốn tìm việc mới? Xem danh sách việc làm tại đây</div>
+            <h2 class="">{{ __('content.top_nganh_nghe_noi_bat') }}</h2>
+            <div class="text">{{ __('content.ban_muon_tim_viec_moi') }}</div>
         </div>
 
         <div class="theme-card-body">
@@ -21,7 +21,7 @@
                                         </span>
                                         <h4><a href="{{ route('careers.show',$career->slug) }}">{{ $career->name }}</a>
                                         </h4>
-                                        <p>{{ $career->jobs->count() ?? 0 }} việc làm</p>
+                                        <p>{{ $career->jobs->count() ?? 0 }} {{ __('content.viec_lam') }}</p>
                                     </div>
                                 </div>
                             </div>

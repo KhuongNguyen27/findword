@@ -8,7 +8,7 @@
                 <div class="box-header__tool">
                     <span class="see-more">
                         <a href="{{ $sec_link }}" class="mb-3 mt-3">
-                            <span class="btn-title text-uppercase">Xem tất cả</span>
+                            <span class="btn-title text-uppercase">{{ __('content.xem_tat_ca') }}</span>
                         </a>
                     </span>
                     <span class="btn-feature-jobs-pre btn-slick-arrow slick-arrow">

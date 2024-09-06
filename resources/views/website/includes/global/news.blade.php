@@ -12,7 +12,7 @@
          <div class="ls-outer theme-card">
              <div class="ls-switcher theme-card-header">
                  <div class="sec-title mb-3 mt-3">
-                     <h2>{{ __('career_guide') }}</h2>
+                     <h2>{{ __('content.career_guide') }}</h2>
                  </div>
                  <!-- <a href="{{ route('website.home') }}" class="mb-3 mt-3">
                      <span class="btn-title text-uppercase">Xem tất cả</span>
@@ -33,7 +33,7 @@
                                          href="{{ route('posts.show',$post->slug) }}">{{ $post->name }}</a></h3>
                                  <p class="text">{!! $post->short_description !!}</p>
                                  <a href="{{ route('posts.show',$post->slug) }}"
-                                     class="read-more">{{ __('read_more') }}<i class="fa fa-angle-right"></i></a>
+                                     class="read-more">{{ __('content.read_more') }}<i class="fa fa-angle-right"></i></a>
                              </div>
                          </div>
                      </div>
@@ -49,7 +49,7 @@
          <div class="ls-outer theme-card">
              <div class="ls-switcher theme-card-header">
                  <div class="sec-title mb-3 mt-3">
-                     <h2>Góc Giải Trí</h2>
+                    <h2>{{ __('content.goc_giai_tri') }}</h2>
                  </div>
                  <!-- <a href="{{ route('website.home') }}" class="mb-3 mt-3">
                      <span class="btn-title text-uppercase">Xem tất cả</span>
@@ -70,7 +70,7 @@
                                          href="{{ route('posts.show',$post->slug) }}">{{ $post->name }}</a></h3>
                                  <p class="text">{!! $post->short_description !!}</p>
                                  <a href="{{ route('posts.show',$post->slug) }}"
-                                     class="read-more">{{ __('read_more') }}<i class="fa fa-angle-right"></i></a>
+                                     class="read-more">{{ __('content.read_more') }}<i class="fa fa-angle-right"></i></a>
                              </div>
                          </div>
                      </div>

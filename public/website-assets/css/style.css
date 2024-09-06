@@ -12574,6 +12574,10 @@ Listing Section  (Ls Section)
 
 .title-box h1 {
   color: #28c1bc;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.2em;
+  font-size: 30px;
 }
 
 .ls-section .content-column .upper-box {
@@ -23252,9 +23256,10 @@ span.thumb-cover img {
 }
 
 .banner-section .content-column .custom-title-home h1 {
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 30px;
+  line-height: 1.2em;
   color: #28c1bc;
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
 }

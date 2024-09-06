@@ -2,14 +2,14 @@
     <div class="container lazy" id="dashboard" data-lazy-function="initDashboardHomeJS">
         <div class="block-dashboard">
             <div class="block-dashboard__header">
-                <h3>Thị trường việc làm hôm nay <span><?= date('d/m/Y') ?></span></h3>
+                <h3>{{ __('content.thi_truong_viec_lam_hom_nay') }} <span>{{ date('d/m/Y') }}</span></h3>
             </div>
             <div class="block-dashboard__content">
                 <div class="block-newest-job">
                     <img class="block-newest-job__img"
                         src="{{ asset('website-assets/images/macos.png') }}?t={{ time() }}">
                     <div class="wrapper">
-                        <p class="block-newest-job__title">Việc làm mới nhất</p>
+                        <p class="block-newest-job__title">{{ __('content.viec_lam_moi_nhat') }}</p>
                         <img class="block-newest-job__icon-top "
                             src="https://cdn-new.topcv.vn/unsafe/https://static.topcv.vn/v4/image/welcome/dashboard/icon-top.png">
                         <div class id="sliderNewJobPublish">
@@ -43,16 +43,16 @@
                     <div class="block-work-market work-market">
                         <div class="item">
                             <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today + 586 }}</p>
-                            <p class="title">Việc làm mới 24h gần nhất</p>
+                            <p class="title">{{ __('content.viec_lam_moi_24h') }}</p>
                         </div>
                         <div class="item">
                             <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment + 2000 }}</p>
-                            <p class="title">Việc làm đang tuyển</p>
+                            <p class="title">{{ __('content.viec_lam_dang_tuyen') }}</p>
                         </div>
                         <div class="item">
                             <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment + 1000 }}
                             </p>
-                            <p class="title">Công ty đang tuyển</p>
+                            <p class="title">{{ __('content.cong_ty_dang_tuyen') }}</p>
                         </div>
                     </div>
                     <div class="block-chart">
@@ -60,7 +60,7 @@
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
-                                        class="caption"> Tăng trưởng cơ hội việc làm </span>
+                                        class="caption">{{ __('content.tang_truong_co_hoi_viec_lam') }}</span>
                                 </div>
                             </div>
                             <img class="img-responsive loading-chart lazy mt-2" style="display:none"
@@ -74,7 +74,7 @@
                             <div class="header">
                                 <div class="title">
                                     <div class="icon"> <i class="fa-solid fa-arrow-trend-up"></i> </div> <span
-                                        class="caption"> Nhu cầu tuyển dụng theo </span>
+                                        class="caption">{{ __('content.nhu_cau_tuyen_dung_theo') }}</span>
                                 </div>
                                 <!-- <div class="box-select"> <select name="demand-job-select"
                                             id="demand-job-select-dashboard" class="form-control select2 text-white">

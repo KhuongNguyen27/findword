@@ -1,0 +1,20 @@
+<?php
+return [
+    'danh_cho_ung_vien' => 'For Job Seekers',
+    'dang_nhap' => 'Login',
+    'dang_ki_tai_khoan_moi' => 'Register New Account',
+    'viec_lam_trong_nuoc' => 'Domestic Jobs',
+    'viec_lam_hom_nay' => 'Jobs Today',
+    'viec_lam_hot' => 'Hot Jobs',
+    'tuyen_gap' => 'Urgent Hiring',
+    'cong_ty' => 'Companies',
+    'ho_so_cv' => 'CV & Resumes',
+    'ho_so_ca_nhan' => 'Personal Profile',
+    'viec_lam_da_nop' => 'Applied Jobs',
+    'mau_cv' => 'CV Templates',
+    'bang_gia' => 'Pricing',
+    'dac_quyen_tin' => 'Premium Job Listings',
+    'danh_cho_ntd' => 'For Recruiters',
+    'dang_tuyen' => 'Post a Job',
+    'hi' => 'Hi',
+];

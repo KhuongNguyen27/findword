@@ -1,0 +1,20 @@
+<?php
+return [
+    'danh_cho_ung_vien' => '구직자용',
+    'dang_nhap' => '로그인',
+    'dang_ki_tai_khoan_moi' => '새 계정 등록',
+    'viec_lam_trong_nuoc' => '국내 일자리',
+    'viec_lam_hom_nay' => '오늘의 일자리',
+    'viec_lam_hot' => '핫 일자리',
+    'tuyen_gap' => '긴급 채용',
+    'cong_ty' => '기업',
+    'ho_so_cv' => '프로필 및 이력서',
+    'ho_so_ca_nhan' => '개인 프로필',
+    'viec_lam_da_nop' => '지원한 일자리',
+    'mau_cv' => '이력서 템플릿',
+    'bang_gia' => '가격',
+    'dac_quyen_tin' => '프리미엄 채용 공고',
+    'danh_cho_ntd' => '채용 담당자용',
+    'dang_tuyen' => '채용 공고 작성',
+    'hi' => '안녕',
+];

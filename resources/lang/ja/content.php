@@ -1,0 +1,27 @@
+<?php
+return [
+    'viec_lam_hom_nay' => '今日の求人',
+    'viec_lam_hot_nhat' => 'ホットジョブ',
+    'viec_lam_tuyen_gap' => '緊急求人',
+    'khong_hien_thi_lai' => '再表示しない',
+    'tim_hieu_them' => 'もっと知る',
+    'xem_tat_ca' => 'すべて表示',
+    'top_cong_ty_hang_dau' => 'トップ企業',
+    'viec_lam_hap_dan' => '魅力的な仕事',
+    'thi_truong_viec_lam_hom_nay' => 'Job Market Today',
+    'viec_lam_moi_nhat' => 'Newest Jobs',
+    'viec_lam_moi_24h' => 'Newest Jobs in the Last 24 Hours',
+    'viec_lam_dang_tuyen' => 'Jobs Currently Recruiting',
+    'cong_ty_dang_tuyen' => 'Companies Currently Recruiting',
+    'tang_truong_co_hoi_viec_lam' => 'Job Opportunity Growth',
+    'nhu_cau_tuyen_dung_theo' => 'Recruitment Demand By',
+    'xem_tat_ca' => 'View All',
+    'tinh_hinh_thi_truong_viec_lam' => 'Job Market Today',
+    'top_nganh_nghe_noi_bat' => '注目の職種',
+    'ban_muon_tim_viec_moi' => '新しい仕事を探していますか？ここで求人リストをチェックしてください',
+    'viec_lam' => '仕事',
+    'career_guide' => 'キャリアガイド',
+    'read_more' => '続きを読む',
+    'goc_giai_tri' => 'エンターテイメントコーナー',
+
+];

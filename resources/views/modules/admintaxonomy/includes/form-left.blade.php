@@ -38,7 +38,7 @@
                             Việc làm Hấp dẫn</option>
                     </select>
                 </div>
-                <div class="col-md-6 mb-3">
+                {{-- <div class="col-md-6 mb-3">
                     <label for="" class="mb-3">Tự động theo ngày</label>
                     <select class="form-select" name="daily" id="">
                         <option value="">Lựa chọn</option>
@@ -52,7 +52,7 @@
                             {{isset($item)  && $item->autoPostJobPackage && $item->autoPostJobPackage->daily == "ngày tiếp theo" ? "selected" : ''}}>
                             ngày tiếp theo</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="col-md-6">
                     <label for="" class="mb-3">vào lúc mấy giờ </label>
                     <select class="form-select" name="hour" id="">
@@ -70,12 +70,12 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="" class="mb-3">Duy trì trong bao nhiêu tiếng</label>
+                    <label for="" class="mb-3">Số lần lên top</label>
                     <select class="form-select" name="auto_in_hour" id="">
                         <option value="">Lựa chọn</option>
-                        @for($i = 1; $i <= 24;$i++) <option value="{{$i}}"
+                         @for($i = 1; $i <= 30; $i++) <option value="{{$i}}"
                             {{isset($item) && $item->autoPostJobPackage && $item->autoPostJobPackage->auto_in_hour == $i ? "selected" : ''}}>
-                            {{$i}}h</option>
+                            {{$i}} lần</option>
                             @endfor
                     </select>
                 </div>
