@@ -15,6 +15,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\OperatingRegulationController;
+use App\Http\Controllers\SitemapController;
 
 
 /*
@@ -36,6 +37,8 @@ use App\Http\Controllers\OperatingRegulationController;
 
 
 // Route::get('lang/{lang}',[LangController::class,'changeLanguage'])->name('lang');
+Route::get('/sitemap', [SitemapController::class, 'index']);
+
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 
