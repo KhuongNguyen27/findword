@@ -21,6 +21,7 @@
         <meta property="og:type" content="website">
         <meta property="og:image" content="{{ asset('website-assets/images/logo-hd.png')}}">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+        <meta name="google-site-verification" content="QGfjVzzBMzpS8p2mp65BYEn5a4Hqu7mrCgFJGgpfKIY" />
         @yield('header')
     </head>
 <style>

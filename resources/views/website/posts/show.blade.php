@@ -17,8 +17,8 @@
 
     <section class="ls-section">
         <div class="auto-container">
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="row wraper-text">
+                <div class="col-lg-12 custom-color">
                     <div class="text">
                         {!! $item->description !!}
                     </div>

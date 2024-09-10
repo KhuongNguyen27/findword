@@ -100,7 +100,7 @@ class JobController extends Controller
         }
         return view('employee::uv.referred.index', compact('jobs'));
     }
-    
+
     public function viewedJobs(Request $request)
     {
         $user_id = Auth::id();
@@ -141,13 +141,17 @@ class JobController extends Controller
             $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
-            $countries = Country::orderBy('name','ASC')->get();
+            $countries = Country::orderBy('name', 'ASC')->get();
             $accounts = $user->accounts;
-            $ckeditorFeatures = $accounts->flatMap(function($account) {
+            $ckeditorFeatures = $accounts->flatMap(function ($account) {
                 return json_decode($account->ckeditor_features, true);
             });
-    
-            $current_package = Auth::user()->account->where('is_current',User::ACTIVE)->first();
+
+
+            $current_package = Auth::user()->account->where('is_current', User::ACTIVE)->first();
+            if (!$current_package) {
+                $current_package = $this->createAccount($user->id);
+            }
             $currentDate = Carbon::now();
             $expirationDate = Carbon::parse($current_package->expiration_date);
             if (!$expirationDate->gt($currentDate)) {
@@ -168,7 +172,7 @@ class JobController extends Controller
                     'is_current' => $is_current
                 ];
                 $userPackage = UserAccount::create($data);
-                $countPackage = Auth::user()->accounts()->where('is_current',1)->first();
+                $countPackage = Auth::user()->accounts()->where('is_current', 1)->first();
                 foreach ($countPackage->job_package as $job_package) {
                     if ($job_package->amount > 0) {
                         $countPackageCurrent = UserJobPackage::updateOrCreate(
@@ -185,7 +189,7 @@ class JobController extends Controller
             }
             // Lấy số lượng tin đăng từ bảng user_job_package
             $user_job_packages = UserJobPackage::where('user_id', $user->id)
-            ->pluck('amount', 'job_package_id');
+                ->pluck('amount', 'job_package_id');
             // dd($ckeditorFeatures);
             $param = [
                 'careers' => $careers,
@@ -197,7 +201,7 @@ class JobController extends Controller
                 'provinces' => $provinces,
                 'countries' => $countries,
                 'userAllowedAbroad' => $userAllowedAbroad,
-                'ckeditorFeatures' => $ckeditorFeatures, 
+                'ckeditorFeatures' => $ckeditorFeatures,
                 'user_job_packages' => $user_job_packages, // Truyền số lượng tin đăng
 
 
@@ -277,14 +281,14 @@ class JobController extends Controller
             $job->save();
 
 
-                // Cập nhật số lượng tin đăng
+            // Cập nhật số lượng tin đăng
             $user_job_package = UserJobPackage::where('user_id', Auth::id())
-            ->where('job_package_id', $request->jobpackage_id)
-            ->first();
+                ->where('job_package_id', $request->jobpackage_id)
+                ->first();
             if ($user_job_package) {
-            // Giảm số lượng tin đăng
-            $user_job_package->amount -= 1; // Giảm số lượng tin đăng xuống 1
-            $user_job_package->save();
+                // Giảm số lượng tin đăng
+                $user_job_package->amount -= 1; // Giảm số lượng tin đăng xuống 1
+                $user_job_package->save();
             }
 
 
@@ -354,7 +358,7 @@ class JobController extends Controller
         $job = Job::findOrFail($request->id);
         $provinces = Province::get();
         $accounts = $user->accounts;
-        $ckeditorFeatures = $accounts->flatMap(function($account) {
+        $ckeditorFeatures = $accounts->flatMap(function ($account) {
             return json_decode($account->ckeditor_features, true);
         });
         $param = [
@@ -376,7 +380,7 @@ class JobController extends Controller
      */
     public function update(UpdateJobRequest $request, $id): RedirectResponse
     {
-        
+
         DB::beginTransaction();
         try {
 
@@ -474,4 +478,37 @@ class JobController extends Controller
         return view('employee::job.show_cvJob', compact('cv_apllys', 'job', 'param_count'));
     }
 
+    function createAccount($user_id)
+    {
+        UserJobPackage::where('user_id', $user_id)->update(['amount' => 0]);
+        $is_current = 1;
+        $register_date = date('Y-m-d H:i:s');
+        $register_date = new \DateTime($register_date);
+        $expiration_date = clone $register_date;
+        $expiration_date->add(new \DateInterval('P30D'));
+        $data = [
+            'user_id' => Auth::id(),
+            'account_id' => 1,
+            'duration_id' => 1,
+            'register_date' => $register_date->format('Y-m-d H:i:s'),
+            'expiration_date' => $expiration_date->format('Y-m-d H:i:s'),
+            'is_current' => $is_current
+        ];
+        $userPackage = UserAccount::create($data);
+        $countPackage = Auth::user()->accounts()->where('is_current', 1)->first();
+        foreach ($countPackage->job_package as $job_package) {
+            if ($job_package->amount > 0) {
+                $countPackageCurrent = UserJobPackage::updateOrCreate(
+                    [
+                        'user_id' => Auth::id(),
+                        'job_package_id' => $job_package->job_package_id,
+                    ],
+                    [
+                        'amount' => $job_package->amount
+                    ]
+                );
+            }
+        }
+        return  $userPackage;
+    }
 }
