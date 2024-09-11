@@ -442,7 +442,7 @@
                 </div>
             @else
                 <div class="btn-box">
-                    <a href="{{ route('staff.login') }}" class="theme-btn btn-style-three">Đăng nhập / Đăng ký</a>
+                    <a href="{{ route('staff.login') }}" class="theme-btn btn-style-three">Ứng viên tìm việc</a>
                     <a href="{{ route('employee.login') }}" class="theme-btn btn-style-one">Nhà tuyển dụng</a>
                 </div>
             @endif
