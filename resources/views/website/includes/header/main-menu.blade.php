@@ -32,7 +32,7 @@ $currentRouteName = \Request::route()->getName();
 
 
         <li class="dropdown">
-            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">{{ __('header.viec_lam_trong_nuoc') }}</a>
+            <a class="@if ($currentRouteName == 'jobs.nnjobs') active @endif" href="{{ route('jobs.nnjobs') }}">Việc làm ngoài nước</a>
             <ul>
                <li><a href="{{ route('jobs.nnjobs', 'today') }}">{{ __('header.viec_lam_hom_nay') }}</a></li>
                 <li><a href="{{ route('jobs.nnjobs', 'hot') }}">{{ __('header.viec_lam_hot') }}</a></li>
