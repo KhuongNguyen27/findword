@@ -71,8 +71,8 @@
                             <td>#{{ $item->id }}</td>
                             <td>
                             {{ Str::limit($item->name, 70) }}
-                                <p class="mb-0 product-category">{{ $item->user->name ?? '' }}</p>
-                                Độ ưu tiên: {{ $item->position }}
+                                <p class="mb-0 product-category">{{ $item->userEmployee->name ?? '' }}</p>
+                                Độ ưu tiên: {{ $item->top_position }}
                             </td>
                             <td>{{ $item->job_package->name  ?? '' }}</td>
                             <td>{{ $item->start_day }}</td>

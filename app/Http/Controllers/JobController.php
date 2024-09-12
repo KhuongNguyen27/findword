@@ -123,7 +123,9 @@ class JobController extends Controller
                         ->orWhere('jobs.salaryMax', '');
                 });
 
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query
+                ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
 
                 break;
@@ -132,7 +134,8 @@ class JobController extends Controller
                 $title = 'Việc làm trong nước mới nhất';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')  
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
 
                 break;
@@ -141,7 +144,8 @@ class JobController extends Controller
                 $title = 'Việc làm trong nước';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                    ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 break;
             case 'hot':
@@ -151,7 +155,8 @@ class JobController extends Controller
                     $q->where('job_packages.slug', "tin-gap-vip")
                         ->orWhere('job_packages.slug', "tin-hot-vip")
                         ->orWhere('job_packages.slug', "tin-hot");
-                })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                })->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $title = 'Việc làm trong nước Hot nhất';
                 break;
@@ -161,7 +166,8 @@ class JobController extends Controller
                 $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
                 // $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $title = 'Việc làm trong nước hôm nay';
                 break;
@@ -179,13 +185,15 @@ class JobController extends Controller
                     // Tuyển gấp	Toàn bộ các tin đăng	
                     // Gấp.VIP -> Gấp -> Hop.VIP -> VIP -> Hot -> Tin thường
                     // $query->where('jobpackage_id',JobPackage::GAP);
+                    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $title = 'Việc làm trong nước tuyển gấp';
                 break;
             default:
                 $title = 'Việc làm trong nước hôm nay';
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
                 $jobs = $query->limit(30)->get()->chunk(15);
@@ -225,6 +233,7 @@ class JobController extends Controller
             })
             ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
             // Thêm điều kiện sắp xếp
+            ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
             ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
             ->orderBy('jobs.id', 'DESC');
 
@@ -435,17 +444,20 @@ class JobController extends Controller
                 $title = 'Việc làm ngoài nước mới nhất';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 break;
             case 'tat-ca':
                 $title = 'Việc làm ngoài nước';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 break;
             case 'hap-dan':
+                // dd(123);
                 $title = 'Việc làm ngoài nước hấp dẫn';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng	
                 //Hot.VIP -> Gấp.VIP -> VIP -> Gấp -> Hot -> Tin thường
@@ -454,12 +466,7 @@ class JobController extends Controller
                         ->orWhere('jobs.salaryMax', '');
                 })
                     ->where('jobs.country', 'NN')
-                    ->where(function ($q) {
-                        $q->where('job_packages.slug', 'tin-gap-vip')
-                            ->orWhere('job_packages.slug', 'tin-hot-vip')
-                            ->orWhere('job_packages.slug', 'tin-vip');
-                    })
-
+                    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 break;
@@ -471,6 +478,7 @@ class JobController extends Controller
                 })
                     // Việc làm Hot nhất	Toàn bộ các tin đăng	
                     //Hot.VIP -> Hot -> Gấp.VIP -> VIP -> Gấp -> Tin thường
+                    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $title = 'Việc làm ngoài nước Hot nhất';
@@ -481,7 +489,8 @@ class JobController extends Controller
                 $startDate = Carbon::now()->subHours(72);
                 $endDate = Carbon::now();
                 // $query->whereBetween('jobs.created_at', [$startDate, $endDate]);
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
                 $title = 'Việc làm ngoài nước hôm nay';
@@ -494,13 +503,15 @@ class JobController extends Controller
                     $q->where('job_packages.slug', 'tin-gap-vip')
                         ->orWhere('job_packages.slug', 'tin-gap');
                 })
+                    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $title = 'Việc làm ngoài nước tuyển gấp';
                 break;
             default:
                 $title = 'Việc làm ngoài nước hôm nay';
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
                 $jobs = $query->limit(30)->get()->chunk(15);
@@ -532,24 +543,23 @@ class JobController extends Controller
 
         // Việc làm ngoài nước hấp dẫn home
         $hot_jobs = Job::select('jobs.*')
-            ->where('jobs.status', 1)
-            ->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id')
-            ->whereNull('job_province.province_id')
-            ->where(function ($query) {
-                $query->where('jobs.salaryMax', '>=', 1)
-                    ->orWhere('jobs.salaryMax', '');
-            })
-            ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
-            ->leftJoin('auto_post_job_packages', function (JoinClause $join) use ($job_type) {
-                $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
-                    ->where('auto_post_job_packages.area', '=', $job_type);
-            })
-            ->where(function ($query) {
-                $query->where('job_packages.slug', 'tin-gap-vip')
-                    ->orWhere('job_packages.slug', 'tin-hot-vip')
-                    ->orWhere('job_packages.slug', 'tin-vip');
-            })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
-            ->orderBy('jobs.id', 'DESC');
+        ->where('jobs.status', 1)
+        ->rightJoin('job_province', 'jobs.id', '=', 'job_province.job_id')
+        ->whereNull('job_province.province_id')
+        ->where(function ($query) {
+            $query->where('jobs.salaryMax', '>=', 8000000)
+            ->orWhere('jobs.salaryMax', '');
+        })
+        ->join('job_packages', 'jobs.jobpackage_id', '=', 'job_packages.id')
+        ->leftJoin('auto_post_job_packages', function (JoinClause $join) use ($job_type) {
+            $join->on('auto_post_job_packages.job_package_id', '=', 'job_packages.id')
+            ->where('auto_post_job_packages.area', '=', $job_type);
+        })
+       
+            
+        ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+        ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+        ->orderBy('jobs.id', 'DESC');
         // if($request->province_id){
         //     $hot_jobs->where('province_id', $request->province_id);
         // }

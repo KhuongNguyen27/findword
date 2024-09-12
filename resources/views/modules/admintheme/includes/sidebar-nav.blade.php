@@ -110,7 +110,7 @@
             @if(Auth::user()->hasPermission('user_viewAnySystem'))
             <li>
                 <a href="{{ route('banners.index') }}">
-                    <span class="material-symbols-outlined">arrow_right</span> {{__('Banner')}} </a>
+                    <span class="material-symbols-outlined">arrow_right</span> Banner </a>
             </li>
             @endif
              <li>

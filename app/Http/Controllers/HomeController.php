@@ -79,6 +79,7 @@ class HomeController extends Controller
 			$query->where('jobs.salaryMax', '>=', 8000000)
 				->orWhere('jobs.salaryMax', '');
 		})
+		    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
 			->orderBy('jobs.approved_at', 'DESC')
 			->orderBy('jobs.id', 'DESC')->limit(20);
 		$hot_jobs = $hot_jobs->get()->chunk(10);
@@ -213,7 +214,9 @@ class HomeController extends Controller
 			});
 
 		$query = JobService::searchHome($query, $request);
-		$hot_jobs = $query->orderBy('jobs.approved_at', 'DESC')  // Sắp xếp theo thời gian duyệt tin
+		$hot_jobs = $query
+		->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+		->orderBy('jobs.approved_at', 'DESC')  // Sắp xếp theo thời gian duyệt tin
 			->orderBy('jobs.id', 'DESC')  // Sắp xếp theo ID công việc
 			->paginate(50);  // Phân trang với 25 công việc mỗi trang
 
