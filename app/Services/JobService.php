@@ -14,14 +14,16 @@ class JobService
             case 'viec-lam-hom-nay':
                 $title = 'Việc làm hôm nay';
 
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
 
             case 'tat-ca-viec-lam':
                 $title = 'Tất cả việc làm';
 
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
 
@@ -31,8 +33,9 @@ class JobService
                     $q->where('job_packages.slug', "tin-gap-vip")
                         ->orWhere('job_packages.slug', "tin-hot-vip")
                         ->orWhere('job_packages.slug', "tin-hot");
-                })->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
-                    ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
+                })->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
 
                 case 'urgent':
@@ -42,7 +45,7 @@ class JobService
                             $q->where('job_packages.slug', "tin-gap-vip")
                                 ->orWhere('job_packages.slug', "tin-gap");
                         })
-                        // ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                        ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                         ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                         ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                     break;
@@ -51,7 +54,8 @@ class JobService
                 $title = 'Việc làm ngoài nước mới nhất';
                 //Việc làm Mới nhất	Toàn bộ các tin đăng
                 //Gấp.VIP -> Hot.VIP -> VIP -> Gấp -> Hot -> Tin thường
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
             case 'hap-dan':
@@ -61,12 +65,14 @@ class JobService
                 $query->where('jobs.salaryMax', '>=', 8000000)
                     ->orWhere('jobs.salaryMax', '')
                     ->where('jobs.country', 'NN')
+                    ->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
                     ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');        // Sắp xếp theo ID nếu thời gian duyệt tin trống
                 break;
             default:
                 $title = 'Việc làm ngoài nước hôm nay';
-                $query->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
+                $query->orderByRaw('CASE WHEN jobs.top_position IS NOT NULL THEN 0 ELSE 1 END, jobs.top_position ASC')
+                ->orderBy('jobs.approved_at', 'DESC') // Sắp xếp theo thời gian duyệt tin
                     ->orderBy('jobs.id', 'DESC');
                 $query->groupBy('jobs.id', 'jobs.user_id', 'job_province.job_id', 'auto_post_job_packages.area', 'job_packages.slug', 'jobs.top_position');
                 $jobs = $query->limit(20)->get()->chunk(12);
