@@ -56,8 +56,14 @@ class AdminUser extends Model
         } else {
             $query->where('type', 'user');
         }
+        // if ($request->name) {
+        //     $query->where('name', 'LIKE', '%' . $request->name . '%');
+        // }
         if ($request->name) {
-            $query->where('name', 'LIKE', '%' . $request->name . '%');
+            $name = $request->name;
+            $query->whereHas('employee', function ($query) use ($name) {
+                $query->where('name', 'LIKE', '%' . $name . '%');
+            });
         }
         if ($request->email) {
             $query->where('email', 'LIKE', '%' . $request->email . '%');
