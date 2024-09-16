@@ -16,7 +16,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\OperatingRegulationController;
 use App\Http\Controllers\SitemapController;
-
+use App\Http\Controllers\UtilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,4 +147,13 @@ Route::prefix('admin')->group(function () {
     Route::resource('banners', BannerController::class);
     Route::resource('popups',PopupController::class);
 
+});
+
+Route::prefix('cong-cu')->group(function () {
+    Route::get('tinh-luong-gross-net', [UtilityController::class, 'grossToNet'])->name('utilities.gross-to-net');
+    Route::get('tinh-thue-thu-nhap-ca-nhan', [UtilityController::class, 'personalTax'])->name('utilities.personal-tax');
+    Route::get('tinh-muc-huong-bao-hiem-that-nghiep', [UtilityController::class, 'unemploymentInsurance'])->name('utilities.unemployment-insurance');
+    Route::get('tinh-bao-hiem-xa-hoi', [UtilityController::class, 'socialInsurance'])->name('utilities.social-insurance');
+    Route::get('tinh-lai-suat-kep', [UtilityController::class, 'compoundInterest'])->name('utilities.compound-interest');
+    Route::get('lap-ke-hoach-tiet-kiem', [UtilityController::class, 'savingsPlan'])->name('utilities.savings-plan');
 });
