@@ -51,6 +51,20 @@ $currentRouteName = \Request::route()->getName();
                 <li><a href="{{ route('cvs.index') }}">{{ __('header.mau_cv') }}</a></li>
             </ul>
         </li>
+
+        {{-- <li class="dropdown">
+            <a class="@if ($currentRouteName == 'utilities.gross-to-net' || $currentRouteName == 'utilities.personal-tax' || $currentRouteName == 'utilities.unemployment-insurance' || $currentRouteName == 'utilities.social-insurance' || $currentRouteName == 'utilities.compound-interest' || $currentRouteName == 'utilities.savings-plan') active @endif" href="javascript:;">Công cụ</a>
+            <ul>
+                <li><a href="{{ route('utilities.gross-to-net') }}">Tính lương GROSS - NET</a></li>
+                <li><a href="{{ route('utilities.personal-tax') }}">Tính thuế thu nhập cá nhân</a></li>
+                <li><a href="{{ route('utilities.unemployment-insurance') }}">Tính mức hưởng bảo hiểm thất nghiệp</a></li>
+                <li><a href="{{ route('utilities.social-insurance') }}">Tính bảo hiểm xã hội một lần</a></li>
+                <li><a href="{{ route('utilities.compound-interest') }}">Tính lãi suất kép</a></li>
+                <li><a href="{{ route('utilities.savings-plan') }}">Lập kế hoạch tiết kiệm</a></li>
+            </ul>
+        </li> --}}
+
+
         @if (Auth::check() && (Auth::user()->type == "employee"))
           <li><a class="@if ($currentRouteName == 'website.account.index') active @endif" href="{{ route('website.account.index') }}">{{ __('header.bang_gia') }}</a></li>
         <li><a class="@if ($currentRouteName == 'website.jobpackage.index') active @endif" href="{{ route('website.jobpackage.index') }}">{{ __('header.dac_quyen_tin') }}</a></li>
