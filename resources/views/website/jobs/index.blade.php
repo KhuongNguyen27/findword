@@ -55,22 +55,8 @@ $currentDateTime = \Carbon\Carbon::now()->subMinutes(5)->format('H:i d/m/Y');
                     @else
                     @include('website.homes.includes.job-search-form',['route_index' => route("jobs.nnjobs", ['job_type'=> 'tat-ca'])])
                     @endif
-                    <div class="box-work-market">
-                        <div class="box-work-market__item">
-                            <span class="item-label">Vị trí chờ bạn khám phá
-                            </span>
-                            <span id="position-count" class="quantity item-number number-job-new-today" name="quantity_job_recruitment">{{ number_format($vi_tri_cho_ban_kham_pha, 0, ',', '.') }}</span>
+                    {{-- @include('website.homes.includes.chi-so')  --}}
 
-                        </div>
-                        <div class="box-work-market__item">
-                            <span class="item-label">Việc làm mới nhất</span>
-                            <span id="new-job-count" class="quantity item-number number-job-new-today" name="quantity_job_new_today">{{ number_format($quantity_job_new_today, 0, ',', '.') }}</span>
-                        </div>
-                        <div class="box-work-market__item">
-                            <span class="item-label">Cập nhật lúc:</span>
-                            <span id="time-scan" class="time-scan item-number number-job-new-today">{{ $currentDateTime }}</span>
-                        </div>
-                    </div>
                     @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>

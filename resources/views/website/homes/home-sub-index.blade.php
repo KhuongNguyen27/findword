@@ -24,7 +24,7 @@
                             // 'allowKeywords' => true,
                             // 'allowSort' => true,
                         ])
-                        @include('website.homes.includes.chi-so')
+                        {{-- @include('website.homes.includes.chi-so') --}}
 
                         <!-- Job Search Form -->
                     </div>
