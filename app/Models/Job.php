@@ -45,6 +45,7 @@ class Job extends AdminModel
         'more_information',
         'top_position',
         'approved_at',
+        'benefits',
     ];
     public function getGenderNameAttribute()
     {

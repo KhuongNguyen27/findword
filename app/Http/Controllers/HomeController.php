@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 use App\Traits\SEOTrait;
 
@@ -96,13 +97,33 @@ class HomeController extends Controller
 		// 3 việc làm mới nhất
 		$lasest_jobs = Job::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
 		// Việc làm mới nhất trong 24h
-		$quantity_job_new_today = date('d') + 300;
-		// Việc làm đang tuyển
-		$quantity_job_recruitment = date('d') + 200;
-		// Công ty đang tuyển
-		$quantity_company_recruitment = date('d') + 100;
+		// $quantity_job_new_today = date('d') + 300;
+		// // Việc làm đang tuyển
+		// $quantity_job_recruitment = date('d') + 200;
+		// // Công ty đang tuyển
+		// $quantity_company_recruitment = date('d') + 100;
 
+		// Lấy giá trị từ bảng metrics theo tên đầy đủ
+		$quantity_job_new_today = DB::table('metrics')
+		->where('name', 'Việc làm mới 24h gần nhất') 
+		->value('total'); 
 
+		$quantity_job_recruitment = DB::table('metrics')
+		->where('name', 'Việc làm đang tuyển')
+		->value('total'); 
+
+		$quantity_company_recruitment = DB::table('metrics')
+		->where('name', 'Công ty đang tuyển') 
+		->value('total');
+
+		$vi_tri_cho_ban_kham_pha = DB::table('metrics')
+		->where('name', 'Vị trí chờ bạn khám phá') 
+		->value('total'); 
+
+		// Lấy giá trị từ bảng metrics theo tên đầy đủ
+		$quantity_job_new = DB::table('metrics')
+		->where('name', 'Việc làm mới nhất') 
+		->value('total'); 
 		// Biểu đồ
 		// Tăng trưởng cơ hội việc làm
 		$tang_truong_labels = [];
@@ -123,7 +144,7 @@ class HomeController extends Controller
 		} else {
 			foreach ($daysList as $day) {
 				$tang_truong_labels[] = $day;
-				$tang_truong_values[] = date('d', strtotime($day)) * rand(100, 500);
+				$tang_truong_values[] = date('d', strtotime($day)) * rand(1000, 5000);
 			}
 			cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
 			cache()->put('tang_truong_labels', $tang_truong_labels, 86400);
@@ -139,7 +160,7 @@ class HomeController extends Controller
 			$nhu_cau_labels = $chart_careers;
 			$nhu_cau_values = [];
 			foreach ($chart_careers as $key => $chart_career) {
-				$nhu_cau_values[] = $key * rand(100, 500);
+				$nhu_cau_values[] = $key * rand(1000, 5000);
 			}
 			cache()->put('nhu_cau_values', $nhu_cau_values, 86400);
 			cache()->put('nhu_cau_labels', $nhu_cau_labels, 86400);
@@ -159,7 +180,9 @@ class HomeController extends Controller
 			'employees' => $employees,
 			'quantity_company_recruitment' => $quantity_company_recruitment,
 			'quantity_job_new_today' => $quantity_job_new_today,
+			'quantity_job_new' => $quantity_job_new,
 			'quantity_job_recruitment' => $quantity_job_recruitment,
+			'vi_tri_cho_ban_kham_pha' => $vi_tri_cho_ban_kham_pha,
 			'lasest_jobs' => $lasest_jobs,
 			'tang_truong_labels' => $tang_truong_labels,
 			'tang_truong_values' => $tang_truong_values,

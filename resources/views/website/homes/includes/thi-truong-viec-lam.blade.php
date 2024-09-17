@@ -1,3 +1,4 @@
+
 <div id="dashboard-section" class="lazy d-none d-md-block" data-lazy-function="initDashboard">
     <div class="container lazy" id="dashboard" data-lazy-function="initDashboardHomeJS">
         <div class="block-dashboard">
@@ -42,15 +43,15 @@
                 <div class="block-statistics-job">
                     <div class="block-work-market work-market">
                         <div class="item">
-                            <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today + 586 }}</p>
+                            <p class=" quantity quantity_job_new_today">{{ $quantity_job_new_today }}</p>
                             <p class="title">{{ __('content.viec_lam_moi_24h') }}</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment + 2000 }}</p>
+                            <p class="quantity quantity_job_recruitment">{{ $quantity_job_recruitment }}</p>
                             <p class="title">{{ __('content.viec_lam_dang_tuyen') }}</p>
                         </div>
                         <div class="item">
-                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment + 1000 }}
+                            <p class="quantity quantity_company_recruitment">{{ $quantity_company_recruitment }}
                             </p>
                             <p class="title">{{ __('content.cong_ty_dang_tuyen') }}</p>
                         </div>
@@ -95,3 +96,82 @@
     </div>
 </div>
 <link href="{{ asset('website-assets/css/dashboard.css') }}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+   var tang_truong_labels = <?php echo json_encode($tang_truong_labels); ?>;
+    var tang_truong_values = <?php echo json_encode($tang_truong_values); ?>;
+    var nhu_cau_labels = <?php echo json_encode($nhu_cau_labels); ?>;
+    var nhu_cau_values = <?php echo json_encode($nhu_cau_values); ?>;
+
+    const ctx = document.getElementById('myChartJobOpportunityGrowthDashboard');
+    new Chart(ctx, {
+        type: 'line'
+        , data: {
+            labels: tang_truong_labels
+            , datasets: [{
+                data: tang_truong_values
+                , backgroundColor: '#ffffff'
+                , borderColor: '#ffffff'
+            , }]
+        }
+        , options: {
+            scales: {
+                y: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+                , x: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+            }
+            , plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+    const ctx1 = document.getElementById('myChartDemandJobDashboard');
+    new Chart(ctx1, {
+        type: 'bar'
+        , data: {
+            labels: nhu_cau_labels
+            , datasets: [{
+                data: nhu_cau_values
+                , borderWidth: 1
+                , borderColor: '#ffffff'
+            , }]
+        }
+        , options: {
+            legend: {
+                labels: {
+                    fontColor: "blue"
+                    , fontSize: 18
+                }
+            }
+            , scales: {
+                y: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+                , x: {
+                    ticks: {
+                        color: 'white'
+                    , }
+                , }
+            }
+            , plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+</script>
+

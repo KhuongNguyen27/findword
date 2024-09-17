@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\MetricsController;
 use App\Http\Controllers\Admin\PopupController;
 use App\Http\Controllers\JobPackageController;
 use Illuminate\Support\Facades\Route;
@@ -146,6 +147,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('countries', CountryController::class);
     Route::resource('banners', BannerController::class);
     Route::resource('popups',PopupController::class);
+    Route::resource('metrics', MetricsController::class);
 
 });
 

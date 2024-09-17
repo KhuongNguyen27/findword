@@ -43,7 +43,7 @@ class JobController extends Controller
         foreach ($wages as $wage) {
             $newWages[$wage->salaryMin . '-' . $wage->salaryMax] = $wage->name;
         }
-
+        
         $ranks = Rank::where('status', 1)->orderBy('position')->get();
         $job_packages = JobPackage::whereIn('slug', ['tin-gap', 'tin-hot'])->get();
         $model = new Job;

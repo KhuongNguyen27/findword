@@ -120,6 +120,14 @@
         <textarea name="requirements" placeholder="Yêu cầu..." id="requirements" class="form-control">{{ @$item->requirements }}</textarea>
         <x-admintheme::form-input-error field="requirements" />
     </div>
+
+
+        <div class="mb-4">
+            <label class="mb-3">{{ __('Quyền lợi') }}</label>
+            <textarea name="benefits" placeholder="Quyền lợi..." id="benefits" class="form-control">{{ @$item->benefits }}</textarea>
+            <x-admintheme::form-input-error field="benefits" />
+        </div>
+
     <div class="form-group col-lg-12 col-md-12">
         <label>{{__('more_information')}}</label>
         <textarea name="more_information" id="more_information" placeholder="{{__('more_information')}}...">

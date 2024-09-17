@@ -38,6 +38,7 @@ class UpdateJobRequest extends FormRequest
             'jobpackage_id' => 'required',
             'price' => 'required',
             'end_day' => 'required',
+            'benefits' => 'required',
         ];
     }
 
@@ -63,7 +64,8 @@ class UpdateJobRequest extends FormRequest
             'end_day.required' => 'Trường yêu cầu!',
             'start_hour.required' => 'Trường yêu cầu!',
             'end_hour.required' => 'Trường yêu cầu!',
-            
+            'benefits.required' => 'Trường yêu cầu!',
+
             ];
     }
 }
