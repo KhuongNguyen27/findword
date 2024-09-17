@@ -218,10 +218,10 @@
                                         @if ($errors->any())
                                         <p style="color:red">{{ $errors->first('email') }}</p>
                                         @endif
-                                        <div class="form-check mt-2">
+                                        {{-- <div class="form-check mt-2">
                                             <input type="checkbox" class="form-check-input" id="is_hidden_email" name="is_hidden_email" {{ (old('is_hidden_email') || ($user_employee && $user_employee->is_hidden_email == 1)) ? 'checked' : '' }}>
                                             <label class="form-check-label" for="is_hidden_email">Ẩn email</label>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <div class="form-group col-lg-12 col-md-12">

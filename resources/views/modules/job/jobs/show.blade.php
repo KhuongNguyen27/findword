@@ -19,6 +19,28 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
     .job-detail__box--right.job-detail__company {
         height: 230px;
     }
+ 
+    .company-name-label {
+        max-width: 100%;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    .company-name-label a {
+        display: block;
+    }
+
+    .company-subdetail-label {
+        max-width: 100%;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    .company-subdetail-label {
+        line-height: 20px;
+    }
 
 </style>
 <section class="job-real-detail-section job-detail-section pt-5 job-package-{{ @$job->job_package->slug }}">
@@ -135,7 +157,7 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         <div class="text">
                             {!! $job->requirements ?? '-' !!}
                         </div>
-                         <h4 class="job-sub-title">Quyền lợi</h4>
+                        <h4 class="job-sub-title">Quyền lợi</h4>
                         <div class="text">
                             {!! $job->benefits ?? '-' !!}
                         </div>
@@ -147,7 +169,7 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         @endif
                     </div>
 
-                  
+
 
                     <div class="job-detail">
                         <h4 class="job-sub-title">Việc làm cùng công ty</h4>
@@ -173,7 +195,7 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         <div class="row">
                             @foreach ($job_relate_to as $job_relate)
                             <!-- Job Block -->
-                             @if($job_relate && $job_relate->status == 1)
+                            @if($job_relate && $job_relate->status == 1)
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 @include('job::includes.components.job-item', [
                                 'job' => $job_relate,
@@ -188,7 +210,6 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         </div>
                     </div>
                 </div>
-
                 <div class="sidebar-column col-lg-4 col-md-12 col-sm-12">
                     <aside class="sidebar">
 
