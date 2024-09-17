@@ -27,9 +27,9 @@
                         <h4 class="card-title">Tuyển dụng</h4>
                         <div class="card-body">
                             <div class="related-jobs">
-                           
+
                                 @foreach($jobs as $job)
-                              
+
                                 @include('job::includes.components.job-item',[
                                 'job' => $job,
                                 'job_info' => true,
@@ -37,7 +37,7 @@
                                 'bookmark' => true,
                                 'company_name' => true,
                                 ])
-                              
+
                                 @endforeach
                                 <div class="ls-show-more">
                                     <div class="ls-pagination">
@@ -61,12 +61,15 @@
                                         <span>{{ $userEmployee->phone }}</span>
                                         @endif
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         @if ($userEmployee->is_hidden_email == 0)
                                         <span class="icon"><i class="fa fa-solid fa-envelope"></i></span>
                                         <span>{{ $userEmployee->user->email }}</span>
                                         @endif
-                                    <li><span class="icon"><i class="fa fa-solid fa-globe"></i></span>
+                                    </li> --}}
+                                    <li>
+
+                                        <span class="icon"><i class="fa fa-solid fa-globe"></i></span>
                                         <span>{{ $userEmployee->website }}</span>
                                     </li>
                                     <li><span class="icon"><i class="fa fa-solid fa-location-arrow"></i></span>
