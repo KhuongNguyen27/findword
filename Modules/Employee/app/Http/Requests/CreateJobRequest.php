@@ -45,6 +45,7 @@ class CreateJobRequest extends FormRequest
             'jobpackage_id' => 'required',
             'price' => 'required',
             'end_day' => 'required',
+            'benefits' => 'required',
         ];
         if( request()->country == 'NN' ){
             unset( $rules['province_id'] );
@@ -71,6 +72,7 @@ class CreateJobRequest extends FormRequest
             'province_id.required' => 'Trường yêu cầu!',
             'description.required' => 'Trường yêu cầu!',
             'requirements.required' => 'Trường yêu cầu!',
+            'benefits.required' => 'Trường yêu cầu!',
             'rank_id.required' => 'Trường yêu cầu!',
             'number_day.required' => 'Trường yêu cầu!',
             'start_day.required' => 'Trường yêu cầu!',

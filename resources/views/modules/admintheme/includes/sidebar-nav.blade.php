@@ -113,6 +113,14 @@
                     <span class="material-symbols-outlined">arrow_right</span> Banner </a>
             </li>
             @endif
+
+             @if(Auth::user()->hasPermission('user_viewAnySystem'))
+            <li>
+                <a href="{{ route('metrics.index') }}"> 
+                <span class="material-symbols-outlined">arrow_right</span>Quản lý chỉ số</a>
+            </li>
+            @endif
+
              <li>
                 <a href="{{ route('popups.index') }}">
                     <span class="material-symbols-outlined">arrow_right</span> {{__('Popup')}} </a>

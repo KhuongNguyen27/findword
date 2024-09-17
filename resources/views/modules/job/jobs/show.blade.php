@@ -135,6 +135,10 @@ $job_detail_company_bg = $job_detail_company_bg ? $job_detail_company_bg . ' !im
                         <div class="text">
                             {!! $job->requirements ?? '-' !!}
                         </div>
+                         <h4 class="job-sub-title">Quyền lợi</h4>
+                        <div class="text">
+                            {!! $job->benefits ?? '-' !!}
+                        </div>
                         @if ($job->more_information)
                         <div class="job-sub-title">{{ __('more_information') }}</div>
                         <div class="text">

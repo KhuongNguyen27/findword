@@ -263,6 +263,7 @@ class JobController extends Controller
             $job->end_day = $request->end_day;
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
+            $job->benefits = $request->benefits;
             $job->user_id = Auth::id();
 
             // Thêm nhiều địa điểm cho tin đăng
@@ -419,6 +420,7 @@ class JobController extends Controller
             $job->end_day = $request->end_day;
             $job->start_hour = $request->start_hour;
             $job->end_hour = $request->end_hour;
+            $job->benefits = $request->benefits;
             $job->user_id = Auth::id();
             // $job->status = Job::ACTIVE;
             $job->save();

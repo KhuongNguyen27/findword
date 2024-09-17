@@ -50,6 +50,9 @@
     if (document.querySelector('#content')) {
         initializeCKEditor('content');
     }
+    if (document.querySelector('#benefits')) {
+        initializeCKEditor('benefits');
+    }
 </script>
 
 

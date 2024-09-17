@@ -1,6 +1,12 @@
 @extends('website.layouts.master')
 @section('title') {{ $title }} @endsection
 @section('content')
+<style>
+.box-work-market__item .item-number.number-job-new-today {
+    color: #202124 !important;
+}
+
+</style>
 <section class="sub-banner-section pb-0" style="background:#f3f5f7!important;">
     <div class="auto-container">
         <div class="banner">
@@ -18,6 +24,8 @@
                             // 'allowKeywords' => true,
                             // 'allowSort' => true,
                         ])
+                        {{-- @include('website.homes.includes.chi-so') --}}
+
                         <!-- Job Search Form -->
                     </div>
                     

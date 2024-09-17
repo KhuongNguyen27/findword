@@ -296,6 +296,14 @@
                                         @endif
                                     </div>
 
+                                    <div class="form-group col-lg-12 col-md-12" style="margin-bottom:3%!important">
+                                        <label>Quyền lợi <span class="label-required">*</span></label>
+                                        <textarea name="benefits" id="benefits1" placeholder="Quyền lợi...">{{ old('benefits') }}</textarea>
+                                        @if ($errors->any())
+                                            <p style="color:red">{{ $errors->first('benefits') }}</p>
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

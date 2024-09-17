@@ -3,6 +3,42 @@
 {{ $title }}
 @endsection
 @section('content')
+<style>
+    .box-work-market {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .box-work-market__item {
+        align-items: center;
+        display: inline-flex;
+        gap: 8px;
+        padding: 4px 8px;
+    }
+
+    .box-work-market__item .item-label {
+        color: #263a4d;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: .12px;
+        line-height: 16px;
+    }
+
+    .box-work-market__item .item-number.number-job-new-today {
+        color: #28c1bc;
+    }
+
+    .box-work-market__item:not(:first-child):before {
+        color: #7f878f;
+        content: "•";
+        margin-right: 8px;
+    }
+
+</style>
+@php
+$currentDateTime = \Carbon\Carbon::now()->subMinutes(5)->format('H:i d/m/Y');
+@endphp
 <section class="banner-section pb-5">
     <div class="auto-container">
         <div class="row">
@@ -19,6 +55,8 @@
                     @else
                     @include('website.homes.includes.job-search-form',['route_index' => route("jobs.nnjobs", ['job_type'=> 'tat-ca'])])
                     @endif
+                    {{-- @include('website.homes.includes.chi-so')  --}}
+
                     @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>
