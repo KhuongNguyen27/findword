@@ -24,4 +24,5 @@ class UserEmployee extends Model
     {
         //return UserEmployeeFactory::new();
     }
+    
 }

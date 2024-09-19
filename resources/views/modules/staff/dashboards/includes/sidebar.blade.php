@@ -1,6 +1,16 @@
 @php
     $currentRouteName = \Request::route()->getName();
 @endphp
+<style>
+.notification-badge {
+    background-color: #ff0000;
+    padding: 0px 11px;
+    border-radius: 38px;
+    color: #fff;
+    margin-left: 7px;
+    font-size: 12px; /* Adjust size as needed */
+}
+</style>
 <!-- Sidebar Backdrop -->
 <div class="sidebar-backdrop"></div>
 <!-- User Sidebar -->
@@ -22,7 +32,21 @@
             <li class="@if ($currentRouteName == 'staff.profile.editpassword') active @endif"><a href="{{ route('staff.profile.editpassword') }}"><i
                         class="la la-key"></i>{{ __('change_password') }}</a></li>
             {{-- <li><a href="{{ route('staff.profile.editpassword') }}"><i class="la la-box"></i>Đổi mật khẩu</a></li> --}}
+            {{-- @php
+                $admin = App\Models\User::where('type', 'user')->first();
+            @endphp
 
+          @if($admin)
+            <li>
+                <a href="{{ route('staff.messages.index', $admin->id) }}">
+                    <i class="la la-envelope"></i>
+                    Tin nhắn 
+                    @if($unreadMessagesCount > 0)
+                        <span id="totalMessages" class="notification-badge">{{ $unreadMessagesCount }}</span>
+                    @endif
+                </a>
+            </li>
+            @endif --}}
             <li class="@if ($currentRouteName == 'auth.logout') active @endif"><a href="{{ route('auth.logout') }}"><i
                         class="la la-sign-out"></i>{{ __('logout') }}</a></li>
         </ul>

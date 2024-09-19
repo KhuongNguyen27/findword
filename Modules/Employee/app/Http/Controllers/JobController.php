@@ -138,7 +138,9 @@ class JobController extends Controller
             $ranks = Rank::where('status', Rank::ACTIVE)->get();
             $formworks = FormWork::where('status', FormWork::ACTIVE)->get();
             $wages = Wage::where('status', Wage::ACTIVE)->get();
-            $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
+            // $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
+            $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->orderBy('position', 'asc')->get();
+
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);
             $countries = Country::orderBy('name', 'ASC')->get();
@@ -203,6 +205,8 @@ class JobController extends Controller
                 'userAllowedAbroad' => $userAllowedAbroad,
                 'ckeditorFeatures' => $ckeditorFeatures,
                 'user_job_packages' => $user_job_packages, // Truyền số lượng tin đăng
+                'current_package' => $current_package // Thêm thông tin gói tin hiện tại
+
 
 
             ];

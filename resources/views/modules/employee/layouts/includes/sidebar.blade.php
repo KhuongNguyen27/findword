@@ -3,7 +3,7 @@
 <style>
 .dropdown-toggle #totalApplicants {
     background-color: #ff0000;
-    padding: 0px 8px;
+    padding: 0px 11px;
     border-radius: 38px;
     color: #fff;
     margin-left: 7px;
@@ -11,6 +11,14 @@
 
 .dropdown-toggle::after {
     margin-left: 3.255em;
+}
+.notification-badge {
+    background-color: #ff0000;
+    padding: 0px 11px;
+    border-radius: 38px;
+    color: #fff;
+    margin-left: 7px;
+    font-size: 12px; /* Adjust size as needed */
 }
 </style>
 
@@ -54,6 +62,25 @@
                         class="la la-box"></i>{{ __('transaction_manager') }}</a></li>
             <li><a href="{{ route('employee.profile.editpassword') }}"><i
                         class="la la-box"></i>{{ __('change_password') }}</a></li>
+
+
+            {{-- @php
+                $admin = App\Models\User::where('type', 'user')->first();
+            @endphp
+
+            @if($admin)
+            <li>
+                <a href="{{ route('messages.index', $admin->id) }}">
+                    <i class="la la-envelope"></i>
+                    Tin nhắn 
+                    @if($unreadMessagesCount > 0)
+                        <span id="totalMessages" class="notification-badge">{{ $unreadMessagesCount }}</span>
+                    @endif
+                </a>
+            </li>
+            @endif --}}
+
+
             <li><a href="{{ route('employee.logout') }}"><i class="la la-sign-out"></i>{{ __('logout') }}</a></li>
         </ul>
     </div>

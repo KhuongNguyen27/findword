@@ -55,7 +55,7 @@ $currentDateTime = \Carbon\Carbon::now()->subMinutes(5)->format('H:i d/m/Y');
                     @else
                     @include('website.homes.includes.job-search-form',['route_index' => route("jobs.nnjobs", ['job_type'=> 'tat-ca'])])
                     @endif
-                    {{-- @include('website.homes.includes.chi-so')  --}}
+                    @include('website.homes.includes.chi-so') 
 
                     @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->

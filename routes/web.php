@@ -11,6 +11,7 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
@@ -158,4 +159,46 @@ Route::prefix('cong-cu')->group(function () {
     Route::get('tinh-bao-hiem-xa-hoi', [UtilityController::class, 'socialInsurance'])->name('utilities.social-insurance');
     Route::get('tinh-lai-suat-kep', [UtilityController::class, 'compoundInterest'])->name('utilities.compound-interest');
     Route::get('lap-ke-hoach-tiet-kiem', [UtilityController::class, 'savingsPlan'])->name('utilities.savings-plan');
+});
+
+
+Route::prefix('messages')->group(function () {
+    // Hiển thị danh sách tin nhắn với người dùng khác
+    Route::get('employee/{user_id}', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('staff/{user_id}', [MessageController::class, 'staff'])->name('staff.messages.index');
+
+    // Hiển thị form gửi tin nhắn mới
+    Route::get('/create/{user_id}', [MessageController::class, 'create'])->name('messages.create');
+
+    // Xử lý gửi tin nhắn
+    Route::post('/store/{user_id}', [MessageController::class, 'store'])->name('messages.store');
+});
+
+// Routes cho admin quản lý tin nhắn
+Route::prefix('admin/messages')->group(function () {
+
+
+    Route::get('/compose', [MessageController::class, 'compose'])->name('admin.messages.compose');
+
+    // Xử lý gửi tin nhắn đến nhiều người dùng
+    Route::post('/send', [MessageController::class, 'send'])->name('admin.messages.send');
+    // Hiển thị danh sách tin nhắn giữa admin và người dùng
+    Route::get('/{user_id}', [MessageController::class, 'adminMessages'])->name('admin.messages.index');
+
+    // Hiển thị form tạo tin nhắn mới từ admin
+    Route::get('/{user_id}/create', [MessageController::class, 'create'])->name('admin.messages.create');
+    
+    // Lưu tin nhắn mới từ admin
+    Route::post('/{user_id}/store', [MessageController::class, 'stores'])->name('admin.messages.store');
+
+    // Phản hồi tin nhắn từ admin
+    Route::post('/reply/{message_id}', [MessageController::class, 'reply'])->name('admin.messages.reply');
+    Route::get('/{user_id}/details', [MessageController::class, 'messageDetails'])->name('admin.messages.details');
+
+    Route::get('/admin/messages/recipients', [MessageController::class, 'recipients'])->name('admin.messages.recipients');
+
+
+
+
+
 });

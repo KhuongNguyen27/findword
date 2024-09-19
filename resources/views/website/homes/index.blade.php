@@ -155,7 +155,7 @@
                     <!-- Job Search Form -->
                     @include('website.homes.includes.job-search-form',['route_index' => route("jobs.homejobs", ['job_type'=> 'tat-ca-viec-lam'])])
 
-                    {{-- @include('website.homes.includes.chi-so') --}}
+                    @include('website.homes.includes.chi-so')
                     @include('website.homes.includes.hero-banner')
                     <!-- Job Search Form -->
                 </div>
