@@ -20,8 +20,8 @@ class PostComposer
     {
         // $items = Post::where('status',1)->limit(10)->get();
         // $view->with('shared_posts', $items);
-        $careerGuidePosts = Post::where('status', 1)->where('category', 1)->limit(10)->get();
-        $entertainmentPosts = Post::where('status', 1)->where('category', 2)->limit(10)->get();
+        $careerGuidePosts = Post::where('status', 1)->where('category', 1)->limit(100)->get();
+        $entertainmentPosts = Post::where('status', 1)->where('category', 2)->limit(100)->get();
 
         $view->with('careerGuidePosts', $careerGuidePosts)
              ->with('entertainmentPosts', $entertainmentPosts);

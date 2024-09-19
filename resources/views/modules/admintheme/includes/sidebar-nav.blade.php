@@ -45,6 +45,30 @@
             </li>
         </ul>
     </li>
+
+    {{-- <li>
+    <a class="has-arrow" aria-expanded="false" href="javascript:;">
+        <div class="parent-icon">
+            <span class="material-symbols-outlined">account_circle</span>
+        </div>
+        <div class="menu-title">Tin nhắn</div>
+    </a>
+     <ul class="mm-collapse">
+        <li>
+            <a href="{{ route('admin.messages.index', ['user_id' => $adminId]) }}">
+                <span class="material-symbols-outlined">arrow_right</span>{{ __('Danh sách tin nhắn') }}
+            </a>
+        </li>
+          <li>
+            <a href="{{ route('admin.messages.compose') }}">
+                <span class="material-symbols-outlined">create</span>{{ __('Soạn tin nhắn mới') }}
+            </a>
+        </li>
+        
+        <!-- Các mục khác -->
+    </ul>
+    </li> --}}
+
     @if (Auth::user()->hasPermission('user_viewAnySystem'))
     <li>
         <a class="has-arrow" href="javascript:;">

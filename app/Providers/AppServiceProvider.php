@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\View\Composers\UnreadMessagesComposer;
+use App\Models\User;
 use App\View\homeShares\HomeShare;
 use Illuminate\Support\ServiceProvider;
 use App\View\Composers\JobFavorite;
@@ -33,7 +35,8 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['website.homes.index','website.homes.home-sub-index'], HomeShare::class);
         View::composer('*', PopupComposer::class);
         View::composer('*', MetricsComposer::class);
-
+        View::share('adminId', User::where('type', 'user')->first()->id ?? null);
+        View::composer('*', UnreadMessagesComposer::class);
 
     }
 }

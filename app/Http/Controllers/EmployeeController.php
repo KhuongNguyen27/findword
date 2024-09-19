@@ -13,7 +13,6 @@ class EmployeeController extends Controller
 
     public function index(Request $request)
     {
-        
         // Cấu hình SEO
         $keywords = config('seo.keywords');
         $title = 'Công ty';
@@ -28,18 +27,23 @@ class EmployeeController extends Controller
             $og_url
         );
 
-        $query = UserEmployee::query(true);
+        $query = UserEmployee::whereHas('user', function ($q) {
+            $q->where('status', 1);
+        });
+
         if ($request->name) {
             $query->where('name', 'LIKE', "%$request->name%");
         }
-       
-        $query->orderByRaw('CASE WHEN position IS NOT NULL AND position > 0 THEN 1 ELSE 0 END DESC')
+          $query->orderByRaw('CASE WHEN position IS NOT NULL AND position > 0 THEN 1 ELSE 0 END DESC')
             ->orderBy('position', 'asc')
             ->orderBy('created_at', 'desc');
+
         $items = $query->paginate(9);
         $params = [
             'items' => $items
         ];
+
+        // Trả về view và truyền dữ liệu
         return view('website.employees.index', $params);
     }
 }

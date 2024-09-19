@@ -9,14 +9,174 @@
         color: red;
     }
 
+
+
+    .red-count {
+        color: red;
+    }
+
+    .free-jobs-container {
+        background-color: #ffffff;
+        /* Màu nền trắng */
+        border: 5px solid #28C1BC;
+        /* Màu viền xanh (thay đổi màu theo nhu cầu) */
+        border-radius: 30px;
+        /* Bo góc viền (tuỳ chọn) */
+        padding: 1em;
+        /* Khoảng cách bên trong */
+        margin-top: 1em;
+        /* Khoảng cách bên ngoài */
+        margin-bottom: 20px;
+
+    }
+
+    .free-jobs-info h6 {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .free-jobs-info ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .free-jobs-info li {
+        margin-bottom: 0.5em;
+    }
+
+    .centered-heading {
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    .job-list {
+        list-style: none;
+        /* Xóa dấu chấm đầu dòng */
+        padding: 0;
+        /* Xóa khoảng cách padding mặc định */
+        margin: 0;
+        /* Xóa khoảng cách margin mặc định */
+    }
+
+    .job-list li {
+        display: flex;
+        /* Sử dụng flexbox để căn chỉnh */
+        align-items: center;
+        /* Căn chỉnh các mục nằm trên cùng một hàng ngang */
+    }
+
+    .job-name {
+        flex: 0.5;
+    }
+
+
+    .count-number {
+        font-weight: bold;
+        /* Làm đậm số lượng */
+        color: red;
+    }
+
+    .expiration-date {
+        color: red;
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .job-list {
+        list-style: none;
+        /* Xóa dấu chấm đầu dòng */
+        padding: 0;
+        /* Xóa khoảng cách padding mặc định */
+        margin: 0;
+        /* Xóa khoảng cách margin mặc định */
+    }
+
+    .job-list li {
+        display: flex;
+        /* Sử dụng flexbox để căn chỉnh */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        justify-content: center;
+        /* Căn giữa theo chiều ngang */
+    }
+
+    span.job-name {
+        font-size: 20px;
+    }
+
+    span.job-count {
+        font-size: 20px;
+    }
+
+    .expiration-date {
+        color: red;
+        font-size: 1.3em;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+ .container {
+        display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử ngang hàng */
+        justify-content: space-between; /* Đảm bảo các phần tử nằm ở hai đầu của container */
+        align-items: flex-start; /* Căn chỉnh các phần tử theo chiều dọc tại đầu container */
+        gap: 20px; /* Khoảng cách giữa các phần tử */
+    }
+   .upper-title-box {
+    margin-top: 100px; /* Thêm margin-top để nhích phần tử xuống */
+}
+
 </style>
 <!-- Dashboard -->
 <section class="user-dashboard">
     <div class="dashboard-outer">
-        <div class="upper-title-box">
-            <h3>Thêm mới một công việc!</h3>
-            <div class="text">Lao động là vinh quang!</div>
+        <div class="container">
+            <div class="upper-title-box">
+                <h3>Thêm mới một công việc!</h3>
+                <div class="text">Lao động là vinh quang!</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="free-jobs-container">
+                        <div class="free-jobs-info">
+                            <h6 style="text-align: center; font-size: 1.5em; margin-bottom: 20px; font-weight: 700;">
+                                SỐ LƯỢNG TIN TUYỂN DỤNG ĐANG CÓ
+                            </h6>
+                            <ul class="job-list">
+                                @foreach ($param['job_packages'] as $job_package)
+                                @php
+                                $count_job = Auth::user()->checkJob($job_package->id);
+
+                                // Lấy thông tin gói tin hiện tại
+                                $currentPackage = $param['current_package'];
+                                $expirationDate = $currentPackage ? \Carbon\Carbon::parse($currentPackage->expiration_date) : null;
+                                @endphp
+                                @if ($count_job > 0)
+                                <li>
+                                    <span class="job-name">{{ $job_package->name }}:</span>
+                                    <span class="job-count">Còn <span class="count-number">0{{ $count_job }}</span> tin miễn phí</span>
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                            <div class="expiration-date">
+                                @if ($expirationDate)
+                                Hết hạn sử dụng vào {{ $expirationDate->format('H:i d/m/Y') }}
+                                @else
+                                Hết hạn sử dụng vào Chưa xác định
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
+
+
 
         <div class="row">
             <div class="col-lg-12">
@@ -33,7 +193,10 @@
                                         <span class="icon flaticon-briefcase"></span>
                                         <h5>Chi tiết công việc</h5>
                                     </div>
+
                                 </div>
+
+
                                 @if (session('error'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ session('error') }}
@@ -300,7 +463,7 @@
                                         <label>Quyền lợi <span class="label-required">*</span></label>
                                         <textarea name="benefits" id="benefits1" placeholder="Quyền lợi...">{{ old('benefits') }}</textarea>
                                         @if ($errors->any())
-                                            <p style="color:red">{{ $errors->first('benefits') }}</p>
+                                        <p style="color:red">{{ $errors->first('benefits') }}</p>
                                         @endif
                                     </div>
                                 </div>
@@ -330,17 +493,20 @@
                                             <label>Loại tin đăng <span class="label-required">*</span></label>
                                             <select id="package_type" onchange="handle_price_package()" name="jobpackage_id" class="chosen-select">
                                                 @foreach ($param['job_packages'] as $job_package)
-                                                <option id="{{ $job_package->id }}" data-price="{{ $job_package->price }}" value="{{ $job_package->id }}" data-count_job="{{ Auth::user()->checkJob($job_package->id) }}">
-                                                    {{ $job_package->name }}
-                                                    {{ Auth::user()->checkJob($job_package->id) > 0 ? '(' . Auth::user()->checkJob($job_package->id) . ')' : '' }}
+                                                @php
+                                                // Lấy số lượng tin còn lại
+                                                $count_job = Auth::user()->checkJob($job_package->id);
+                                                @endphp
+                                                <option id="{{ $job_package->id }}" data-price="{{ $job_package->price }}" value="{{ $job_package->id }}" data-count_job="{{ $count_job }}">
+                                                    {{ $job_package->name }}: Còn lại <span style="color: red;">{{ $count_job }}</span> tin miễn phí
                                                 </option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->any())
                                             <p style="color:red">{{ $errors->first('jobpackage_id') }}</p>
                                             @endif
-                                            <!-- <a style="color:gray"><i>* Sử dụng tin VIP để tự động duyệt</i></a> -->
                                         </div>
+
                                         <div class="form-group col-lg-3 col-md-12" style="margin-bottom:3%!important">
                                             <label>Ngày bắt đầu <span class="label-required">*</span></label>
                                             <input type="date" value="{{ old('start_day') ?? date('Y-m-d') }}" name="start_day" placeholder="" onchange="calculateDays()" readonly>
@@ -524,7 +690,7 @@
         }
 
         // Khởi tạo CKEditor 5 cho các textarea
-        ['description1', 'requirements1', 'about1', 'more_information','benefits1'].forEach(function(id) {
+        ['description1', 'requirements1', 'about1', 'more_information', 'benefits1'].forEach(function(id) {
             if (document.querySelector('#' + id)) {
                 ClassicEditor.create(document.querySelector('#' + id), {
                     toolbar: {
