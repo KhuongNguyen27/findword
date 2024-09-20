@@ -139,7 +139,7 @@ class JobController extends Controller
             $formworks = FormWork::where('status', FormWork::ACTIVE)->get();
             $wages = Wage::where('status', Wage::ACTIVE)->get();
             // $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->get();
-            $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->orderBy('position', 'asc')->get();
+            $job_packages = JobPackage::where('status', JobPackage::ACTIVE)->orderBy('position', 'desc')->get();
 
             $normal_provinces = Province::whereNotIn('id', [31, 1, 50, 32])->orderBy('name')->get();
             $provinces = Province::whereIn('id', [31, 1, 50, 32])->get()->merge($normal_provinces);

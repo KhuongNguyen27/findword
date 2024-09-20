@@ -4,6 +4,7 @@ namespace Modules\AdminUser\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\AccountJobPackage;
+use App\Models\CodeEmail;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
@@ -240,22 +241,35 @@ class AdminUserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
-        $this->authorize('delete',Auth::user());
+{
+    $this->authorize('delete', Auth::user());
 
-        $type = request()->type ?? '';
-        try {
-            $item = $this->model::findOrFail($id);
-            $type = $item->type;
-            $this->model::deleteItem($id);
+    $type = request()->type ?? '';
+    try {
+        // Tìm user theo ID
+        $user = $this->model::findOrFail($id);
+        $type = $user->type;
 
-            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('success', __('sys.destroy_item_success'));
-        } catch (ModelNotFoundException $e) {
-            Log::error('Item not found: ' . $e->getMessage());
-            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.item_not_found'));
-        } catch (QueryException $e) {
-            Log::error('Error in destroy method: ' . $e->getMessage());
-            return redirect()->route($this->route_prefix . 'index', ['type' => $type])->with('error', __('sys.destroy_item_error'));
+        // Xóa email trong bảng code_email nếu tồn tại
+        $codeEmail = CodeEmail::where('email', $user->email)->first();
+        if ($codeEmail) {
+            $codeEmail->delete(); // Xóa record trong bảng code_email
         }
+
+        // Xóa user
+        $this->model::deleteItem($id);
+
+        return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+            ->with('success', __('sys.destroy_item_success'));
+    } catch (ModelNotFoundException $e) {
+        Log::error('Item not found: ' . $e->getMessage());
+        return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+            ->with('error', __('sys.item_not_found'));
+    } catch (QueryException $e) {
+        Log::error('Error in destroy method: ' . $e->getMessage());
+        return redirect()->route($this->route_prefix . 'index', ['type' => $type])
+            ->with('error', __('sys.destroy_item_error'));
     }
+}
+
 }

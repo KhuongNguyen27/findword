@@ -28,7 +28,7 @@ class EmployeeController extends Controller
         );
 
         $query = UserEmployee::whereHas('user', function ($q) {
-            $q->where('status', 1);
+            $q->where('verify', 1);
         });
 
         if ($request->name) {
