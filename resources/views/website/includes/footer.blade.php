@@ -144,7 +144,7 @@
             <div class="phone-vr">
                 <div class="phone-vr-circle-fill"></div>
                 <div class="phone-vr-img-circle">
-                    <a target="_blank" href="https://zalo.me/0589595143">
+                    <a target="_blank" href="https://zalo.me/0817198779">
                         <img alt="Zalo"
                             src="https://anhhuyvt.rrtech247.com/wp-content/plugins/button-contact-vr/img/zalo.png">
                     </a>
@@ -157,7 +157,7 @@
             <div class="phone-vr">
                 <div class="phone-vr-circle-fill"></div>
                 <div class="phone-vr-img-circle">
-                    <a href="tel:0965358381">
+                    <a href="tel:02343888333">
                         <img alt="Phone"
                             src="https://anhhuyvt.rrtech247.com/wp-content/plugins/button-contact-vr/img/phone.png">
                     </a>
